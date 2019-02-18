@@ -33,7 +33,7 @@ export const ROUTES: RouteInfo[] = [{
         icontype: 'next_week'
 
     },{
-        path: '/forms/userform',
+        path: '/add-job',
         title: 'اضافة عرض عمل',
         type: 'link',
         icontype: 'rate_review'

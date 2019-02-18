@@ -30,7 +30,10 @@ export const AppRoutes: Routes = [
     }, {
         path: 'charts',
         loadChildren: './charts/charts.module#ChartsModule'
-    },{
+    }, {
+        path: 'add-job',
+        loadChildren: './add-job/add-job.module#AddJobModule'
+    }, {
         path: 'add-project',
         loadChildren: './add-project/add-project.module#AddProjectModule'
     }, {
