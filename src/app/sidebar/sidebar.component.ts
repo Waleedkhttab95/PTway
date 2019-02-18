@@ -1,0 +1,93 @@
+import { Component, OnInit } from '@angular/core';
+import PerfectScrollbar from 'perfect-scrollbar';
+
+declare const $: any;
+
+//Metadata
+export interface RouteInfo {
+    path: string;
+    title: string;
+    type: string;
+    icontype: string;
+    collapse?: string;
+    children?: ChildrenItems[];
+}
+
+export interface ChildrenItems {
+    path: string;
+    title: string;
+    ab: string;
+    type?: string;
+}
+
+//Menu Items
+export const ROUTES: RouteInfo[] = [{
+        path: '/dashboard',
+        title: 'لوحة التحكم',
+        type: 'link',
+        icontype: 'dashboard'
+    },{
+        path: '/add-project',
+        title: 'اضافة مشروع',
+        type: 'link',
+        icontype: 'next_week'
+
+    },{
+        path: '/forms/userform',
+        title: 'اضافة عرض عمل',
+        type: 'link',
+        icontype: 'rate_review'
+
+    },{
+        path: '/widgets',
+        title: 'قائمة المرشحين',
+        type: 'link',
+        icontype: 'assignment_ind'
+
+    },{
+        path: '/widgets',
+        title: 'قائمة المقبولين',
+        type: 'link',
+        icontype: 'assignment_turned_in'
+
+    },{
+        path: '/widgets',
+        title: 'تسجيل خروج',
+        type: 'link',
+        icontype: 'input'
+
+    }
+];
+@Component({
+    selector: 'app-sidebar-cmp',
+    templateUrl: 'sidebar.component.html',
+    styleUrls: ['./sidebar.component.css']
+})
+
+export class SidebarComponent implements OnInit {
+    public menuItems: any[];
+
+    isMobileMenu() {
+        if ($(window).width() > 991) {
+            return false;
+        }
+        return true;
+    };
+
+    ngOnInit() {
+        this.menuItems = ROUTES.filter(menuItem => menuItem);
+    }
+    updatePS(): void  {
+        if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {
+            const elemSidebar = <HTMLElement>document.querySelector('.sidebar .sidebar-wrapper');
+            let ps = new PerfectScrollbar(elemSidebar, { wheelSpeed: 2, suppressScrollX: true });
+        }
+    }
+    isMac(): boolean {
+        let bool = false;
+        if (navigator.platform.toUpperCase().indexOf('MAC') >= 0 || navigator.platform.toUpperCase().indexOf('IPAD') >= 0) {
+            bool = true;
+        }
+        return bool;
+    }
+}

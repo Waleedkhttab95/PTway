@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg bg-primary navbar-transparent navbar-absolute" color-on-scroll="500">
+  <div class="container">
+    <div class="navbar-wrapper">
+      <a class="navbar-brand-logo d-none d-sm-none d-md-block">
+        <strong>Pt</strong>way
+        <img src="../../../assets/img/32X32.png">
+      </a>
+      <a class="navbar-brand-logo  d-block d-sm-block d-md-none">
+        <strong>Pt</strong>way
+        <img src="../../../assets/img/32X32.png">
+      </a>
+    </div>
+    <button mat-button class="navbar-toggler" type="button" (click)="sidebarToggle()">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="navbar-toggler-icon icon-bar"></span>
+      <span class="navbar-toggler-icon icon-bar"></span>
+      <span class="navbar-toggler-icon icon-bar"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end">
+      <ul class="navbar-nav">
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/pages/register']">
+            <i class="material-icons">person_add</i> التسجيل
+          </a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/pages/login']">
+            <i class="material-icons">fingerprint</i> تسجيل الدخول
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  <router-outlet></router-outlet>
