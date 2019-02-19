@@ -3,7 +3,6 @@ import { AuthData } from './auth-data.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { environment } from './../../environments/environment';
 
 
 const BackUrl = 'https://ptway-dev.herokuapp.com/api';
