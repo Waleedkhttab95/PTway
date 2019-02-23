@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import PerfectScrollbar from 'perfect-scrollbar';
+import { AuthService } from '../auth/auth.service';
 
 declare const $: any;
 
@@ -39,13 +40,13 @@ export const ROUTES: RouteInfo[] = [{
         icontype: 'rate_review'
 
     },{
-        path: '/widgets',
+        path: '/candidates-list',
         title: 'قائمة المرشحين',
         type: 'link',
         icontype: 'assignment_ind'
 
     },{
-        path: '/widgets',
+        path: '/acceptance-list',
         title: 'قائمة المقبولين',
         type: 'link',
         icontype: 'assignment_turned_in'

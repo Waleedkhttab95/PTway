@@ -10,90 +10,90 @@ const BackUrl = 'https://ptway-dev.herokuapp.com/api';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private isAuth = false;
-private token: string;
-private userId: string;
-private authStatusListener = new Subject<boolean>();
-constructor(private http: HttpClient, private router: Router) {}
-getToken() {
-  return this.token;
-}
+  private token: string;
+  private userId: string;
+  private authStatusListener = new Subject<boolean>();
+  constructor(private http: HttpClient, private router: Router) { }
+  getToken() {
+    return this.token;
+  }
 
-getAuthStatusListener() {
-  return this.authStatusListener.asObservable();
-}
+  getAuthStatusListener() {
+    return this.authStatusListener.asObservable();
+  }
 
-createUser(firstName: string, lastName: string, email: string, password: string) {
-  const authData = {firstName: firstName, lastName: lastName, email: email, password: password};
-  this.http.post(BackUrl + '/userRegistreing', authData)
-  .subscribe(() => {
-    this.router.navigate(['/pages/register']);
-  }, error => {
-this.authStatusListener.next(false);
-  });
-}
+  createUser(firstName: string, lastName: string, email: string, password: string) {
+    const authData = { firstName: firstName, lastName: lastName, email: email, password: password };
+    this.http.post(BackUrl + '/userRegistreing', authData)
+      .subscribe(() => {
+        this.router.navigate(['/pages/register']);
+      }, error => {
+        this.authStatusListener.next(false);
+      });
+  }
 
-login(email: string, password: string) {
-  const authData: AuthData = {email: email, password: password};
-  this.http.post<{token: string, userId: string}>(BackUrl + '/login', authData)
-  .subscribe(response => {
-const token = response.token;
-if (token) {
-  this.token = token;
-  this.isAuth = true;
-  this.userId = response.userId;
-  this.authStatusListener.next(true);
-  this.saveAuthData(token, this.userId);
-  this.router.navigate(['/forms/companyform']);
-}
+  login(email: string, password: string) {
+    const authData: AuthData = { email: email, password: password };
+    this.http.post<{ token: string, userId: string }>(BackUrl + '/login', authData)
+      .subscribe(response => {
+        const token = response.token;
+        if (token) {
+          this.token = token;
+          this.isAuth = true;
+          this.userId = response.userId;
+          this.authStatusListener.next(true);
+          this.saveAuthData(token, this.userId);
+          this.router.navigate(['/forms/companyform']);
+        }
 
-  }, error => {
+      }, error => {
+        this.authStatusListener.next(false);
+      });
+  }
+
+  autoAuthUser() {
+    this.token = this.getAuthData().token;
+    this.isAuth = true;
+    this.authStatusListener.next(true);
+    this.userId = this.getAuthData().userId;
+  }
+
+  logOut() {
+    this.token = null;
+    this.isAuth = false;
     this.authStatusListener.next(false);
-  });
-}
+    this.userId = null;
+    this.clearData();
+    this.router.navigate(['/']);
+  }
 
-autoAuthUser() {
-  this.token = this.getAuthData().token;
-  this.isAuth = true;
-  this.authStatusListener.next(true);
-  this.userId = this.getAuthData().userId;
-}
+  private saveAuthData(token: string, userId: string) {
+    localStorage.setItem('token', token);
+    localStorage.setItem('userId', userId);
+  }
 
-logOut() {
-  this.token = null;
-  this.isAuth = false;
-  this.authStatusListener.next(false);
-  this.userId = null;
-  this.clearData();
-  this.router.navigate(['/']);
-}
+  private clearData() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+  }
 
-private saveAuthData(token: string, userId: string) {
-localStorage.setItem('token', token);
-localStorage.setItem('userId', userId);
-}
+  getIsAuth() {
+    return this.isAuth;
+  }
 
-private clearData() {
-  localStorage.removeItem('token');
-  localStorage.removeItem('userId');
-}
+  getUserId() {
+    return this.userId;
+  }
 
-getIsAuth() {
-  return this.isAuth;
-}
-
-getUserId() {
-  return this.userId;
-}
-
-private getAuthData() {
-const token = localStorage.getItem('token');
-const user = localStorage.getItem('userId');
-if (!token) {
-  return ;
-}
-return {
-  token: token,
-  userId: user
-};
-}
+  private getAuthData() {
+    const token = localStorage.getItem('token');
+    const user = localStorage.getItem('userId');
+    if (!token) {
+      return;
+    }
+    return {
+      token: token,
+      userId: user
+    };
+  }
 }

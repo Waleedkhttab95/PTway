@@ -1,77 +1,5 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["add-project-add-project-module"],{
 
-/***/ "./src/app/add-job/job.service.ts":
-/*!****************************************!*\
-  !*** ./src/app/add-job/job.service.ts ***!
-  \****************************************/
-/*! exports provided: JobService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "JobService", function() { return JobService; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-var BackUrl = 'https://ptway-dev.herokuapp.com/api';
-var JobService = /** @class */ (function () {
-    function JobService(http, router) {
-        this.http = http;
-        this.router = router;
-        this.job = [];
-        this.jobsUpdated = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
-    }
-    JobService.prototype.addJob = function (data) {
-        var _this = this;
-        this.http
-            .post(BackUrl + '/postjob', data)
-            .subscribe(function (responseData) {
-            _this.router.navigate(['/']);
-        });
-    };
-    JobService.prototype.getJobs = function () {
-        this.http
-            .get(BackUrl + '/getjobs')
-            .subscribe(function (data) {
-            console.log(data);
-        });
-    };
-    JobService.prototype.getJob = function (id) {
-        this.http
-            .get(BackUrl + '/getjob?id=' + id)
-            .subscribe(function (data) {
-            console.log(data);
-        });
-    };
-    JobService.prototype.deleteJob = function (id) {
-        return this.http
-            .delete(BackUrl + '/deletejob?id=' + id);
-    };
-    JobService = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({ providedIn: 'root' }),
-        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
-    ], JobService);
-    return JobService;
-}());
-
-
-
-/***/ }),
-
 /***/ "./src/app/add-project/add-project.component.css":
 /*!*******************************************************!*\
   !*** ./src/app/add-project/add-project.component.css ***!
@@ -79,7 +7,7 @@ var JobService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".card [class*=\"card-header-\"] .card-icon{\r\n    margin-left: 15px;\r\n    float: right;\r\n}\r\n.custom-title{\r\n    text-align: right;\r\n}\r\n.mat-form-field{\r\n    text-align: right;\r\n}\r\n.mat-option{\r\n    text-align: right;\r\n}\r\n.mat-option.mat-selected:hover{\r\n    background-color: #3f51b5 !important;\r\n}\r\n.mat-option:hover {\r\n    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(22, 44, 243, 0.4);\r\n    background: #3f51b5!important;\r\n    color: #fff !important;\r\n}\r\n.mat-option.mat-selected:not(.mat-option-multiple) {\r\n    background-color: #3f51b5 !important;\r\n    color: #fff !important;\r\n}\r\n.mat-option.mat-selected:not(.mat-option-multiple) {\r\n    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(22, 44, 243, 0.4);\r\n}\r\n.custom-card{\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n}"
+module.exports = ".card [class*=\"card-header-\"] .card-icon{\n    margin-left: 15px;\n    float: right;\n}\n.custom-title{\n    text-align: right;\n}\n.mat-form-field{\n    text-align: right;\n}\n.mat-option{\n    text-align: right;\n}\n.mat-option.mat-selected:hover{\n    background-color: #3f51b5 !important;\n}\n.mat-option:hover {\n    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(22, 44, 243, 0.4);\n    background: #3f51b5!important;\n    color: #fff !important;\n}\n.mat-option.mat-selected:not(.mat-option-multiple) {\n    background-color: #3f51b5 !important;\n    color: #fff !important;\n}\n.mat-option.mat-selected:not(.mat-option-multiple) {\n    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(22, 44, 243, 0.4);\n}\n.custom-card{\n    margin-left: auto;\n    margin-right: auto;\n}"
 
 /***/ }),
 
@@ -90,7 +18,7 @@ module.exports = ".card [class*=\"card-header-\"] .card-icon{\r\n    margin-left
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-content\">\r\n  <div class=\"container-fluid\">\r\n    <div class=\"row\">\r\n      <div class=\"col-md-8 custom-card\">\r\n        <div class=\"card\">\r\n          <div class=\"card-header card-header-primary card-header-icon\">\r\n            <div class=\"card-icon\">\r\n                <i class=\"material-icons\">add_box</i>\r\n            </div>\r\n            <h4 class=\"card-title custom-title\">اضافة مشروع</h4>\r\n          </div>\r\n          <div class=\"card-body\">\r\n            <form>\r\n              <div class=\"row\">\r\n                <div class=\"col-md-6\">\r\n                  <mat-form-field class=\"example-full-width\">\r\n                    <input matInput placeholder=\"اسم المشروع...\" name=\"\" type=\"text\">\r\n                  </mat-form-field>\r\n                </div>\r\n                <div class=\"col-md-12\">\r\n                  <mat-form-field class=\"example-full-width\">\r\n                    <textarea matInput placeholder=\"وصف المشروع...\" name=\"\"></textarea>\r\n                  </mat-form-field>\r\n                </div>\r\n                <div class=\"col-md-12\">\r\n                  <div class=\"card-footer\">\r\n                    <button mat-raised-button type=\"submit\" class=\"btn btn-fill btn-primary\">حفظ</button>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </form>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>"
+module.exports = "<div class=\"main-content\">\n  <div class=\"container-fluid\">\n    <div class=\"row\">\n      <div class=\"col-md-8 custom-card\">\n        <div class=\"card\">\n          <div class=\"card-header card-header-primary card-header-icon\">\n            <div class=\"card-icon\">\n                <i class=\"material-icons\">add_box</i>\n            </div>\n            <h4 class=\"card-title custom-title\">اضافة مشروع</h4>\n          </div>\n          <div class=\"card-body\">\n            <form>\n              <div class=\"row\">\n                <div class=\"col-md-6\">\n                  <mat-form-field class=\"example-full-width\">\n                    <input matInput placeholder=\"اسم المشروع...\" name=\"\" type=\"text\">\n                  </mat-form-field>\n                </div>\n                <div class=\"col-md-12\">\n                  <mat-form-field class=\"example-full-width\">\n                    <textarea matInput placeholder=\"وصف المشروع...\" name=\"\"></textarea>\n                  </mat-form-field>\n                </div>\n                <div class=\"col-md-12\">\n                  <div class=\"card-footer\">\n                    <button mat-raised-button type=\"submit\" class=\"btn btn-fill btn-primary\">حفظ</button>\n                  </div>\n                </div>\n              </div>\n            </form>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -105,7 +33,6 @@ module.exports = "<div class=\"main-content\">\r\n  <div class=\"container-fluid
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddProjectComponent", function() { return AddProjectComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _add_job_job_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../add-job/job.service */ "./src/app/add-job/job.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -116,13 +43,10 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-
 var AddProjectComponent = /** @class */ (function () {
-    function AddProjectComponent(service) {
-        this.service = service;
+    function AddProjectComponent() {
     }
     AddProjectComponent.prototype.ngOnInit = function () {
-        this.service.getJobs();
     };
     AddProjectComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -130,7 +54,7 @@ var AddProjectComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./add-project.component.html */ "./src/app/add-project/add-project.component.html"),
             styles: [__webpack_require__(/*! ./add-project.component.css */ "./src/app/add-project/add-project.component.css")]
         }),
-        __metadata("design:paramtypes", [_add_job_job_service__WEBPACK_IMPORTED_MODULE_1__["JobService"]])
+        __metadata("design:paramtypes", [])
     ], AddProjectComponent);
     return AddProjectComponent;
 }());

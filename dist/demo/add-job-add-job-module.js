@@ -18,7 +18,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\r\n  add-job works!\r\n</p>\r\n"
+module.exports = "<p>\n  add-job works!\n</p>\n"
 
 /***/ }),
 

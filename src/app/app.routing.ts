@@ -16,6 +16,21 @@ export const AppRoutes: Routes = [
         path: 'dashboard',
         loadChildren: './dashboard/dashboard.module#DashboardModule'
     }, {
+        path: 'add-project',
+        loadChildren: './add-project/add-project.module#AddProjectModule'
+    }, {
+        path: 'add-job',
+        loadChildren: './add-job/add-job.module#AddJobModule'
+    }, {
+        path: 'candidates-list',
+        loadChildren: './candidates-list/candidates-list.module#CandidatesListModule'
+    }, {
+        path: 'acceptance-list',
+        loadChildren: './acceptance-list/acceptance-list.module#AcceptanceListModule'
+    }, {
+        path: 'error-message',
+        loadChildren: './error-message/error-message.module#ErrorMessageModule'
+    }, {
         path: 'components',
         loadChildren: './components/components.module#ComponentsModule'
     }, {
@@ -31,17 +46,8 @@ export const AppRoutes: Routes = [
         path: 'charts',
         loadChildren: './charts/charts.module#ChartsModule'
     }, {
-        path: 'add-job',
-        loadChildren: './add-job/add-job.module#AddJobModule'
-    }, {
-        path: 'add-project',
-        loadChildren: './add-project/add-project.module#AddProjectModule'
-    }, {
         path: 'calendar',
         loadChildren: './calendar/calendar.module#CalendarModule'
-    }, {
-        path: '',
-        loadChildren: './userpage/user.module#UserModule'
     }, {
         path: '',
         loadChildren: './timeline/timeline.module#TimelineModule'
@@ -49,9 +55,13 @@ export const AppRoutes: Routes = [
   ]}, {
       path: '',
       component: AuthLayoutComponent,
-      children: [{
-        path: 'pages',
-        loadChildren: './pages/pages.module#PagesModule'
+      children: [
+          {
+        path: 'sign-up',
+        loadChildren: './sign-up/sign-up.module#SignUpModule'
+      }, {
+        path: 'sign-in',
+        loadChildren: './sign-in/sign-in.module#SignInModule'
       }]
     }
 ];

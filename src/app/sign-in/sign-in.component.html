@@ -1,0 +1,93 @@
+<div class="wrapper wrapper-full-page">
+  <div class="page-header login-page header-filter" filter-color="black" style="background-image: url('./assets/img/login.jpg'); background-size: cover; background-position: top center;">
+    <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-6 ml-auto mr-auto">
+          <form class="form" (ngSubmit)="userlogin(loginForm)" #loginForm="ngForm">
+            <div class="card card-login card-hidden">
+              <div class="card-header card-header-primary text-center">
+                <h4 class="card-title">تسجيل الدخول</h4>
+                <div class="social-line">
+                  <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
+                    <i class="fa fa-google"></i>
+                  </a>
+                  <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
+                    <i class="fa fa-twitter"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="card-body">
+                <p class="card-description text-center">Or Be Classical</p>
+                <span class="bmd-form-group">
+                  <div class="input-group custom-input">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="material-icons">email</i>
+                      </span>
+                    </div>
+                    <mat-form-field>
+                      <input matInput type="email" name="email" ngModel placeholder="البريد الإلكتروني" #emailInput="ngModel"
+                        required email>
+                      <mat-error *ngIf="emailInput.invalid">Please Enter valid Email</mat-error>
+                    </mat-form-field>
+                  </div>
+                </span>
+                <span class="bmd-form-group">
+                  <div class="input-group custom-input">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="material-icons">lock_outline</i>
+                      </span>
+                    </div>
+                    <mat-form-field>
+                      <input type="password" matInput name="password" ngModel #passwordInput="ngModel" required
+                        placeholder="كلمة المرور">
+                      <mat-error *ngIf="passwordInput.invalid">Please Enter a valid Password</mat-error>
+                    </mat-form-field>
+                  </div>
+                </span>
+              </div>
+              <div class="card-footer justify-content-center">
+                <button type="submit" name="submit" class="btn btn-info btn-link btn-lg">Lets Go</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <footer class="footer ">
+      <div class="container">
+        <nav class="pull-left">
+          <ul>
+            <li>
+              <a href="https://www.creative-tim.com">
+                Ptway TEAM
+              </a>
+            </li>
+            <li>
+              <a href="https://creative-tim.com/about-us">
+                من نحن
+              </a>
+            </li>
+            <li>
+              <a href="http://blog.creative-tim.com">
+                سياسة الخصوصية
+              </a>
+            </li>
+            <li>
+              <a href="https://www.creative-tim.com/license">
+                الشروط والأحكام
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="copyright pull-right">
+          بواسطة <i class="material-icons">favorite</i> شركة
+          <a href="https://www.creative-tim.com" target="_blank"> Ptway</a> لمستقبل مشرق &copy;
+          {{test | date: 'yyyy'}}
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>

@@ -83,6 +83,7 @@
  div.dataTables_wrapper div.dataTables_info {
    padding-top: 8px;
    white-space: nowrap;
+   text-align: right;
  }
  div.dataTables_wrapper div.dataTables_paginate {
    margin: 0;
@@ -242,7 +243,7 @@ justify-content: flex-end!important;
                  position: relative;
                  display: inline-block;
                  bottom: 1px;
-                 right: -7px;
+                 left: -7px;
                  font-family: 'FontAwesome';
                  opacity: 0.8;
                  font-size: 12px;
@@ -295,6 +296,7 @@ justify-content: flex-end!important;
          width: 150px;
          border-right: 0;
          border-bottom: 0;
+         text-align: right;
      }
 
      > thead > tr > th{
@@ -346,7 +348,7 @@ justify-content: flex-end!important;
              box-shadow: 0 0 3px #444;
              box-sizing: content-box;
              text-align: center;
-             font-family: 'Courier New', Courier, monospace;
+             font-family: 'Cairo', 'Changa';
              line-height: 18px;
              content: '+';
              background-color: #FFF;
