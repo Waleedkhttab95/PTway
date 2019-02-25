@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
 
-const BackUrl = 'https://ptway-dev.herokuapp.com/api';
+const BackUrl = 'https://cors-anywhere.herokuapp.com/https://ptway-dev.herokuapp.com/api';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -36,6 +36,7 @@ export class AuthService {
     const authData: AuthData = { email: email, password: password };
     this.http.post<{ token: string, userId: string }>(BackUrl + '/login', authData)
       .subscribe(response => {
+        console.log(response);
         const token = response.token;
         if (token) {
           this.token = token;

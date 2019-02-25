@@ -4,3 +4,8 @@
 .mat-form-field{
     text-align: right;
 }
+.custom-message{
+    text-align: center;
+    color: brown;
+    font-weight: bold;
+}
