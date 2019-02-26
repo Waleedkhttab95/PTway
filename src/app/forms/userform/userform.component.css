@@ -30,3 +30,6 @@
     margin-left: auto;
     margin-right: auto;
 }
+.custom-label{
+    float: right;
+}

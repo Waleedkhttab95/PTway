@@ -13,8 +13,9 @@
               <form (ngSubmit)="postcompanyinfo()" [formGroup]="comapnyResumeForm">
                 <div class="row">
                   <div class="col-md-6">
+                    <label class="bmd-label-floating custom-label">- الدولة</label>
                     <mat-form-field>
-                      <mat-select placeholder="الدولة..." formControlName="country" name="country">
+                      <mat-select placeholder="اختر الدولة..." formControlName="country" name="country">
                         <mat-option *ngFor="let country of countries" [value]="country.value">
                           {{country.viewValue}}
                         </mat-option>
@@ -22,8 +23,9 @@
                     </mat-form-field>
                   </div>
                   <div class="col-md-6">
+                    <label class="bmd-label-floating custom-label">- المدينة</label>
                     <mat-form-field>
-                      <mat-select placeholder="المدينة..." formControlName="city" name="city">
+                      <mat-select placeholder="اختر المدينة..." formControlName="city" name="city">
                         <mat-option *ngFor="let city of cities" [value]="city.value">
                           {{city.viewValue}}
                         </mat-option>
@@ -31,48 +33,57 @@
                     </mat-form-field>
                   </div>
                   <div class="col-md-12">
+                    <label class="bmd-label-floating custom-label">- العنوان</label>
                     <mat-form-field class="example-full-width">
-                      <textarea matInput placeholder="العنوان..." formControlName="address" name="address"></textarea>
+                      <textarea matInput placeholder="" formControlName="address" name="address"></textarea>
                     </mat-form-field>
                   </div>
                   <div class="col-md-12">
+                    <label class="bmd-label-floating custom-label">- معلومات عامة</label>
                     <mat-form-field class="example-full-width">
-                      <textarea matInput placeholder="معلومات عامة..." formControlName="info" name="info"></textarea>
+                      <textarea matInput placeholder="" formControlName="info" name="info"></textarea>
                     </mat-form-field>
                   </div>
                   <div class="col-md-12">
+                    <label class="bmd-label-floating custom-label">- الرؤيا</label>
                     <mat-form-field class="example-full-width">
-                      <textarea matInput placeholder="الرؤيا..." formControlName="vision" name="vision"></textarea>
+                      <textarea matInput placeholder="" formControlName="vision" name="vision"></textarea>
                     </mat-form-field>
                   </div>
                   <div class="col-md-12">
+                    <label class="bmd-label-floating custom-label">- الرسالة</label>
                     <mat-form-field class="example-full-width">
-                      <textarea matInput placeholder="الرسالة..." formControlName="message" name="message"></textarea>
+                      <textarea matInput placeholder="" formControlName="message" name="message"></textarea>
                     </mat-form-field>
                   </div>
                   <div class="col-md-6">
+                    <label class="bmd-label-floating custom-label">- الموقع الشخصي</label>
                     <mat-form-field class="example-full-width">
-                      <input matInput placeholder="الموقع الشخصي..." formControlName="personal_web" name="personal_web" type="url">
+                      <input matInput placeholder="ضع رابط الموقع الشخصي..." formControlName="personal_web" name="personal_web" type="url">
                     </mat-form-field>
                   </div>
                   <div class="col-md-6">
+                    <label class="bmd-label-floating custom-label">- facebook link</label>
                     <mat-form-field class="example-full-width">
-                      <input matInput placeholder="...facebook link" formControlName="facebook" name="facebook" type="url">
+                      <input matInput placeholder="...ضع رابط الصفحة الخاصة بك" formControlName="facebook" name="facebook" type="url">
                     </mat-form-field>
                   </div>
                   <div class="col-md-6">
+                    <label class="bmd-label-floating custom-label">- twitter link</label>
                     <mat-form-field class="example-full-width">
-                      <input matInput placeholder="...twitter link" formControlName="twitter" name="twitter" type="url">
+                      <input matInput placeholder="...ضع رابط الصفحة الخاصة بك" formControlName="twitter" name="twitter" type="url">
                     </mat-form-field>
                   </div>
                   <div class="col-md-6">
+                    <label class="bmd-label-floating custom-label">- instagram link</label>
                     <mat-form-field class="example-full-width">
-                      <input matInput placeholder="...instagram link" formControlName="instagram" name="instagram" type="url">
+                      <input matInput placeholder="...ضع رابط الصفحة الخاصة بك" formControlName="instagram" name="instagram" type="url">
                     </mat-form-field>
                   </div>
                   <div class="col-md-6">
+                    <label class="bmd-label-floating custom-label">- linkedin link</label>
                     <mat-form-field class="example-full-width">
-                      <input matInput placeholder="...linkedin link" formControlName="linkedin" name="linkedin" type="url">
+                      <input matInput placeholder="...ضع رابط الصفحة الخاصة بك" formControlName="linkedin" name="linkedin" type="url">
                     </mat-form-field>
                   </div>
                   <div class="col-md-12">
