@@ -9,3 +9,6 @@
     color: brown;
     font-weight: bold;
 }
+::ng-deep .mat-form-field-empty.mat-form-field-label {
+    font-family: 'Cairo', 'Changa';
+}

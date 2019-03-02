@@ -26,7 +26,17 @@ export class AuthService {
     const authData = { firstName: firstName, lastName: lastName, email: email, password: password };
     this.http.post(BackUrl + '/userRegistreing', authData)
       .subscribe(() => {
-        this.router.navigate(['/pages/register']);
+        this.router.navigate(['/forms/userform']);
+      }, error => {
+        this.authStatusListener.next(false);
+      });
+  }
+
+  createCompany(companyName: string, email: string, CompanySpecialist: string, sector: string, password: string) {
+    const authData = { companyName: companyName, email: email, CompanySpecialist: CompanySpecialist, sector: sector, password: password };
+    this.http.post(BackUrl + '/companyRegistreing', authData)
+      .subscribe(() => {
+        this.router.navigate(['/forms/companyform']);
       }, error => {
         this.authStatusListener.next(false);
       });
@@ -44,7 +54,7 @@ export class AuthService {
           this.userId = response.userId;
           this.authStatusListener.next(true);
           this.saveAuthData(token, this.userId);
-          this.router.navigate(['/forms/companyform']);
+          this.router.navigate(['/add-company-info']);
         }
 
       }, error => {
@@ -65,7 +75,7 @@ export class AuthService {
     this.authStatusListener.next(false);
     this.userId = null;
     this.clearData();
-    this.router.navigate(['/']);
+    this.router.navigate(['/sign-in']);
   }
 
   private saveAuthData(token: string, userId: string) {

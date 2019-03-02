@@ -8,17 +8,36 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
+	"./acceptance-list/acceptance-list.module": [
+		"./src/app/acceptance-list/acceptance-list.module.ts",
+		"acceptance-list-acceptance-list-module"
+	],
+	"./add-company-info/add-company-info.module": [
+		"./src/app/add-company-info/add-company-info.module.ts",
+		"add-company-info-add-company-info-module~add-job-add-job-module~add-user-info-add-user-info-module~f~bfe15246",
+		"common",
+		"add-company-info-add-company-info-module"
+	],
 	"./add-job/add-job.module": [
 		"./src/app/add-job/add-job.module.ts",
+		"add-company-info-add-company-info-module~add-job-add-job-module~add-user-info-add-user-info-module~f~bfe15246",
+		"common",
 		"add-job-add-job-module"
 	],
 	"./add-project/add-project.module": [
 		"./src/app/add-project/add-project.module.ts",
 		"add-project-add-project-module"
 	],
+	"./add-user-info/add-user-info.module": [
+		"./src/app/add-user-info/add-user-info.module.ts",
+		"add-company-info-add-company-info-module~add-job-add-job-module~add-user-info-add-user-info-module~f~bfe15246",
+		"common",
+		"add-user-info-add-user-info-module"
+	],
 	"./calendar/calendar.module": [
 		"./src/app/calendar/calendar.module.ts",
 		"calendar-calendar-module~components-components-module",
+		"common",
 		"calendar-calendar-module"
 	],
 	"./candidates-list/candidates-list.module": [
@@ -32,19 +51,30 @@ var map = {
 	"./components/components.module": [
 		"./src/app/components/components.module.ts",
 		"calendar-calendar-module~components-components-module",
+		"common",
 		"components-components-module"
 	],
 	"./dashboard/dashboard.module": [
 		"./src/app/dashboard/dashboard.module.ts",
 		"dashboard-dashboard-module"
 	],
+	"./error-message/error-message.module": [
+		"./src/app/error-message/error-message.module.ts",
+		"error-message-error-message-module"
+	],
 	"./forms/forms.module": [
 		"./src/app/forms/forms.module.ts",
+		"add-company-info-add-company-info-module~add-job-add-job-module~add-user-info-add-user-info-module~f~bfe15246",
+		"common",
 		"forms-forms-module"
 	],
-	"./pages/pages.module": [
-		"./src/app/pages/pages.module.ts",
-		"pages-pages-module"
+	"./sign-in/sign-in.module": [
+		"./src/app/sign-in/sign-in.module.ts",
+		"sign-in-sign-in-module"
+	],
+	"./sign-up/sign-up.module": [
+		"./src/app/sign-up/sign-up.module.ts",
+		"sign-up-sign-up-module"
 	],
 	"./tables/tables.module": [
 		"./src/app/tables/tables.module.ts",
@@ -53,10 +83,6 @@ var map = {
 	"./timeline/timeline.module": [
 		"./src/app/timeline/timeline.module.ts",
 		"timeline-timeline-module"
-	],
-	"./userpage/user.module": [
-		"./src/app/userpage/user.module.ts",
-		"userpage-user-module"
 	],
 	"./widgets/widgets.module": [
 		"./src/app/widgets/widgets.module.ts",
@@ -310,6 +336,18 @@ var AppRoutes = [
                 path: 'candidates-list',
                 loadChildren: './candidates-list/candidates-list.module#CandidatesListModule'
             }, {
+                path: 'acceptance-list',
+                loadChildren: './acceptance-list/acceptance-list.module#AcceptanceListModule'
+            }, {
+                path: 'error-message',
+                loadChildren: './error-message/error-message.module#ErrorMessageModule'
+            }, {
+                path: 'add-company-info',
+                loadChildren: './add-company-info/add-company-info.module#AddCompanyInfoModule'
+            }, {
+                path: 'add-user-info',
+                loadChildren: './add-user-info/add-user-info.module#AddUserInfoModule'
+            }, {
                 path: 'components',
                 loadChildren: './components/components.module#ComponentsModule'
             }, {
@@ -325,17 +363,8 @@ var AppRoutes = [
                 path: 'charts',
                 loadChildren: './charts/charts.module#ChartsModule'
             }, {
-                path: 'add-job',
-                loadChildren: './add-job/add-job.module#AddJobModule'
-            }, {
-                path: 'add-project',
-                loadChildren: './add-project/add-project.module#AddProjectModule'
-            }, {
                 path: 'calendar',
                 loadChildren: './calendar/calendar.module#CalendarModule'
-            }, {
-                path: '',
-                loadChildren: './userpage/user.module#UserModule'
             }, {
                 path: '',
                 loadChildren: './timeline/timeline.module#TimelineModule'
@@ -344,12 +373,147 @@ var AppRoutes = [
     }, {
         path: '',
         component: _layouts_auth_auth_layout_component__WEBPACK_IMPORTED_MODULE_1__["AuthLayoutComponent"],
-        children: [{
-                path: 'pages',
-                loadChildren: './pages/pages.module#PagesModule'
-            }]
+        children: [
+            {
+                path: 'sign-up',
+                loadChildren: './sign-up/sign-up.module#SignUpModule'
+            }, {
+                path: 'sign-in',
+                loadChildren: './sign-in/sign-in.module#SignInModule'
+            }
+        ]
     }
 ];
+
+
+/***/ }),
+
+/***/ "./src/app/auth/auth.service.ts":
+/*!**************************************!*\
+  !*** ./src/app/auth/auth.service.ts ***!
+  \**************************************/
+/*! exports provided: AuthService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthService", function() { return AuthService; });
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var BackUrl = 'https://cors-anywhere.herokuapp.com/https://ptway-dev.herokuapp.com/api';
+var AuthService = /** @class */ (function () {
+    function AuthService(http, router) {
+        this.http = http;
+        this.router = router;
+        this.isAuth = false;
+        this.authStatusListener = new rxjs__WEBPACK_IMPORTED_MODULE_0__["Subject"]();
+    }
+    AuthService.prototype.getToken = function () {
+        return this.token;
+    };
+    AuthService.prototype.getAuthStatusListener = function () {
+        return this.authStatusListener.asObservable();
+    };
+    AuthService.prototype.createUser = function (firstName, lastName, email, password) {
+        var _this = this;
+        var authData = { firstName: firstName, lastName: lastName, email: email, password: password };
+        this.http.post(BackUrl + '/userRegistreing', authData)
+            .subscribe(function () {
+            _this.router.navigate(['/forms/userform']);
+        }, function (error) {
+            _this.authStatusListener.next(false);
+        });
+    };
+    AuthService.prototype.createCompany = function (companyName, email, CompanySpecialist, sector, password) {
+        var _this = this;
+        var authData = { companyName: companyName, email: email, CompanySpecialist: CompanySpecialist, sector: sector, password: password };
+        this.http.post(BackUrl + '/companyRegistreing', authData)
+            .subscribe(function () {
+            _this.router.navigate(['/forms/companyform']);
+        }, function (error) {
+            _this.authStatusListener.next(false);
+        });
+    };
+    AuthService.prototype.login = function (email, password) {
+        var _this = this;
+        var authData = { email: email, password: password };
+        this.http.post(BackUrl + '/login', authData)
+            .subscribe(function (response) {
+            console.log(response);
+            var token = response.token;
+            if (token) {
+                _this.token = token;
+                _this.isAuth = true;
+                _this.userId = response.userId;
+                _this.authStatusListener.next(true);
+                _this.saveAuthData(token, _this.userId);
+                _this.router.navigate(['/add-company-info']);
+            }
+        }, function (error) {
+            _this.authStatusListener.next(false);
+        });
+    };
+    AuthService.prototype.autoAuthUser = function () {
+        this.token = this.getAuthData().token;
+        this.isAuth = true;
+        this.authStatusListener.next(true);
+        this.userId = this.getAuthData().userId;
+    };
+    AuthService.prototype.logOut = function () {
+        this.token = null;
+        this.isAuth = false;
+        this.authStatusListener.next(false);
+        this.userId = null;
+        this.clearData();
+        this.router.navigate(['/sign-in']);
+    };
+    AuthService.prototype.saveAuthData = function (token, userId) {
+        localStorage.setItem('token', token);
+        localStorage.setItem('userId', userId);
+    };
+    AuthService.prototype.clearData = function () {
+        localStorage.removeItem('token');
+        localStorage.removeItem('userId');
+    };
+    AuthService.prototype.getIsAuth = function () {
+        return this.isAuth;
+    };
+    AuthService.prototype.getUserId = function () {
+        return this.userId;
+    };
+    AuthService.prototype.getAuthData = function () {
+        var token = localStorage.getItem('token');
+        var user = localStorage.getItem('userId');
+        if (!token) {
+            return;
+        }
+        return {
+            token: token,
+            userId: user
+        };
+    };
+    AuthService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])({ providedIn: 'root' }),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
+    ], AuthService);
+    return AuthService;
+}());
+
 
 
 /***/ }),
@@ -543,7 +707,7 @@ var AdminLayoutComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg bg-primary navbar-transparent navbar-absolute\" color-on-scroll=\"500\">\n  <div class=\"container\">\n    <div class=\"navbar-wrapper\">\n      <a class=\"navbar-brand-logo d-none d-sm-none d-md-block\">\n        <strong>Pt</strong>way\n        <img src=\"../../../assets/img/32X32.png\">\n      </a>\n      <a class=\"navbar-brand-logo  d-block d-sm-block d-md-none\">\n        <strong>Pt</strong>way\n        <img src=\"../../../assets/img/32X32.png\">\n      </a>\n    </div>\n    <button mat-button class=\"navbar-toggler\" type=\"button\" (click)=\"sidebarToggle()\">\n      <span class=\"sr-only\">Toggle navigation</span>\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\n    </button>\n    <div class=\"collapse navbar-collapse justify-content-end\">\n      <ul class=\"navbar-nav\">\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/pages/register']\">\n            <i class=\"material-icons\">person_add</i> التسجيل\n          </a>\n        </li>\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/pages/login']\">\n            <i class=\"material-icons\">fingerprint</i> تسجيل الدخول\n          </a>\n        </li>\n      </ul>\n    </div>\n  </div>\n</nav>\n  <router-outlet></router-outlet>\n"
+module.exports = "<nav class=\"navbar navbar-expand-lg bg-primary navbar-transparent navbar-absolute\" color-on-scroll=\"500\">\n  <div class=\"container\">\n    <div class=\"navbar-wrapper\">\n      <a class=\"navbar-brand-logo d-none d-sm-none d-md-block\">\n        <strong>Pt</strong>way\n        <img src=\"../../../assets/img/32X32.png\">\n      </a>\n      <a class=\"navbar-brand-logo  d-block d-sm-block d-md-none\">\n        <strong>Pt</strong>way\n        <img src=\"../../../assets/img/32X32.png\">\n      </a>\n    </div>\n    <button mat-button class=\"navbar-toggler\" type=\"button\" (click)=\"sidebarToggle()\">\n      <span class=\"sr-only\">Toggle navigation</span>\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\n    </button>\n    <div class=\"collapse navbar-collapse justify-content-end\">\n      <ul class=\"navbar-nav\">\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/sign-up']\">\n            <i class=\"material-icons\">person_add</i> التسجيل\n          </a>\n        </li>\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/sign-in']\">\n            <i class=\"material-icons\">fingerprint</i> تسجيل الدخول\n          </a>\n        </li>\n      </ul>\n    </div>\n  </div>\n</nav>\n  <router-outlet></router-outlet>\n"
 
 /***/ }),
 
@@ -1234,7 +1398,7 @@ var FooterModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav #navbar class=\"navbar navbar-expand-lg navbar-transparent  navbar-absolute\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-wrapper\">\n      <div class=\"navbar-minimize\">\n        <button mat-raised-button (click)=\"minimizeSidebar()\" class=\"btn btn-just-icon btn-white btn-fab btn-round\">\n          <i class=\"material-icons text_align-center visible-on-sidebar-regular\">more_vert</i>\n          <i class=\"material-icons design_bullet-list-67 visible-on-sidebar-mini\">view_list</i>\n        </button>\n      </div>\n      <a class=\"navbar-brand\" href=\"{{getPath()}}\"> {{getTitle()}}</a>\n    </div>\n    <button mat-button class=\"navbar-toggler btn-no-ripple\" type=\"button\" (click)=\"sidebarToggle()\">\n      <span class=\"sr-only\">Toggle navigation</span>\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\n    </button>\n    <div class=\"collapse navbar-collapse justify-content-end\" id=\"navigation\">\n      <form class=\"navbar-form\">\n        <div class=\"input-group no-border\">\n          <input type=\"text\" value=\"\" class=\"form-control\" placeholder=\"Search...\">\n          <button mat-raised-button type=\"submit\" class=\"btn btn-white btn-round btn-just-icon\">\n            <i class=\"material-icons\">search</i>\n            <div class=\"ripple-container\"></div>\n          </button>\n        </div>\n      </form>\n      <ul class=\"navbar-nav\">\n        <li class=\"nav-item\">\n          <a class=\"nav-link\" href=\"#pablo\">\n            <i class=\"material-icons\">dashboard</i>\n            <p>\n              <span class=\"d-lg-none d-md-block\">Stats</span>\n            </p>\n          </a>\n        </li>\n        <li class=\"nav-item dropdown\">\n          <a class=\"nav-link\" href=\"#pablo\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n            <i class=\"material-icons\">notifications</i>\n            <span class=\"notification\">5</span>\n            <p>\n              <span class=\"d-lg-none d-md-block\">Some Actions</span>\n            </p>\n          </a>\n          <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"navbarDropdownMenuLink\">\n            <a class=\"dropdown-item\" href=\"#\">Mike John responded to your email</a>\n            <a class=\"dropdown-item\" href=\"#\">You have 5 new tasks</a>\n            <a class=\"dropdown-item\" href=\"#\">You're now friend with Andrew</a>\n            <a class=\"dropdown-item\" href=\"#\">Another Notification</a>\n            <a class=\"dropdown-item\" href=\"#\">Another One</a>\n          </div>\n        </li>\n        <li class=\"nav-item\">\n          <a class=\"nav-link\" href=\"#pablo\">\n            <i class=\"material-icons\">person</i>\n            <p>\n              <span class=\"d-lg-none d-md-block\">Account</span>\n            </p>\n          </a>\n        </li>\n      </ul>\n    </div>\n  </div>\n</nav>\n"
+module.exports = "<nav #navbar class=\"navbar navbar-expand-lg navbar-transparent  navbar-absolute\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-wrapper\">\n      <div class=\"navbar-minimize\">\n        <button mat-raised-button (click)=\"minimizeSidebar()\" class=\"btn btn-just-icon btn-white btn-fab btn-round\">\n          <i class=\"material-icons text_align-center visible-on-sidebar-regular\">more_vert</i>\n          <i class=\"material-icons design_bullet-list-67 visible-on-sidebar-mini\">view_list</i>\n        </button>\n      </div>\n      <a class=\"navbar-brand\" href=\"{{getPath()}}\"> {{getTitle()}}</a>\n    </div>\n    <button mat-button class=\"navbar-toggler btn-no-ripple\" type=\"button\" (click)=\"sidebarToggle()\">\n      <span class=\"sr-only\">Toggle navigation</span>\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\n    </button>\n    <div class=\"collapse navbar-collapse justify-content-end\" id=\"navigation\"></div>\n  </div>\n</nav>"
 
 /***/ }),
 
@@ -1519,7 +1683,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"logo\">\n    <a class=\"simple-text logo-mini\">\n        <div class=\"logo-img\">\n            <img src=\"/assets/img/32X32.png\" />\n        </div>\n    </a>\n    <a href=\"https://www.creative-tim.com\" class=\"simple-text logo-normal\">\n        <strong>Pt</strong>way\n    </a>\n</div>\n\n\n<div class=\"sidebar-wrapper\">\n\n    <div class=\"user\">\n        <div class=\"photo\">\n            <img src=\"./assets/img/faces/avatar.jpg\" />\n        </div>\n        <div class=\"user-info\">\n            <a data-toggle=\"collapse\" href=\"#collapseExample\" class=\"collapsed\">\n                <span>\n                    Tania Andrew\n                    <b class=\"caret\"></b>\n                </span>\n            </a>\n            <div class=\"collapse\" id=\"collapseExample\">\n                <ul class=\"nav\">\n                    <li class=\"nav-item\">\n                        <a href=\"javascript:void(0)\" class=\"nav-link\">\n                            <span class=\"sidebar-mini\">MP</span>\n                            <span class=\"sidebar-normal\">My Profile</span>\n                        </a>\n                    </li>\n                    <li class=\"nav-item\">\n                        <a href=\"javascript:void(0)\" class=\"nav-link\">\n                            <span class=\"sidebar-mini\">EP</span>\n                            <span class=\"sidebar-normal\">Edit Profile</span>\n                        </a>\n                    </li>\n                    <li class=\"nav-item\">\n                        <a href=\"javascript:void(0)\" class=\"nav-link\">\n                            <span class=\"sidebar-mini\">S</span>\n                            <span class=\"sidebar-normal\">Settings</span>\n                        </a>\n                    </li>\n                </ul>\n            </div>\n        </div>\n    </div>\n    <div *ngIf=\"isMobileMenu()\">\n        <form class=\"navbar-form\">\n            <span class=\"bmd-form-group\">\n                <div class=\"input-group no-border\">\n                    <input type=\"text\" value=\"\" class=\"form-control\" placeholder=\"Search...\">\n                    <button mat-raised-button type=\"submit\" class=\"btn btn-white btn-round btn-just-icon\">\n                        <i class=\"material-icons\">search</i>\n                        <div class=\"ripple-container\"></div>\n                    </button>\n                </div>\n            </span>\n        </form>\n        <ul class=\"nav navbar-nav nav-mobile-menu\">\n            <li class=\"nav-item\">\n                <a class=\"nav-link\" href=\"#pablo\">\n                    <i class=\"material-icons\">dashboard</i>\n                    <p>\n                        <span class=\"d-lg-none d-md-block\">Stats</span>\n                    </p>\n                </a>\n            </li>\n            <li class=\"nav-item dropdown\">\n                <a class=\"nav-link\" href=\"#pablo\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\"\n                    aria-expanded=\"false\">\n                    <i class=\"material-icons\">notifications</i>\n                    <span class=\"notification\">5</span>\n                    <p>\n                        <span class=\"d-lg-none d-md-block\">Some Actions</span>\n                    </p>\n                </a>\n                <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"navbarDropdownMenuLink\">\n                    <a class=\"dropdown-item\" href=\"#\">Mike John responded to your email</a>\n                    <a class=\"dropdown-item\" href=\"#\">You have 5 new tasks</a>\n                    <a class=\"dropdown-item\" href=\"#\">You're now friend with Andrew</a>\n                    <a class=\"dropdown-item\" href=\"#\">Another Notification</a>\n                    <a class=\"dropdown-item\" href=\"#\">Another One</a>\n                </div>\n            </li>\n            <li class=\"nav-item\">\n                <a class=\"nav-link\" href=\"#pablo\">\n                    <i class=\"material-icons\">person</i>\n                    <p>\n                        <span class=\"d-lg-none d-md-block\">Account</span>\n                    </p>\n                </a>\n            </li>\n        </ul>\n    </div>\n    <ul class=\"nav\">\n        <li routerLinkActive=\"active\" *ngFor=\"let menuitem of menuItems\" class=\"nav-item\">\n            <!--If is a single link-->\n            <a [routerLink]=\"[menuitem.path]\" *ngIf=\"menuitem.type === 'link'\" class=\"nav-link\">\n                <i class=\"material-icons\">{{menuitem.icontype}}</i>\n                <p>{{menuitem.title}}</p>\n            </a>\n            <!--If it have a submenu-->\n            <a data-toggle=\"collapse\" href=\"#{{menuitem.collapse}}\" *ngIf=\"menuitem.type === 'sub'\" (click)=\"updatePS()\"\n                class=\"nav-link\">\n                <i class=\"material-icons\">{{menuitem.icontype}}</i>\n                <p>{{menuitem.title}}<b class=\"caret\"></b></p>\n            </a>\n\n            <!--Display the submenu items-->\n            <div id=\"{{menuitem.collapse}}\" class=\"collapse\" *ngIf=\"menuitem.type === 'sub'\">\n                <ul class=\"nav\">\n                    <li routerLinkActive=\"active\" *ngFor=\"let childitem of menuitem.children\" class=\"nav-item\">\n                        <a [routerLink]=\"[menuitem.path, childitem.path]\" class=\"nav-link\">\n                            <span class=\"sidebar-mini\">{{childitem.ab}}</span>\n                            <span class=\"sidebar-normal\">{{childitem.title}}</span>\n                        </a>\n                    </li>\n                </ul>\n            </div>\n        </li>\n    </ul>\n</div>"
+module.exports = "<div class=\"logo\">\n    <a class=\"simple-text logo-mini\">\n        <div class=\"logo-img\">\n            <img src=\"/assets/img/32X32.png\" />\n        </div>\n    </a>\n    <a href=\"https://www.creative-tim.com\" class=\"simple-text logo-normal\">\n        <strong>Pt</strong>way\n    </a>\n</div>\n\n\n<div class=\"sidebar-wrapper\">\n\n    <div class=\"user\">\n        <div class=\"photo\">\n            <img src=\"./assets/img/faces/avatar.jpg\" />\n        </div>\n        <div class=\"user-info\">\n            <a data-toggle=\"collapse\" href=\"#collapseExample\" class=\"collapsed\">\n                <span>\n                    Tania Andrew\n                    <b class=\"caret\"></b>\n                </span>\n            </a>\n            <div class=\"collapse\" id=\"collapseExample\">\n                <ul class=\"nav\">\n                    <li class=\"nav-item\">\n                        <a href=\"javascript:void(0)\" class=\"nav-link\">\n                            <span class=\"sidebar-mini\">MP</span>\n                            <span class=\"sidebar-normal\">My Profile</span>\n                        </a>\n                    </li>\n                    <li class=\"nav-item\">\n                        <a href=\"javascript:void(0)\" class=\"nav-link\">\n                            <span class=\"sidebar-mini\">EP</span>\n                            <span class=\"sidebar-normal\">Edit Profile</span>\n                        </a>\n                    </li>\n                    <li class=\"nav-item\">\n                        <a href=\"javascript:void(0)\" class=\"nav-link\">\n                            <span class=\"sidebar-mini\">S</span>\n                            <span class=\"sidebar-normal\">Settings</span>\n                        </a>\n                    </li>\n                </ul>\n            </div>\n        </div>\n    </div>\n    <ul class=\"nav\">\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a [routerLink]=\"['/dashboard']\" class=\"nav-link\">\n                <i class=\"material-icons\">dashboard</i>\n                <p>لوحة التحكم</p>\n            </a>\n        </li>\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a [routerLink]=\"['/add-project']\" class=\"nav-link\">\n                <i class=\"material-icons\">next_week</i>\n                <p>اضافة مشروع</p>\n            </a>\n        </li>\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a [routerLink]=\"['/add-job']\" class=\"nav-link\">\n                <i class=\"material-icons\">rate_review</i>\n                <p>اضافة عرض عمل</p>\n            </a>\n        </li>\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a [routerLink]=\"['/my-projects']\" class=\"nav-link\">\n                <i class=\"material-icons\">next_week</i>\n                <p>المشاريع الخاصة بي</p>\n            </a>\n        </li>\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a (click)=\"logOut()\" [routerLink]=\"['null']\" class=\"nav-link\">\n                <i class=\"material-icons\">input</i>\n                <p>تسجيل خروج</p>\n            </a>\n        </li>\n    </ul>\n</div>"
 
 /***/ }),
 
@@ -1536,12 +1700,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SidebarComponent", function() { return SidebarComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var perfect_scrollbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! perfect-scrollbar */ "./node_modules/perfect-scrollbar/dist/perfect-scrollbar.esm.js");
+/* harmony import */ var _auth_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../auth/auth.service */ "./src/app/auth/auth.service.ts");
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 //Menu Items
@@ -1566,7 +1745,7 @@ var ROUTES = [{
         type: 'link',
         icontype: 'assignment_ind'
     }, {
-        path: '/widgets',
+        path: '/acceptance-list',
         title: 'قائمة المقبولين',
         type: 'link',
         icontype: 'assignment_turned_in'
@@ -1577,8 +1756,10 @@ var ROUTES = [{
         icontype: 'input'
     }
 ];
-var SidebarComponent = /** @class */ (function () {
+var SidebarComponent = /** @class */ (function (_super) {
+    __extends(SidebarComponent, _super);
     function SidebarComponent() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     SidebarComponent.prototype.isMobileMenu = function () {
         if ($(window).width() > 991) {
@@ -1611,7 +1792,7 @@ var SidebarComponent = /** @class */ (function () {
         })
     ], SidebarComponent);
     return SidebarComponent;
-}());
+}(_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]));
 
 
 

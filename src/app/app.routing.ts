@@ -31,6 +31,12 @@ export const AppRoutes: Routes = [
         path: 'error-message',
         loadChildren: './error-message/error-message.module#ErrorMessageModule'
     }, {
+        path: 'add-company-info',
+        loadChildren: './add-company-info/add-company-info.module#AddCompanyInfoModule'
+    }, {
+        path: 'add-user-info',
+        loadChildren: './add-user-info/add-user-info.module#AddUserInfoModule'
+    }, {
         path: 'components',
         loadChildren: './components/components.module#ComponentsModule'
     }, {

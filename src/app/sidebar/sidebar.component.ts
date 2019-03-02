@@ -21,6 +21,8 @@ export interface ChildrenItems {
     type?: string;
 }
 
+
+
 //Menu Items
 export const ROUTES: RouteInfo[] = [{
         path: '/dashboard',
@@ -65,7 +67,7 @@ export const ROUTES: RouteInfo[] = [{
     styleUrls: ['./sidebar.component.css']
 })
 
-export class SidebarComponent implements OnInit {
+export class SidebarComponent extends AuthService implements OnInit {
     public menuItems: any[];
 
     isMobileMenu() {
@@ -74,6 +76,8 @@ export class SidebarComponent implements OnInit {
         }
         return true;
     };
+    
+
 
     ngOnInit() {
         this.menuItems = ROUTES.filter(menuItem => menuItem);

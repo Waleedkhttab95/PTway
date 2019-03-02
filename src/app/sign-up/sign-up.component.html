@@ -45,12 +45,21 @@
                           </p>
                         </div>
                       </div>
+                      <div class="info info-horizontal">
+                        <div class="icon icon-primary">
+                          <i class="material-icons">code</i>
+                        </div>
+                        <div class="description">
+                          <h4 class="info-title">Fully Coded in HTML5</h4>
+                          <p class="description">
+                            We've developed the website with HTML5 and CSS3. The client has access to the code using
+                            GitHub.
+                          </p>
+                        </div>
+                      </div>
                     </div>
                     <div class="col-md-5 mr-auto custom-mr">
                       <div class="social text-center">
-                        <button mat-raised-button class="btn btn-just-icon btn-round btn-twitter">
-                          <i class="fa fa-twitter"></i>
-                        </button>
                         <button mat-raised-button class="btn btn-just-icon btn-round btn-google">
                           <i class="fa fa-google"></i>
                         </button>
@@ -64,8 +73,16 @@
                                 <i class="material-icons">face</i>
                               </span>
                             </div>
-                            <input type="text" formControlName="firstName" name="firstName" class="form-control"
-                              placeholder="الاسم الاول...">
+                            <mat-form-field>
+                              <input matInput placeholder="الاسم الاول..." name="firstName" formControlName="firstName"
+                                [errorStateMatcher]="matcher" type="text">
+                              <mat-error *ngIf="firstName.hasError('text') && !firstName.hasError('required')">
+                                يجب عليك ادخال الاسم الاول بالشكل الصحيح
+                              </mat-error>
+                              <mat-error *ngIf="firstName.hasError('required')">
+                                يجب عليك ادخال <strong>الاسم الاول</strong>
+                              </mat-error>
+                            </mat-form-field>
                           </div>
                         </div>
                         <div class="form-group has-default">
@@ -75,8 +92,16 @@
                                 <i class="material-icons">tag_faces</i>
                               </span>
                             </div>
-                            <input type="text" formControlName="lastName" name="lastName" class="form-control"
-                              placeholder="الاسم الثاني...">
+                            <mat-form-field>
+                              <input matInput placeholder="الاسم الاخير..." name="lastName" formControlName="lastName"
+                                [errorStateMatcher]="matcher" type="text">
+                              <mat-error *ngIf="lastName.hasError('text') && !lastName.hasError('required')">
+                                يجب عليك ادخال الاسم الاخير بالشكل الصحيح
+                              </mat-error>
+                              <mat-error *ngIf="lastName.hasError('required')">
+                                يجب عليك ادخال <strong>الاسم الاخير</strong>
+                              </mat-error>
+                            </mat-form-field>
                           </div>
                         </div>
                         <div class="form-group has-default">
@@ -86,7 +111,16 @@
                                 <i class="material-icons">mail</i>
                               </span>
                             </div>
-                            <input type="text" formControlName="email" name="email" class="form-control" placeholder="البريد الإلكتروني...">
+                            <mat-form-field>
+                              <input matInput placeholder="البريد الإلكتروني..." name="userEmail" formControlName="userEmail"
+                                [errorStateMatcher]="matcher" type="email">
+                              <mat-error *ngIf="userEmail.hasError('email') && !userEmail.hasError('required')">
+                                يجب عليك ادخال البريد الإلكتروني بالشكل الصحيح
+                              </mat-error>
+                              <mat-error *ngIf="userEmail.hasError('required')">
+                                يجب عليك ادخال <strong>البريد الإلكتروني</strong>
+                              </mat-error>
+                            </mat-form-field>
                           </div>
                         </div>
                         <div class="form-group has-default">
@@ -96,8 +130,16 @@
                                 <i class="material-icons">lock_outline</i>
                               </span>
                             </div>
-                            <input type="password" formControlName="password" name="password" placeholder="كلمة المرور..."
-                              class="form-control">
+                            <mat-form-field>
+                              <input matInput placeholder="كلمة المرور..." name="userPassword" formControlName="userPassword"
+                                [errorStateMatcher]="matcher" type="password">
+                              <mat-error *ngIf="userPassword.hasError('password') && !userPassword.hasError('required')">
+                                يجب عليك ادخال كلمة المرور بالشكل الصحيح
+                              </mat-error>
+                              <mat-error *ngIf="userPassword.hasError('required')">
+                                يجب عليك ادخال <strong>كلمة المرور</strong>
+                              </mat-error>
+                            </mat-form-field>
                           </div>
                         </div>
                         <div class="form-check">
@@ -172,9 +214,6 @@
                     </div>
                     <div class="col-md-5 mr-auto custom-mr">
                       <div class="social text-center">
-                        <button mat-raised-button class="btn btn-just-icon btn-round btn-twitter">
-                          <i class="fa fa-twitter"></i>
-                        </button>
                         <button mat-raised-button class="btn btn-just-icon btn-round btn-google">
                           <i class="fa fa-google"></i>
                         </button>
@@ -188,8 +227,16 @@
                                 <i class="material-icons">face</i>
                               </span>
                             </div>
-                            <input type="text" name="companyName" formControlName="companyName" class="form-control"
-                              placeholder="اسم الجهة...">
+                            <mat-form-field>
+                              <input matInput placeholder="اسم الجهة..." name="companyName" formControlName="companyName"
+                                [errorStateMatcher]="matcher" type="text">
+                              <mat-error *ngIf="companyName.hasError('text') && !companyName.hasError('required')">
+                                يجب عليك ادخال اسم الجهة بالشكل الصحيح
+                              </mat-error>
+                              <mat-error *ngIf="email.hasError('required')">
+                                يجب عليك ادخال <strong>اسم الجهة</strong>
+                              </mat-error>
+                            </mat-form-field>
                           </div>
                         </div>
                         <div class="form-group has-default">
@@ -199,29 +246,46 @@
                                 <i class="material-icons">mail</i>
                               </span>
                             </div>
-                            <input type="text" class="form-control" formControlName="email" name="email" placeholder="البريد الإلكتروني...">
-                          </div>
-                        </div>
-                        <div class="form-group has-default">
-                          <div class="input-group">
                             <mat-form-field>
-                              <mat-select placeholder="نشاط العمل..." name="CompanySpecialist" formControlName="CompanySpecialist">
-                                <mat-option *ngFor="let CompanySpecialist of CompanySpecialists" [value]="CompanySpecialist.value"
-                                  class="options">
-                                  {{CompanySpecialist.viewValue}}
-                                </mat-option>
-                              </mat-select>
+                              <input matInput placeholder="البريد الإلكتروني..." name="email" formControlName="email"
+                                [errorStateMatcher]="matcher" type="email">
+                              <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+                                يجب عليك ادخال البريد الإلكتروني بالشكل الصحيح
+                              </mat-error>
+                              <mat-error *ngIf="email.hasError('required')">
+                                يجب عليك ادخال <strong>البريد الإلكتروني</strong>
+                              </mat-error>
                             </mat-form-field>
                           </div>
                         </div>
                         <div class="form-group has-default">
                           <div class="input-group">
                             <mat-form-field>
-                              <mat-select placeholder="القطاع..." name="sector" formControlName="sector">
+                              <mat-select placeholder="نشاط العمل..." name="CompanySpecialist" formControlName="CompanySpecialist"
+                                [errorStateMatcher]="matcher">
+                                <mat-option *ngFor="let CompanySpecialist of CompanySpecialists" [value]="CompanySpecialist.value"
+                                  class="options">
+                                  {{CompanySpecialist.viewValue}}
+                                </mat-option>
+                              </mat-select>
+                              <mat-error *ngIf="CompanySpecialist.hasError('required')">
+                                يجب عليك اختيار <strong>نشاط العمل</strong>
+                              </mat-error>
+                            </mat-form-field>
+                          </div>
+                        </div>
+                        <div class="form-group has-default">
+                          <div class="input-group">
+                            <mat-form-field>
+                              <mat-select placeholder="القطاع..." name="sector" formControlName="sector"
+                                [errorStateMatcher]="matcher">
                                 <mat-option *ngFor="let sector of sectors" [value]="sector.value" class="options">
                                   {{sector.viewValue}}
                                 </mat-option>
                               </mat-select>
+                              <mat-error *ngIf="sector.hasError('required')">
+                                يجب عليك اختيار <strong>القطاع</strong>
+                              </mat-error>
                             </mat-form-field>
                           </div>
                         </div>
@@ -232,8 +296,16 @@
                                 <i class="material-icons">lock_outline</i>
                               </span>
                             </div>
-                            <input type="password" placeholder="كلمة المرور..." name="password" formControlName="password"
-                              class="form-control">
+                            <mat-form-field>
+                              <input matInput placeholder="كلمة المرور..." name="password" formControlName="password"
+                                [errorStateMatcher]="matcher" type="password">
+                              <mat-error *ngIf="password.hasError('password') && !password.hasError('required')">
+                                يجب عليك ادخال كلمة المرور بالشكل الصحيح
+                              </mat-error>
+                              <mat-error *ngIf="email.hasError('required')">
+                                يجب عليك ادخال <strong>كلمة المرور</strong>
+                              </mat-error>
+                            </mat-form-field>
                           </div>
                         </div>
                         <div class="form-check">

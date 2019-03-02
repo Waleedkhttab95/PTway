@@ -3,7 +3,16 @@ import { RestService } from '../rest.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder, NgForm, AbstractControl, FormGroupDirective } from '@angular/forms';
+import {ErrorStateMatcher} from '@angular/material/core';
+import{SignUpService} from './sign-up.service';
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 
 @Component({
   selector: 'app-sign-up',
@@ -13,66 +22,141 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 export class SignUpComponent implements OnInit, OnDestroy {
 
   userRegistrForm: FormGroup;
-  companyRegistrForm: FormGroup;
+  firstName = new FormControl('', [
+    Validators.required,
+    Validators.nullValidator,
+  ]);
+  lastName = new FormControl('', [
+    Validators.required,
+    Validators.nullValidator,
+  ]);
+  userEmail = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
+  userPassword = new FormControl('', [
+    Validators.required,
+    Validators.nullValidator,
+  ]);
 
-  constructor(public authService: AuthService, private route: ActivatedRoute, private router: Router, private fb: FormBuilder) { }
+
+  companyRegistrForm: FormGroup;
+  companyName = new FormControl('', [
+    Validators.required,
+    Validators.nullValidator,
+  ]);
+  email = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
+  password = new FormControl('', [
+    Validators.required,
+    Validators.nullValidator,
+  ]);
+  CompanySpecialist = new FormControl('', [
+    Validators.required
+  ]);
+  sector = new FormControl('', [
+    Validators.required
+  ]);
+
+
+  matcher = new MyErrorStateMatcher();
+
+  constructor(public rest:SignUpService,public authService: AuthService, private route: ActivatedRoute, private router: Router, private fb: FormBuilder) { }
 
   test: Date = new Date();
   isLoading = false;
   private authStatusSub: Subscription;
   selectedValue: string;
-  currentCompanySpecialist: string[];
-
   selectTheme = 'primary';
-  CompanySpecialists = [
-    { value: 'التصميم والآبداع', viewValue: 'التصميم والآبداع' },
-    { value: 'الهندسة المعمارية', viewValue: 'الهندسة المعمارية' },
-    { value: 'امن المعلومات', viewValue: 'امن المعلومات' },
-  ];
-
+  currentCompanySpecialist: string[];
+  CompanySpecialists = [];
   currentSector: string[];
+  sectors = [];
 
-  sectors = [
-    { value: 'قطاع حكومي', viewValue: 'قطاع حكومي' },
-    { value: 'قطاع خاص', viewValue: 'قطاع خاص' },
-    { value: 'جمعية خيرية', viewValue: 'جمعية خيرية' },
-  ];
+  getsectors() {
+    this.sectors = [];
+    this.rest.getsectors().subscribe((data: {}) => {
+      console.log(data);
+      for (let key in data) {
+          this.sectors.push({value:data[key]._id, viewValue:data[key].sectorName});
+      }
+      console.log(this.sectors);
+    });
+  }
 
-  // userRegistreing() {
-  //   console.log(this.userRegistrForm.value);
-  //   this.authService.createUser(this.userRegistrForm.value).subscribe((result) => {
-  //     this.router.navigate(['/forms/userform/']);
-  //   }, (err) => {
-  //     console.log(err);
-  //   });
-  // }
+  getspecialization() {
+    this.CompanySpecialists = [];
+    this.rest.getspecialization().subscribe((data: {}) => {
+      console.log(data);
+      for (let key in data) {
+          this.CompanySpecialists.push({value:data[key]._id, viewValue:data[key].specialistName});
+      }
+      console.log(this.CompanySpecialists);
+    });
+  }
 
-  // companyRegistreing() {
-  //   this.authService.companyRegistreing(this.companyRegistrForm.value).subscribe((result) => {
-  //     this.router.navigate(['/forms/companyform/']);
-  //   }, (err) => {
-  //     console.log(err);
-  //   });
-  // }
+  userRegistreing() {
+    console.log(this.userRegistrForm.value);
+    this.authService.createUser(this.userRegistrForm.value.firstName,this.userRegistrForm.value.lastName,
+      this.userRegistrForm.value.userEmail,this.userRegistrForm.value.userPassword);
+    }
+
+  companyRegistreing() {
+    console.log(this.companyRegistrForm.value);
+    this.authService.createCompany(this.companyRegistrForm.value.companyName, this.companyRegistrForm.value.email
+      , this.companyRegistrForm.value.CompanySpecialist, this.companyRegistrForm.value.sector
+      , this.companyRegistrForm.value.password);
+  }
 
   ngOnInit() {
+    this.getsectors();
+    this.getspecialization();
     const body = document.getElementsByTagName('body')[0];
     body.classList.add('register-page');
     body.classList.add('off-canvas-sidebar');
 
     this.userRegistrForm = this.fb.group({
-      firstName: new FormControl(),
-      lastName: new FormControl(),
-      email: new FormControl(),
-      password: new FormControl()
+      firstName: new FormControl('', [
+        Validators.required,
+        Validators.nullValidator,
+      ]),
+      lastName: new FormControl('', [
+        Validators.required,
+        Validators.nullValidator,
+      ]),
+      userEmail: new FormControl('', [
+        Validators.required,
+        Validators.email,
+      ]),
+      userPassword: new FormControl('', [
+        Validators.required,
+        Validators.nullValidator,
+      ])
     });
 
     this.companyRegistrForm = this.fb.group({
-      companyName: new FormControl(),
-      email: new FormControl(),
-      CompanySpecialist: new FormControl(),
-      sector: new FormControl(),
-      password: new FormControl()
+      companyName: new FormControl('', [
+        Validators.required,
+        Validators.nullValidator,
+      ]),
+      email: new FormControl('', [
+        Validators.required,
+        Validators.email,
+      ]),
+      CompanySpecialist: new FormControl('', [
+        Validators.required,
+        Validators.nullValidator,
+      ]),
+      sector: new FormControl('', [
+        Validators.required,
+        Validators.nullValidator,
+      ]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.nullValidator,
+      ])
     });
 
     this.authStatusSub = this.authService.getAuthStatusListener().subscribe(

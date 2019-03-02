@@ -33,3 +33,6 @@
 .custom-label{
     float: right;
 }
+::ng-deep .btn-primary{
+    margin-right: auto;
+}

@@ -21,12 +21,15 @@ export class SignInComponent implements OnInit, OnDestroy {
   private toggleButton: any;
   private sidebarVisible: boolean;
   private nativeElement: Node;
+  submitted = false;
+  returnUrl: string;
 
   constructor(private element: ElementRef,
     public authService: AuthService, private route: ActivatedRoute, private router: Router,
     private fb: FormBuilder) {
     this.nativeElement = element.nativeElement;
     this.sidebarVisible = false;
+    
   }
 
   userlogin(form: NgForm) {
