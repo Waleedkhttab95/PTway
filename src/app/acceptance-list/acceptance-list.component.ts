@@ -63,13 +63,13 @@ export class AcceptanceListComponent implements OnInit, AfterViewInit {
 
       dataRows: [
           ['Airi Satou', ''],
-          ['Angelica Ramos', 'John Doe', 'Design', '2012', '89,241', 'btn-round'],
-          ['Ashton Cox', 'Alex Mike', 'Design', '2010', '92,144', 'btn-simple'],
-          ['Bradley Greer', 'Mike Monday', 'Marketing', '2013', '49,990', 'btn-round'],
-          ['Brenden Wagner', 'Paul Dickens', 'Communication', '2015', '69,201', ''],
-          ['Brielle Williamson', 'Mike Monday', 'Marketing', '2013', '49,990', 'btn-round'],
-          ['Caesar Vance', 'Mike Monday', 'Marketing', '2013', '49,990', 'btn-round'],
-          ['Cedric Kelly', 'Mike Monday', 'Marketing', '2013', '49,990', 'btn-round'],
+          ['Angelica Ramos'],
+          ['Ashton Cox'],
+          ['Bradley Greer'],
+          ['Brenden Wagner'],
+          ['Brielle Williamson'],
+          ['Caesar Vance'],
+          ['Cedric Kelly'],
       ]
    };
   }

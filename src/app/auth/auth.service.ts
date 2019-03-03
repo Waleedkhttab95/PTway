@@ -36,7 +36,7 @@ export class AuthService {
     const authData = { companyName: companyName, email: email, CompanySpecialist: CompanySpecialist, sector: sector, password: password };
     this.http.post(BackUrl + '/companyRegistreing', authData)
       .subscribe(() => {
-        this.router.navigate(['/forms/companyform']);
+        this.router.navigate(['/add-company-info']);
       }, error => {
         this.authStatusListener.next(false);
       });
@@ -54,7 +54,7 @@ export class AuthService {
           this.userId = response.userId;
           this.authStatusListener.next(true);
           this.saveAuthData(token, this.userId);
-          this.router.navigate(['/add-company-info']);
+          this.router.navigate(['/dashboard']);
         }
 
       }, error => {

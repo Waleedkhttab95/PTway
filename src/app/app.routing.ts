@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
+import { AddCompanyInfoComponent } from './add-company-info/add-company-info.component';
 
 export const AppRoutes: Routes = [
     {
@@ -21,6 +22,12 @@ export const AppRoutes: Routes = [
     }, {
         path: 'add-job',
         loadChildren: './add-job/add-job.module#AddJobModule'
+    }, {
+        path: 'my-projects',
+        loadChildren: './my-projects/my-projects.module#MyProjectsModule'
+    }, {
+        path: 'my-offers',
+        loadChildren: './my-offers/my-offers.module#MyOffersModule'
     }, {
         path: 'candidates-list',
         loadChildren: './candidates-list/candidates-list.module#CandidatesListModule'
@@ -47,6 +54,6 @@ export const AppRoutes: Routes = [
       }, {
         path: 'sign-in',
         loadChildren: './sign-in/sign-in.module#SignInModule'
-      }]
-    }
+      }
+    ]}
 ];

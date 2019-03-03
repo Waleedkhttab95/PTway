@@ -1,0 +1,14 @@
+.card [class*="card-header-"] .card-icon{
+    margin-left: 15px;
+    float: right;
+}
+.custom-title{
+    text-align: right;
+}
+.mat-form-field{
+    text-align: right;
+}
+.custom-card{
+    margin-left: auto;
+    margin-right: auto;
+}

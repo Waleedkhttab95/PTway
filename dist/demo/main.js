@@ -14,13 +14,13 @@ var map = {
 	],
 	"./add-company-info/add-company-info.module": [
 		"./src/app/add-company-info/add-company-info.module.ts",
-		"add-company-info-add-company-info-module~add-job-add-job-module~add-user-info-add-user-info-module~f~bfe15246",
+		"add-company-info-add-company-info-module~add-job-add-job-module~add-user-info-add-user-info-module",
 		"common",
 		"add-company-info-add-company-info-module"
 	],
 	"./add-job/add-job.module": [
 		"./src/app/add-job/add-job.module.ts",
-		"add-company-info-add-company-info-module~add-job-add-job-module~add-user-info-add-user-info-module~f~bfe15246",
+		"add-company-info-add-company-info-module~add-job-add-job-module~add-user-info-add-user-info-module",
 		"common",
 		"add-job-add-job-module"
 	],
@@ -30,29 +30,13 @@ var map = {
 	],
 	"./add-user-info/add-user-info.module": [
 		"./src/app/add-user-info/add-user-info.module.ts",
-		"add-company-info-add-company-info-module~add-job-add-job-module~add-user-info-add-user-info-module~f~bfe15246",
+		"add-company-info-add-company-info-module~add-job-add-job-module~add-user-info-add-user-info-module",
 		"common",
 		"add-user-info-add-user-info-module"
-	],
-	"./calendar/calendar.module": [
-		"./src/app/calendar/calendar.module.ts",
-		"calendar-calendar-module~components-components-module",
-		"common",
-		"calendar-calendar-module"
 	],
 	"./candidates-list/candidates-list.module": [
 		"./src/app/candidates-list/candidates-list.module.ts",
 		"candidates-list-candidates-list-module"
-	],
-	"./charts/charts.module": [
-		"./src/app/charts/charts.module.ts",
-		"charts-charts-module"
-	],
-	"./components/components.module": [
-		"./src/app/components/components.module.ts",
-		"calendar-calendar-module~components-components-module",
-		"common",
-		"components-components-module"
 	],
 	"./dashboard/dashboard.module": [
 		"./src/app/dashboard/dashboard.module.ts",
@@ -62,11 +46,13 @@ var map = {
 		"./src/app/error-message/error-message.module.ts",
 		"error-message-error-message-module"
 	],
-	"./forms/forms.module": [
-		"./src/app/forms/forms.module.ts",
-		"add-company-info-add-company-info-module~add-job-add-job-module~add-user-info-add-user-info-module~f~bfe15246",
-		"common",
-		"forms-forms-module"
+	"./my-offers/my-offers.module": [
+		"./src/app/my-offers/my-offers.module.ts",
+		"my-offers-my-offers-module"
+	],
+	"./my-projects/my-projects.module": [
+		"./src/app/my-projects/my-projects.module.ts",
+		"my-projects-my-projects-module"
 	],
 	"./sign-in/sign-in.module": [
 		"./src/app/sign-in/sign-in.module.ts",
@@ -75,18 +61,6 @@ var map = {
 	"./sign-up/sign-up.module": [
 		"./src/app/sign-up/sign-up.module.ts",
 		"sign-up-sign-up-module"
-	],
-	"./tables/tables.module": [
-		"./src/app/tables/tables.module.ts",
-		"tables-tables-module"
-	],
-	"./timeline/timeline.module": [
-		"./src/app/timeline/timeline.module.ts",
-		"timeline-timeline-module"
-	],
-	"./widgets/widgets.module": [
-		"./src/app/widgets/widgets.module.ts",
-		"widgets-widgets-module"
 	]
 };
 function webpackAsyncContext(req) {
@@ -333,6 +307,12 @@ var AppRoutes = [
                 path: 'add-job',
                 loadChildren: './add-job/add-job.module#AddJobModule'
             }, {
+                path: 'my-projects',
+                loadChildren: './my-projects/my-projects.module#MyProjectsModule'
+            }, {
+                path: 'my-offers',
+                loadChildren: './my-offers/my-offers.module#MyOffersModule'
+            }, {
                 path: 'candidates-list',
                 loadChildren: './candidates-list/candidates-list.module#CandidatesListModule'
             }, {
@@ -347,27 +327,6 @@ var AppRoutes = [
             }, {
                 path: 'add-user-info',
                 loadChildren: './add-user-info/add-user-info.module#AddUserInfoModule'
-            }, {
-                path: 'components',
-                loadChildren: './components/components.module#ComponentsModule'
-            }, {
-                path: 'forms',
-                loadChildren: './forms/forms.module#Forms'
-            }, {
-                path: 'tables',
-                loadChildren: './tables/tables.module#TablesModule'
-            }, {
-                path: 'widgets',
-                loadChildren: './widgets/widgets.module#WidgetsModule'
-            }, {
-                path: 'charts',
-                loadChildren: './charts/charts.module#ChartsModule'
-            }, {
-                path: 'calendar',
-                loadChildren: './calendar/calendar.module#CalendarModule'
-            }, {
-                path: '',
-                loadChildren: './timeline/timeline.module#TimelineModule'
             }
         ]
     }, {
@@ -444,7 +403,7 @@ var AuthService = /** @class */ (function () {
         var authData = { companyName: companyName, email: email, CompanySpecialist: CompanySpecialist, sector: sector, password: password };
         this.http.post(BackUrl + '/companyRegistreing', authData)
             .subscribe(function () {
-            _this.router.navigate(['/forms/companyform']);
+            _this.router.navigate(['/add-company-info']);
         }, function (error) {
             _this.authStatusListener.next(false);
         });
@@ -462,7 +421,7 @@ var AuthService = /** @class */ (function () {
                 _this.userId = response.userId;
                 _this.authStatusListener.next(true);
                 _this.saveAuthData(token, _this.userId);
-                _this.router.navigate(['/add-company-info']);
+                _this.router.navigate(['/dashboard']);
             }
         }, function (error) {
             _this.authStatusListener.next(false);
