@@ -69,7 +69,6 @@ export class MyProjectsComponent implements OnInit, AfterViewInit {
 
    ngOnInit() {
     this.authService.autoAuthUser();
-    console.log(this.authService.getUserId())
      this.fetchData();
  
     this.dataTable = {
