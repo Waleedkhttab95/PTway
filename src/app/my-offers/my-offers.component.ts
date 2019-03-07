@@ -1,4 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { AuthService } from '../auth/auth.service';
+import { JobService } from '../add-job/job.service';
+import { MyProjectsComponent } from '../my-projects/my-projects.component';
+import { DataService } from '../data.service';
 
 declare interface DataTable {
   headerRow: string[];
@@ -55,23 +59,45 @@ export class MyOffersComponent implements OnInit, AfterViewInit {
     $('.card .material-datatables label').addClass('form-group');
   }
   public dataTable: DataTable;
-  constructor() { }
+  constructor(private data: DataService, public jobService: JobService, public authService: AuthService) { }
 
+  dataRows : any[] = [];
+  idRows : any[] = [];
+  projectId: string
   ngOnInit() {
-    this.dataTable = {
-      headerRow: [ 'اسم المشروع', 'حذف المشروع','قائمة المرشحين', 'قائمة المقبولين' ],
+this.data.currentMessage.subscribe(m =>{
+ this.projectId = m;
 
-      dataRows: [
-          ['Airi Satou'],
-          ['Angelica Ramos'],
-          ['Ashton Cox'],
-          ['Bradley Greer'],
-          ['Brenden Wagner'],
-          ['Brielle Williamson'],
-          ['Caesar Vance'],
-          ['Cedric Kelly'],
-      ]
-   };
+})
+    this.authService.autoAuthUser();
+this.jobService.getJobs('5c6bd0e0baf49b0016dabe51').subscribe(response =>{
+  console.log(response);
+  for(var i=0 ; i < response.count ; i++) {
+      this.dataRows.push(response.jobNames[i]);
+      this.idRows.push(response.id[i]);
+      this.dataTable.dataRows.push([
+        this.dataRows[i],
+        this.idRows[i]
+      ])
   }
 
+ });
+    this.dataTable = {
+      headerRow: [ 'اسم الإعلان', 'حذف الإعلان','قائمة المرشحين', 'قائمة المقبولين' ],
+
+      dataRows: [
+         
+      ]
+   };
+
+  }
+
+  onCandidates(id) {
+   this.data.changeMessage(id);
+  }
+
+  onAccepted(id) {
+    this.data.changeMessage(id);
+  }
+  
 }

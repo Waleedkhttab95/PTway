@@ -16,7 +16,7 @@ export interface JobData {
    // languages: {type:String,required:true},
    // job_Responsibility: {type:String,required:true},
     personal_Skills: String;
-    required_Number:String;
+    required_Number:Number;
    // start_Date: {type: Date, required: true},
    // age_From : {type:Number,required:true},
    // age_To : {type:Number,required:true}

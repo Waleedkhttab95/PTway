@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".card [class*=\"card-header-\"] .card-icon{\n    margin-left: 15px;\n    float: right;\n}\n.custom-title{\n    text-align: right;\n}\n.mat-form-field{\n    text-align: right;\n}\n.custom-card{\n    margin-left: auto;\n    margin-right: auto;\n}"
+module.exports = ".card [class*=\"card-header-\"] .card-icon{\r\n    margin-left: 15px;\r\n    float: right;\r\n}\r\n.custom-title{\r\n    text-align: right;\r\n}\r\n.mat-form-field{\r\n    text-align: right;\r\n}\r\n.custom-card{\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n}"
 
 /***/ }),
 
@@ -18,7 +18,7 @@ module.exports = ".card [class*=\"card-header-\"] .card-icon{\n    margin-left: 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-content\">\n  <div class=\"container-fluid\">\n    <div class=\"row\">\n      <div class=\"col-md-12\">\n        <div class=\"card\">\n          <div class=\"card-header card-header-primary card-header-icon\">\n            <div class=\"card-icon\">\n              <i class=\"material-icons\">next_week</i>\n            </div>\n            <h4 class=\"card-title custom-title\">المشاريع الخاصة بي</h4>\n          </div>\n          <div class=\"card-body\">\n            <div class=\"toolbar\">\n              <!--        Here you can write extra buttons/actions for the toolbar              -->\n            </div>\n            <div class=\"material-datatables\">\n              <table id=\"datatables\" class=\"table table-striped table-no-bordered table-hover\" cellspacing=\"0\" width=\"100%\"\n                style=\"width:100%\">\n                <thead>\n                  <tr>\n                    <th>{{ dataTable.headerRow[0] }}</th>\n                    <th>{{ dataTable.headerRow[1] }}</th>\n                    <th>{{ dataTable.headerRow[2] }}</th>\n                  </tr>\n                </thead>\n                <tbody>\n                  <tr *ngFor=\"let row of dataTable.dataRows\">\n                    <td>{{row[0]}}</td>\n                    <td>\n                      <button mat-raised-button class=\"btn btn-primary btn-round\">تعديل</button>\n                    </td>\n                    <td>\n                      <button mat-raised-button class=\"btn btn-danger btn-round\">حذف</button>\n                    </td>\n                  </tr>\n                </tbody>\n              </table>\n            </div>\n          </div>\n          <!-- end content-->\n        </div>\n        <!--  end card  -->\n      </div>\n      <!-- end col-md-12 -->\n    </div>\n    <!-- end row -->\n  </div>\n</div>"
+module.exports = "<div class=\"main-content\">\r\n  <div class=\"container-fluid\">\r\n    <div class=\"row\">\r\n      <div class=\"col-md-12\">\r\n        <div class=\"card\">\r\n          <div class=\"card-header card-header-primary card-header-icon\">\r\n            <div class=\"card-icon\">\r\n              <i class=\"material-icons\">next_week</i>\r\n            </div>\r\n            <h4 class=\"card-title custom-title\">المشاريع الخاصة بي</h4>\r\n          </div>\r\n          <div class=\"card-body\">\r\n            <div class=\"toolbar\">\r\n              <!--     [routerLink]=\"['/my-offers']\"   Here you can write extra buttons/actions for the toolbar              -->\r\n            </div>\r\n            <div class=\"material-datatables\">\r\n              <table id=\"datatables\" class=\"table table-striped table-no-bordered table-hover\" cellspacing=\"0\" width=\"100%\"\r\n                style=\"width:100%\">\r\n                <thead>\r\n                  <tr>\r\n                    <th>{{ dataTable.headerRow[0] }}</th>\r\n                    <th>{{ dataTable.headerRow[1] }}</th>\r\n                    <th>{{ dataTable.headerRow[2] }}</th>\r\n                  </tr>\r\n                </thead>\r\n                <tbody>\r\n                  <tr *ngFor=\"let row of dataTable.dataRows\">\r\n                    <td><a  [routerLink]=\"['/my-offers']\"  (click)=\"onSelect(row[1])\">{{row[0]}}</a></td>\r\n                    <td>\r\n                      <button mat-raised-button class=\"btn btn-primary btn-round\">تعديل</button>\r\n                    </td>\r\n                    <td>\r\n                      <button mat-raised-button class=\"btn btn-danger btn-round\">حذف</button>\r\n                    </td>\r\n                  </tr>\r\n                </tbody>\r\n              </table>\r\n            </div>\r\n          </div>\r\n          <!-- end content-->\r\n        </div>\r\n        <!--  end card  -->\r\n      </div>\r\n      <!-- end col-md-12 -->\r\n    </div>\r\n    <!-- end row -->\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -33,6 +33,8 @@ module.exports = "<div class=\"main-content\">\n  <div class=\"container-fluid\"
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MyProjectsComponent", function() { return MyProjectsComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _add_project_project_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../add-project/project.service */ "./src/app/add-project/project.service.ts");
+/* harmony import */ var _auth_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../auth/auth.service */ "./src/app/auth/auth.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -43,8 +45,15 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var MyProjectsComponent = /** @class */ (function () {
-    function MyProjectsComponent() {
+    // tslint:disable-next-line: member-ordering
+    function MyProjectsComponent(projectService, authService) {
+        this.projectService = projectService;
+        this.authService = authService;
+        this.dataRows = [];
+        this.idRows = [];
     }
     MyProjectsComponent.prototype.ngAfterViewInit = function () {
         $('#datatables').DataTable({
@@ -80,20 +89,27 @@ var MyProjectsComponent = /** @class */ (function () {
         });
         $('.card .material-datatables label').addClass('form-group');
     };
+    // tslint:disable-next-line: member-ordering
     MyProjectsComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.authService.autoAuthUser();
+        console.log(this.authService.getUserId());
+        this.projectService.getprojects(this.authService.getUserId()).subscribe(function (response) {
+            for (var i = 0; i < response.count; i++) {
+                _this.dataRows.push(response.projectName[i]);
+                _this.idRows.push(response.id[i]);
+                _this.dataTable.dataRows.push([
+                    _this.dataRows[i],
+                    _this.idRows[i]
+                ]);
+            }
+        });
         this.dataTable = {
             headerRow: ['اسم المشروع', 'تعديل المشروع', 'حذف المشروع'],
-            dataRows: [
-                ['Airi Satou'],
-                ['Angelica Ramos'],
-                ['Ashton Cox'],
-                ['Bradley Greer'],
-                ['Brenden Wagner'],
-                ['Brielle Williamson'],
-                ['Caesar Vance'],
-                ['Cedric Kelly'],
-            ]
+            dataRows: []
         };
+    };
+    MyProjectsComponent.prototype.onSelect = function (row) {
     };
     MyProjectsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -101,7 +117,7 @@ var MyProjectsComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./my-projects.component.html */ "./src/app/my-projects/my-projects.component.html"),
             styles: [__webpack_require__(/*! ./my-projects.component.css */ "./src/app/my-projects/my-projects.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_add_project_project_service__WEBPACK_IMPORTED_MODULE_1__["ProjectService"], _auth_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]])
     ], MyProjectsComponent);
     return MyProjectsComponent;
 }());

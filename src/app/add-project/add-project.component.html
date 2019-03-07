@@ -11,18 +11,26 @@
           </div>
           <div class="col-md-6 custom-card">
             <div class="card-body">
-              <form>
+              <form [formGroup]="form" (submit)="onAddProject()">
                 <div class="row">
                   <div class="col-md-6">
                     <label class="bmd-label-floating custom-label">- اسم المشروع</label>
                     <mat-form-field class="example-full-width">
-                      <input matInput placeholder="" name="" type="text">
+                      <input matInput placeholder=""
+                       name=""
+                       type="text"  
+                      formControlName="title" >
+                      <mat-error *ngIf="form.get('title').invalid">رجاء قم بكتابة اسم المشروع</mat-error>
                     </mat-form-field>
                   </div>
                   <div class="col-md-12">
                     <label class="bmd-label-floating custom-label">- وصف المشروع</label>
                     <mat-form-field class="example-full-width">
-                      <textarea matInput placeholder="" name=""></textarea>
+                      <textarea matInput
+                       placeholder="" 
+                       name=""
+                       formControlName="content"></textarea>
+                       <mat-error *ngIf="form.get('content').invalid">رجاء قم بكتابة وصف المشروع</mat-error>
                     </mat-form-field>
                   </div>
                   <div class="col-md-12">

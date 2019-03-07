@@ -3,6 +3,7 @@ import { RestService } from '../rest.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import{JobService} from './job.service'
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-add-job',
@@ -11,12 +12,14 @@ import{JobService} from './job.service'
 })
 export class AddJobComponent implements OnInit {
 
-  constructor(public rest:JobService, private route: ActivatedRoute, private router: Router,private fb: FormBuilder) { }
+  constructor(public rest: JobService,public authService : AuthService,
+     private route: ActivatedRoute, private router: Router,private fb: FormBuilder) { }
 
   addProjcetForm: FormGroup;
   selectedValue: string;
-
-  contracts = [];
+  job_Name: string;
+  job_skills: string;
+  contracts= [];
   currentcontract: string[];
   cities = [];
   currentcity: string[];
@@ -24,7 +27,7 @@ export class AddJobComponent implements OnInit {
   currentproject: string[];
   countries = [];
   currentcountry: string[];
-
+   data : Object;
   selectTheme = 'primary';
 
   currentgender: string[];
@@ -42,32 +45,29 @@ export class AddJobComponent implements OnInit {
   personal_Skills = new FormControl();
   personal_SkillList: string[] = ['الإلقاء', 'التعبير'];
 
-  // postuserinfo() {
-  //   console.log(this.addProjcetForm.value);
-  //   this.rest.postuserinfo(this.addProjcetForm.value).subscribe((result) => {
-  //     this.router.navigate(['/dashboard/']);
-  //   }, (err) => {
-  //     console.log(err);
-  //   });
-  // }
+
 
   getcontracts() {
     this.contracts = [];
     this.rest.getcontracts().subscribe((data: {}) => {
-      console.log(data);
-      for (let key in data) {
+      console.log("Here");
+      for(let key in data) {
           this.contracts.push({value:data[key]._id, viewValue:data[key].contractName});
+          
       }
       console.log(this.contracts);
+
     });
   }
 
-  getprojects() {
+  getprojects(id) {
+
     this.projects = [];
-    this.rest.getprojects().subscribe((data: {}) => {
-      console.log(data);
-      for (let key in data) {
-          this.projects.push({value:data[key]._id, viewValue:data[key].projectName});
+    this.rest.getprojects(id).subscribe((data) => {
+      console.log(data.id);
+      for (var i =0 ; i < data.count ; i++) {
+          this.projects.push({value:data.id[i], viewValue:data.projectName[i]});
+          console.log(data.id[i])
       }
       console.log(this.projects);
     });
@@ -79,6 +79,8 @@ export class AddJobComponent implements OnInit {
       console.log(data);
       for (let key in data) {
           this.countries.push({value:data[key]._id, viewValue:data[key].countryName});
+          
+
       }
       console.log(this.countries);
     });
@@ -97,14 +99,18 @@ export class AddJobComponent implements OnInit {
 
 
   ngOnInit() {
+        this.authService.autoAuthUser();
+
+
     this.getcontracts();
-    this.getprojects();
+    this.getprojects(this.authService.getUserId());
     this.getcountry();
     this.getcity();
+    
 
-    this.addProjcetForm = this.fb.group({
-      contract: new FormControl(),
-      project:  new FormControl(),
+    this.addProjcetForm = new FormGroup({
+      contracts: new FormControl(),
+      projects:  new FormControl(),
       job_Name:  new FormControl(),
       job_skills: new FormControl(),
       country: new FormControl(),
@@ -118,5 +124,32 @@ export class AddJobComponent implements OnInit {
       required_Number: new FormControl(),
     });
   }
+
+  addJob() {
+  
+
+    this.data = {
+
+      contract: this.addProjcetForm.value.contracts,
+      project: this.addProjcetForm.value.projects,
+      job_Name: this.addProjcetForm.value.job_Name,
+      job_skills: this.addProjcetForm.value.job_skills,
+      country:  this.addProjcetForm.value.country,
+      city: this.addProjcetForm.value.city,
+      public_Major: this.addProjcetForm.value.public_Major,
+      work_hours: this.addProjcetForm.value.work_hours,
+      work_days: this.addProjcetForm.value.work_days,
+      salary: this.addProjcetForm.value.salary,
+      gender: this.addProjcetForm.value.gender,
+      personal_Skills: this.addProjcetForm.value.personal_Skills,
+      required_Number:this.addProjcetForm.value.required_Number
+    }
+
+
+    this.rest.addJob(this.data);
+  }
+
+
+ 
 
 }

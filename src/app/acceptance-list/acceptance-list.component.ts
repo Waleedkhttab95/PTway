@@ -1,4 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { DataService } from '../data.service';
+import { offerService } from '../my-offers/offer.service';
+import { AuthService } from '../auth/auth.service';
+import { JobService } from '../add-job/job.service';
 
 
 declare interface DataTable {
@@ -55,23 +59,63 @@ export class AcceptanceListComponent implements OnInit, AfterViewInit {
     $('.card .material-datatables label').addClass('form-group');
   }
   public dataTable: DataTable;
-  constructor() { }
+  constructor(private data: DataService, public offerService: offerService
+    , public authService: AuthService, public jobService: JobService) { }
+    
+    jobId: string
+    dataRows : any[] = [];
+   nameRows : any[] = [];
+    idRows : any[] = [];
+    Acc: Object;
+    dataJob: Object;
+    CandidatesNumber: number;
+    count: number = 0;
 
   ngOnInit() {
+
+    this.data.currentMessage.subscribe(m =>{
+      this.jobId = m;
+     
+     })
+
+     this.authService.autoAuthUser();
+     this.offerService.getAcceptence('5c63e939453ed8751c55a8b8').subscribe(response =>{
+
+      for(var i=0 ; i < response.count ; i++) {
+           this.dataRows.push(response.username[i]);
+           this.idRows.push(response.AcceptedNames[i]);
+
+         
+
+           this.dataTable.dataRows.push([
+            this.dataRows[i],
+            this.idRows[i]
+          ])
+          
+       }
+     
+      });
     this.dataTable = {
       headerRow: [ 'الأسم', 'اجرائات العقد' ],
 
       dataRows: [
-          ['Airi Satou', ''],
-          ['Angelica Ramos'],
-          ['Ashton Cox'],
-          ['Bradley Greer'],
-          ['Brenden Wagner'],
-          ['Brielle Williamson'],
-          ['Caesar Vance'],
-          ['Cedric Kelly'],
+     
       ]
    };
   }
 
+  startJob() {
+  this.dataJob = {
+    jobAd_id: '5c727aabff7f0d690870f1d9'
+  }
+    this.offerService.startJob(this.dataJob);
+  }
+
+  endJob() {
+    this.dataJob = {
+      jobAd_id: '5c727aabff7f0d690870f1d9',
+      user: '5c6960c02174e000166fc3dd'
+    }
+      this.offerService.endJob(this.dataJob);
+    }
 }

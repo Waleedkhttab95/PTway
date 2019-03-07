@@ -11,12 +11,12 @@
           </div>
           <div class="col-md-8 custom-card">
             <div class="card-body">
-              <form (ngSubmit)="postuserinfo()" [formGroup]="addProjcetForm">
+              <form (submit)="addJob()" [formGroup]="addProjcetForm">
                 <div class="row">
                   <div class="col-md-6">
                     <label class="bmd-label-floating custom-label">- نوع التعاقد</label>
                     <mat-form-field>
-                      <mat-select placeholder="اختر التعاقد..." [formControl]="contract" name="contract">
+                      <mat-select placeholder="اختر التعاقد..." formControlName="contracts" name="contract">
                         <mat-option *ngFor="let contract of contracts" [value]="contract.value">
                           {{contract.viewValue}}
                         </mat-option>
@@ -26,7 +26,7 @@
                   <div class="col-md-6">
                     <label class="bmd-label-floating custom-label">- المشروع</label>
                     <mat-form-field>
-                      <mat-select placeholder="اختر المشروع..." [formControl]="project" name="project">
+                      <mat-select placeholder="اختر المشروع..." formControlName="projects" name="project">
                         <mat-option *ngFor="let project of projects" [value]="project.value">
                           {{project.viewValue}}
                         </mat-option>
@@ -36,14 +36,14 @@
                   <div class="col-md-6">
                     <label class="bmd-label-floating custom-label">- المسمى الوظيفي المطلوب</label>
                     <mat-form-field class="example-full-width">
-                      <input matInput placeholder="ادخل المسمى الوظيفي المطلوب..." type="text" [formControl]="job_Name"
-                        name="job_Name">
+                      <input matInput placeholder="ادخل المسمى الوظيفي المطلوب..." type="text" formControlName="job_Name"
+                     >
                     </mat-form-field>
                   </div>
                   <div class="col-md-6">
                     <label class="bmd-label-floating custom-label">- المهارات الوظيفية</label>
                     <mat-form-field>
-                      <mat-select placeholder="اختر المهارات الوظيفية..." [formControl]="job_skills" name="job_skills"
+                      <mat-select placeholder="اختر المهارات الوظيفية..." formControlName="job_skills" name="job_skills"
                         multiple>
                         <mat-option *ngFor="let skill of skillList" [value]="skill">{{skill}}</mat-option>
                       </mat-select>
@@ -63,7 +63,7 @@
                     <label class="bmd-label-floating custom-label">- المدينة</label>
                     <mat-form-field>
                       <mat-select placeholder="اختر المدينة..." formControlName="city" name="city">
-                        <mat-option *ngFor="let city of cities" [value]="city.value">
+                        <mat-option *ngFor="let city of cities"  [value]="city.value">
                           {{city.viewValue}}
                         </mat-option>
                       </mat-select>
@@ -108,10 +108,17 @@
                   <div class="col-md-6">
                     <label class="bmd-label-floating custom-label">- المهارات الشخصية</label>
                     <mat-form-field>
-                      <mat-select placeholder="المهارات الشخصية..." [formControl]="personal_Skills" name="personal_Skills"
+                      <mat-select placeholder="المهارات الشخصية..." formControlName="personal_Skills" name="personal_Skills"
                         multiple>
                         <mat-option *ngFor="let personal_Skill of personal_SkillList" [value]="personal_Skill">{{personal_Skill}}</mat-option>
                       </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field>
+                      <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>
                   </div>
                   <div class="col-md-6">
@@ -122,7 +129,7 @@
                   </div>
                   <div class="col-md-12">
                     <div class="card-footer">
-                      <button mat-raised-button type="submit" class="btn btn-fill btn-primary">حفظ</button>
+                      <button mat-raised-button type="submit" class="btn btn-fill btn-primary" >حفظ</button>
                     </div>
                   </div>
                 </div>

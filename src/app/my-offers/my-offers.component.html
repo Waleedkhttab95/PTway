@@ -31,10 +31,10 @@
                       <button mat-raised-button class="btn btn-danger btn-round">حذف</button>
                     </td>
                     <td>
-                      <button mat-raised-button class="btn btn-primary btn-round" [routerLink]="['/candidates-list']">عرض القائمة </button>
+                      <button mat-raised-button class="btn btn-primary btn-round"  (click)="onCandidates(row[1])" [routerLink]="['/candidates-list']">عرض القائمة </button>
                     </td>
                     <td>
-                      <button mat-raised-button class="btn btn-primary btn-round" [routerLink]="['/acceptance-list']">عرض القائمة</button>
+                      <button mat-raised-button class="btn btn-primary btn-round" (click)="onAccepted(row[1])"  [routerLink]="['/acceptance-list']">عرض القائمة</button>
                     </td>
                   </tr>
                 </tbody>

@@ -15,7 +15,8 @@ import { MaterialModule } from '../app.module';
     CommonModule,
     RouterModule.forChild(AddProjectRoutes),
     FormsModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class AddProjectModule { }

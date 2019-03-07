@@ -1,4 +1,7 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Output, Injectable } from '@angular/core';
+import {ProjectService} from '../add-project/project.service';
+import {AuthService} from '../auth/auth.service';
+import { DataService } from '../data.service';
 
 declare interface DataTable {
   headerRow: string[];
@@ -12,6 +15,7 @@ declare const $: any;
   templateUrl: './my-projects.component.html',
   styleUrls: ['./my-projects.component.css']
 })
+
 export class MyProjectsComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
@@ -55,23 +59,61 @@ export class MyProjectsComponent implements OnInit, AfterViewInit {
     $('.card .material-datatables label').addClass('form-group');
   }
   public dataTable: DataTable;
-  constructor() { }
+// tslint:disable-next-line: member-ordering
 
-  ngOnInit() {
+  constructor(private data: DataService, public projectService: ProjectService, public authService: AuthService) { }
+
+  dataRows : any[] = [];
+  idRows : any[] = [];
+// tslint:disable-next-line: member-ordering
+
+   ngOnInit() {
+    this.authService.autoAuthUser();
+    console.log(this.authService.getUserId())
+     this.fetchData();
+ 
     this.dataTable = {
       headerRow: [ 'اسم المشروع', 'تعديل المشروع','حذف المشروع' ],
-
+  
       dataRows: [
-          ['Airi Satou'],
-          ['Angelica Ramos'],
-          ['Ashton Cox'],
-          ['Bradley Greer'],
-          ['Brenden Wagner'],
-          ['Brielle Williamson'],
-          ['Caesar Vance'],
-          ['Cedric Kelly'],
-      ]
+      ] 
+  
    };
-  }
+}
+
+fetchData() {
+  this.projectService.getprojects(this.authService.getUserId()).subscribe(response =>{
+   
+    for(var i=0 ; i < response.count ; i++) {
+        this.dataRows.push(response.projectName[i]);
+        this.idRows.push(response.id[i]);
+        this.dataTable.dataRows.push([
+          this.dataRows[i],
+          this.idRows[i]
+        ])
+    }
+
+  
+  
+   });
+
+}
+
+
+onSelect(id){
+this.data.changeMessage(id);
+}
+
+onEdit(id) {
+this.data.changeMessage(id);
+this.data.changeStatus(true);
+}
+
+onDelete(id){
+this.projectService.deleteproject(id).subscribe(() =>{
+  this.fetchData();
+});
+}
+
 
 }
