@@ -1,5 +1,22 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["common"],{
 
+/***/ "./node_modules/rxjs-compat/_esm5/BehaviorSubject.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/rxjs-compat/_esm5/BehaviorSubject.js ***!
+  \***********************************************************/
+/*! exports provided: BehaviorSubject */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BehaviorSubject", function() { return rxjs__WEBPACK_IMPORTED_MODULE_0__["BehaviorSubject"]; });
+
+
+//# sourceMappingURL=BehaviorSubject.js.map
+
+/***/ }),
+
 /***/ "./src/app/add-job/job.service.ts":
 /*!****************************************!*\
   !*** ./src/app/add-job/job.service.ts ***!
@@ -46,6 +63,7 @@ var JobService = /** @class */ (function () {
         this.http
             .post(BackUrl + '/postjob', data)
             .subscribe(function (responseData) {
+            console.log(responseData);
             _this.router.navigate(['/']);
         });
     };
@@ -58,17 +76,15 @@ var JobService = /** @class */ (function () {
         });
     };
     JobService.prototype.getJobs = function (id) {
-        return this.http.get(BackUrl + '/get/jobs?id=' + id);
+        return this.http.get(BackUrl + '/get/jobs?projectid=' + id);
     };
     JobService.prototype.getJob = function (id) {
         return this.http
             .get(BackUrl + '/getjob?id=' + id);
     };
     JobService.prototype.deleteJob = function (id) {
-        this.http
-            .delete(BackUrl + '/deletejob?id=' + id).subscribe(function () {
-            console.log('Deleted');
-        });
+        return this.http
+            .delete(BackUrl + '/deletejob?id=' + id);
     };
     // getcountry() {
     //     this.http
@@ -121,8 +137,9 @@ var JobService = /** @class */ (function () {
     //             console.log(data);
     //         });
     // }
-    JobService.prototype.getprojects = function () {
-        return this.http.get(BackUrl + '/getprojects').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(this.extractData));
+    JobService.prototype.getprojects = function (id) {
+        return this.http
+            .get(BackUrl + '/getprojects?id=' + id);
     };
     JobService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({ providedIn: 'root' }),
@@ -165,6 +182,7 @@ var ProjectService = /** @class */ (function () {
     function ProjectService(http, router) {
         this.http = http;
         this.router = router;
+        // headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
         this.project = [];
     }
     ProjectService.prototype.addproject = function (data) {
@@ -182,24 +200,149 @@ var ProjectService = /** @class */ (function () {
             .get(BackUrl + '/getprojects?id=' + id);
     };
     ProjectService.prototype.getproject = function (id) {
-        this.http
-            .get(BackUrl + '/getproject?id=' + id)
-            .subscribe(function (data) {
-            console.log(data);
-            return data;
+        return this.http
+            .get(BackUrl + '/getproject?id=' + id);
+    };
+    ProjectService.prototype.updateProject = function (data) {
+        var _this = this;
+        var response = this.http
+            .put(BackUrl + '/put/project', data, { responseType: 'text' })
+            .subscribe(function (responseData) {
+            _this.router.navigate(['/my-projects']);
         });
+        ;
     };
     ProjectService.prototype.deleteproject = function (id) {
-        this.http
-            .delete(BackUrl + '/deleteproject?id=' + id).subscribe(function () {
-            console.log('Deleted');
-        });
+        return this.http
+            .delete(BackUrl + '/deleteproject?id=' + id);
     };
     ProjectService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({ providedIn: 'root' }),
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
     ], ProjectService);
     return ProjectService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/data.service.ts":
+/*!*********************************!*\
+  !*** ./src/app/data.service.ts ***!
+  \*********************************/
+/*! exports provided: DataService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DataService", function() { return DataService; });
+/* harmony import */ var rxjs_BehaviorSubject__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs/BehaviorSubject */ "./node_modules/rxjs-compat/_esm5/BehaviorSubject.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var DataService = /** @class */ (function () {
+    function DataService() {
+        this.messageSource = new rxjs_BehaviorSubject__WEBPACK_IMPORTED_MODULE_0__["BehaviorSubject"]('dd');
+        this.currentMessage = this.messageSource.asObservable();
+        this.statusSource = new rxjs_BehaviorSubject__WEBPACK_IMPORTED_MODULE_0__["BehaviorSubject"](false);
+        this.currentStatus = this.statusSource.asObservable();
+    }
+    DataService.prototype.changeMessage = function (message) {
+        this.messageSource.next(message);
+    };
+    DataService.prototype.changeStatus = function (status) {
+        this.statusSource.next(status);
+    };
+    DataService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [])
+    ], DataService);
+    return DataService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/my-offers/offer.service.ts":
+/*!********************************************!*\
+  !*** ./src/app/my-offers/offer.service.ts ***!
+  \********************************************/
+/*! exports provided: offerService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "offerService", function() { return offerService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var BackUrl = 'https://cors-anywhere.herokuapp.com/https://ptway-dev.herokuapp.com/api';
+var offerService = /** @class */ (function () {
+    function offerService(http, router) {
+        this.http = http;
+        this.router = router;
+    }
+    offerService.prototype.getCandidates = function (id) {
+        return this.http.get(BackUrl + '/getOneCandi?jobAd=' + id);
+    };
+    offerService.prototype.addCandidate = function (data) {
+        var _this = this;
+        this.http.post(BackUrl + '/postBodyC', data).subscribe(function () {
+            _this.router.navigate(['/']);
+        });
+    };
+    offerService.prototype.addAcceptence = function (data) {
+        var _this = this;
+        this.http.post(BackUrl + '/postAcc', data).subscribe(function (result) {
+            console.log(result);
+            _this.router.navigate(['/candidates-list']);
+        });
+    };
+    offerService.prototype.getAcceptence = function (id) {
+        return this.http.get(BackUrl + '/getOneAccepted?jobAd=' + id);
+    };
+    offerService.prototype.startJob = function (data) {
+        var _this = this;
+        this.http.post(BackUrl + '/start/job', data).subscribe(function (result) {
+            _this.router.navigate(['/acceptance-list']);
+        });
+    };
+    offerService.prototype.endJob = function (data) {
+        var _this = this;
+        var response = this.http.post(BackUrl + '/end/job', data, { responseType: 'text' }).subscribe(function (result) {
+            _this.router.navigate(['/acceptance-list']);
+        });
+    };
+    offerService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({ providedIn: 'root' }),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+    ], offerService);
+    return offerService;
 }());
 
 

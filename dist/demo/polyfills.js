@@ -9584,7 +9584,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\ptway-angular\ptway\src\polyfills.ts */"./src/polyfills.ts");
+module.exports = __webpack_require__(/*! /Users/ayman/Documents/Angular/PTway-Angular/src/polyfills.ts */"./src/polyfills.ts");
 
 
 /***/ })

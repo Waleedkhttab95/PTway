@@ -8534,11 +8534,12 @@
   .resume-header {
     background: #434E5E;
     color: rgba(255, 255, 255, 0.9);
-    height: 220px;
+    height: 250px;
   }
   
   .resume-header .picture {
     width: 220px;
+    height: 250px;
   }
   
   .resume-header .name {
@@ -8700,7 +8701,14 @@
     }
     .resume-header .picture {
       width: 120px;
+      height: 125px;
       border-radius: 4px;
+    }
+    #custom-title{
+      font-size: 1.1rem;
+    }
+    .resume-header .name{
+      text-align: center;
     }
   }
   #custom-title{

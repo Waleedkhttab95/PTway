@@ -59,14 +59,14 @@ export class OffersListComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.dataTable = {
-      headerRow: [ 'العرض', 'اسم الشركة','المسمى الوظيفي', 'فترة العقد', 'استعراض' ],
+      headerRow: [ '#','العرض', 'اسم الشركة', 'الاجراءات' ],
 
       dataRows: [
-          ['Airi Satou','ELM','web developer','3 اشهر'],
-          ['Ashton Cox','google','Data since','سنة'],
-          ['Bradley Greer','mqdam','web developer','5 اشهر'],
-          ['Brenden Wagner','google','Data since','3 اشهر'],
-          ['Brielle Williamson','psu','overmanger','2 شهرين']
+          ['1','Airi Satou','ELM'],
+          ['2','Ashton Cox','google'],
+          ['3','Bradley Greer','mqdam'],
+          ['4','Brenden Wagner','google'],
+          ['5','Brielle Williamson','psu']
       ]
    };
   }

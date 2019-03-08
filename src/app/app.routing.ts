@@ -60,6 +60,9 @@ export const AppRoutes: Routes = [
         } , {
             path: 'offers-list',
             loadChildren: './offers-list/offers-list.module#OffersListModule'
+        } , {
+            path: 'edit-cv',
+            loadChildren: './edit-cv/edit-cv.module#EditCvModule'
         }
       ]} , {
         path: '',
