@@ -48,6 +48,8 @@ import { NavbarModule} from './shared/navbar/navbar.module';
 import { FixedpluginModule} from './shared/fixedplugin/fixedplugin.module';
 import { AdminLayoutComponent } from './layouts/admin/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
+import { UserComponent } from './layouts/user/user.component';
+import { RegistrationComponent } from './layouts/registration/registration.component';
 
 import { AppRoutes } from './app.routing';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -109,7 +111,9 @@ export class MaterialModule {}
     declarations: [
         AppComponent,
         AdminLayoutComponent,
-        AuthLayoutComponent
+        AuthLayoutComponent,
+        UserComponent,
+        RegistrationComponent
     ],
     bootstrap:    [ AppComponent ]
 })

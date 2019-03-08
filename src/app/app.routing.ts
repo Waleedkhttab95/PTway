@@ -2,7 +2,8 @@ import { Routes } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
-import { AddCompanyInfoComponent } from './add-company-info/add-company-info.component';
+import { UserComponent } from './layouts/user/user.component';
+import { RegistrationComponent } from './layouts/registration/registration.component';
 
 export const AppRoutes: Routes = [
     {
@@ -37,12 +38,6 @@ export const AppRoutes: Routes = [
     }, {
         path: 'error-message',
         loadChildren: './error-message/error-message.module#ErrorMessageModule'
-    }, {
-        path: 'add-company-info',
-        loadChildren: './add-company-info/add-company-info.module#AddCompanyInfoModule'
-    }, {
-        path: 'add-user-info',
-        loadChildren: './add-user-info/add-user-info.module#AddUserInfoModule'
     }
   ]}, {
       path: '',
@@ -55,5 +50,27 @@ export const AppRoutes: Routes = [
         path: 'sign-in',
         loadChildren: './sign-in/sign-in.module#SignInModule'
       }
-    ]}
+    ]}, {
+        path: '',
+        component: UserComponent,
+        children: [
+        {
+            path: 'my-cv',
+            loadChildren: './my-cv/my-cv.module#MyCvModule'
+        } , {
+            path: 'offers-list',
+            loadChildren: './offers-list/offers-list.module#OffersListModule'
+        }
+      ]} , {
+        path: '',
+        component: RegistrationComponent,
+        children: [
+            {
+          path: 'add-company-info',
+          loadChildren: './add-company-info/add-company-info.module#AddCompanyInfoModule'
+        }, {
+            path: 'add-user-info',
+            loadChildren: './add-user-info/add-user-info.module#AddUserInfoModule'
+        }
+      ]}
 ];
