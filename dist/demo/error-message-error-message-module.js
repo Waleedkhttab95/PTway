@@ -18,7 +18,7 @@ module.exports = "#notfound {\n    position: relative;\n    height: 100vh;\n  }\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"notfound\">\n  <div class=\"notfound\">\n    <div class=\"notfound-404\">\n      <h1>Oops!</h1>\n      <h2> لايمكنك اضافة عرض عمل قبل ان تقوم بأضافة مشروع</h2>\n    </div>\n    <a href=\"#\" class=\"btn-primary\">اضافة مشروع</a>\n  </div>\n</div>"
+module.exports = "<div id=\"notfound\">\n  <div class=\"notfound\">\n    <div class=\"notfound-404\">\n      <h2> لايمكنك اضافة عرض عمل قبل ان تقوم باضافة مشروع</h2>\n    </div>\n    <a [routerLink]=\"['/add-project']\" class=\"btn-primary\">اضافة مشروع</a>\n  </div>\n</div>"
 
 /***/ }),
 

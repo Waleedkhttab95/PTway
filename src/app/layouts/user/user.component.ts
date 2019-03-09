@@ -12,7 +12,7 @@ export class UserComponent implements OnInit {
   private _router: Subscription;
 
   constructor(private router: Router, private element: ElementRef) {}
-
+  
   
 
   ngOnInit() {

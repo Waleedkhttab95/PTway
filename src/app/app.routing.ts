@@ -27,6 +27,12 @@ export const AppRoutes: Routes = [
         path: 'my-projects',
         loadChildren: './my-projects/my-projects.module#MyProjectsModule'
     }, {
+        path: 'job-offer-check',
+        loadChildren: './job-offer-check/job-offer-check.module#JobOfferCheckModule'
+    }, {
+        path: 'job-offer-preview',
+        loadChildren: './job-offer-preview/job-offer-preview.module#JobOfferPreviewModule'
+    }, {
         path: 'my-offers',
         loadChildren: './my-offers/my-offers.module#MyOffersModule'
     }, {
@@ -41,6 +47,9 @@ export const AppRoutes: Routes = [
     },  {
         path: 'company-profile',
         loadChildren: './company-profile/company-profile.module#CompanyProfileModule'
+    } , {
+        path: 'edit-company-profile',
+        loadChildren: './edit-company-profile/edit-company-profile.module#EditCompanyProfileModule'
     }
   ]}, {
       path: '',
@@ -66,6 +75,9 @@ export const AppRoutes: Routes = [
         } , {
             path: 'edit-cv',
             loadChildren: './edit-cv/edit-cv.module#EditCvModule'
+        } , {
+            path: 'job-offer',
+            loadChildren: './job-offer/job-offer.module#JobOfferModule'
         }
       ]} , {
         path: '',

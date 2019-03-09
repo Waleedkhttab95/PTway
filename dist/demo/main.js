@@ -15,13 +15,13 @@ var map = {
 	],
 	"./add-company-info/add-company-info.module": [
 		"./src/app/add-company-info/add-company-info.module.ts",
-		"add-company-info-add-company-info-module~add-job-add-job-module~add-user-info-add-user-info-module~e~78d0b105",
+		"add-company-info-add-company-info-module~add-job-add-job-module~add-user-info-add-user-info-module~e~f721b707",
 		"common",
 		"add-company-info-add-company-info-module"
 	],
 	"./add-job/add-job.module": [
 		"./src/app/add-job/add-job.module.ts",
-		"add-company-info-add-company-info-module~add-job-add-job-module~add-user-info-add-user-info-module~e~78d0b105",
+		"add-company-info-add-company-info-module~add-job-add-job-module~add-user-info-add-user-info-module~e~f721b707",
 		"common",
 		"add-job-add-job-module"
 	],
@@ -32,7 +32,7 @@ var map = {
 	],
 	"./add-user-info/add-user-info.module": [
 		"./src/app/add-user-info/add-user-info.module.ts",
-		"add-company-info-add-company-info-module~add-job-add-job-module~add-user-info-add-user-info-module~e~78d0b105",
+		"add-company-info-add-company-info-module~add-job-add-job-module~add-user-info-add-user-info-module~e~f721b707",
 		"common",
 		"add-user-info-add-user-info-module"
 	],
@@ -49,9 +49,15 @@ var map = {
 		"./src/app/dashboard/dashboard.module.ts",
 		"dashboard-dashboard-module"
 	],
+	"./edit-company-profile/edit-company-profile.module": [
+		"./src/app/edit-company-profile/edit-company-profile.module.ts",
+		"add-company-info-add-company-info-module~add-job-add-job-module~add-user-info-add-user-info-module~e~f721b707",
+		"common",
+		"edit-company-profile-edit-company-profile-module"
+	],
 	"./edit-cv/edit-cv.module": [
 		"./src/app/edit-cv/edit-cv.module.ts",
-		"add-company-info-add-company-info-module~add-job-add-job-module~add-user-info-add-user-info-module~e~78d0b105",
+		"add-company-info-add-company-info-module~add-job-add-job-module~add-user-info-add-user-info-module~e~f721b707",
 		"common",
 		"edit-cv-edit-cv-module"
 	],
@@ -59,9 +65,21 @@ var map = {
 		"./src/app/error-message/error-message.module.ts",
 		"error-message-error-message-module"
 	],
+	"./job-offer-check/job-offer-check.module": [
+		"./src/app/job-offer-check/job-offer-check.module.ts",
+		"job-offer-check-job-offer-check-module"
+	],
+	"./job-offer-preview/job-offer-preview.module": [
+		"./src/app/job-offer-preview/job-offer-preview.module.ts",
+		"job-offer-preview-job-offer-preview-module"
+	],
+	"./job-offer/job-offer.module": [
+		"./src/app/job-offer/job-offer.module.ts",
+		"job-offer-job-offer-module"
+	],
 	"./my-cv/my-cv.module": [
 		"./src/app/my-cv/my-cv.module.ts",
-		"add-company-info-add-company-info-module~add-job-add-job-module~add-user-info-add-user-info-module~e~78d0b105",
+		"add-company-info-add-company-info-module~add-job-add-job-module~add-user-info-add-user-info-module~e~f721b707",
 		"common",
 		"my-cv-my-cv-module"
 	],
@@ -345,6 +363,12 @@ var AppRoutes = [
                 path: 'my-projects',
                 loadChildren: './my-projects/my-projects.module#MyProjectsModule'
             }, {
+                path: 'job-offer-check',
+                loadChildren: './job-offer-check/job-offer-check.module#JobOfferCheckModule'
+            }, {
+                path: 'job-offer-preview',
+                loadChildren: './job-offer-preview/job-offer-preview.module#JobOfferPreviewModule'
+            }, {
                 path: 'my-offers',
                 loadChildren: './my-offers/my-offers.module#MyOffersModule'
             }, {
@@ -359,6 +383,9 @@ var AppRoutes = [
             }, {
                 path: 'company-profile',
                 loadChildren: './company-profile/company-profile.module#CompanyProfileModule'
+            }, {
+                path: 'edit-company-profile',
+                loadChildren: './edit-company-profile/edit-company-profile.module#EditCompanyProfileModule'
             }
         ]
     }, {
@@ -386,6 +413,9 @@ var AppRoutes = [
             }, {
                 path: 'edit-cv',
                 loadChildren: './edit-cv/edit-cv.module#EditCvModule'
+            }, {
+                path: 'job-offer',
+                loadChildren: './job-offer/job-offer.module#JobOfferModule'
             }
         ]
     }, {
@@ -899,7 +929,7 @@ module.exports = ".nav-link {\n    display: inline-flex;\n}"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-primary\">\n  <div class=\"container\">\n    <a class=\"navbar-brand-logo\" href=\"#\">\n      <strong>Pt</strong>way\n      <img src=\"../../assets/img/32X32.png\">\n    </a>\n    <button class=\"navbar-toggler\" type=\"button\"\n          (click)=\"toggleNavbar()\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n    <div class=\"collapse navbar-collapse\"\n    [ngClass]=\"{ 'show': navbarOpen }\" id=\"navbarNav\">\n      <ul class=\"navbar-nav\">\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/my-cv']\">السيرة الذاتية <span class=\"sr-only\">(current)</span></a>\n        </li>\n        <li class=\"nav-item dropdown\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" href=\"#pablo\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\"\n            aria-expanded=\"false\">\n            <i class=\"material-icons\">notifications</i>قائمة العروض\n            <span class=\"notification\">5</span>\n            <p>\n              <span class=\"d-lg-none d-md-block\">Some Actions</span>\n            </p>\n          </a>\n          <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"navbarDropdownMenuLink\">\n            <a class=\"dropdown-item\" href=\"#\">اعلان رقم 1</a>\n            <a class=\"dropdown-item\" href=\"#\">اعلان رقم 2</a>\n            <a class=\"dropdown-item\" href=\"#\">اعلان رقم 3</a>\n            <a class=\"dropdown-item\" href=\"#\">اعلان رقم 4</a>\n            <a class=\"dropdown-item\" href=\"#\">اعلان رقم 5</a>\n            <a class=\"dropdown-item\" [routerLink]=\"['/offers-list']\"> -- عرض جميع الأعلانات --</a>\n          </div>\n        </li>\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/edit-cv']\">تعديل السيرة الذاتية</a>\n        </li>\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/sign-up']\">تسجيل خروج</a>\n        </li>\n      </ul>\n    </div>\n  </div>\n</nav>\n<router-outlet></router-outlet>"
+module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-primary\">\n  <div class=\"container\">\n    <a class=\"navbar-brand-logo\" href=\"#\">\n      <strong>Pt</strong>way\n      <img src=\"../../assets/img/32X32.png\">\n    </a>\n    <button class=\"navbar-toggler\" type=\"button\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n    <div class=\"collapse navbar-collapse\" id=\"navbarNav\">\n      <ul class=\"navbar-nav\">\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/my-cv']\">السيرة الذاتية <span class=\"sr-only\">(current)</span></a>\n        </li>\n        <li class=\"nav-item dropdown\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" href=\"#pablo\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\"\n            aria-expanded=\"false\">\n            <i class=\"material-icons\">notifications</i>قائمة العروض\n            <span class=\"notification\">5</span>\n            <p>\n              <span class=\"d-lg-none d-md-block\">Some Actions</span>\n            </p>\n          </a>\n          <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"navbarDropdownMenuLink\">\n            <a class=\"dropdown-item\" href=\"#\">اعلان رقم 1</a>\n            <a class=\"dropdown-item\" href=\"#\">اعلان رقم 2</a>\n            <a class=\"dropdown-item\" href=\"#\">اعلان رقم 3</a>\n            <a class=\"dropdown-item\" href=\"#\">اعلان رقم 4</a>\n            <a class=\"dropdown-item\" href=\"#\">اعلان رقم 5</a>\n            <a class=\"dropdown-item\" [routerLink]=\"['/offers-list']\"> -- عرض جميع الأعلانات --</a>\n          </div>\n        </li>\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/edit-cv']\">تعديل السيرة الذاتية</a>\n        </li>\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/sign-up']\">تسجيل خروج</a>\n        </li>\n      </ul>\n    </div>\n  </div>\n</nav>\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -930,11 +960,7 @@ var UserComponent = /** @class */ (function () {
     function UserComponent(router, element) {
         this.router = router;
         this.element = element;
-        this.navbarOpen = false;
     }
-    UserComponent.prototype.toggleNavbar = function () {
-        this.navbarOpen = !this.navbarOpen;
-    };
     UserComponent.prototype.ngOnInit = function () {
     };
     UserComponent = __decorate([
@@ -1827,7 +1853,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"logo\">\n    <a class=\"simple-text logo-mini\">\n        <div class=\"logo-img\">\n            <img src=\"/assets/img/32X32.png\" />\n        </div>\n    </a>\n    <a href=\"https://www.creative-tim.com\" class=\"simple-text logo-normal\">\n        <strong>Pt</strong>way\n    </a>\n</div>\n\n\n<div class=\"sidebar-wrapper\">\n\n    <div class=\"user\">\n        <div class=\"photo\">\n            <img src=\"./assets/img/default-avatar.png\" />\n        </div>\n        <div class=\"user-info\">\n            <a data-toggle=\"collapse\" href=\"#collapseExample\" class=\"collapsed\">\n                <span>\n                    Tania Andrew\n                    <b class=\"caret\"></b>\n                </span>\n            </a>\n            <div class=\"collapse\" id=\"collapseExample\">\n                <ul class=\"nav\">\n                    <li class=\"nav-item\" routerLinkActive=\"active\">\n                        <a class=\"nav-link\" [routerLink]=\"['/company-profile']\">\n                            <i class=\"material-icons\">perm_identity</i>\n                            <span class=\"sidebar-normal\">ملف التعريف</span>\n                        </a>\n                    </li>\n                    <li class=\"nav-item\">\n                        <a href=\"javascript:void(0)\" class=\"nav-link\">\n                            <span class=\"sidebar-mini\">EP</span>\n                            <span class=\"sidebar-normal\">تعديل ملف التعريف</span>\n                        </a>\n                    </li>\n                </ul>\n            </div>\n        </div>\n    </div>\n    <ul class=\"nav\">\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a [routerLink]=\"['/dashboard']\" class=\"nav-link\">\n                <i class=\"material-icons\">dashboard</i>\n                <p>لوحة التحكم</p>\n            </a>\n        </li>\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a [routerLink]=\"['/add-project']\" class=\"nav-link\">\n                <i class=\"material-icons\">next_week</i>\n                <p>اضافة مشروع</p>\n            </a>\n        </li>\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a [routerLink]=\"['/add-job']\" class=\"nav-link\">\n                <i class=\"material-icons\">rate_review</i>\n                <p>اضافة عرض عمل</p>\n            </a>\n        </li>\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a [routerLink]=\"['/my-projects']\" class=\"nav-link\">\n                <i class=\"material-icons\">next_week</i>\n                <p>المشاريع الخاصة بي</p>\n            </a>\n        </li>\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a (click)=\"logOut()\" [routerLink]=\"['null']\" class=\"nav-link\">\n                <i class=\"material-icons\">input</i>\n                <p>تسجيل خروج</p>\n            </a>\n        </li>\n    </ul>\n</div>"
+module.exports = "<div class=\"logo\">\n    <a class=\"simple-text logo-mini\">\n        <div class=\"logo-img\">\n            <img src=\"/assets/img/32X32.png\" />\n        </div>\n    </a>\n    <a href=\"https://www.creative-tim.com\" class=\"simple-text logo-normal\">\n        <strong>Pt</strong>way\n    </a>\n</div>\n\n\n<div class=\"sidebar-wrapper\">\n\n    <div class=\"user\">\n        <div class=\"photo\">\n            <img src=\"./assets/img/default-avatar.png\" />\n        </div>\n        <div class=\"user-info\">\n            <a data-toggle=\"collapse\" href=\"#collapseExample\" class=\"collapsed\">\n                <span>\n                    Tania Andrew\n                    <b class=\"caret\"></b>\n                </span>\n            </a>\n            <div class=\"collapse\" id=\"collapseExample\">\n                <ul class=\"nav\">\n                    <li class=\"nav-item\" routerLinkActive=\"active\">\n                        <a class=\"nav-link\" [routerLink]=\"['/company-profile']\">\n                            <i class=\"material-icons\">perm_identity</i>\n                            <span class=\"sidebar-normal\">ملف التعريف</span>\n                        </a>\n                    </li>\n                    <li class=\"nav-item\" routerLinkActive=\"active\">\n                        <a href=\"javascript:void(0)\" class=\"nav-link\" [routerLink]=\"['/edit-company-profile']\">\n                            <span class=\"sidebar-mini\">EP</span>\n                            <span class=\"sidebar-normal\">تعديل ملف التعريف</span>\n                        </a>\n                    </li>\n                </ul>\n            </div>\n        </div>\n    </div>\n    <ul class=\"nav\">\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a [routerLink]=\"['/dashboard']\" class=\"nav-link\">\n                <i class=\"material-icons\">dashboard</i>\n                <p>لوحة التحكم</p>\n            </a>\n        </li>\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a [routerLink]=\"['/add-project']\" class=\"nav-link\">\n                <i class=\"material-icons\">next_week</i>\n                <p>اضافة مشروع</p>\n            </a>\n        </li>\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a [routerLink]=\"['/add-job']\" class=\"nav-link\">\n                <i class=\"material-icons\">rate_review</i>\n                <p>اضافة عرض عمل</p>\n            </a>\n        </li>\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a [routerLink]=\"['/my-projects']\" class=\"nav-link\">\n                <i class=\"material-icons\">next_week</i>\n                <p>المشاريع الخاصة بي</p>\n            </a>\n        </li>\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a (click)=\"logOut()\" [routerLink]=\"['null']\" class=\"nav-link\">\n                <i class=\"material-icons\">input</i>\n                <p>تسجيل خروج</p>\n            </a>\n        </li>\n    </ul>\n</div>"
 
 /***/ }),
 

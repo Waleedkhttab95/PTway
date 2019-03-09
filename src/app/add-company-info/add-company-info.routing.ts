@@ -5,10 +5,10 @@ import { AddCompanyInfoComponent } from './add-company-info.component';
 export const AddCompanyInfoRoutes: Routes = [
     {
 
-      path: '',
-      children: [ {
         path: '',
-        component: AddCompanyInfoComponent
-    }]
-}
+        children: [{
+            path: '',
+            component: AddCompanyInfoComponent
+        }]
+    }
 ];

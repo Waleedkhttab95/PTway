@@ -8,10 +8,7 @@
         <strong>Pt</strong>way
     </a>
 </div>
-
-
 <div class="sidebar-wrapper">
-
     <div class="user">
         <div class="photo">
             <img src="./assets/img/default-avatar.png" />
@@ -31,8 +28,8 @@
                             <span class="sidebar-normal">ملف التعريف</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="javascript:void(0)" class="nav-link">
+                    <li class="nav-item" routerLinkActive="active">
+                        <a class="nav-link" [routerLink]="['/edit-company-profile']">
                             <span class="sidebar-mini">EP</span>
                             <span class="sidebar-normal">تعديل ملف التعريف</span>
                         </a>
@@ -50,7 +47,7 @@
         </li>
         <li routerLinkActive="active" class="nav-item">
             <a [routerLink]="['/add-project']" class="nav-link">
-                <i class="material-icons">next_week</i>
+                <i class="material-icons">add_box</i>
                 <p>اضافة مشروع</p>
             </a>
         </li>

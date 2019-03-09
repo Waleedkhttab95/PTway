@@ -5,10 +5,10 @@ import { ErrorMessageComponent } from './error-message.component';
 export const ErrorMessageRoutes: Routes = [
     {
 
-      path: '',
-      children: [ {
         path: '',
-        component: ErrorMessageComponent
-    }]
-}
+        children: [{
+            path: '',
+            component: ErrorMessageComponent
+        }]
+    }
 ];
