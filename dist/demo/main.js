@@ -41,6 +41,10 @@ var map = {
 		"common",
 		"candidates-list-candidates-list-module"
 	],
+	"./company-profile/company-profile.module": [
+		"./src/app/company-profile/company-profile.module.ts",
+		"company-profile-company-profile-module"
+	],
 	"./dashboard/dashboard.module": [
 		"./src/app/dashboard/dashboard.module.ts",
 		"dashboard-dashboard-module"
@@ -352,6 +356,9 @@ var AppRoutes = [
             }, {
                 path: 'error-message',
                 loadChildren: './error-message/error-message.module#ErrorMessageModule'
+            }, {
+                path: 'company-profile',
+                loadChildren: './company-profile/company-profile.module#CompanyProfileModule'
             }
         ]
     }, {
@@ -874,6 +881,17 @@ var RegistrationComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/layouts/user/user.component.css":
+/*!*************************************************!*\
+  !*** ./src/app/layouts/user/user.component.css ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".nav-link {\n    display: inline-flex;\n}"
+
+/***/ }),
+
 /***/ "./src/app/layouts/user/user.component.html":
 /*!**************************************************!*\
   !*** ./src/app/layouts/user/user.component.html ***!
@@ -881,7 +899,7 @@ var RegistrationComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-primary\">\n  <div class=\"container\">\n    <a class=\"navbar-brand-logo\" href=\"#\">\n      <strong>Pt</strong>way\n      <img src=\"../../assets/img/32X32.png\">\n    </a>\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarNav\" aria-controls=\"navbarNav\"\n      aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n    <div class=\"collapse navbar-collapse\" id=\"navbarNav\">\n      <ul class=\"navbar-nav\">\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/my-cv']\">السيرة الذاتية <span class=\"sr-only\">(current)</span></a>\n        </li>\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/offers-list']\">قائمة العروض</a>\n        </li>\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/edit-cv']\">تعديل السيرة الذاتية</a>\n        </li>\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/sign-up']\">تسجيل خروج</a>\n        </li>\n      </ul>\n    </div>\n  </div>\n</nav>\n<router-outlet></router-outlet>"
+module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-primary\">\n  <div class=\"container\">\n    <a class=\"navbar-brand-logo\" href=\"#\">\n      <strong>Pt</strong>way\n      <img src=\"../../assets/img/32X32.png\">\n    </a>\n    <button class=\"navbar-toggler\" type=\"button\"\n          (click)=\"toggleNavbar()\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n    <div class=\"collapse navbar-collapse\"\n    [ngClass]=\"{ 'show': navbarOpen }\" id=\"navbarNav\">\n      <ul class=\"navbar-nav\">\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/my-cv']\">السيرة الذاتية <span class=\"sr-only\">(current)</span></a>\n        </li>\n        <li class=\"nav-item dropdown\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" href=\"#pablo\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\"\n            aria-expanded=\"false\">\n            <i class=\"material-icons\">notifications</i>قائمة العروض\n            <span class=\"notification\">5</span>\n            <p>\n              <span class=\"d-lg-none d-md-block\">Some Actions</span>\n            </p>\n          </a>\n          <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"navbarDropdownMenuLink\">\n            <a class=\"dropdown-item\" href=\"#\">اعلان رقم 1</a>\n            <a class=\"dropdown-item\" href=\"#\">اعلان رقم 2</a>\n            <a class=\"dropdown-item\" href=\"#\">اعلان رقم 3</a>\n            <a class=\"dropdown-item\" href=\"#\">اعلان رقم 4</a>\n            <a class=\"dropdown-item\" href=\"#\">اعلان رقم 5</a>\n            <a class=\"dropdown-item\" [routerLink]=\"['/offers-list']\"> -- عرض جميع الأعلانات --</a>\n          </div>\n        </li>\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/edit-cv']\">تعديل السيرة الذاتية</a>\n        </li>\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/sign-up']\">تسجيل خروج</a>\n        </li>\n      </ul>\n    </div>\n  </div>\n</nav>\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -912,13 +930,18 @@ var UserComponent = /** @class */ (function () {
     function UserComponent(router, element) {
         this.router = router;
         this.element = element;
+        this.navbarOpen = false;
     }
+    UserComponent.prototype.toggleNavbar = function () {
+        this.navbarOpen = !this.navbarOpen;
+    };
     UserComponent.prototype.ngOnInit = function () {
     };
     UserComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-user',
-            template: __webpack_require__(/*! ./user.component.html */ "./src/app/layouts/user/user.component.html")
+            template: __webpack_require__(/*! ./user.component.html */ "./src/app/layouts/user/user.component.html"),
+            styles: [__webpack_require__(/*! ./user.component.css */ "./src/app/layouts/user/user.component.css")]
         }),
         __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"]])
     ], UserComponent);
@@ -1804,7 +1827,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"logo\">\n    <a class=\"simple-text logo-mini\">\n        <div class=\"logo-img\">\n            <img src=\"/assets/img/32X32.png\" />\n        </div>\n    </a>\n    <a href=\"https://www.creative-tim.com\" class=\"simple-text logo-normal\">\n        <strong>Pt</strong>way\n    </a>\n</div>\n\n\n<div class=\"sidebar-wrapper\">\n\n    <div class=\"user\">\n        <div class=\"photo\">\n            <img src=\"./assets/img/faces/avatar.jpg\" />\n        </div>\n        <div class=\"user-info\">\n            <a data-toggle=\"collapse\" href=\"#collapseExample\" class=\"collapsed\">\n                <span>\n                    Tania Andrew\n                    <b class=\"caret\"></b>\n                </span>\n            </a>\n            <div class=\"collapse\" id=\"collapseExample\">\n                <ul class=\"nav\">\n                    <li class=\"nav-item\">\n                        <a href=\"javascript:void(0)\" class=\"nav-link\">\n                            <span class=\"sidebar-mini\">MP</span>\n                            <span class=\"sidebar-normal\">My Profile</span>\n                        </a>\n                    </li>\n                    <li class=\"nav-item\">\n                        <a href=\"javascript:void(0)\" class=\"nav-link\">\n                            <span class=\"sidebar-mini\">EP</span>\n                            <span class=\"sidebar-normal\">Edit Profile</span>\n                        </a>\n                    </li>\n                    <li class=\"nav-item\">\n                        <a href=\"javascript:void(0)\" class=\"nav-link\">\n                            <span class=\"sidebar-mini\">S</span>\n                            <span class=\"sidebar-normal\">Settings</span>\n                        </a>\n                    </li>\n                </ul>\n            </div>\n        </div>\n    </div>\n    <ul class=\"nav\">\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a [routerLink]=\"['/dashboard']\" class=\"nav-link\">\n                <i class=\"material-icons\">dashboard</i>\n                <p>لوحة التحكم</p>\n            </a>\n        </li>\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a [routerLink]=\"['/add-project']\" class=\"nav-link\">\n                <i class=\"material-icons\">next_week</i>\n                <p>اضافة مشروع</p>\n            </a>\n        </li>\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a [routerLink]=\"['/add-job']\" class=\"nav-link\">\n                <i class=\"material-icons\">rate_review</i>\n                <p>اضافة عرض عمل</p>\n            </a>\n        </li>\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a [routerLink]=\"['/my-projects']\" class=\"nav-link\">\n                <i class=\"material-icons\">next_week</i>\n                <p>المشاريع الخاصة بي</p>\n            </a>\n        </li>\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a (click)=\"logOut()\" [routerLink]=\"['null']\" class=\"nav-link\">\n                <i class=\"material-icons\">input</i>\n                <p>تسجيل خروج</p>\n            </a>\n        </li>\n    </ul>\n</div>"
+module.exports = "<div class=\"logo\">\n    <a class=\"simple-text logo-mini\">\n        <div class=\"logo-img\">\n            <img src=\"/assets/img/32X32.png\" />\n        </div>\n    </a>\n    <a href=\"https://www.creative-tim.com\" class=\"simple-text logo-normal\">\n        <strong>Pt</strong>way\n    </a>\n</div>\n\n\n<div class=\"sidebar-wrapper\">\n\n    <div class=\"user\">\n        <div class=\"photo\">\n            <img src=\"./assets/img/default-avatar.png\" />\n        </div>\n        <div class=\"user-info\">\n            <a data-toggle=\"collapse\" href=\"#collapseExample\" class=\"collapsed\">\n                <span>\n                    Tania Andrew\n                    <b class=\"caret\"></b>\n                </span>\n            </a>\n            <div class=\"collapse\" id=\"collapseExample\">\n                <ul class=\"nav\">\n                    <li class=\"nav-item\" routerLinkActive=\"active\">\n                        <a class=\"nav-link\" [routerLink]=\"['/company-profile']\">\n                            <i class=\"material-icons\">perm_identity</i>\n                            <span class=\"sidebar-normal\">ملف التعريف</span>\n                        </a>\n                    </li>\n                    <li class=\"nav-item\">\n                        <a href=\"javascript:void(0)\" class=\"nav-link\">\n                            <span class=\"sidebar-mini\">EP</span>\n                            <span class=\"sidebar-normal\">تعديل ملف التعريف</span>\n                        </a>\n                    </li>\n                </ul>\n            </div>\n        </div>\n    </div>\n    <ul class=\"nav\">\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a [routerLink]=\"['/dashboard']\" class=\"nav-link\">\n                <i class=\"material-icons\">dashboard</i>\n                <p>لوحة التحكم</p>\n            </a>\n        </li>\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a [routerLink]=\"['/add-project']\" class=\"nav-link\">\n                <i class=\"material-icons\">next_week</i>\n                <p>اضافة مشروع</p>\n            </a>\n        </li>\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a [routerLink]=\"['/add-job']\" class=\"nav-link\">\n                <i class=\"material-icons\">rate_review</i>\n                <p>اضافة عرض عمل</p>\n            </a>\n        </li>\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a [routerLink]=\"['/my-projects']\" class=\"nav-link\">\n                <i class=\"material-icons\">next_week</i>\n                <p>المشاريع الخاصة بي</p>\n            </a>\n        </li>\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a (click)=\"logOut()\" [routerLink]=\"['null']\" class=\"nav-link\">\n                <i class=\"material-icons\">input</i>\n                <p>تسجيل خروج</p>\n            </a>\n        </li>\n    </ul>\n</div>"
 
 /***/ }),
 

@@ -38,6 +38,9 @@ export const AppRoutes: Routes = [
     }, {
         path: 'error-message',
         loadChildren: './error-message/error-message.module#ErrorMessageModule'
+    },  {
+        path: 'company-profile',
+        loadChildren: './company-profile/company-profile.module#CompanyProfileModule'
     }
   ]}, {
       path: '',

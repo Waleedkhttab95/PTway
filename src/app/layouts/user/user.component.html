@@ -4,8 +4,7 @@
       <strong>Pt</strong>way
       <img src="../../assets/img/32X32.png">
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
-      aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -13,8 +12,23 @@
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['/my-cv']">السيرة الذاتية <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" [routerLink]="['/offers-list']">قائمة العروض</a>
+        <li class="nav-item dropdown" routerLinkActive="active">
+          <a class="nav-link" href="#pablo" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            <i class="material-icons">notifications</i>قائمة العروض
+            <span class="notification">5</span>
+            <p>
+              <span class="d-lg-none d-md-block">Some Actions</span>
+            </p>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="#">اعلان رقم 1</a>
+            <a class="dropdown-item" href="#">اعلان رقم 2</a>
+            <a class="dropdown-item" href="#">اعلان رقم 3</a>
+            <a class="dropdown-item" href="#">اعلان رقم 4</a>
+            <a class="dropdown-item" href="#">اعلان رقم 5</a>
+            <a class="dropdown-item" [routerLink]="['/offers-list']"> -- عرض جميع الأعلانات --</a>
+          </div>
         </li>
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['/edit-cv']">تعديل السيرة الذاتية</a>

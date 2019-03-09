@@ -186,17 +186,6 @@ module.exports = "/*!\n\n ======================================================
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/index.js!./node_modules/postcss-loader/lib/index.js??embedded!./node_modules/sass-loader/lib/loader.js??ref--14-3!./src/assets/scss/rtl.scss":
-/*!************************************************************************************************************************************************************!*\
-  !*** ./node_modules/raw-loader!./node_modules/postcss-loader/lib??embedded!./node_modules/sass-loader/lib/loader.js??ref--14-3!./src/assets/scss/rtl.scss ***!
-  \************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ""
-
-/***/ }),
-
 /***/ "./node_modules/raw-loader/index.js!./node_modules/postcss-loader/lib/index.js??embedded!./src/assets/css/demo.css":
 /*!*******************************************************************************************************!*\
   !*** ./node_modules/raw-loader!./node_modules/postcss-loader/lib??embedded!./src/assets/css/demo.css ***!
@@ -789,40 +778,10 @@ if(false) {}
 
 /***/ }),
 
-/***/ "./src/assets/scss/rtl.scss":
-/*!**********************************!*\
-  !*** ./src/assets/scss/rtl.scss ***!
-  \**********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(/*! !../../../node_modules/raw-loader!../../../node_modules/postcss-loader/lib??embedded!../../../node_modules/sass-loader/lib/loader.js??ref--14-3!./rtl.scss */ "./node_modules/raw-loader/index.js!./node_modules/postcss-loader/lib/index.js??embedded!./node_modules/sass-loader/lib/loader.js??ref--14-3!./src/assets/scss/rtl.scss");
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
-
-/***/ }),
-
 /***/ 2:
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./node_modules/bootstrap/dist/css/bootstrap.css ./node_modules/bootstrap-rtl/dist/css/bootstrap-rtl.css ./node_modules/perfect-scrollbar/css/perfect-scrollbar.css ./node_modules/angular-calendar/scss/angular-calendar.scss ./node_modules/sweetalert2/src/sweetalert2.scss ./src/assets/css/demo.css ./src/assets/scss/material-dashboard.scss ./src/assets/scss/rtl.scss ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./node_modules/bootstrap/dist/css/bootstrap.css ./node_modules/bootstrap-rtl/dist/css/bootstrap-rtl.css ./node_modules/perfect-scrollbar/css/perfect-scrollbar.css ./node_modules/angular-calendar/scss/angular-calendar.scss ./node_modules/sweetalert2/src/sweetalert2.scss ./src/assets/css/demo.css ./src/assets/scss/material-dashboard.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -832,8 +791,7 @@ __webpack_require__(/*! /Users/ayman/Documents/Angular/PTway-Angular/node_module
 __webpack_require__(/*! /Users/ayman/Documents/Angular/PTway-Angular/node_modules/angular-calendar/scss/angular-calendar.scss */"./node_modules/angular-calendar/scss/angular-calendar.scss");
 __webpack_require__(/*! /Users/ayman/Documents/Angular/PTway-Angular/node_modules/sweetalert2/src/sweetalert2.scss */"./node_modules/sweetalert2/src/sweetalert2.scss");
 __webpack_require__(/*! /Users/ayman/Documents/Angular/PTway-Angular/src/assets/css/demo.css */"./src/assets/css/demo.css");
-__webpack_require__(/*! /Users/ayman/Documents/Angular/PTway-Angular/src/assets/scss/material-dashboard.scss */"./src/assets/scss/material-dashboard.scss");
-module.exports = __webpack_require__(/*! /Users/ayman/Documents/Angular/PTway-Angular/src/assets/scss/rtl.scss */"./src/assets/scss/rtl.scss");
+module.exports = __webpack_require__(/*! /Users/ayman/Documents/Angular/PTway-Angular/src/assets/scss/material-dashboard.scss */"./src/assets/scss/material-dashboard.scss");
 
 
 /***/ })

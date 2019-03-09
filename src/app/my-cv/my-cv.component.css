@@ -4494,7 +4494,7 @@
   
   .badge-primary {
     color: #fff;
-    background-color: #434E5E;
+    background-color: #054b77;
   }
   
   .badge-primary[href]:hover, .badge-primary[href]:focus {
@@ -8519,7 +8519,7 @@
   }
   
   .theme-progress-bar-dark {
-    background-color: #434E5E;
+    background-color: #054b77;
   }
   
   .resume-wrapper {
@@ -8532,7 +8532,7 @@
   }
   
   .resume-header {
-    background: #434E5E;
+    background: #054b77;
     color: rgba(255, 255, 255, 0.9);
     height: 250px;
   }
