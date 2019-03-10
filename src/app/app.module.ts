@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { APP_BASE_HREF } from '@angular/common';
 import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -50,7 +50,7 @@ import { AdminLayoutComponent } from './layouts/admin/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 import { UserComponent } from './layouts/user/user.component';
 import { RegistrationComponent } from './layouts/registration/registration.component';
-
+import {AuthInterceptor} from './auth-interceptor';
 import { AppRoutes } from './app.routing';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
@@ -115,6 +115,7 @@ export class MaterialModule {}
         UserComponent,
         RegistrationComponent
     ],
+    providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
     bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

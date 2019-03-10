@@ -27,9 +27,9 @@ export class ProjectService {
       });
     }
 
-    getprojects(id: String) {
+    getprojects() {
         return this.http
-        .get<{projectName: [String],  count: Number, id: [String]}>(BackUrl + '/getprojects?id='+ id)
+        .get<{projectName: [String],  count: Number, id: [String]}>(BackUrl + '/getprojects')
     }
 
     getproject(id: String) {

@@ -30,11 +30,11 @@ export class SignUpComponent implements OnInit, OnDestroy {
     Validators.required,
     Validators.nullValidator,
   ]);
-  userEmail = new FormControl('', [
+  Email = new FormControl('', [
     Validators.required,
     Validators.email,
   ]);
-  userPassword = new FormControl('', [
+  Password = new FormControl('', [
     Validators.required,
     Validators.nullValidator,
   ]);
@@ -100,7 +100,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
   userRegistreing() {
     console.log(this.userRegistrForm.value);
     this.authService.createUser(this.userRegistrForm.value.firstName,this.userRegistrForm.value.lastName,
-      this.userRegistrForm.value.userEmail,this.userRegistrForm.value.userPassword);
+      this.userRegistrForm.value.email,this.userRegistrForm.value.password);
     }
 
   companyRegistreing() {
@@ -126,11 +126,11 @@ export class SignUpComponent implements OnInit, OnDestroy {
         Validators.required,
         Validators.nullValidator,
       ]),
-      userEmail: new FormControl('', [
+      email: new FormControl('', [
         Validators.required,
         Validators.email,
       ]),
-      userPassword: new FormControl('', [
+      password: new FormControl('', [
         Validators.required,
         Validators.nullValidator,
       ])
