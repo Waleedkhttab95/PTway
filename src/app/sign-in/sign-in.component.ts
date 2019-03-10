@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder, NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 declare var $: any;
+let mood: boolean = true;
+
 
 @Component({
   selector: 'app-sign-in',
@@ -29,14 +31,20 @@ export class SignInComponent implements OnInit, OnDestroy {
     private fb: FormBuilder) {
     this.nativeElement = element.nativeElement;
     this.sidebarVisible = false;
-    
+
   }
 
   userlogin(form: NgForm) {
     if (form.invalid) {
       return;
     }
-    this.authService.login(form.value.email, form.value.password);
+    if(mood = true){
+      this.authService.login(form.value.email, form.value.password);
+    }
+    else{
+      this.authService.login(form.value.email, form.value.password);
+    }
+    
   }
 
   ngOnInit() {
@@ -84,5 +92,23 @@ export class SignInComponent implements OnInit, OnDestroy {
     body.classList.remove('off-canvas-sidebar');
     this.authStatusSub.unsubscribe();
   }
+
+  companyMood(){
+    mood  = false;
+    console.log(mood);
+  }
+  userMood(){
+    mood  = true;
+    console.log(mood);
+  }
+  checkMood(): boolean {
+    if(mood  = true){
+      return true;
+    }
+    else{
+      return false;
+    }
+    
+}
 
 }
