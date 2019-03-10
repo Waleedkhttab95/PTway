@@ -81,7 +81,7 @@ export class MyProjectsComponent implements OnInit, AfterViewInit {
 }
 
 fetchData() {
-  this.projectService.getprojects(this.authService.getUserId()).subscribe(response =>{
+  this.projectService.getprojects().subscribe(response =>{
    
     for(var i=0 ; i < response.count ; i++) {
         this.dataRows.push(response.projectName[i]);

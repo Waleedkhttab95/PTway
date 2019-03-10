@@ -112,12 +112,12 @@
                               </span>
                             </div>
                             <mat-form-field>
-                              <input matInput placeholder="البريد الإلكتروني..." name="userEmail" formControlName="userEmail"
+                              <input matInput placeholder="البريد الإلكتروني..." name="email" formControlName="email"
                                 [errorStateMatcher]="matcher" type="email">
-                              <mat-error *ngIf="userEmail.hasError('email') && !userEmail.hasError('required')">
+                              <mat-error *ngIf="email.hasError('email') && !userEmail.hasError('required')">
                                 يجب عليك ادخال البريد الإلكتروني بالشكل الصحيح
                               </mat-error>
-                              <mat-error *ngIf="userEmail.hasError('required')">
+                              <mat-error *ngIf="email.hasError('required')">
                                 يجب عليك ادخال <strong>البريد الإلكتروني</strong>
                               </mat-error>
                             </mat-form-field>
@@ -131,12 +131,12 @@
                               </span>
                             </div>
                             <mat-form-field>
-                              <input matInput placeholder="كلمة المرور..." name="userPassword" formControlName="userPassword"
+                              <input matInput placeholder="كلمة المرور..." name="password" formControlName="password"
                                 [errorStateMatcher]="matcher" type="password">
-                              <mat-error *ngIf="userPassword.hasError('password') && !userPassword.hasError('required')">
+                              <mat-error *ngIf="password.hasError('password') && !password.hasError('required')">
                                 يجب عليك ادخال كلمة المرور بالشكل الصحيح
                               </mat-error>
-                              <mat-error *ngIf="userPassword.hasError('required')">
+                              <mat-error *ngIf="password.hasError('required')">
                                 يجب عليك ادخال <strong>كلمة المرور</strong>
                               </mat-error>
                             </mat-form-field>
