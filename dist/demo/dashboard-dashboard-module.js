@@ -1,50 +1,13 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["dashboard-dashboard-module"],{
 
-/***/ "./src/app/auth/auth.guard.ts":
-/*!************************************!*\
-  !*** ./src/app/auth/auth.guard.ts ***!
-  \************************************/
-/*! exports provided: AuthGuard */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ "./src/app/dashboard/dashboard.component.css":
+/*!***************************************************!*\
+  !*** ./src/app/dashboard/dashboard.component.css ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthGuard", function() { return AuthGuard; });
-/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./auth.service */ "./src/app/auth/auth.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var AuthGuard = /** @class */ (function () {
-    function AuthGuard(authService, router) {
-        this.authService = authService;
-        this.router = router;
-    }
-    AuthGuard.prototype.canActivate = function (route, state) {
-        var isAuth = this.authService.getIsAuth();
-        if (!isAuth) {
-            this.router.navigate(['/sign-in']);
-        }
-        return isAuth;
-    };
-    AuthGuard = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])(),
-        __metadata("design:paramtypes", [_auth_service__WEBPACK_IMPORTED_MODULE_0__["AuthService"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
-    ], AuthGuard);
-    return AuthGuard;
-}());
-
-
+module.exports = ""
 
 /***/ }),
 
@@ -55,7 +18,7 @@ var AuthGuard = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h2>Hello</h2>"
+module.exports = "<div class=\"main-content\">\n  <div class=\"container-fluid\">\n    <div class=\"row\">\n      <div class=\"col-md-12\">\n        <div class=\"card\">\n          <div class=\"card-header card-header-success card-header-icon\">\n            <div class=\"card-icon\">\n              <i class=\"material-icons\"></i>\n            </div>\n            <h4 class=\"card-title\">Global Sales by Top Locations</h4>\n          </div>\n          <div class=\"card-body\">\n            <div class=\"row\">\n              <div class=\"col-md-6\">\n                <app-md-table [data]=\"tableData\">\n                </app-md-table>\n              </div>\n              <div class=\"col-md-6 ml-auto mr-auto\">\n                <div id=\"worldMap\" class=\"map\"></div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n    <div class=\"row\">\n      <div class=\"col-md-4\">\n        <div class=\"card card-chart\">\n          <div class=\"card-header card-header-rose\" data-header-animation=\"true\">\n            <div class=\"ct-chart\" id=\"websiteViewsChart\"></div>\n          </div>\n          <div class=\"card-body\">\n            <div class=\"card-actions\">\n              <button mat-raised-button type=\"button\" class=\"btn btn-danger btn-link fix-broken-card\">\n                <i class=\"material-icons\">build</i> Fix Header!\n              </button>\n              <button mat-raised-button type=\"button\" class=\"btn btn-info btn-link\" matTooltip=\"Refresh\"\n                [matTooltipPosition]=\"'below'\">\n                <i class=\"material-icons\">refresh</i>\n              </button>\n              <button mat-raised-button type=\"button\" class=\"btn btn-default btn-link\" matTooltip=\"Change Date\"\n                [matTooltipPosition]=\"'below'\">\n                <i class=\"material-icons\">edit</i>\n              </button>\n            </div>\n            <h4 class=\"card-title\">Website Views</h4>\n            <p class=\"card-category\">Last Campaign Performance</p>\n          </div>\n          <div class=\"card-footer\">\n            <div class=\"stats\">\n              <i class=\"material-icons\">access_time</i> campaign sent 2 days ago\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"col-md-4\">\n        <div class=\"card card-chart\">\n          <div class=\"card-header card-header-success\" data-header-animation=\"true\">\n            <div class=\"ct-chart\" id=\"dailySalesChart\"></div>\n          </div>\n          <div class=\"card-body\">\n            <div class=\"card-actions\">\n              <button mat-raised-button type=\"button\" class=\"btn btn-danger btn-link fix-broken-card\">\n                <i class=\"material-icons\">build</i> Fix Header!\n              </button>\n              <button mat-raised-button type=\"button\" class=\"btn btn-info btn-link\" matTooltip=\"Refresh\"\n                [matTooltipPosition]=\"'below'\">\n                <i class=\"material-icons\">refresh</i>\n              </button>\n              <button mat-raised-button type=\"button\" class=\"btn btn-default btn-link\" matTooltip=\"Change Date\"\n                [matTooltipPosition]=\"'below'\">\n                <i class=\"material-icons\">edit</i>\n              </button>\n            </div>\n            <h4 class=\"card-title\">Daily Sales</h4>\n            <p class=\"card-category\">\n              <span class=\"text-success\"><i class=\"fa fa-long-arrow-up\"></i> 55% </span> increase in today sales.</p>\n          </div>\n          <div class=\"card-footer\">\n            <div class=\"stats\">\n              <i class=\"material-icons\">access_time</i> updated 4 minutes ago\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"col-md-4\">\n        <div class=\"card card-chart\">\n          <div class=\"card-header card-header-info\" data-header-animation=\"true\">\n            <div class=\"ct-chart\" id=\"completedTasksChart\"></div>\n          </div>\n          <div class=\"card-body\">\n            <div class=\"card-actions\">\n              <button mat-raised-button type=\"button\" class=\"btn btn-danger btn-link fix-broken-card\">\n                <i class=\"material-icons\">build</i> Fix Header!\n              </button>\n              <button mat-raised-button type=\"button\" class=\"btn btn-info btn-link\" matTooltip=\"Refresh\"\n                [matTooltipPosition]=\"'below'\">\n                <i class=\"material-icons\">refresh</i>\n              </button>\n              <button mat-raised-button type=\"button\" class=\"btn btn-default btn-link\" matTooltip=\"Change Date\"\n                [matTooltipPosition]=\"'below'\">\n                <i class=\"material-icons\">edit</i>\n              </button>\n            </div>\n            <h4 class=\"card-title\">Completed Tasks</h4>\n            <p class=\"card-category\">Last Campaign Performance</p>\n          </div>\n          <div class=\"card-footer\">\n            <div class=\"stats\">\n              <i class=\"material-icons\">access_time</i> campaign sent 2 days ago\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n    <div class=\"row\">\n      <div class=\"col-lg-3 col-md-6 col-sm-6\">\n        <div class=\"card card-stats\">\n          <div class=\"card-header card-header-warning card-header-icon\">\n            <div class=\"card-icon\">\n              <i class=\"material-icons\">weekend</i>\n            </div>\n            <p class=\"card-category\">Bookings</p>\n            <h3 class=\"card-title\">184</h3>\n          </div>\n          <div class=\"card-footer\">\n            <div class=\"stats\">\n              <i class=\"material-icons text-danger\">warning</i>\n              <a href=\"#pablo\">Get More Space...</a>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"col-lg-3 col-md-6 col-sm-6\">\n        <div class=\"card card-stats\">\n          <div class=\"card-header card-header-rose card-header-icon\">\n            <div class=\"card-icon\">\n              <i class=\"material-icons\">equalizer</i>\n            </div>\n            <p class=\"card-category\">Website Visits</p>\n            <h3 class=\"card-title\">75.521</h3>\n          </div>\n          <div class=\"card-footer\">\n            <div class=\"stats\">\n              <i class=\"material-icons\">local_offer</i> Tracked from Google Analytics\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"col-lg-3 col-md-6 col-sm-6\">\n        <div class=\"card card-stats\">\n          <div class=\"card-header card-header-success card-header-icon\">\n            <div class=\"card-icon\">\n              <i class=\"material-icons\">store</i>\n            </div>\n            <p class=\"card-category\">Revenue</p>\n            <h3 class=\"card-title\">$34,245</h3>\n          </div>\n          <div class=\"card-footer\">\n            <div class=\"stats\">\n              <i class=\"material-icons\">date_range</i> Last 24 Hours\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"col-lg-3 col-md-6 col-sm-6\">\n        <div class=\"card card-stats\">\n          <div class=\"card-header card-header-info card-header-icon\">\n            <div class=\"card-icon\">\n              <i class=\"fa fa-twitter\"></i>\n            </div>\n            <p class=\"card-category\">Followers</p>\n            <h3 class=\"card-title\">+245</h3>\n          </div>\n          <div class=\"card-footer\">\n            <div class=\"stats\">\n              <i class=\"material-icons\">update</i> Just Updated\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n    <h3>Manage Listings</h3>\n    <br>\n    <div class=\"row\">\n      <div class=\"col-md-4\">\n        <div class=\"card card-product\">\n          <div class=\"card-header card-header-image\" data-header-animation=\"true\">\n            <a href=\"#pablo\">\n              <img class=\"img\" src=\"./assets/img/card-2.jpg\">\n            </a>\n          </div>\n          <div class=\"card-body\">\n            <div class=\"card-actions text-center\">\n              <button mat-raised-button type=\"button\" class=\"btn btn-danger btn-link fix-broken-card\">\n                <i class=\"material-icons\">build</i> Fix Header!\n              </button>\n              <button mat-raised-button type=\"button\" class=\"btn btn-default btn-link\" matTooltip=\"View\"\n                [matTooltipPosition]=\"'below'\">\n                <i class=\"material-icons\">art_track</i>\n              </button>\n              <button mat-raised-button type=\"button\" class=\"btn btn-success btn-link\" matTooltip=\"Edit\"\n                [matTooltipPosition]=\"'below'\">\n                <i class=\"material-icons\">edit</i>\n              </button>\n              <button mat-raised-button type=\"button\" class=\"btn btn-danger btn-link\" matTooltip=\"Remove\"\n                [matTooltipPosition]=\"'below'\">\n                <i class=\"material-icons\">close</i>\n              </button>\n            </div>\n            <h4 class=\"card-title\">\n              <a href=\"#pablo\">Cozy 5 Stars Apartment</a>\n            </h4>\n            <div class=\"card-description\">\n              The place is close to Barceloneta Beach and bus stop just 2 min by walk and near to \"Naviglio\" where you\n              can enjoy the main night life in Barcelona.\n            </div>\n          </div>\n          <div class=\"card-footer\">\n            <div class=\"price\">\n              <h4>$899/night</h4>\n            </div>\n            <div class=\"stats\">\n              <p class=\"card-category\"><i class=\"material-icons\">place</i> Barcelona, Spain</p>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"col-md-4\">\n        <div class=\"card card-product\">\n          <div class=\"card-header card-header-image\" data-header-animation=\"true\">\n            <a href=\"#pablo\">\n              <img class=\"img\" src=\"./assets/img/card-3.jpg\">\n            </a>\n          </div>\n          <div class=\"card-body\">\n            <div class=\"card-actions text-center\">\n              <button mat-raised-button type=\"button\" class=\"btn btn-danger btn-link fix-broken-card\">\n                <i class=\"material-icons\">build</i> Fix Header!\n              </button>\n              <button mat-raised-button type=\"button\" class=\"btn btn-default btn-link\" matTooltip=\"View\"\n                [matTooltipPosition]=\"'below'\">\n                <i class=\"material-icons\">art_track</i>\n              </button>\n              <button mat-raised-button type=\"button\" class=\"btn btn-success btn-link\" matTooltip=\"Edit\"\n                [matTooltipPosition]=\"'below'\">\n                <i class=\"material-icons\">edit</i>\n              </button>\n              <button mat-raised-button type=\"button\" class=\"btn btn-danger btn-link\" matTooltip=\"Remove\"\n                [matTooltipPosition]=\"'below'\">\n                <i class=\"material-icons\">close</i>\n              </button>\n            </div>\n            <h4 class=\"card-title\">\n              <a href=\"#pablo\">Office Studio</a>\n            </h4>\n            <div class=\"card-description\">\n              The place is close to Metro Station and bus stop just 2 min by walk and near to \"Naviglio\" where you can\n              enjoy the night life in London, UK.\n            </div>\n          </div>\n          <div class=\"card-footer\">\n            <div class=\"price\">\n              <h4>$1.119/night</h4>\n            </div>\n            <div class=\"stats\">\n              <p class=\"card-category\"><i class=\"material-icons\">place</i> London, UK</p>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"col-md-4\">\n        <div class=\"card card-product\">\n          <div class=\"card-header card-header-image\" data-header-animation=\"true\">\n            <a href=\"#pablo\">\n              <img class=\"img\" src=\"./assets/img/card-1.jpg\">\n            </a>\n          </div>\n          <div class=\"card-body\">\n            <div class=\"card-actions text-center\">\n              <button mat-raised-button type=\"button\" class=\"btn btn-danger btn-link fix-broken-card\">\n                <i class=\"material-icons\">build</i> Fix Header!\n              </button>\n              <button mat-raised-button type=\"button\" class=\"btn btn-default btn-link\" matTooltip=\"View\"\n                [matTooltipPosition]=\"'below'\">\n                <i class=\"material-icons\">art_track</i>\n              </button>\n              <button mat-raised-button type=\"button\" class=\"btn btn-success btn-link\" matTooltip=\"Edit\"\n                [matTooltipPosition]=\"'below'\">\n                <i class=\"material-icons\">edit</i>\n              </button>\n              <button mat-raised-button type=\"button\" class=\"btn btn-danger btn-link\" matTooltip=\"Remove\"\n                [matTooltipPosition]=\"'below'\">\n                <i class=\"material-icons\">close</i>\n              </button>\n            </div>\n            <h4 class=\"card-title\">\n              <a href=\"#pablo\">Beautiful Castle</a>\n            </h4>\n            <div class=\"card-description\">\n              The place is close to Metro Station and bus stop just 2 min by walk and near to \"Naviglio\" where you can\n              enjoy the main night life in Milan.\n            </div>\n          </div>\n          <div class=\"card-footer\">\n            <div class=\"price\">\n              <h4>$459/night</h4>\n            </div>\n            <div class=\"stats\">\n              <p class=\"card-category\"><i class=\"material-icons\">place</i> Milan, Italy</p>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -264,7 +227,8 @@ var DashboardComponent = /** @class */ (function () {
     DashboardComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-dashboard',
-            template: __webpack_require__(/*! ./dashboard.component.html */ "./src/app/dashboard/dashboard.component.html")
+            template: __webpack_require__(/*! ./dashboard.component.html */ "./src/app/dashboard/dashboard.component.html"),
+            styles: [__webpack_require__(/*! ./dashboard.component.css */ "./src/app/dashboard/dashboard.component.css")]
         })
     ], DashboardComponent);
     return DashboardComponent;
@@ -285,12 +249,12 @@ var DashboardComponent = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DashboardModule", function() { return DashboardModule; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _md_md_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../md/md.module */ "./src/app/md/md.module.ts");
-/* harmony import */ var _app_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../app.module */ "./src/app/app.module.ts");
-/* harmony import */ var _dashboard_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./dashboard.component */ "./src/app/dashboard/dashboard.component.ts");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _dashboard_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dashboard.component */ "./src/app/dashboard/dashboard.component.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _md_md_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../md/md.module */ "./src/app/md/md.module.ts");
+/* harmony import */ var _app_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../app.module */ "./src/app/app.module.ts");
 /* harmony import */ var _dashboard_routing__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./dashboard.routing */ "./src/app/dashboard/dashboard.routing.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -311,15 +275,14 @@ var DashboardModule = /** @class */ (function () {
     }
     DashboardModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
+            declarations: [_dashboard_component__WEBPACK_IMPORTED_MODULE_2__["DashboardComponent"]],
             imports: [
-                _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
-                _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forChild(_dashboard_routing__WEBPACK_IMPORTED_MODULE_7__["DashboardRoutes"]),
-                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
-                _md_md_module__WEBPACK_IMPORTED_MODULE_4__["MdModule"],
-                _app_module__WEBPACK_IMPORTED_MODULE_5__["MaterialModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"]
-            ],
-            declarations: [_dashboard_component__WEBPACK_IMPORTED_MODULE_6__["DashboardComponent"]]
+                _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
+                _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterModule"].forChild(_dashboard_routing__WEBPACK_IMPORTED_MODULE_7__["DashboardRoutes"]),
+                _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"],
+                _md_md_module__WEBPACK_IMPORTED_MODULE_5__["MdModule"],
+                _app_module__WEBPACK_IMPORTED_MODULE_6__["MaterialModule"]
+            ]
         })
     ], DashboardModule);
     return DashboardModule;
@@ -340,16 +303,13 @@ var DashboardModule = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DashboardRoutes", function() { return DashboardRoutes; });
 /* harmony import */ var _dashboard_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dashboard.component */ "./src/app/dashboard/dashboard.component.ts");
-/* harmony import */ var _auth_auth_guard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../auth/auth.guard */ "./src/app/auth/auth.guard.ts");
-
 
 var DashboardRoutes = [
     {
         path: '',
         children: [{
-                path: 'dashboard',
-                component: _dashboard_component__WEBPACK_IMPORTED_MODULE_0__["DashboardComponent"],
-                canActivate: [_auth_auth_guard__WEBPACK_IMPORTED_MODULE_1__["AuthGuard"]]
+                path: '',
+                component: _dashboard_component__WEBPACK_IMPORTED_MODULE_0__["DashboardComponent"]
             }]
     }
 ];

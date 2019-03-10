@@ -218,13 +218,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _layouts_auth_auth_layout_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./layouts/auth/auth-layout.component */ "./src/app/layouts/auth/auth-layout.component.ts");
 /* harmony import */ var _layouts_user_user_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./layouts/user/user.component */ "./src/app/layouts/user/user.component.ts");
 /* harmony import */ var _layouts_registration_registration_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./layouts/registration/registration.component */ "./src/app/layouts/registration/registration.component.ts");
-/* harmony import */ var _app_routing__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./app.routing */ "./src/app/app.routing.ts");
+/* harmony import */ var _auth_interceptor__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./auth-interceptor */ "./src/app/auth-interceptor.ts");
+/* harmony import */ var _app_routing__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./app.routing */ "./src/app/app.routing.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -296,7 +298,7 @@ var AppModule = /** @class */ (function () {
                 _angular_common__WEBPACK_IMPORTED_MODULE_5__["CommonModule"],
                 _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_1__["BrowserAnimationsModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"],
-                _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(_app_routing__WEBPACK_IMPORTED_MODULE_17__["AppRoutes"]),
+                _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(_app_routing__WEBPACK_IMPORTED_MODULE_18__["AppRoutes"]),
                 MaterialModule,
                 _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatNativeDateModule"],
                 _sidebar_sidebar_module__WEBPACK_IMPORTED_MODULE_9__["SidebarModule"],
@@ -313,6 +315,7 @@ var AppModule = /** @class */ (function () {
                 _layouts_user_user_component__WEBPACK_IMPORTED_MODULE_15__["UserComponent"],
                 _layouts_registration_registration_component__WEBPACK_IMPORTED_MODULE_16__["RegistrationComponent"]
             ],
+            providers: [{ provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HTTP_INTERCEPTORS"], useClass: _auth_interceptor__WEBPACK_IMPORTED_MODULE_17__["AuthInterceptor"], multi: true }],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"]]
         })
     ], AppModule);
@@ -436,6 +439,52 @@ var AppRoutes = [
 
 /***/ }),
 
+/***/ "./src/app/auth-interceptor.ts":
+/*!*************************************!*\
+  !*** ./src/app/auth-interceptor.ts ***!
+  \*************************************/
+/*! exports provided: AuthInterceptor */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthInterceptor", function() { return AuthInterceptor; });
+/* harmony import */ var _app_auth_auth_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../app/auth/auth.service */ "./src/app/auth/auth.service.ts");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var AuthInterceptor = /** @class */ (function () {
+    function AuthInterceptor(authService) {
+        this.authService = authService;
+    }
+    AuthInterceptor.prototype.intercept = function (req, next) {
+        var authToken = this.authService.getToken();
+        var authRequest = req.clone({
+            headers: req.headers.set('Authorization', 'Bearer ' + authToken)
+        });
+        console.log(authRequest);
+        return next.handle(authRequest);
+    };
+    AuthInterceptor = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+        __metadata("design:paramtypes", [_app_auth_auth_service__WEBPACK_IMPORTED_MODULE_0__["AuthService"]])
+    ], AuthInterceptor);
+    return AuthInterceptor;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/auth/auth.service.ts":
 /*!**************************************!*\
   !*** ./src/app/auth/auth.service.ts ***!
@@ -469,6 +518,7 @@ var AuthService = /** @class */ (function () {
         this.http = http;
         this.router = router;
         this.isAuth = false;
+        this.isCompany = "false";
         this.authStatusListener = new rxjs__WEBPACK_IMPORTED_MODULE_0__["Subject"]();
     }
     AuthService.prototype.getToken = function () {
@@ -482,7 +532,7 @@ var AuthService = /** @class */ (function () {
         var authData = { firstName: firstName, lastName: lastName, email: email, password: password };
         this.http.post(BackUrl + '/userRegistreing', authData)
             .subscribe(function () {
-            _this.router.navigate(['/forms/userform']);
+            _this.router.navigate(['/add-user-info']);
         }, function (error) {
             _this.authStatusListener.next(false);
         });
@@ -490,9 +540,18 @@ var AuthService = /** @class */ (function () {
     AuthService.prototype.createCompany = function (companyName, email, CompanySpecialist, sector, password) {
         var _this = this;
         var authData = { companyName: companyName, email: email, CompanySpecialist: CompanySpecialist, sector: sector, password: password };
-        this.http.post(BackUrl + '/companyRegistreing', authData)
-            .subscribe(function () {
-            _this.router.navigate(['/add-company-info']);
+        this.http.post(BackUrl + '/companyRegistreing', authData, { observe: 'response' })
+            .subscribe(function (response) {
+            console.log(response);
+            var token = response.headers.get('x-auth-token');
+            if (token) {
+                _this.token = token;
+                _this.isAuth = true;
+                _this.isCompany = "true";
+                _this.authStatusListener.next(true);
+                _this.saveAuthData(token, _this.userId, _this.isCompany);
+                _this.router.navigate(['/add-company-info']);
+            }
         }, function (error) {
             _this.authStatusListener.next(false);
         });
@@ -509,7 +568,27 @@ var AuthService = /** @class */ (function () {
                 _this.isAuth = true;
                 _this.userId = response.userId;
                 _this.authStatusListener.next(true);
-                _this.saveAuthData(token, _this.userId);
+                _this.saveAuthData(token, _this.userId, _this.isCompany);
+                _this.router.navigate(['/my-cv']);
+            }
+        }, function (error) {
+            _this.authStatusListener.next(false);
+        });
+    };
+    AuthService.prototype.companyLogin = function (email, password) {
+        var _this = this;
+        var authData = { email: email, password: password };
+        this.http.post(BackUrl + '/com_login', authData)
+            .subscribe(function (response) {
+            console.log(response);
+            var token = response.token;
+            if (token) {
+                _this.token = token;
+                _this.isAuth = true;
+                _this.isCompany = "true";
+                _this.userId = response.userId;
+                _this.authStatusListener.next(true);
+                _this.saveAuthData(token, _this.userId, _this.isCompany);
                 _this.router.navigate(['/dashboard']);
             }
         }, function (error) {
@@ -519,6 +598,7 @@ var AuthService = /** @class */ (function () {
     AuthService.prototype.autoAuthUser = function () {
         this.token = this.getAuthData().token;
         this.isAuth = true;
+        this.isCompany = this.getAuthData().isCompany;
         this.authStatusListener.next(true);
         this.userId = this.getAuthData().userId;
     };
@@ -527,16 +607,19 @@ var AuthService = /** @class */ (function () {
         this.isAuth = false;
         this.authStatusListener.next(false);
         this.userId = null;
+        this.isCompany = null;
         this.clearData();
         this.router.navigate(['/sign-in']);
     };
-    AuthService.prototype.saveAuthData = function (token, userId) {
+    AuthService.prototype.saveAuthData = function (token, userId, isCompany) {
         localStorage.setItem('token', token);
         localStorage.setItem('userId', userId);
+        localStorage.setItem('isCompany', isCompany);
     };
     AuthService.prototype.clearData = function () {
         localStorage.removeItem('token');
         localStorage.removeItem('userId');
+        localStorage.removeItem('isCompany');
     };
     AuthService.prototype.getIsAuth = function () {
         return this.isAuth;
@@ -544,15 +627,20 @@ var AuthService = /** @class */ (function () {
     AuthService.prototype.getUserId = function () {
         return this.userId;
     };
+    AuthService.prototype.getIsCompany = function () {
+        return this.isCompany;
+    };
     AuthService.prototype.getAuthData = function () {
         var token = localStorage.getItem('token');
         var user = localStorage.getItem('userId');
+        var isCompany = localStorage.getItem('isCompany');
         if (!token) {
             return;
         }
         return {
             token: token,
-            userId: user
+            userId: user,
+            isCompany: isCompany
         };
     };
     AuthService = __decorate([
@@ -1853,7 +1941,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"logo\">\n    <a class=\"simple-text logo-mini\">\n        <div class=\"logo-img\">\n            <img src=\"/assets/img/32X32.png\" />\n        </div>\n    </a>\n    <a href=\"https://www.creative-tim.com\" class=\"simple-text logo-normal\">\n        <strong>Pt</strong>way\n    </a>\n</div>\n\n\n<div class=\"sidebar-wrapper\">\n\n    <div class=\"user\">\n        <div class=\"photo\">\n            <img src=\"./assets/img/default-avatar.png\" />\n        </div>\n        <div class=\"user-info\">\n            <a data-toggle=\"collapse\" href=\"#collapseExample\" class=\"collapsed\">\n                <span>\n                    Tania Andrew\n                    <b class=\"caret\"></b>\n                </span>\n            </a>\n            <div class=\"collapse\" id=\"collapseExample\">\n                <ul class=\"nav\">\n                    <li class=\"nav-item\" routerLinkActive=\"active\">\n                        <a class=\"nav-link\" [routerLink]=\"['/company-profile']\">\n                            <i class=\"material-icons\">perm_identity</i>\n                            <span class=\"sidebar-normal\">ملف التعريف</span>\n                        </a>\n                    </li>\n                    <li class=\"nav-item\" routerLinkActive=\"active\">\n                        <a href=\"javascript:void(0)\" class=\"nav-link\" [routerLink]=\"['/edit-company-profile']\">\n                            <span class=\"sidebar-mini\">EP</span>\n                            <span class=\"sidebar-normal\">تعديل ملف التعريف</span>\n                        </a>\n                    </li>\n                </ul>\n            </div>\n        </div>\n    </div>\n    <ul class=\"nav\">\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a [routerLink]=\"['/dashboard']\" class=\"nav-link\">\n                <i class=\"material-icons\">dashboard</i>\n                <p>لوحة التحكم</p>\n            </a>\n        </li>\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a [routerLink]=\"['/add-project']\" class=\"nav-link\">\n                <i class=\"material-icons\">next_week</i>\n                <p>اضافة مشروع</p>\n            </a>\n        </li>\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a [routerLink]=\"['/add-job']\" class=\"nav-link\">\n                <i class=\"material-icons\">rate_review</i>\n                <p>اضافة عرض عمل</p>\n            </a>\n        </li>\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a [routerLink]=\"['/my-projects']\" class=\"nav-link\">\n                <i class=\"material-icons\">next_week</i>\n                <p>المشاريع الخاصة بي</p>\n            </a>\n        </li>\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a (click)=\"logOut()\" [routerLink]=\"['null']\" class=\"nav-link\">\n                <i class=\"material-icons\">input</i>\n                <p>تسجيل خروج</p>\n            </a>\n        </li>\n    </ul>\n</div>"
+module.exports = "<div class=\"logo\">\n    <a class=\"simple-text logo-mini\">\n        <div class=\"logo-img\">\n            <img src=\"/assets/img/32X32.png\" />\n        </div>\n    </a>\n    <a href=\"https://www.creative-tim.com\" class=\"simple-text logo-normal\">\n        <strong>Pt</strong>way\n    </a>\n</div>\n<div class=\"sidebar-wrapper\">\n    <div class=\"user\">\n        <div class=\"photo\">\n            <img src=\"./assets/img/default-avatar.png\" />\n        </div>\n        <div class=\"user-info\">\n            <a data-toggle=\"collapse\" href=\"#collapseExample\" class=\"collapsed\">\n                <span>\n                    Tania Andrew\n                    <b class=\"caret\"></b>\n                </span>\n            </a>\n            <div class=\"collapse\" id=\"collapseExample\">\n                <ul class=\"nav\">\n                    <li class=\"nav-item\" routerLinkActive=\"active\">\n                        <a class=\"nav-link\" [routerLink]=\"['/company-profile']\">\n                            <i class=\"material-icons\">perm_identity</i>\n                            <span class=\"sidebar-normal\">ملف التعريف</span>\n                        </a>\n                    </li>\n                    <li class=\"nav-item\" routerLinkActive=\"active\">\n                        <a class=\"nav-link\" [routerLink]=\"['/edit-company-profile']\">\n                            <span class=\"sidebar-mini\">EP</span>\n                            <span class=\"sidebar-normal\">تعديل ملف التعريف</span>\n                        </a>\n                    </li>\n                </ul>\n            </div>\n        </div>\n    </div>\n    <ul class=\"nav\">\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a [routerLink]=\"['/dashboard']\" class=\"nav-link\">\n                <i class=\"material-icons\">dashboard</i>\n                <p>لوحة التحكم</p>\n            </a>\n        </li>\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a [routerLink]=\"['/add-project']\" class=\"nav-link\">\n                <i class=\"material-icons\">add_box</i>\n                <p>اضافة مشروع</p>\n            </a>\n        </li>\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a [routerLink]=\"['/add-job']\" class=\"nav-link\">\n                <i class=\"material-icons\">rate_review</i>\n                <p>اضافة عرض عمل</p>\n            </a>\n        </li>\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a [routerLink]=\"['/my-projects']\" class=\"nav-link\">\n                <i class=\"material-icons\">next_week</i>\n                <p>المشاريع الخاصة بي</p>\n            </a>\n        </li>\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a (click)=\"logOut()\" [routerLink]=\"['null']\" class=\"nav-link\">\n                <i class=\"material-icons\">input</i>\n                <p>تسجيل خروج</p>\n            </a>\n        </li>\n    </ul>\n</div>"
 
 /***/ }),
 

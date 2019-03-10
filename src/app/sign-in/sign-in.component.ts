@@ -6,6 +6,7 @@ import { FormGroup, FormControl, Validators, FormBuilder, NgForm } from '@angula
 import { Subscription } from 'rxjs';
 declare var $: any;
 let mood: boolean = true;
+console.log(mood);
 
 
 @Component({
@@ -42,9 +43,8 @@ export class SignInComponent implements OnInit, OnDestroy {
       this.authService.login(form.value.email, form.value.password);
     }
     else{
-      this.authService.login(form.value.email, form.value.password);
+      this.authService.companyLogin(form.value.email, form.value.password);
     }
-    
   }
 
   ngOnInit() {
@@ -95,20 +95,21 @@ export class SignInComponent implements OnInit, OnDestroy {
 
   companyMood(){
     mood  = false;
+    let activeLink = document.getElementById('userMood');
+    let link = document.getElementById('companyMood');
+    activeLink.className = 'fake-link';
+    link.classList.remove('fake-link');
+    console.log(link.className);
     console.log(mood);
   }
   userMood(){
     mood  = true;
+    let activeLink = document.getElementById('companyMood');
+    let link = document.getElementById('userMood');
+    activeLink.className = 'fake-link';
+    link.classList.remove('fake-link');
+    console.log(link.className);
     console.log(mood);
   }
-  checkMood(): boolean {
-    if(mood  = true){
-      return true;
-    }
-    else{
-      return false;
-    }
-    
-}
 
 }

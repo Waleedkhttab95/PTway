@@ -195,9 +195,9 @@ var ProjectService = /** @class */ (function () {
             _this.router.navigate(['/my-projects']);
         });
     };
-    ProjectService.prototype.getprojects = function (id) {
+    ProjectService.prototype.getprojects = function () {
         return this.http
-            .get(BackUrl + '/getprojects?id=' + id);
+            .get(BackUrl + '/getprojects');
     };
     ProjectService.prototype.getproject = function (id) {
         return this.http
