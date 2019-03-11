@@ -5,6 +5,7 @@ import {MyOffersRoutes} from './my-offers.routing';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '../app.module';
+import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 
 @NgModule({
   declarations: [MyOffersComponent],
@@ -12,7 +13,13 @@ import { MaterialModule } from '../app.module';
     CommonModule,
     RouterModule.forChild(MyOffersRoutes),
     FormsModule,
-    MaterialModule
+    MaterialModule,
+    SweetAlert2Module.forRoot({
+      buttonsStyling: false,
+      customClass: 'modal-content',
+      confirmButtonClass: 'btn btn-primary',
+      cancelButtonClass: 'btn'
+  })
   ]
 })
 export class MyOffersModule { }
