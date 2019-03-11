@@ -6,6 +6,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { APP_BASE_HREF } from '@angular/common';
 import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import {AuthGuard} from '../app/auth/auth.guard';
 import {
   MatAutocompleteModule,
   MatButtonModule,
@@ -115,7 +116,8 @@ export class MaterialModule {}
         UserComponent,
         RegistrationComponent
     ],
-    providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
+    providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    AuthGuard],
     bootstrap:    [ AppComponent ]
 })
 export class AppModule { }
