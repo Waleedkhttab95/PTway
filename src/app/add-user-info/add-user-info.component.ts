@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RestService } from '../rest.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { UserService } from '../my-cv/user.service';
 
 @Component({
   selector: 'app-add-user-info',
@@ -10,7 +11,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 })
 export class AddUserInfoComponent implements OnInit {
 
-  constructor(public rest:RestService, private route: ActivatedRoute, private router: Router,private fb: FormBuilder) { }
+  constructor(public rest:UserService, private route: ActivatedRoute, private router: Router,private fb: FormBuilder) { }
 
   userResumeForm: FormGroup;
 
@@ -18,9 +19,8 @@ export class AddUserInfoComponent implements OnInit {
   currentcountry: string[];
 
   selectTheme = 'primary';
-  
-  
- 
+
+
   countries = [
     {value: 'SA', viewValue: 'المملكة العربية السعودية'},
     {value: 'UAE', viewValue: 'الامارات العربية المتحدة'},
@@ -71,7 +71,7 @@ export class AddUserInfoComponent implements OnInit {
   ];
 
   languages = new FormControl();
-  languageList: string[] = ['العربية', 'الانجليزية', 'الفرنسية', 'الاسبانية', 'الايطالية'];
+  languageList: string[] = ['العربية', 'الانجليزية', 'الفرنسية', 'الاسبانية', 'الكورية','أوردو'];
 
   skills = new FormControl();
   skillList: string[] = ['التصوير الفوتوغرافي', 'الرسم', 'التصميم'];
@@ -91,11 +91,7 @@ export class AddUserInfoComponent implements OnInit {
 
   postuserinfo() {
     console.log(this.userResumeForm.value);
-    this.rest.postuserinfo(this.userResumeForm.value).subscribe((result) => {
-      this.router.navigate(['/dashboard/']);
-    }, (err) => {
-      console.log(err);
-    });
+   this.rest.addUserInfo(this.userResumeForm.value);
   }
 
 

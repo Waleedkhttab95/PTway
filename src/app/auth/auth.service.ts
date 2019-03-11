@@ -62,6 +62,7 @@ export class AuthService {
         if (token) {
           this.token = token;
           this.isAuth = true;
+          this.isCompany = 'false' ;
           this.userId = response.userId;
           this.authStatusListener.next(true);
           this.saveAuthData(token, this.userId, this.isCompany);

@@ -5,8 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder, NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 declare var $: any;
-let mood: boolean = true;
-console.log(mood);
+
 
 
 @Component({
@@ -26,6 +25,7 @@ export class SignInComponent implements OnInit, OnDestroy {
   private nativeElement: Node;
   submitted = false;
   returnUrl: string;
+   mood: boolean = true;
   
   constructor(private element: ElementRef,
     public authService: AuthService, private route: ActivatedRoute, private router: Router,
@@ -39,10 +39,12 @@ export class SignInComponent implements OnInit, OnDestroy {
     if (form.invalid) {
       return;
     }
-    if(mood = true){
+    if(this.mood == true){
+      console.log(this.mood)
       this.authService.login(form.value.email, form.value.password);
     }
     else{
+      console.log(this.mood)
       this.authService.companyLogin(form.value.email, form.value.password);
     }
   }
@@ -94,22 +96,20 @@ export class SignInComponent implements OnInit, OnDestroy {
   }
 
   companyMood(){
-    mood  = false;
+    this.mood  = false;
     let activeLink = document.getElementById('userMood');
     let link = document.getElementById('companyMood');
     activeLink.className = 'fake-link';
     link.classList.remove('fake-link');
     console.log(link.className);
-    console.log(mood);
   }
   userMood(){
-    mood  = true;
+    this.mood  = true;
     let activeLink = document.getElementById('companyMood');
     let link = document.getElementById('userMood');
     activeLink.className = 'fake-link';
     link.classList.remove('fake-link');
     console.log(link.className);
-    console.log(mood);
   }
 
 }
