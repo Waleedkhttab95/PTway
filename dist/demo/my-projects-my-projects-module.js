@@ -103,7 +103,7 @@ var MyProjectsComponent = /** @class */ (function () {
     };
     MyProjectsComponent.prototype.fetchData = function () {
         var _this = this;
-        this.projectService.getprojects(this.authService.getUserId()).subscribe(function (response) {
+        this.projectService.getprojects().subscribe(function (response) {
             for (var i = 0; i < response.count; i++) {
                 _this.dataRows.push(response.projectName[i]);
                 _this.idRows.push(response.id[i]);

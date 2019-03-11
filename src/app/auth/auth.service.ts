@@ -65,7 +65,7 @@ export class AuthService {
           this.userId = response.userId;
           this.authStatusListener.next(true);
           this.saveAuthData(token, this.userId, this.isCompany);
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/my-cv']);
         }
 
       }, error => {

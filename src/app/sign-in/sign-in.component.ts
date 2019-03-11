@@ -5,6 +5,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder, NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 declare var $: any;
+let mood: boolean = true;
+console.log(mood);
+
 
 @Component({
   selector: 'app-sign-in',
@@ -29,14 +32,19 @@ export class SignInComponent implements OnInit, OnDestroy {
     private fb: FormBuilder) {
     this.nativeElement = element.nativeElement;
     this.sidebarVisible = false;
-    
+
   }
 
   userlogin(form: NgForm) {
     if (form.invalid) {
       return;
     }
-    this.authService.login(form.value.email, form.value.password);
+    if(mood = true){
+      this.authService.login(form.value.email, form.value.password);
+    }
+    else{
+      this.authService.companyLogin(form.value.email, form.value.password);
+    }
   }
 
   ngOnInit() {
@@ -83,6 +91,25 @@ export class SignInComponent implements OnInit, OnDestroy {
     body.classList.remove('login-page');
     body.classList.remove('off-canvas-sidebar');
     this.authStatusSub.unsubscribe();
+  }
+
+  companyMood(){
+    mood  = false;
+    let activeLink = document.getElementById('userMood');
+    let link = document.getElementById('companyMood');
+    activeLink.className = 'fake-link';
+    link.classList.remove('fake-link');
+    console.log(link.className);
+    console.log(mood);
+  }
+  userMood(){
+    mood  = true;
+    let activeLink = document.getElementById('companyMood');
+    let link = document.getElementById('userMood');
+    activeLink.className = 'fake-link';
+    link.classList.remove('fake-link');
+    console.log(link.className);
+    console.log(mood);
   }
 
 }

@@ -1,23 +1,19 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { DashboardComponent } from './dashboard.component';
+import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MdModule } from '../md/md.module';
 import { MaterialModule } from '../app.module';
-
-import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutes } from './dashboard.routing';
-
 @NgModule({
-    imports: [
-        CommonModule,
-        RouterModule.forChild(DashboardRoutes),
-        FormsModule,
-        MdModule,
-        MaterialModule,
-        ReactiveFormsModule
-    ],
-    declarations: [DashboardComponent]
+  declarations: [DashboardComponent],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(DashboardRoutes),
+    FormsModule,
+    MdModule,
+    MaterialModule
+  ]
 })
-
-export class DashboardModule {}
+export class DashboardModule { }

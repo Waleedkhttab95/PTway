@@ -33,9 +33,9 @@ module.exports = "<div class=\"main-content\">\n  <div class=\"container-fluid\"
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddCompanyInfoComponent", function() { return AddCompanyInfoComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _rest_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../rest.service */ "./src/app/rest.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _add_company_info_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./add-company-info.service */ "./src/app/add-company-info/add-company-info.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -56,22 +56,8 @@ var AddCompanyInfoComponent = /** @class */ (function () {
         this.router = router;
         this.fb = fb;
         this.selectTheme = 'primary';
-        this.countries = [
-            { value: 'SA', viewValue: 'المملكة العربية السعودية' },
-            { value: 'UAE', viewValue: 'الامارات العربية المتحدة' },
-            { value: 'OMAN', viewValue: 'عمان' },
-            { value: 'KWUIT', viewValue: 'الكويت' },
-            { value: 'SYRIA', viewValue: 'سوريا' },
-            { value: 'JORDAN', viewValue: 'الآردن' },
-        ];
-        this.cities = [
-            { value: 'الرياض', viewValue: 'الرياض' },
-            { value: 'الدمام', viewValue: 'الدمام' },
-            { value: 'جدة', viewValue: 'جدة' },
-            { value: 'القصيم', viewValue: 'القصيم' },
-            { value: 'مكة المكرمة', viewValue: 'مكة المكرمة' },
-            { value: 'المدينة المنورة', viewValue: 'المدينة المنورة' },
-        ];
+        this.countries = [];
+        this.cities = [];
     }
     AddCompanyInfoComponent.prototype.postcompanyinfo = function () {
         var _this = this;
@@ -82,19 +68,43 @@ var AddCompanyInfoComponent = /** @class */ (function () {
             console.log(err);
         });
     };
+    AddCompanyInfoComponent.prototype.getcountry = function () {
+        var _this = this;
+        this.countries = [];
+        this.rest.getcountry().subscribe(function (data) {
+            console.log(data);
+            for (var key in data) {
+                _this.countries.push({ value: data[key]._id, viewValue: data[key].countryName });
+            }
+            console.log(_this.countries);
+        });
+    };
+    AddCompanyInfoComponent.prototype.getcity = function () {
+        var _this = this;
+        this.cities = [];
+        this.rest.getcity().subscribe(function (data) {
+            console.log(data);
+            for (var key in data) {
+                _this.cities.push({ value: data[key]._id, viewValue: data[key].cityName });
+            }
+            console.log(_this.cities);
+        });
+    };
     AddCompanyInfoComponent.prototype.ngOnInit = function () {
+        this.getcity();
+        this.getcountry();
         this.comapnyResumeForm = this.fb.group({
-            country: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](),
-            address: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](),
-            info: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](),
-            vision: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](),
-            message: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](),
-            city: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](),
-            personal_web: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](),
-            facebook: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](),
-            twitter: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](),
-            instagram: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](),
-            linkedin: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]()
+            country: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            address: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            info: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            vision: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            message: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            city: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            personal_web: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            facebook: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            twitter: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            instagram: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            linkedin: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]()
         });
     };
     AddCompanyInfoComponent = __decorate([
@@ -103,7 +113,7 @@ var AddCompanyInfoComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./add-company-info.component.html */ "./src/app/add-company-info/add-company-info.component.html"),
             styles: [__webpack_require__(/*! ./add-company-info.component.css */ "./src/app/add-company-info/add-company-info.component.css")]
         }),
-        __metadata("design:paramtypes", [_rest_service__WEBPACK_IMPORTED_MODULE_1__["RestService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]])
+        __metadata("design:paramtypes", [_add_company_info_service__WEBPACK_IMPORTED_MODULE_3__["AddCompanyInfoService"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"]])
     ], AddCompanyInfoComponent);
     return AddCompanyInfoComponent;
 }());
@@ -192,6 +202,84 @@ var AddCompanyInfoRoutes = [
             }]
     }
 ];
+
+
+/***/ }),
+
+/***/ "./src/app/add-company-info/add-company-info.service.ts":
+/*!**************************************************************!*\
+  !*** ./src/app/add-company-info/add-company-info.service.ts ***!
+  \**************************************************************/
+/*! exports provided: AddCompanyInfoService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddCompanyInfoService", function() { return AddCompanyInfoService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var BackUrl = 'https://cors-anywhere.herokuapp.com/https://ptway-dev.herokuapp.com/api';
+var httpOptions = {
+    headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({
+        'Content-Type': 'application/json'
+    })
+};
+var AddCompanyInfoService = /** @class */ (function () {
+    function AddCompanyInfoService(http, router) {
+        this.http = http;
+        this.router = router;
+    }
+    AddCompanyInfoService.prototype.extractData = function (res) {
+        var body = res;
+        return body || {};
+    };
+    AddCompanyInfoService.prototype.getcountry = function () {
+        return this.http.get(BackUrl + '/getcountry').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(this.extractData));
+    };
+    AddCompanyInfoService.prototype.getcity = function () {
+        return this.http.get(BackUrl + '/getcity').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(this.extractData));
+    };
+    AddCompanyInfoService.prototype.postcompanyinfo = function (data) {
+        console.log(data);
+        return this.http.post(BackUrl + 'postcompanyinfo', JSON.stringify(data), httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(function (data) { return console.log("company succes complete data w/ id=" + data.id); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError('postcompanyinfo')));
+    };
+    AddCompanyInfoService.prototype.handleError = function (operation, result) {
+        if (operation === void 0) { operation = 'operation'; }
+        return function (error) {
+            // TODO: send the error to remote logging infrastructure
+            console.error(error); // log to console instead
+            // TODO: better job of transforming error for user consumption
+            console.log(operation + " failed: " + error.message);
+            // Let the app keep running by returning an empty result.
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])(result);
+        };
+    };
+    AddCompanyInfoService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+    ], AddCompanyInfoService);
+    return AddCompanyInfoService;
+}());
+
 
 
 /***/ })
