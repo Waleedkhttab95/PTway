@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".custom-input{\n    width: 90%;\n}\n.mat-form-field{\n    text-align: right;\n}\n.custom-message{\n    text-align: center;\n    color: brown;\n    font-weight: bold;\n}\n::ng-deep .mat-form-field-empty.mat-form-field-label {\n    font-family: 'Cairo', 'Changa';\n}"
+module.exports = ".custom-input{\n    width: 90%;\n}\n.mat-form-field{\n    text-align: right;\n}\n.custom-message{\n    text-align: center;\n    color: brown;\n    font-weight: bold;\n}\n::ng-deep .mat-form-field-empty.mat-form-field-label {\n    font-family: 'Cairo', 'Changa';\n}\n.custom-div{\n    margin-bottom: 8%;\n}\n.fake-link {\n    color: #0e5684;\n    text-decoration: none;\n    cursor: pointer;\n}"
 
 /***/ }),
 
@@ -18,7 +18,7 @@ module.exports = ".custom-input{\n    width: 90%;\n}\n.mat-form-field{\n    text
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"wrapper wrapper-full-page\">\n  <div class=\"page-header login-page header-filter\" filter-color=\"black\" style=\"background-image: url('./assets/img/login.jpg'); background-size: cover; background-position: top center;\">\n    <!--   you can change the color of the filter page using: data-color=\"blue | purple | green | orange | red | rose \" -->\n    <div class=\"container\">\n      <div class=\"row\">\n        <div class=\"col-lg-4 col-md-6 col-sm-6 ml-auto mr-auto\">\n          <form class=\"form\" (ngSubmit)=\"userlogin(loginForm)\" #loginForm=\"ngForm\">\n            <div class=\"card card-login card-hidden\">\n              <div class=\"card-header card-header-primary text-center\">\n                <h4 class=\"card-title\">تسجيل الدخول</h4>\n                <div class=\"social-line\">\n                  <a href=\"#pablo\" class=\"btn btn-just-icon btn-link btn-white\">\n                    <i class=\"fa fa-google\"></i>\n                  </a>\n                </div>\n              </div>\n              <div class=\"card-body\">\n                <p class=\"card-description text-center\">Or Be Classical</p>\n                <span class=\"bmd-form-group\">\n                  <div class=\"input-group custom-input\">\n                    <div class=\"input-group-prepend\">\n                      <span class=\"input-group-text\">\n                        <i class=\"material-icons\">email</i>\n                      </span>\n                    </div>\n                    <mat-form-field>\n                      <input matInput type=\"email\" name=\"email\" ngModel placeholder=\"البريد الإلكتروني\" #emailInput=\"ngModel\"\n                        required email>\n                      <mat-error *ngIf=\"emailInput.invalid\">Please Enter valid Email</mat-error>\n                    </mat-form-field>\n                  </div>\n                </span>\n                <span class=\"bmd-form-group\">\n                  <div class=\"input-group custom-input\">\n                    <div class=\"input-group-prepend\">\n                      <span class=\"input-group-text\">\n                        <i class=\"material-icons\">lock_outline</i>\n                      </span>\n                    </div>\n                    <mat-form-field>\n                      <input type=\"password\" matInput name=\"password\" ngModel #passwordInput=\"ngModel\" required\n                        placeholder=\"كلمة المرور\">\n                      <mat-error *ngIf=\"passwordInput.invalid\">Please Enter a valid Password</mat-error>\n                    </mat-form-field>\n                  </div>\n                </span>\n              </div>\n              <!-- <h5 class=\"custom-message\">username or password are not coorect</h5> -->\n              <div class=\"card-footer justify-content-center\">\n                <button type=\"submit\" name=\"submit\" class=\"btn btn-info btn-link btn-lg\">Lets Go</button>\n              </div>\n            </div>\n          </form>\n        </div>\n      </div>\n    </div>\n    <footer class=\"footer \">\n      <div class=\"container\">\n        <nav class=\"pull-left\">\n          <ul>\n            <li>\n              <a href=\"https://www.creative-tim.com\">\n                Ptway TEAM\n              </a>\n            </li>\n            <li>\n              <a href=\"https://creative-tim.com/about-us\">\n                من نحن\n              </a>\n            </li>\n            <li>\n              <a href=\"http://blog.creative-tim.com\">\n                سياسة الخصوصية\n              </a>\n            </li>\n            <li>\n              <a href=\"https://www.creative-tim.com/license\">\n                الشروط والأحكام\n              </a>\n            </li>\n          </ul>\n        </nav>\n        <div class=\"copyright pull-right\">\n          <p class=\"text-left\">جميع الحقوق محفوظة © 2019 PTWay.net</p>\n        </div>\n      </div>\n    </footer>\n  </div>\n</div>"
+module.exports = "<div class=\"wrapper wrapper-full-page\">\n  <div class=\"page-header login-page header-filter\" filter-color=\"black\" style=\"background-image: url('./assets/img/login.jpg'); background-size: cover; background-position: top center;\">\n    <!--   you can change the color of the filter page using: data-color=\"blue | purple | green | orange | red | rose \" -->\n    <div class=\"container\">\n      <div class=\"row\">\n        <div class=\"col-lg-4 col-md-6 col-sm-6 ml-auto mr-auto\">\n          <form class=\"form\" (ngSubmit)=\"userlogin(loginForm)\" #loginForm=\"ngForm\">\n            <div class=\"card card-login card-hidden\">\n              <div class=\"card-header card-header-primary text-center\">\n                <h4 class=\"card-title\">تسجيل الدخول</h4>\n                <div class=\"social-line\">\n                  <a href=\"#pablo\" class=\"btn btn-just-icon btn-link btn-white\">\n                    <i class=\"fa fa-google\"></i>\n                  </a>\n                </div>\n              </div>\n              <div class=\"card-body\">\n                <p class=\"card-description text-center\">Or Be Classical</p>\n                <span class=\"bmd-form-group\">\n                  <div class=\"input-group custom-input\">\n                    <div class=\"input-group-prepend\">\n                      <span class=\"input-group-text\">\n                        <i class=\"material-icons\">email</i>\n                      </span>\n                    </div>\n                    <mat-form-field>\n                      <input matInput type=\"email\" name=\"email\" ngModel placeholder=\"البريد الإلكتروني\" #emailInput=\"ngModel\"\n                        required email>\n                      <mat-error *ngIf=\"emailInput.invalid\">Please Enter valid Email</mat-error>\n                    </mat-form-field>\n                  </div>\n                </span>\n                <span class=\"bmd-form-group\">\n                  <div class=\"input-group custom-input\">\n                    <div class=\"input-group-prepend\">\n                      <span class=\"input-group-text\">\n                        <i class=\"material-icons\">lock_outline</i>\n                      </span>\n                    </div>\n                    <mat-form-field>\n                      <input type=\"password\" matInput name=\"password\" ngModel #passwordInput=\"ngModel\" required\n                        placeholder=\"كلمة المرور\">\n                      <mat-error *ngIf=\"passwordInput.invalid\">Please Enter a valid Password</mat-error>\n                    </mat-form-field>\n                  </div>\n                </span>\n              </div>\n              <!-- <h5 class=\"custom-message\">username or password are not coorect</h5> -->\n              <div class=\"card-footer justify-content-center\">\n                <button type=\"submit\" name=\"submit\" class=\"btn btn-info btn-link btn-lg\">Lets Go</button>\n              </div>\n              <div class=\"custom-div\">\n                <div class=\"text-center p-t-115\">\n                  <span class=\"\" (click)=\"userMood()\" id=\"userMood\"> عضو/</span>\n                  <span class=\"fake-link\" (click)=\"companyMood()\" id=\"companyMood\">شركة </span>\n                </div>\n                <div class=\"text-center p-t-115\">\n                  <span class=\"txt1\"> لاتملك حساب شخصي؟ </span>\n                  <a class=\"txt2\" [routerLink]=\"['/sign-up']\">قم بالتسجيل </a>\n                </div>\n              </div>\n            </div>\n          </form>\n        </div>\n      </div>\n    </div>\n    <footer class=\"footer \">\n      <div class=\"container\">\n        <nav class=\"pull-left\">\n          <ul>\n            <li>\n              <a href=\"https://www.creative-tim.com\">\n                Ptway TEAM\n              </a>\n            </li>\n            <li>\n              <a href=\"https://creative-tim.com/about-us\">\n                من نحن\n              </a>\n            </li>\n            <li>\n              <a href=\"http://blog.creative-tim.com\">\n                سياسة الخصوصية\n              </a>\n            </li>\n            <li>\n              <a href=\"https://www.creative-tim.com/license\">\n                الشروط والأحكام\n              </a>\n            </li>\n          </ul>\n        </nav>\n        <div class=\"copyright pull-right\">\n          <p class=\"text-left\">جميع الحقوق محفوظة © 2019 PTWay.net</p>\n        </div>\n      </div>\n    </footer>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -49,6 +49,8 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+var mood = true;
+console.log(mood);
 var SignInComponent = /** @class */ (function () {
     function SignInComponent(element, authService, route, router, fb) {
         this.element = element;
@@ -66,7 +68,12 @@ var SignInComponent = /** @class */ (function () {
         if (form.invalid) {
             return;
         }
-        this.authService.login(form.value.email, form.value.password);
+        if (mood = true) {
+            this.authService.login(form.value.email, form.value.password);
+        }
+        else {
+            this.authService.companyLogin(form.value.email, form.value.password);
+        }
     };
     SignInComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -110,6 +117,24 @@ var SignInComponent = /** @class */ (function () {
         body.classList.remove('login-page');
         body.classList.remove('off-canvas-sidebar');
         this.authStatusSub.unsubscribe();
+    };
+    SignInComponent.prototype.companyMood = function () {
+        mood = false;
+        var activeLink = document.getElementById('userMood');
+        var link = document.getElementById('companyMood');
+        activeLink.className = 'fake-link';
+        link.classList.remove('fake-link');
+        console.log(link.className);
+        console.log(mood);
+    };
+    SignInComponent.prototype.userMood = function () {
+        mood = true;
+        var activeLink = document.getElementById('companyMood');
+        var link = document.getElementById('userMood');
+        activeLink.className = 'fake-link';
+        link.classList.remove('fake-link');
+        console.log(link.className);
+        console.log(mood);
     };
     SignInComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({

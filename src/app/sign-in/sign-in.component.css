@@ -14,5 +14,9 @@
 }
 .custom-div{
     margin-bottom: 8%;
-
+}
+.fake-link {
+    color: #0e5684;
+    text-decoration: none;
+    cursor: pointer;
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RestService } from '../rest.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import{JobService} from './job.service'
+import { JobService } from './job.service';
 import { AuthService } from '../auth/auth.service';
 
 @Component({
@@ -12,14 +12,14 @@ import { AuthService } from '../auth/auth.service';
 })
 export class AddJobComponent implements OnInit {
 
-  constructor(public rest: JobService,public authService : AuthService,
-     private route: ActivatedRoute, private router: Router,private fb: FormBuilder) { }
+  constructor(public rest: JobService, public authService: AuthService,
+    private route: ActivatedRoute, private router: Router, private fb: FormBuilder) { }
 
   addProjcetForm: FormGroup;
   selectedValue: string;
   job_Name: string;
   job_skills: string;
-  contracts= [];
+  contracts = [];
   currentcontract: string[];
   cities = [];
   currentcity: string[];
@@ -27,13 +27,13 @@ export class AddJobComponent implements OnInit {
   currentproject: string[];
   countries = [];
   currentcountry: string[];
-   data : Object;
+  data: Object;
   selectTheme = 'primary';
 
   currentgender: string[];
   genders = [
-    {value: 'male', viewValue: 'ذكر'},
-    {value: 'female', viewValue: 'انثى'},
+    { value: 'male', viewValue: 'ذكر' },
+    { value: 'female', viewValue: 'انثى' },
   ];
 
   languages = new FormControl();
@@ -51,9 +51,9 @@ export class AddJobComponent implements OnInit {
     this.contracts = [];
     this.rest.getcontracts().subscribe((data: {}) => {
       console.log("Here");
-      for(let key in data) {
-          this.contracts.push({value:data[key]._id, viewValue:data[key].contractName});
-          
+      for (let key in data) {
+        this.contracts.push({ value: data[key]._id, viewValue: data[key].contractName });
+
       }
       console.log(this.contracts);
 
@@ -65,9 +65,9 @@ export class AddJobComponent implements OnInit {
     this.projects = [];
     this.rest.getprojects(id).subscribe((data) => {
       console.log(data.id);
-      for (var i =0 ; i < data.count ; i++) {
-          this.projects.push({value:data.id[i], viewValue:data.projectName[i]});
-          console.log(data.id[i])
+      for (var i = 0; i < data.count; i++) {
+        this.projects.push({ value: data.id[i], viewValue: data.projectName[i] });
+        console.log(data.id[i])
       }
       console.log(this.projects);
     });
@@ -78,8 +78,8 @@ export class AddJobComponent implements OnInit {
     this.rest.getcountry().subscribe((data: {}) => {
       console.log(data);
       for (let key in data) {
-          this.countries.push({value:data[key]._id, viewValue:data[key].countryName});
-          
+        this.countries.push({ value: data[key]._id, viewValue: data[key].countryName });
+
 
       }
       console.log(this.countries);
@@ -91,7 +91,7 @@ export class AddJobComponent implements OnInit {
     this.rest.getcity().subscribe((data: {}) => {
       console.log(data);
       for (let key in data) {
-          this.cities.push({value:data[key]._id, viewValue:data[key].cityName});
+        this.cities.push({ value: data[key]._id, viewValue: data[key].cityName });
       }
       console.log(this.cities);
     });
@@ -99,19 +99,15 @@ export class AddJobComponent implements OnInit {
 
 
   ngOnInit() {
-        this.authService.autoAuthUser();
-
-
+    this.authService.autoAuthUser();
     this.getcontracts();
     this.getprojects(this.authService.getUserId());
     this.getcountry();
     this.getcity();
-    
-
     this.addProjcetForm = new FormGroup({
       contracts: new FormControl(),
-      projects:  new FormControl(),
-      job_Name:  new FormControl(),
+      projects: new FormControl(),
+      job_Name: new FormControl(),
       job_skills: new FormControl(),
       country: new FormControl(),
       city: new FormControl(),
@@ -126,7 +122,7 @@ export class AddJobComponent implements OnInit {
   }
 
   addJob() {
-  
+
 
     this.data = {
 
@@ -134,7 +130,7 @@ export class AddJobComponent implements OnInit {
       project: this.addProjcetForm.value.projects,
       job_Name: this.addProjcetForm.value.job_Name,
       job_skills: this.addProjcetForm.value.job_skills,
-      country:  this.addProjcetForm.value.country,
+      country: this.addProjcetForm.value.country,
       city: this.addProjcetForm.value.city,
       public_Major: this.addProjcetForm.value.public_Major,
       work_hours: this.addProjcetForm.value.work_hours,
@@ -142,7 +138,7 @@ export class AddJobComponent implements OnInit {
       salary: this.addProjcetForm.value.salary,
       gender: this.addProjcetForm.value.gender,
       personal_Skills: this.addProjcetForm.value.personal_Skills,
-      required_Number:this.addProjcetForm.value.required_Number
+      required_Number: this.addProjcetForm.value.required_Number
     }
 
 
@@ -150,6 +146,6 @@ export class AddJobComponent implements OnInit {
   }
 
 
- 
+
 
 }
