@@ -12,9 +12,12 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean | Observable<boolean> | Promise<boolean> {
+    this.authService.autoAuthUser();
     const isAuth = this.authService.getIsAuth();
-
-    if (!isAuth) {
+    const isCompany = this.authService.getIsCompany();
+    console.log(isCompany);
+// tslint:disable-next-line: triple-equals
+    if (!isAuth || isCompany == 'true') {
       this.router.navigate(['/sign-in']);
     }
 
