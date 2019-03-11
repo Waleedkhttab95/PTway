@@ -15,8 +15,8 @@ export class UserComponent implements OnInit {
   constructor(private router: Router, private element: ElementRef, public userService: UserService) {}
   
   count: Number
-  id: any[]
-  content: any[]
+  id: any[] = []
+  content: any[] = []
   ngOnInit() {
 
     this.userService.getUnreadNotification().subscribe((res:any) =>{
@@ -25,14 +25,15 @@ export class UserComponent implements OnInit {
     })
 
     this.userService.getLastNotification().subscribe((res:any) =>{
-      for(var i =0 ; i < 5;i++){
-        this.id[i].push(res.id[i]._id);
-        this.content[i].push(res.content[i].job_Name);
-      }
+      for(var i =0 ; i < this.count;i++){
+        this.id.push(res.id[i]);
+       this.content.push(res.content[i].job_Name);
+      } 
+
     })
   }
 
   onClick(id: string) {
-
+console.log(id);
   }
 }

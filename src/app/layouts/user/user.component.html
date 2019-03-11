@@ -16,17 +16,18 @@
           <a class="nav-link" href="#pablo" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
             <i class="material-icons">notifications</i>قائمة العروض
-            <span class="notification">{{count}}</span>
+            <span class="notification"></span>
             <p>
               <span class="d-lg-none d-md-block">Some Actions</span>
             </p>
           </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" (click)="onClick(id[0])" href="#">{{content[0]}}</a>
-            <a class="dropdown-item" (click)="onClick(id[1])" href="#">{{content[1]}}</a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" 
+          *ngFor="let c of content">
+            <a class="dropdown-item" (click)="onClick(id)" [routerLink]="['/offers-list']">{{c}}</a>
+            <!-- <a class="dropdown-item" (click)="onClick(id[1])" href="#">{{content[1]}}</a>
             <a class="dropdown-item" (click)="onClick(id[2])" href="#">{{content[2]}}</a>
             <a class="dropdown-item" (click)="onClick(id[3])" href="#">{{content[3]}}</a>
-            <a class="dropdown-item" (click)="onClick(id[4])" href="#">{{content[4]}}</a>
+            <a class="dropdown-item" (click)="onClick(id[4])" href="#">{{content[4]}}</a> -->
             <a class="dropdown-item" [routerLink]="['/offers-list']"> -- عرض جميع الأعلانات --</a>
           </div>
         </li>
