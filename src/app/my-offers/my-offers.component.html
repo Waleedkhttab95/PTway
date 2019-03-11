@@ -28,7 +28,20 @@
                   <tr *ngFor="let row of dataTable.dataRows">
                     <td><a [routerLink]="['/job-offer-preview']">{{row[0]}}</a></td>
                     <td>
-                      <button mat-raised-button class="btn btn-danger btn-round">حذف</button>
+                        <swal
+                        #deleteSwal
+                        title="انتـبه!"
+                        text="هل انت متأكد من الحذف"
+                        confirmButtonText= 'نعم'
+                        cancelButtonText= 'إلغاء الأمر'
+                        type="warning"
+                        showCancelButton="true"
+                        cancelButtonClass="btn btn-danger"
+                        (confirm)="onDelete(row[1])">
+
+                       >
+                      </swal>
+                      <button mat-raised-button class="btn btn-danger btn-round" [swal]="deleteSwal">حذف</button>
                     </td>
                     <td>
                       <button mat-raised-button class="btn btn-primary btn-round"  (click)="onCandidates(row[1])" [routerLink]="['/candidates-list']">عرض القائمة </button>

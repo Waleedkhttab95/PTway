@@ -99,5 +99,12 @@ this.jobService.getJobs('5c6bd0e0baf49b0016dabe51').subscribe(response =>{
   onAccepted(id) {
     this.data.changeMessage(id);
   }
-  
-}
+
+ onDelete(id){
+   this.jobService.deleteJob(id).subscribe(()=>{
+     console.log("heeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeey");}
+   );
+ }
+  }
+
+

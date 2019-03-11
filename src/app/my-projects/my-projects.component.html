@@ -30,7 +30,18 @@
                       <button mat-raised-button class="btn btn-primary btn-round" [routerLink]="['/add-project']" (click)="onEdit(row[1])">تعديل</button>
                     </td>
                     <td>
-                      <button mat-raised-button class="btn btn-danger btn-round" (click)="onDelete(row[1])">حذف</button>
+                        <swal
+                        #deleteSwal
+                        title="انتـبه!"
+                        text="هل انت متأكد من الحذف"
+                        confirmButtonText= 'نعم'
+                        cancelButtonText= 'إلغاء الأمر'
+                        type="warning"
+                        showCancelButton="true"
+                        cancelButtonClass="btn btn-danger"
+                        (confirm)="onDelete(row[1])">
+                      </swal>
+                      <button [swal]="deleteSwal" mat-raised-button class="btn btn-danger btn-round">حذف</button>
                     </td>
                   </tr>
                 </tbody>
