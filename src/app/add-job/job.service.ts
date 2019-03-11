@@ -51,7 +51,7 @@ export class JobService {
            
             ;
     }
-
+    
     deleteJob(id: String) {
       return this.http
             .delete(BackUrl + '/deletejob?id=' + id);

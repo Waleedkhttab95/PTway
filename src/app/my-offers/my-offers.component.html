@@ -37,6 +37,8 @@
                         type="warning"
                         showCancelButton="true"
                         cancelButtonClass="btn btn-danger"
+                        (confirm)="onDelete(row[1])">
+
                        >
                       </swal>
                       <button mat-raised-button class="btn btn-danger btn-round" [swal]="deleteSwal">حذف</button>
