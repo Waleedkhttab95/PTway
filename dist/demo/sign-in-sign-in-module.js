@@ -49,8 +49,6 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-var mood = true;
-console.log(mood);
 var SignInComponent = /** @class */ (function () {
     function SignInComponent(element, authService, route, router, fb) {
         this.element = element;
@@ -61,6 +59,7 @@ var SignInComponent = /** @class */ (function () {
         this.isLoading = false;
         this.test = new Date();
         this.submitted = false;
+        this.mood = true;
         this.nativeElement = element.nativeElement;
         this.sidebarVisible = false;
     }
@@ -68,10 +67,12 @@ var SignInComponent = /** @class */ (function () {
         if (form.invalid) {
             return;
         }
-        if (mood = true) {
+        if (this.mood == true) {
+            console.log(this.mood);
             this.authService.login(form.value.email, form.value.password);
         }
         else {
+            console.log(this.mood);
             this.authService.companyLogin(form.value.email, form.value.password);
         }
     };
@@ -119,22 +120,20 @@ var SignInComponent = /** @class */ (function () {
         this.authStatusSub.unsubscribe();
     };
     SignInComponent.prototype.companyMood = function () {
-        mood = false;
+        this.mood = false;
         var activeLink = document.getElementById('userMood');
         var link = document.getElementById('companyMood');
         activeLink.className = 'fake-link';
         link.classList.remove('fake-link');
         console.log(link.className);
-        console.log(mood);
     };
     SignInComponent.prototype.userMood = function () {
-        mood = true;
+        this.mood = true;
         var activeLink = document.getElementById('companyMood');
         var link = document.getElementById('userMood');
         activeLink.className = 'fake-link';
         link.classList.remove('fake-link');
         console.log(link.className);
-        console.log(mood);
     };
     SignInComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({

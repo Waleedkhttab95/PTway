@@ -85,11 +85,13 @@ var map = {
 	],
 	"./my-offers/my-offers.module": [
 		"./src/app/my-offers/my-offers.module.ts",
+		"my-offers-my-offers-module~my-projects-my-projects-module",
 		"common",
 		"my-offers-my-offers-module"
 	],
 	"./my-projects/my-projects.module": [
 		"./src/app/my-projects/my-projects.module.ts",
+		"my-offers-my-offers-module~my-projects-my-projects-module",
 		"common",
 		"my-projects-my-projects-module"
 	],
@@ -207,19 +209,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/datepicker */ "./node_modules/@angular/material/esm5/datepicker.es5.js");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _sidebar_sidebar_module__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./sidebar/sidebar.module */ "./src/app/sidebar/sidebar.module.ts");
-/* harmony import */ var _shared_footer_footer_module__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./shared/footer/footer.module */ "./src/app/shared/footer/footer.module.ts");
-/* harmony import */ var _shared_navbar_navbar_module__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./shared/navbar/navbar.module */ "./src/app/shared/navbar/navbar.module.ts");
-/* harmony import */ var _shared_fixedplugin_fixedplugin_module__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./shared/fixedplugin/fixedplugin.module */ "./src/app/shared/fixedplugin/fixedplugin.module.ts");
-/* harmony import */ var _layouts_admin_admin_layout_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./layouts/admin/admin-layout.component */ "./src/app/layouts/admin/admin-layout.component.ts");
-/* harmony import */ var _layouts_auth_auth_layout_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./layouts/auth/auth-layout.component */ "./src/app/layouts/auth/auth-layout.component.ts");
-/* harmony import */ var _layouts_user_user_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./layouts/user/user.component */ "./src/app/layouts/user/user.component.ts");
-/* harmony import */ var _layouts_registration_registration_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./layouts/registration/registration.component */ "./src/app/layouts/registration/registration.component.ts");
-/* harmony import */ var _auth_interceptor__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./auth-interceptor */ "./src/app/auth-interceptor.ts");
-/* harmony import */ var _app_routing__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./app.routing */ "./src/app/app.routing.ts");
+/* harmony import */ var _app_auth_auth_guard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../app/auth/auth.guard */ "./src/app/auth/auth.guard.ts");
+/* harmony import */ var _app_auth_auth_company_guard__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../app/auth/auth.company.guard */ "./src/app/auth/auth.company.guard.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/material/datepicker */ "./node_modules/@angular/material/esm5/datepicker.es5.js");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _sidebar_sidebar_module__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./sidebar/sidebar.module */ "./src/app/sidebar/sidebar.module.ts");
+/* harmony import */ var _shared_footer_footer_module__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./shared/footer/footer.module */ "./src/app/shared/footer/footer.module.ts");
+/* harmony import */ var _shared_navbar_navbar_module__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./shared/navbar/navbar.module */ "./src/app/shared/navbar/navbar.module.ts");
+/* harmony import */ var _shared_fixedplugin_fixedplugin_module__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./shared/fixedplugin/fixedplugin.module */ "./src/app/shared/fixedplugin/fixedplugin.module.ts");
+/* harmony import */ var _layouts_admin_admin_layout_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./layouts/admin/admin-layout.component */ "./src/app/layouts/admin/admin-layout.component.ts");
+/* harmony import */ var _layouts_auth_auth_layout_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./layouts/auth/auth-layout.component */ "./src/app/layouts/auth/auth-layout.component.ts");
+/* harmony import */ var _layouts_user_user_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./layouts/user/user.component */ "./src/app/layouts/user/user.component.ts");
+/* harmony import */ var _layouts_registration_registration_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./layouts/registration/registration.component */ "./src/app/layouts/registration/registration.component.ts");
+/* harmony import */ var _auth_interceptor__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./auth-interceptor */ "./src/app/auth-interceptor.ts");
+/* harmony import */ var _app_routing__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./app.routing */ "./src/app/app.routing.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -245,43 +249,45 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+
 var MaterialModule = /** @class */ (function () {
     function MaterialModule() {
     }
     MaterialModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
             exports: [
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatAutocompleteModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatButtonModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatButtonToggleModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatCardModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatCheckboxModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatChipsModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatStepperModule"],
-                _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_7__["MatDatepickerModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatDialogModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatExpansionModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatGridListModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatIconModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatInputModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatListModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatMenuModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatNativeDateModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatPaginatorModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatProgressBarModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatProgressSpinnerModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatRadioModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatRippleModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatSelectModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatSidenavModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatSliderModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatSlideToggleModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatSnackBarModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatSortModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatTableModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatTabsModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatToolbarModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatTooltipModule"]
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatAutocompleteModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatButtonModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatButtonToggleModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatCardModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatCheckboxModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatChipsModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatStepperModule"],
+                _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_9__["MatDatepickerModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatDialogModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatExpansionModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatGridListModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatIconModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatInputModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatListModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatMenuModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatNativeDateModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatPaginatorModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatProgressBarModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatProgressSpinnerModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatRadioModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatRippleModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatSelectModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatSidenavModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatSliderModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatSlideToggleModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatSnackBarModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatSortModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatTableModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatTabsModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatToolbarModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatTooltipModule"]
             ],
             declarations: [],
         })
@@ -298,25 +304,26 @@ var AppModule = /** @class */ (function () {
                 _angular_common__WEBPACK_IMPORTED_MODULE_5__["CommonModule"],
                 _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_1__["BrowserAnimationsModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"],
-                _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(_app_routing__WEBPACK_IMPORTED_MODULE_18__["AppRoutes"]),
+                _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(_app_routing__WEBPACK_IMPORTED_MODULE_20__["AppRoutes"]),
                 MaterialModule,
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatNativeDateModule"],
-                _sidebar_sidebar_module__WEBPACK_IMPORTED_MODULE_9__["SidebarModule"],
-                _shared_navbar_navbar_module__WEBPACK_IMPORTED_MODULE_11__["NavbarModule"],
-                _shared_footer_footer_module__WEBPACK_IMPORTED_MODULE_10__["FooterModule"],
-                _shared_fixedplugin_fixedplugin_module__WEBPACK_IMPORTED_MODULE_12__["FixedpluginModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatNativeDateModule"],
+                _sidebar_sidebar_module__WEBPACK_IMPORTED_MODULE_11__["SidebarModule"],
+                _shared_navbar_navbar_module__WEBPACK_IMPORTED_MODULE_13__["NavbarModule"],
+                _shared_footer_footer_module__WEBPACK_IMPORTED_MODULE_12__["FooterModule"],
+                _shared_fixedplugin_fixedplugin_module__WEBPACK_IMPORTED_MODULE_14__["FixedpluginModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_4__["ReactiveFormsModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"]
             ],
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"],
-                _layouts_admin_admin_layout_component__WEBPACK_IMPORTED_MODULE_13__["AdminLayoutComponent"],
-                _layouts_auth_auth_layout_component__WEBPACK_IMPORTED_MODULE_14__["AuthLayoutComponent"],
-                _layouts_user_user_component__WEBPACK_IMPORTED_MODULE_15__["UserComponent"],
-                _layouts_registration_registration_component__WEBPACK_IMPORTED_MODULE_16__["RegistrationComponent"]
+                _app_component__WEBPACK_IMPORTED_MODULE_10__["AppComponent"],
+                _layouts_admin_admin_layout_component__WEBPACK_IMPORTED_MODULE_15__["AdminLayoutComponent"],
+                _layouts_auth_auth_layout_component__WEBPACK_IMPORTED_MODULE_16__["AuthLayoutComponent"],
+                _layouts_user_user_component__WEBPACK_IMPORTED_MODULE_17__["UserComponent"],
+                _layouts_registration_registration_component__WEBPACK_IMPORTED_MODULE_18__["RegistrationComponent"]
             ],
-            providers: [{ provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HTTP_INTERCEPTORS"], useClass: _auth_interceptor__WEBPACK_IMPORTED_MODULE_17__["AuthInterceptor"], multi: true }],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"]]
+            providers: [{ provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HTTP_INTERCEPTORS"], useClass: _auth_interceptor__WEBPACK_IMPORTED_MODULE_19__["AuthInterceptor"], multi: true },
+                _app_auth_auth_guard__WEBPACK_IMPORTED_MODULE_6__["AuthGuard"], _app_auth_auth_company_guard__WEBPACK_IMPORTED_MODULE_7__["Auth_company_Guard"]],
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_10__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -340,6 +347,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _layouts_auth_auth_layout_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./layouts/auth/auth-layout.component */ "./src/app/layouts/auth/auth-layout.component.ts");
 /* harmony import */ var _layouts_user_user_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./layouts/user/user.component */ "./src/app/layouts/user/user.component.ts");
 /* harmony import */ var _layouts_registration_registration_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./layouts/registration/registration.component */ "./src/app/layouts/registration/registration.component.ts");
+/* harmony import */ var _app_auth_auth_guard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../app/auth/auth.guard */ "./src/app/auth/auth.guard.ts");
+/* harmony import */ var _auth_auth_company_guard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./auth/auth.company.guard */ "./src/app/auth/auth.company.guard.ts");
+
+
 
 
 
@@ -358,36 +369,46 @@ var AppRoutes = [
                 loadChildren: './dashboard/dashboard.module#DashboardModule'
             }, {
                 path: 'add-project',
+                canActivate: [_auth_auth_company_guard__WEBPACK_IMPORTED_MODULE_5__["Auth_company_Guard"]],
                 loadChildren: './add-project/add-project.module#AddProjectModule'
             }, {
                 path: 'add-job',
+                canActivate: [_auth_auth_company_guard__WEBPACK_IMPORTED_MODULE_5__["Auth_company_Guard"]],
                 loadChildren: './add-job/add-job.module#AddJobModule'
             }, {
                 path: 'my-projects',
+                canActivate: [_auth_auth_company_guard__WEBPACK_IMPORTED_MODULE_5__["Auth_company_Guard"]],
                 loadChildren: './my-projects/my-projects.module#MyProjectsModule'
             }, {
                 path: 'job-offer-check',
+                canActivate: [_app_auth_auth_guard__WEBPACK_IMPORTED_MODULE_4__["AuthGuard"]],
                 loadChildren: './job-offer-check/job-offer-check.module#JobOfferCheckModule'
             }, {
                 path: 'job-offer-preview',
+                canActivate: [_app_auth_auth_guard__WEBPACK_IMPORTED_MODULE_4__["AuthGuard"]],
                 loadChildren: './job-offer-preview/job-offer-preview.module#JobOfferPreviewModule'
             }, {
                 path: 'my-offers',
+                canActivate: [_auth_auth_company_guard__WEBPACK_IMPORTED_MODULE_5__["Auth_company_Guard"]],
                 loadChildren: './my-offers/my-offers.module#MyOffersModule'
             }, {
                 path: 'candidates-list',
+                canActivate: [_auth_auth_company_guard__WEBPACK_IMPORTED_MODULE_5__["Auth_company_Guard"]],
                 loadChildren: './candidates-list/candidates-list.module#CandidatesListModule'
             }, {
                 path: 'acceptance-list',
+                canActivate: [_auth_auth_company_guard__WEBPACK_IMPORTED_MODULE_5__["Auth_company_Guard"]],
                 loadChildren: './acceptance-list/acceptance-list.module#AcceptanceListModule'
             }, {
                 path: 'error-message',
                 loadChildren: './error-message/error-message.module#ErrorMessageModule'
             }, {
                 path: 'company-profile',
+                canActivate: [_app_auth_auth_guard__WEBPACK_IMPORTED_MODULE_4__["AuthGuard"]],
                 loadChildren: './company-profile/company-profile.module#CompanyProfileModule'
             }, {
                 path: 'edit-company-profile',
+                canActivate: [_auth_auth_company_guard__WEBPACK_IMPORTED_MODULE_5__["Auth_company_Guard"]],
                 loadChildren: './edit-company-profile/edit-company-profile.module#EditCompanyProfileModule'
             }
         ]
@@ -409,15 +430,19 @@ var AppRoutes = [
         children: [
             {
                 path: 'my-cv',
+                canActivate: [_app_auth_auth_guard__WEBPACK_IMPORTED_MODULE_4__["AuthGuard"]],
                 loadChildren: './my-cv/my-cv.module#MyCvModule'
             }, {
                 path: 'offers-list',
+                canActivate: [_app_auth_auth_guard__WEBPACK_IMPORTED_MODULE_4__["AuthGuard"]],
                 loadChildren: './offers-list/offers-list.module#OffersListModule'
             }, {
                 path: 'edit-cv',
+                canActivate: [_app_auth_auth_guard__WEBPACK_IMPORTED_MODULE_4__["AuthGuard"]],
                 loadChildren: './edit-cv/edit-cv.module#EditCvModule'
             }, {
                 path: 'job-offer',
+                canActivate: [_app_auth_auth_guard__WEBPACK_IMPORTED_MODULE_4__["AuthGuard"]],
                 loadChildren: './job-offer/job-offer.module#JobOfferModule'
             }
         ]
@@ -427,9 +452,11 @@ var AppRoutes = [
         children: [
             {
                 path: 'add-company-info',
+                canActivate: [_auth_auth_company_guard__WEBPACK_IMPORTED_MODULE_5__["Auth_company_Guard"]],
                 loadChildren: './add-company-info/add-company-info.module#AddCompanyInfoModule'
             }, {
                 path: 'add-user-info',
+                canActivate: [_app_auth_auth_guard__WEBPACK_IMPORTED_MODULE_4__["AuthGuard"]],
                 loadChildren: './add-user-info/add-user-info.module#AddUserInfoModule'
             }
         ]
@@ -479,6 +506,109 @@ var AuthInterceptor = /** @class */ (function () {
         __metadata("design:paramtypes", [_app_auth_auth_service__WEBPACK_IMPORTED_MODULE_0__["AuthService"]])
     ], AuthInterceptor);
     return AuthInterceptor;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/auth/auth.company.guard.ts":
+/*!********************************************!*\
+  !*** ./src/app/auth/auth.company.guard.ts ***!
+  \********************************************/
+/*! exports provided: Auth_company_Guard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Auth_company_Guard", function() { return Auth_company_Guard; });
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./auth.service */ "./src/app/auth/auth.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var Auth_company_Guard = /** @class */ (function () {
+    function Auth_company_Guard(authService, router) {
+        this.authService = authService;
+        this.router = router;
+    }
+    Auth_company_Guard.prototype.canActivate = function (route, state) {
+        this.authService.autoAuthUser();
+        var isAuth = this.authService.getIsAuth();
+        var isCompany = this.authService.getIsCompany();
+        console.log(isCompany);
+        if (!isAuth && isCompany !== 'true') {
+            this.router.navigate(['/sign-in']);
+        }
+        return isAuth;
+    };
+    Auth_company_Guard = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])(),
+        __metadata("design:paramtypes", [_auth_service__WEBPACK_IMPORTED_MODULE_0__["AuthService"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
+    ], Auth_company_Guard);
+    return Auth_company_Guard;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/auth/auth.guard.ts":
+/*!************************************!*\
+  !*** ./src/app/auth/auth.guard.ts ***!
+  \************************************/
+/*! exports provided: AuthGuard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthGuard", function() { return AuthGuard; });
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./auth.service */ "./src/app/auth/auth.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var AuthGuard = /** @class */ (function () {
+    function AuthGuard(authService, router) {
+        this.authService = authService;
+        this.router = router;
+    }
+    AuthGuard.prototype.canActivate = function (route, state) {
+        this.authService.autoAuthUser();
+        var isAuth = this.authService.getIsAuth();
+        var isCompany = this.authService.getIsCompany();
+        console.log(isCompany);
+        // tslint:disable-next-line: triple-equals
+        if (!isAuth || isCompany == 'true') {
+            this.router.navigate(['/sign-in']);
+        }
+        return isAuth;
+    };
+    AuthGuard = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])(),
+        __metadata("design:paramtypes", [_auth_service__WEBPACK_IMPORTED_MODULE_0__["AuthService"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
+    ], AuthGuard);
+    return AuthGuard;
 }());
 
 
@@ -566,6 +696,7 @@ var AuthService = /** @class */ (function () {
             if (token) {
                 _this.token = token;
                 _this.isAuth = true;
+                _this.isCompany = 'false';
                 _this.userId = response.userId;
                 _this.authStatusListener.next(true);
                 _this.saveAuthData(token, _this.userId, _this.isCompany);
@@ -1017,7 +1148,7 @@ module.exports = ".nav-link {\n    display: inline-flex;\n}"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-primary\">\n  <div class=\"container\">\n    <a class=\"navbar-brand-logo\" href=\"#\">\n      <strong>Pt</strong>way\n      <img src=\"../../assets/img/32X32.png\">\n    </a>\n    <button class=\"navbar-toggler\" type=\"button\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n    <div class=\"collapse navbar-collapse\" id=\"navbarNav\">\n      <ul class=\"navbar-nav\">\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/my-cv']\">السيرة الذاتية <span class=\"sr-only\">(current)</span></a>\n        </li>\n        <li class=\"nav-item dropdown\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" href=\"#pablo\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\"\n            aria-expanded=\"false\">\n            <i class=\"material-icons\">notifications</i>قائمة العروض\n            <span class=\"notification\">5</span>\n            <p>\n              <span class=\"d-lg-none d-md-block\">Some Actions</span>\n            </p>\n          </a>\n          <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"navbarDropdownMenuLink\">\n            <a class=\"dropdown-item\" href=\"#\">اعلان رقم 1</a>\n            <a class=\"dropdown-item\" href=\"#\">اعلان رقم 2</a>\n            <a class=\"dropdown-item\" href=\"#\">اعلان رقم 3</a>\n            <a class=\"dropdown-item\" href=\"#\">اعلان رقم 4</a>\n            <a class=\"dropdown-item\" href=\"#\">اعلان رقم 5</a>\n            <a class=\"dropdown-item\" [routerLink]=\"['/offers-list']\"> -- عرض جميع الأعلانات --</a>\n          </div>\n        </li>\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/edit-cv']\">تعديل السيرة الذاتية</a>\n        </li>\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/sign-up']\">تسجيل خروج</a>\n        </li>\n      </ul>\n    </div>\n  </div>\n</nav>\n<router-outlet></router-outlet>"
+module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-primary\">\n  <div class=\"container\">\n    <a class=\"navbar-brand-logo\" href=\"#\">\n      <strong>Pt</strong>way\n      <img src=\"../../assets/img/32X32.png\">\n    </a>\n    <button class=\"navbar-toggler\" type=\"button\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n    <div class=\"collapse navbar-collapse\" id=\"navbarNav\">\n      <ul class=\"navbar-nav\">\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/my-cv']\">السيرة الذاتية <span class=\"sr-only\">(current)</span></a>\n        </li>\n        <li class=\"nav-item dropdown\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" href=\"#pablo\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\"\n            aria-expanded=\"false\">\n            <i class=\"material-icons\">notifications</i>قائمة العروض\n            <span class=\"notification\"></span>\n            <p>\n              <span class=\"d-lg-none d-md-block\">Some Actions</span>\n            </p>\n          </a>\n          <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"navbarDropdownMenuLink\" \n          *ngFor=\"let c of content\">\n            <a class=\"dropdown-item\" (click)=\"onClick(id)\" [routerLink]=\"['/offers-list']\">{{c}}</a>\n            <!-- <a class=\"dropdown-item\" (click)=\"onClick(id[1])\" href=\"#\">{{content[1]}}</a>\n            <a class=\"dropdown-item\" (click)=\"onClick(id[2])\" href=\"#\">{{content[2]}}</a>\n            <a class=\"dropdown-item\" (click)=\"onClick(id[3])\" href=\"#\">{{content[3]}}</a>\n            <a class=\"dropdown-item\" (click)=\"onClick(id[4])\" href=\"#\">{{content[4]}}</a> -->\n            <a class=\"dropdown-item\" [routerLink]=\"['/offers-list']\"> -- عرض جميع الأعلانات --</a>\n          </div>\n        </li>\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/edit-cv']\">تعديل السيرة الذاتية</a>\n        </li>\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/sign-up']\">تسجيل خروج</a>\n        </li>\n      </ul>\n    </div>\n  </div>\n</nav>\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -1033,6 +1164,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserComponent", function() { return UserComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var src_app_my_cv_user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/my-cv/user.service */ "./src/app/my-cv/user.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1044,12 +1176,30 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var UserComponent = /** @class */ (function () {
-    function UserComponent(router, element) {
+    function UserComponent(router, element, userService) {
         this.router = router;
         this.element = element;
+        this.userService = userService;
+        this.id = [];
+        this.content = [];
     }
     UserComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.userService.getUnreadNotification().subscribe(function (res) {
+            console.log(res);
+            _this.count = res.count;
+        });
+        this.userService.getLastNotification().subscribe(function (res) {
+            for (var i = 0; i < _this.count; i++) {
+                _this.id.push(res.id[i]);
+                _this.content.push(res.content[i].job_Name);
+            }
+        });
+    };
+    UserComponent.prototype.onClick = function (id) {
+        console.log(id);
     };
     UserComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -1057,7 +1207,7 @@ var UserComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./user.component.html */ "./src/app/layouts/user/user.component.html"),
             styles: [__webpack_require__(/*! ./user.component.css */ "./src/app/layouts/user/user.component.css")]
         }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], src_app_my_cv_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"]])
     ], UserComponent);
     return UserComponent;
 }());
@@ -1319,6 +1469,84 @@ var MdModule = /** @class */ (function () {
         })
     ], MdModule);
     return MdModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/my-cv/user.service.ts":
+/*!***************************************!*\
+  !*** ./src/app/my-cv/user.service.ts ***!
+  \***************************************/
+/*! exports provided: UserService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserService", function() { return UserService; });
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _auth_auth_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../auth/auth.service */ "./src/app/auth/auth.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var BackUrl = 'https://cors-anywhere.herokuapp.com/https://ptway-dev.herokuapp.com/api';
+var UserService = /** @class */ (function () {
+    function UserService(http, router, auth) {
+        this.http = http;
+        this.router = router;
+        this.auth = auth;
+    }
+    UserService.prototype.addUserInfo = function (data) {
+        var _this = this;
+        this.http
+            .post(BackUrl + '/postuserinfo', data).subscribe(function (response) {
+            _this.router.navigate(['/my-cv']);
+        });
+    };
+    UserService.prototype.getUserInfo = function () {
+        console.log(this.auth.getUserId());
+        return this.http
+            .get(BackUrl + '/getuserinfo');
+    };
+    UserService.prototype.getUser = function () {
+        return this.http
+            .get(BackUrl + '/currentuser');
+    };
+    UserService.prototype.getUnreadNotification = function () {
+        console.log(this.auth.getUserId());
+        return this.http
+            .get(BackUrl + '/get/unread/notification');
+    };
+    UserService.prototype.getLastNotification = function () {
+        return this.http
+            .get(BackUrl + '/get/lastnotifcation');
+    };
+    UserService.prototype.getAllNotification = function () {
+        return this.http
+            .get(BackUrl + '/get/allnotifications');
+    };
+    UserService.prototype.getSpicificNotification = function (id) {
+        return this.http
+            .get(BackUrl + '/get/notification?notiId=' + id);
+    };
+    UserService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({ providedIn: 'root' }),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _auth_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"]])
+    ], UserService);
+    return UserService;
 }());
 
 

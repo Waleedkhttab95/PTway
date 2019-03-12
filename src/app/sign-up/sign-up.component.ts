@@ -38,6 +38,9 @@ export class SignUpComponent implements OnInit, OnDestroy {
     Validators.required,
     Validators.nullValidator,
   ]);
+  agrreTerms = new FormControl('', [
+    Validators.required
+  ]);
 
 
   companyRegistrForm: FormGroup;
@@ -57,6 +60,9 @@ export class SignUpComponent implements OnInit, OnDestroy {
     Validators.required
   ]);
   sector = new FormControl('', [
+    Validators.required
+  ]);
+  agrreTermsCompany = new FormControl('', [
     Validators.required
   ]);
 
@@ -133,6 +139,9 @@ export class SignUpComponent implements OnInit, OnDestroy {
       password: new FormControl('', [
         Validators.required,
         Validators.nullValidator,
+      ]),
+      agrreTerms: new FormControl('', [
+        Validators.required
       ])
     });
 
@@ -156,6 +165,9 @@ export class SignUpComponent implements OnInit, OnDestroy {
       password: new FormControl('', [
         Validators.required,
         Validators.nullValidator,
+      ]),
+      agrreTermsCompany: new FormControl('', [
+        Validators.required
       ])
     });
 
@@ -170,7 +182,6 @@ export class SignUpComponent implements OnInit, OnDestroy {
     body.classList.remove('register-page');
     body.classList.remove('off-canvas-sidebar');
     this.authStatusSub.unsubscribe();
-
   }
 
 }

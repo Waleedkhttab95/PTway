@@ -18,7 +18,7 @@ module.exports = ".card [class*=\"card-header-\"] .card-icon{\n    margin-left: 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-content\">\n  <div class=\"container-fluid\">\n    <div class=\"row\">\n      <div class=\"col-md-12\">\n        <div class=\"card\">\n          <div class=\"card-header card-header-primary card-header-icon\">\n            <div class=\"card-icon\">\n              <i class=\"material-icons\">next_week</i>\n            </div>\n            <h4 class=\"card-title custom-title\">المشاريع الخاصة بي</h4>\n          </div>\n          <div class=\"card-body\">\n            <div class=\"toolbar\">\n              <!--     [routerLink]=\"['/my-offers']\"   Here you can write extra buttons/actions for the toolbar              -->\n            </div>\n            <div class=\"material-datatables\">\n              <table id=\"datatables\" class=\"table table-striped table-no-bordered table-hover\" cellspacing=\"0\" width=\"100%\"\n                style=\"width:100%\">\n                <thead>\n                  <tr>\n                    <th>{{ dataTable.headerRow[0] }}</th>\n                    <th>{{ dataTable.headerRow[1] }}</th>\n                    <th>{{ dataTable.headerRow[2] }}</th>\n                  </tr>\n                </thead>\n                <tbody>\n                  <tr *ngFor=\"let row of dataTable.dataRows\">\n                    <td><a  [routerLink]=\"['/my-offers']\"  (click)=\"onSelect(row[1])\">{{row[0]}}</a></td>\n                    <td>\n                      <button mat-raised-button class=\"btn btn-primary btn-round\" [routerLink]=\"['/add-project']\" (click)=\"onEdit(row[1])\">تعديل</button>\n                    </td>\n                    <td>\n                      <button mat-raised-button class=\"btn btn-danger btn-round\" (click)=\"onDelete(row[1])\">حذف</button>\n                    </td>\n                  </tr>\n                </tbody>\n              </table>\n            </div>\n          </div>\n          <!-- end content-->\n        </div>\n        <!--  end card  -->\n      </div>\n      <!-- end col-md-12 -->\n    </div>\n    <!-- end row -->\n  </div>\n</div>"
+module.exports = "<div class=\"main-content\">\n  <div class=\"container-fluid\">\n    <div class=\"row\">\n      <div class=\"col-md-12\">\n        <div class=\"card\">\n          <div class=\"card-header card-header-primary card-header-icon\">\n            <div class=\"card-icon\">\n              <i class=\"material-icons\">next_week</i>\n            </div>\n            <h4 class=\"card-title custom-title\">المشاريع الخاصة بي</h4>\n          </div>\n          <div class=\"card-body\">\n            <div class=\"toolbar\">\n              <!--     [routerLink]=\"['/my-offers']\"   Here you can write extra buttons/actions for the toolbar              -->\n            </div>\n            <div class=\"material-datatables\">\n              <table id=\"datatables\" class=\"table table-striped table-no-bordered table-hover\" cellspacing=\"0\" width=\"100%\"\n                style=\"width:100%\">\n                <thead>\n                  <tr>\n                    <th>{{ dataTable.headerRow[0] }}</th>\n                    <th>{{ dataTable.headerRow[1] }}</th>\n                    <th>{{ dataTable.headerRow[2] }}</th>\n                  </tr>\n                </thead>\n                <tbody>\n                  <tr *ngFor=\"let row of dataTable.dataRows\">\n                    <td><a  [routerLink]=\"['/my-offers']\"  (click)=\"onSelect(row[1])\">{{row[0]}}</a></td>\n                    <td>\n                      <button mat-raised-button class=\"btn btn-primary btn-round\" [routerLink]=\"['/add-project']\" (click)=\"onEdit(row[1])\">تعديل</button>\n                    </td>\n                    <td>\n                        <swal\n                        #deleteSwal\n                        title=\"انتـبه!\"\n                        text=\"هل انت متأكد من الحذف\"\n                        confirmButtonText= 'نعم'\n                        cancelButtonText= 'إلغاء الأمر'\n                        type=\"warning\"\n                        showCancelButton=\"true\"\n                        cancelButtonClass=\"btn btn-danger\"\n                        (confirm)=\"onDelete(row[1])\">\n                      </swal>\n                      <button [swal]=\"deleteSwal\" mat-raised-button class=\"btn btn-danger btn-round\">حذف</button>\n                    </td>\n                  </tr>\n                </tbody>\n              </table>\n            </div>\n          </div>\n          <!-- end content-->\n        </div>\n        <!--  end card  -->\n      </div>\n      <!-- end col-md-12 -->\n    </div>\n    <!-- end row -->\n  </div>\n</div>"
 
 /***/ }),
 
@@ -159,12 +159,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _app_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../app.module */ "./src/app/app.module.ts");
+/* harmony import */ var _toverux_ngx_sweetalert2__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @toverux/ngx-sweetalert2 */ "./node_modules/@toverux/ngx-sweetalert2/esm5/toverux-ngx-sweetalert2.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -182,7 +184,13 @@ var MyProjectsModule = /** @class */ (function () {
                 _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
                 _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"].forChild(_my_projects_routing__WEBPACK_IMPORTED_MODULE_3__["MyProjectsRoutes"]),
                 _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormsModule"],
-                _app_module__WEBPACK_IMPORTED_MODULE_6__["MaterialModule"]
+                _app_module__WEBPACK_IMPORTED_MODULE_6__["MaterialModule"],
+                _toverux_ngx_sweetalert2__WEBPACK_IMPORTED_MODULE_7__["SweetAlert2Module"].forRoot({
+                    buttonsStyling: false,
+                    customClass: 'modal-content',
+                    confirmButtonClass: 'btn btn-primary',
+                    cancelButtonClass: 'btn'
+                })
             ]
         })
     ], MyProjectsModule);

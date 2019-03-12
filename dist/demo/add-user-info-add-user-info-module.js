@@ -33,9 +33,9 @@ module.exports = "<div class=\"main-content\">\n  <div class=\"container-fluid\"
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddUserInfoComponent", function() { return AddUserInfoComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _rest_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../rest.service */ "./src/app/rest.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _my_cv_user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../my-cv/user.service */ "./src/app/my-cv/user.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -92,13 +92,13 @@ var AddUserInfoComponent = /** @class */ (function () {
             { value: 'مكة المكرمة', viewValue: 'مكة المكرمة' },
             { value: 'المدينة المنورة', viewValue: 'المدينة المنورة' },
         ];
-        this.languages = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]();
-        this.languageList = ['العربية', 'الانجليزية', 'الفرنسية', 'الاسبانية', 'الايطالية'];
-        this.skills = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]();
+        this.languages = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]();
+        this.languageList = ['العربية', 'الانجليزية', 'الفرنسية', 'الاسبانية', 'الكورية', 'أوردو'];
+        this.skills = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]();
         this.skillList = ['التصوير الفوتوغرافي', 'الرسم', 'التصميم'];
-        this.personal_Skills = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]();
+        this.personal_Skills = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]();
         this.personal_SkillList = ['الإلقاء', 'التعبير'];
-        this.hoppies = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]();
+        this.hoppies = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]();
         this.hoppyList = ['القراءة', 'الكتابة'];
         this.social_Statuss = [
             { value: 'اعزب', viewValue: 'اعزب' },
@@ -106,38 +106,33 @@ var AddUserInfoComponent = /** @class */ (function () {
         ];
     }
     AddUserInfoComponent.prototype.postuserinfo = function () {
-        var _this = this;
         console.log(this.userResumeForm.value);
-        this.rest.postuserinfo(this.userResumeForm.value).subscribe(function (result) {
-            _this.router.navigate(['/dashboard/']);
-        }, function (err) {
-            console.log(err);
-        });
+        this.rest.addUserInfo(this.userResumeForm.value);
     };
     AddUserInfoComponent.prototype.ngOnInit = function () {
         this.userResumeForm = this.fb.group({
-            country: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](),
-            study_status: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](),
-            study_degree: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](),
-            education_degree: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](),
-            gender: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](),
-            mobile: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](),
-            birthDate: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](),
-            city: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](),
-            Education_level: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](),
-            public_Major: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](),
-            spicifc_Major: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](),
-            languages: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](),
-            skills: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](),
-            personal_Skills: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](),
-            hoppies: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](),
-            social_Status: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](),
-            about: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](),
-            personal_web: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](),
-            facebook: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](),
-            twitter: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](),
-            instagram: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](),
-            linkedin: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]()
+            country: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            study_status: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            study_degree: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            education_degree: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            gender: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            mobile: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            birthDate: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            city: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            Education_level: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            public_Major: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            spicifc_Major: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            languages: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            skills: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            personal_Skills: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            hoppies: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            social_Status: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            about: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            personal_web: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            facebook: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            twitter: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            instagram: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            linkedin: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]()
         });
     };
     AddUserInfoComponent = __decorate([
@@ -146,7 +141,7 @@ var AddUserInfoComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./add-user-info.component.html */ "./src/app/add-user-info/add-user-info.component.html"),
             styles: [__webpack_require__(/*! ./add-user-info.component.css */ "./src/app/add-user-info/add-user-info.component.css")]
         }),
-        __metadata("design:paramtypes", [_rest_service__WEBPACK_IMPORTED_MODULE_1__["RestService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]])
+        __metadata("design:paramtypes", [_my_cv_user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"]])
     ], AddUserInfoComponent);
     return AddUserInfoComponent;
 }());

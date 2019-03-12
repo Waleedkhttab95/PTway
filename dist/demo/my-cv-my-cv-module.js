@@ -33,6 +33,8 @@ module.exports = "<article class=\"resume-wrapper text-center position-relative\
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MyCvComponent", function() { return MyCvComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _user_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./user.service */ "./src/app/my-cv/user.service.ts");
+/* harmony import */ var _auth_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../auth/auth.service */ "./src/app/auth/auth.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -43,10 +45,20 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var MyCvComponent = /** @class */ (function () {
-    function MyCvComponent() {
+    function MyCvComponent(userService, authService) {
+        this.userService = userService;
+        this.authService = authService;
     }
     MyCvComponent.prototype.ngOnInit = function () {
+        // to get user name
+        // to get user info
+        this.userService.getUserInfo().subscribe(function (res) {
+            console.log(res.about);
+            // the same syntax res. 
+        });
     };
     MyCvComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -54,7 +66,7 @@ var MyCvComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./my-cv.component.html */ "./src/app/my-cv/my-cv.component.html"),
             styles: [__webpack_require__(/*! ./my-cv.component.css */ "./src/app/my-cv/my-cv.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_user_service__WEBPACK_IMPORTED_MODULE_1__["UserService"], _auth_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]])
     ], MyCvComponent);
     return MyCvComponent;
 }());
