@@ -16,14 +16,15 @@
           <a class="nav-link" href="#pablo" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
             <i class="material-icons">notifications</i>قائمة العروض
-            <span class="notification"></span>
+            <span class="notification">{{count}}</span>
             <p>
               <span class="d-lg-none d-md-block">Some Actions</span>
             </p>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" 
-          *ngFor="let c of content">
-            <a class="dropdown-item" (click)="onClick(id)" [routerLink]="['/offers-list']">{{c}}</a>
+         >
+            <a class="dropdown-item" *ngFor="let d of data" 
+             (click)="onClick(d[1])" [routerLink]="['/job-offer']">{{d[0]}}</a>
             <!-- <a class="dropdown-item" (click)="onClick(id[1])" href="#">{{content[1]}}</a>
             <a class="dropdown-item" (click)="onClick(id[2])" href="#">{{content[2]}}</a>
             <a class="dropdown-item" (click)="onClick(id[3])" href="#">{{content[3]}}</a>

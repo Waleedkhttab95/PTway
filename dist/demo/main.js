@@ -75,6 +75,7 @@ var map = {
 	],
 	"./job-offer/job-offer.module": [
 		"./src/app/job-offer/job-offer.module.ts",
+		"common",
 		"job-offer-job-offer-module"
 	],
 	"./my-cv/my-cv.module": [
@@ -785,6 +786,55 @@ var AuthService = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/data.service.ts":
+/*!*********************************!*\
+  !*** ./src/app/data.service.ts ***!
+  \*********************************/
+/*! exports provided: DataService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DataService", function() { return DataService; });
+/* harmony import */ var rxjs_BehaviorSubject__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs/BehaviorSubject */ "./node_modules/rxjs-compat/_esm5/BehaviorSubject.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var DataService = /** @class */ (function () {
+    function DataService() {
+        this.messageSource = new rxjs_BehaviorSubject__WEBPACK_IMPORTED_MODULE_0__["BehaviorSubject"]('dd');
+        this.currentMessage = this.messageSource.asObservable();
+        this.statusSource = new rxjs_BehaviorSubject__WEBPACK_IMPORTED_MODULE_0__["BehaviorSubject"](false);
+        this.currentStatus = this.statusSource.asObservable();
+    }
+    DataService.prototype.changeMessage = function (message) {
+        this.messageSource.next(message);
+    };
+    DataService.prototype.changeStatus = function (status) {
+        this.statusSource.next(status);
+    };
+    DataService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [])
+    ], DataService);
+    return DataService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/layouts/admin/admin-layout.component.html":
 /*!***********************************************************!*\
   !*** ./src/app/layouts/admin/admin-layout.component.html ***!
@@ -1148,7 +1198,7 @@ module.exports = ".nav-link {\n    display: inline-flex;\n}"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-primary\">\n  <div class=\"container\">\n    <a class=\"navbar-brand-logo\" href=\"#\">\n      <strong>Pt</strong>way\n      <img src=\"../../assets/img/32X32.png\">\n    </a>\n    <button class=\"navbar-toggler\" type=\"button\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n    <div class=\"collapse navbar-collapse\" id=\"navbarNav\">\n      <ul class=\"navbar-nav\">\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/my-cv']\">السيرة الذاتية <span class=\"sr-only\">(current)</span></a>\n        </li>\n        <li class=\"nav-item dropdown\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" href=\"#pablo\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\"\n            aria-expanded=\"false\">\n            <i class=\"material-icons\">notifications</i>قائمة العروض\n            <span class=\"notification\"></span>\n            <p>\n              <span class=\"d-lg-none d-md-block\">Some Actions</span>\n            </p>\n          </a>\n          <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"navbarDropdownMenuLink\" \n          *ngFor=\"let c of content\">\n            <a class=\"dropdown-item\" (click)=\"onClick(id)\" [routerLink]=\"['/offers-list']\">{{c}}</a>\n            <!-- <a class=\"dropdown-item\" (click)=\"onClick(id[1])\" href=\"#\">{{content[1]}}</a>\n            <a class=\"dropdown-item\" (click)=\"onClick(id[2])\" href=\"#\">{{content[2]}}</a>\n            <a class=\"dropdown-item\" (click)=\"onClick(id[3])\" href=\"#\">{{content[3]}}</a>\n            <a class=\"dropdown-item\" (click)=\"onClick(id[4])\" href=\"#\">{{content[4]}}</a> -->\n            <a class=\"dropdown-item\" [routerLink]=\"['/offers-list']\"> -- عرض جميع الأعلانات --</a>\n          </div>\n        </li>\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/edit-cv']\">تعديل السيرة الذاتية</a>\n        </li>\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/sign-up']\">تسجيل خروج</a>\n        </li>\n      </ul>\n    </div>\n  </div>\n</nav>\n<router-outlet></router-outlet>"
+module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-primary\">\n  <div class=\"container\">\n    <a class=\"navbar-brand-logo\" href=\"#\">\n      <strong>Pt</strong>way\n      <img src=\"../../assets/img/32X32.png\">\n    </a>\n    <button class=\"navbar-toggler\" type=\"button\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n    <div class=\"collapse navbar-collapse\" id=\"navbarNav\">\n      <ul class=\"navbar-nav\">\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/my-cv']\">السيرة الذاتية <span class=\"sr-only\">(current)</span></a>\n        </li>\n        <li class=\"nav-item dropdown\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" href=\"#pablo\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\"\n            aria-expanded=\"false\">\n            <i class=\"material-icons\">notifications</i>قائمة العروض\n            <span class=\"notification\">{{count}}</span>\n            <p>\n              <span class=\"d-lg-none d-md-block\">Some Actions</span>\n            </p>\n          </a>\n          <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"navbarDropdownMenuLink\" \n         >\n            <a class=\"dropdown-item\" *ngFor=\"let d of data\" \n             (click)=\"onClick(d[1])\" [routerLink]=\"['/job-offer']\">{{d[0]}}</a>\n            <!-- <a class=\"dropdown-item\" (click)=\"onClick(id[1])\" href=\"#\">{{content[1]}}</a>\n            <a class=\"dropdown-item\" (click)=\"onClick(id[2])\" href=\"#\">{{content[2]}}</a>\n            <a class=\"dropdown-item\" (click)=\"onClick(id[3])\" href=\"#\">{{content[3]}}</a>\n            <a class=\"dropdown-item\" (click)=\"onClick(id[4])\" href=\"#\">{{content[4]}}</a> -->\n            <a class=\"dropdown-item\" [routerLink]=\"['/offers-list']\"> -- عرض جميع الأعلانات --</a>\n          </div>\n        </li>\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/edit-cv']\">تعديل السيرة الذاتية</a>\n        </li>\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/sign-up']\">تسجيل خروج</a>\n        </li>\n      </ul>\n    </div>\n  </div>\n</nav>\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -1165,6 +1215,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var src_app_my_cv_user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/my-cv/user.service */ "./src/app/my-cv/user.service.ts");
+/* harmony import */ var src_app_data_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/data.service */ "./src/app/data.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1177,13 +1228,16 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var UserComponent = /** @class */ (function () {
-    function UserComponent(router, element, userService) {
+    function UserComponent(router, element, userService, dataService) {
         this.router = router;
         this.element = element;
         this.userService = userService;
+        this.dataService = dataService;
         this.id = [];
         this.content = [];
+        this.data = [];
     }
     UserComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1195,11 +1249,15 @@ var UserComponent = /** @class */ (function () {
             for (var i = 0; i < _this.count; i++) {
                 _this.id.push(res.id[i]);
                 _this.content.push(res.content[i].job_Name);
+                _this.data.push([
+                    _this.content[i],
+                    _this.id[i]
+                ]);
             }
         });
     };
     UserComponent.prototype.onClick = function (id) {
-        console.log(id);
+        this.dataService.changeMessage(id);
     };
     UserComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -1207,7 +1265,7 @@ var UserComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./user.component.html */ "./src/app/layouts/user/user.component.html"),
             styles: [__webpack_require__(/*! ./user.component.css */ "./src/app/layouts/user/user.component.css")]
         }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], src_app_my_cv_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], src_app_my_cv_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"], src_app_data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"]])
     ], UserComponent);
     return UserComponent;
 }());

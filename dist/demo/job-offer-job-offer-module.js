@@ -18,7 +18,7 @@ module.exports = "/*--------------------------- Color variations ---------------
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- Start post Area -->\n<section class=\"post-area section-gap\">\n  <div class=\"container\">\n    <div class=\"row justify-content-center d-flex\">\n      <div class=\"col-lg-12 post-list\">\n        <div class=\"single-post d-flex flex-row\">\n          <div class=\"col-lg-3\">\n            <div class=\"thumb\">\n              <img src=\"./assets/img/post.png\" alt=\"\" id=\"custom-img\">\n            </div>\n          </div>\n          <div class=\"col-lg-9\">\n            <div class=\"details\">\n              <div class=\"title d-flex flex-row justify-content-between\">\n                <div class=\"titles\">\n                  <a>\n                    <h4 class=\"custom-h h4-w\">Creative Art Designer</h4>\n                  </a>\n                  <h6 class=\"custom-h\">Premium Labels Limited</h6>\n                  <h6 class=\"custom-h\">المملكة العربية السعودية - الرياض</h6>\n                </div>\n              </div>\n              <p class=\"custom-p\">\n                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et\n                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip\n                ex\n                ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu\n                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia\n                deserunt\n                mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium\n                doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi\n                architecto\n                beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut\n                fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro\n                quisquam\n                est, qui dolorem ipsum quia dolor sit amet, consectetur.\n              </p>\n              <h5 class=\"custom-h\">التخصص العام: Software Engineering</h5>\n              <h5 class=\"custom-h\">التخصص الدقيق: Full Stack Web Developer</h5>\n              <h5 class=\"custom-h\">المستوى التعليمي: بكالوريوس</h5>\n              <h5 class=\"custom-h\">الحالة الدراسية: طالب</h5>\n              <h5 class=\"custom-h\">نوع العقد: Full time</h5>\n              <h5 class=\"custom-h\">ساعات العمل اليومي: 7</h5>\n              <h5 class=\"custom-h\">الراتب: 3000 ريال</h5>\n              <h5 class=\"custom-h\">اللغات:</h5>\n              <mat-chip-list>\n                <mat-chip color=\"primary\" selected>Primary fish</mat-chip>\n                <mat-chip color=\"accent\" selected>Accent fish</mat-chip>\n              </mat-chip-list>\n              <h5 class=\"custom-h custom-tag\">المهارات الوظيفية :</h5>\n              <mat-chip-list>\n                <mat-chip>One fish</mat-chip>\n                <mat-chip>Two fish</mat-chip>\n                <mat-chip color=\"primary\" selected>Primary fish</mat-chip>\n                <mat-chip color=\"accent\" selected>Accent fish</mat-chip>\n              </mat-chip-list>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</section>\n<!-- End post Area -->"
+module.exports = "<!-- Start post Area -->\n<section class=\"post-area section-gap\">\n  <div class=\"container\">\n    <div class=\"row justify-content-center d-flex\">\n      <div class=\"col-lg-12 post-list\">\n        <div class=\"single-post d-flex flex-row\">\n          <div class=\"col-lg-3\">\n            <div class=\"thumb\">\n              <img src=\"./assets/img/post.png\" alt=\"\" id=\"custom-img\">\n            </div>\n          </div>\n          <div class=\"col-lg-9\">\n            <div class=\"details\">\n              <div class=\"title d-flex flex-row justify-content-between\">\n                <div class=\"titles\">\n                  <a>\n                    <h4 class=\"custom-h h4-w\">{{job.job_Name}}</h4>\n                  </a>\n                \n                  <h6 class=\"custom-h\">{{job.country}} - {{job.city}}</h6>\n                </div>\n              </div>\n              <!-- <p class=\"custom-p\">\n                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et\n                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip\n                ex\n                ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu\n                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia\n                deserunt\n                mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium\n                doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi\n                architecto\n                beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut\n                fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro\n                quisquam\n                est, qui dolorem ipsum quia dolor sit amet, consectetur.\n              </p> -->\n              <h5 class=\"custom-h\">التخصص العام: {{job.public_Major}}</h5>\n              <!-- <h5 class=\"custom-h\">التخصص الدقيق: Full Stack Web Developer</h5> -->\n              <h5 class=\"custom-h\">المستوى التعليمي: بكالوريوس</h5>\n              <h5 class=\"custom-h\">الحالة الدراسية: طالب</h5>\n              <h5 class=\"custom-h\">نوع العقد: {{job.contract}}</h5>\n              <h5 class=\"custom-h\">ساعات العمل اليومي: {{job.work_hours}}</h5>\n              <h5 class=\"custom-h\">الراتب: {{job.salary}} ريال</h5>\n              <h5 class=\"custom-h\">تاريخ بدأ العمل : {{job.startDate}}</h5>\n\n              <!-- <h5 class=\"custom-h\">اللغات:</h5> -->\n              <!-- <mat-chip-list>\n                <mat-chip color=\"primary\" selected>Primary fish</mat-chip>\n                <mat-chip color=\"accent\" selected>Accent fish</mat-chip>\n              </mat-chip-list> -->\n              <!-- <h5 class=\"custom-h custom-tag\">المهارات الوظيفية :</h5> -->\n              <mat-chip-list>\n                <mat-chip>الجنس : {{job.gender}}</mat-chip>\n                <!-- <mat-chip>Two fish</mat-chip>\n                <mat-chip color=\"primary\" selected>Primary fish</mat-chip>\n                <mat-chip color=\"accent\" selected>Accent fish</mat-chip> -->\n              </mat-chip-list>\n              <button (click)=\"onApply()\">ِتقديم</button>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</section>\n<!-- End post Area -->"
 
 /***/ }),
 
@@ -33,6 +33,8 @@ module.exports = "<!-- Start post Area -->\n<section class=\"post-area section-g
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "JobOfferComponent", function() { return JobOfferComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _add_job_job_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../add-job/job.service */ "./src/app/add-job/job.service.ts");
+/* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../data.service */ "./src/app/data.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -43,10 +45,53 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var JobOfferComponent = /** @class */ (function () {
-    function JobOfferComponent() {
+    function JobOfferComponent(jobService, dataService) {
+        this.jobService = jobService;
+        this.dataService = dataService;
     }
     JobOfferComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.dataService.currentMessage.subscribe(function (r) {
+            _this.offerId = r;
+            _this.getJobOffer(_this.offerId);
+        });
+    };
+    JobOfferComponent.prototype.getJobOffer = function (id) {
+        var _this = this;
+        this.jobService.getJob(id).subscribe(function (res) {
+            _this.job = {
+                city: res.City,
+                contract: res.Contract,
+                country: res.Country,
+                gender: res.job.gender,
+                job_Name: res.job.job_Name,
+                public_Major: res.job.public_Major,
+                salary: res.job.salary,
+                startDate: _this.DateFormat(res.job.startDate),
+                work_days: res.job.work_days,
+                work_hours: res.job.work_hours
+            };
+        });
+    };
+    JobOfferComponent.prototype.DateFormat = function (date) {
+        var mdate = new Date(date);
+        var dd = mdate.getDate();
+        var mm = mdate.getMonth() + 1;
+        var yyyy = mdate.getFullYear();
+        if (dd < 10) {
+            dd = 0 + dd;
+        }
+        if (mm < 10) {
+            mm = 0 + mm;
+        }
+        var currentDate = mm + '/' + dd + '/' + yyyy;
+        return currentDate;
+    };
+    JobOfferComponent.prototype.onApply = function () {
+        this.jobService.applyJob(this.offerId);
     };
     JobOfferComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -54,7 +99,7 @@ var JobOfferComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./job-offer.component.html */ "./src/app/job-offer/job-offer.component.html"),
             styles: [__webpack_require__(/*! ./job-offer.component.css */ "./src/app/job-offer/job-offer.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_add_job_job_service__WEBPACK_IMPORTED_MODULE_1__["JobService"], _data_service__WEBPACK_IMPORTED_MODULE_2__["DataService"]])
     ], JobOfferComponent);
     return JobOfferComponent;
 }());

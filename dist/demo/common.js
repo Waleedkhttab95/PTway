@@ -50,6 +50,15 @@ var JobService = /** @class */ (function () {
             _this.router.navigate(['/']);
         });
     };
+    JobService.prototype.applyJob = function (jobAd) {
+        var _this = this;
+        jobAd = {
+            jobAd: jobAd
+        };
+        this.http.post(BackUrl + '/postBodyC', jobAd).subscribe(function (result) {
+            _this.router.navigate(['/my-cv']);
+        });
+    };
     JobService.prototype.sendJob = function (data) {
         var _this = this;
         this.http

@@ -97,7 +97,7 @@ var MyOffersComponent = /** @class */ (function () {
             _this.projectId = m;
         });
         this.authService.autoAuthUser();
-        this.jobService.getJobs('5c6bd0e0baf49b0016dabe51').subscribe(function (response) {
+        this.jobService.getJobs(this.projectId).subscribe(function (response) {
             console.log(response);
             for (var i = 0; i < response.count; i++) {
                 _this.dataRows.push(response.jobNames[i]);
