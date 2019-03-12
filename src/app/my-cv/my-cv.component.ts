@@ -14,13 +14,12 @@ export class MyCvComponent implements OnInit {
   ngOnInit() {
 
     // to get user name
-    this.userService.getUser().subscribe((res: any)  =>{
-      console.log(res.firstName +' '+ res.lastName)
+    
       // to get user info
       this.userService.getUserInfo().subscribe((res: any) =>{
         console.log(res.about);
         // the same syntax res. 
-      })
+     
     })
 
 
