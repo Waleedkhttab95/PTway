@@ -4,8 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { FormGroup, FormControl, Validators, FormBuilder, NgForm, AbstractControl, FormGroupDirective } from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material/core';
-import{SignUpService} from './sign-up.service';
+import { ErrorStateMatcher } from '@angular/material/core';
+import { SignUpService } from './sign-up.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -63,7 +63,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
   matcher = new MyErrorStateMatcher();
 
-  constructor(public rest:SignUpService,public authService: AuthService, private route: ActivatedRoute, private router: Router, private fb: FormBuilder) { }
+  constructor(public rest: SignUpService, public authService: AuthService, private route: ActivatedRoute, private router: Router, private fb: FormBuilder) { }
 
   test: Date = new Date();
   isLoading = false;
@@ -80,7 +80,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
     this.rest.getsectors().subscribe((data: {}) => {
       console.log(data);
       for (let key in data) {
-          this.sectors.push({value:data[key]._id, viewValue:data[key].sectorName});
+        this.sectors.push({ value: data[key]._id, viewValue: data[key].sectorName });
       }
       console.log(this.sectors);
     });
@@ -91,7 +91,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
     this.rest.getspecialization().subscribe((data: {}) => {
       console.log(data);
       for (let key in data) {
-          this.CompanySpecialists.push({value:data[key]._id, viewValue:data[key].specialistName});
+        this.CompanySpecialists.push({ value: data[key]._id, viewValue: data[key].specialistName });
       }
       console.log(this.CompanySpecialists);
     });
@@ -99,9 +99,9 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
   userRegistreing() {
     console.log(this.userRegistrForm.value);
-    this.authService.createUser(this.userRegistrForm.value.firstName,this.userRegistrForm.value.lastName,
-      this.userRegistrForm.value.email,this.userRegistrForm.value.password);
-    }
+    this.authService.createUser(this.userRegistrForm.value.firstName, this.userRegistrForm.value.lastName,
+      this.userRegistrForm.value.email, this.userRegistrForm.value.password);
+  }
 
   companyRegistreing() {
     console.log(this.companyRegistrForm.value);

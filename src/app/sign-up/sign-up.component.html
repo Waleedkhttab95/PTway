@@ -153,7 +153,7 @@
                           </label>
                         </div>
                         <div class="text-center">
-                          <button class="btn btn-primary btn-round mt-4" type="submit" name="submit">Get Started</button>
+                          <button class="btn btn-primary btn-round mt-4" [disabled]="userRegistrForm.invalid" type="submit" name="submit">Get Started</button>
                         </div>
                       </form>
                     </div>
@@ -319,7 +319,7 @@
                           </label>
                         </div>
                         <div class="text-center">
-                          <button class="btn btn-primary btn-round mt-4" type="submit" name="submit">Get Started</button>
+                          <button class="btn btn-primary btn-round mt-4" [disabled]="companyRegistrForm.invalid" type="submit" name="submit">Get Started</button>
                         </div>
                       </form>
                     </div>
