@@ -78,7 +78,7 @@ export class CandidatesListComponent implements OnInit, AfterViewInit {
      })
 
      this.authService.autoAuthUser();
-     this.offerService.getCandidates('5c63e939453ed8751c55a8b8').subscribe(response =>{
+     this.offerService.getCandidates(this.jobId).subscribe(response =>{
 
       for(var i=0 ; i < response.count ; i++) {
            this.dataRows.push(response.username[i]);
@@ -111,9 +111,9 @@ export class CandidatesListComponent implements OnInit, AfterViewInit {
   }
 
   onAccepted(id: string) {
-    this.count++;
+   // this.count++;
     this.Acc = {
-      jobAd : '5c63e939453ed8751c55a8b8',
+      jobAd : this.jobId,
       acceptedName: id
     }
   

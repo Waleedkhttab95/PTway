@@ -79,7 +79,7 @@ export class AcceptanceListComponent implements OnInit, AfterViewInit {
      })
 
      this.authService.autoAuthUser();
-     this.offerService.getAcceptence('5c63e939453ed8751c55a8b8').subscribe(response =>{
+     this.offerService.getAcceptence(this.jobId).subscribe(response =>{
 
       for(var i=0 ; i < response.count ; i++) {
            this.dataRows.push(response.username[i]);
@@ -106,15 +106,15 @@ export class AcceptanceListComponent implements OnInit, AfterViewInit {
 
   startJob() {
   this.dataJob = {
-    jobAd_id: '5c727aabff7f0d690870f1d9'
+    jobAd_id: this.jobId
   }
     this.offerService.startJob(this.dataJob);
   }
 
   endJob() {
     this.dataJob = {
-      jobAd_id: '5c727aabff7f0d690870f1d9',
-      user: '5c6960c02174e000166fc3dd'
+      jobAd_id: this.jobId,
+      user: this.authService.getUserId
     }
       this.offerService.endJob(this.dataJob);
     }

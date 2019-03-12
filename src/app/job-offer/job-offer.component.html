@@ -14,13 +14,13 @@
               <div class="title d-flex flex-row justify-content-between">
                 <div class="titles">
                   <a>
-                    <h4 class="custom-h h4-w">Creative Art Designer</h4>
+                    <h4 class="custom-h h4-w">{{job.job_Name}}</h4>
                   </a>
-                  <h6 class="custom-h">Premium Labels Limited</h6>
-                  <h6 class="custom-h">المملكة العربية السعودية - الرياض</h6>
+                
+                  <h6 class="custom-h">{{job.country}} - {{job.city}}</h6>
                 </div>
               </div>
-              <p class="custom-p">
+              <!-- <p class="custom-p">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
                 dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
                 ex
@@ -34,26 +34,29 @@
                 fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro
                 quisquam
                 est, qui dolorem ipsum quia dolor sit amet, consectetur.
-              </p>
-              <h5 class="custom-h">التخصص العام: Software Engineering</h5>
-              <h5 class="custom-h">التخصص الدقيق: Full Stack Web Developer</h5>
+              </p> -->
+              <h5 class="custom-h">التخصص العام: {{job.public_Major}}</h5>
+              <!-- <h5 class="custom-h">التخصص الدقيق: Full Stack Web Developer</h5> -->
               <h5 class="custom-h">المستوى التعليمي: بكالوريوس</h5>
               <h5 class="custom-h">الحالة الدراسية: طالب</h5>
-              <h5 class="custom-h">نوع العقد: Full time</h5>
-              <h5 class="custom-h">ساعات العمل اليومي: 7</h5>
-              <h5 class="custom-h">الراتب: 3000 ريال</h5>
-              <h5 class="custom-h">اللغات:</h5>
-              <mat-chip-list>
+              <h5 class="custom-h">نوع العقد: {{job.contract}}</h5>
+              <h5 class="custom-h">ساعات العمل اليومي: {{job.work_hours}}</h5>
+              <h5 class="custom-h">الراتب: {{job.salary}} ريال</h5>
+              <h5 class="custom-h">تاريخ بدأ العمل : {{job.startDate}}</h5>
+
+              <!-- <h5 class="custom-h">اللغات:</h5> -->
+              <!-- <mat-chip-list>
                 <mat-chip color="primary" selected>Primary fish</mat-chip>
                 <mat-chip color="accent" selected>Accent fish</mat-chip>
-              </mat-chip-list>
-              <h5 class="custom-h custom-tag">المهارات الوظيفية :</h5>
+              </mat-chip-list> -->
+              <!-- <h5 class="custom-h custom-tag">المهارات الوظيفية :</h5> -->
               <mat-chip-list>
-                <mat-chip>One fish</mat-chip>
-                <mat-chip>Two fish</mat-chip>
+                <mat-chip>الجنس : {{job.gender}}</mat-chip>
+                <!-- <mat-chip>Two fish</mat-chip>
                 <mat-chip color="primary" selected>Primary fish</mat-chip>
-                <mat-chip color="accent" selected>Accent fish</mat-chip>
+                <mat-chip color="accent" selected>Accent fish</mat-chip> -->
               </mat-chip-list>
+              <button (click)="onApply()">ِتقديم</button>
             </div>
           </div>
         </div>

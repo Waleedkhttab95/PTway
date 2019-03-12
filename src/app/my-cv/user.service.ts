@@ -49,4 +49,6 @@ const BackUrl = 'https://cors-anywhere.herokuapp.com/https://ptway-dev.herokuapp
         return this.http
         .get(BackUrl + '/get/notification?notiId='+id);
     }
+
+   
  }

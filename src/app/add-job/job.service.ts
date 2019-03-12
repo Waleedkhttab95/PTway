@@ -30,6 +30,15 @@ export class JobService {
             });
     }
 
+    applyJob(jobAd) {
+        jobAd = {
+            jobAd: jobAd
+        }
+        this.http.post(BackUrl + '/postBodyC', jobAd).subscribe(result =>{
+            this.router.navigate(['/my-cv']);
+        })
+    }
+
     sendJob(data: any) {
         this.http
             .post(BackUrl + '/send/Jobad', data)

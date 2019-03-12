@@ -85,11 +85,13 @@ var map = {
 	],
 	"./my-offers/my-offers.module": [
 		"./src/app/my-offers/my-offers.module.ts",
+		"my-offers-my-offers-module~my-projects-my-projects-module",
 		"common",
 		"my-offers-my-offers-module"
 	],
 	"./my-projects/my-projects.module": [
 		"./src/app/my-projects/my-projects.module.ts",
+		"my-offers-my-offers-module~my-projects-my-projects-module",
 		"common",
 		"my-projects-my-projects-module"
 	],
@@ -135,7 +137,7 @@ module.exports = webpackAsyncContext;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<router-outlet></router-outlet>\n"
+module.exports = "\r\n<router-outlet></router-outlet>\r\n"
 
 /***/ }),
 
@@ -207,19 +209,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/datepicker */ "./node_modules/@angular/material/esm5/datepicker.es5.js");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _sidebar_sidebar_module__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./sidebar/sidebar.module */ "./src/app/sidebar/sidebar.module.ts");
-/* harmony import */ var _shared_footer_footer_module__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./shared/footer/footer.module */ "./src/app/shared/footer/footer.module.ts");
-/* harmony import */ var _shared_navbar_navbar_module__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./shared/navbar/navbar.module */ "./src/app/shared/navbar/navbar.module.ts");
-/* harmony import */ var _shared_fixedplugin_fixedplugin_module__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./shared/fixedplugin/fixedplugin.module */ "./src/app/shared/fixedplugin/fixedplugin.module.ts");
-/* harmony import */ var _layouts_admin_admin_layout_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./layouts/admin/admin-layout.component */ "./src/app/layouts/admin/admin-layout.component.ts");
-/* harmony import */ var _layouts_auth_auth_layout_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./layouts/auth/auth-layout.component */ "./src/app/layouts/auth/auth-layout.component.ts");
-/* harmony import */ var _layouts_user_user_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./layouts/user/user.component */ "./src/app/layouts/user/user.component.ts");
-/* harmony import */ var _layouts_registration_registration_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./layouts/registration/registration.component */ "./src/app/layouts/registration/registration.component.ts");
-/* harmony import */ var _auth_interceptor__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./auth-interceptor */ "./src/app/auth-interceptor.ts");
-/* harmony import */ var _app_routing__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./app.routing */ "./src/app/app.routing.ts");
+/* harmony import */ var _app_auth_auth_guard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../app/auth/auth.guard */ "./src/app/auth/auth.guard.ts");
+/* harmony import */ var _app_auth_auth_company_guard__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../app/auth/auth.company.guard */ "./src/app/auth/auth.company.guard.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/material/datepicker */ "./node_modules/@angular/material/esm5/datepicker.es5.js");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _sidebar_sidebar_module__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./sidebar/sidebar.module */ "./src/app/sidebar/sidebar.module.ts");
+/* harmony import */ var _shared_footer_footer_module__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./shared/footer/footer.module */ "./src/app/shared/footer/footer.module.ts");
+/* harmony import */ var _shared_navbar_navbar_module__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./shared/navbar/navbar.module */ "./src/app/shared/navbar/navbar.module.ts");
+/* harmony import */ var _shared_fixedplugin_fixedplugin_module__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./shared/fixedplugin/fixedplugin.module */ "./src/app/shared/fixedplugin/fixedplugin.module.ts");
+/* harmony import */ var _layouts_admin_admin_layout_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./layouts/admin/admin-layout.component */ "./src/app/layouts/admin/admin-layout.component.ts");
+/* harmony import */ var _layouts_auth_auth_layout_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./layouts/auth/auth-layout.component */ "./src/app/layouts/auth/auth-layout.component.ts");
+/* harmony import */ var _layouts_user_user_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./layouts/user/user.component */ "./src/app/layouts/user/user.component.ts");
+/* harmony import */ var _layouts_registration_registration_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./layouts/registration/registration.component */ "./src/app/layouts/registration/registration.component.ts");
+/* harmony import */ var _auth_interceptor__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./auth-interceptor */ "./src/app/auth-interceptor.ts");
+/* harmony import */ var _app_routing__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./app.routing */ "./src/app/app.routing.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -245,43 +249,45 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+
 var MaterialModule = /** @class */ (function () {
     function MaterialModule() {
     }
     MaterialModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
             exports: [
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatAutocompleteModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatButtonModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatButtonToggleModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatCardModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatCheckboxModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatChipsModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatStepperModule"],
-                _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_7__["MatDatepickerModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatDialogModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatExpansionModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatGridListModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatIconModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatInputModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatListModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatMenuModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatNativeDateModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatPaginatorModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatProgressBarModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatProgressSpinnerModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatRadioModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatRippleModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatSelectModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatSidenavModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatSliderModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatSlideToggleModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatSnackBarModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatSortModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatTableModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatTabsModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatToolbarModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatTooltipModule"]
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatAutocompleteModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatButtonModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatButtonToggleModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatCardModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatCheckboxModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatChipsModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatStepperModule"],
+                _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_9__["MatDatepickerModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatDialogModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatExpansionModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatGridListModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatIconModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatInputModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatListModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatMenuModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatNativeDateModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatPaginatorModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatProgressBarModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatProgressSpinnerModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatRadioModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatRippleModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatSelectModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatSidenavModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatSliderModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatSlideToggleModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatSnackBarModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatSortModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatTableModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatTabsModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatToolbarModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatTooltipModule"]
             ],
             declarations: [],
         })
@@ -298,25 +304,26 @@ var AppModule = /** @class */ (function () {
                 _angular_common__WEBPACK_IMPORTED_MODULE_5__["CommonModule"],
                 _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_1__["BrowserAnimationsModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"],
-                _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(_app_routing__WEBPACK_IMPORTED_MODULE_18__["AppRoutes"]),
+                _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(_app_routing__WEBPACK_IMPORTED_MODULE_20__["AppRoutes"]),
                 MaterialModule,
-                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatNativeDateModule"],
-                _sidebar_sidebar_module__WEBPACK_IMPORTED_MODULE_9__["SidebarModule"],
-                _shared_navbar_navbar_module__WEBPACK_IMPORTED_MODULE_11__["NavbarModule"],
-                _shared_footer_footer_module__WEBPACK_IMPORTED_MODULE_10__["FooterModule"],
-                _shared_fixedplugin_fixedplugin_module__WEBPACK_IMPORTED_MODULE_12__["FixedpluginModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatNativeDateModule"],
+                _sidebar_sidebar_module__WEBPACK_IMPORTED_MODULE_11__["SidebarModule"],
+                _shared_navbar_navbar_module__WEBPACK_IMPORTED_MODULE_13__["NavbarModule"],
+                _shared_footer_footer_module__WEBPACK_IMPORTED_MODULE_12__["FooterModule"],
+                _shared_fixedplugin_fixedplugin_module__WEBPACK_IMPORTED_MODULE_14__["FixedpluginModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_4__["ReactiveFormsModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"]
             ],
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"],
-                _layouts_admin_admin_layout_component__WEBPACK_IMPORTED_MODULE_13__["AdminLayoutComponent"],
-                _layouts_auth_auth_layout_component__WEBPACK_IMPORTED_MODULE_14__["AuthLayoutComponent"],
-                _layouts_user_user_component__WEBPACK_IMPORTED_MODULE_15__["UserComponent"],
-                _layouts_registration_registration_component__WEBPACK_IMPORTED_MODULE_16__["RegistrationComponent"]
+                _app_component__WEBPACK_IMPORTED_MODULE_10__["AppComponent"],
+                _layouts_admin_admin_layout_component__WEBPACK_IMPORTED_MODULE_15__["AdminLayoutComponent"],
+                _layouts_auth_auth_layout_component__WEBPACK_IMPORTED_MODULE_16__["AuthLayoutComponent"],
+                _layouts_user_user_component__WEBPACK_IMPORTED_MODULE_17__["UserComponent"],
+                _layouts_registration_registration_component__WEBPACK_IMPORTED_MODULE_18__["RegistrationComponent"]
             ],
-            providers: [{ provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HTTP_INTERCEPTORS"], useClass: _auth_interceptor__WEBPACK_IMPORTED_MODULE_17__["AuthInterceptor"], multi: true }],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"]]
+            providers: [{ provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HTTP_INTERCEPTORS"], useClass: _auth_interceptor__WEBPACK_IMPORTED_MODULE_19__["AuthInterceptor"], multi: true },
+                _app_auth_auth_guard__WEBPACK_IMPORTED_MODULE_6__["AuthGuard"], _app_auth_auth_company_guard__WEBPACK_IMPORTED_MODULE_7__["Auth_company_Guard"]],
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_10__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -340,6 +347,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _layouts_auth_auth_layout_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./layouts/auth/auth-layout.component */ "./src/app/layouts/auth/auth-layout.component.ts");
 /* harmony import */ var _layouts_user_user_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./layouts/user/user.component */ "./src/app/layouts/user/user.component.ts");
 /* harmony import */ var _layouts_registration_registration_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./layouts/registration/registration.component */ "./src/app/layouts/registration/registration.component.ts");
+/* harmony import */ var _app_auth_auth_guard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../app/auth/auth.guard */ "./src/app/auth/auth.guard.ts");
+/* harmony import */ var _auth_auth_company_guard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./auth/auth.company.guard */ "./src/app/auth/auth.company.guard.ts");
+
+
 
 
 
@@ -358,36 +369,46 @@ var AppRoutes = [
                 loadChildren: './dashboard/dashboard.module#DashboardModule'
             }, {
                 path: 'add-project',
+                canActivate: [_auth_auth_company_guard__WEBPACK_IMPORTED_MODULE_5__["Auth_company_Guard"]],
                 loadChildren: './add-project/add-project.module#AddProjectModule'
             }, {
                 path: 'add-job',
+                canActivate: [_auth_auth_company_guard__WEBPACK_IMPORTED_MODULE_5__["Auth_company_Guard"]],
                 loadChildren: './add-job/add-job.module#AddJobModule'
             }, {
                 path: 'my-projects',
+                canActivate: [_auth_auth_company_guard__WEBPACK_IMPORTED_MODULE_5__["Auth_company_Guard"]],
                 loadChildren: './my-projects/my-projects.module#MyProjectsModule'
             }, {
                 path: 'job-offer-check',
+                canActivate: [_app_auth_auth_guard__WEBPACK_IMPORTED_MODULE_4__["AuthGuard"]],
                 loadChildren: './job-offer-check/job-offer-check.module#JobOfferCheckModule'
             }, {
                 path: 'job-offer-preview',
+                canActivate: [_app_auth_auth_guard__WEBPACK_IMPORTED_MODULE_4__["AuthGuard"]],
                 loadChildren: './job-offer-preview/job-offer-preview.module#JobOfferPreviewModule'
             }, {
                 path: 'my-offers',
+                canActivate: [_auth_auth_company_guard__WEBPACK_IMPORTED_MODULE_5__["Auth_company_Guard"]],
                 loadChildren: './my-offers/my-offers.module#MyOffersModule'
             }, {
                 path: 'candidates-list',
+                canActivate: [_auth_auth_company_guard__WEBPACK_IMPORTED_MODULE_5__["Auth_company_Guard"]],
                 loadChildren: './candidates-list/candidates-list.module#CandidatesListModule'
             }, {
                 path: 'acceptance-list',
+                canActivate: [_auth_auth_company_guard__WEBPACK_IMPORTED_MODULE_5__["Auth_company_Guard"]],
                 loadChildren: './acceptance-list/acceptance-list.module#AcceptanceListModule'
             }, {
                 path: 'error-message',
                 loadChildren: './error-message/error-message.module#ErrorMessageModule'
             }, {
                 path: 'company-profile',
+                canActivate: [_app_auth_auth_guard__WEBPACK_IMPORTED_MODULE_4__["AuthGuard"]],
                 loadChildren: './company-profile/company-profile.module#CompanyProfileModule'
             }, {
                 path: 'edit-company-profile',
+                canActivate: [_auth_auth_company_guard__WEBPACK_IMPORTED_MODULE_5__["Auth_company_Guard"]],
                 loadChildren: './edit-company-profile/edit-company-profile.module#EditCompanyProfileModule'
             }
         ]
@@ -409,15 +430,19 @@ var AppRoutes = [
         children: [
             {
                 path: 'my-cv',
+                canActivate: [_app_auth_auth_guard__WEBPACK_IMPORTED_MODULE_4__["AuthGuard"]],
                 loadChildren: './my-cv/my-cv.module#MyCvModule'
             }, {
                 path: 'offers-list',
+                canActivate: [_app_auth_auth_guard__WEBPACK_IMPORTED_MODULE_4__["AuthGuard"]],
                 loadChildren: './offers-list/offers-list.module#OffersListModule'
             }, {
                 path: 'edit-cv',
+                canActivate: [_app_auth_auth_guard__WEBPACK_IMPORTED_MODULE_4__["AuthGuard"]],
                 loadChildren: './edit-cv/edit-cv.module#EditCvModule'
             }, {
                 path: 'job-offer',
+                canActivate: [_app_auth_auth_guard__WEBPACK_IMPORTED_MODULE_4__["AuthGuard"]],
                 loadChildren: './job-offer/job-offer.module#JobOfferModule'
             }
         ]
@@ -427,9 +452,11 @@ var AppRoutes = [
         children: [
             {
                 path: 'add-company-info',
+                canActivate: [_auth_auth_company_guard__WEBPACK_IMPORTED_MODULE_5__["Auth_company_Guard"]],
                 loadChildren: './add-company-info/add-company-info.module#AddCompanyInfoModule'
             }, {
                 path: 'add-user-info',
+                canActivate: [_app_auth_auth_guard__WEBPACK_IMPORTED_MODULE_4__["AuthGuard"]],
                 loadChildren: './add-user-info/add-user-info.module#AddUserInfoModule'
             }
         ]
@@ -479,6 +506,109 @@ var AuthInterceptor = /** @class */ (function () {
         __metadata("design:paramtypes", [_app_auth_auth_service__WEBPACK_IMPORTED_MODULE_0__["AuthService"]])
     ], AuthInterceptor);
     return AuthInterceptor;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/auth/auth.company.guard.ts":
+/*!********************************************!*\
+  !*** ./src/app/auth/auth.company.guard.ts ***!
+  \********************************************/
+/*! exports provided: Auth_company_Guard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Auth_company_Guard", function() { return Auth_company_Guard; });
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./auth.service */ "./src/app/auth/auth.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var Auth_company_Guard = /** @class */ (function () {
+    function Auth_company_Guard(authService, router) {
+        this.authService = authService;
+        this.router = router;
+    }
+    Auth_company_Guard.prototype.canActivate = function (route, state) {
+        this.authService.autoAuthUser();
+        var isAuth = this.authService.getIsAuth();
+        var isCompany = this.authService.getIsCompany();
+        console.log(isCompany);
+        if (!isAuth && isCompany !== 'true') {
+            this.router.navigate(['/sign-in']);
+        }
+        return isAuth;
+    };
+    Auth_company_Guard = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])(),
+        __metadata("design:paramtypes", [_auth_service__WEBPACK_IMPORTED_MODULE_0__["AuthService"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
+    ], Auth_company_Guard);
+    return Auth_company_Guard;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/auth/auth.guard.ts":
+/*!************************************!*\
+  !*** ./src/app/auth/auth.guard.ts ***!
+  \************************************/
+/*! exports provided: AuthGuard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthGuard", function() { return AuthGuard; });
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./auth.service */ "./src/app/auth/auth.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var AuthGuard = /** @class */ (function () {
+    function AuthGuard(authService, router) {
+        this.authService = authService;
+        this.router = router;
+    }
+    AuthGuard.prototype.canActivate = function (route, state) {
+        this.authService.autoAuthUser();
+        var isAuth = this.authService.getIsAuth();
+        var isCompany = this.authService.getIsCompany();
+        console.log(isCompany);
+        // tslint:disable-next-line: triple-equals
+        if (!isAuth || isCompany == 'true') {
+            this.router.navigate(['/sign-in']);
+        }
+        return isAuth;
+    };
+    AuthGuard = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])(),
+        __metadata("design:paramtypes", [_auth_service__WEBPACK_IMPORTED_MODULE_0__["AuthService"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
+    ], AuthGuard);
+    return AuthGuard;
 }());
 
 
@@ -566,6 +696,7 @@ var AuthService = /** @class */ (function () {
             if (token) {
                 _this.token = token;
                 _this.isAuth = true;
+                _this.isCompany = 'false';
                 _this.userId = response.userId;
                 _this.authStatusListener.next(true);
                 _this.saveAuthData(token, _this.userId, _this.isCompany);
@@ -661,7 +792,7 @@ var AuthService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"wrapper\">\n    <div class=\"sidebar\" data-color=\"white\" data-background-color=\"blue\" data-image=\"./assets/img/sidebar-1.jpg\">\n        <app-sidebar-cmp></app-sidebar-cmp>\n        <div class=\"sidebar-background\" style=\"background-image: url(assets/img/sidebar-1.jpg)\"></div>\n    </div>\n    <div class=\"main-panel\">\n        <app-navbar-cmp></app-navbar-cmp>\n        <router-outlet></router-outlet>\n        <div *ngIf=\"!isMap()\">\n            <app-footer-cmp></app-footer-cmp>\n        </div>\n    </div>\n</div>\n"
+module.exports = "\r\n<div class=\"wrapper\">\r\n    <div class=\"sidebar\" data-color=\"white\" data-background-color=\"blue\" data-image=\"./assets/img/sidebar-1.jpg\">\r\n        <app-sidebar-cmp></app-sidebar-cmp>\r\n        <div class=\"sidebar-background\" style=\"background-image: url(assets/img/sidebar-1.jpg)\"></div>\r\n    </div>\r\n    <div class=\"main-panel\">\r\n        <app-navbar-cmp></app-navbar-cmp>\r\n        <router-outlet></router-outlet>\r\n        <div *ngIf=\"!isMap()\">\r\n            <app-footer-cmp></app-footer-cmp>\r\n        </div>\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -843,7 +974,7 @@ var AdminLayoutComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg bg-primary navbar-transparent navbar-absolute\" color-on-scroll=\"500\">\n  <div class=\"container\">\n    <div class=\"navbar-wrapper\">\n      <a class=\"navbar-brand-logo d-none d-sm-none d-md-block\">\n        <strong>Pt</strong>way\n        <img src=\"../../../assets/img/32X32.png\">\n      </a>\n      <a class=\"navbar-brand-logo  d-block d-sm-block d-md-none\">\n        <strong>Pt</strong>way\n        <img src=\"../../../assets/img/32X32.png\">\n      </a>\n    </div>\n    <button mat-button class=\"navbar-toggler\" type=\"button\" (click)=\"sidebarToggle()\">\n      <span class=\"sr-only\">Toggle navigation</span>\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\n    </button>\n    <div class=\"collapse navbar-collapse justify-content-end\">\n      <ul class=\"navbar-nav\">\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/sign-up']\">\n            <i class=\"material-icons\">person_add</i> التسجيل\n          </a>\n        </li>\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/sign-in']\">\n            <i class=\"material-icons\">fingerprint</i> تسجيل الدخول\n          </a>\n        </li>\n      </ul>\n    </div>\n  </div>\n</nav>\n  <router-outlet></router-outlet>\n"
+module.exports = "<nav class=\"navbar navbar-expand-lg bg-primary navbar-transparent navbar-absolute\" color-on-scroll=\"500\">\r\n  <div class=\"container\">\r\n    <div class=\"navbar-wrapper\">\r\n      <a class=\"navbar-brand-logo d-none d-sm-none d-md-block\">\r\n        <strong>Pt</strong>way\r\n        <img src=\"../../../assets/img/32X32.png\">\r\n      </a>\r\n      <a class=\"navbar-brand-logo  d-block d-sm-block d-md-none\">\r\n        <strong>Pt</strong>way\r\n        <img src=\"../../../assets/img/32X32.png\">\r\n      </a>\r\n    </div>\r\n    <button mat-button class=\"navbar-toggler\" type=\"button\" (click)=\"sidebarToggle()\">\r\n      <span class=\"sr-only\">Toggle navigation</span>\r\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\r\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\r\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\r\n    </button>\r\n    <div class=\"collapse navbar-collapse justify-content-end\">\r\n      <ul class=\"navbar-nav\">\r\n        <li class=\"nav-item\" routerLinkActive=\"active\">\r\n          <a class=\"nav-link\" [routerLink]=\"['/sign-up']\">\r\n            <i class=\"material-icons\">person_add</i> التسجيل\r\n          </a>\r\n        </li>\r\n        <li class=\"nav-item\" routerLinkActive=\"active\">\r\n          <a class=\"nav-link\" [routerLink]=\"['/sign-in']\">\r\n            <i class=\"material-icons\">fingerprint</i> تسجيل الدخول\r\n          </a>\r\n        </li>\r\n      </ul>\r\n    </div>\r\n  </div>\r\n</nav>\r\n  <router-outlet></router-outlet>\r\n"
 
 /***/ }),
 
@@ -1006,7 +1137,7 @@ var RegistrationComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".nav-link {\n    display: inline-flex;\n}"
+module.exports = ".nav-link {\r\n    display: inline-flex;\r\n}"
 
 /***/ }),
 
@@ -1017,7 +1148,7 @@ module.exports = ".nav-link {\n    display: inline-flex;\n}"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-primary\">\n  <div class=\"container\">\n    <a class=\"navbar-brand-logo\" href=\"#\">\n      <strong>Pt</strong>way\n      <img src=\"../../assets/img/32X32.png\">\n    </a>\n    <button class=\"navbar-toggler\" type=\"button\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n    <div class=\"collapse navbar-collapse\" id=\"navbarNav\">\n      <ul class=\"navbar-nav\">\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/my-cv']\">السيرة الذاتية <span class=\"sr-only\">(current)</span></a>\n        </li>\n        <li class=\"nav-item dropdown\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" href=\"#pablo\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\"\n            aria-expanded=\"false\">\n            <i class=\"material-icons\">notifications</i>قائمة العروض\n            <span class=\"notification\">5</span>\n            <p>\n              <span class=\"d-lg-none d-md-block\">Some Actions</span>\n            </p>\n          </a>\n          <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"navbarDropdownMenuLink\">\n            <a class=\"dropdown-item\" href=\"#\">اعلان رقم 1</a>\n            <a class=\"dropdown-item\" href=\"#\">اعلان رقم 2</a>\n            <a class=\"dropdown-item\" href=\"#\">اعلان رقم 3</a>\n            <a class=\"dropdown-item\" href=\"#\">اعلان رقم 4</a>\n            <a class=\"dropdown-item\" href=\"#\">اعلان رقم 5</a>\n            <a class=\"dropdown-item\" [routerLink]=\"['/offers-list']\"> -- عرض جميع الأعلانات --</a>\n          </div>\n        </li>\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/edit-cv']\">تعديل السيرة الذاتية</a>\n        </li>\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/sign-up']\">تسجيل خروج</a>\n        </li>\n      </ul>\n    </div>\n  </div>\n</nav>\n<router-outlet></router-outlet>"
+module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-primary\">\r\n  <div class=\"container\">\r\n    <a class=\"navbar-brand-logo\" href=\"#\">\r\n      <strong>Pt</strong>way\r\n      <img src=\"../../assets/img/32X32.png\">\r\n    </a>\r\n    <button class=\"navbar-toggler\" type=\"button\">\r\n      <span class=\"navbar-toggler-icon\"></span>\r\n    </button>\r\n    <div class=\"collapse navbar-collapse\" id=\"navbarNav\">\r\n      <ul class=\"navbar-nav\">\r\n        <li class=\"nav-item\" routerLinkActive=\"active\">\r\n          <a class=\"nav-link\" [routerLink]=\"['/my-cv']\">السيرة الذاتية <span class=\"sr-only\">(current)</span></a>\r\n        </li>\r\n        <li class=\"nav-item dropdown\" routerLinkActive=\"active\">\r\n          <a class=\"nav-link\" href=\"#pablo\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\"\r\n            aria-expanded=\"false\">\r\n            <i class=\"material-icons\">notifications</i>قائمة العروض\r\n            <span class=\"notification\"></span>\r\n            <p>\r\n              <span class=\"d-lg-none d-md-block\">Some Actions</span>\r\n            </p>\r\n          </a>\r\n          <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"navbarDropdownMenuLink\" \r\n          *ngFor=\"let c of content\">\r\n            <a class=\"dropdown-item\" (click)=\"onClick(id)\" [routerLink]=\"['/offers-list']\">{{c}}</a>\r\n            <!-- <a class=\"dropdown-item\" (click)=\"onClick(id[1])\" href=\"#\">{{content[1]}}</a>\r\n            <a class=\"dropdown-item\" (click)=\"onClick(id[2])\" href=\"#\">{{content[2]}}</a>\r\n            <a class=\"dropdown-item\" (click)=\"onClick(id[3])\" href=\"#\">{{content[3]}}</a>\r\n            <a class=\"dropdown-item\" (click)=\"onClick(id[4])\" href=\"#\">{{content[4]}}</a> -->\r\n            <a class=\"dropdown-item\" [routerLink]=\"['/offers-list']\"> -- عرض جميع الأعلانات --</a>\r\n          </div>\r\n        </li>\r\n        <li class=\"nav-item\" routerLinkActive=\"active\">\r\n          <a class=\"nav-link\" [routerLink]=\"['/edit-cv']\">تعديل السيرة الذاتية</a>\r\n        </li>\r\n        <li class=\"nav-item\" routerLinkActive=\"active\">\r\n          <a class=\"nav-link\" [routerLink]=\"['/sign-up']\">تسجيل خروج</a>\r\n        </li>\r\n      </ul>\r\n    </div>\r\n  </div>\r\n</nav>\r\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -1033,6 +1164,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserComponent", function() { return UserComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var src_app_my_cv_user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/my-cv/user.service */ "./src/app/my-cv/user.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1044,12 +1176,30 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var UserComponent = /** @class */ (function () {
-    function UserComponent(router, element) {
+    function UserComponent(router, element, userService) {
         this.router = router;
         this.element = element;
+        this.userService = userService;
+        this.id = [];
+        this.content = [];
     }
     UserComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.userService.getUnreadNotification().subscribe(function (res) {
+            console.log(res);
+            _this.count = res.count;
+        });
+        this.userService.getLastNotification().subscribe(function (res) {
+            for (var i = 0; i < _this.count; i++) {
+                _this.id.push(res.id[i]);
+                _this.content.push(res.content[i].job_Name);
+            }
+        });
+    };
+    UserComponent.prototype.onClick = function (id) {
+        console.log(id);
     };
     UserComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -1057,7 +1207,7 @@ var UserComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./user.component.html */ "./src/app/layouts/user/user.component.html"),
             styles: [__webpack_require__(/*! ./user.component.css */ "./src/app/layouts/user/user.component.css")]
         }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], src_app_my_cv_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"]])
     ], UserComponent);
     return UserComponent;
 }());
@@ -1084,7 +1234,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\">\n  <div class=\"header\">\n    <h4 class=\"title\">{{ title }}</h4>\n    <p class=\"category\">{{ subtitle }}</p>\n  </div>\n  <div class=\"content\">\n    <div [attr.id]=\"chartId\" class=\"ct-chart {{ chartClass }}\"></div>\n\n    <div class=\"footer\">\n      <div class=\"legend\">\n        <span *ngFor=\"let item of legendItems\">\n          <i [ngClass]=\"item.imageClass\"></i> {{ item.title }}\n        </span>\n      </div>\n      <hr *ngIf=\"withHr\">\n      <div class=\"stats\">\n        <i [ngClass]=\"footerIconClass\"></i> {{ footerText }}\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"card\">\r\n  <div class=\"header\">\r\n    <h4 class=\"title\">{{ title }}</h4>\r\n    <p class=\"category\">{{ subtitle }}</p>\r\n  </div>\r\n  <div class=\"content\">\r\n    <div [attr.id]=\"chartId\" class=\"ct-chart {{ chartClass }}\"></div>\r\n\r\n    <div class=\"footer\">\r\n      <div class=\"legend\">\r\n        <span *ngFor=\"let item of legendItems\">\r\n          <i [ngClass]=\"item.imageClass\"></i> {{ item.title }}\r\n        </span>\r\n      </div>\r\n      <hr *ngIf=\"withHr\">\r\n      <div class=\"stats\">\r\n        <i [ngClass]=\"footerIconClass\"></i> {{ footerText }}\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1207,7 +1357,7 @@ var MdChartComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n  <div class=\"content table-responsive\">\n    <table class=\"table\">\n      <tbody>\n          <tr *ngFor=\"let row of data.dataRows\">\n            <!-- <td *ngFor=\"let cell of row\">{{ cell }}</td> -->\n            <td>\n                <div class=\"flag\">\n                    <img src=\"./assets/img/flags/{{row[0]}}.png\" alt=\"\">\n                </div>\n            </td>\n            <td>\n                {{row[1]}}\n            </td>\n            <td class=\"text-right\">\n                {{row[2]}}\n            </td>\n            <td class=\"text-right\">\n                {{row[3]}}\n            </td>\n          </tr>\n      </tbody>\n    </table>\n\n  </div>\n"
+module.exports = "\r\n  <div class=\"content table-responsive\">\r\n    <table class=\"table\">\r\n      <tbody>\r\n          <tr *ngFor=\"let row of data.dataRows\">\r\n            <!-- <td *ngFor=\"let cell of row\">{{ cell }}</td> -->\r\n            <td>\r\n                <div class=\"flag\">\r\n                    <img src=\"./assets/img/flags/{{row[0]}}.png\" alt=\"\">\r\n                </div>\r\n            </td>\r\n            <td>\r\n                {{row[1]}}\r\n            </td>\r\n            <td class=\"text-right\">\r\n                {{row[2]}}\r\n            </td>\r\n            <td class=\"text-right\">\r\n                {{row[3]}}\r\n            </td>\r\n          </tr>\r\n      </tbody>\r\n    </table>\r\n\r\n  </div>\r\n"
 
 /***/ }),
 
@@ -1325,6 +1475,84 @@ var MdModule = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/my-cv/user.service.ts":
+/*!***************************************!*\
+  !*** ./src/app/my-cv/user.service.ts ***!
+  \***************************************/
+/*! exports provided: UserService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserService", function() { return UserService; });
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _auth_auth_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../auth/auth.service */ "./src/app/auth/auth.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var BackUrl = 'https://cors-anywhere.herokuapp.com/https://ptway-dev.herokuapp.com/api';
+var UserService = /** @class */ (function () {
+    function UserService(http, router, auth) {
+        this.http = http;
+        this.router = router;
+        this.auth = auth;
+    }
+    UserService.prototype.addUserInfo = function (data) {
+        var _this = this;
+        this.http
+            .post(BackUrl + '/postuserinfo', data).subscribe(function (response) {
+            _this.router.navigate(['/my-cv']);
+        });
+    };
+    UserService.prototype.getUserInfo = function () {
+        console.log(this.auth.getUserId());
+        return this.http
+            .get(BackUrl + '/getuserinfo');
+    };
+    UserService.prototype.getUser = function () {
+        return this.http
+            .get(BackUrl + '/currentuser');
+    };
+    UserService.prototype.getUnreadNotification = function () {
+        console.log(this.auth.getUserId());
+        return this.http
+            .get(BackUrl + '/get/unread/notification');
+    };
+    UserService.prototype.getLastNotification = function () {
+        return this.http
+            .get(BackUrl + '/get/lastnotifcation');
+    };
+    UserService.prototype.getAllNotification = function () {
+        return this.http
+            .get(BackUrl + '/get/allnotifications');
+    };
+    UserService.prototype.getSpicificNotification = function (id) {
+        return this.http
+            .get(BackUrl + '/get/notification?notiId=' + id);
+    };
+    UserService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({ providedIn: 'root' }),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _auth_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"]])
+    ], UserService);
+    return UserService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/shared/fixedplugin/fixedplugin.component.css":
 /*!**************************************************************!*\
   !*** ./src/app/shared/fixedplugin/fixedplugin.component.css ***!
@@ -1343,7 +1571,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- Fixed Plugin configurator, used just for Demo Purpose -->\n<div class=\"fixed-plugin\">\n    <div class=\"dropdown show-dropdown\">\n        <a href=\"#\" data-toggle=\"dropdown\" aria-expanded=\"true\">\n            <i class=\"fa fa-cog fa-2x\"> </i>\n        </a>\n        <ul class=\"dropdown-menu\">\n            <li class=\"header-title\"> Sidebar Filters</li>\n            <li class=\"adjustments-line\">\n                <a href=\"javascript:void(0)\" class=\"switch-trigger active-color\">\n                  <div class=\"ml-auto mr-auto\">\n                    <span class=\"badge filter badge-purple\" data-color=\"purple\"></span>\n                    <span class=\"badge filter badge-azure active\" data-color=\"azure\"></span>\n                    <span class=\"badge filter badge-green\" data-color=\"green\"></span>\n                    <span class=\"badge filter badge-orange\" data-color=\"orange\"></span>\n                    <span class=\"badge filter badge-danger\" data-color=\"danger\"></span>\n                    <span class=\"badge filter badge-rose\" data-color=\"rose\"></span>\n                  </div>\n                    <div class=\"clearfix\"></div>\n                </a>\n            </li>\n            <li class=\"header-title\">Sidebar Background</li>\n            <li class=\"adjustments-line\">\n                <a href=\"javascript:void(0)\" class=\"switch-trigger background-color\">\n                    <div class=\"ml-auto mr-auto\">\n                        <span class=\"badge filter badge-white\" data-color=\"white\"></span>\n                        <span class=\"badge filter badge-black\" data-color=\"black\"></span>\n                        <span class=\"badge filter badge-danger\" data-color=\"red\"></span>\n                        <span class=\"badge filter badge-primary active\" data-color=\"blue\"></span>\n                    </div>\n                    <div class=\"clearfix\"></div>\n                </a>\n            </li>\n            <li class=\"adjustments-line\">\n              <a href=\"javascript:void(0)\" class=\"switch-trigger\">\n                  <p>Sidebar Mini</p>\n                  <label class=\"ml-auto\">\n                    <div class=\"togglebutton switch-sidebar-mini\">\n                      <label>\n                          <input type=\"checkbox\">\n                              <span class=\"toggle\"></span>\n                      </label>\n                    </div>\n                  </label>\n                  <div class=\"clearfix\"></div>\n                  <div class=\"ripple-container\"></div>\n              </a>\n            </li>\n            <li class=\"adjustments-line\">\n              <a href=\"javascript:void(0)\" class=\"switch-trigger\">\n                  <p>Sidebar Images</p>\n                  <label class=\"switch-mini ml-auto\">\n                    <div class=\"togglebutton switch-sidebar-image\">\n                      <label>\n                          <input type=\"checkbox\" checked=\"\">\n                            <span class=\"toggle\"></span>\n                      </label>\n                    </div>\n                  </label>\n                  <div class=\"clearfix\"></div>\n                  <div class=\"ripple-container\"></div>\n              </a>\n            </li>\n            <li class=\"header-title\">Images</li>\n            <li class=\"active\">\n                <a class=\"img-holder switch-trigger\" href=\"javascript:void(0)\">\n                    <img src=\"./assets/img/sidebar-1.jpg\" alt=\"\" />\n                </a>\n            </li>\n            <li>\n                <a class=\"img-holder switch-trigger\" href=\"javascript:void(0)\">\n                    <img src=\"./assets/img/sidebar-2.jpg\" alt=\"\" />\n                </a>\n            </li>\n            <li>\n                <a class=\"img-holder switch-trigger\" href=\"javascript:void(0)\">\n                    <img src=\"./assets/img/sidebar-3.jpg\" alt=\"\" />\n                </a>\n            </li>\n            <li>\n                <a class=\"img-holder switch-trigger\" href=\"javascript:void(0)\">\n                    <img src=\"./assets/img/sidebar-4.jpg\" alt=\"\" />\n                </a>\n            </li>\n        </ul>\n    </div>\n</div>\n"
+module.exports = "<!-- Fixed Plugin configurator, used just for Demo Purpose -->\r\n<div class=\"fixed-plugin\">\r\n    <div class=\"dropdown show-dropdown\">\r\n        <a href=\"#\" data-toggle=\"dropdown\" aria-expanded=\"true\">\r\n            <i class=\"fa fa-cog fa-2x\"> </i>\r\n        </a>\r\n        <ul class=\"dropdown-menu\">\r\n            <li class=\"header-title\"> Sidebar Filters</li>\r\n            <li class=\"adjustments-line\">\r\n                <a href=\"javascript:void(0)\" class=\"switch-trigger active-color\">\r\n                  <div class=\"ml-auto mr-auto\">\r\n                    <span class=\"badge filter badge-purple\" data-color=\"purple\"></span>\r\n                    <span class=\"badge filter badge-azure active\" data-color=\"azure\"></span>\r\n                    <span class=\"badge filter badge-green\" data-color=\"green\"></span>\r\n                    <span class=\"badge filter badge-orange\" data-color=\"orange\"></span>\r\n                    <span class=\"badge filter badge-danger\" data-color=\"danger\"></span>\r\n                    <span class=\"badge filter badge-rose\" data-color=\"rose\"></span>\r\n                  </div>\r\n                    <div class=\"clearfix\"></div>\r\n                </a>\r\n            </li>\r\n            <li class=\"header-title\">Sidebar Background</li>\r\n            <li class=\"adjustments-line\">\r\n                <a href=\"javascript:void(0)\" class=\"switch-trigger background-color\">\r\n                    <div class=\"ml-auto mr-auto\">\r\n                        <span class=\"badge filter badge-white\" data-color=\"white\"></span>\r\n                        <span class=\"badge filter badge-black\" data-color=\"black\"></span>\r\n                        <span class=\"badge filter badge-danger\" data-color=\"red\"></span>\r\n                        <span class=\"badge filter badge-primary active\" data-color=\"blue\"></span>\r\n                    </div>\r\n                    <div class=\"clearfix\"></div>\r\n                </a>\r\n            </li>\r\n            <li class=\"adjustments-line\">\r\n              <a href=\"javascript:void(0)\" class=\"switch-trigger\">\r\n                  <p>Sidebar Mini</p>\r\n                  <label class=\"ml-auto\">\r\n                    <div class=\"togglebutton switch-sidebar-mini\">\r\n                      <label>\r\n                          <input type=\"checkbox\">\r\n                              <span class=\"toggle\"></span>\r\n                      </label>\r\n                    </div>\r\n                  </label>\r\n                  <div class=\"clearfix\"></div>\r\n                  <div class=\"ripple-container\"></div>\r\n              </a>\r\n            </li>\r\n            <li class=\"adjustments-line\">\r\n              <a href=\"javascript:void(0)\" class=\"switch-trigger\">\r\n                  <p>Sidebar Images</p>\r\n                  <label class=\"switch-mini ml-auto\">\r\n                    <div class=\"togglebutton switch-sidebar-image\">\r\n                      <label>\r\n                          <input type=\"checkbox\" checked=\"\">\r\n                            <span class=\"toggle\"></span>\r\n                      </label>\r\n                    </div>\r\n                  </label>\r\n                  <div class=\"clearfix\"></div>\r\n                  <div class=\"ripple-container\"></div>\r\n              </a>\r\n            </li>\r\n            <li class=\"header-title\">Images</li>\r\n            <li class=\"active\">\r\n                <a class=\"img-holder switch-trigger\" href=\"javascript:void(0)\">\r\n                    <img src=\"./assets/img/sidebar-1.jpg\" alt=\"\" />\r\n                </a>\r\n            </li>\r\n            <li>\r\n                <a class=\"img-holder switch-trigger\" href=\"javascript:void(0)\">\r\n                    <img src=\"./assets/img/sidebar-2.jpg\" alt=\"\" />\r\n                </a>\r\n            </li>\r\n            <li>\r\n                <a class=\"img-holder switch-trigger\" href=\"javascript:void(0)\">\r\n                    <img src=\"./assets/img/sidebar-3.jpg\" alt=\"\" />\r\n                </a>\r\n            </li>\r\n            <li>\r\n                <a class=\"img-holder switch-trigger\" href=\"javascript:void(0)\">\r\n                    <img src=\"./assets/img/sidebar-4.jpg\" alt=\"\" />\r\n                </a>\r\n            </li>\r\n        </ul>\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1569,7 +1797,7 @@ var FixedpluginModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<footer class=\"footer \">\n  <div class=\"container\">\n    <nav class=\"pull-left\">\n      <ul>\n        <li>\n          <a href=\"https://www.creative-tim.com\">\n            Ptway TEAM\n          </a>\n        </li>\n        <li>\n          <a href=\"https://creative-tim.com/about-us\">\n            من نحن\n          </a>\n        </li>\n        <li>\n          <a href=\"http://blog.creative-tim.com\">\n            سياسة الخصوصية\n          </a>\n        </li>\n        <li>\n          <a href=\"https://www.creative-tim.com/license\">\n            الشروط والأحكام\n          </a>\n        </li>\n      </ul>\n    </nav>\n    <div class=\"copyright pull-right\">\n        <p class=\"text-left\">جميع الحقوق محفوظة © 2019 PTWay.net</p>\n    </div>\n  </div>\n</footer>"
+module.exports = "<footer class=\"footer \">\r\n  <div class=\"container\">\r\n    <nav class=\"pull-left\">\r\n      <ul>\r\n        <li>\r\n          <a href=\"https://www.creative-tim.com\">\r\n            Ptway TEAM\r\n          </a>\r\n        </li>\r\n        <li>\r\n          <a href=\"https://creative-tim.com/about-us\">\r\n            من نحن\r\n          </a>\r\n        </li>\r\n        <li>\r\n          <a href=\"http://blog.creative-tim.com\">\r\n            سياسة الخصوصية\r\n          </a>\r\n        </li>\r\n        <li>\r\n          <a href=\"https://www.creative-tim.com/license\">\r\n            الشروط والأحكام\r\n          </a>\r\n        </li>\r\n      </ul>\r\n    </nav>\r\n    <div class=\"copyright pull-right\">\r\n        <p class=\"text-left\">جميع الحقوق محفوظة © 2019 PTWay.net</p>\r\n    </div>\r\n  </div>\r\n</footer>"
 
 /***/ }),
 
@@ -1656,7 +1884,7 @@ var FooterModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav #navbar class=\"navbar navbar-expand-lg navbar-transparent  navbar-absolute\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-wrapper\">\n      <div class=\"navbar-minimize\">\n        <button mat-raised-button (click)=\"minimizeSidebar()\" class=\"btn btn-just-icon btn-white btn-fab btn-round\">\n          <i class=\"material-icons text_align-center visible-on-sidebar-regular\">more_vert</i>\n          <i class=\"material-icons design_bullet-list-67 visible-on-sidebar-mini\">view_list</i>\n        </button>\n      </div>\n      <a class=\"navbar-brand\" href=\"{{getPath()}}\"> {{getTitle()}}</a>\n    </div>\n    <button mat-button class=\"navbar-toggler btn-no-ripple\" type=\"button\" (click)=\"sidebarToggle()\">\n      <span class=\"sr-only\">Toggle navigation</span>\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\n    </button>\n    <div class=\"collapse navbar-collapse justify-content-end\" id=\"navigation\"></div>\n  </div>\n</nav>"
+module.exports = "<nav #navbar class=\"navbar navbar-expand-lg navbar-transparent  navbar-absolute\">\r\n  <div class=\"container-fluid\">\r\n    <div class=\"navbar-wrapper\">\r\n      <div class=\"navbar-minimize\">\r\n        <button mat-raised-button (click)=\"minimizeSidebar()\" class=\"btn btn-just-icon btn-white btn-fab btn-round\">\r\n          <i class=\"material-icons text_align-center visible-on-sidebar-regular\">more_vert</i>\r\n          <i class=\"material-icons design_bullet-list-67 visible-on-sidebar-mini\">view_list</i>\r\n        </button>\r\n      </div>\r\n      <a class=\"navbar-brand\" href=\"{{getPath()}}\"> {{getTitle()}}</a>\r\n    </div>\r\n    <button mat-button class=\"navbar-toggler btn-no-ripple\" type=\"button\" (click)=\"sidebarToggle()\">\r\n      <span class=\"sr-only\">Toggle navigation</span>\r\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\r\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\r\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\r\n    </button>\r\n    <div class=\"collapse navbar-collapse justify-content-end\" id=\"navigation\"></div>\r\n  </div>\r\n</nav>"
 
 /***/ }),
 
@@ -1941,7 +2169,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"logo\">\n    <a class=\"simple-text logo-mini\">\n        <div class=\"logo-img\">\n            <img src=\"/assets/img/32X32.png\" />\n        </div>\n    </a>\n    <a href=\"https://www.creative-tim.com\" class=\"simple-text logo-normal\">\n        <strong>Pt</strong>way\n    </a>\n</div>\n<div class=\"sidebar-wrapper\">\n    <div class=\"user\">\n        <div class=\"photo\">\n            <img src=\"./assets/img/default-avatar.png\" />\n        </div>\n        <div class=\"user-info\">\n            <a data-toggle=\"collapse\" href=\"#collapseExample\" class=\"collapsed\">\n                <span>\n                    Tania Andrew\n                    <b class=\"caret\"></b>\n                </span>\n            </a>\n            <div class=\"collapse\" id=\"collapseExample\">\n                <ul class=\"nav\">\n                    <li class=\"nav-item\" routerLinkActive=\"active\">\n                        <a class=\"nav-link\" [routerLink]=\"['/company-profile']\">\n                            <i class=\"material-icons\">perm_identity</i>\n                            <span class=\"sidebar-normal\">ملف التعريف</span>\n                        </a>\n                    </li>\n                    <li class=\"nav-item\" routerLinkActive=\"active\">\n                        <a class=\"nav-link\" [routerLink]=\"['/edit-company-profile']\">\n                            <span class=\"sidebar-mini\">EP</span>\n                            <span class=\"sidebar-normal\">تعديل ملف التعريف</span>\n                        </a>\n                    </li>\n                </ul>\n            </div>\n        </div>\n    </div>\n    <ul class=\"nav\">\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a [routerLink]=\"['/dashboard']\" class=\"nav-link\">\n                <i class=\"material-icons\">dashboard</i>\n                <p>لوحة التحكم</p>\n            </a>\n        </li>\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a [routerLink]=\"['/add-project']\" class=\"nav-link\">\n                <i class=\"material-icons\">add_box</i>\n                <p>اضافة مشروع</p>\n            </a>\n        </li>\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a [routerLink]=\"['/add-job']\" class=\"nav-link\">\n                <i class=\"material-icons\">rate_review</i>\n                <p>اضافة عرض عمل</p>\n            </a>\n        </li>\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a [routerLink]=\"['/my-projects']\" class=\"nav-link\">\n                <i class=\"material-icons\">next_week</i>\n                <p>المشاريع الخاصة بي</p>\n            </a>\n        </li>\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a (click)=\"logOut()\" [routerLink]=\"['null']\" class=\"nav-link\">\n                <i class=\"material-icons\">input</i>\n                <p>تسجيل خروج</p>\n            </a>\n        </li>\n    </ul>\n</div>"
+module.exports = "<div class=\"logo\">\r\n    <a class=\"simple-text logo-mini\">\r\n        <div class=\"logo-img\">\r\n            <img src=\"/assets/img/32X32.png\" />\r\n        </div>\r\n    </a>\r\n    <a href=\"https://www.creative-tim.com\" class=\"simple-text logo-normal\">\r\n        <strong>Pt</strong>way\r\n    </a>\r\n</div>\r\n<div class=\"sidebar-wrapper\">\r\n    <div class=\"user\">\r\n        <div class=\"photo\">\r\n            <img src=\"./assets/img/default-avatar.png\" />\r\n        </div>\r\n        <div class=\"user-info\">\r\n            <a data-toggle=\"collapse\" href=\"#collapseExample\" class=\"collapsed\">\r\n                <span>\r\n                    Tania Andrew\r\n                    <b class=\"caret\"></b>\r\n                </span>\r\n            </a>\r\n            <div class=\"collapse\" id=\"collapseExample\">\r\n                <ul class=\"nav\">\r\n                    <li class=\"nav-item\" routerLinkActive=\"active\">\r\n                        <a class=\"nav-link\" [routerLink]=\"['/company-profile']\">\r\n                            <i class=\"material-icons\">perm_identity</i>\r\n                            <span class=\"sidebar-normal\">ملف التعريف</span>\r\n                        </a>\r\n                    </li>\r\n                    <li class=\"nav-item\" routerLinkActive=\"active\">\r\n                        <a class=\"nav-link\" [routerLink]=\"['/edit-company-profile']\">\r\n                            <span class=\"sidebar-mini\">EP</span>\r\n                            <span class=\"sidebar-normal\">تعديل ملف التعريف</span>\r\n                        </a>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <ul class=\"nav\">\r\n        <li routerLinkActive=\"active\" class=\"nav-item\">\r\n            <a [routerLink]=\"['/dashboard']\" class=\"nav-link\">\r\n                <i class=\"material-icons\">dashboard</i>\r\n                <p>لوحة التحكم</p>\r\n            </a>\r\n        </li>\r\n        <li routerLinkActive=\"active\" class=\"nav-item\">\r\n            <a [routerLink]=\"['/add-project']\" class=\"nav-link\">\r\n                <i class=\"material-icons\">add_box</i>\r\n                <p>اضافة مشروع</p>\r\n            </a>\r\n        </li>\r\n        <li routerLinkActive=\"active\" class=\"nav-item\">\r\n            <a [routerLink]=\"['/add-job']\" class=\"nav-link\">\r\n                <i class=\"material-icons\">rate_review</i>\r\n                <p>اضافة عرض عمل</p>\r\n            </a>\r\n        </li>\r\n        <li routerLinkActive=\"active\" class=\"nav-item\">\r\n            <a [routerLink]=\"['/my-projects']\" class=\"nav-link\">\r\n                <i class=\"material-icons\">next_week</i>\r\n                <p>المشاريع الخاصة بي</p>\r\n            </a>\r\n        </li>\r\n        <li routerLinkActive=\"active\" class=\"nav-item\">\r\n            <a (click)=\"logOut()\" [routerLink]=\"['null']\" class=\"nav-link\">\r\n                <i class=\"material-icons\">input</i>\r\n                <p>تسجيل خروج</p>\r\n            </a>\r\n        </li>\r\n    </ul>\r\n</div>"
 
 /***/ }),
 
@@ -2151,7 +2379,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/ayman/Documents/Angular/PTway-Angular/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\Asus\Documents\GitHub\PTway-Angular\src\main.ts */"./src/main.ts");
 
 
 /***/ })

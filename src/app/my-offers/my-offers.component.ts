@@ -70,7 +70,7 @@ this.data.currentMessage.subscribe(m =>{
 
 })
     this.authService.autoAuthUser();
-this.jobService.getJobs('5c6bd0e0baf49b0016dabe51').subscribe(response =>{
+this.jobService.getJobs(this.projectId).subscribe(response =>{
   console.log(response);
   for(var i=0 ; i < response.count ; i++) {
       this.dataRows.push(response.jobNames[i]);
