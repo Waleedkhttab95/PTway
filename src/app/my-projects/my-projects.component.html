@@ -24,24 +24,18 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let row of dataTable.dataRows">
-                    <td><a class="remove" [routerLink]="['/my-offers']"  (click)="onSelect(row[1])">{{row[0]}}</a></td>
+                  <tr *ngFor="let row of dataTable.dataRows; let rowIndex = index">
+                    <td><a class="remove" [routerLink]="['/my-offers']" (click)="onSelect(row[1])">{{row[0]}}</a></td>
                     <td>
-                      <button mat-raised-button class="btn btn-primary btn-round" [routerLink]="['/add-project']" (click)="onEdit(row[1])">تعديل</button>
+                      <button mat-raised-button class="btn btn-primary btn-round" [routerLink]="['/add-project']"
+                        (click)="onEdit(row[1])">تعديل</button>
                     </td>
                     <td>
-                        <swal
-                        #deleteSwal
-                        title="انتـبه!"
-                        text="هل انت متأكد من الحذف"
-                        confirmButtonText= 'نعم'
-                        cancelButtonText= 'إلغاء الأمر'
-                        type="warning"
-                        showCancelButton="true"
-                        cancelButtonClass="btn btn-danger"
+                      <swal #deleteSwal title="انتـبه!" text="هل انت متأكد من الحذف" confirmButtonText='نعم'
+                        cancelButtonText='إلغاء الأمر' type="warning" showCancelButton="true" cancelButtonClass="btn btn-danger"
                         (confirm)="onDelete(row[1])">
                       </swal>
-                      <button [swal]="deleteSwal" mat-raised-button class="btn btn-danger btn-round ">حذف</button>
+                      <button [swal]="deleteSwal" (click)="deleteRow(rowIndex)" mat-raised-button class="btn btn-danger btn-round ">حذف</button>
                     </td>
                   </tr>
                 </tbody>

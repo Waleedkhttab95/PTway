@@ -61,7 +61,6 @@ export class AddJobComponent implements OnInit {
   }
 
   getprojects(id) {
-
     this.projects = [];
     this.rest.getprojects(id).subscribe((data) => {
       console.log(data.id);
@@ -79,8 +78,6 @@ export class AddJobComponent implements OnInit {
       console.log(data);
       for (let key in data) {
         this.countries.push({ value: data[key]._id, viewValue: data[key].countryName });
-
-
       }
       console.log(this.countries);
     });

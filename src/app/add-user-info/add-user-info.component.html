@@ -144,7 +144,7 @@
                   <div class="col-md-6">
                     <label class="bmd-label-floating custom-label">- اللغات</label>
                     <mat-form-field>
-                      <mat-select placeholder="" [formControl]="languages" name="languages" multiple>
+                      <mat-select placeholder="" formControlName="languages" name="languages" multiple>
                         <mat-option *ngFor="let language of languageList" [value]="language">{{language}}</mat-option>
                       </mat-select>
                     </mat-form-field>
@@ -152,7 +152,7 @@
                   <div class="col-md-6">
                     <label class="bmd-label-floating custom-label">- مهارات العمل</label>
                     <mat-form-field>
-                      <mat-select placeholder="" (selectionChange)="limitSkils()" [formControl]="skills" multiple>
+                      <mat-select placeholder="" (selectionChange)="limitSkils()" formControlName="skills" name="skills" multiple>
                         <mat-option *ngFor="let skill of skillList" [value]="skill">{{skill}}</mat-option>
                       </mat-select>
                     </mat-form-field>
@@ -160,7 +160,7 @@
                   <div class="col-md-6">
                     <label class="bmd-label-floating custom-label">- المهارات الشخصية</label>
                     <mat-form-field>
-                      <mat-select placeholder="" (selectionChange)="limitPS()" [formControl]="personal_Skills" name="personal_Skills"
+                      <mat-select placeholder="" (selectionChange)="limitPS()" formControlName="personal_Skills" name="personal_Skills"
                         multiple>
                         <mat-option *ngFor="let personal_Skill of personal_SkillList" [value]="personal_Skill">{{personal_Skill}}</mat-option>
                       </mat-select>
@@ -169,7 +169,7 @@
                   <div class="col-md-6">
                     <label class="bmd-label-floating custom-label">- الهوايات</label>
                     <mat-form-field>
-                      <mat-select placeholder="" [formControl]="hoppies" name="hoppies" multiple>
+                      <mat-select placeholder="" formControlName="hoppies" name="hoppies" multiple>
                         <mat-option *ngFor="let hoppy of hoppyList" [value]="hoppy">{{hoppy}}</mat-option>
                       </mat-select>
                     </mat-form-field>

@@ -1,6 +1,6 @@
-import { Component, OnInit, AfterViewInit, Output, Injectable } from '@angular/core';
-import {ProjectService} from '../add-project/project.service';
-import {AuthService} from '../auth/auth.service';
+import { Component, OnInit, AfterViewInit, Output, Injectable, ChangeDetectorRef } from '@angular/core';
+import { ProjectService } from '../add-project/project.service';
+import { AuthService } from '../auth/auth.service';
 import { DataService } from '../data.service';
 
 declare interface DataTable {
@@ -17,6 +17,7 @@ declare const $: any;
 })
 
 export class MyProjectsComponent implements OnInit, AfterViewInit {
+  rowDataMainForm: any;
 
   ngAfterViewInit() {
     $('#datatables').DataTable({
@@ -36,7 +37,7 @@ export class MyProjectsComponent implements OnInit, AfterViewInit {
     const table = $('#datatables').DataTable();
 
     // Edit record
-    table.on('click', '.edit', function(e) {
+    table.on('click', '.edit', function (e) {
       const $tr = $(this).closest('tr');
       const data = table.row($tr).data();
       alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
@@ -44,10 +45,10 @@ export class MyProjectsComponent implements OnInit, AfterViewInit {
     });
 
     // Delete a record
-  
+
 
     //Like record
-    table.on('click', '.like', function(e) {
+    table.on('click', '.like', function (e) {
       alert('You clicked on Like button');
       e.preventDefault();
     });
@@ -57,60 +58,61 @@ export class MyProjectsComponent implements OnInit, AfterViewInit {
     this.fetchData();
   }
   public dataTable: DataTable;
-// tslint:disable-next-line: member-ordering
+  // tslint:disable-next-line: member-ordering
 
-  constructor(private data: DataService, public projectService: ProjectService, public authService: AuthService) { }
+  constructor(private data: DataService, public projectService: ProjectService, public authService: AuthService,
+    private changeDetectorRef: ChangeDetectorRef) { }
 
-  dataRows : any[] = [];
-  idRows : any[] = [];
-// tslint:disable-next-line: member-ordering
+  dataRows: any[] = [];
+  idRows: any[] = [];
+  // tslint:disable-next-line: member-ordering
 
-   ngOnInit() {
-   
- 
+  ngOnInit() {
+
+
     this.dataTable = {
-      headerRow: [ 'اسم المشروع', 'تعديل المشروع','حذف المشروع' ],
-  
-      dataRows: [
-      ] 
-  
-   };
-   console.log('1')
-}
+      headerRow: ['اسم المشروع', 'تعديل المشروع', 'حذف المشروع'],
 
-fetchData() {
-  this.projectService.getprojects().subscribe(response =>{
-   
-    for(var i=0 ; i < response.count ; i++) {
+      dataRows: [
+      ]
+
+    };
+    console.log('1')
+  }
+
+  fetchData() {
+    this.projectService.getprojects().subscribe(response => {
+
+      for (var i = 0; i < response.count; i++) {
         this.dataRows.push(response.projectName[i]);
         this.idRows.push(response.id[i]);
         this.dataTable.dataRows.push([
           this.dataRows[i],
           this.idRows[i]
         ])
-    }
+      }
+    });
 
-  
-  
-   });
+  }
+  onSelect(id) {
+    this.data.changeMessage(id);
+  }
 
-}
+  onEdit(id) {
+    this.data.changeMessage(id);
+    this.data.changeStatus(true);
+  }
 
+  onDelete(id) {
+    this.projectService.deleteproject(id).subscribe(() => {
+      this.dataTable.dataRows.filter(r => r[1] !== id);
+    })
+  }
 
-onSelect(id){
-this.data.changeMessage(id);
-}
-
-onEdit(id) {
-this.data.changeMessage(id);
-this.data.changeStatus(true);
-}
-
-onDelete(id){
-this.projectService.deleteproject(id).subscribe(() =>{
-  this.dataTable.dataRows.filter(r => r[1] !== id);
-})
-}
+  deleteRow(rowNumber: number) {
+    this.dataTable.dataRows.splice(rowNumber, 1);
+    this.changeDetectorRef.detectChanges();
+  }
 
 
 }
