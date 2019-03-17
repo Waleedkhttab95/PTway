@@ -19,18 +19,17 @@ export class AddUserInfoComponent implements OnInit {
   currentcountry: string[];
 
   selectTheme = 'primary';
-
-
-  countries = [
-    {value: 'SA', viewValue: 'المملكة العربية السعودية'},
-    {value: 'UAE', viewValue: 'الامارات العربية المتحدة'},
-    {value: 'OMAN', viewValue: 'عمان'},
-    {value: 'KWUIT', viewValue: 'الكويت'},
-    {value: 'SYRIA', viewValue: 'سوريا'},
-    {value: 'JORDAN', viewValue: 'الآردن'},
-  ];
-
+  countries = [];
   currentstudy_status: string[];
+  currentcity: string[];
+  cities = [];
+  currentmajor: string[];
+  majors = [];
+  currentuniversty: string[];
+  universties = [];
+  currentspMajor: string[];
+  spMajors = [];
+  majorID = "";
 
   study_statuses = [
     {value: 'High-school-first-year', viewValue: 'اول ثانوي'},
@@ -59,25 +58,18 @@ export class AddUserInfoComponent implements OnInit {
     {value: 'female', viewValue: 'انثى'},
   ];
 
-  currentcity: string[];
-
-  cities = [
-    {value: 'الرياض', viewValue: 'الرياض'},
-    {value: 'الدمام', viewValue: 'الدمام'},
-    {value: 'جدة', viewValue: 'جدة'},
-    {value: 'القصيم', viewValue: 'القصيم'},
-    {value: 'مكة المكرمة', viewValue: 'مكة المكرمة'},
-    {value: 'المدينة المنورة', viewValue: 'المدينة المنورة'},
-  ];
+  
 
   languages = new FormControl();
   languageList: string[] = ['العربية', 'الانجليزية', 'الفرنسية', 'الاسبانية', 'الكورية','أوردو'];
 
   skills = new FormControl();
-  skillList: string[] = ['التصوير الفوتوغرافي', 'الرسم', 'التصميم'];
+  skillList: string[] = ['التصوير الفوتوغرافي', 'الرسم', 'التصميم','التعبير', 'التصميم', 'الرسم', 'التصوير'];
+  mySelectionsFromSkils: string[];
 
   personal_Skills = new FormControl();
-  personal_SkillList: string[] = ['الإلقاء', 'التعبير'];
+  personal_SkillList: string[] = ['الإلقاء', 'التعبير', 'التصميم', 'الرسم', 'التصوير'];
+  mySelections: string[];
 
   hoppies = new FormControl();
   hoppyList: string[] = ['القراءة', 'الكتابة'];
@@ -94,23 +86,81 @@ export class AddUserInfoComponent implements OnInit {
    this.rest.addUserInfo(this.userResumeForm.value);
   }
 
+  getcountry() {
+    this.countries = [];
+    this.rest.getcountry().subscribe((data: {}) => {
+      console.log(data);
+      for (let key in data) {
+        this.countries.push({ value: data[key]._id, viewValue: data[key].countryName });
+      }
+      console.log(this.countries);
+    });
+  }
 
+  getcity() {
+    this.cities = [];
+    this.rest.getcity().subscribe((data: {}) => {
+      console.log(data);
+      for (let key in data) {
+        this.cities.push({ value: data[key]._id, viewValue: data[key].cityName });
+      }
+      console.log(this.cities);
+    });
+  }
+
+  getmajors() {
+    this.majors = [];
+    this.rest.getmajors().subscribe((data: {}) => {
+      console.log(data);
+      for (let key in data) {
+        this.majors.push({ value: data[key]._id, viewValue: data[key].majorName });
+        // console.log(this.majorID);
+      }
+      console.log(this.majors);
+    });
+  }
+
+  getuniversty() {
+    this.universties = [];
+    this.rest.getuniversty().subscribe((data: {}) => {
+      console.log(data);
+      for (let key in data) {
+        this.universties.push({ value: data[key]._id, viewValue: data[key].universtyName });
+      }
+      console.log(this.universties);
+    });
+  }
+
+  getspMajors(id) {
+    this.spMajors = [];
+    this.rest.getspMajors(id).subscribe((data) => {
+      console.log(data.id);
+      for (let key in data) {
+        this.spMajors.push({ value: data[key]._id, viewValue: data[key].majorName });
+      }
+      console.log(this.spMajors);
+    });
+  }
 
   ngOnInit() {
-
-
+    this.getcity();
+    this.getcountry();
+    this.getmajors();
+    this.getuniversty();
     this.userResumeForm = this.fb.group({
+      // cvImg: new FormControl(),
       country: new FormControl(),
-      study_status: new FormControl(),
       study_degree: new FormControl(),
+      fullName: new FormControl(),
       education_degree: new FormControl(),
       gender: new FormControl(),
       mobile: new FormControl(),
       birthDate: new FormControl(),
       city: new FormControl(),
+      universty: new FormControl(),
       Education_level: new FormControl(),
       public_Major: new FormControl(),
-      spicifc_Major: new FormControl(),
+      spMajor: new FormControl(),
       languages: new FormControl(),
       skills: new FormControl(),
       personal_Skills: new FormControl(),
@@ -123,6 +173,34 @@ export class AddUserInfoComponent implements OnInit {
       instagram: new FormControl(),
       linkedin: new FormControl()
     });
+  }
+
+  checkspMajor(){
+    this.majorID = this.userResumeForm.value.public_Major;
+    console.log(this.majorID);
+    this.getspMajors(this.majorID);
+  }
+  limitPS() {
+    console.log(this.personal_Skills.value.length);
+    console.log(this.personal_Skills.value);
+    if (this.personal_Skills.value.length <= 4) {
+      this.mySelections = this.personal_Skills.value;
+      console.log(this.mySelections);
+    } else {
+      this.personal_Skills.setValue(this.mySelections);
+      console.log(this.personal_Skills.value);
+    }
+  }
+  limitSkils() {
+    console.log(this.skills.value.length);
+    console.log(this.skills.value);
+    if (this.skills.value.length <= 4) {
+      this.mySelectionsFromSkils = this.skills.value;
+      console.log(this.mySelectionsFromSkils);
+    } else {
+      this.skills.setValue(this.mySelectionsFromSkils);
+      console.log(this.skills.value);
+    }
   }
 
 }
