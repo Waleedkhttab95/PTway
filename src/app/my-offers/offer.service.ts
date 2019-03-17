@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
-const BackUrl = 'https://cors-anywhere.herokuapp.com/https://ptway-dev.herokuapp.com/api';
+const BackUrl = 'https://ptway-dev.herokuapp.com/api';
 @Injectable({ providedIn: 'root' })
 
 export class offerService {

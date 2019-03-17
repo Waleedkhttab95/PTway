@@ -7,7 +7,7 @@ import swal from 'sweetalert2';
 declare var $: any;
 
 
-const BackUrl = 'https://cors-anywhere.herokuapp.com/https://ptway-dev.herokuapp.com/api';
+const BackUrl = 'https://ptway-dev.herokuapp.com/api';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {

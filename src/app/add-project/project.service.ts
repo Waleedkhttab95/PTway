@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ProjectData } from './project-data.model';
 
-const BackUrl = 'https://cors-anywhere.herokuapp.com/https://ptway-dev.herokuapp.com/api';
+const BackUrl = 'https://ptway-dev.herokuapp.com/api';
 @Injectable({ providedIn: 'root' })
 
 export class ProjectService {

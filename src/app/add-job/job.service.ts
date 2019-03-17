@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { JobData } from './job-data.model';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
-const BackUrl = 'https://cors-anywhere.herokuapp.com/https://ptway-dev.herokuapp.com/api';
+const BackUrl = 'https://ptway-dev.herokuapp.com/api';
 
 @Injectable({ providedIn: 'root' })
 
