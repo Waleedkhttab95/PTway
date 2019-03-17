@@ -105,18 +105,18 @@ export class AddJobComponent implements OnInit {
     this.getcountry();
     this.getcity();
     this.addProjcetForm = new FormGroup({
+      country: new FormControl(),
+      city: new FormControl(),
+      gender: new FormControl(),
+      personal_Skills: new FormControl(),
+      public_Major: new FormControl(),
       contracts: new FormControl(),
       projects: new FormControl(),
       job_Name: new FormControl(),
       job_skills: new FormControl(),
-      country: new FormControl(),
-      city: new FormControl(),
-      public_Major: new FormControl(),
       work_hours: new FormControl(),
       work_days: new FormControl(),
       salary: new FormControl(),
-      gender: new FormControl(),
-      personal_Skills: new FormControl(),
       required_Number: new FormControl(),
     });
   }
