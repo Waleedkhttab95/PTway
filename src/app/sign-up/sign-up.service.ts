@@ -9,7 +9,7 @@ import { ErrorHandler } from "@angular/core";
 // import { UNAUTHORIZED, BAD_REQUEST, FORBIDDEN } from "http-status-codes";
 // import { ToastsManager, Toast, ToastOptions } from "ng6-toastr";
 
-const BackUrl = 'https://cors-anywhere.herokuapp.com/https://ptway-dev.herokuapp.com/api';
+const BackUrl = 'https://ptway-dev.herokuapp.com/api';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json'

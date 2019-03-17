@@ -25,7 +25,7 @@
                 <tbody>
                   <tr *ngFor="let row of dataTable.dataRows">
                     <td>{{row[0]}}</td>
-                    <td><button mat-raised-button class="btn btn-primary btn-round" (click)="endJob()">انهاء العقد</button></td>
+                    <td><button mat-raised-button class="btn btn-primary btn-round" (click)="endJob(row[1])">انهاء العقد</button></td>
                   </tr>
                 </tbody>
               </table>

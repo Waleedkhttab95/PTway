@@ -111,10 +111,10 @@ export class AcceptanceListComponent implements OnInit, AfterViewInit {
     this.offerService.startJob(this.dataJob);
   }
 
-  endJob() {
+  endJob(id) {
     this.dataJob = {
       jobAd_id: this.jobId,
-      user: this.authService.getUserId
+      user: id
     }
       this.offerService.endJob(this.dataJob);
     }

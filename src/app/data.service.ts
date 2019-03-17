@@ -9,14 +9,16 @@ export class DataService {
     
     private messageSource = new BehaviorSubject<string>('dd');
     currentMessage = this.messageSource.asObservable();
-
+    
     private statusSource = new BehaviorSubject<boolean>(false);
     currentStatus = this.statusSource.asObservable();
-
-    constructor() {}
+    
+    constructor() {
+    
+    }
 
     changeMessage(message: string) {
-            this.messageSource.next(message);
+     this.messageSource.next(message);
     }
 
     changeStatus(status: boolean) {

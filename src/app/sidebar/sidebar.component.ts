@@ -69,7 +69,7 @@ export const ROUTES: RouteInfo[] = [{
 
 export class SidebarComponent extends AuthService implements OnInit {
     public menuItems: any[];
-
+    name: string = '';
     isMobileMenu() {
         if ($(window).width() > 991) {
             return false;
@@ -80,6 +80,8 @@ export class SidebarComponent extends AuthService implements OnInit {
 
 
     ngOnInit() {
+        this.autoAuthUser();
+       this.name = this.getCompanyName()
         this.menuItems = ROUTES.filter(menuItem => menuItem);
     }
     updatePS(): void  {
