@@ -11,7 +11,7 @@
           </div>
           <div class="col-md-8 custom-card">
             <div class="card-body">
-              <form (ngSubmit)="postcompanyinfo()" [formGroup]="comapnyResumeForm">
+              <form  [formGroup]="comapnyResumeForm">
                 <div class="row">
                   <div class="col-md-6">
                     <label class="bmd-label-floating custom-label">- الدولة</label>
@@ -89,7 +89,7 @@
                   </div>
                   <div class="col-md-12">
                     <div class="card-footer">
-                      <button mat-raised-button type="submit" class="btn btn-fill btn-primary">حفظ</button>
+                      <button mat-raised-button type="submit" (click)="onUpdate()" class="btn btn-fill btn-primary">حفظ</button>
                     </div>
                   </div>
                 </div>

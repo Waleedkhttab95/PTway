@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RestService } from '../rest.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { DataService } from '../data.service';
+import { CompanyService } from '../company-profile/company.service';
 
 @Component({
   selector: 'app-edit-company-profile',
@@ -11,7 +13,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 export class EditCompanyProfileComponent implements OnInit {
 
   comapnyResumeForm: FormGroup;
-
+  dataForm: Object;
   selectedValue: string;
   currentcountry: string[];
 
@@ -37,18 +39,13 @@ export class EditCompanyProfileComponent implements OnInit {
     { value: 'المدينة المنورة', viewValue: 'المدينة المنورة' },
   ];
 
-  postcompanyinfo() {
-    console.log(this.comapnyResumeForm.value);
-    this.rest.postcompanyinfo(this.comapnyResumeForm.value).subscribe((result) => {
-      this.router.navigate(['/dashboard/']);
-    }, (err) => {
-      console.log(err);
-    });
-  }
+  
 
-  constructor(public rest: RestService, private route: ActivatedRoute, private router: Router, private fb: FormBuilder) { }
+  constructor(public companyService: CompanyService,public rest: RestService, 
+    private route: ActivatedRoute, private router: Router, private fb: FormBuilder) { }
 
   ngOnInit() {
+
     this.comapnyResumeForm = this.fb.group({
       country: new FormControl(),
       address: new FormControl(),
@@ -62,6 +59,28 @@ export class EditCompanyProfileComponent implements OnInit {
       instagram: new FormControl(),
       linkedin: new FormControl()
     });
+
+    
+    this.companyService.getCompanyInfo().subscribe((result:any) =>{
+      console.log(result);
+      this.comapnyResumeForm.setValue({
+        country: result.country,
+        city: result.city,
+        address: result.address,
+        info: result.info,
+        vision: result.vision,
+        message: result.message,
+        personal_web:  result.personal_web,
+        facebook: result.facebook,
+        twitter: result.twitter,
+        instagram: result.instagram,
+        linkedin: result.linkedin
+      })
+    })
+  }
+
+  onUpdate() {
+   console.log(this.comapnyResumeForm.value);
   }
 
 }

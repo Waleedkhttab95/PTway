@@ -60,7 +60,7 @@ export const AppRoutes: Routes = [
         loadChildren: './error-message/error-message.module#ErrorMessageModule'
     },  {
         path: 'company-profile',
-        canActivate:[AuthGuard],
+        canActivate:[Auth_company_Guard],
         loadChildren: './company-profile/company-profile.module#CompanyProfileModule'
     } , {
         path: 'edit-company-profile',

@@ -44,11 +44,7 @@ export class MyProjectsComponent implements OnInit, AfterViewInit {
     });
 
     // Delete a record
-    table.on('click', '.remove', function(e) {
-      const $tr = $(this).closest('tr');
-      table.row($tr).remove().draw();
-      e.preventDefault();
-    });
+  
 
     //Like record
     table.on('click', '.like', function(e) {
@@ -57,6 +53,8 @@ export class MyProjectsComponent implements OnInit, AfterViewInit {
     });
 
     $('.card .material-datatables label').addClass('form-group');
+    this.authService.autoAuthUser();
+    this.fetchData();
   }
   public dataTable: DataTable;
 // tslint:disable-next-line: member-ordering
@@ -68,8 +66,7 @@ export class MyProjectsComponent implements OnInit, AfterViewInit {
 // tslint:disable-next-line: member-ordering
 
    ngOnInit() {
-    this.authService.autoAuthUser();
-     this.fetchData();
+   
  
     this.dataTable = {
       headerRow: [ 'اسم المشروع', 'تعديل المشروع','حذف المشروع' ],
@@ -78,6 +75,7 @@ export class MyProjectsComponent implements OnInit, AfterViewInit {
       ] 
   
    };
+   console.log('1')
 }
 
 fetchData() {
@@ -110,8 +108,8 @@ this.data.changeStatus(true);
 
 onDelete(id){
 this.projectService.deleteproject(id).subscribe(() =>{
-  this.fetchData();
-});
+  this.dataTable.dataRows.filter(r => r[1] !== id);
+})
 }
 
 

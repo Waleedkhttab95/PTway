@@ -103,10 +103,10 @@ export class CandidatesListComponent implements OnInit, AfterViewInit {
       ]
    };
 
-   this.jobService.getJob('5c727a53ff7f0d690870f1d6').subscribe((res: any)=>{
-    
-     this.CandidatesNumber = res.required_Number;
-
+   this.jobService.getJob(this.jobId).subscribe((res: any)=>{
+    console.log(res.job.limit_Number)
+     this.CandidatesNumber = res.job.required_Number;
+    this.count = res.job.limit_Number;
     })
   }
 
