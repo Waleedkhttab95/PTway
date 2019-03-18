@@ -3,7 +3,7 @@ import { AuthService } from '../auth/auth.service';
 import { JobService } from '../add-job/job.service';
 import { MyProjectsComponent } from '../my-projects/my-projects.component';
 import { DataService } from '../data.service';
-
+import swal from 'sweetalert2';
 declare interface DataTable {
   headerRow: string[];
   dataRows: string[][];
@@ -102,9 +102,19 @@ this.jobService.getJobs(this.projectId).subscribe(response =>{
 
  onDelete(id){
    this.jobService.deleteJob(id).subscribe(()=>{
-     console.log("heeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeey");}
+     this.showSwal('secc');
+    }
    );
  }
+ showSwal(type){
+  if (type == 'secc') {
+  swal({
+    title: "تمت عملية الحفظ بنجاح!",
+    buttonsStyling: false,
+    confirmButtonClass: 'btn btn-success',
+    confirmButtonText:'نعم',
+    type:'success',
+  }).catch(swal.noop)
+} 
   }
-
-
+}

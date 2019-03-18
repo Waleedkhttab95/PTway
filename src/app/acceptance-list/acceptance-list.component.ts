@@ -5,6 +5,7 @@ import { AuthService } from '../auth/auth.service';
 import { JobService } from '../add-job/job.service';
 
 
+
 declare interface DataTable {
   headerRow: string[];
   dataRows: string[][];
@@ -116,6 +117,12 @@ export class AcceptanceListComponent implements OnInit, AfterViewInit {
       jobAd_id: this.jobId,
       user: id
     }
-      this.offerService.endJob(this.dataJob);
+      
+    this.offerService.endJob(this.dataJob);
+    
     }
+  
+    
+
+
 }

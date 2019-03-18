@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ProjectData } from './project-data.model';
-
+import swal from 'sweetalert2';
 const BackUrl = 'https://ptway-dev.herokuapp.com/api';
 @Injectable({ providedIn: 'root' })
 
@@ -20,7 +20,8 @@ export class ProjectService {
       this.http
       .post<{project: ProjectData, _id: String}>(BackUrl + '/postproject' , data)
       .subscribe(responseData => {
-          this.projectId = responseData._id;
+        this.showSwal('secc');
+        this.projectId = responseData._id;
           console.log(this.projectId);
 
          this.router.navigate(['/my-projects']);
@@ -50,6 +51,16 @@ export class ProjectService {
      return this.http
         .delete(BackUrl + '/deleteproject?id=' + id);
     }
+    showSwal(type){
+        if (type == 'secc') {
+        swal({
+          title: "تمت عملية الحفظ بنجاح!",
+          buttonsStyling: false,
+          confirmButtonClass: 'btn btn-success',
+          confirmButtonText:'نعم',
+          type:'success',
+        }).catch(swal.noop)
+      } 
 
-
+}
 }
