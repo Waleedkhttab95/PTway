@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RestService } from '../rest.service';
+import { mimeType } from './mime-type.validator';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { UserService } from '../my-cv/user.service';
@@ -15,6 +15,7 @@ export class AddUserInfoComponent implements OnInit {
 
   userResumeForm: FormGroup;
 
+  imagePreview: string;
   selectedValue: string;
   currentcountry: string[];
 
@@ -150,6 +151,7 @@ export class AddUserInfoComponent implements OnInit {
     this.userResumeForm = this.fb.group({
       // cvImg: new FormControl(),
       country: new FormControl(),
+      image: new FormControl(null , {asyncValidators: [mimeType]}),
       study_degree: new FormControl(),
       fullName: new FormControl(),
       education_degree: new FormControl(),
@@ -202,5 +204,17 @@ export class AddUserInfoComponent implements OnInit {
       console.log(this.skills.value);
     }
   }
+
+
+  onImagePicked(event: Event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.userResumeForm.patchValue({image: file});
+    this.userResumeForm.get('image').updateValueAndValidity();
+    const reader = new FileReader();
+    reader.onload = () => {
+    this.imagePreview = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+    }
 
 }
