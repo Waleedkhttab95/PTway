@@ -28,26 +28,32 @@ export class AuthService {
 
   createUser(firstName: string, lastName: string, email: string, password: string) {
     const authData = { firstName: firstName, lastName: lastName, email: email, password: password };
-    this.http.post(BackUrl + '/userRegistreing', authData)
-      .subscribe(() => {
+    this.http.post<{token: string}>(BackUrl + '/userRegistreing', authData)
+      .subscribe((response: any) => {
+        if (response.token) {
+          this.token = response.token;
+          this.isAuth = true;
+          this.isCompany = "false";
+          this.authStatusListener.next(true);
+          this.saveAuthData(response.token, this.userId, this.isCompany);
         this.router.navigate(['/add-user-info']);
-      }, error => {
+      }
+    }, error => {
         this.authStatusListener.next(false);
       });
+   
   }
 
   createCompany(companyName: string, email: string, CompanySpecialist: string, sector: string, password: string) {
     const authData = { companyName: companyName, email: email, CompanySpecialist: CompanySpecialist, sector: sector, password: password };
-    this.http.post<{ _id: String }>(BackUrl + '/companyRegistreing', authData, { observe: 'response' })
-      .subscribe(response => {
-        console.log(response);
-        const token = response.headers.get('x-auth-token');
-        if (token) {
-          this.token = token;
+    this.http.post<{ token: String }>(BackUrl + '/companyRegistreing', authData, { observe: 'response' })
+      .subscribe((response :any) => {
+        if (response.token) {
+          this.token = response.token;
           this.isAuth = true;
           this.isCompany = "true";
           this.authStatusListener.next(true);
-          this.saveAuthData(token, this.userId, this.isCompany);
+          this.saveAuthData(response.token, this.userId, this.isCompany);
           if (sector == "5c56c3572e168a2c30fe5dde") {
             console.log('reach');
             this.showSwal('warning-message');

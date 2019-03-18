@@ -35,7 +35,7 @@
           <a class="nav-link" [routerLink]="['/edit-cv']">تعديل السيرة الذاتية</a>
         </li>
         <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" [routerLink]="['/sign-up']">تسجيل خروج</a>
+          <a class="nav-link" (click)="logout()" [routerLink]="['null']">تسجيل خروج</a>
         </li>
       </ul>
     </div>

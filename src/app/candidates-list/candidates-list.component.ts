@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { DataService } from '../data.service';
 import { offerService } from '../my-offers/offer.service';
 import { AuthService } from '../auth/auth.service';
@@ -18,6 +18,7 @@ declare const $: any;
   styleUrls: ['./candidates-list.component.css']
 })
 export class CandidatesListComponent implements OnInit, AfterViewInit {
+  rowDataMainForm: any;
 
   ngAfterViewInit() {
     $('#datatables').DataTable({
@@ -61,7 +62,7 @@ export class CandidatesListComponent implements OnInit, AfterViewInit {
   }
   public dataTable: DataTable;
   constructor(private data: DataService, public offerService: offerService
-    , public authService: AuthService, public jobService: JobService) { }
+    , public authService: AuthService, public jobService: JobService, private changeDetectorRef: ChangeDetectorRef) { }
    jobData: JobData; 
   jobId: string
   dataRows : any[] = [];
@@ -120,5 +121,10 @@ export class CandidatesListComponent implements OnInit, AfterViewInit {
     this.offerService.addAcceptence(this.Acc);
     console.log(this.count);
   }
+
+  deleteRowAdressForm(rowNumber: number){
+    this.rowDataMainForm.splice(rowNumber, 1);
+    this.changeDetectorRef.detectChanges();
+}
 
 }
