@@ -25,41 +25,41 @@ export interface ChildrenItems {
 
 //Menu Items
 export const ROUTES: RouteInfo[] = [{
-        path: '/dashboard',
-        title: 'لوحة التحكم',
-        type: 'link',
-        icontype: 'dashboard'
-    },{
-        path: '/add-project',
-        title: 'اضافة مشروع',
-        type: 'link',
-        icontype: 'next_week'
+    path: '/dashboard',
+    title: 'لوحة التحكم',
+    type: 'link',
+    icontype: 'dashboard'
+}, {
+    path: '/add-project',
+    title: 'اضافة مشروع',
+    type: 'link',
+    icontype: 'next_week'
 
-    },{
-        path: '/add-job',
-        title: 'اضافة عرض عمل',
-        type: 'link',
-        icontype: 'rate_review'
+}, {
+    path: '/add-job',
+    title: 'اضافة عرض عمل',
+    type: 'link',
+    icontype: 'rate_review'
 
-    },{
-        path: '/candidates-list',
-        title: 'قائمة المرشحين',
-        type: 'link',
-        icontype: 'assignment_ind'
+}, {
+    path: '/candidates-list',
+    title: 'قائمة المرشحين',
+    type: 'link',
+    icontype: 'assignment_ind'
 
-    },{
-        path: '/acceptance-list',
-        title: 'قائمة المقبولين',
-        type: 'link',
-        icontype: 'assignment_turned_in'
+}, {
+    path: '/acceptance-list',
+    title: 'قائمة المقبولين',
+    type: 'link',
+    icontype: 'assignment_turned_in'
 
-    },{
-        path: '/widgets',
-        title: 'تسجيل خروج',
-        type: 'link',
-        icontype: 'input'
+}, {
+    path: '/widgets',
+    title: 'تسجيل خروج',
+    type: 'link',
+    icontype: 'input'
 
-    }
+}
 ];
 @Component({
     selector: 'app-sidebar-cmp',
@@ -67,7 +67,8 @@ export const ROUTES: RouteInfo[] = [{
     styleUrls: ['./sidebar.component.css']
 })
 
-export class SidebarComponent extends AuthService implements OnInit {
+export class SidebarComponent implements OnInit {
+    constructor(private authService: AuthService) { }
     public menuItems: any[];
     name: string = '';
     isMobileMenu() {
@@ -76,15 +77,12 @@ export class SidebarComponent extends AuthService implements OnInit {
         }
         return true;
     };
-    
-
-
     ngOnInit() {
-        this.autoAuthUser();
-       this.name = this.getCompanyName()
+        this.authService.autoAuthUser();
+        this.name = this.authService.getCompanyName()
         this.menuItems = ROUTES.filter(menuItem => menuItem);
     }
-    updatePS(): void  {
+    updatePS(): void {
         if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {
             const elemSidebar = <HTMLElement>document.querySelector('.sidebar .sidebar-wrapper');
             let ps = new PerfectScrollbar(elemSidebar, { wheelSpeed: 2, suppressScrollX: true });
@@ -96,5 +94,8 @@ export class SidebarComponent extends AuthService implements OnInit {
             bool = true;
         }
         return bool;
+    }
+    logout() {
+        this.authService.logOut();
     }
 }

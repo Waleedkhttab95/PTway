@@ -107,10 +107,14 @@ export const AppRoutes: Routes = [
           path: 'add-company-info',
           canActivate:[Auth_company_Guard],
           loadChildren: './add-company-info/add-company-info.module#AddCompanyInfoModule'
-        }, {
+        } , {
             path: 'add-user-info',
             canActivate:[AuthGuard],
             loadChildren: './add-user-info/add-user-info.module#AddUserInfoModule'
+        } , {
+            path: 'cv-preview',
+            canActivate:[AuthGuard],
+            loadChildren: './cv-preview/cv-preview.module#CvPreviewModule'
         }
       ]}
 ];
