@@ -5,14 +5,13 @@
         <div class="card card-profile">
           <div class="card-avatar">
             <a href="#pablo">
-              <img class="img" src="./assets/img/faces/marc.jpg" />
+              <img class="img" [src]="imagePath" />
             </a>
           </div>
           <div class="card-body">
-            <h6 class="card-category text-gray">CEO / Co-Founder</h6>
-            <h4 class="card-title">Alec Thompson</h4>
+            <h6 class="card-category text-gray">{{companyName}}</h6>
             <p class="category">&nbsp;</p>
-            <button mat-raised-button class="btn btn-just-icon btn-round btn-twitter">
+            <button  mat-raised-button class="btn btn-just-icon btn-round btn-twitter">
               <i class="fa fa-twitter"></i>
             </button>
             <button mat-raised-button class="btn btn-just-icon btn-round btn-facebook">
@@ -29,25 +28,20 @@
             </button>
             <h6 class="card-category text-bold custom-h6">- معلومات عامة:</h6>
             <p class="card-description custom-p">
-              Don't be scared of the truth because we need to restart the human foundation in truth And I love you like
-              Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+            {{info}}
             </p>
             <h6 class="card-category uk-text-bold custom-h6">- الرؤيا:</h6>
             <p class="card-description custom-p">
-              Don't be scared of the truth because we need to restart the human foundation in truth And I love you like
-              Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+            {{vision}}
             </p>
             <h6 class="card-category text-bold custom-h6">- الرسالة:</h6>
             <p class="card-description custom-p">
-              Don't be scared of the truth because we need to restart the human foundation in truth And I love you like
-              Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+             {{message}}
             </p>
             <h6 class="card-category text-bold custom-h6">- العنوان:</h6>
             <p class="card-description custom-p">
-              Don't be scared of the truth because we need to restart the human foundation in truth And I love you like
-              Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+             {{address}}
             </p>
-            <a [routerLink]="['/edit-company-profile']" class="btn btn-primary btn-round">تعديل</a>
           </div>
         </div>
       </div>

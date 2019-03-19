@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { JobService } from './job.service';
 import { AuthService } from '../auth/auth.service';
+import { SignUpService } from '../sign-up/sign-up.service';
 
 @Component({
   selector: 'app-add-job',
@@ -13,12 +14,16 @@ import { AuthService } from '../auth/auth.service';
 export class AddJobComponent implements OnInit {
 
   constructor(public rest: JobService, public authService: AuthService,
-    private route: ActivatedRoute, private router: Router, private fb: FormBuilder) { }
+    private route: ActivatedRoute, private router: Router,
+     private fb: FormBuilder, public signSerive: SignUpService) { }
 
   addProjcetForm: FormGroup;
   selectedValue: string;
+  startDate: Date;
   job_Name: string;
   job_skills: string;
+  currentCompanySpecialist: string[];
+  CompanySpecialists = [];
   contracts = [];
   currentcontract: string[];
   cities = [];
@@ -57,6 +62,17 @@ export class AddJobComponent implements OnInit {
       }
       console.log(this.contracts);
 
+    });
+  }
+
+  getspecialization() {
+    this.CompanySpecialists = [];
+    this.signSerive.getspecialization().subscribe((data: {}) => {
+      console.log(data);
+      for (let key in data) {
+        this.CompanySpecialists.push({ value: data[key]._id, viewValue: data[key].specialistName });
+      }
+      console.log(this.CompanySpecialists);
     });
   }
 
@@ -101,13 +117,17 @@ export class AddJobComponent implements OnInit {
     this.getprojects(this.authService.getUserId());
     this.getcountry();
     this.getcity();
+    this.getspecialization()
     this.addProjcetForm = new FormGroup({
       country: new FormControl(),
       city: new FormControl(),
+      personal_Skills : new FormControl('', [
+        Validators.required
+      ]),
       gender: new FormControl(),
-      personal_Skills: new FormControl(),
       public_Major: new FormControl(),
       contracts: new FormControl(),
+      startDate: new FormControl(),
       projects: new FormControl(),
       job_Name: new FormControl(),
       job_skills: new FormControl(),
@@ -127,6 +147,7 @@ export class AddJobComponent implements OnInit {
       project: this.addProjcetForm.value.projects,
       job_Name: this.addProjcetForm.value.job_Name,
       job_skills: this.addProjcetForm.value.job_skills,
+      startDate: this.addProjcetForm.value.startDate,
       country: this.addProjcetForm.value.country,
       city: this.addProjcetForm.value.city,
       public_Major: this.addProjcetForm.value.public_Major,

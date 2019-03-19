@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { AddCompanyInfoService } from './add-company-info.service';
 import { from } from 'rxjs';
+import { mimeType } from '../add-user-info/mime-type.validator';
+
 
 
 @Component({
@@ -13,7 +15,7 @@ import { from } from 'rxjs';
 })
 export class AddCompanyInfoComponent implements OnInit {
   comapnyResumeForm: FormGroup;
-
+  imagePreview: string;
   selectTheme = 'primary';
   selectedValue: string;
   currentcountry: string[];
@@ -23,11 +25,7 @@ export class AddCompanyInfoComponent implements OnInit {
 
   postcompanyinfo() {
     console.log(this.comapnyResumeForm.value);
-    this.rest.postcompanyinfo(this.comapnyResumeForm.value).subscribe((result) => {
-      this.router.navigate(['/dashboard/']);
-    }, (err) => {
-      console.log(err);
-    });
+    this.rest.postcompanyinfo(this.comapnyResumeForm.value);
   }
 
   getcountry() {
@@ -63,6 +61,7 @@ export class AddCompanyInfoComponent implements OnInit {
       country: new FormControl(),
       address: new FormControl(),
       info: new FormControl(),
+      image: new FormControl(null , {asyncValidators: [mimeType]}),
       vision: new FormControl(),
       message: new FormControl(),
       city: new FormControl(),
@@ -73,5 +72,17 @@ export class AddCompanyInfoComponent implements OnInit {
       linkedin: new FormControl()
     });
   }
+
+  
+  onImagePicked(event: Event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.comapnyResumeForm.patchValue({image: file});
+    this.comapnyResumeForm.get('image').updateValueAndValidity();
+    const reader = new FileReader();
+    reader.onload = () => {
+    this.imagePreview = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+    }
 
 }

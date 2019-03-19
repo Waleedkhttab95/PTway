@@ -6976,7 +6976,7 @@
   
   .mb-3,
   .my-3 {
-    margin-bottom: 1rem !important;
+    margin-bottom: 0.5rem !important;
   }
   
   .ml-3,
@@ -8534,12 +8534,12 @@
   .resume-header {
     background: #054b77;
     color: rgba(255, 255, 255, 0.9);
-    height: 250px;
+    height: 200px;
   }
   
   .resume-header .picture {
-    width: 220px;
-    height: 250px;
+    width: 200px;
+    height: 200px;
   }
   
   .resume-header .name {

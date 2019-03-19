@@ -34,12 +34,28 @@ export class AddCompanyInfoService {
       map(this.extractData));
   }
 
-  postcompanyinfo(data: any): Observable<any> {
-    console.log(data);
-    return this.http.post<any>(BackUrl + 'postcompanyinfo', JSON.stringify(data), httpOptions).pipe(
-      tap((data) => console.log(`company succes complete data w/ id=${data.id}`)),
-      catchError(this.handleError<any>('postcompanyinfo'))
-    );
+  postcompanyinfo(data: any){
+
+    const postData = new FormData();
+    postData.append ('country',data.country);
+    postData.append ('address',data.address);
+    postData.append ('info',data.info);
+    postData.append ('image',data.image, data.info);
+    postData.append ('vision',data.vision);
+    postData.append ('message',data.message);
+    postData.append ('city',data.city);
+    postData.append ('personal_web',data.personal_web);
+    postData.append ('facebook',data.facebook);
+    postData.append ('twitter',data.twitter);
+    postData.append ('instagram',data.instagram);
+    postData.append ('linkedin',data.linkedin);
+
+
+    this.http.post<any>(BackUrl + '/postcompanyinfo',postData)
+    .subscribe(() =>{
+      this.router.navigate(['/dashboard/']);
+
+    })
   }
 
   

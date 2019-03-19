@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { DataService } from '../data.service';
 import { CompanyService } from '../company-profile/company.service';
+import { JobService } from '../add-job/job.service';
+import { stringify } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-edit-company-profile',
@@ -16,35 +18,54 @@ export class EditCompanyProfileComponent implements OnInit {
   dataForm: Object;
   selectedValue: string;
   currentcountry: string[];
-
+  personal_web :string = '';
+  facebook :string = '';
+  twitter :string = '';
+  instagrm :string = '';
+  linkedin :string = '';
   selectTheme = 'primary';
   countries = [
-    { value: 'SA', viewValue: 'المملكة العربية السعودية' },
-    { value: 'UAE', viewValue: 'الامارات العربية المتحدة' },
-    { value: 'OMAN', viewValue: 'عمان' },
-    { value: 'KWUIT', viewValue: 'الكويت' },
-    { value: 'SYRIA', viewValue: 'سوريا' },
-    { value: 'JORDAN', viewValue: 'الآردن' },
   ];
 
 
   currentcity: string[];
 
   cities = [
-    { value: 'الرياض', viewValue: 'الرياض' },
-    { value: 'الدمام', viewValue: 'الدمام' },
-    { value: 'جدة', viewValue: 'جدة' },
-    { value: 'القصيم', viewValue: 'القصيم' },
-    { value: 'مكة المكرمة', viewValue: 'مكة المكرمة' },
-    { value: 'المدينة المنورة', viewValue: 'المدينة المنورة' },
+    
   ];
 
   
 
   constructor(public companyService: CompanyService,public rest: RestService, 
-    private route: ActivatedRoute, private router: Router, private fb: FormBuilder) { }
+    private route: ActivatedRoute, private router: Router, private fb: FormBuilder,public jobService: JobService) { }
 
+
+    getcountry() {
+      this.countries = [];
+      this.jobService.getcountry().subscribe((data: {}) => {
+        console.log(data);
+        for (let key in data) {
+          this.countries.push({ value: data[key]._id, viewValue: data[key].countryName });
+        }
+        console.log(this.countries);
+      });
+    }
+  
+    getcity() {
+      this.cities = [];
+      this.jobService.getcity().subscribe((data: {}) => {
+        console.log(data);
+        for (let key in data) {
+          this.cities.push({ value: data[key]._id, viewValue: data[key].cityName });
+        }
+        console.log(this.cities);
+      });
+    }
+
+    
   ngOnInit() {
+    this.getcity()
+    this.getcountry()
 
     this.comapnyResumeForm = this.fb.group({
       country: new FormControl(),
@@ -63,6 +84,13 @@ export class EditCompanyProfileComponent implements OnInit {
     
     this.companyService.getCompanyInfo().subscribe((result:any) =>{
       console.log(result);
+      
+      if(result.personal_web != 'null') this.personal_web = result.personal_web;
+      if(result.facebook != 'null') this.facebook = result.facebook;
+      if(result.twitter != 'null') this.twitter = result.twitter;
+      if(result.instagram != 'null') this.instagrm = result.instagram;
+      if(result.linkedin != 'null') this.linkedin = result.linkedin;
+
       this.comapnyResumeForm.setValue({
         country: result.country,
         city: result.city,
@@ -70,11 +98,11 @@ export class EditCompanyProfileComponent implements OnInit {
         info: result.info,
         vision: result.vision,
         message: result.message,
-        personal_web:  result.personal_web,
-        facebook: result.facebook,
-        twitter: result.twitter,
-        instagram: result.instagram,
-        linkedin: result.linkedin
+        personal_web:  this.personal_web,
+        facebook: this.facebook,
+        twitter: this.twitter,
+        instagram: this.instagrm,
+        linkedin: this.linkedin
       })
     })
   }

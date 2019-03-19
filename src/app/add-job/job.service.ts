@@ -5,7 +5,8 @@ import { Router } from '@angular/router';
 import { JobData } from './job-data.model';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
-const BackUrl = 'https://ptway-dev.herokuapp.com/api';
+// const BackUrl = 'https://ptway-dev.herokuapp.com/api';
+const BackUrl = 'http://localhost:5000/api';
 
 @Injectable({ providedIn: 'root' })
 
@@ -26,7 +27,7 @@ export class JobService {
             .post<{ job: JobData }>(BackUrl + '/postjob', data)
             .subscribe(responseData => {
                 console.log(responseData);
-                this.router.navigate(['/']);
+                this.router.navigate(['/my-projects']);
             });
     }
 

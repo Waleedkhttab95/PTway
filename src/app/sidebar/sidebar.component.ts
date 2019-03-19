@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import PerfectScrollbar from 'perfect-scrollbar';
 import { AuthService } from '../auth/auth.service';
+import { CompanyService } from '../company-profile/company.service';
 
 declare const $: any;
 
@@ -68,9 +69,10 @@ export const ROUTES: RouteInfo[] = [{
 })
 
 export class SidebarComponent implements OnInit {
-    constructor(private authService: AuthService) { }
+    constructor(private authService: AuthService, public companyService:CompanyService) { }
     public menuItems: any[];
     name: string = '';
+    imagePath : string;
     isMobileMenu() {
         if ($(window).width() > 991) {
             return false;
@@ -79,7 +81,11 @@ export class SidebarComponent implements OnInit {
     };
     ngOnInit() {
         this.authService.autoAuthUser();
+        console.log(this.authService.getCompanyName())
         this.name = this.authService.getCompanyName()
+        this.companyService.getCompanyInfo().subscribe((res:any) =>{
+            this.imagePath = res.imagePath;
+        })
         this.menuItems = ROUTES.filter(menuItem => menuItem);
     }
     updatePS(): void {

@@ -46,12 +46,15 @@ export class AuthService {
 
   createCompany(companyName: string, email: string, CompanySpecialist: string, sector: string, password: string) {
     const authData = { companyName: companyName, email: email, CompanySpecialist: CompanySpecialist, sector: sector, password: password };
-    this.http.post<{ token: String }>(BackUrl + '/companyRegistreing', authData, { observe: 'response' })
+    this.http.post<{ token: String }>(BackUrl + '/companyRegistreing', authData)
       .subscribe((response :any) => {
+        console.log(response.token)
         if (response.token) {
+          console.log('Here')
           this.token = response.token;
           this.isAuth = true;
           this.isCompany = "true";
+          this.companyName = authData.companyName;
           this.authStatusListener.next(true);
           this.saveAuthData(response.token, this.userId, this.isCompany);
           if (sector == "5c56c3572e168a2c30fe5dde") {
@@ -59,6 +62,7 @@ export class AuthService {
             this.showSwal('warning-message');
           }
           else {
+            console.log('Navigate')
             this.router.navigate(['/add-company-info']);
           }
         }
