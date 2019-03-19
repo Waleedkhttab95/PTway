@@ -109,7 +109,6 @@ export class MyProjectsComponent implements OnInit, AfterViewInit {
     })
   }
 
-<<<<<<< HEAD
 onDelete(id){
 this.projectService.deleteproject(id).subscribe(() =>{
   this.dataTable.dataRows.filter(r => r[1] !== id);
@@ -127,12 +126,10 @@ showSwal(type){
   }).catch(swal.noop)
 }
 }
-=======
   deleteRow(rowNumber: number) {
     this.dataTable.dataRows.splice(rowNumber, 1);
     this.changeDetectorRef.detectChanges();
   }
 
 
->>>>>>> d12583b4a95ae7d447967df08800f9618732f59f
 }
