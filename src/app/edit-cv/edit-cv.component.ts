@@ -24,6 +24,11 @@ export class EditCvComponent implements OnInit {
   twitter :string = '';
   instagrm :string = '';
   linkedin :string = '';
+  city: string;
+  country: string;
+  study_status: string;
+  study_degree: string;
+  gender: string;
   selectTheme = 'primary';
   countries = [];
   currentstudy_status: string[];
@@ -52,7 +57,7 @@ export class EditCvComponent implements OnInit {
   currentstudy_degree: string[];
 
   study_degrees = [
-    {value: 'HS', viewValue: 'الثانوية العامية'},
+    {value: 'HS', viewValue: 'مستوى ثاني'},
     {value: 'BHO', viewValue: 'البكالريويس'},
     {value: 'MASTER', viewValue: 'المساتر'},
   ];
@@ -65,32 +70,32 @@ export class EditCvComponent implements OnInit {
   ];
 
   
-
+  lang: string;
   languages = new FormControl();
   languageList: string[] = ['العربية', 'الانجليزية', 'الفرنسية', 'الاسبانية', 'الكورية','أوردو'];
 
+  skill: string;
   skills = new FormControl();
   skillList: string[] = ['التصوير الفوتوغرافي', 'الرسم', 'التصميم','التعبير', 'التصميم', 'الرسم', 'التصوير'];
   mySelectionsFromSkils: string[];
 
+  personal_skill : string;
   personal_Skills = new FormControl();
   personal_SkillList: string[] = ['الإلقاء', 'التعبير', 'التصميم', 'الرسم', 'التصوير'];
   mySelections: string[];
 
+  hoppy: string;
   hoppies = new FormControl();
   hoppyList: string[] = ['القراءة', 'الكتابة'];
 
   currentsocial_Status: string[];
 
+  social: string;
   social_Statuss = [
     {value: 'اعزب', viewValue: 'اعزب'},
     {value: 'متزوج', viewValue: 'متزوج'},
   ];
 
-  postuserinfo() {
-    console.log(this.userResumeForm.value);
-   this.rest.addUserInfo(this.userResumeForm.value);
-  }
 
   getcountry() {
     this.countries = [];
@@ -113,7 +118,7 @@ export class EditCvComponent implements OnInit {
       console.log(this.cities);
     });
   }
-
+  pMajor: string;
   getmajors() {
     this.majors = [];
     this.rest.getmajors().subscribe((data: {}) => {
@@ -126,6 +131,7 @@ export class EditCvComponent implements OnInit {
     });
   }
 
+  universty : string;
   getuniversty() {
     this.universties = [];
     this.rest.getuniversty().subscribe((data: {}) => {
@@ -137,6 +143,7 @@ export class EditCvComponent implements OnInit {
     });
   }
 
+  sMajor: string;
   getspMajors(id) {
     this.spMajors = [];
     this.rest.getspMajors(id).subscribe((data) => {
@@ -182,7 +189,16 @@ export class EditCvComponent implements OnInit {
     });
 
     this.rest.getUserInfo().subscribe((res: any) =>{
-      console.log(res);
+
+      this.city = this.cities.find(x => x.viewValue == res.city ).value
+      this.country = this.countries.find(x => x.viewValue == res.country ).value
+     this.study_degree = this.study_degrees.find(x => x.viewValue == res.study_degree ).value 
+      //this.gender = this.countries.find(x => x.genders == res.gender ).value
+      this.social = this.social_Statuss.find(x => x.viewValue == res.social_Status ).value
+      this.universty = this.universties.find(x => x.viewValue == res.universty ).value
+      this.pMajor = this.majors.find(x => x.viewValue == res.public_Major ).value
+     // this.sMajor = this.spMajors.find(x => x.viewValue == res.spicifc_Major ).value
+      console.log( this.city);
       // the same syntax res. 
 
       if(res.personal_web != 'null') this.personal_web = res.personal_web;
@@ -192,23 +208,23 @@ export class EditCvComponent implements OnInit {
       if(res.linkedin != 'null') this.linkedin = res.linkedin;
 
       this.userResumeForm.setValue({
-        country: [res.country],
-        study_degree : [res.study_degree],
+        country: this.country,
+        study_degree : this.study_degree,
         fullName:  'waleed',
         education_degree:  [res.education_degree],
-        gender:  [res.gender],
+        gender:  res.gender,
         mobile:  res.mobile,
         birthDate:  res.birthDate,
-        city:  [res.city],
-        universty: [res.universty],
+        city: this.city,
+        universty: this.universty,
         Education_level: [ res.Education_level],
-        public_Major:[ res.public_Major],
-        spMajor: [res.spicifc_Major],
+        public_Major:this.pMajor,
+        spMajor: [res.sMajor],
         languages:  [res.languages],
         skills: [ res.skills],
         personal_Skills:  [res.personal_Skills],
         hoppies: [ res.hoppies],
-        social_Status: [ res.social_Status],
+        social_Status: this.social,
         about:  res.about,
         personal_web:  res.personal_web,
         facebook:  res.facebook,
