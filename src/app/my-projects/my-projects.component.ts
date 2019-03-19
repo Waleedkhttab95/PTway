@@ -103,11 +103,7 @@ export class MyProjectsComponent implements OnInit, AfterViewInit {
     this.data.changeStatus(true);
   }
 
-  onDelete(id) {
-    this.projectService.deleteproject(id).subscribe(() => {
-      this.dataTable.dataRows.filter(r => r[1] !== id);
-    })
-  }
+ 
 
 onDelete(id){
 this.projectService.deleteproject(id).subscribe(() =>{
