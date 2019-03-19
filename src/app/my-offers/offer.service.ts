@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
-
+import swal from 'sweetalert2';
 const BackUrl = 'https://ptway-dev.herokuapp.com/api';
 @Injectable({ providedIn: 'root' })
 
@@ -25,6 +25,7 @@ export class offerService {
     addAcceptence(data: any) {
         this.http.post(BackUrl+'/postAcc' , data).subscribe(result =>{
             console.log(result)
+            this.showSwal('secc');
             this.router.navigate(['/candidates-list']);
         });
     }
@@ -35,6 +36,7 @@ export class offerService {
 
     startJob(data: any) {
         this.http.post(BackUrl+'/start/job', data).subscribe(result =>{
+            this.showSwal('secc');
             this.router.navigate(['/acceptance-list']);
 
         })
@@ -42,9 +44,22 @@ export class offerService {
 
     endJob(data: any) {
         const response = this.http.post(BackUrl+'/end/job', data,{ responseType: 'text'}).subscribe(result =>{
+            this.showSwal('secc');
             this.router.navigate(['/acceptance-list']);
+            
 
         })
     }
-    
+    showSwal(type){
+        if (type == 'secc') {
+        swal({
+          title: "تمت العملية بنجاح!",
+          buttonsStyling: false,
+          confirmButtonClass: 'btn btn-success',
+          confirmButtonText:'نعم',
+          type:'success',
+        }).catch(swal.noop)
+      } 
+
+}
 }

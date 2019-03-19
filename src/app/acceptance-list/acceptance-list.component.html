@@ -25,7 +25,19 @@
                 <tbody>
                   <tr *ngFor="let row of dataTable.dataRows">
                     <td>{{row[0]}}</td>
-                    <td><button mat-raised-button class="btn btn-primary btn-round" (click)="endJob(row[1])">انهاء العقد</button></td>
+                    <td>
+                      <swal
+                          #deleteSwal
+                          title="انتـبه!"
+                          text="هل انت متأكد من الحذف"
+                          confirmButtonText= 'نعم'
+                          cancelButtonText= 'إلغاء الأمر'
+                          type="warning"
+                          showCancelButton="true"
+                          cancelButtonClass="btn btn-danger"
+                          (confirm)="endJob(row[1])">
+                      </swal>
+                      <button [swal]="deleteSwal" mat-raised-button class="btn btn-primary btn-round">انهاء العقد</button></td>
                   </tr>
                 </tbody>
               </table>

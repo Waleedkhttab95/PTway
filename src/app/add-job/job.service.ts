@@ -5,9 +5,9 @@ import { Router } from '@angular/router';
 import { JobData } from './job-data.model';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
-// const BackUrl = 'https://ptway-dev.herokuapp.com/api';
-const BackUrl = 'http://localhost:5000/api';
 
+const BackUrl = 'https://ptway-dev.herokuapp.com/api';
+import swal from 'sweetalert2';
 @Injectable({ providedIn: 'root' })
 
 export class JobService {
@@ -27,7 +27,9 @@ export class JobService {
             .post<{ job: JobData }>(BackUrl + '/postjob', data)
             .subscribe(responseData => {
                 console.log(responseData);
-                this.router.navigate(['/my-projects']);
+this.router.navigate(['/my-projects']);
+                this.showSwal('secc');
+
             });
     }
 
@@ -134,6 +136,16 @@ export class JobService {
         .get<{projectName: [String],  count: Number, id: [String]}>(BackUrl + '/getprojects?id='+ id)
     }
 
+    showSwal(type){
+        if (type == 'secc') {
+        swal({
+          title: "تمت عملية الحذف بنجاح!",
+          buttonsStyling: false,
+          confirmButtonText:'نعم',
+          type:'success',
+          confirmButtonClass:'btn btn-success'
+        }).catch(swal.noop)
+      }
 
-
+}
 }

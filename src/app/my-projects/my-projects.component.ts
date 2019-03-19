@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit, Output, Injectable, ChangeDetectorRef
 import { ProjectService } from '../add-project/project.service';
 import { AuthService } from '../auth/auth.service';
 import { DataService } from '../data.service';
-
+import swal from 'sweetalert2';
 declare interface DataTable {
   headerRow: string[];
   dataRows: string[][];
@@ -109,6 +109,23 @@ export class MyProjectsComponent implements OnInit, AfterViewInit {
     })
   }
 
+onDelete(id){
+this.projectService.deleteproject(id).subscribe(() =>{
+  this.dataTable.dataRows.filter(r => r[1] !== id);
+  this.showSwal('secc');
+})
+}
+showSwal(type){
+  if (type == 'secc') {
+  swal({
+    title: "تمت عملية الحذف بنجاح!",
+    buttonsStyling: false,
+    confirmButtonText:'نعم',
+    type:'success',
+    confirmButtonClass:'btn btn-success'
+  }).catch(swal.noop)
+}
+}
   deleteRow(rowNumber: number) {
     this.dataTable.dataRows.splice(rowNumber, 1);
     this.changeDetectorRef.detectChanges();
