@@ -58,29 +58,31 @@ export class UserService {
     updateUserInfo(data: any) {
         const postData = new FormData();
         postData.append ('country',data.country);
-        postData.append ('study_degree',data.study_degree);
-        postData.append ('fullName',data.fullName);
-        postData.append ('education_degree',data.education_degree);
-        postData.append ('gender',data.gender);
-        postData.append ('mobile',data.mobile);
-        postData.append ('birthDate',data.birthDate);
-        postData.append ('city',data.city);
-        postData.append ('universty',data.universty);
-        postData.append ('Education_level',data.Education_level);
-        postData.append ('public_Major',data.public_Major);
-        postData.append ('spMajor',data.spMajor);
-        postData.append ('languages',data.languages);
-        postData.append ('skills',data.skills);
-        postData.append ('personal_Skills',data.personal_Skills);
-        postData.append ('hoppies',data.hoppies);
-        postData.append ('social_Status',data.social_Status);
-        postData.append ('about',data.about);
-        postData.append ('personal_web',data.personal_web);
-        postData.append ('facebook',data.facebook);
-        postData.append ('twitter',data.twitter);
-        postData.append ('instagram',data.instagram);
-        postData.append ('linkedin',data.linkedin);
-        postData.append ('image',data.image,data.fullName);
+        // postData.append ('study_degree',data.study_degree);
+        // postData.append ('fullName',data.fullName);
+        // postData.append ('education_degree',data.education_degree);
+        // postData.append ('gender',data.gender);
+         postData.append ('mobile',data.mobile);
+        // postData.append ('birthDate',data.birthDate);
+        // postData.append ('city',data.city);
+        // postData.append ('universty',data.universty);
+        // postData.append ('Education_level',data.Education_level);
+        // postData.append ('public_Major',data.public_Major);
+        // postData.append ('spMajor',data.spMajor);
+        // postData.append ('languages',data.languages);
+        // postData.append ('skills',data.skills);
+        // postData.append ('personal_Skills',data.personal_Skills);
+        // postData.append ('hoppies',data.hoppies);
+        // postData.append ('social_Status',data.social_Status);
+        // postData.append ('about',data.about);
+        // postData.append ('personal_web',data.personal_web);
+        // postData.append ('facebook',data.facebook);
+        // postData.append ('twitter',data.twitter);
+     //   postData.append ('instagram',data.instagram);
+       // postData.append ('linkedin',data.linkedin);
+     //   postData.append ('imagePath',data.image,data.fullName);
+
+        console.log(postData);
 
 
         this.http
