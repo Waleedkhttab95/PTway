@@ -21,7 +21,7 @@
   
   .notfound .notfound-404 {
     position: relative;
-    height: 200px;
+    /* height: 200px; */
     margin: 0px auto 20px;
     z-index: -1;
   }
