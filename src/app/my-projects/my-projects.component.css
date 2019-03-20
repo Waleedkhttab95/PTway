@@ -12,3 +12,6 @@
     margin-left: auto;
     margin-right: auto;
 }
+::ng-deep .mat-raised-button.btn.btn-round, .mat-raised-button.btn:not([class*=mat-elevation-z]).btn-round, .btn.btn-round .custon-btn{
+    font-family: 'Cairo', 'Changa';
+}
