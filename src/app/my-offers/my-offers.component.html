@@ -22,7 +22,6 @@
                     <th>{{ dataTable.headerRow[1] }}</th>
                     <th>{{ dataTable.headerRow[2] }}</th>
                     <th>{{ dataTable.headerRow[3] }}</th>
-                    <th>{{ dataTable.headerRow[4] }}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -30,9 +29,9 @@
                     <td><a >{{row[0]}}</a></td>
                     <td>
                       <button mat-raised-button class="btn btn-primary btn-round" (click)="onCandidates(row[1])"
-                        [routerLink]="['/candidates-list']">عرض القائمة </button>
+                        [routerLink]="['/candidates-list']">عرض القائمة 
+                      </button>
                     </td>
-                    <td>{{row[3]}} / {{row[3]}}</td>
                     <td>
                       <button mat-raised-button class="btn btn-primary btn-round" (click)="onAccepted(row[1])"
                         [routerLink]="['/acceptance-list']">عرض القائمة</button>
@@ -50,7 +49,9 @@
             </div>
           </div>
           <!-- end content-->
-          <div><button mat-raised-button class="btn btn-fill btn-primary" [routerLink]="['/my-projects']">إلى الخلف</button></div>
+          <div class='col-md-12'>
+            <button mat-raised-button class="btn btn-fill btn-primary custom-btn" [routerLink]="['/my-projects']">إلى الخلف</button>
+          </div>
         </div>
         <!--  end card  -->
       </div>

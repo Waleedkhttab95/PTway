@@ -242,3 +242,7 @@
 .btn-no-ripple .mat-button-ripple{
   display: none;
 }
+::ng-deep .mat-raised-button.btn.btn-primary, .mat-raised-button.btn:not([class*=mat-elevation-z]).btn-primary, .btn.btn-primary{
+  font-family: 'Cairo', 'Changa';
+}
+

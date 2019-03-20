@@ -17,7 +17,7 @@ declare const $: any;
   styleUrls: ['./my-offers.component.css']
 })
 export class MyOffersComponent implements OnInit, AfterViewInit {
-   isLoading=false;
+  isLoading = false;
   ngAfterViewInit() {
     $('#datatables').DataTable({
       "pagingType": "full_numbers",
@@ -36,7 +36,7 @@ export class MyOffersComponent implements OnInit, AfterViewInit {
     const table = $('#datatables').DataTable();
 
     // Edit record
-    table.on('click', '.edit', function(e) {
+    table.on('click', '.edit', function (e) {
       const $tr = $(this).closest('tr');
       const data = table.row($tr).data();
       alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
@@ -44,14 +44,14 @@ export class MyOffersComponent implements OnInit, AfterViewInit {
     });
 
     // Delete a record
-    table.on('click', '.remove', function(e) {
+    table.on('click', '.remove', function (e) {
       const $tr = $(this).closest('tr');
       table.row($tr).remove().draw();
       e.preventDefault();
     });
 
     //Like record
-    table.on('click', '.like', function(e) {
+    table.on('click', '.like', function (e) {
       alert('You clicked on Like button');
       e.preventDefault();
     });
@@ -61,64 +61,54 @@ export class MyOffersComponent implements OnInit, AfterViewInit {
   public dataTable: DataTable;
   constructor(private data: DataService, public jobService: JobService, public authService: AuthService) { }
 
-  dataRows : any[] = [];
-  idRows : any[] = [];
+  dataRows: any[] = [];
+  idRows: any[] = [];
   projectId: string
   ngOnInit() {
-
-this.isLoading=true;
-this.projectId = this.data.getStoreData();
+    this.isLoading = true;
+    this.projectId = this.data.getStoreData();
     this.authService.autoAuthUser();
+    this.jobService.getJobs(this.projectId).subscribe(response => {
+      console.log(response);
+      for (var i = 0; i < response.count; i++) {
+        this.dataRows.push(response.jobNames[i]);
+        this.idRows.push(response.id[i]);
+        this.dataTable.dataRows.push([
+          this.dataRows[i],
+          this.idRows[i]
+        ])
+      }
 
-
-this.jobService.getJobs(this.projectId).subscribe(response =>{
-  console.log(response);
-  for(var i=0 ; i < response.count ; i++) {
-      this.dataRows.push(response.jobNames[i]);
-      this.idRows.push(response.id[i]);
-      this.dataTable.dataRows.push([
-        this.dataRows[i],
-        this.idRows[i]
-      ])
-  }
-
- });
+    });
     this.dataTable = {
-      headerRow: [ 'اسم الإعلان','قائمة المرشحين', 'عدد المقبولين', 'قائمة المقبولين', 'حذف الإعلان' ],
-
-      dataRows: [
-         
-      ]
-   };
-
+      headerRow: ['اسم الإعلان', 'قائمة المرشحين', 'قائمة المقبولين', 'حذف الإعلان'],
+      dataRows: []
+    };
+    console.log(this.dataTable.dataRows);
   }
-
   onCandidates(id) {
-    
-
-   this.data.storeDataJob(id);
-  }
-
-  onAccepted(id) {
-   
     this.data.storeDataJob(id);
   }
 
- onDelete(id){
-   this.jobService.deleteJob(id).subscribe(()=>{
-     this.showSwal('secc');
+  onAccepted(id) {
+    this.data.storeDataJob(id);
+  }
+
+  onDelete(id) {
+    this.jobService.deleteJob(id).subscribe(() => {
+      this.showSwal('secc');
     }
-   );
- }
- showSwal(type){
-  if (type == 'secc') {
-  swal({
-    title: "تمت العملية  بنجاح!",
-    buttonsStyling: false,
-    confirmButtonClass: 'btn btn-success',
-    confirmButtonText:'نعم',
-    type:'success',
-  }).catch(swal.noop)
-} 
+    );
+  }
+  showSwal(type) {
+    if (type == 'secc') {
+      swal({
+        title: "تمت العملية  بنجاح!",
+        buttonsStyling: false,
+        confirmButtonClass: 'btn btn-success',
+        confirmButtonText: 'نعم',
+        type: 'success',
+      }).catch(swal.noop)
+    }
   }
 }
