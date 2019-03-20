@@ -84,6 +84,11 @@ export class AddJobComponent implements OnInit {
         this.projects.push({ value: data.id[i], viewValue: data.projectName[i] });
         console.log(data.id[i])
       }
+      if(this.projects.length == 0){
+        console.log("inside condtion")
+        this.router.navigate(['/error-message']);
+      }
+      console.log(this.projects.length);
       console.log(this.projects);
     });
   }
@@ -113,8 +118,8 @@ export class AddJobComponent implements OnInit {
 
   ngOnInit() {
     this.authService.autoAuthUser();
-    this.getcontracts();
     this.getprojects(this.authService.getUserId());
+    this.getcontracts();
     this.getcountry();
     this.getcity();
     this.getspecialization()

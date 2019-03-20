@@ -83,7 +83,7 @@ this.jobService.getJobs(this.projectId).subscribe(response =>{
 
  });
     this.dataTable = {
-      headerRow: [ 'اسم الإعلان', 'حذف الإعلان','قائمة المرشحين', 'قائمة المقبولين' ],
+      headerRow: [ 'اسم الإعلان','قائمة المرشحين', 'عدد المقبولين', 'قائمة المقبولين', 'حذف الإعلان' ],
 
       dataRows: [
          

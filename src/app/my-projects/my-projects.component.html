@@ -33,9 +33,9 @@
                     <td>
                       <swal #deleteSwal title="انتـبه!" text="هل انت متأكد من الحذف" confirmButtonText='نعم'
                         cancelButtonText='إلغاء الأمر' type="warning" showCancelButton="true" cancelButtonClass="btn btn-danger"
-                        (confirm)="onDelete(row[1])">
+                        (confirm)="onDelete(row[1]); deleteRow(rowIndex)">
                       </swal>
-                      <button [swal]="deleteSwal" (click)="deleteRow(rowIndex)" mat-raised-button class="btn btn-danger btn-round ">حذف</button>
+                      <button [swal]="deleteSwal" mat-raised-button class="btn btn-danger btn-round ">حذف</button>
                     </td>
                   </tr>
                 </tbody>
