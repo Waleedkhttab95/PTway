@@ -11,6 +11,7 @@ import { DataService } from '../data.service';
   styleUrls: ['./add-project.component.css']
 })
 export class AddProjectComponent implements OnInit {
+  isLoading=false;
   form: FormGroup;
   projectData: ProjectData;
   constructor(private data: DataService, public projectService: ProjectService, public authService: AuthService) { }
@@ -19,6 +20,7 @@ export class AddProjectComponent implements OnInit {
   projectId: string;
   updateData: Object;
   ngOnInit() {
+    this.isLoading=true;
     this.form = new FormGroup({
       'title': new FormControl(null ,
          {validators: [Validators.required, Validators.minLength(2)]}),
@@ -44,6 +46,7 @@ export class AddProjectComponent implements OnInit {
               } )
             } )
           }
+          this.isLoading=false;
   }
 
   onAddProject() {

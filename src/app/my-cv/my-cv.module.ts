@@ -9,11 +9,13 @@ import { SelectModule } from 'ng2-select';
 import { MaterialModule } from '../app.module';
 import { MyCvRoutes } from './my-cv.routing';
 import { FormGroup } from '@angular/forms';
+import { MatProgressSpinnerModule } from '@angular/material';
 
 @NgModule({
   declarations: [MyCvComponent],
   imports: [
     CommonModule,
+    MatProgressSpinnerModule,
     RouterModule.forChild(MyCvRoutes),
     FormsModule,
     ReactiveFormsModule,

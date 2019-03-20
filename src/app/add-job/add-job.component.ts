@@ -16,7 +16,7 @@ export class AddJobComponent implements OnInit {
   constructor(public rest: JobService, public authService: AuthService,
     private route: ActivatedRoute, private router: Router,
      private fb: FormBuilder, public signSerive: SignUpService) { }
-
+  isLoading=false;
   addProjcetForm: FormGroup;
   selectedValue: string;
   startDate: Date;
@@ -117,6 +117,7 @@ export class AddJobComponent implements OnInit {
 
 
   ngOnInit() {
+    this.isLoading=true;
     this.authService.autoAuthUser();
     this.getprojects(this.authService.getUserId());
     this.getcontracts();
@@ -141,6 +142,8 @@ export class AddJobComponent implements OnInit {
       salary: new FormControl(),
       required_Number: new FormControl(),
     });
+    this.isLoading=false;
+    console.log("heeeeeeeeeeeeeey");
   }
 
   addJob() {

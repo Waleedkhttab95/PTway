@@ -17,7 +17,7 @@ declare const $: any;
   styleUrls: ['./my-offers.component.css']
 })
 export class MyOffersComponent implements OnInit, AfterViewInit {
-
+   isLoading=false;
   ngAfterViewInit() {
     $('#datatables').DataTable({
       "pagingType": "full_numbers",
@@ -65,11 +65,14 @@ export class MyOffersComponent implements OnInit, AfterViewInit {
   idRows : any[] = [];
   projectId: string
   ngOnInit() {
+    this.isLoading=true;
 this.data.currentMessage.subscribe(m =>{
  this.projectId = m;
+ this.isLoading=false;
 
 })
-    this.authService.autoAuthUser();
+    
+this.authService.autoAuthUser();
 this.jobService.getJobs(this.projectId).subscribe(response =>{
   console.log(response);
   for(var i=0 ; i < response.count ; i++) {
@@ -109,7 +112,7 @@ this.jobService.getJobs(this.projectId).subscribe(response =>{
  showSwal(type){
   if (type == 'secc') {
   swal({
-    title: "تمت عملية الحفظ بنجاح!",
+    title: "تمت العملية  بنجاح!",
     buttonsStyling: false,
     confirmButtonClass: 'btn btn-success',
     confirmButtonText:'نعم',

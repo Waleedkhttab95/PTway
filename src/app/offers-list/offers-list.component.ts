@@ -13,7 +13,7 @@ declare const $: any;
   styleUrls: ['./offers-list.component.css']
 })
 export class OffersListComponent implements OnInit, AfterViewInit {
-
+isLoading=false;
   ngAfterViewInit() {
     $('#datatables').DataTable({
       "pagingType": "full_numbers",
@@ -58,6 +58,7 @@ export class OffersListComponent implements OnInit, AfterViewInit {
   constructor() { }
 
   ngOnInit() {
+    this.isLoading=true;
     this.dataTable = {
       headerRow: [ '#','العرض', 'اسم الشركة', 'الاجراءات' ],
 
@@ -76,6 +77,8 @@ export class OffersListComponent implements OnInit, AfterViewInit {
           ['5','Brielle Williamson','psu']
       ]
    };
+   this.isLoading=false;
+
   }
 
 }

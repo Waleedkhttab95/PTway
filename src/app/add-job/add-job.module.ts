@@ -15,10 +15,12 @@ import { FormGroup } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../app.module';
+import { MatProgressSpinnerModule } from '@angular/material';
 
 @NgModule({
   declarations: [AddJobComponent],
   imports: [
+    MatProgressSpinnerModule,
     CommonModule,
     RouterModule.forChild(AddJobRoutes),
     FormsModule,

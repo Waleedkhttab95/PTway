@@ -14,6 +14,7 @@ declare const $: any;
 export class DashboardComponent implements OnInit, AfterViewInit {
   // constructor(private navbarTitleService: NavbarTitleService, private notificationService: NotificationService) { }
   public tableData: TableData;
+  isLoading = false;
   startAnimationForLineChart(chart: any) {
       let seq: any, delays: any, durations: any;
       seq = 0;
@@ -71,6 +72,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
   // constructor(private navbarTitleService: NavbarTitleService) { }
   public ngOnInit() {
+    this.isLoading = true;
       this.tableData = {
           headerRow: ['ID', 'Name', 'Salary', 'Country', 'City'],
           dataRows: [
@@ -183,6 +185,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
              alert(message);
          }
       });
+      this.isLoading = false;
    }
    ngAfterViewInit() {
        const breakCards = true;
