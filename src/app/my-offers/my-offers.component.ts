@@ -112,7 +112,7 @@ export class MyOffersComponent implements OnInit, AfterViewInit {
       }).catch(swal.noop)
     }
 
-   );
+   
  }
 
  

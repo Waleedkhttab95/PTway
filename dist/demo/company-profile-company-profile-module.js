@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".custom-card{\n    margin-left: auto;\n    margin-right: auto;\n  }\n  .custom-h6{\n    text-align: right;\n  }\n  .custom-p{\n    text-align: right;\n  }"
+module.exports = ".custom-card{\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n  }\r\n  .custom-h6{\r\n    text-align: right;\r\n  }\r\n  .custom-p{\r\n    text-align: right;\r\n  }"
 
 /***/ }),
 
@@ -18,7 +18,7 @@ module.exports = ".custom-card{\n    margin-left: auto;\n    margin-right: auto;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-content\">\n  <div class=\"container-fluid\">\n    <div class=\"row\">\n      <div class=\"col-md-8 custom-card\">\n        <div class=\"card card-profile\">\n          <div class=\"card-avatar\">\n            <a href=\"#pablo\">\n              <img class=\"img\" src=\"./assets/img/faces/marc.jpg\" />\n            </a>\n          </div>\n          <div class=\"card-body\">\n            <h6 class=\"card-category text-gray\">CEO / Co-Founder</h6>\n            <h4 class=\"card-title\">Alec Thompson</h4>\n            <p class=\"category\">&nbsp;</p>\n            <button mat-raised-button class=\"btn btn-just-icon btn-round btn-twitter\">\n              <i class=\"fa fa-twitter\"></i>\n            </button>\n            <button mat-raised-button class=\"btn btn-just-icon btn-round btn-facebook\">\n              <i class=\"fa fa-facebook\"> </i>\n            </button>\n            <button mat-raised-button class=\"btn btn-just-icon btn-round btn-linkedin\">\n              <i class=\"fa fa-linkedin\"></i>\n            </button>\n            <button mat-raised-button class=\"btn btn-just-icon btn-round btn-linkedin\">\n              <i class=\"fa fa-instagram\"></i>\n            </button>\n            <button mat-raised-button class=\"btn btn-just-icon btn-round btn-linkedin\">\n              <i class=\"fa fa-globe\"></i>\n            </button>\n            <h6 class=\"card-category text-bold custom-h6\">- معلومات عامة:</h6>\n            <p class=\"card-description custom-p\">\n              Don't be scared of the truth because we need to restart the human foundation in truth And I love you like\n              Kanye loves Kanye I love Rick Owens’ bed design but the back is...\n            </p>\n            <h6 class=\"card-category uk-text-bold custom-h6\">- الرؤيا:</h6>\n            <p class=\"card-description custom-p\">\n              Don't be scared of the truth because we need to restart the human foundation in truth And I love you like\n              Kanye loves Kanye I love Rick Owens’ bed design but the back is...\n            </p>\n            <h6 class=\"card-category text-bold custom-h6\">- الرسالة:</h6>\n            <p class=\"card-description custom-p\">\n              Don't be scared of the truth because we need to restart the human foundation in truth And I love you like\n              Kanye loves Kanye I love Rick Owens’ bed design but the back is...\n            </p>\n            <h6 class=\"card-category text-bold custom-h6\">- العنوان:</h6>\n            <p class=\"card-description custom-p\">\n              Don't be scared of the truth because we need to restart the human foundation in truth And I love you like\n              Kanye loves Kanye I love Rick Owens’ bed design but the back is...\n            </p>\n            <a [routerLink]=\"['/edit-company-profile']\" class=\"btn btn-primary btn-round\">تعديل</a>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
+module.exports = "<div class=\"main-content\">\r\n  <div class=\"container-fluid\">\r\n    <div class=\"row\">\r\n      <div class=\"col-md-8 custom-card\">\r\n        <div class=\"card card-profile\">\r\n          <div class=\"card-avatar\">\r\n            <a href=\"#pablo\">\r\n              <img class=\"img\" [src]=\"imagePath\" />\r\n            </a>\r\n          </div>\r\n          <div class=\"card-body\">\r\n            <h6 class=\"card-category text-gray\">{{companyName}}</h6>\r\n            <p class=\"category\">&nbsp;</p>\r\n            <button  mat-raised-button class=\"btn btn-just-icon btn-round btn-twitter\">\r\n              <i class=\"fa fa-twitter\"></i>\r\n            </button>\r\n            <button mat-raised-button class=\"btn btn-just-icon btn-round btn-facebook\">\r\n              <i class=\"fa fa-facebook\"> </i>\r\n            </button>\r\n            <button mat-raised-button class=\"btn btn-just-icon btn-round btn-linkedin\">\r\n              <i class=\"fa fa-linkedin\"></i>\r\n            </button>\r\n            <button mat-raised-button class=\"btn btn-just-icon btn-round btn-linkedin\">\r\n              <i class=\"fa fa-instagram\"></i>\r\n            </button>\r\n            <button mat-raised-button class=\"btn btn-just-icon btn-round btn-linkedin\">\r\n              <i class=\"fa fa-globe\"></i>\r\n            </button>\r\n            <h6 class=\"card-category text-bold custom-h6\">- معلومات عامة:</h6>\r\n            <p class=\"card-description custom-p\">\r\n            {{info}}\r\n            </p>\r\n            <h6 class=\"card-category uk-text-bold custom-h6\">- الرؤيا:</h6>\r\n            <p class=\"card-description custom-p\">\r\n            {{vision}}\r\n            </p>\r\n            <h6 class=\"card-category text-bold custom-h6\">- الرسالة:</h6>\r\n            <p class=\"card-description custom-p\">\r\n             {{message}}\r\n            </p>\r\n            <h6 class=\"card-category text-bold custom-h6\">- العنوان:</h6>\r\n            <p class=\"card-description custom-p\">\r\n             {{address}}\r\n            </p>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -33,6 +33,8 @@ module.exports = "<div class=\"main-content\">\n  <div class=\"container-fluid\"
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CompanyProfileComponent", function() { return CompanyProfileComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _company_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./company.service */ "./src/app/company-profile/company.service.ts");
+/* harmony import */ var _auth_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../auth/auth.service */ "./src/app/auth/auth.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -43,10 +45,32 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var CompanyProfileComponent = /** @class */ (function () {
-    function CompanyProfileComponent() {
+    function CompanyProfileComponent(companyService, authService) {
+        this.companyService = companyService;
+        this.authService = authService;
     }
     CompanyProfileComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.companyService.getCompanyInfo().subscribe(function (res) {
+            _this.authService.autoAuthUser();
+            _this.companyName = _this.authService.getCompanyName();
+            console.log(res.imagePath);
+            _this.imagePath = res.imagePath,
+                _this.country = res.country,
+                _this.city = res.city,
+                _this.address = res.address,
+                _this.info = res.info,
+                _this.vision = res.vision,
+                _this.message = res.message,
+                _this.personal_web = res.personal_web,
+                _this.facebook = res.facebook,
+                _this.twitter = res.twitter,
+                _this.instagram = res.instagram,
+                _this.linkedin = res.linkedin;
+        });
     };
     CompanyProfileComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -54,7 +78,7 @@ var CompanyProfileComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./company-profile.component.html */ "./src/app/company-profile/company-profile.component.html"),
             styles: [__webpack_require__(/*! ./company-profile.component.css */ "./src/app/company-profile/company-profile.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_company_service__WEBPACK_IMPORTED_MODULE_1__["CompanyService"], _auth_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]])
     ], CompanyProfileComponent);
     return CompanyProfileComponent;
 }());

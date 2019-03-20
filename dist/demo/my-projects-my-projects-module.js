@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".card [class*=\"card-header-\"] .card-icon{\n    margin-left: 15px;\n    float: right;\n}\n.custom-title{\n    text-align: right;\n}\n.mat-form-field{\n    text-align: right;\n}\n.custom-card{\n    margin-left: auto;\n    margin-right: auto;\n}"
+module.exports = ".card [class*=\"card-header-\"] .card-icon{\r\n    margin-left: 15px;\r\n    float: right;\r\n}\r\n.custom-title{\r\n    text-align: right;\r\n}\r\n.mat-form-field{\r\n    text-align: right;\r\n}\r\n.custom-card{\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n}\r\n::ng-deep .mat-raised-button.btn.btn-round, .mat-raised-button.btn:not([class*=mat-elevation-z]).btn-round, .btn.btn-round .custon-btn{\r\n    font-family: 'Cairo', 'Changa';\r\n}"
 
 /***/ }),
 
@@ -18,7 +18,7 @@ module.exports = ".card [class*=\"card-header-\"] .card-icon{\n    margin-left: 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-content\">\n  <div class=\"container-fluid\">\n    <div class=\"row\">\n      <div class=\"col-md-12\">\n        <div class=\"card\">\n          <div class=\"card-header card-header-primary card-header-icon\">\n            <div class=\"card-icon\">\n              <i class=\"material-icons\">next_week</i>\n            </div>\n            <h4 class=\"card-title custom-title\">المشاريع الخاصة بي</h4>\n          </div>\n          <div class=\"card-body\">\n            <div class=\"toolbar\">\n              <!--     [routerLink]=\"['/my-offers']\"   Here you can write extra buttons/actions for the toolbar              -->\n            </div>\n            <div class=\"material-datatables\">\n              <table id=\"datatables\" class=\"table table-striped table-no-bordered table-hover\" cellspacing=\"0\" width=\"100%\"\n                style=\"width:100%\">\n                <thead>\n                  <tr>\n                    <th>{{ dataTable.headerRow[0] }}</th>\n                    <th>{{ dataTable.headerRow[1] }}</th>\n                    <th>{{ dataTable.headerRow[2] }}</th>\n                  </tr>\n                </thead>\n                <tbody>\n                  <tr *ngFor=\"let row of dataTable.dataRows\">\n                    <td><a  [routerLink]=\"['/my-offers']\"  (click)=\"onSelect(row[1])\">{{row[0]}}</a></td>\n                    <td>\n                      <button mat-raised-button class=\"btn btn-primary btn-round\" [routerLink]=\"['/add-project']\" (click)=\"onEdit(row[1])\">تعديل</button>\n                    </td>\n                    <td>\n                        <swal\n                        #deleteSwal\n                        title=\"انتـبه!\"\n                        text=\"هل انت متأكد من الحذف\"\n                        confirmButtonText= 'نعم'\n                        cancelButtonText= 'إلغاء الأمر'\n                        type=\"warning\"\n                        showCancelButton=\"true\"\n                        cancelButtonClass=\"btn btn-danger\"\n                        (confirm)=\"onDelete(row[1])\">\n                      </swal>\n                      <button [swal]=\"deleteSwal\" mat-raised-button class=\"btn btn-danger btn-round\">حذف</button>\n                    </td>\n                  </tr>\n                </tbody>\n              </table>\n            </div>\n          </div>\n          <!-- end content-->\n        </div>\n        <!--  end card  -->\n      </div>\n      <!-- end col-md-12 -->\n    </div>\n    <!-- end row -->\n  </div>\n</div>"
+module.exports = "<mat-spinner style=\"position:fixed;top:50%;left:50%;margin:0 auto;\" mode=\"indeterminate\" *ngIf=\"isLoading\"></mat-spinner>\r\n<div class=\"main-content\" *ngIf=\"!isLoading\">\r\n  <div class=\"container-fluid\">\r\n    <div class=\"row\">\r\n      <div class=\"col-md-12\">\r\n        <div class=\"card\">\r\n          <div class=\"card-header card-header-primary card-header-icon\">\r\n            <div class=\"card-icon\">\r\n              <i class=\"material-icons\">next_week</i>\r\n            </div>\r\n            <h4 class=\"card-title custom-title\">المشاريع الخاصة بي</h4>\r\n          </div>\r\n          <div class=\"card-body\">\r\n            <div class=\"toolbar\">\r\n              <!--     [routerLink]=\"['/my-offers']\"   Here you can write extra buttons/actions for the toolbar              -->\r\n            </div>\r\n            <div class=\"material-datatables\">\r\n              <table id=\"datatables\" class=\"table table-striped table-no-bordered table-hover\" cellspacing=\"0\" width=\"100%\"\r\n                style=\"width:100%\">\r\n                <thead>\r\n                  <tr>\r\n                    <th>{{ dataTable.headerRow[0] }}</th>\r\n                    <th>{{ dataTable.headerRow[1] }}</th>\r\n                    <th>{{ dataTable.headerRow[2] }}</th>\r\n                  </tr>\r\n                </thead>\r\n                <tbody>\r\n                  <tr *ngFor=\"let row of dataTable.dataRows; let rowIndex = index\">\r\n                    <td><a class=\"remove\" [routerLink]=\"['/my-offers']\" (click)=\"onSelect(row[1])\">{{row[0]}}</a></td>\r\n                    <td>\r\n                      <button mat-raised-button class=\"btn btn-primary btn-round custon-btn\" [routerLink]=\"['/add-project']\"\r\n                        (click)=\"onEdit(row[1])\">تعديل</button>\r\n                    </td>\r\n                    <td>\r\n                      <swal #deleteSwal title=\"انتـبه!\" text=\"هل انت متأكد من الحذف\" confirmButtonText='نعم'\r\n                        cancelButtonText='إلغاء الأمر' type=\"warning\" showCancelButton=\"true\" cancelButtonClass=\"btn btn-danger\"\r\n                        (confirm)=\"onDelete(row[1]); deleteRow(rowIndex)\">\r\n                      </swal>\r\n                      <button [swal]=\"deleteSwal\" mat-raised-button class=\"btn btn-danger btn-round custon-btn\">حذف</button>\r\n                    </td>\r\n                  </tr>\r\n                </tbody>\r\n              </table>\r\n            </div>\r\n          </div>\r\n          <!-- end content-->\r\n        </div>\r\n        <!--  end card  -->\r\n      </div>\r\n      <!-- end col-md-12 -->\r\n    </div>\r\n    <!-- end row -->\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -51,10 +51,12 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 var MyProjectsComponent = /** @class */ (function () {
     // tslint:disable-next-line: member-ordering
-    function MyProjectsComponent(data, projectService, authService) {
+    function MyProjectsComponent(data, projectService, authService, changeDetectorRef) {
         this.data = data;
         this.projectService = projectService;
         this.authService = authService;
+        this.changeDetectorRef = changeDetectorRef;
+        this.isLoading = false;
         this.dataRows = [];
         this.idRows = [];
     }
@@ -80,26 +82,23 @@ var MyProjectsComponent = /** @class */ (function () {
             e.preventDefault();
         });
         // Delete a record
-        table.on('click', '.remove', function (e) {
-            var $tr = $(this).closest('tr');
-            table.row($tr).remove().draw();
-            e.preventDefault();
-        });
         //Like record
         table.on('click', '.like', function (e) {
             alert('You clicked on Like button');
             e.preventDefault();
         });
         $('.card .material-datatables label').addClass('form-group');
+        this.authService.autoAuthUser();
+        this.fetchData();
     };
     // tslint:disable-next-line: member-ordering
     MyProjectsComponent.prototype.ngOnInit = function () {
-        this.authService.autoAuthUser();
-        this.fetchData();
+        this.isLoading = true;
         this.dataTable = {
             headerRow: ['اسم المشروع', 'تعديل المشروع', 'حذف المشروع'],
             dataRows: []
         };
+        this.isLoading = false;
     };
     MyProjectsComponent.prototype.fetchData = function () {
         var _this = this;
@@ -115,6 +114,7 @@ var MyProjectsComponent = /** @class */ (function () {
         });
     };
     MyProjectsComponent.prototype.onSelect = function (id) {
+        this.data.storeData(id);
         this.data.changeMessage(id);
     };
     MyProjectsComponent.prototype.onEdit = function (id) {
@@ -124,8 +124,13 @@ var MyProjectsComponent = /** @class */ (function () {
     MyProjectsComponent.prototype.onDelete = function (id) {
         var _this = this;
         this.projectService.deleteproject(id).subscribe(function () {
-            _this.fetchData();
+            _this.dataTable.dataRows.filter(function (r) { return r[1] !== id; });
         });
+    };
+    MyProjectsComponent.prototype.deleteRow = function (rowNumber) {
+        console.log('testdeletRow');
+        this.dataTable.dataRows.splice(rowNumber, 1);
+        this.changeDetectorRef.detectChanges();
     };
     MyProjectsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -133,7 +138,8 @@ var MyProjectsComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./my-projects.component.html */ "./src/app/my-projects/my-projects.component.html"),
             styles: [__webpack_require__(/*! ./my-projects.component.css */ "./src/app/my-projects/my-projects.component.css")]
         }),
-        __metadata("design:paramtypes", [_data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"], _add_project_project_service__WEBPACK_IMPORTED_MODULE_1__["ProjectService"], _auth_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]])
+        __metadata("design:paramtypes", [_data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"], _add_project_project_service__WEBPACK_IMPORTED_MODULE_1__["ProjectService"], _auth_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"],
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ChangeDetectorRef"]])
     ], MyProjectsComponent);
     return MyProjectsComponent;
 }());
@@ -160,12 +166,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _app_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../app.module */ "./src/app/app.module.ts");
 /* harmony import */ var _toverux_ngx_sweetalert2__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @toverux/ngx-sweetalert2 */ "./node_modules/@toverux/ngx-sweetalert2/esm5/toverux-ngx-sweetalert2.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -185,6 +193,7 @@ var MyProjectsModule = /** @class */ (function () {
                 _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"].forChild(_my_projects_routing__WEBPACK_IMPORTED_MODULE_3__["MyProjectsRoutes"]),
                 _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormsModule"],
                 _app_module__WEBPACK_IMPORTED_MODULE_6__["MaterialModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatProgressSpinnerModule"],
                 _toverux_ngx_sweetalert2__WEBPACK_IMPORTED_MODULE_7__["SweetAlert2Module"].forRoot({
                     buttonsStyling: false,
                     customClass: 'modal-content',

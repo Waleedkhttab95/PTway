@@ -1,22 +1,5 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["candidates-list-candidates-list-module"],{
 
-/***/ "./node_modules/rxjs-compat/_esm5/BehaviorSubject.js":
-/*!***********************************************************!*\
-  !*** ./node_modules/rxjs-compat/_esm5/BehaviorSubject.js ***!
-  \***********************************************************/
-/*! exports provided: BehaviorSubject */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BehaviorSubject", function() { return rxjs__WEBPACK_IMPORTED_MODULE_0__["BehaviorSubject"]; });
-
-
-//# sourceMappingURL=BehaviorSubject.js.map
-
-/***/ }),
-
 /***/ "./src/app/candidates-list/Candidates-list.routing.ts":
 /*!************************************************************!*\
   !*** ./src/app/candidates-list/Candidates-list.routing.ts ***!
@@ -49,7 +32,7 @@ var CandidatesListRoutes = [
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".card [class*=\"card-header-\"] .card-icon{\n    margin-left: 15px;\n    float: right;\n}\n.custom-title{\n    text-align: right;\n}\n.mat-form-field{\n    text-align: right;\n}\n.custom-card{\n    margin-left: auto;\n    margin-right: auto;\n}"
+module.exports = ".card [class*=\"card-header-\"] .card-icon{\r\n    margin-left: 15px;\r\n    float: right;\r\n}\r\n.custom-title{\r\n    text-align: right;\r\n}\r\n.mat-form-field{\r\n    text-align: right;\r\n}\r\n.custom-card{\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n}\r\n::ng-deep .mat-raised-button.btn.btn-primary, .mat-raised-button.btn:not([class*=mat-elevation-z]).btn-primary, .btn.btn-primary .custom-btn{\r\n    font-family: 'Cairo', 'Changa';\r\n}"
 
 /***/ }),
 
@@ -60,7 +43,7 @@ module.exports = ".card [class*=\"card-header-\"] .card-icon{\n    margin-left: 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-content\">\n  <div class=\"container-fluid\">\n    <div class=\"row\">\n      <div class=\"col-md-12\">\n        <div class=\"card\">\n          <div class=\"card-header card-header-primary card-header-icon\">\n            <div class=\"card-icon\">\n              <i class=\"material-icons\">assignment</i>\n            </div>\n            <h4 class=\"card-title custom-title\">قائمة المرشحين</h4>\n          </div>\n          <div class=\"card-body\">\n            <div class=\"toolbar\">\n              <!--        Here you can write extra buttons/actions for the toolbar              -->\n            </div>\n            <div class=\"material-datatables\">\n              <table id=\"datatables\" class=\"table table-striped table-no-bordered table-hover\" cellspacing=\"0\" width=\"100%\"\n                style=\"width:100%\">\n                <thead>\n                  <tr>\n                    <th>{{ dataTable.headerRow[0] }}</th>\n                    <th>{{ dataTable.headerRow[1] }}</th>\n                    <th class=\"disabled-sorting text-right\">{{ dataTable.headerRow[2] }}</th>\n                  </tr>\n                </thead>\n                <tbody>\n                  <tr *ngFor=\"let row of dataTable.dataRows\">\n                    <td>{{row[0]}}</td>\n                    <td><button mat-raised-button class=\"btn btn-primary btn-round\">عرض السيرة الذاتية</button></td>\n                    <td class=\"text-right\">\n                      <a  class=\"btn btn-link btn-success btn-just-icon edit\" (click)=\"onAccepted(row[1])\"><i class=\"material-icons\">done</i></a>\n                      <a href=\"#\" class=\"btn btn-link btn-danger btn-just-icon remove\"><i class=\"material-icons\">close</i></a>\n                    </td>\n                  </tr>\n                </tbody>\n              </table>\n            </div>\n          </div>\n          <!-- end content-->\n        </div>\n        <!--  end card  -->\n      </div>\n      <!-- end col-md-12 -->\n    </div>\n    <!-- end row -->\n  </div>\n</div>"
+module.exports = "<div class=\"main-content\" *ngIf='count != CandidatesNumber'>\r\n  <div class=\"container-fluid\">\r\n    <div class=\"row\">\r\n      <div class=\"col-md-12\">\r\n        <div class=\"card\">\r\n          <div class=\"card-header card-header-primary card-header-icon\">\r\n            <div class=\"card-icon\">\r\n              <i class=\"material-icons\">assignment</i>\r\n            </div>\r\n            <h4 class=\"card-title custom-title\">قائمة المرشحين</h4>\r\n          </div>\r\n          <div class=\"card-body\">\r\n            <div class=\"toolbar\">\r\n              <!--        Here you can write extra buttons/actions for the toolbar              -->\r\n            </div>\r\n            <div class=\"material-datatables\">\r\n              <table id=\"datatables\" class=\"table table-striped table-no-bordered table-hover\" cellspacing=\"0\" width=\"100%\"\r\n                style=\"width:100%\">\r\n                <thead>\r\n                  <tr>\r\n                    <th>{{ dataTable.headerRow[0] }}</th>\r\n                    <th>{{ dataTable.headerRow[1] }}</th>\r\n                    <th class=\"disabled-sorting text-right\">{{ dataTable.headerRow[2] }}</th>\r\n                  </tr>\r\n                </thead>\r\n                <tbody>\r\n                  <tr *ngFor=\"let row of dataTable.dataRows; let rowIndex = index\">\r\n                    <td>{{row[0]}}</td>\r\n                    <td><button mat-raised-button class=\"btn btn-primary btn-round\" (click)='onSelect(row[1])' [routerLink]=\"['/cv-preview']\">عرض السيرة الذاتية</button></td>\r\n                    <td class=\"text-right\">\r\n                      <a  class=\"btn btn-link btn-success btn-just-icon edit\" (click)=\"onAccepted(row[1]);  deleteRow(rowIndex)\"><i class=\"material-icons\">done</i></a>\r\n                    </td>\r\n                  </tr>\r\n                </tbody>\r\n              </table>\r\n            </div>\r\n          </div>\r\n          <!-- end content-->\r\n          <div class='col-md-12'>\r\n            <button mat-raised-button class=\"btn btn-fill btn-primary custom-btn\"  [routerLink]=\"['/my-offers']\">إلى الخلف</button>\r\n          </div>\r\n        </div>\r\n        <!--  end card  -->\r\n      </div>\r\n      <!-- end col-md-12 -->\r\n    </div>\r\n    <!-- end row -->\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -94,11 +77,12 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var CandidatesListComponent = /** @class */ (function () {
-    function CandidatesListComponent(data, offerService, authService, jobService) {
+    function CandidatesListComponent(data, offerService, authService, jobService, changeDetectorRef) {
         this.data = data;
         this.offerService = offerService;
         this.authService = authService;
         this.jobService = jobService;
+        this.changeDetectorRef = changeDetectorRef;
         this.dataRows = [];
         this.nameRows = [];
         this.idRows = [];
@@ -140,11 +124,9 @@ var CandidatesListComponent = /** @class */ (function () {
     };
     CandidatesListComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.data.currentMessage.subscribe(function (m) {
-            _this.jobId = m;
-        });
+        this.jobId = this.data.getStoreDataJob();
         this.authService.autoAuthUser();
-        this.offerService.getCandidates('5c63e939453ed8751c55a8b8').subscribe(function (response) {
+        this.offerService.getCandidates(this.jobId).subscribe(function (response) {
             for (var i = 0; i < response.count; i++) {
                 _this.dataRows.push(response.username[i]);
                 _this.idRows.push(response.candidateNames[i]);
@@ -158,18 +140,28 @@ var CandidatesListComponent = /** @class */ (function () {
             headerRow: ['الأسم', 'السيرة الذاتية', 'الإجراءات'],
             dataRows: []
         };
-        this.jobService.getJob('5c727a53ff7f0d690870f1d6').subscribe(function (res) {
-            _this.CandidatesNumber = res.required_Number;
+        this.jobService.getJob(this.jobId).subscribe(function (res) {
+            console.log(res.job.limit_Number);
+            _this.CandidatesNumber = res.job.required_Number;
+            _this.count = res.job.limit_Number;
         });
     };
     CandidatesListComponent.prototype.onAccepted = function (id) {
-        this.count++;
+        // this.count++;
         this.Acc = {
-            jobAd: '5c63e939453ed8751c55a8b8',
+            jobAd: this.jobId,
             acceptedName: id
         };
         this.offerService.addAcceptence(this.Acc);
         console.log(this.count);
+    };
+    CandidatesListComponent.prototype.deleteRow = function (rowNumber) {
+        console.log(rowNumber);
+        this.dataTable.dataRows.splice(rowNumber, 1);
+        this.changeDetectorRef.detectChanges();
+    };
+    CandidatesListComponent.prototype.onSelect = function (id) {
+        this.data.storeDataUser(id);
     };
     CandidatesListComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -178,7 +170,7 @@ var CandidatesListComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./candidates-list.component.css */ "./src/app/candidates-list/candidates-list.component.css")]
         }),
         __metadata("design:paramtypes", [_data_service__WEBPACK_IMPORTED_MODULE_1__["DataService"], _my_offers_offer_service__WEBPACK_IMPORTED_MODULE_2__["offerService"],
-            _auth_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"], _add_job_job_service__WEBPACK_IMPORTED_MODULE_4__["JobService"]])
+            _auth_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"], _add_job_job_service__WEBPACK_IMPORTED_MODULE_4__["JobService"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ChangeDetectorRef"]])
     ], CandidatesListComponent);
     return CandidatesListComponent;
 }());
@@ -232,55 +224,6 @@ var CandidatesListModule = /** @class */ (function () {
         })
     ], CandidatesListModule);
     return CandidatesListModule;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/data.service.ts":
-/*!*********************************!*\
-  !*** ./src/app/data.service.ts ***!
-  \*********************************/
-/*! exports provided: DataService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DataService", function() { return DataService; });
-/* harmony import */ var rxjs_BehaviorSubject__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs/BehaviorSubject */ "./node_modules/rxjs-compat/_esm5/BehaviorSubject.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var DataService = /** @class */ (function () {
-    function DataService() {
-        this.messageSource = new rxjs_BehaviorSubject__WEBPACK_IMPORTED_MODULE_0__["BehaviorSubject"]('dd');
-        this.currentMessage = this.messageSource.asObservable();
-        this.statusSource = new rxjs_BehaviorSubject__WEBPACK_IMPORTED_MODULE_0__["BehaviorSubject"](false);
-        this.currentStatus = this.statusSource.asObservable();
-    }
-    DataService.prototype.changeMessage = function (message) {
-        this.messageSource.next(message);
-    };
-    DataService.prototype.changeStatus = function (status) {
-        this.statusSource.next(status);
-    };
-    DataService = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-            providedIn: 'root'
-        }),
-        __metadata("design:paramtypes", [])
-    ], DataService);
-    return DataService;
 }());
 
 

@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".card [class*=\"card-header-\"] .card-icon{\n    margin-left: 15px;\n    float: right;\n}\n.custom-title{\n    text-align: right;\n}\n.mat-form-field{\n    text-align: right;\n}\n.mat-option{\n    text-align: right;\n}\n.mat-option.mat-selected:hover{\n    background-color: #3f51b5 !important;\n}\n.mat-option:hover {\n    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(22, 44, 243, 0.4);\n    background: #3f51b5!important;\n    color: #fff !important;\n}\n.mat-option.mat-selected:not(.mat-option-multiple) {\n    background-color: #3f51b5 !important;\n    color: #fff !important;\n}\n.mat-option.mat-selected:not(.mat-option-multiple) {\n    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(22, 44, 243, 0.4);\n}\n.custom-card{\n    margin-left: auto;\n    margin-right: auto;\n}\n.custom-label{\n    float: right;\n}"
+module.exports = ".card [class*=\"card-header-\"] .card-icon{\r\n    margin-left: 15px;\r\n    float: right;\r\n}\r\n.custom-title{\r\n    text-align: right;\r\n}\r\n.mat-form-field{\r\n    text-align: right;\r\n}\r\n.mat-option{\r\n    text-align: right;\r\n}\r\n.mat-option.mat-selected:hover{\r\n    background-color: #3f51b5 !important;\r\n}\r\n.mat-option:hover {\r\n    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(22, 44, 243, 0.4);\r\n    background: #3f51b5!important;\r\n    color: #fff !important;\r\n}\r\n.mat-option.mat-selected:not(.mat-option-multiple) {\r\n    background-color: #3f51b5 !important;\r\n    color: #fff !important;\r\n}\r\n.mat-option.mat-selected:not(.mat-option-multiple) {\r\n    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(22, 44, 243, 0.4);\r\n}\r\n.custom-card{\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n}\r\n.custom-label{\r\n    float: right;\r\n}"
 
 /***/ }),
 
@@ -18,7 +18,7 @@ module.exports = ".card [class*=\"card-header-\"] .card-icon{\n    margin-left: 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-content\">\n  <div class=\"container-fluid\">\n    <div class=\"row\">\n      <div class=\"col-md-8 custom-card\">\n        <div class=\"card\">\n          <div class=\"card-header card-header-primary card-header-icon\">\n            <div class=\"card-icon\">\n              <i class=\"material-icons\">supervised_user_circle</i>\n            </div>\n            <h4 class=\"card-title custom-title\">السيرة الذاتية للشركات / المنظمات</h4>\n          </div>\n          <div class=\"col-md-8 custom-card\">\n            <div class=\"card-body\">\n              <form (ngSubmit)=\"postcompanyinfo()\" [formGroup]=\"comapnyResumeForm\">\n                <div class=\"row\">\n                  <div class=\"col-md-6\">\n                    <label class=\"bmd-label-floating custom-label\">- الدولة</label>\n                    <mat-form-field>\n                      <mat-select placeholder=\"\" formControlName=\"country\" name=\"country\">\n                        <mat-option *ngFor=\"let country of countries\" [value]=\"country.value\">\n                          {{country.viewValue}}\n                        </mat-option>\n                      </mat-select>\n                    </mat-form-field>\n                  </div>\n                  <div class=\"col-md-6\">\n                    <label class=\"bmd-label-floating custom-label\">- المدينة</label>\n                    <mat-form-field>\n                      <mat-select placeholder=\"\" formControlName=\"city\" name=\"city\">\n                        <mat-option *ngFor=\"let city of cities\" [value]=\"city.value\">\n                          {{city.viewValue}}\n                        </mat-option>\n                      </mat-select>\n                    </mat-form-field>\n                  </div>\n                  <div class=\"col-md-12\">\n                    <label class=\"bmd-label-floating custom-label\">- العنوان</label>\n                    <mat-form-field class=\"example-full-width\">\n                      <textarea matInput placeholder=\"\" formControlName=\"address\" name=\"address\"></textarea>\n                    </mat-form-field>\n                  </div>\n                  <div class=\"col-md-12\">\n                    <label class=\"bmd-label-floating custom-label\">- معلومات عامة</label>\n                    <mat-form-field class=\"example-full-width\">\n                      <textarea matInput placeholder=\"\" formControlName=\"info\" name=\"info\"></textarea>\n                    </mat-form-field>\n                  </div>\n                  <div class=\"col-md-12\">\n                    <label class=\"bmd-label-floating custom-label\">- الرؤيا</label>\n                    <mat-form-field class=\"example-full-width\">\n                      <textarea matInput placeholder=\"\" formControlName=\"vision\" name=\"vision\"></textarea>\n                    </mat-form-field>\n                  </div>\n                  <div class=\"col-md-12\">\n                    <label class=\"bmd-label-floating custom-label\">- الرسالة</label>\n                    <mat-form-field class=\"example-full-width\">\n                      <textarea matInput placeholder=\"\" formControlName=\"message\" name=\"message\"></textarea>\n                    </mat-form-field>\n                  </div>\n                  <div class=\"col-md-6\">\n                    <label class=\"bmd-label-floating custom-label\">- الموقع الشخصي</label>\n                    <mat-form-field class=\"example-full-width\">\n                      <input matInput placeholder=\"\" formControlName=\"personal_web\" name=\"personal_web\"\n                        type=\"url\">\n                    </mat-form-field>\n                  </div>\n                  <div class=\"col-md-6\">\n                    <label class=\"bmd-label-floating custom-label\">- facebook link</label>\n                    <mat-form-field class=\"example-full-width\">\n                      <input matInput placeholder=\"\" formControlName=\"facebook\" name=\"facebook\"\n                        type=\"url\">\n                    </mat-form-field>\n                  </div>\n                  <div class=\"col-md-6\">\n                    <label class=\"bmd-label-floating custom-label\">- twitter link</label>\n                    <mat-form-field class=\"example-full-width\">\n                      <input matInput placeholder=\"\" formControlName=\"twitter\" name=\"twitter\"\n                        type=\"url\">\n                    </mat-form-field>\n                  </div>\n                  <div class=\"col-md-6\">\n                    <label class=\"bmd-label-floating custom-label\">- instagram link</label>\n                    <mat-form-field class=\"example-full-width\">\n                      <input matInput placeholder=\"\" formControlName=\"instagram\" name=\"instagram\"\n                        type=\"url\">\n                    </mat-form-field>\n                  </div>\n                  <div class=\"col-md-6\">\n                    <label class=\"bmd-label-floating custom-label\">- linkedin link</label>\n                    <mat-form-field class=\"example-full-width\">\n                      <input matInput placeholder=\"\" formControlName=\"linkedin\" name=\"linkedin\"\n                        type=\"url\">\n                    </mat-form-field>\n                  </div>\n                  <div class=\"col-md-12\">\n                    <div class=\"card-footer\">\n                      <button mat-raised-button type=\"submit\" class=\"btn btn-fill btn-primary\">حفظ</button>\n                    </div>\n                  </div>\n                </div>\n              </form>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
+module.exports = "<div class=\"main-content\">\r\n  <div class=\"container-fluid\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-8 col-sm-4\">\r\n            <div class=\"fileinput fileinput-new text-center\" data-provides=\"fileinput\">\r\n              <div class=\"fileinput-new thumbnail\">\r\n                <img [src]=\"imagePreview\"  alt=\"...\">\r\n              </div>\r\n              <div class=\"fileinput-preview fileinput-exists thumbnail\"></div>\r\n              <div>\r\n                <span class=\"btn btn-primary btn-round btn-file\">\r\n                  <span class=\"fileinput-new\">قم بأختيار الصورة الشخصية</span>\r\n                  <span class=\"fileinput-exists\">استبدال </span>\r\n                  <input type=\"file\" #fileUpload (change)=\"onImagePicked($event)\" />\r\n                </span>\r\n                <a href=\"#pablo\" class=\"btn btn-danger btn-round fileinput-exists\" data-dismiss=\"fileinput\">\r\n                  <i class=\"fa fa-times\"></i> حذف\r\n                </a>\r\n              </div>\r\n            </div>\r\n          </div>\r\n      <div class=\"col-md-8 custom-card\">\r\n        <div class=\"card\">\r\n          <div class=\"card-header card-header-primary card-header-icon\">\r\n            <div class=\"card-icon\">\r\n              <i class=\"material-icons\">supervised_user_circle</i>\r\n            </div>\r\n            <h4 class=\"card-title custom-title\">السيرة الذاتية للشركات / المنظمات</h4>\r\n          </div>\r\n          <div class=\"col-md-8 custom-card\">\r\n            <div class=\"card-body\">\r\n              <form (ngSubmit)=\"postcompanyinfo()\" [formGroup]=\"comapnyResumeForm\">\r\n                <div class=\"row\">\r\n                  <div class=\"col-md-6\">\r\n                    <label class=\"bmd-label-floating custom-label\">- الدولة</label>\r\n                    <mat-form-field>\r\n                      <mat-select placeholder=\"\" formControlName=\"country\" name=\"country\">\r\n                        <mat-option *ngFor=\"let country of countries\" [value]=\"country.value\">\r\n                          {{country.viewValue}}\r\n                        </mat-option>\r\n                      </mat-select>\r\n                    </mat-form-field>\r\n                  </div>\r\n                  <div class=\"col-md-6\">\r\n                    <label class=\"bmd-label-floating custom-label\">- المدينة</label>\r\n                    <mat-form-field>\r\n                      <mat-select placeholder=\"\" formControlName=\"city\" name=\"city\">\r\n                        <mat-option *ngFor=\"let city of cities\" [value]=\"city.value\">\r\n                          {{city.viewValue}}\r\n                        </mat-option>\r\n                      </mat-select>\r\n                    </mat-form-field>\r\n                  </div>\r\n                  <div class=\"col-md-12\">\r\n                    <label class=\"bmd-label-floating custom-label\">- العنوان</label>\r\n                    <mat-form-field class=\"example-full-width\">\r\n                      <textarea matInput placeholder=\"\" formControlName=\"address\" name=\"address\"></textarea>\r\n                    </mat-form-field>\r\n                  </div>\r\n                  <div class=\"col-md-12\">\r\n                    <label class=\"bmd-label-floating custom-label\">- معلومات عامة</label>\r\n                    <mat-form-field class=\"example-full-width\">\r\n                      <textarea matInput placeholder=\"\" formControlName=\"info\" name=\"info\"></textarea>\r\n                    </mat-form-field>\r\n                  </div>\r\n                  <div class=\"col-md-12\">\r\n                    <label class=\"bmd-label-floating custom-label\">- الرؤيا</label>\r\n                    <mat-form-field class=\"example-full-width\">\r\n                      <textarea matInput placeholder=\"\" formControlName=\"vision\" name=\"vision\"></textarea>\r\n                    </mat-form-field>\r\n                  </div>\r\n                  <div class=\"col-md-12\">\r\n                    <label class=\"bmd-label-floating custom-label\">- الرسالة</label>\r\n                    <mat-form-field class=\"example-full-width\">\r\n                      <textarea matInput placeholder=\"\" formControlName=\"message\" name=\"message\"></textarea>\r\n                    </mat-form-field>\r\n                  </div>\r\n                  <div class=\"col-md-6\">\r\n                    <label class=\"bmd-label-floating custom-label\">- الموقع الشخصي</label>\r\n                    <mat-form-field class=\"example-full-width\">\r\n                      <input matInput placeholder=\"\" formControlName=\"personal_web\" name=\"personal_web\"\r\n                        type=\"url\">\r\n                    </mat-form-field>\r\n                  </div>\r\n                  <div class=\"col-md-6\">\r\n                    <label class=\"bmd-label-floating custom-label\">- facebook link</label>\r\n                    <mat-form-field class=\"example-full-width\">\r\n                      <input matInput placeholder=\"\" formControlName=\"facebook\" name=\"facebook\"\r\n                        type=\"url\">\r\n                    </mat-form-field>\r\n                  </div>\r\n                  <div class=\"col-md-6\">\r\n                    <label class=\"bmd-label-floating custom-label\">- twitter link</label>\r\n                    <mat-form-field class=\"example-full-width\">\r\n                      <input matInput placeholder=\"\" formControlName=\"twitter\" name=\"twitter\"\r\n                        type=\"url\">\r\n                    </mat-form-field>\r\n                  </div>\r\n                  <div class=\"col-md-6\">\r\n                    <label class=\"bmd-label-floating custom-label\">- instagram link</label>\r\n                    <mat-form-field class=\"example-full-width\">\r\n                      <input matInput placeholder=\"\" formControlName=\"instagram\" name=\"instagram\"\r\n                        type=\"url\">\r\n                    </mat-form-field>\r\n                  </div>\r\n                  <div class=\"col-md-6\">\r\n                    <label class=\"bmd-label-floating custom-label\">- linkedin link</label>\r\n                    <mat-form-field class=\"example-full-width\">\r\n                      <input matInput placeholder=\"\" formControlName=\"linkedin\" name=\"linkedin\"\r\n                        type=\"url\">\r\n                    </mat-form-field>\r\n                  </div>\r\n                  <div class=\"col-md-12\">\r\n                    <div class=\"card-footer\">\r\n                      <button mat-raised-button type=\"submit\" class=\"btn btn-fill btn-primary\">حفظ</button>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </form>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -36,6 +36,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _add_company_info_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./add-company-info.service */ "./src/app/add-company-info/add-company-info.service.ts");
+/* harmony import */ var _add_user_info_mime_type_validator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../add-user-info/mime-type.validator */ "./src/app/add-user-info/mime-type.validator.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -45,6 +46,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -60,13 +62,8 @@ var AddCompanyInfoComponent = /** @class */ (function () {
         this.cities = [];
     }
     AddCompanyInfoComponent.prototype.postcompanyinfo = function () {
-        var _this = this;
         console.log(this.comapnyResumeForm.value);
-        this.rest.postcompanyinfo(this.comapnyResumeForm.value).subscribe(function (result) {
-            _this.router.navigate(['/dashboard/']);
-        }, function (err) {
-            console.log(err);
-        });
+        this.rest.postcompanyinfo(this.comapnyResumeForm.value);
     };
     AddCompanyInfoComponent.prototype.getcountry = function () {
         var _this = this;
@@ -97,6 +94,7 @@ var AddCompanyInfoComponent = /** @class */ (function () {
             country: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
             address: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
             info: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            image: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](null, { asyncValidators: [_add_user_info_mime_type_validator__WEBPACK_IMPORTED_MODULE_4__["mimeType"]] }),
             vision: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
             message: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
             city: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
@@ -106,6 +104,17 @@ var AddCompanyInfoComponent = /** @class */ (function () {
             instagram: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
             linkedin: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]()
         });
+    };
+    AddCompanyInfoComponent.prototype.onImagePicked = function (event) {
+        var _this = this;
+        var file = event.target.files[0];
+        this.comapnyResumeForm.patchValue({ image: file });
+        this.comapnyResumeForm.get('image').updateValueAndValidity();
+        var reader = new FileReader();
+        reader.onload = function () {
+            _this.imagePreview = reader.result;
+        };
+        reader.readAsDataURL(file);
     };
     AddCompanyInfoComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -235,7 +244,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-var BackUrl = 'https://cors-anywhere.herokuapp.com/https://ptway-dev.herokuapp.com/api';
+var BackUrl = 'https://ptway-dev.herokuapp.com/api';
 var httpOptions = {
     headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({
         'Content-Type': 'application/json'
@@ -257,8 +266,24 @@ var AddCompanyInfoService = /** @class */ (function () {
         return this.http.get(BackUrl + '/getcity').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(this.extractData));
     };
     AddCompanyInfoService.prototype.postcompanyinfo = function (data) {
-        console.log(data);
-        return this.http.post(BackUrl + 'postcompanyinfo', JSON.stringify(data), httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(function (data) { return console.log("company succes complete data w/ id=" + data.id); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError('postcompanyinfo')));
+        var _this = this;
+        var postData = new FormData();
+        postData.append('country', data.country);
+        postData.append('address', data.address);
+        postData.append('info', data.info);
+        postData.append('image', data.image, data.info);
+        postData.append('vision', data.vision);
+        postData.append('message', data.message);
+        postData.append('city', data.city);
+        postData.append('personal_web', data.personal_web);
+        postData.append('facebook', data.facebook);
+        postData.append('twitter', data.twitter);
+        postData.append('instagram', data.instagram);
+        postData.append('linkedin', data.linkedin);
+        this.http.post(BackUrl + '/postcompanyinfo', postData)
+            .subscribe(function () {
+            _this.router.navigate(['/dashboard/']);
+        });
     };
     AddCompanyInfoService.prototype.handleError = function (operation, result) {
         if (operation === void 0) { operation = 'operation'; }

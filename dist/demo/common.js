@@ -15,6 +15,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_5__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -29,7 +31,8 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-var BackUrl = 'https://cors-anywhere.herokuapp.com/https://ptway-dev.herokuapp.com/api';
+var BackUrl = 'https://ptway-dev.herokuapp.com/api';
+
 var JobService = /** @class */ (function () {
     function JobService(http, router) {
         this.http = http;
@@ -47,7 +50,18 @@ var JobService = /** @class */ (function () {
             .post(BackUrl + '/postjob', data)
             .subscribe(function (responseData) {
             console.log(responseData);
-            _this.router.navigate(['/']);
+            _this.router.navigate(['/my-projects']);
+            _this.showSwal('secc');
+            _this.jobData = {
+                country: responseData.country,
+                city: responseData.city,
+                gender: responseData.gender,
+                personal_Skills: responseData.personal_Skills,
+                public_Major: responseData.public_Major,
+                jobAd: responseData._id
+            };
+            _this.http
+                .post(BackUrl + '/send/Jobad', _this.jobData);
         });
     };
     JobService.prototype.applyJob = function (jobAd) {
@@ -133,6 +147,17 @@ var JobService = /** @class */ (function () {
         return this.http
             .get(BackUrl + '/getprojects?id=' + id);
     };
+    JobService.prototype.showSwal = function (type) {
+        if (type == 'secc') {
+            sweetalert2__WEBPACK_IMPORTED_MODULE_5___default()({
+                title: "تمت عملية الحذف بنجاح!",
+                buttonsStyling: false,
+                confirmButtonText: 'نعم',
+                type: 'success',
+                confirmButtonClass: 'btn btn-success'
+            }).catch(sweetalert2__WEBPACK_IMPORTED_MODULE_5___default.a.noop);
+        }
+    };
     JobService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({ providedIn: 'root' }),
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
@@ -157,6 +182,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_3__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -169,7 +196,8 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-var BackUrl = 'https://cors-anywhere.herokuapp.com/https://ptway-dev.herokuapp.com/api';
+
+var BackUrl = 'https://ptway-dev.herokuapp.com/api';
 var ProjectService = /** @class */ (function () {
     function ProjectService(http, router) {
         this.http = http;
@@ -182,6 +210,7 @@ var ProjectService = /** @class */ (function () {
         this.http
             .post(BackUrl + '/postproject', data)
             .subscribe(function (responseData) {
+            _this.showSwal('secc');
             _this.projectId = responseData._id;
             console.log(_this.projectId);
             _this.router.navigate(['/my-projects']);
@@ -208,6 +237,17 @@ var ProjectService = /** @class */ (function () {
         return this.http
             .delete(BackUrl + '/deleteproject?id=' + id);
     };
+    ProjectService.prototype.showSwal = function (type) {
+        if (type == 'secc') {
+            sweetalert2__WEBPACK_IMPORTED_MODULE_3___default()({
+                title: "تمت عملية الحفظ بنجاح!",
+                buttonsStyling: false,
+                confirmButtonClass: 'btn btn-success',
+                confirmButtonText: 'نعم',
+                type: 'success',
+            }).catch(sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.noop);
+        }
+    };
     ProjectService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({ providedIn: 'root' }),
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
@@ -215,6 +255,63 @@ var ProjectService = /** @class */ (function () {
     return ProjectService;
 }());
 
+
+
+/***/ }),
+
+/***/ "./src/app/add-user-info/mime-type.validator.ts":
+/*!******************************************************!*\
+  !*** ./src/app/add-user-info/mime-type.validator.ts ***!
+  \******************************************************/
+/*! exports provided: mimeType */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mimeType", function() { return mimeType; });
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+
+var mimeType = function (control) {
+    if (typeof (control.value) === 'string') {
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["of"])(null);
+    }
+    var file = control.value;
+    var fileReader = new FileReader();
+    var frObs = rxjs__WEBPACK_IMPORTED_MODULE_0__["Observable"].create(function (observer) {
+        fileReader.addEventListener('loadend', function () {
+            var arr = new Uint8Array(fileReader.result).subarray(0, 4);
+            var header = '';
+            var isValid = false;
+            for (var i = 0; i < arr.length; i++) {
+                header += arr[i].toString(16);
+            }
+            switch (header) {
+                case '89504e47':
+                    isValid = true;
+                    break;
+                case 'ffd8ffe0':
+                case 'ffd8ffe1':
+                case 'ffd8ffe2':
+                case 'ffd8ffe3':
+                case 'ffd8ffe8':
+                    isValid = true;
+                    break;
+                default:
+                    isValid = false; // Or you can use the blob.type as fallback
+                    break;
+            }
+            if (isValid) {
+                observer.next(null);
+            }
+            else {
+                observer.next({ invalidMimeType: true });
+            }
+            observer.complete();
+        });
+        fileReader.readAsArrayBuffer(file);
+    });
+    return frObs;
+};
 
 
 /***/ }),
@@ -232,6 +329,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_3__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -244,7 +343,8 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-var BackUrl = 'https://cors-anywhere.herokuapp.com/https://ptway-dev.herokuapp.com/api';
+
+var BackUrl = 'https://ptway-dev.herokuapp.com/api';
 var offerService = /** @class */ (function () {
     function offerService(http, router) {
         this.http = http;
@@ -263,6 +363,7 @@ var offerService = /** @class */ (function () {
         var _this = this;
         this.http.post(BackUrl + '/postAcc', data).subscribe(function (result) {
             console.log(result);
+            _this.showSwal('secc');
             _this.router.navigate(['/candidates-list']);
         });
     };
@@ -272,14 +373,27 @@ var offerService = /** @class */ (function () {
     offerService.prototype.startJob = function (data) {
         var _this = this;
         this.http.post(BackUrl + '/start/job', data).subscribe(function (result) {
+            _this.showSwal('secc');
             _this.router.navigate(['/acceptance-list']);
         });
     };
     offerService.prototype.endJob = function (data) {
         var _this = this;
         var response = this.http.post(BackUrl + '/end/job', data, { responseType: 'text' }).subscribe(function (result) {
+            _this.showSwal('secc');
             _this.router.navigate(['/acceptance-list']);
         });
+    };
+    offerService.prototype.showSwal = function (type) {
+        if (type == 'secc') {
+            sweetalert2__WEBPACK_IMPORTED_MODULE_3___default()({
+                title: "تمت العملية بنجاح!",
+                buttonsStyling: false,
+                confirmButtonClass: 'btn btn-success',
+                confirmButtonText: 'نعم',
+                type: 'success',
+            }).catch(sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.noop);
+        }
     };
     offerService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({ providedIn: 'root' }),
@@ -292,19 +406,19 @@ var offerService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/rest.service.ts":
-/*!*********************************!*\
-  !*** ./src/app/rest.service.ts ***!
-  \*********************************/
-/*! exports provided: RestService */
+/***/ "./src/app/sign-up/sign-up.service.ts":
+/*!********************************************!*\
+  !*** ./src/app/sign-up/sign-up.service.ts ***!
+  \********************************************/
+/*! exports provided: SignUpService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RestService", function() { return RestService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SignUpService", function() { return SignUpService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -319,67 +433,68 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-var endpoint = 'https://ptway-dev.herokuapp.com/';
+// import { UNAUTHORIZED, BAD_REQUEST, FORBIDDEN } from "http-status-codes";
+// import { ToastsManager, Toast, ToastOptions } from "ng6-toastr";
+var BackUrl = 'https://ptway-dev.herokuapp.com/api';
 var httpOptions = {
     headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({
         'Content-Type': 'application/json'
     })
 };
-var RestService = /** @class */ (function () {
-    function RestService(http) {
+var SignUpService = /** @class */ (function () {
+    // private showError(message: string) {
+    //   this.toastManager.error(message, SignUpService.DEFAULT_ERROR_TITLE, { dismiss: 'controlled' }).then((toast: Toast) => {
+    //     let currentToastId: number = toast.id;
+    //     this.toastManager.onClickToast().subscribe(clickedToast => {
+    //       if (clickedToast.id === currentToastId) {
+    //         this.toastManager.dismissToast(toast);
+    //         window.location.reload();
+    //       }
+    //     });
+    //   });
+    // }
+    // private job: SignUpData[] = [];
+    // private jobsUpdated = new Subject<{ posts: SignUpData[], jobCount: number }>();
+    function SignUpService(http, router) {
         this.http = http;
+        this.router = router;
     }
-    RestService.prototype.extractData = function (res) {
+    // static readonly REFRESH_PAGE_ON_TOAST_CLICK_MESSAGE: string = "An error occurred: Please click this message to refresh";
+    // static readonly DEFAULT_ERROR_TITLE: string = "Something went wrong";
+    SignUpService.prototype.handleError = function (error) {
+        // console.error(error);
+        // let httpErrorCode = error.httpErrorCode;
+        // switch (httpErrorCode) {
+        //   case UNAUTHORIZED:
+        //     this.router.navigateByUrl("/sign0in");
+        //     break;
+        //   case FORBIDDEN:
+        //     this.router.navigateByUrl("/error-message");
+        //     break;
+        //   case BAD_REQUEST:
+        //     this.showError(error.message);
+        //     break;
+        //   default:
+        //     this.showError(SignUpService.REFRESH_PAGE_ON_TOAST_CLICK_MESSAGE);
+        // }
+    };
+    SignUpService.prototype.extractData = function (res) {
         var body = res;
         return body || {};
     };
-    RestService.prototype.getUsers = function (id) {
-        return this.http.get(endpoint + 'users/' + id).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(this.extractData));
+    SignUpService.prototype.getsectors = function () {
+        return this.http.get(BackUrl + '/getsectors').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(this.extractData));
     };
-    RestService.prototype.userRegistreing = function (data) {
-        console.log(data);
-        return this.http.post(endpoint + 'api/userRegistreing', JSON.stringify(data), httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (data) { return console.log("user Registre succes w/ id=" + data.id); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError('userRegistreing')));
+    SignUpService.prototype.getspecialization = function () {
+        return this.http.get(BackUrl + '/getspec').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(this.extractData));
     };
-    RestService.prototype.companyRegistreing = function (data) {
-        console.log(data);
-        return this.http.post(endpoint + 'api/companyRegistreing', JSON.stringify(data), httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (data) { return console.log("comapny Registre succes w/ id=" + data.id); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError('companyRegistreing')));
-    };
-    RestService.prototype.postuserinfo = function (data) {
-        console.log(data);
-        return this.http.post(endpoint + 'api/postuserinfo', JSON.stringify(data), httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (data) { return console.log("user succes complete his data  w/ id=" + data.id); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError('postuserinfo')));
-    };
-    RestService.prototype.userlogin = function (data) {
-        console.log(data);
-        return this.http.post(endpoint + 'api/login', JSON.stringify(data), httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (data) { return console.log("user login succes w/ id=" + data.id); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError('userlogin')));
-    };
-    RestService.prototype.postcompanyinfo = function (data) {
-        console.log(data);
-        return this.http.post(endpoint + 'api/postcompanyinfo', JSON.stringify(data), httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (data) { return console.log("company succes complete data w/ id=" + data.id); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError('postcompanyinfo')));
-    };
-    RestService.prototype.updateProduct = function (id, product) {
-        return this.http.put(endpoint + 'products/' + id, JSON.stringify(product), httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (_) { return console.log("updated product id=" + id); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError('updateProduct')));
-    };
-    RestService.prototype.deleteProduct = function (id) {
-        return this.http.delete(endpoint + 'products/' + id, httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (_) { return console.log("deleted product id=" + id); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError('deleteProduct')));
-    };
-    RestService.prototype.handleError = function (operation, result) {
-        if (operation === void 0) { operation = 'operation'; }
-        return function (error) {
-            // TODO: send the error to remote logging infrastructure
-            console.error(error); // log to console instead
-            // TODO: better job of transforming error for user consumption
-            console.log(operation + " failed: " + error.message);
-            // Let the app keep running by returning an empty result.
-            return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(result);
-        };
-    };
-    RestService = __decorate([
+    SignUpService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
             providedIn: 'root'
         }),
-        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
-    ], RestService);
-    return RestService;
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+    ], SignUpService);
+    return SignUpService;
 }());
 
 

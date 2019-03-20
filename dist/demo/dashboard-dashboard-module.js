@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "#custom-div{\r\n    /* position: fixed;\r\n    bottom: 0;\r\n    width: 100%; */\r\n    margin-top: 45%;\r\n}\r\n::ng-deep .mat-raised-button.btn.btn-round, .mat-raised-button.btn:not([class*=mat-elevation-z]).btn-round, .btn.btn-round .custon-btn{\r\n    margin-left: 2%;\r\n    font-family: 'Cairo', 'Changa';\r\n}"
 
 /***/ }),
 
@@ -18,7 +18,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-content\">\n  <div class=\"container-fluid\">\n    <div class=\"row\">\n      <div class=\"col-lg-3 col-md-6 col-sm-6\">\n        <div class=\"card card-stats\">\n          <div class=\"card-header card-header-warning card-header-icon\">\n            <div class=\"card-icon\">\n              <i class=\"material-icons\">next_week</i>\n            </div>\n            <p class=\"card-category\">المشاريع</p>\n            <h3 class=\"card-title\">184</h3>\n          </div>\n          <div class=\"card-footer\">\n            <div class=\"stats\">\n              <i class=\"material-icons text-danger\">warning</i>\n              <a href=\"#pablo\">Get More Space...</a>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"col-lg-3 col-md-6 col-sm-6\">\n        <div class=\"card card-stats\">\n          <div class=\"card-header card-header-info card-header-icon\">\n            <div class=\"card-icon\">\n              <i class=\"material-icons\">group</i>\n            </div>\n            <p class=\"card-category\">الموظفين</p>\n            <h3 class=\"card-title\">60</h3>\n          </div>\n          <div class=\"card-footer\">\n            <div class=\"stats\">\n              <i class=\"material-icons\">local_offer</i> Tracked from Google Analytics\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"col-lg-3 col-md-6 col-sm-6\">\n        <div class=\"card card-stats\">\n          <div class=\"card-header card-header-success card-header-icon\">\n            <div class=\"card-icon\">\n              <i class=\"material-icons\">rate_review</i>\n            </div>\n            <p class=\"card-category\">عروض العمل</p>\n            <h3 class=\"card-title\">20</h3>\n          </div>\n          <div class=\"card-footer\">\n            <div class=\"stats\">\n              <i class=\"material-icons\">date_range</i> Last 24 Hours\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"col-lg-3 col-md-6 col-sm-6\">\n        <div class=\"card card-stats\">\n          <div class=\"card-header card-header-info card-header-icon\">\n            <div class=\"card-icon\">\n              <i class=\"fa fa-twitter\"></i>\n            </div>\n            <p class=\"card-category\">المتعاقدين</p>\n            <h3 class=\"card-title\">+245</h3>\n          </div>\n          <div class=\"card-footer\">\n            <div class=\"stats\">\n              <i class=\"material-icons\">update</i> Just Updated\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n    <h3>Manage Listings</h3>\n    <br>\n    <div class=\"row\">\n      <div class=\"col-md-4\">\n        <div class=\"card card-product\">\n          <div class=\"card-header card-header-image\" data-header-animation=\"true\">\n            <a href=\"#pablo\">\n              <img class=\"img\" src=\"./assets/img/card-2.jpg\">\n            </a>\n          </div>\n          <div class=\"card-body\">\n            <div class=\"card-actions text-center\">\n              <button mat-raised-button type=\"button\" class=\"btn btn-danger btn-link fix-broken-card\">\n                <i class=\"material-icons\">build</i> Fix Header!\n              </button>\n              <button mat-raised-button type=\"button\" class=\"btn btn-default btn-link\" matTooltip=\"View\"\n                [matTooltipPosition]=\"'below'\">\n                <i class=\"material-icons\">art_track</i>\n              </button>\n              <button mat-raised-button type=\"button\" class=\"btn btn-success btn-link\" matTooltip=\"Edit\"\n                [matTooltipPosition]=\"'below'\">\n                <i class=\"material-icons\">edit</i>\n              </button>\n              <button mat-raised-button type=\"button\" class=\"btn btn-danger btn-link\" matTooltip=\"Remove\"\n                [matTooltipPosition]=\"'below'\">\n                <i class=\"material-icons\">close</i>\n              </button>\n            </div>\n            <h4 class=\"card-title\">\n              <a href=\"#pablo\">Cozy 5 Stars Apartment</a>\n            </h4>\n            <div class=\"card-description\">\n              The place is close to Barceloneta Beach and bus stop just 2 min by walk and near to \"Naviglio\" where you\n              can enjoy the main night life in Barcelona.\n            </div>\n          </div>\n          <div class=\"card-footer\">\n            <div class=\"price\">\n              <h4>$899/night</h4>\n            </div>\n            <div class=\"stats\">\n              <p class=\"card-category\"><i class=\"material-icons\">place</i> Barcelona, Spain</p>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"col-md-4\">\n        <div class=\"card card-product\">\n          <div class=\"card-header card-header-image\" data-header-animation=\"true\">\n            <a href=\"#pablo\">\n              <img class=\"img\" src=\"./assets/img/card-3.jpg\">\n            </a>\n          </div>\n          <div class=\"card-body\">\n            <div class=\"card-actions text-center\">\n              <button mat-raised-button type=\"button\" class=\"btn btn-danger btn-link fix-broken-card\">\n                <i class=\"material-icons\">build</i> Fix Header!\n              </button>\n              <button mat-raised-button type=\"button\" class=\"btn btn-default btn-link\" matTooltip=\"View\"\n                [matTooltipPosition]=\"'below'\">\n                <i class=\"material-icons\">art_track</i>\n              </button>\n              <button mat-raised-button type=\"button\" class=\"btn btn-success btn-link\" matTooltip=\"Edit\"\n                [matTooltipPosition]=\"'below'\">\n                <i class=\"material-icons\">edit</i>\n              </button>\n              <button mat-raised-button type=\"button\" class=\"btn btn-danger btn-link\" matTooltip=\"Remove\"\n                [matTooltipPosition]=\"'below'\">\n                <i class=\"material-icons\">close</i>\n              </button>\n            </div>\n            <h4 class=\"card-title\">\n              <a href=\"#pablo\">Office Studio</a>\n            </h4>\n            <div class=\"card-description\">\n              The place is close to Metro Station and bus stop just 2 min by walk and near to \"Naviglio\" where you can\n              enjoy the night life in London, UK.\n            </div>\n          </div>\n          <div class=\"card-footer\">\n            <div class=\"price\">\n              <h4>$1.119/night</h4>\n            </div>\n            <div class=\"stats\">\n              <p class=\"card-category\"><i class=\"material-icons\">place</i> London, UK</p>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"col-md-4\">\n        <div class=\"card card-product\">\n          <div class=\"card-header card-header-image\" data-header-animation=\"true\">\n            <a href=\"#pablo\">\n              <img class=\"img\" src=\"./assets/img/card-1.jpg\">\n            </a>\n          </div>\n          <div class=\"card-body\">\n            <div class=\"card-actions text-center\">\n              <button mat-raised-button type=\"button\" class=\"btn btn-danger btn-link fix-broken-card\">\n                <i class=\"material-icons\">build</i> Fix Header!\n              </button>\n              <button mat-raised-button type=\"button\" class=\"btn btn-default btn-link\" matTooltip=\"View\"\n                [matTooltipPosition]=\"'below'\">\n                <i class=\"material-icons\">art_track</i>\n              </button>\n              <button mat-raised-button type=\"button\" class=\"btn btn-success btn-link\" matTooltip=\"Edit\"\n                [matTooltipPosition]=\"'below'\">\n                <i class=\"material-icons\">edit</i>\n              </button>\n              <button mat-raised-button type=\"button\" class=\"btn btn-danger btn-link\" matTooltip=\"Remove\"\n                [matTooltipPosition]=\"'below'\">\n                <i class=\"material-icons\">close</i>\n              </button>\n            </div>\n            <h4 class=\"card-title\">\n              <a href=\"#pablo\">Beautiful Castle</a>\n            </h4>\n            <div class=\"card-description\">\n              The place is close to Metro Station and bus stop just 2 min by walk and near to \"Naviglio\" where you can\n              enjoy the main night life in Milan.\n            </div>\n          </div>\n          <div class=\"card-footer\">\n            <div class=\"price\">\n              <h4>$459/night</h4>\n            </div>\n            <div class=\"stats\">\n              <p class=\"card-category\"><i class=\"material-icons\">place</i> Milan, Italy</p>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
+module.exports = "<mat-spinner style=\"position:fixed;top:50%;left:50%;margin:0 auto;\" mode=\"indeterminate\" *ngIf=\"isLoading\"></mat-spinner>\r\n<div class=\"main-content\" *ngIf=\"!isLoading\">\r\n  <div class=\"container-fluid\">\r\n    <div class=\"row\">\r\n      <div class=\"col-lg-3 col-md-6 col-sm-6\">\r\n        <div class=\"card card-stats\">\r\n          <div class=\"card-header card-header-warning card-header-icon\">\r\n            <div class=\"card-icon\">\r\n              <i class=\"material-icons\">next_week</i>\r\n            </div>\r\n            <p class=\"card-category\">المشاريع</p>\r\n            <h3 class=\"card-title\">{{projects}}</h3>\r\n          </div>\r\n          <div class=\"card-footer\">\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-lg-3 col-md-6 col-sm-6\">\r\n        <div class=\"card card-stats\">\r\n          <div class=\"card-header card-header-info card-header-icon\">\r\n            <div class=\"card-icon\">\r\n              <i class=\"material-icons\">group</i>\r\n            </div>\r\n            <p class=\"card-category\">الذين تم توظيفهم</p>\r\n            <h3 class=\"card-title\">{{accepted}}</h3>\r\n          </div>\r\n          <div class=\"card-footer\">\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-lg-3 col-md-6 col-sm-6\">\r\n        <div class=\"card card-stats\">\r\n          <div class=\"card-header card-header-success card-header-icon\">\r\n            <div class=\"card-icon\">\r\n              <i class=\"material-icons\">rate_review</i>\r\n            </div>\r\n            <p class=\"card-category\">عروض العمل</p>\r\n            <h3 class=\"card-title\">{{jobs}}</h3>\r\n          </div>\r\n          <div class=\"card-footer\">\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class='row'>\r\n      <div class='col-md-6' id=\"custom-div\">\r\n        <button mat-raised-button [routerLink]=\"['/add-project']\" class=\"btn btn-primary btn-round custon-btn\">إضافة مشروع</button>\r\n        <button mat-raised-button [routerLink]=\"['/add-job']\" class=\"btn btn-primary btn-round custon-btn\">إضافة عرض عمل</button>\r\n        <button mat-raised-button [routerLink]=\"['/my-projects']\" class=\"btn btn-primary btn-round custon-btn\">المشاريع الخاصة بي</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -33,169 +33,34 @@ module.exports = "<div class=\"main-content\">\n  <div class=\"container-fluid\"
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DashboardComponent", function() { return DashboardComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var chartist__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! chartist */ "./node_modules/chartist/dist/chartist.js");
-/* harmony import */ var chartist__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(chartist__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _dashboard_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dashboard.service */ "./src/app/dashboard/dashboard.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 
 
 var DashboardComponent = /** @class */ (function () {
-    function DashboardComponent() {
+    function DashboardComponent(dashboardService) {
+        this.dashboardService = dashboardService;
+        this.isLoading = false;
+        this.projects = 0;
+        this.jobs = 0;
+        this.accepted = 0;
     }
-    DashboardComponent.prototype.startAnimationForLineChart = function (chart) {
-        var seq, delays, durations;
-        seq = 0;
-        delays = 80;
-        durations = 500;
-        chart.on('draw', function (data) {
-            if (data.type === 'line' || data.type === 'area') {
-                data.element.animate({
-                    d: {
-                        begin: 600,
-                        dur: 700,
-                        from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
-                        to: data.path.clone().stringify(),
-                        easing: chartist__WEBPACK_IMPORTED_MODULE_1__["Svg"].Easing.easeOutQuint
-                    }
-                });
-            }
-            else if (data.type === 'point') {
-                seq++;
-                data.element.animate({
-                    opacity: {
-                        begin: seq * delays,
-                        dur: durations,
-                        from: 0,
-                        to: 1,
-                        easing: 'ease'
-                    }
-                });
-            }
-        });
-        seq = 0;
-    };
-    DashboardComponent.prototype.startAnimationForBarChart = function (chart) {
-        var seq2, delays2, durations2;
-        seq2 = 0;
-        delays2 = 80;
-        durations2 = 500;
-        chart.on('draw', function (data) {
-            if (data.type === 'bar') {
-                seq2++;
-                data.element.animate({
-                    opacity: {
-                        begin: seq2 * delays2,
-                        dur: durations2,
-                        from: 0,
-                        to: 1,
-                        easing: 'ease'
-                    }
-                });
-            }
-        });
-        seq2 = 0;
-    };
-    // constructor(private navbarTitleService: NavbarTitleService) { }
     DashboardComponent.prototype.ngOnInit = function () {
-        this.tableData = {
-            headerRow: ['ID', 'Name', 'Salary', 'Country', 'City'],
-            dataRows: [
-                ['US', 'USA', '2.920	', '53.23%'],
-                ['DE', 'Germany', '1.300', '20.43%'],
-                ['AU', 'Australia', '760', '10.35%'],
-                ['GB', 'United Kingdom	', '690', '7.87%'],
-                ['RO', 'Romania', '600', '5.94%'],
-                ['BR', 'Brasil', '550', '4.34%']
-            ]
-        };
-        /* ----------==========     Daily Sales Chart initialization    ==========---------- */
-        var dataDailySalesChart = {
-            labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-            series: [
-                [12, 17, 7, 17, 23, 18, 38]
-            ]
-        };
-        var optionsDailySalesChart = {
-            lineSmooth: chartist__WEBPACK_IMPORTED_MODULE_1__["Interpolation"].cardinal({
-                tension: 0
-            }),
-            low: 0,
-            high: 50,
-            chartPadding: { top: 0, right: 0, bottom: 0, left: 0 },
-        };
-        var dailySalesChart = new chartist__WEBPACK_IMPORTED_MODULE_1__["Line"]('#dailySalesChart', dataDailySalesChart, optionsDailySalesChart);
-        this.startAnimationForLineChart(dailySalesChart);
-        /* ----------==========     Completed Tasks Chart initialization    ==========---------- */
-        var dataCompletedTasksChart = {
-            labels: ['12p', '3p', '6p', '9p', '12p', '3a', '6a', '9a'],
-            series: [
-                [230, 750, 450, 300, 280, 240, 200, 190]
-            ]
-        };
-        var optionsCompletedTasksChart = {
-            lineSmooth: chartist__WEBPACK_IMPORTED_MODULE_1__["Interpolation"].cardinal({
-                tension: 0
-            }),
-            low: 0,
-            high: 1000,
-            // look
-            chartPadding: { top: 0, right: 0, bottom: 0, left: 0 }
-        };
-        var completedTasksChart = new chartist__WEBPACK_IMPORTED_MODULE_1__["Line"]('#completedTasksChart', dataCompletedTasksChart, optionsCompletedTasksChart);
-        this.startAnimationForLineChart(completedTasksChart);
-        /* ----------==========     Emails Subscription Chart initialization    ==========---------- */
-        var dataWebsiteViewsChart = {
-            labels: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
-            series: [
-                [542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895]
-            ]
-        };
-        var optionsWebsiteViewsChart = {
-            axisX: {
-                showGrid: false
-            },
-            low: 0,
-            high: 1000,
-            chartPadding: { top: 0, right: 5, bottom: 0, left: 0 }
-        };
-        var responsiveOptions = [
-            ['screen and (max-width: 640px)', {
-                    seriesBarDistance: 5,
-                    axisX: {
-                        labelInterpolationFnc: function (value) {
-                            return value[0];
-                        }
-                    }
-                }]
-        ];
-        var websiteViewsChart = new chartist__WEBPACK_IMPORTED_MODULE_1__["Bar"]('#websiteViewsChart', dataWebsiteViewsChart, optionsWebsiteViewsChart, responsiveOptions);
-        this.startAnimationForBarChart(websiteViewsChart);
-        $('#worldMap').vectorMap({
-            map: 'world_en',
-            backgroundColor: 'transparent',
-            borderColor: '#818181',
-            borderOpacity: 0.25,
-            borderWidth: 1,
-            color: '#b3b3b3',
-            enableZoom: true,
-            hoverColor: '#eee',
-            hoverOpacity: null,
-            normalizeFunction: 'linear',
-            scaleColors: ['#b6d6ff', '#005ace'],
-            selectedColor: '#c9dfaf',
-            selectedRegions: null,
-            showTooltip: true,
-            onRegionClick: function (element, code, region) {
-                var message = 'You clicked "'
-                    + region
-                    + '" which has the code: '
-                    + code.toUpperCase();
-                alert(message);
-            }
+        var _this = this;
+        this.isLoading = true;
+        this.dashboardService.getCounts().subscribe(function (result) {
+            _this.projects = result.projects;
+            _this.jobs = result.jobs;
+            _this.accepted = result.acceptes;
+            _this.isLoading = false;
         });
     };
     DashboardComponent.prototype.ngAfterViewInit = function () {
@@ -229,7 +94,8 @@ var DashboardComponent = /** @class */ (function () {
             selector: 'app-dashboard',
             template: __webpack_require__(/*! ./dashboard.component.html */ "./src/app/dashboard/dashboard.component.html"),
             styles: [__webpack_require__(/*! ./dashboard.component.css */ "./src/app/dashboard/dashboard.component.css")]
-        })
+        }),
+        __metadata("design:paramtypes", [_dashboard_service__WEBPACK_IMPORTED_MODULE_1__["DashboardService"]])
     ], DashboardComponent);
     return DashboardComponent;
 }());
@@ -256,12 +122,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _md_md_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../md/md.module */ "./src/app/md/md.module.ts");
 /* harmony import */ var _app_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../app.module */ "./src/app/app.module.ts");
 /* harmony import */ var _dashboard_routing__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./dashboard.routing */ "./src/app/dashboard/dashboard.routing.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -278,6 +146,7 @@ var DashboardModule = /** @class */ (function () {
             declarations: [_dashboard_component__WEBPACK_IMPORTED_MODULE_2__["DashboardComponent"]],
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatProgressSpinnerModule"],
                 _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterModule"].forChild(_dashboard_routing__WEBPACK_IMPORTED_MODULE_7__["DashboardRoutes"]),
                 _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"],
                 _md_md_module__WEBPACK_IMPORTED_MODULE_5__["MdModule"],
@@ -313,6 +182,51 @@ var DashboardRoutes = [
             }]
     }
 ];
+
+
+/***/ }),
+
+/***/ "./src/app/dashboard/dashboard.service.ts":
+/*!************************************************!*\
+  !*** ./src/app/dashboard/dashboard.service.ts ***!
+  \************************************************/
+/*! exports provided: DashboardService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DashboardService", function() { return DashboardService; });
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var BackUrl = 'https://ptway-dev.herokuapp.com/api';
+var DashboardService = /** @class */ (function () {
+    function DashboardService(http, router) {
+        this.http = http;
+        this.router = router;
+    }
+    DashboardService.prototype.getCounts = function () {
+        return this.http.get(BackUrl + '/get/counts');
+    };
+    DashboardService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({ providedIn: 'root' }),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+    ], DashboardService);
+    return DashboardService;
+}());
+
 
 
 /***/ })

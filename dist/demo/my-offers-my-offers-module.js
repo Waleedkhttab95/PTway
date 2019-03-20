@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".card [class*=\"card-header-\"] .card-icon{\n    margin-left: 15px;\n    float: right;\n}\n.custom-title{\n    text-align: right;\n}\n.mat-form-field{\n    text-align: right;\n}\n.custom-card{\n    margin-left: auto;\n    margin-right: auto;\n}"
+module.exports = ".card [class*=\"card-header-\"] .card-icon{\r\n    margin-left: 15px;\r\n    float: right;\r\n}\r\n.custom-title{\r\n    text-align: right;\r\n}\r\n.mat-form-field{\r\n    text-align: right;\r\n}\r\n.custom-card{\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n}\r\n::ng-deep .mat-raised-button.btn.btn-primary, .mat-raised-button.btn:not([class*=mat-elevation-z]).btn-primary, .btn.btn-primary .custom-btn{\r\n    font-family: 'Cairo', 'Changa';\r\n}"
 
 /***/ }),
 
@@ -18,7 +18,7 @@ module.exports = ".card [class*=\"card-header-\"] .card-icon{\n    margin-left: 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-content\">\n  <div class=\"container-fluid\">\n    <div class=\"row\">\n      <div class=\"col-md-12\">\n        <div class=\"card\">\n          <div class=\"card-header card-header-primary card-header-icon\">\n            <div class=\"card-icon\">\n              <i class=\"material-icons\">rate_review</i>\n            </div>\n            <h4 class=\"card-title custom-title\">عروض العمل الخاصة بي</h4>\n          </div>\n          <div class=\"card-body\">\n            <div class=\"toolbar\">\n              <!--        Here you can write extra buttons/actions for the toolbar              -->\n            </div>\n            <div class=\"material-datatables\">\n              <table id=\"datatables\" class=\"table table-striped table-no-bordered table-hover\" cellspacing=\"0\" width=\"100%\"\n                style=\"width:100%\">\n                <thead>\n                  <tr>\n                    <th>{{ dataTable.headerRow[0] }}</th>\n                    <th>{{ dataTable.headerRow[1] }}</th>\n                    <th>{{ dataTable.headerRow[2] }}</th>\n                    <th>{{ dataTable.headerRow[3] }}</th>\n                  </tr>\n                </thead>\n                <tbody>\n                  <tr *ngFor=\"let row of dataTable.dataRows\">\n                    <td><a [routerLink]=\"['/job-offer-preview']\">{{row[0]}}</a></td>\n                    <td>\n                        <swal\n                        #deleteSwal\n                        title=\"انتـبه!\"\n                        text=\"هل انت متأكد من الحذف\"\n                        confirmButtonText= 'نعم'\n                        cancelButtonText= 'إلغاء الأمر'\n                        type=\"warning\"\n                        showCancelButton=\"true\"\n                        cancelButtonClass=\"btn btn-danger\"\n                        (confirm)=\"onDelete(row[1])\">\n\n                       >\n                      </swal>\n                      <button mat-raised-button class=\"btn btn-danger btn-round\" [swal]=\"deleteSwal\">حذف</button>\n                    </td>\n                    <td>\n                      <button mat-raised-button class=\"btn btn-primary btn-round\"  (click)=\"onCandidates(row[1])\" [routerLink]=\"['/candidates-list']\">عرض القائمة </button>\n                    </td>\n                    <td>\n                      <button mat-raised-button class=\"btn btn-primary btn-round\" (click)=\"onAccepted(row[1])\"  [routerLink]=\"['/acceptance-list']\">عرض القائمة</button>\n                    </td>\n                  </tr>\n                </tbody>\n              </table>\n            </div>\n          </div>\n          <!-- end content-->\n        </div>\n        <!--  end card  -->\n      </div>\n      <!-- end col-md-12 -->\n    </div>\n    <!-- end row -->\n  </div>\n</div>"
+module.exports = "<div class=\"main-content\">\r\n  <div class=\"container-fluid\">\r\n    <div class=\"row\">\r\n      <div class=\"col-md-12\">\r\n        <div class=\"card\">\r\n          <div class=\"card-header card-header-primary card-header-icon\">\r\n            <div class=\"card-icon\">\r\n              <i class=\"material-icons\">rate_review</i>\r\n            </div>\r\n            <h4 class=\"card-title custom-title\">عروض العمل الخاصة بي</h4>\r\n          </div>\r\n          <div class=\"card-body\">\r\n            <div class=\"toolbar\">\r\n              <!--        Here you can write extra buttons/actions for the toolbar              -->\r\n            </div>\r\n            <div class=\"material-datatables\">\r\n              <table id=\"datatables\" class=\"table table-striped table-no-bordered table-hover\" cellspacing=\"0\" width=\"100%\"\r\n                style=\"width:100%\">\r\n                <thead>\r\n                  <tr>\r\n                    <th>{{ dataTable.headerRow[0] }}</th>\r\n                    <th>{{ dataTable.headerRow[1] }}</th>\r\n                    <th>{{ dataTable.headerRow[2] }}</th>\r\n                    <th>{{ dataTable.headerRow[3] }}</th>\r\n                  </tr>\r\n                </thead>\r\n                <tbody>\r\n                  <tr *ngFor=\"let row of dataTable.dataRows; let rowIndex = index\">\r\n                    <td><a >{{row[0]}}</a></td>\r\n                    <td>\r\n                      <button mat-raised-button class=\"btn btn-primary btn-round\" (click)=\"onCandidates(row[1])\"\r\n                        [routerLink]=\"['/candidates-list']\">عرض القائمة \r\n                      </button>\r\n                    </td>\r\n                    <td>\r\n                      <button mat-raised-button class=\"btn btn-primary btn-round\" (click)=\"onAccepted(row[1])\"\r\n                        [routerLink]=\"['/acceptance-list']\">عرض القائمة</button>\r\n                    </td>\r\n                    <td class=\"text-right\">\r\n                      <swal #deleteSwal title=\"انتـبه!\" text=\"هل انت متأكد من الحذف\" confirmButtonText='نعم'\r\n                        cancelButtonText='إلغاء الأمر' type=\"warning\" showCancelButton=\"true\" cancelButtonClass=\"btn btn-danger\"\r\n                        (confirm)=\"onDelete(row[1]); deleteRow(rowIndex)\">\r\n                      </swal>\r\n                      <a class=\"btn btn-link btn-danger btn-just-icon edit\" [swal]=\"deleteSwal\"><i class=\"material-icons\">delete_sweep</i></a>\r\n                    </td>\r\n                  </tr>\r\n                </tbody>\r\n              </table>\r\n            </div>\r\n          </div>\r\n          <!-- end content-->\r\n          <div class='col-md-12'>\r\n            <button mat-raised-button class=\"btn btn-fill btn-primary custom-btn\" [routerLink]=\"['/my-projects']\">إلى الخلف</button>\r\n          </div>\r\n        </div>\r\n        <!--  end card  -->\r\n      </div>\r\n      <!-- end col-md-12 -->\r\n    </div>\r\n    <!-- end row -->\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -36,6 +36,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _auth_auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../auth/auth.service */ "./src/app/auth/auth.service.ts");
 /* harmony import */ var _add_job_job_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../add-job/job.service */ "./src/app/add-job/job.service.ts");
 /* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../data.service */ "./src/app/data.service.ts");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_4__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -49,11 +51,14 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var MyOffersComponent = /** @class */ (function () {
-    function MyOffersComponent(data, jobService, authService) {
+    function MyOffersComponent(data, jobService, authService, changeDetectorRef) {
         this.data = data;
         this.jobService = jobService;
         this.authService = authService;
+        this.changeDetectorRef = changeDetectorRef;
+        this.isLoading = false;
         this.dataRows = [];
         this.idRows = [];
     }
@@ -93,9 +98,8 @@ var MyOffersComponent = /** @class */ (function () {
     };
     MyOffersComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.data.currentMessage.subscribe(function (m) {
-            _this.projectId = m;
-        });
+        this.isLoading = true;
+        this.projectId = this.data.getStoreData();
         this.authService.autoAuthUser();
         this.jobService.getJobs(this.projectId).subscribe(function (response) {
             console.log(response);
@@ -109,20 +113,38 @@ var MyOffersComponent = /** @class */ (function () {
             }
         });
         this.dataTable = {
-            headerRow: ['اسم الإعلان', 'حذف الإعلان', 'قائمة المرشحين', 'قائمة المقبولين'],
+            headerRow: ['اسم الإعلان', 'قائمة المرشحين', 'قائمة المقبولين', 'حذف الإعلان'],
             dataRows: []
         };
+        console.log(this.dataTable.dataRows);
     };
     MyOffersComponent.prototype.onCandidates = function (id) {
-        this.data.changeMessage(id);
+        this.data.storeDataJob(id);
     };
     MyOffersComponent.prototype.onAccepted = function (id) {
-        this.data.changeMessage(id);
+        this.data.storeDataJob(id);
     };
     MyOffersComponent.prototype.onDelete = function (id) {
+        var _this = this;
         this.jobService.deleteJob(id).subscribe(function () {
-            console.log("heeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeey");
+            _this.showSwal('secc');
         });
+    };
+    MyOffersComponent.prototype.showSwal = function (type) {
+        if (type == 'secc') {
+            sweetalert2__WEBPACK_IMPORTED_MODULE_4___default()({
+                title: "تمت العملية  بنجاح!",
+                buttonsStyling: false,
+                confirmButtonClass: 'btn btn-success',
+                confirmButtonText: 'نعم',
+                type: 'success',
+            }).catch(sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.noop);
+        }
+    };
+    MyOffersComponent.prototype.deleteRow = function (rowNumber) {
+        console.log(rowNumber);
+        this.dataTable.dataRows.splice(rowNumber, 1);
+        this.changeDetectorRef.detectChanges();
     };
     MyOffersComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -130,7 +152,8 @@ var MyOffersComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./my-offers.component.html */ "./src/app/my-offers/my-offers.component.html"),
             styles: [__webpack_require__(/*! ./my-offers.component.css */ "./src/app/my-offers/my-offers.component.css")]
         }),
-        __metadata("design:paramtypes", [_data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"], _add_job_job_service__WEBPACK_IMPORTED_MODULE_2__["JobService"], _auth_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"]])
+        __metadata("design:paramtypes", [_data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"], _add_job_job_service__WEBPACK_IMPORTED_MODULE_2__["JobService"], _auth_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"],
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ChangeDetectorRef"]])
     ], MyOffersComponent);
     return MyOffersComponent;
 }());

@@ -10,18 +10,19 @@
 var map = {
 	"./acceptance-list/acceptance-list.module": [
 		"./src/app/acceptance-list/acceptance-list.module.ts",
+		"acceptance-list-acceptance-list-module~my-offers-my-offers-module~my-projects-my-projects-module",
 		"common",
 		"acceptance-list-acceptance-list-module"
 	],
 	"./add-company-info/add-company-info.module": [
 		"./src/app/add-company-info/add-company-info.module.ts",
-		"add-company-info-add-company-info-module~add-job-add-job-module~add-user-info-add-user-info-module~e~f721b707",
+		"add-company-info-add-company-info-module~add-job-add-job-module~add-user-info-add-user-info-module~c~73d7e622",
 		"common",
 		"add-company-info-add-company-info-module"
 	],
 	"./add-job/add-job.module": [
 		"./src/app/add-job/add-job.module.ts",
-		"add-company-info-add-company-info-module~add-job-add-job-module~add-user-info-add-user-info-module~e~f721b707",
+		"add-company-info-add-company-info-module~add-job-add-job-module~add-user-info-add-user-info-module~c~73d7e622",
 		"common",
 		"add-job-add-job-module"
 	],
@@ -32,7 +33,7 @@ var map = {
 	],
 	"./add-user-info/add-user-info.module": [
 		"./src/app/add-user-info/add-user-info.module.ts",
-		"add-company-info-add-company-info-module~add-job-add-job-module~add-user-info-add-user-info-module~e~f721b707",
+		"add-company-info-add-company-info-module~add-job-add-job-module~add-user-info-add-user-info-module~c~73d7e622",
 		"common",
 		"add-user-info-add-user-info-module"
 	],
@@ -45,19 +46,25 @@ var map = {
 		"./src/app/company-profile/company-profile.module.ts",
 		"company-profile-company-profile-module"
 	],
+	"./cv-preview/cv-preview.module": [
+		"./src/app/cv-preview/cv-preview.module.ts",
+		"add-company-info-add-company-info-module~add-job-add-job-module~add-user-info-add-user-info-module~c~73d7e622",
+		"common",
+		"cv-preview-cv-preview-module"
+	],
 	"./dashboard/dashboard.module": [
 		"./src/app/dashboard/dashboard.module.ts",
 		"dashboard-dashboard-module"
 	],
 	"./edit-company-profile/edit-company-profile.module": [
 		"./src/app/edit-company-profile/edit-company-profile.module.ts",
-		"add-company-info-add-company-info-module~add-job-add-job-module~add-user-info-add-user-info-module~e~f721b707",
+		"add-company-info-add-company-info-module~add-job-add-job-module~add-user-info-add-user-info-module~c~73d7e622",
 		"common",
 		"edit-company-profile-edit-company-profile-module"
 	],
 	"./edit-cv/edit-cv.module": [
 		"./src/app/edit-cv/edit-cv.module.ts",
-		"add-company-info-add-company-info-module~add-job-add-job-module~add-user-info-add-user-info-module~e~f721b707",
+		"add-company-info-add-company-info-module~add-job-add-job-module~add-user-info-add-user-info-module~c~73d7e622",
 		"common",
 		"edit-cv-edit-cv-module"
 	],
@@ -80,24 +87,25 @@ var map = {
 	],
 	"./my-cv/my-cv.module": [
 		"./src/app/my-cv/my-cv.module.ts",
-		"add-company-info-add-company-info-module~add-job-add-job-module~add-user-info-add-user-info-module~e~f721b707",
+		"add-company-info-add-company-info-module~add-job-add-job-module~add-user-info-add-user-info-module~c~73d7e622",
 		"common",
 		"my-cv-my-cv-module"
 	],
 	"./my-offers/my-offers.module": [
 		"./src/app/my-offers/my-offers.module.ts",
-		"my-offers-my-offers-module~my-projects-my-projects-module",
+		"acceptance-list-acceptance-list-module~my-offers-my-offers-module~my-projects-my-projects-module",
 		"common",
 		"my-offers-my-offers-module"
 	],
 	"./my-projects/my-projects.module": [
 		"./src/app/my-projects/my-projects.module.ts",
-		"my-offers-my-offers-module~my-projects-my-projects-module",
+		"acceptance-list-acceptance-list-module~my-offers-my-offers-module~my-projects-my-projects-module",
 		"common",
 		"my-projects-my-projects-module"
 	],
 	"./offers-list/offers-list.module": [
 		"./src/app/offers-list/offers-list.module.ts",
+		"common",
 		"offers-list-offers-list-module"
 	],
 	"./sign-in/sign-in.module": [
@@ -106,6 +114,7 @@ var map = {
 	],
 	"./sign-up/sign-up.module": [
 		"./src/app/sign-up/sign-up.module.ts",
+		"common",
 		"sign-up-sign-up-module"
 	]
 };
@@ -138,7 +147,7 @@ module.exports = webpackAsyncContext;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<router-outlet></router-outlet>\n"
+module.exports = "\r\n<router-outlet></router-outlet>\r\n"
 
 /***/ }),
 
@@ -225,12 +234,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _layouts_registration_registration_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./layouts/registration/registration.component */ "./src/app/layouts/registration/registration.component.ts");
 /* harmony import */ var _auth_interceptor__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./auth-interceptor */ "./src/app/auth-interceptor.ts");
 /* harmony import */ var _app_routing__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./app.routing */ "./src/app/app.routing.ts");
+/* harmony import */ var _layouts_sidebar_side_module__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./layouts/sidebar/side.module */ "./src/app/layouts/sidebar/side.module.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -308,7 +319,8 @@ var AppModule = /** @class */ (function () {
                 _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(_app_routing__WEBPACK_IMPORTED_MODULE_20__["AppRoutes"]),
                 MaterialModule,
                 _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatNativeDateModule"],
-                _sidebar_sidebar_module__WEBPACK_IMPORTED_MODULE_11__["SidebarModule"],
+                _sidebar_sidebar_module__WEBPACK_IMPORTED_MODULE_11__["SideBarModule"],
+                _layouts_sidebar_side_module__WEBPACK_IMPORTED_MODULE_21__["SideModule"],
                 _shared_navbar_navbar_module__WEBPACK_IMPORTED_MODULE_13__["NavbarModule"],
                 _shared_footer_footer_module__WEBPACK_IMPORTED_MODULE_12__["FooterModule"],
                 _shared_fixedplugin_fixedplugin_module__WEBPACK_IMPORTED_MODULE_14__["FixedpluginModule"],
@@ -359,7 +371,7 @@ __webpack_require__.r(__webpack_exports__);
 var AppRoutes = [
     {
         path: '',
-        redirectTo: '',
+        redirectTo: '/my-cv',
         pathMatch: 'full',
     }, {
         path: '',
@@ -405,7 +417,7 @@ var AppRoutes = [
                 loadChildren: './error-message/error-message.module#ErrorMessageModule'
             }, {
                 path: 'company-profile',
-                canActivate: [_app_auth_auth_guard__WEBPACK_IMPORTED_MODULE_4__["AuthGuard"]],
+                canActivate: [_auth_auth_company_guard__WEBPACK_IMPORTED_MODULE_5__["Auth_company_Guard"]],
                 loadChildren: './company-profile/company-profile.module#CompanyProfileModule'
             }, {
                 path: 'edit-company-profile',
@@ -459,6 +471,10 @@ var AppRoutes = [
                 path: 'add-user-info',
                 canActivate: [_app_auth_auth_guard__WEBPACK_IMPORTED_MODULE_4__["AuthGuard"]],
                 loadChildren: './add-user-info/add-user-info.module#AddUserInfoModule'
+            }, {
+                path: 'cv-preview',
+                canActivate: [_auth_auth_company_guard__WEBPACK_IMPORTED_MODULE_5__["Auth_company_Guard"]],
+                loadChildren: './cv-preview/cv-preview.module#CvPreviewModule'
             }
         ]
     }
@@ -499,7 +515,6 @@ var AuthInterceptor = /** @class */ (function () {
         var authRequest = req.clone({
             headers: req.headers.set('Authorization', 'Bearer ' + authToken)
         });
-        console.log(authRequest);
         return next.handle(authRequest);
     };
     AuthInterceptor = __decorate([
@@ -630,6 +645,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var bootstrap_notify__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! bootstrap-notify */ "./node_modules/bootstrap-notify/bootstrap-notify.js");
+/* harmony import */ var bootstrap_notify__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(bootstrap_notify__WEBPACK_IMPORTED_MODULE_6__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -643,7 +664,11 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-var BackUrl = 'https://cors-anywhere.herokuapp.com/https://ptway-dev.herokuapp.com/api';
+
+// declare var $: any;
+
+
+var BackUrl = 'https://ptway-dev.herokuapp.com/api';
 var AuthService = /** @class */ (function () {
     function AuthService(http, router) {
         this.http = http;
@@ -662,8 +687,15 @@ var AuthService = /** @class */ (function () {
         var _this = this;
         var authData = { firstName: firstName, lastName: lastName, email: email, password: password };
         this.http.post(BackUrl + '/userRegistreing', authData)
-            .subscribe(function () {
-            _this.router.navigate(['/add-user-info']);
+            .subscribe(function (response) {
+            if (response.token) {
+                _this.token = response.token;
+                _this.isAuth = true;
+                _this.isCompany = "false";
+                _this.authStatusListener.next(true);
+                _this.saveAuthData(response.token, _this.userId, _this.isCompany);
+                _this.router.navigate(['/add-user-info']);
+            }
         }, function (error) {
             _this.authStatusListener.next(false);
         });
@@ -671,17 +703,25 @@ var AuthService = /** @class */ (function () {
     AuthService.prototype.createCompany = function (companyName, email, CompanySpecialist, sector, password) {
         var _this = this;
         var authData = { companyName: companyName, email: email, CompanySpecialist: CompanySpecialist, sector: sector, password: password };
-        this.http.post(BackUrl + '/companyRegistreing', authData, { observe: 'response' })
+        this.http.post(BackUrl + '/companyRegistreing', authData)
             .subscribe(function (response) {
-            console.log(response);
-            var token = response.headers.get('x-auth-token');
-            if (token) {
-                _this.token = token;
+            console.log(response.token);
+            if (response.token) {
+                console.log('Here');
+                _this.token = response.token;
                 _this.isAuth = true;
                 _this.isCompany = "true";
+                _this.companyName = authData.companyName;
                 _this.authStatusListener.next(true);
-                _this.saveAuthData(token, _this.userId, _this.isCompany);
-                _this.router.navigate(['/add-company-info']);
+                _this.saveAuthData(response.token, _this.userId, _this.isCompany);
+                if (sector == "5c56c3572e168a2c30fe5dde") {
+                    console.log('reach');
+                    _this.showSwal('warning-message');
+                }
+                else {
+                    console.log('Navigate');
+                    _this.router.navigate(['/add-company-info']);
+                }
             }
         }, function (error) {
             _this.authStatusListener.next(false);
@@ -704,6 +744,7 @@ var AuthService = /** @class */ (function () {
                 _this.router.navigate(['/my-cv']);
             }
         }, function (error) {
+            jquery__WEBPACK_IMPORTED_MODULE_5__["notify"]({ message: error.error }, { type: 'danger' });
             _this.authStatusListener.next(false);
         });
     };
@@ -719,11 +760,13 @@ var AuthService = /** @class */ (function () {
                 _this.isAuth = true;
                 _this.isCompany = "true";
                 _this.userId = response.userId;
+                _this.companyName = response.companyName;
                 _this.authStatusListener.next(true);
-                _this.saveAuthData(token, _this.userId, _this.isCompany);
+                _this.saveAuthData(token, _this.userId, _this.isCompany, _this.companyName);
                 _this.router.navigate(['/dashboard']);
             }
         }, function (error) {
+            jquery__WEBPACK_IMPORTED_MODULE_5__["notify"]({ message: error.error }, { type: 'danger' });
             _this.authStatusListener.next(false);
         });
     };
@@ -731,6 +774,7 @@ var AuthService = /** @class */ (function () {
         this.token = this.getAuthData().token;
         this.isAuth = true;
         this.isCompany = this.getAuthData().isCompany;
+        this.companyName = this.getAuthData().companyName;
         this.authStatusListener.next(true);
         this.userId = this.getAuthData().userId;
     };
@@ -743,15 +787,17 @@ var AuthService = /** @class */ (function () {
         this.clearData();
         this.router.navigate(['/sign-in']);
     };
-    AuthService.prototype.saveAuthData = function (token, userId, isCompany) {
+    AuthService.prototype.saveAuthData = function (token, userId, isCompany, companyName) {
         localStorage.setItem('token', token);
         localStorage.setItem('userId', userId);
         localStorage.setItem('isCompany', isCompany);
+        localStorage.setItem('companyName', companyName);
     };
     AuthService.prototype.clearData = function () {
         localStorage.removeItem('token');
         localStorage.removeItem('userId');
         localStorage.removeItem('isCompany');
+        localStorage.removeItem('companyName');
     };
     AuthService.prototype.getIsAuth = function () {
         return this.isAuth;
@@ -762,24 +808,92 @@ var AuthService = /** @class */ (function () {
     AuthService.prototype.getIsCompany = function () {
         return this.isCompany;
     };
+    AuthService.prototype.getCompanyName = function () {
+        return this.companyName;
+    };
     AuthService.prototype.getAuthData = function () {
         var token = localStorage.getItem('token');
         var user = localStorage.getItem('userId');
         var isCompany = localStorage.getItem('isCompany');
+        var companyName = localStorage.getItem('companyName');
         if (!token) {
             return;
         }
         return {
             token: token,
             userId: user,
-            isCompany: isCompany
+            isCompany: isCompany,
+            companyName: companyName
         };
+    };
+    AuthService.prototype.showSwal = function (type) {
+        if (type == 'warning-message') {
+            sweetalert2__WEBPACK_IMPORTED_MODULE_4___default()({
+                title: "تمت عملية التسجيل بنجاح!",
+                text: "سيتم ارسال رسالة عبر الريد الالكتروني عند تفعيل الحساب الخاص بك!",
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-warning",
+                type: "warning"
+            }).catch(sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.noop);
+        }
     };
     AuthService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])({ providedIn: 'root' }),
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
     ], AuthService);
     return AuthService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/company-profile/company.service.ts":
+/*!****************************************************!*\
+  !*** ./src/app/company-profile/company.service.ts ***!
+  \****************************************************/
+/*! exports provided: CompanyService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CompanyService", function() { return CompanyService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var BackUrl = 'https://ptway-dev.herokuapp.com/api';
+var CompanyService = /** @class */ (function () {
+    function CompanyService(http, router) {
+        this.http = http;
+        this.router = router;
+    }
+    CompanyService.prototype.getCompanyInfo = function () {
+        return this.http.get(BackUrl + '/getcompanyinfo');
+    };
+    CompanyService.prototype.updateCompanyInfo = function (data) {
+        var _this = this;
+        this.http
+            .put(BackUrl + '/put/companyinfo', data).subscribe(function (response) {
+            _this.router.navigate(['/company-profile']);
+        });
+    };
+    CompanyService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({ providedIn: 'root' }),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+    ], CompanyService);
+    return CompanyService;
 }());
 
 
@@ -815,12 +929,53 @@ var DataService = /** @class */ (function () {
         this.currentMessage = this.messageSource.asObservable();
         this.statusSource = new rxjs_BehaviorSubject__WEBPACK_IMPORTED_MODULE_0__["BehaviorSubject"](false);
         this.currentStatus = this.statusSource.asObservable();
+        this.previosData = new rxjs_BehaviorSubject__WEBPACK_IMPORTED_MODULE_0__["BehaviorSubject"]('');
+        this.currentPreData = this.messageSource.asObservable();
     }
     DataService.prototype.changeMessage = function (message) {
         this.messageSource.next(message);
     };
+    DataService.prototype.changePreData = function (data) {
+        this.previosData.next(data);
+    };
     DataService.prototype.changeStatus = function (status) {
         this.statusSource.next(status);
+    };
+    DataService.prototype.storeData = function (projectId) {
+        localStorage.setItem('projectId', projectId);
+    };
+    DataService.prototype.storeDataJob = function (jobId) {
+        localStorage.setItem('jobId', jobId);
+    };
+    DataService.prototype.storeDataUser = function (userId) {
+        localStorage.setItem('userId', userId);
+    };
+    DataService.prototype.storeDataoffer = function (offerId) {
+        localStorage.setItem('offer', offerId);
+    };
+    DataService.prototype.getStoreData = function () {
+        var projectId = localStorage.getItem('projectId');
+        if (!projectId)
+            return;
+        return projectId;
+    };
+    DataService.prototype.getStoreDataOffer = function () {
+        var offer = localStorage.getItem('offer');
+        if (!offer)
+            return;
+        return offer;
+    };
+    DataService.prototype.getStoreDataUser = function () {
+        var user = localStorage.getItem('userId');
+        if (!user)
+            return;
+        return user;
+    };
+    DataService.prototype.getStoreDataJob = function () {
+        var jobId = localStorage.getItem('jobId');
+        if (!jobId)
+            return;
+        return jobId;
     };
     DataService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -842,7 +997,7 @@ var DataService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"wrapper\">\n    <div class=\"sidebar\" data-color=\"white\" data-background-color=\"blue\" data-image=\"./assets/img/sidebar-1.jpg\">\n        <app-sidebar-cmp></app-sidebar-cmp>\n        <div class=\"sidebar-background\" style=\"background-image: url(assets/img/sidebar-1.jpg)\"></div>\n    </div>\n    <div class=\"main-panel\">\n        <app-navbar-cmp></app-navbar-cmp>\n        <router-outlet></router-outlet>\n        <div *ngIf=\"!isMap()\">\n            <app-footer-cmp></app-footer-cmp>\n        </div>\n    </div>\n</div>\n"
+module.exports = "\r\n<div class=\"wrapper\">\r\n    <div class=\"sidebar\" data-color=\"white\" data-background-color=\"blue\" data-image=\"./assets/img/sidebar-1.jpg\">\r\n        <app-sidebar-cmp></app-sidebar-cmp>\r\n        <div class=\"sidebar-background\" style=\"background-image: url(assets/img/sidebar-1.jpg)\"></div>\r\n    </div>\r\n    <div class=\"main-panel\">\r\n            <app-navbar-cmp></app-navbar-cmp>\r\n        <router-outlet></router-outlet>\r\n        <div *ngIf=\"!isMap()\">\r\n            <app-footer-cmp></app-footer-cmp>\r\n        </div>\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1024,7 +1179,7 @@ var AdminLayoutComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg bg-primary navbar-transparent navbar-absolute\" color-on-scroll=\"500\">\n  <div class=\"container\">\n    <div class=\"navbar-wrapper\">\n      <a class=\"navbar-brand-logo d-none d-sm-none d-md-block\">\n        <strong>Pt</strong>way\n        <img src=\"../../../assets/img/32X32.png\">\n      </a>\n      <a class=\"navbar-brand-logo  d-block d-sm-block d-md-none\">\n        <strong>Pt</strong>way\n        <img src=\"../../../assets/img/32X32.png\">\n      </a>\n    </div>\n    <button mat-button class=\"navbar-toggler\" type=\"button\" (click)=\"sidebarToggle()\">\n      <span class=\"sr-only\">Toggle navigation</span>\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\n    </button>\n    <div class=\"collapse navbar-collapse justify-content-end\">\n      <ul class=\"navbar-nav\">\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/sign-up']\">\n            <i class=\"material-icons\">person_add</i> التسجيل\n          </a>\n        </li>\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/sign-in']\">\n            <i class=\"material-icons\">fingerprint</i> تسجيل الدخول\n          </a>\n        </li>\n      </ul>\n    </div>\n  </div>\n</nav>\n  <router-outlet></router-outlet>\n"
+module.exports = "<nav class=\"navbar navbar-expand-lg bg-primary navbar-transparent navbar-absolute\" color-on-scroll=\"500\">\r\n  <div class=\"container\">\r\n    <div class=\"navbar-wrapper\">\r\n      <a class=\"navbar-brand-logo d-none d-sm-none d-md-block\">\r\n        <strong>Pt</strong>way\r\n        <img src=\"../../../assets/img/32x32.png\">\r\n      </a>\r\n      <a class=\"navbar-brand-logo  d-block d-sm-block d-md-none\">\r\n        <strong>Pt</strong>way\r\n        <img src=\"../../../assets/img/32x32.png\">\r\n      </a>\r\n    </div>\r\n    <button mat-button class=\"navbar-toggler\" type=\"button\" (click)=\"sidebarToggle()\">\r\n      <span class=\"sr-only\">Toggle navigation</span>\r\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\r\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\r\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\r\n    </button>\r\n    <div class=\"collapse navbar-collapse justify-content-end\">\r\n      <ul class=\"navbar-nav\">\r\n        <li class=\"nav-item\" routerLinkActive=\"active\">\r\n          <a class=\"nav-link\" [routerLink]=\"['/sign-up']\">\r\n            <i class=\"material-icons\">person_add</i> التسجيل\r\n          </a>\r\n        </li>\r\n        <li class=\"nav-item\" routerLinkActive=\"active\">\r\n          <a class=\"nav-link\" [routerLink]=\"['/sign-in']\">\r\n            <i class=\"material-icons\">fingerprint</i> تسجيل الدخول\r\n          </a>\r\n        </li>\r\n      </ul>\r\n    </div>\r\n  </div>\r\n</nav>\r\n  <router-outlet></router-outlet>\r\n"
 
 /***/ }),
 
@@ -1180,6 +1335,231 @@ var RegistrationComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/layouts/sidebar/side.component.html":
+/*!*****************************************************!*\
+  !*** ./src/app/layouts/sidebar/side.component.html ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"logo\">\r\n        <a class=\"simple-text logo-mini\">\r\n            <div class=\"logo-img\">\r\n                <img src=\"../../../assets/img/32X32.png\" />\r\n            </div>\r\n        </a>\r\n        <a  class=\"simple-text logo-normal\">\r\n            <strong>Pt</strong>way\r\n        </a>\r\n    </div>\r\n    <div class=\"sidebar-wrapper\">\r\n    \r\n        <ul class=\"nav\">\r\n            <li routerLinkActive=\"active\" class=\"nav-item\">\r\n                <a [routerLink]=\"['/my-cv']\" class=\"nav-link\">\r\n                    <i class=\"material-icons\">dashboard</i>\r\n                    <p>السيرة الذاتيه</p>\r\n                </a>\r\n            </li>\r\n            <li routerLinkActive=\"active\" class=\"nav-item\">\r\n                <a [routerLink]=\"['/offers-list']\" class=\"nav-link\">\r\n                    <i class=\"material-icons\">add_box</i>\r\n                    <p>العروض الوظيفية</p>\r\n                </a>\r\n            </li>\r\n         \r\n            <li routerLinkActive=\"active\" class=\"nav-item\">\r\n                <a (click)=\"logout()\" [routerLink]=\"['null']\" class=\"nav-link\">\r\n                    <i class=\"material-icons\">input</i>\r\n                    <p>تسجيل خروج</p>\r\n                </a>\r\n            </li>\r\n        </ul>\r\n    </div>"
+
+/***/ }),
+
+/***/ "./src/app/layouts/sidebar/side.component.ts":
+/*!***************************************************!*\
+  !*** ./src/app/layouts/sidebar/side.component.ts ***!
+  \***************************************************/
+/*! exports provided: ROUTES, SideComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ROUTES", function() { return ROUTES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SideComponent", function() { return SideComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var perfect_scrollbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! perfect-scrollbar */ "./node_modules/perfect-scrollbar/dist/perfect-scrollbar.esm.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var src_app_auth_auth_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/auth/auth.service */ "./src/app/auth/auth.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+//Menu Items
+var ROUTES = [{
+        path: '/dashboard',
+        title: 'لوحة التحكم',
+        type: 'link',
+        icontype: 'dashboard'
+    }, {
+        path: '/add-project',
+        title: 'اضافة مشروع',
+        type: 'link',
+        icontype: 'next_week'
+    }, {
+        path: '/add-job',
+        title: 'اضافة عرض عمل',
+        type: 'link',
+        icontype: 'rate_review'
+    }, {
+        path: '/candidates-list',
+        title: 'قائمة المرشحين',
+        type: 'link',
+        icontype: 'assignment_ind'
+    }, {
+        path: '/acceptance-list',
+        title: 'قائمة المقبولين',
+        type: 'link',
+        icontype: 'assignment_turned_in'
+    }, {
+        path: '/widgets',
+        title: 'تسجيل خروج',
+        type: 'link',
+        icontype: 'input'
+    }
+];
+var SideComponent = /** @class */ (function () {
+    function SideComponent(router, element, authService) {
+        this.router = router;
+        this.element = element;
+        this.authService = authService;
+        this.mobile_menu_visible = 0;
+        this.name = '';
+        this.sidebarVisible = false;
+    }
+    SideComponent.prototype.isMobileMenu = function () {
+        if ($(window).width() > 991) {
+            return false;
+        }
+        return true;
+    };
+    ;
+    SideComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        var navbar = this.element.nativeElement;
+        this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
+        this._router = this.router.events.filter(function (event) { return event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_2__["NavigationEnd"]; }).subscribe(function (event) {
+            _this.sidebarClose();
+        });
+        this.menuItems = ROUTES.filter(function (menuItem) { return menuItem; });
+    };
+    SideComponent.prototype.updatePS = function () {
+        if (window.matchMedia("(min-width: 960px)").matches && !this.isMac()) {
+            var elemSidebar = document.querySelector('.sidebar .sidebar-wrapper');
+            var ps = new perfect_scrollbar__WEBPACK_IMPORTED_MODULE_1__["default"](elemSidebar, { wheelSpeed: 2, suppressScrollX: true });
+        }
+    };
+    SideComponent.prototype.isMac = function () {
+        var bool = false;
+        if (navigator.platform.toUpperCase().indexOf('MAC') >= 0 || navigator.platform.toUpperCase().indexOf('IPAD') >= 0) {
+            bool = true;
+        }
+        return bool;
+    };
+    SideComponent.prototype.sidebarOpen = function () {
+        var toggleButton = this.toggleButton;
+        var body = document.getElementsByTagName('body')[0];
+        setTimeout(function () {
+            toggleButton.classList.add('toggled');
+        }, 500);
+        body.classList.add('nav-open');
+        this.sidebarVisible = true;
+    };
+    ;
+    SideComponent.prototype.sidebarClose = function () {
+        var body = document.getElementsByTagName('body')[0];
+        this.toggleButton.classList.remove('toggled');
+        this.sidebarVisible = false;
+        body.classList.remove('nav-open');
+    };
+    ;
+    SideComponent.prototype.sidebarToggle = function () {
+        var body = document.getElementsByTagName('body')[0];
+        if (this.sidebarVisible === false) {
+            this.sidebarOpen();
+            var $layer = document.createElement('div');
+            $layer.setAttribute('class', 'close-layer');
+            if (body.querySelectorAll('.wrapper-full-page')) {
+                document.getElementsByClassName('wrapper-full-page')[0].appendChild($layer);
+            }
+            else if (body.classList.contains('off-canvas-sidebar')) {
+                document.getElementsByClassName('wrapper-full-page')[0].appendChild($layer);
+            }
+            setTimeout(function () {
+                $layer.classList.add('visible');
+            }, 100);
+            $layer.onclick = function () {
+                body.classList.remove('nav-open');
+                this.mobile_menu_visible = 0;
+                $layer.classList.remove('visible');
+                this.sidebarClose();
+            }.bind(this);
+            body.classList.add('nav-open');
+        }
+        else {
+            document.getElementsByClassName("close-layer")[0].remove();
+            this.sidebarClose();
+        }
+    };
+    SideComponent.prototype.logout = function () {
+        this.authService.logOut();
+    };
+    SideComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-sidebar',
+            template: __webpack_require__(/*! ./side.component.html */ "./src/app/layouts/sidebar/side.component.html"),
+            styles: [__webpack_require__(/*! ./sidebar.component.css */ "./src/app/layouts/sidebar/sidebar.component.css")]
+        }),
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], src_app_auth_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"]])
+    ], SideComponent);
+    return SideComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/layouts/sidebar/side.module.ts":
+/*!************************************************!*\
+  !*** ./src/app/layouts/sidebar/side.module.ts ***!
+  \************************************************/
+/*! exports provided: SideModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SideModule", function() { return SideModule; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _side_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./side.component */ "./src/app/layouts/sidebar/side.component.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+var SideModule = /** @class */ (function () {
+    function SideModule() {
+    }
+    SideModule = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
+            imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"], _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"]],
+            declarations: [_side_component__WEBPACK_IMPORTED_MODULE_3__["SideComponent"]],
+            exports: [_side_component__WEBPACK_IMPORTED_MODULE_3__["SideComponent"]]
+        })
+    ], SideModule);
+    return SideModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/layouts/sidebar/sidebar.component.css":
+/*!*******************************************************!*\
+  !*** ./src/app/layouts/sidebar/sidebar.component.css ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".side {\r\n    background-color: blue;\r\n}\r\n\r\n"
+
+/***/ }),
+
 /***/ "./src/app/layouts/user/user.component.css":
 /*!*************************************************!*\
   !*** ./src/app/layouts/user/user.component.css ***!
@@ -1187,7 +1567,7 @@ var RegistrationComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".nav-link {\n    display: inline-flex;\n}"
+module.exports = ".nav-link {\r\n    display: inline-flex;\r\n}\r\n\r\n\r\n@media(min-width:991px){\r\n    .sidebar{\r\n        display: none !important;\r\n    }\r\n}"
 
 /***/ }),
 
@@ -1198,7 +1578,7 @@ module.exports = ".nav-link {\n    display: inline-flex;\n}"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-primary\">\n  <div class=\"container\">\n    <a class=\"navbar-brand-logo\" href=\"#\">\n      <strong>Pt</strong>way\n      <img src=\"../../assets/img/32X32.png\">\n    </a>\n    <button class=\"navbar-toggler\" type=\"button\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n    <div class=\"collapse navbar-collapse\" id=\"navbarNav\">\n      <ul class=\"navbar-nav\">\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/my-cv']\">السيرة الذاتية <span class=\"sr-only\">(current)</span></a>\n        </li>\n        <li class=\"nav-item dropdown\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" href=\"#pablo\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\"\n            aria-expanded=\"false\">\n            <i class=\"material-icons\">notifications</i>قائمة العروض\n            <span class=\"notification\">{{count}}</span>\n            <p>\n              <span class=\"d-lg-none d-md-block\">Some Actions</span>\n            </p>\n          </a>\n          <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"navbarDropdownMenuLink\" \n         >\n            <a class=\"dropdown-item\" *ngFor=\"let d of data\" \n             (click)=\"onClick(d[1])\" [routerLink]=\"['/job-offer']\">{{d[0]}}</a>\n            <!-- <a class=\"dropdown-item\" (click)=\"onClick(id[1])\" href=\"#\">{{content[1]}}</a>\n            <a class=\"dropdown-item\" (click)=\"onClick(id[2])\" href=\"#\">{{content[2]}}</a>\n            <a class=\"dropdown-item\" (click)=\"onClick(id[3])\" href=\"#\">{{content[3]}}</a>\n            <a class=\"dropdown-item\" (click)=\"onClick(id[4])\" href=\"#\">{{content[4]}}</a> -->\n            <a class=\"dropdown-item\" [routerLink]=\"['/offers-list']\"> -- عرض جميع الأعلانات --</a>\n          </div>\n        </li>\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/edit-cv']\">تعديل السيرة الذاتية</a>\n        </li>\n        <li class=\"nav-item\" routerLinkActive=\"active\">\n          <a class=\"nav-link\" [routerLink]=\"['/sign-up']\">تسجيل خروج</a>\n        </li>\n      </ul>\n    </div>\n  </div>\n</nav>\n<router-outlet></router-outlet>"
+module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-primary\">\r\n  <div class=\"container\">\r\n    <a class=\"navbar-brand-logo\" href=\"#\">\r\n      <strong>Pt</strong>way\r\n      <img src=\"../../../assets/img/32X32.png\">\r\n    </a>\r\n    <button class=\"navbar-toggler\" type=\"button\" (click)=\"sidebarToggle()\">\r\n      <span class=\"navbar-toggler-icon\"></span>\r\n    </button>\r\n    <div class=\"collapse navbar-collapse\" id=\"navbarNav\">\r\n      <ul class=\"navbar-nav\">\r\n        <li class=\"nav-item\" routerLinkActive=\"active\">\r\n          <a class=\"nav-link\" [routerLink]=\"['/my-cv']\">السيرة الذاتية <span class=\"sr-only\">(current)</span></a>\r\n        </li>\r\n        <li class=\"nav-item dropdown\" routerLinkActive=\"active\">\r\n          <a class=\"nav-link\" href=\"#pablo\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\"\r\n            aria-expanded=\"false\">\r\n            <i class=\"material-icons\">notifications</i>قائمة العروض\r\n            <span class=\"notification\">{{count}}</span>\r\n            <p>\r\n              <span class=\"d-lg-none d-md-block\">Some Actions</span>\r\n            </p>\r\n          </a>\r\n          <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"navbarDropdownMenuLink\">\r\n            <a class=\"dropdown-item\" *ngFor=\"let d of data\" \r\n             (click)=\"onClick(d[1])\" [routerLink]=\"['/job-offer']\">{{d[0]}}</a>\r\n            <!-- <a class=\"dropdown-item\" (click)=\"onClick(id[1])\" href=\"#\">{{content[1]}}</a>\r\n            <a class=\"dropdown-item\" (click)=\"onClick(id[2])\" href=\"#\">{{content[2]}}</a>\r\n            <a class=\"dropdown-item\" (click)=\"onClick(id[3])\" href=\"#\">{{content[3]}}</a>\r\n            <a class=\"dropdown-item\" (click)=\"onClick(id[4])\" href=\"#\">{{content[4]}}</a> -->\r\n            <a class=\"dropdown-item\" [routerLink]=\"['/offers-list']\"> -- عرض جميع الأعلانات --</a>\r\n          </div>\r\n        </li>\r\n        <!-- <li class=\"nav-item\" routerLinkActive=\"active\">\r\n          <a class=\"nav-link\" [routerLink]=\"['/edit-cv']\">تعديل السيرة الذاتية</a>\r\n        </li> -->\r\n        <li class=\"nav-item\" routerLinkActive=\"active\">\r\n          <a class=\"nav-link\" (click)=\"logout()\" [routerLink]=\"['null']\">تسجيل خروج</a>\r\n        </li>\r\n      </ul>\r\n    </div>\r\n  </div>\r\n</nav>\r\n<div class=\"sidebar\" data-color=\"white\" data-background-color=\"blue\" data-image=\"./assets/img/sidebar-1.jpg\">\r\n  <app-sidebar></app-sidebar>\r\n  <div class=\"sidebar-background\" style=\"background-image: url(assets/img/sidebar-1.jpg)\"></div>\r\n</div>\r\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -1216,6 +1596,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var src_app_my_cv_user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/my-cv/user.service */ "./src/app/my-cv/user.service.ts");
 /* harmony import */ var src_app_data_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/data.service */ "./src/app/data.service.ts");
+/* harmony import */ var _auth_auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../auth/auth.service */ "./src/app/auth/auth.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1229,18 +1610,27 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var UserComponent = /** @class */ (function () {
-    function UserComponent(router, element, userService, dataService) {
+    function UserComponent(router, element, userService, dataService, authService) {
         this.router = router;
         this.element = element;
         this.userService = userService;
         this.dataService = dataService;
+        this.authService = authService;
+        this.mobile_menu_visible = 0;
         this.id = [];
         this.content = [];
         this.data = [];
+        this.sidebarVisible = false;
     }
     UserComponent.prototype.ngOnInit = function () {
         var _this = this;
+        var navbar = this.element.nativeElement;
+        this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
+        this._router = this.router.events.filter(function (event) { return event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_1__["NavigationEnd"]; }).subscribe(function (event) {
+            _this.sidebarClose();
+        });
         this.userService.getUnreadNotification().subscribe(function (res) {
             console.log(res);
             _this.count = res.count;
@@ -1259,13 +1649,64 @@ var UserComponent = /** @class */ (function () {
     UserComponent.prototype.onClick = function (id) {
         this.dataService.changeMessage(id);
     };
+    UserComponent.prototype.logout = function () {
+        this.authService.logOut();
+    };
+    UserComponent.prototype.sidebarOpen = function () {
+        var toggleButton = this.toggleButton;
+        var body = document.getElementsByTagName('body')[0];
+        setTimeout(function () {
+            toggleButton.classList.add('toggled');
+        }, 500);
+        body.classList.add('nav-open');
+        this.sidebarVisible = true;
+    };
+    ;
+    UserComponent.prototype.sidebarClose = function () {
+        var body = document.getElementsByTagName('body')[0];
+        this.toggleButton.classList.remove('toggled');
+        this.sidebarVisible = false;
+        body.classList.remove('nav-open');
+    };
+    ;
+    UserComponent.prototype.sidebarToggle = function () {
+        var body = document.getElementsByTagName('body')[0];
+        if (this.sidebarVisible === false) {
+            this.sidebarOpen();
+            var $layer = document.createElement('div');
+            $layer.setAttribute('class', 'close-layer');
+            if (body.querySelectorAll('.wrapper-full-page')) {
+                document.getElementsByClassName('wrapper-full-page')[0].appendChild($layer);
+            }
+            else if (body.classList.contains('off-canvas-sidebar')) {
+                document.getElementsByClassName('wrapper-full-page')[0].appendChild($layer);
+            }
+            setTimeout(function () {
+                $layer.classList.add('visible');
+            }, 100);
+            $layer.onclick = function () {
+                body.classList.remove('nav-open');
+                this.mobile_menu_visible = 0;
+                $layer.classList.remove('visible');
+                this.sidebarClose();
+            }.bind(this);
+            body.classList.add('nav-open');
+        }
+        else {
+            document.getElementsByClassName("close-layer")[0].remove();
+            this.sidebarClose();
+        }
+    };
     UserComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-user',
             template: __webpack_require__(/*! ./user.component.html */ "./src/app/layouts/user/user.component.html"),
             styles: [__webpack_require__(/*! ./user.component.css */ "./src/app/layouts/user/user.component.css")]
         }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], src_app_my_cv_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"], src_app_data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"],
+            src_app_my_cv_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"],
+            src_app_data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"], _auth_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"]])
     ], UserComponent);
     return UserComponent;
 }());
@@ -1292,7 +1733,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\">\n  <div class=\"header\">\n    <h4 class=\"title\">{{ title }}</h4>\n    <p class=\"category\">{{ subtitle }}</p>\n  </div>\n  <div class=\"content\">\n    <div [attr.id]=\"chartId\" class=\"ct-chart {{ chartClass }}\"></div>\n\n    <div class=\"footer\">\n      <div class=\"legend\">\n        <span *ngFor=\"let item of legendItems\">\n          <i [ngClass]=\"item.imageClass\"></i> {{ item.title }}\n        </span>\n      </div>\n      <hr *ngIf=\"withHr\">\n      <div class=\"stats\">\n        <i [ngClass]=\"footerIconClass\"></i> {{ footerText }}\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"card\">\r\n  <div class=\"header\">\r\n    <h4 class=\"title\">{{ title }}</h4>\r\n    <p class=\"category\">{{ subtitle }}</p>\r\n  </div>\r\n  <div class=\"content\">\r\n    <div [attr.id]=\"chartId\" class=\"ct-chart {{ chartClass }}\"></div>\r\n\r\n    <div class=\"footer\">\r\n      <div class=\"legend\">\r\n        <span *ngFor=\"let item of legendItems\">\r\n          <i [ngClass]=\"item.imageClass\"></i> {{ item.title }}\r\n        </span>\r\n      </div>\r\n      <hr *ngIf=\"withHr\">\r\n      <div class=\"stats\">\r\n        <i [ngClass]=\"footerIconClass\"></i> {{ footerText }}\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1415,7 +1856,7 @@ var MdChartComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n  <div class=\"content table-responsive\">\n    <table class=\"table\">\n      <tbody>\n          <tr *ngFor=\"let row of data.dataRows\">\n            <!-- <td *ngFor=\"let cell of row\">{{ cell }}</td> -->\n            <td>\n                <div class=\"flag\">\n                    <img src=\"./assets/img/flags/{{row[0]}}.png\" alt=\"\">\n                </div>\n            </td>\n            <td>\n                {{row[1]}}\n            </td>\n            <td class=\"text-right\">\n                {{row[2]}}\n            </td>\n            <td class=\"text-right\">\n                {{row[3]}}\n            </td>\n          </tr>\n      </tbody>\n    </table>\n\n  </div>\n"
+module.exports = "\r\n  <div class=\"content table-responsive\">\r\n    <table class=\"table\">\r\n      <tbody>\r\n          <tr *ngFor=\"let row of data.dataRows\">\r\n            <!-- <td *ngFor=\"let cell of row\">{{ cell }}</td> -->\r\n            <td>\r\n                <div class=\"flag\">\r\n                    <img src=\"./assets/img/flags/{{row[0]}}.png\" alt=\"\">\r\n                </div>\r\n            </td>\r\n            <td>\r\n                {{row[1]}}\r\n            </td>\r\n            <td class=\"text-right\">\r\n                {{row[2]}}\r\n            </td>\r\n            <td class=\"text-right\">\r\n                {{row[3]}}\r\n            </td>\r\n          </tr>\r\n      </tbody>\r\n    </table>\r\n\r\n  </div>\r\n"
 
 /***/ }),
 
@@ -1547,6 +1988,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _auth_auth_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../auth/auth.service */ "./src/app/auth/auth.service.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1560,25 +2002,95 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-var BackUrl = 'https://cors-anywhere.herokuapp.com/https://ptway-dev.herokuapp.com/api';
+
+var BackUrl = 'https://ptway-dev.herokuapp.com/api';
+//const BackUrl = 'http://localhost:5000/api'
 var UserService = /** @class */ (function () {
     function UserService(http, router, auth) {
         this.http = http;
         this.router = router;
         this.auth = auth;
     }
+    UserService.prototype.extractData = function (res) {
+        var body = res;
+        return body || {};
+    };
     UserService.prototype.addUserInfo = function (data) {
         var _this = this;
+        var postData = new FormData();
+        postData.append('country', data.country);
+        postData.append('study_degree', data.study_degree);
+        postData.append('fullName', data.fullName);
+        postData.append('education_degree', data.education_degree);
+        postData.append('gender', data.gender);
+        postData.append('mobile', data.mobile);
+        postData.append('birthDate', data.birthDate);
+        postData.append('city', data.city);
+        postData.append('universty', data.universty);
+        postData.append('Education_level', data.Education_level);
+        postData.append('public_Major', data.public_Major);
+        postData.append('spMajor', data.spMajor);
+        postData.append('languages', data.languages);
+        postData.append('skills', data.skills);
+        postData.append('personal_Skills', data.personal_Skills);
+        postData.append('hoppies', data.hoppies);
+        postData.append('social_Status', data.social_Status);
+        postData.append('about', data.about);
+        postData.append('personal_web', data.personal_web);
+        postData.append('facebook', data.facebook);
+        postData.append('twitter', data.twitter);
+        postData.append('instagram', data.instagram);
+        postData.append('linkedin', data.linkedin);
+        postData.append('image', data.image, data.fullName);
         this.http
-            .post(BackUrl + '/postuserinfo', data).subscribe(function (response) {
+            .post(BackUrl + '/postuserinfo', postData).subscribe(function (response) {
+            console.log(response);
+            _this.router.navigate(['/my-cv']);
+        });
+    };
+    UserService.prototype.updateUserInfo = function (data) {
+        var _this = this;
+        var postData = new FormData();
+        postData.append('country', data.country);
+        // postData.append ('study_degree',data.study_degree);
+        // postData.append ('fullName',data.fullName);
+        // postData.append ('education_degree',data.education_degree);
+        // postData.append ('gender',data.gender);
+        postData.append('mobile', data.mobile);
+        // postData.append ('birthDate',data.birthDate);
+        // postData.append ('city',data.city);
+        // postData.append ('universty',data.universty);
+        // postData.append ('Education_level',data.Education_level);
+        // postData.append ('public_Major',data.public_Major);
+        // postData.append ('spMajor',data.spMajor);
+        // postData.append ('languages',data.languages);
+        // postData.append ('skills',data.skills);
+        // postData.append ('personal_Skills',data.personal_Skills);
+        // postData.append ('hoppies',data.hoppies);
+        // postData.append ('social_Status',data.social_Status);
+        // postData.append ('about',data.about);
+        // postData.append ('personal_web',data.personal_web);
+        // postData.append ('facebook',data.facebook);
+        // postData.append ('twitter',data.twitter);
+        //   postData.append ('instagram',data.instagram);
+        // postData.append ('linkedin',data.linkedin);
+        //   postData.append ('imagePath',data.image,data.fullName);
+        console.log(postData);
+        this.http
+            .put(BackUrl + '/put/userinfo', postData).subscribe(function (response) {
             _this.router.navigate(['/my-cv']);
         });
     };
     UserService.prototype.getUserInfo = function () {
-        console.log(this.auth.getUserId());
         return this.http
             .get(BackUrl + '/getuserinfo');
     };
+    UserService.prototype.getUserInfoById = function (id) {
+        return this.http
+            .get(BackUrl + '/get/userinfo?id=' + id);
+    };
+    //navbar component
+    //sidebar component
     UserService.prototype.getUser = function () {
         return this.http
             .get(BackUrl + '/currentuser');
@@ -1594,11 +2106,26 @@ var UserService = /** @class */ (function () {
     };
     UserService.prototype.getAllNotification = function () {
         return this.http
-            .get(BackUrl + '/get/allnotifications');
+            .get(BackUrl + '/get/notifications');
     };
     UserService.prototype.getSpicificNotification = function (id) {
         return this.http
             .get(BackUrl + '/get/notification?notiId=' + id);
+    };
+    UserService.prototype.getcity = function () {
+        return this.http.get(BackUrl + '/getcity').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(this.extractData));
+    };
+    UserService.prototype.getcountry = function () {
+        return this.http.get(BackUrl + '/getcountry').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(this.extractData));
+    };
+    UserService.prototype.getmajors = function () {
+        return this.http.get(BackUrl + '/get/majors').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(this.extractData));
+    };
+    UserService.prototype.getspMajors = function (id) {
+        return this.http.get(BackUrl + '/get/spMajors?id=' + id).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(this.extractData));
+    };
+    UserService.prototype.getuniversty = function () {
+        return this.http.get(BackUrl + '/get/universty').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(this.extractData));
     };
     UserService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({ providedIn: 'root' }),
@@ -1629,7 +2156,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- Fixed Plugin configurator, used just for Demo Purpose -->\n<div class=\"fixed-plugin\">\n    <div class=\"dropdown show-dropdown\">\n        <a href=\"#\" data-toggle=\"dropdown\" aria-expanded=\"true\">\n            <i class=\"fa fa-cog fa-2x\"> </i>\n        </a>\n        <ul class=\"dropdown-menu\">\n            <li class=\"header-title\"> Sidebar Filters</li>\n            <li class=\"adjustments-line\">\n                <a href=\"javascript:void(0)\" class=\"switch-trigger active-color\">\n                  <div class=\"ml-auto mr-auto\">\n                    <span class=\"badge filter badge-purple\" data-color=\"purple\"></span>\n                    <span class=\"badge filter badge-azure active\" data-color=\"azure\"></span>\n                    <span class=\"badge filter badge-green\" data-color=\"green\"></span>\n                    <span class=\"badge filter badge-orange\" data-color=\"orange\"></span>\n                    <span class=\"badge filter badge-danger\" data-color=\"danger\"></span>\n                    <span class=\"badge filter badge-rose\" data-color=\"rose\"></span>\n                  </div>\n                    <div class=\"clearfix\"></div>\n                </a>\n            </li>\n            <li class=\"header-title\">Sidebar Background</li>\n            <li class=\"adjustments-line\">\n                <a href=\"javascript:void(0)\" class=\"switch-trigger background-color\">\n                    <div class=\"ml-auto mr-auto\">\n                        <span class=\"badge filter badge-white\" data-color=\"white\"></span>\n                        <span class=\"badge filter badge-black\" data-color=\"black\"></span>\n                        <span class=\"badge filter badge-danger\" data-color=\"red\"></span>\n                        <span class=\"badge filter badge-primary active\" data-color=\"blue\"></span>\n                    </div>\n                    <div class=\"clearfix\"></div>\n                </a>\n            </li>\n            <li class=\"adjustments-line\">\n              <a href=\"javascript:void(0)\" class=\"switch-trigger\">\n                  <p>Sidebar Mini</p>\n                  <label class=\"ml-auto\">\n                    <div class=\"togglebutton switch-sidebar-mini\">\n                      <label>\n                          <input type=\"checkbox\">\n                              <span class=\"toggle\"></span>\n                      </label>\n                    </div>\n                  </label>\n                  <div class=\"clearfix\"></div>\n                  <div class=\"ripple-container\"></div>\n              </a>\n            </li>\n            <li class=\"adjustments-line\">\n              <a href=\"javascript:void(0)\" class=\"switch-trigger\">\n                  <p>Sidebar Images</p>\n                  <label class=\"switch-mini ml-auto\">\n                    <div class=\"togglebutton switch-sidebar-image\">\n                      <label>\n                          <input type=\"checkbox\" checked=\"\">\n                            <span class=\"toggle\"></span>\n                      </label>\n                    </div>\n                  </label>\n                  <div class=\"clearfix\"></div>\n                  <div class=\"ripple-container\"></div>\n              </a>\n            </li>\n            <li class=\"header-title\">Images</li>\n            <li class=\"active\">\n                <a class=\"img-holder switch-trigger\" href=\"javascript:void(0)\">\n                    <img src=\"./assets/img/sidebar-1.jpg\" alt=\"\" />\n                </a>\n            </li>\n            <li>\n                <a class=\"img-holder switch-trigger\" href=\"javascript:void(0)\">\n                    <img src=\"./assets/img/sidebar-2.jpg\" alt=\"\" />\n                </a>\n            </li>\n            <li>\n                <a class=\"img-holder switch-trigger\" href=\"javascript:void(0)\">\n                    <img src=\"./assets/img/sidebar-3.jpg\" alt=\"\" />\n                </a>\n            </li>\n            <li>\n                <a class=\"img-holder switch-trigger\" href=\"javascript:void(0)\">\n                    <img src=\"./assets/img/sidebar-4.jpg\" alt=\"\" />\n                </a>\n            </li>\n        </ul>\n    </div>\n</div>\n"
+module.exports = "<!-- Fixed Plugin configurator, used just for Demo Purpose -->\r\n<div class=\"fixed-plugin\">\r\n    <div class=\"dropdown show-dropdown\">\r\n        <a href=\"#\" data-toggle=\"dropdown\" aria-expanded=\"true\">\r\n            <i class=\"fa fa-cog fa-2x\"> </i>\r\n        </a>\r\n        <ul class=\"dropdown-menu\">\r\n            <li class=\"header-title\"> Sidebar Filters</li>\r\n            <li class=\"adjustments-line\">\r\n                <a href=\"javascript:void(0)\" class=\"switch-trigger active-color\">\r\n                  <div class=\"ml-auto mr-auto\">\r\n                    <span class=\"badge filter badge-purple\" data-color=\"purple\"></span>\r\n                    <span class=\"badge filter badge-azure active\" data-color=\"azure\"></span>\r\n                    <span class=\"badge filter badge-green\" data-color=\"green\"></span>\r\n                    <span class=\"badge filter badge-orange\" data-color=\"orange\"></span>\r\n                    <span class=\"badge filter badge-danger\" data-color=\"danger\"></span>\r\n                    <span class=\"badge filter badge-rose\" data-color=\"rose\"></span>\r\n                  </div>\r\n                    <div class=\"clearfix\"></div>\r\n                </a>\r\n            </li>\r\n            <li class=\"header-title\">Sidebar Background</li>\r\n            <li class=\"adjustments-line\">\r\n                <a href=\"javascript:void(0)\" class=\"switch-trigger background-color\">\r\n                    <div class=\"ml-auto mr-auto\">\r\n                        <span class=\"badge filter badge-white\" data-color=\"white\"></span>\r\n                        <span class=\"badge filter badge-black\" data-color=\"black\"></span>\r\n                        <span class=\"badge filter badge-danger\" data-color=\"red\"></span>\r\n                        <span class=\"badge filter badge-primary active\" data-color=\"blue\"></span>\r\n                    </div>\r\n                    <div class=\"clearfix\"></div>\r\n                </a>\r\n            </li>\r\n            <li class=\"adjustments-line\">\r\n              <a href=\"javascript:void(0)\" class=\"switch-trigger\">\r\n                  <p>Sidebar Mini</p>\r\n                  <label class=\"ml-auto\">\r\n                    <div class=\"togglebutton switch-sidebar-mini\">\r\n                      <label>\r\n                          <input type=\"checkbox\">\r\n                              <span class=\"toggle\"></span>\r\n                      </label>\r\n                    </div>\r\n                  </label>\r\n                  <div class=\"clearfix\"></div>\r\n                  <div class=\"ripple-container\"></div>\r\n              </a>\r\n            </li>\r\n            <li class=\"adjustments-line\">\r\n              <a href=\"javascript:void(0)\" class=\"switch-trigger\">\r\n                  <p>Sidebar Images</p>\r\n                  <label class=\"switch-mini ml-auto\">\r\n                    <div class=\"togglebutton switch-sidebar-image\">\r\n                      <label>\r\n                          <input type=\"checkbox\" checked=\"\">\r\n                            <span class=\"toggle\"></span>\r\n                      </label>\r\n                    </div>\r\n                  </label>\r\n                  <div class=\"clearfix\"></div>\r\n                  <div class=\"ripple-container\"></div>\r\n              </a>\r\n            </li>\r\n            <li class=\"header-title\">Images</li>\r\n            <li class=\"active\">\r\n                <a class=\"img-holder switch-trigger\" href=\"javascript:void(0)\">\r\n                    <img src=\"./assets/img/sidebar-1.jpg\" alt=\"\" />\r\n                </a>\r\n            </li>\r\n            <li>\r\n                <a class=\"img-holder switch-trigger\" href=\"javascript:void(0)\">\r\n                    <img src=\"./assets/img/sidebar-2.jpg\" alt=\"\" />\r\n                </a>\r\n            </li>\r\n            <li>\r\n                <a class=\"img-holder switch-trigger\" href=\"javascript:void(0)\">\r\n                    <img src=\"./assets/img/sidebar-3.jpg\" alt=\"\" />\r\n                </a>\r\n            </li>\r\n            <li>\r\n                <a class=\"img-holder switch-trigger\" href=\"javascript:void(0)\">\r\n                    <img src=\"./assets/img/sidebar-4.jpg\" alt=\"\" />\r\n                </a>\r\n            </li>\r\n        </ul>\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1855,7 +2382,7 @@ var FixedpluginModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<footer class=\"footer \">\n  <div class=\"container\">\n    <nav class=\"pull-left\">\n      <ul>\n        <li>\n          <a href=\"https://www.creative-tim.com\">\n            Ptway TEAM\n          </a>\n        </li>\n        <li>\n          <a href=\"https://creative-tim.com/about-us\">\n            من نحن\n          </a>\n        </li>\n        <li>\n          <a href=\"http://blog.creative-tim.com\">\n            سياسة الخصوصية\n          </a>\n        </li>\n        <li>\n          <a href=\"https://www.creative-tim.com/license\">\n            الشروط والأحكام\n          </a>\n        </li>\n      </ul>\n    </nav>\n    <div class=\"copyright pull-right\">\n        <p class=\"text-left\">جميع الحقوق محفوظة © 2019 PTWay.net</p>\n    </div>\n  </div>\n</footer>"
+module.exports = "<footer class=\"footer \">\r\n  <div class=\"container\">\r\n    <nav class=\"pull-left\">\r\n      <ul>\r\n        <li>\r\n          <a href=\"https://www.creative-tim.com\">\r\n            Ptway TEAM\r\n          </a>\r\n        </li>\r\n        <li>\r\n          <a href=\"https://creative-tim.com/about-us\">\r\n            من نحن\r\n          </a>\r\n        </li>\r\n        <li>\r\n          <a href=\"http://blog.creative-tim.com\">\r\n            سياسة الخصوصية\r\n          </a>\r\n        </li>\r\n        <li>\r\n          <a href=\"https://www.creative-tim.com/license\">\r\n            الشروط والأحكام\r\n          </a>\r\n        </li>\r\n      </ul>\r\n    </nav>\r\n    <div class=\"copyright pull-right\">\r\n        <p class=\"text-left\">جميع الحقوق محفوظة © 2019 PTWay.net</p>\r\n    </div>\r\n  </div>\r\n</footer>"
 
 /***/ }),
 
@@ -1942,7 +2469,7 @@ var FooterModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav #navbar class=\"navbar navbar-expand-lg navbar-transparent  navbar-absolute\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-wrapper\">\n      <div class=\"navbar-minimize\">\n        <button mat-raised-button (click)=\"minimizeSidebar()\" class=\"btn btn-just-icon btn-white btn-fab btn-round\">\n          <i class=\"material-icons text_align-center visible-on-sidebar-regular\">more_vert</i>\n          <i class=\"material-icons design_bullet-list-67 visible-on-sidebar-mini\">view_list</i>\n        </button>\n      </div>\n      <a class=\"navbar-brand\" href=\"{{getPath()}}\"> {{getTitle()}}</a>\n    </div>\n    <button mat-button class=\"navbar-toggler btn-no-ripple\" type=\"button\" (click)=\"sidebarToggle()\">\n      <span class=\"sr-only\">Toggle navigation</span>\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\n    </button>\n    <div class=\"collapse navbar-collapse justify-content-end\" id=\"navigation\"></div>\n  </div>\n</nav>"
+module.exports = "<nav #navbar class=\"navbar navbar-expand-lg navbar-transparent  navbar-absolute\">\r\n  <div class=\"container-fluid\">\r\n    <div class=\"navbar-wrapper\">\r\n      <div class=\"navbar-minimize\">\r\n        <button mat-raised-button (click)=\"minimizeSidebar()\" class=\"btn btn-just-icon btn-white btn-fab btn-round\">\r\n          <i class=\"material-icons text_align-center visible-on-sidebar-regular\">more_vert</i>\r\n          <i class=\"material-icons design_bullet-list-67 visible-on-sidebar-mini\">view_list</i>\r\n        </button>\r\n      </div>\r\n      <a class=\"navbar-brand\" href=\"{{getPath()}}\"> {{getTitle()}}</a>\r\n    </div>\r\n    <button mat-button class=\"navbar-toggler btn-no-ripple\" type=\"button\" (click)=\"sidebarToggle()\">\r\n      <span class=\"sr-only\">Toggle navigation</span>\r\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\r\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\r\n      <span class=\"navbar-toggler-icon icon-bar\"></span>\r\n    </button>\r\n    <div class=\"collapse navbar-collapse justify-content-end\" id=\"navigation\">\r\n      <ul class=\"navbar-nav\"></ul>\r\n    </div>\r\n  </div>\r\n</nav>"
 
 /***/ }),
 
@@ -2227,7 +2754,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"logo\">\n    <a class=\"simple-text logo-mini\">\n        <div class=\"logo-img\">\n            <img src=\"/assets/img/32X32.png\" />\n        </div>\n    </a>\n    <a href=\"https://www.creative-tim.com\" class=\"simple-text logo-normal\">\n        <strong>Pt</strong>way\n    </a>\n</div>\n<div class=\"sidebar-wrapper\">\n    <div class=\"user\">\n        <div class=\"photo\">\n            <img src=\"./assets/img/default-avatar.png\" />\n        </div>\n        <div class=\"user-info\">\n            <a data-toggle=\"collapse\" href=\"#collapseExample\" class=\"collapsed\">\n                <span>\n                    Tania Andrew\n                    <b class=\"caret\"></b>\n                </span>\n            </a>\n            <div class=\"collapse\" id=\"collapseExample\">\n                <ul class=\"nav\">\n                    <li class=\"nav-item\" routerLinkActive=\"active\">\n                        <a class=\"nav-link\" [routerLink]=\"['/company-profile']\">\n                            <i class=\"material-icons\">perm_identity</i>\n                            <span class=\"sidebar-normal\">ملف التعريف</span>\n                        </a>\n                    </li>\n                    <li class=\"nav-item\" routerLinkActive=\"active\">\n                        <a class=\"nav-link\" [routerLink]=\"['/edit-company-profile']\">\n                            <span class=\"sidebar-mini\">EP</span>\n                            <span class=\"sidebar-normal\">تعديل ملف التعريف</span>\n                        </a>\n                    </li>\n                </ul>\n            </div>\n        </div>\n    </div>\n    <ul class=\"nav\">\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a [routerLink]=\"['/dashboard']\" class=\"nav-link\">\n                <i class=\"material-icons\">dashboard</i>\n                <p>لوحة التحكم</p>\n            </a>\n        </li>\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a [routerLink]=\"['/add-project']\" class=\"nav-link\">\n                <i class=\"material-icons\">add_box</i>\n                <p>اضافة مشروع</p>\n            </a>\n        </li>\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a [routerLink]=\"['/add-job']\" class=\"nav-link\">\n                <i class=\"material-icons\">rate_review</i>\n                <p>اضافة عرض عمل</p>\n            </a>\n        </li>\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a [routerLink]=\"['/my-projects']\" class=\"nav-link\">\n                <i class=\"material-icons\">next_week</i>\n                <p>المشاريع الخاصة بي</p>\n            </a>\n        </li>\n        <li routerLinkActive=\"active\" class=\"nav-item\">\n            <a (click)=\"logOut()\" [routerLink]=\"['null']\" class=\"nav-link\">\n                <i class=\"material-icons\">input</i>\n                <p>تسجيل خروج</p>\n            </a>\n        </li>\n    </ul>\n</div>"
+module.exports = "<div class=\"logo\">\r\n    <a class=\"simple-text logo-mini\">\r\n        <div class=\"logo-img\">\r\n            <img src=\"/assets/img/32x32.png\" />\r\n        </div>\r\n    </a>\r\n    <a  class=\"simple-text logo-normal\">\r\n        <strong>Pt</strong>way\r\n    </a>\r\n</div>\r\n<div class=\"sidebar-wrapper\">\r\n    <div class=\"user\">\r\n        <div class=\"photo\">\r\n            <img [src]=\"imagePath\" />\r\n        </div>\r\n        <div class=\"user-info\">\r\n            <a data-toggle=\"collapse\" href=\"#collapseExample\" class=\"collapsed\">\r\n                <span>\r\n                    {{name}}\r\n                    <b class=\"caret\"></b>\r\n                </span>\r\n            </a>\r\n            <div class=\"collapse\" id=\"collapseExample\">\r\n                <ul class=\"nav\">\r\n                    <li class=\"nav-item\" routerLinkActive=\"active\">\r\n                        <a class=\"nav-link\" [routerLink]=\"['/company-profile']\">\r\n                            <i class=\"material-icons\">perm_identity</i>\r\n                            <span class=\"sidebar-normal\">ملف التعريف</span>\r\n                        </a>\r\n                    </li>\r\n                    <li class=\"nav-item\" routerLinkActive=\"active\">\r\n                        <a class=\"nav-link\" [routerLink]=\"['/edit-company-profile']\">\r\n                            <span class=\"sidebar-mini\">EP</span>\r\n                            <span class=\"sidebar-normal\">تعديل ملف التعريف</span>\r\n                        </a>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <ul class=\"nav\">\r\n        <li routerLinkActive=\"active\" class=\"nav-item\">\r\n            <a [routerLink]=\"['/dashboard']\" class=\"nav-link\">\r\n                <i class=\"material-icons\">dashboard</i>\r\n                <p>لوحة التحكم</p>\r\n            </a>\r\n        </li>\r\n        <li routerLinkActive=\"active\" class=\"nav-item\">\r\n            <a [routerLink]=\"['/add-project']\" class=\"nav-link\">\r\n                <i class=\"material-icons\">add_box</i>\r\n                <p>اضافة مشروع</p>\r\n            </a>\r\n        </li>\r\n        <li routerLinkActive=\"active\" class=\"nav-item\">\r\n            <a [routerLink]=\"['/add-job']\" class=\"nav-link\">\r\n                <i class=\"material-icons\">rate_review</i>\r\n                <p>اضافة عرض عمل</p>\r\n            </a>\r\n        </li>\r\n        <li routerLinkActive=\"active\" class=\"nav-item\">\r\n            <a [routerLink]=\"['/my-projects']\" class=\"nav-link\">\r\n                <i class=\"material-icons\">next_week</i>\r\n                <p>المشاريع الخاصة بي</p>\r\n            </a>\r\n        </li>\r\n        <li routerLinkActive=\"active\" class=\"nav-item\">\r\n            <a (click)=\"logout()\" [routerLink]=\"['null']\" class=\"nav-link\">\r\n                <i class=\"material-icons\">input</i>\r\n                <p>تسجيل خروج</p>\r\n            </a>\r\n        </li>\r\n    </ul>\r\n</div>"
 
 /***/ }),
 
@@ -2245,25 +2772,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var perfect_scrollbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! perfect-scrollbar */ "./node_modules/perfect-scrollbar/dist/perfect-scrollbar.esm.js");
 /* harmony import */ var _auth_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../auth/auth.service */ "./src/app/auth/auth.service.ts");
-var __extends = (undefined && undefined.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
+/* harmony import */ var _company_profile_company_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../company-profile/company.service */ "./src/app/company-profile/company.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
 
 
 
@@ -2300,10 +2819,11 @@ var ROUTES = [{
         icontype: 'input'
     }
 ];
-var SidebarComponent = /** @class */ (function (_super) {
-    __extends(SidebarComponent, _super);
-    function SidebarComponent() {
-        return _super !== null && _super.apply(this, arguments) || this;
+var SidebarComponent = /** @class */ (function () {
+    function SidebarComponent(authService, companyService) {
+        this.authService = authService;
+        this.companyService = companyService;
+        this.name = '';
     }
     SidebarComponent.prototype.isMobileMenu = function () {
         if ($(window).width() > 991) {
@@ -2313,6 +2833,13 @@ var SidebarComponent = /** @class */ (function (_super) {
     };
     ;
     SidebarComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.authService.autoAuthUser();
+        console.log(this.authService.getCompanyName());
+        this.name = this.authService.getCompanyName();
+        this.companyService.getCompanyInfo().subscribe(function (res) {
+            _this.imagePath = res.imagePath;
+        });
         this.menuItems = ROUTES.filter(function (menuItem) { return menuItem; });
     };
     SidebarComponent.prototype.updatePS = function () {
@@ -2328,15 +2855,19 @@ var SidebarComponent = /** @class */ (function (_super) {
         }
         return bool;
     };
+    SidebarComponent.prototype.logout = function () {
+        this.authService.logOut();
+    };
     SidebarComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-sidebar-cmp',
             template: __webpack_require__(/*! ./sidebar.component.html */ "./src/app/sidebar/sidebar.component.html"),
             styles: [__webpack_require__(/*! ./sidebar.component.css */ "./src/app/sidebar/sidebar.component.css")]
-        })
+        }),
+        __metadata("design:paramtypes", [_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"], _company_profile_company_service__WEBPACK_IMPORTED_MODULE_3__["CompanyService"]])
     ], SidebarComponent);
     return SidebarComponent;
-}(_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]));
+}());
 
 
 
@@ -2346,12 +2877,12 @@ var SidebarComponent = /** @class */ (function (_super) {
 /*!*******************************************!*\
   !*** ./src/app/sidebar/sidebar.module.ts ***!
   \*******************************************/
-/*! exports provided: SidebarModule */
+/*! exports provided: SideBarModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SidebarModule", function() { return SidebarModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SideBarModule", function() { return SideBarModule; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
@@ -2366,17 +2897,17 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
-var SidebarModule = /** @class */ (function () {
-    function SidebarModule() {
+var SideBarModule = /** @class */ (function () {
+    function SideBarModule() {
     }
-    SidebarModule = __decorate([
+    SideBarModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
             imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"], _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"]],
             declarations: [_sidebar_component__WEBPACK_IMPORTED_MODULE_3__["SidebarComponent"]],
             exports: [_sidebar_component__WEBPACK_IMPORTED_MODULE_3__["SidebarComponent"]]
         })
-    ], SidebarModule);
-    return SidebarModule;
+    ], SideBarModule);
+    return SideBarModule;
 }());
 
 
@@ -2437,7 +2968,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/ayman/Documents/Angular/PTway-Angular/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\Asus\Documents\GitHub\PTway-Angular\src\main.ts */"./src/main.ts");
 
 
 /***/ })
