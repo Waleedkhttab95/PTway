@@ -7,8 +7,8 @@ import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 
 
-//const BackUrl = 'https://ptway-dev.herokuapp.com/api';
-const BackUrl = 'http://localhost:5000/api'
+const BackUrl = 'https://ptway-dev.herokuapp.com/api';
+//const BackUrl = 'http://localhost:5000/api'
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -100,6 +100,10 @@ export class UserService {
             .get(BackUrl + '/get/userinfo?id='+ id);
     }
 
+    //navbar component
+    //sidebar component
+
+
     getUser() {
         return this.http
             .get(BackUrl + '/currentuser');
@@ -118,7 +122,7 @@ export class UserService {
 
     getAllNotification() {
         return this.http
-            .get(BackUrl + '/get/allnotifications');
+            .get(BackUrl + '/get/notifications');
     }
 
     getSpicificNotification(id: string) {

@@ -13,8 +13,9 @@ import { Auth_company_Guard } from './auth/auth.company.guard';
 
 export const AppRoutes: Routes = [
     {
+      
       path: '',
-      redirectTo: '',
+      redirectTo: '/my-cv',
       pathMatch: 'full',
     }, {
       path: '',
@@ -118,4 +119,5 @@ export const AppRoutes: Routes = [
         }
       ]}
 ];
+
 

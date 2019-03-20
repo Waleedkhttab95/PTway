@@ -43,11 +43,23 @@ public storeDataJob(jobId) {
   localStorage.setItem('userId',userId);
  }
 
+ 
+ public storeDataoffer(offerId) {
+  localStorage.setItem('offer',offerId);
+ }
+
 public getStoreData() {
   const projectId = localStorage.getItem('projectId')
   if(!projectId) return ;
 
   return projectId;
+}
+
+public getStoreDataOffer() {
+  const offer = localStorage.getItem('offer')
+  if(!offer) return ;
+
+  return offer;
 }
 
 public getStoreDataUser() {

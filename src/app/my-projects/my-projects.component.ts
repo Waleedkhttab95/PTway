@@ -79,7 +79,7 @@ export class MyProjectsComponent implements OnInit, AfterViewInit {
       ]
 
     };
-    console.log('heeeeeeeeeeeeeeeeeeere iaaaam');
+
     this.isLoading = false;
   }
 

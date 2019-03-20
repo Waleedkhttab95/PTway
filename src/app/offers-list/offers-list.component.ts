@@ -1,4 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { UserService } from '../my-cv/user.service';
+import { DataService } from '../data.service';
+import { JobService } from '../add-job/job.service';
 
 declare interface DataTable {
   headerRow: string[];
@@ -31,54 +34,54 @@ isLoading=false;
 
     const table = $('#datatables').DataTable();
 
-    // Edit record
-    table.on('click', '.edit', function(e) {
-      const $tr = $(this).closest('tr');
-      const data = table.row($tr).data();
-      alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
-      e.preventDefault();
-    });
-
-    // Delete a record
-    table.on('click', '.remove', function(e) {
-      const $tr = $(this).closest('tr');
-      table.row($tr).remove().draw();
-      e.preventDefault();
-    });
-
-    //Like record
-    table.on('click', '.like', function(e) {
-      alert('You clicked on Like button');
-      e.preventDefault();
-    });
+   
+  
 
     $('.card .material-datatables label').addClass('form-group');
   }
   public dataTable: DataTable;
-  constructor() { }
+  constructor(public userService: UserService, public dataService: DataService,public jobService: JobService) { }
 
+  
+  dataRows: any[] = [];
+  idRows: any[] = [];
+  count: number = 0;
   ngOnInit() {
     this.isLoading=true;
+    
+this.userService.getAllNotification().subscribe((response:any) =>{
+  console.log(response.result[1])
+  this.count +=1;
+  for(var i=0 ; i <response.result.length ; i++) {
+    for(var j=0 ; j <response.result.length ; j++){
+      this.dataRows.push(response.result[i][j].job_Name);
+      this.idRows.push(response.result[i][j]._id);
+    }
+      
+      this.dataTable.dataRows.push([
+        this.count,
+        this.dataRows[i],
+        this.idRows[i]
+      ])
+  }
+
+ });
     this.dataTable = {
-      headerRow: [ '#','العرض', 'اسم الشركة', 'الاجراءات' ],
+      headerRow: [ '#','العرض',  'الاجراءات' ],
 
       dataRows: [
-          ['1','Airi Satou','ELM'],
-          ['2','Ashton Cox','google'],
-          ['3','Bradley Greer','mqdam'],
-          ['4','Brenden Wagner','google'],
-          ['5','Brielle Williamson','psu'],
-          ['5','Brielle Williamson','psu'],
-          ['5','Brielle Williamson','psu'],
-          ['5','Brielle Williamson','psu'],
-          ['5','Brielle Williamson','psu'],
-          ['5','Brielle Williamson','psu'],
-          ['5','Brielle Williamson','psu'],
-          ['5','Brielle Williamson','psu']
+   
       ]
    };
    this.isLoading=false;
 
   }
 
+  onAccepted(id) {
+    this.jobService.applyJob(id);
+  }
+
+  onSelect(id) {
+    this.dataService.storeDataoffer(id);
+  }
 }

@@ -45,7 +45,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 
 import { AppComponent } from './app.component';
 
-import { SidebarModule } from './sidebar/sidebar.module';
+import { SideBarModule } from './sidebar/sidebar.module';
 import { FooterModule } from './shared/footer/footer.module';
 import { NavbarModule} from './shared/navbar/navbar.module';
 import { FixedpluginModule} from './shared/fixedplugin/fixedplugin.module';
@@ -56,6 +56,7 @@ import { RegistrationComponent } from './layouts/registration/registration.compo
 import {AuthInterceptor} from './auth-interceptor';
 import { AppRoutes } from './app.routing';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { SideModule } from './layouts/sidebar/side.module';
 
 @NgModule({
   exports: [
@@ -104,7 +105,8 @@ export class MaterialModule {}
         RouterModule.forRoot(AppRoutes),
         MaterialModule,
         MatNativeDateModule,
-        SidebarModule,
+        SideBarModule,
+        SideModule,
         NavbarModule,
         FooterModule,
         FixedpluginModule,

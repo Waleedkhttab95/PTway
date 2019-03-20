@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { JobService } from '../add-job/job.service';
 import { MyProjectsComponent } from '../my-projects/my-projects.component';
@@ -59,7 +59,8 @@ export class MyOffersComponent implements OnInit, AfterViewInit {
     $('.card .material-datatables label').addClass('form-group');
   }
   public dataTable: DataTable;
-  constructor(private data: DataService, public jobService: JobService, public authService: AuthService) { }
+  constructor(private data: DataService, public jobService: JobService, public authService: AuthService
+    , private changeDetectorRef: ChangeDetectorRef) { }
 
   dataRows : any[] = [];
   idRows : any[] = [];
@@ -110,6 +111,15 @@ this.jobService.getJobs(this.projectId).subscribe(response =>{
     }
    );
  }
+
+ 
+ deleteRow(rowNumber: number) {
+  console.log(rowNumber);
+  this.dataTable.dataRows.splice(rowNumber, 1);
+  this.changeDetectorRef.detectChanges();
+}
+
+
  showSwal(type){
   if (type == 'secc') {
   swal({

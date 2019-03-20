@@ -14,17 +14,18 @@ declare const $: any;
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
 
- 
+    isLoading = false;
   projects: Number = 0;
   jobs: Number = 0;
   accepted: Number = 0;
    constructor(private dashboardService: DashboardService) { }
   public ngOnInit() {
-      
+      this.isLoading = true;
      this.dashboardService.getCounts().subscribe((result:any) =>{
       this.projects = result.projects;
       this.jobs = result.jobs;
       this.accepted = result.acceptes;
+      this.isLoading = false
      })
 
 

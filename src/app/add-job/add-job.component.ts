@@ -16,8 +16,8 @@ export class AddJobComponent implements OnInit {
 
   constructor(public rest: JobService, public authService: AuthService,
     private route: ActivatedRoute, private router: Router,
-
 private fb: FormBuilder, public signSerive: SignUpService, public userSerivce: UserService) { }
+
   isLoading=false;
 
   addProjcetForm: FormGroup;

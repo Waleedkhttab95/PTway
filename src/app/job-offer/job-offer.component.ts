@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { JobService } from '../add-job/job.service';
 import { DataService } from '../data.service';
+import { UserService } from '../my-cv/user.service';
 
 @Component({
   selector: 'app-job-offer',
@@ -9,17 +10,23 @@ import { DataService } from '../data.service';
 })
 export class JobOfferComponent implements OnInit {
 
-  constructor(public jobService:JobService,private dataService: DataService) { }
+  constructor(public jobService:JobService,private dataService: DataService, public userService: UserService) { }
 
   offerId: string;
   job: Object;
+  city: string
+  contract: string ;
+  country: string ;
+  gender: string ;
+  job_Name: string ;
+  public_Major: string ;
+  salary: string ;
+  startDate: string;
+  work_days: string ;
+  work_hours: string ;
   ngOnInit() {
-     this.dataService.currentMessage.subscribe(r =>{
-       this.offerId = r;
-
-       this.getJobOffer(this.offerId) ;
-     });
-
+     this.offerId = this.dataService.getStoreDataOffer()
+    this.getJobOffer(this.offerId);
   }
 
   getJobOffer(id:string) {
@@ -27,18 +34,18 @@ export class JobOfferComponent implements OnInit {
     this.jobService.getJob(id).subscribe((res:any) =>{
     
 
-      this.job = {
-        city: res.City,
-        contract: res.Contract,
-        country: res.Country,
-        gender: res.job.gender,
-        job_Name: res.job.job_Name,
-        public_Major: res.job.public_Major,
-        salary: res.job.salary,
-        startDate: this.DateFormat(res.job.startDate),
-        work_days: res.job.work_days,
-        work_hours: res.job.work_hours
-      }
+      console.log(res)
+        this.city= res.City,
+        this.contract= res.Contract,
+        this.country= res.Country,
+        this.gender= res.job.gender,
+        this.job_Name= res.job.job_Name,
+        this.public_Major= res.public_Major,
+        this.salary= res.job.salary,
+        this.startDate= this.DateFormat(res.job.startDate),
+        this.work_days= res.job.work_days,
+        this.work_hours= res.job.work_hours
+      
     });
   }
 

@@ -2,9 +2,9 @@
   <div class="container">
     <a class="navbar-brand-logo" href="#">
       <strong>Pt</strong>way
-      <img src="../../assets/img/32x32.png">
+      <img src="../../../assets/img/32X32.png">
     </a>
-    <button class="navbar-toggler" type="button">
+    <button class="navbar-toggler" type="button" (click)="sidebarToggle()">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -41,4 +41,8 @@
     </div>
   </div>
 </nav>
+<div class="sidebar" data-color="white" data-background-color="blue" data-image="./assets/img/sidebar-1.jpg">
+  <app-sidebar></app-sidebar>
+  <div class="sidebar-background" style="background-image: url(assets/img/sidebar-1.jpg)"></div>
+</div>
 <router-outlet></router-outlet>

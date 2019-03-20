@@ -120,10 +120,11 @@ export class CandidatesListComponent implements OnInit, AfterViewInit {
     console.log(this.count);
   }
 
-  deleteRowAdressForm(rowNumber: number){
-    this.rowDataMainForm.splice(rowNumber, 1);
+  deleteRow(rowNumber: number) {
+    console.log(rowNumber);
+    this.dataTable.dataRows.splice(rowNumber, 1);
     this.changeDetectorRef.detectChanges();
-}
+  }
 
 onSelect(id) {
 this.data.storeDataUser(id);
