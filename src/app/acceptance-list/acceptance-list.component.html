@@ -50,7 +50,7 @@
               <button mat-raised-button type="submit" class="btn btn-fill btn-primary custom-button" (click)="startJob()">بدأ المشروع</button>
             </div>
             <div>
-                <div> <button mat-raised-button class="btn btn-fill btn-primary" [routerLink]="['/my-offers']" >إلى الخلف</button></div>
+                <div> <button mat-raised-button class="btn btn-fill btn-primary" (click)='onBack()' [routerLink]="['/my-offers']" >إلى الخلف</button></div>
           </div>
         </div>
 

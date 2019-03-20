@@ -27,7 +27,7 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let row of dataTable.dataRows">
-                    <td><a [routerLink]="['/job-offer-preview']">{{row[0]}}</a></td>
+                    <td><a >{{row[0]}}</a></td>
                     <td>
                       <button mat-raised-button class="btn btn-primary btn-round" (click)="onCandidates(row[1])"
                         [routerLink]="['/candidates-list']">عرض القائمة </button>

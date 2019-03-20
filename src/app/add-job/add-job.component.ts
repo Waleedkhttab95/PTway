@@ -5,6 +5,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { JobService } from './job.service';
 import { AuthService } from '../auth/auth.service';
 import { SignUpService } from '../sign-up/sign-up.service';
+import { UserService } from '../my-cv/user.service';
 
 @Component({
   selector: 'app-add-job',
@@ -15,7 +16,7 @@ export class AddJobComponent implements OnInit {
 
   constructor(public rest: JobService, public authService: AuthService,
     private route: ActivatedRoute, private router: Router,
-     private fb: FormBuilder, public signSerive: SignUpService) { }
+     private fb: FormBuilder, public signSerive: SignUpService, public userSerivce: UserService) { }
 
   addProjcetForm: FormGroup;
   selectedValue: string;
@@ -33,6 +34,7 @@ export class AddJobComponent implements OnInit {
   countries = [];
   currentcountry: string[];
   data: Object;
+  majors = [];
   selectTheme = 'primary';
 
   currentgender: string[];
@@ -44,8 +46,7 @@ export class AddJobComponent implements OnInit {
   languages = new FormControl();
   languageList: string[] = ['العربية', 'الانجليزية', 'الفرنسية', 'الاسبانية', 'الايطالية'];
 
-  skills = new FormControl();
-  skillList: string[] = ['التصوير الفوتوغرافي', 'الرسم', 'التصميم'];
+  
 
   personal_Skills = new FormControl();
   personal_SkillList: string[] = ['الإلقاء', 'التعبير'];
@@ -104,6 +105,18 @@ export class AddJobComponent implements OnInit {
     });
   }
 
+  getmajors() {
+    this.majors = [];
+    this.userSerivce.getmajors().subscribe((data: {}) => {
+ 
+      for (let key in data) {
+        this.majors.push({ value: data[key]._id, viewValue: data[key].majorName });
+        // console.log(this.majorID);
+      }
+     
+    });
+  }
+
   getcity() {
     this.cities = [];
     this.rest.getcity().subscribe((data: {}) => {
@@ -122,6 +135,7 @@ export class AddJobComponent implements OnInit {
     this.getcontracts();
     this.getcountry();
     this.getcity();
+    this.getmajors();
     this.getspecialization()
     this.addProjcetForm = new FormGroup({
       country: new FormControl(),

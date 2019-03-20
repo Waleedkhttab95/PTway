@@ -97,6 +97,7 @@ export class MyProjectsComponent implements OnInit, AfterViewInit {
 
   }
   onSelect(id) {
+    this.data.storeData(id);
     this.data.changeMessage(id);
   }
 

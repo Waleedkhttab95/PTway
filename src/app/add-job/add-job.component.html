@@ -78,12 +78,15 @@
                     </mat-form-field>
                   </div>
                   <div class="col-md-6">
-                    <label class="bmd-label-floating custom-label">- التخصص العام</label>
-                    <mat-form-field class="example-full-width">
-                      <input matInput placeholder="" type="text" formControlName="public_Major"
-                        name="public_Major">
-                    </mat-form-field>
-                  </div>
+                      <label class="bmd-label-floating custom-label">- التخصص العام</label>
+                      <mat-form-field>
+                        <mat-select placeholder="" formControlName="public_Major" name="public_Major">
+                          <mat-option *ngFor="let major of majors" [value]="major.value">
+                            {{major.viewValue}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
                   <div class="col-md-6">
                     <label class="bmd-label-floating custom-label">- ساعات العمل اليومية</label>
                     <mat-form-field class="example-full-width">

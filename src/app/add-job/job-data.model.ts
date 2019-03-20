@@ -5,6 +5,7 @@ export interface JobData {
     job_skills: String;
     country:  String;
     city: String;
+    _id: String;
    // study_status: {type:String,  required:true},
    // education_degree:{type: String, required:true},
     public_Major: {type:String,required:true},

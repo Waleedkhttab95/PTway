@@ -113,7 +113,7 @@ export const AppRoutes: Routes = [
             loadChildren: './add-user-info/add-user-info.module#AddUserInfoModule'
         } , {
             path: 'cv-preview',
-            canActivate:[AuthGuard],
+            canActivate:[Auth_company_Guard],
             loadChildren: './cv-preview/cv-preview.module#CvPreviewModule'
         }
       ]}

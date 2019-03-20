@@ -74,10 +74,7 @@ export class AcceptanceListComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
 
-    this.data.currentMessage.subscribe(m =>{
-      this.jobId = m;
-     
-     })
+   this.jobId = this.data.getStoreDataJob();
 
      this.authService.autoAuthUser();
      this.offerService.getAcceptence(this.jobId).subscribe(response =>{
@@ -122,7 +119,7 @@ export class AcceptanceListComponent implements OnInit, AfterViewInit {
     
     }
   
-    
+   
 
 
 }

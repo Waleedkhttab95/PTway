@@ -4,8 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import swal from 'sweetalert2';
-declare var $: any;
-
+// declare var $: any;
+import * as $ from 'jquery';
+import 'bootstrap-notify';
 
 const BackUrl = 'https://ptway-dev.herokuapp.com/api';
 
@@ -16,6 +17,7 @@ export class AuthService {
   private token: string;
   private userId: string;
   private companyName: string;
+  
   private authStatusListener = new Subject<boolean>();
   constructor(private http: HttpClient, private router: Router) { }
   getToken() {
@@ -88,6 +90,9 @@ export class AuthService {
         }
 
       }, error => {
+        $.notify({message: error.error },
+          {  type: 'danger'})
+  
         this.authStatusListener.next(false);
       });
   }
@@ -110,6 +115,8 @@ export class AuthService {
         }
 
       }, error => {
+        $.notify({message: error.error },
+          {  type: 'danger'})
         this.authStatusListener.next(false);
       });
   }
@@ -163,6 +170,7 @@ export class AuthService {
   getCompanyName() {
     return this.companyName;
   }
+
   private getAuthData() {
     const token = localStorage.getItem('token');
     const user = localStorage.getItem('userId');

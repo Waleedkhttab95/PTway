@@ -65,10 +65,12 @@ export class MyOffersComponent implements OnInit, AfterViewInit {
   idRows : any[] = [];
   projectId: string
   ngOnInit() {
-this.data.currentMessage.subscribe(m =>{
- this.projectId = m;
-
-})
+// this.data.currentMessage.subscribe(m =>{
+ 
+//  this.projectId = m;
+// this.data.storeData(m);
+// })
+this.projectId = this.data.getStoreData();
     this.authService.autoAuthUser();
 this.jobService.getJobs(this.projectId).subscribe(response =>{
   console.log(response);
@@ -93,11 +95,14 @@ this.jobService.getJobs(this.projectId).subscribe(response =>{
   }
 
   onCandidates(id) {
-   this.data.changeMessage(id);
+    
+
+   this.data.storeDataJob(id);
   }
 
   onAccepted(id) {
-    this.data.changeMessage(id);
+   
+    this.data.storeDataJob(id);
   }
 
  onDelete(id){

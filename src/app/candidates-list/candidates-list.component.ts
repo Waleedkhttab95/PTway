@@ -73,10 +73,8 @@ export class CandidatesListComponent implements OnInit, AfterViewInit {
   count: number = 0;
 
   ngOnInit() {
-    this.data.currentMessage.subscribe(m =>{
-      this.jobId = m;
-     
-     })
+    this.jobId = this.data.getStoreDataJob();
+
 
      this.authService.autoAuthUser();
      this.offerService.getCandidates(this.jobId).subscribe(response =>{
@@ -125,6 +123,10 @@ export class CandidatesListComponent implements OnInit, AfterViewInit {
   deleteRowAdressForm(rowNumber: number){
     this.rowDataMainForm.splice(rowNumber, 1);
     this.changeDetectorRef.detectChanges();
+}
+
+onSelect(id) {
+this.data.storeDataUser(id);
 }
 
 }

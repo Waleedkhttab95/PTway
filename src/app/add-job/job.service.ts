@@ -14,7 +14,7 @@ export class JobService {
 
     private job: JobData[] = [];
     private jobsUpdated = new Subject<{ posts: JobData[], jobCount: number }>();
-
+    jobData : Object;
     constructor(private http: HttpClient, private router: Router) { }
 
     private extractData(res: Response) {
@@ -24,13 +24,26 @@ export class JobService {
 
     addJob(data: any) {
         this.http
-            .post<{ job: JobData }>(BackUrl + '/postjob', data)
-            .subscribe(responseData => {
+            .post(BackUrl + '/postjob', data)
+            .subscribe((responseData: any) => {
                 console.log(responseData);
 this.router.navigate(['/my-projects']);
                 this.showSwal('secc');
+                this.jobData = {
+                    country: responseData.country,
+                    city: responseData.city,
+                    gender: responseData.gender,
+                    personal_Skills: responseData.personal_Skills,
+                    public_Major: responseData.public_Major,
+                    jobAd: responseData._id
 
+                }
+
+                this.http
+                .post(BackUrl + '/send/Jobad', this.jobData);
             });
+
+      
     }
 
     applyJob(jobAd) {

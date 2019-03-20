@@ -13,6 +13,9 @@ export class DataService {
     private statusSource = new BehaviorSubject<boolean>(false);
     currentStatus = this.statusSource.asObservable();
     
+    private previosData = new BehaviorSubject<string>('')
+    currentPreData = this.messageSource.asObservable() ; 
+
     constructor() {
     
     }
@@ -21,7 +24,43 @@ export class DataService {
      this.messageSource.next(message);
     }
 
+    changePreData(data: string) {
+      this.previosData.next(data);
+    }
     changeStatus(status: boolean) {
       this.statusSource.next(status);
+}
+
+public storeData(projectId) {
+ localStorage.setItem('projectId',projectId);
+}
+
+public storeDataJob(jobId) {
+  localStorage.setItem('jobId',jobId);
+ }
+
+ public storeDataUser(userId) {
+  localStorage.setItem('userId',userId);
+ }
+
+public getStoreData() {
+  const projectId = localStorage.getItem('projectId')
+  if(!projectId) return ;
+
+  return projectId;
+}
+
+public getStoreDataUser() {
+  const user = localStorage.getItem('userId')
+  if(!user) return ;
+
+  return user;
+}
+
+public getStoreDataJob() {
+  const jobId = localStorage.getItem('jobId')
+  if(!jobId) return ;
+
+  return jobId;
 }
 }

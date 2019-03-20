@@ -87,14 +87,17 @@ export class UserService {
 
         this.http
             .put(BackUrl + '/put/userinfo', postData).subscribe(response => {
-                console.log(response)
                 this.router.navigate(['/my-cv']);
             });
     }
     getUserInfo() {
-        console.log(this.auth.getUserId());
         return this.http
             .get(BackUrl + '/getuserinfo');
+    }
+
+    getUserInfoById(id) {
+        return this.http
+            .get(BackUrl + '/get/userinfo?id='+ id);
     }
 
     getUser() {

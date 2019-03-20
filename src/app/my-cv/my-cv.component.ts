@@ -38,7 +38,7 @@ export class MyCvComponent implements OnInit {
 
   ngOnInit() {
 
-    // to get user name
+
     
       // to get user info
       this.userService.getUserInfo().subscribe((res: any) =>{
