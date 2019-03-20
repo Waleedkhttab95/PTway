@@ -6,10 +6,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MdModule } from '../md/md.module';
 import { MaterialModule } from '../app.module';
 import { DashboardRoutes } from './dashboard.routing';
+import { MatProgressSpinnerModule } from '@angular/material';
 @NgModule({
   declarations: [DashboardComponent],
   imports: [
     CommonModule,
+    MatProgressSpinnerModule,
     RouterModule.forChild(DashboardRoutes),
     FormsModule,
     MdModule,

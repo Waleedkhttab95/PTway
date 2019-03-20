@@ -6,6 +6,8 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '../app.module';
 import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
+import { MatProgressSpinnerModule } from '@angular/material';
+
 @NgModule({
   declarations: [MyProjectsComponent],
   imports: [
@@ -13,6 +15,7 @@ import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
     RouterModule.forChild(MyProjectsRoutes),
     FormsModule,
     MaterialModule,
+    MatProgressSpinnerModule,
     SweetAlert2Module.forRoot({
       buttonsStyling: false,
       customClass: 'modal-content',

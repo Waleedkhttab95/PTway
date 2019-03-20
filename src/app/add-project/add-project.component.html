@@ -1,4 +1,5 @@
-<div class="main-content">
+<mat-spinner style="position:fixed;top:50%;left:50%;margin:0 auto;" mode="indeterminate" *ngIf="isLoading"></mat-spinner>
+<div class="main-content" *ngIf="!isLoading">
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
@@ -11,6 +12,7 @@
           </div>
           <div class="col-md-6 custom-card">
             <div class="card-body">
+               
               <form [formGroup]="form" (submit)="onAddProject()">
                 <div class="row">
                   <div class="col-md-6">

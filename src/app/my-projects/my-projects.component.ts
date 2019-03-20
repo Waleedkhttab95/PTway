@@ -18,7 +18,7 @@ declare const $: any;
 
 export class MyProjectsComponent implements OnInit, AfterViewInit {
   rowDataMainForm: any;
-
+  isLoading = false;
 
   ngAfterViewInit() {
     $('#datatables').DataTable({
@@ -71,7 +71,7 @@ export class MyProjectsComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
 
-
+    this.isLoading=true;
     this.dataTable = {
       headerRow: ['اسم المشروع', 'تعديل المشروع', 'حذف المشروع'],
 
@@ -79,7 +79,8 @@ export class MyProjectsComponent implements OnInit, AfterViewInit {
       ]
 
     };
-    console.log('1')
+    console.log('heeeeeeeeeeeeeeeeeeere iaaaam');
+    this.isLoading = false;
   }
 
   fetchData() {

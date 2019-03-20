@@ -13,6 +13,7 @@ declare const $: any;
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
+
  
   projects: Number = 0;
   jobs: Number = 0;
@@ -25,6 +26,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.jobs = result.jobs;
       this.accepted = result.acceptes;
      })
+
 
    }
    ngAfterViewInit() {

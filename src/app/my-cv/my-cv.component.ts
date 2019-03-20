@@ -33,6 +33,7 @@ export class MyCvComponent implements OnInit {
   instagram:  string;
   linkedin:  string;
   imagePath:  string;
+  isLoading = false;
 
   constructor(public userService: UserService, public authService: AuthService) { }
 
@@ -41,9 +42,13 @@ export class MyCvComponent implements OnInit {
 
     
       // to get user info
+      this.isLoading = true;
+      console.log('firstone');
+      console.log(this.isLoading);
       this.userService.getUserInfo().subscribe((res: any) =>{
         console.log(res);
         // the same syntax res. 
+        
         this.country= res.country;
         this.study_degree = res.study_degree;
         this.fullName=  res.fullName;
@@ -68,6 +73,8 @@ export class MyCvComponent implements OnInit {
         this.instagram=  res.instagram;
         this.linkedin=  res.linkedin;
         this.imagePath=  res.imagePath;
+        this.isLoading = false;
+      
     })
 
 
