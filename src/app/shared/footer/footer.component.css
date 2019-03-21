@@ -1,0 +1,8 @@
+@media screen and (max-width: 767px) {
+    .custom-fotter{
+        float: none;
+        margin-left: auto;
+        margin-right: auto;
+        display: inline-block;
+    }
+}
