@@ -4,9 +4,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import swal from 'sweetalert2';
-// declare var $: any;
-import * as $ from 'jquery';
+ declare var $: any;
+// declare const $: any;
+
 import 'bootstrap-notify';
+
+declare interface JQueryStatic {
+  notify: any;
+}
 
 const BackUrl = 'https://ptway-dev.herokuapp.com/api';
 
