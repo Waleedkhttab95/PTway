@@ -86,7 +86,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
     this.rest.getsectors().subscribe((data: {}) => {
       console.log(data);
       for (let key in data) {
-        this.sectors.push({ value: data[key]._id, viewValue: data[key].sectorName });
+        this.sectors.push({ value: data[key].key, viewValue: data[key].sectorName });
       }
       console.log(this.sectors);
     });

@@ -57,7 +57,190 @@
   article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
     display: block;
   }
-  
+  body,html{
+    height: 100%;
+    margin: 0;
+    width: 100%;
+}
+*{
+    font-family: 'Anton', sans-serif;
+}
+.linear-background{
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+
+}
+
+.resume-container{
+    position: relative;
+    width: 100%;
+    height: auto;
+    top: 0;
+    left: 0;
+}
+.resume{
+    -webkit-box-shadow: 10px 10px 44px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 44px 0px rgba(0,0,0,0.75);
+box-shadow: 10px 10px 44px 0px rgba(0,0,0,0.75);
+    position: relative;
+    z-index: 5;
+    background-color: #fff;
+    margin: auto;
+    width: 100%;
+    height: auto;
+    max-width: 800px;
+}
+h2{
+    font-weight: bolder;
+}
+.resume-info{
+    padding: 30px 6px;
+    background: #00263E;
+
+}
+.resume-details{
+    padding: 30px 20px;
+    background: #fff;
+}
+.text-resume-color{
+    color: #53b6a2;
+}
+.personal-info{
+    padding: 17px 0;
+}
+.personal-info-list{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.resume-icon{
+    background: #53b6a2;
+    padding: 4px 6px;
+    border-radius: 50%;
+    color: snow;
+}
+.personal-info-list li:nth-child(1){
+    margin-left: 0;
+}
+.personal-info-list li{
+    float: left;
+    margin-left: 12px;
+}
+.personal-info-list li span{
+    font-family: sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+}
+.resume-text{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 13px;
+    color: grey;
+}
+
+.resume-statistics .row{
+    padding: 17px 10px 0;
+}
+
+.statistic-item{
+    text-align: center;
+}
+.statistic-item span{
+    border-radius: 50%;
+    border: 2px solid #53b6a2;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 3em;
+    margin-right: 5px;
+    text-align: center;
+    width: 3em;
+    color: #53b6a2;
+    font-size: 22px;
+}
+.resume-experiences .single-field h5{
+    float: left;
+}
+
+
+.resume-experiences .single-field h6{
+    float: right;
+}
+
+.subtitle-paragraph{
+    font-size: 14px;
+    color: rgb(100, 100, 100);
+}
+.single-field{
+    margin-top: 7px;
+}
+.single-field:nth-child(1){
+    margin-top: 0;
+}
+.single-field-text{
+    max-width: 80%;
+}
+.progress-bar{
+    background-color: #43bcb0;
+}
+.responsive-img{
+    max-height: 80px;
+    width: 100%;
+    margin-bottom: 5px;
+}
+.personal-image{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+.personal-image-ribbon{
+    color: #fff;
+    background-color:#43bcb0;
+    padding: 3px 8px;
+    position: absolute;
+    left: 50%;
+    top: 80%;
+}
+
+.personal-image-ribbon:after, .personal-image-ribbon:before {
+	left: 100%;
+	top: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+
+.personal-image-ribbon:before {
+	border-color: rgba(194, 225, 245, 0);
+	border-left-color: #43bcb0;
+	border-width: 15px;
+	margin-top: -15px;
+}
+.resume-info-separator{
+    border-color: rgb(165, 165, 165);
+    margin-left: 17px;
+    margin-right: 17px;
+}
+.text-snow{
+    font-family: sans-serif;
+    color: snow;
+}
+.text-small{
+    font-size: 12px;
+    font-weight: 200;
+}
+
+@media(max-width:575px){
+    .resume-info{
+        padding: 30px 40px;
+    }
+    .resume-details{
+        padding: 30px 40px;
+    }
+}
   
   
   [tabindex="-1"]:focus {

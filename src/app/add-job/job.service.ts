@@ -27,7 +27,7 @@ export class JobService {
             .post(BackUrl + '/postjob', data)
             .subscribe((responseData: any) => {
                 console.log(responseData);
-this.router.navigate(['/my-projects']);
+
                 this.showSwal('secc');
                 this.jobData = {
                     country: responseData.country,
@@ -40,7 +40,10 @@ this.router.navigate(['/my-projects']);
                 }
 
                 this.http
-                .post(BackUrl + '/send/Jobad', this.jobData);
+                .post(BackUrl + '/send/Jobad', this.jobData,{responseType: 'text'}).subscribe((res: any) =>{
+                    console.log("send job")
+                    this.router.navigate(['/my-projects']);
+                });
             });
 
       
@@ -147,6 +150,11 @@ this.router.navigate(['/my-projects']);
     getprojects(id: String) {
         return this.http
         .get<{projectName: [String],  count: Number, id: [String]}>(BackUrl + '/getprojects?id='+ id)
+    }
+
+    getJobRequierdNumber(id) {
+        return this.http
+        .get(BackUrl+'/getjob/req?id='+ id)
     }
 
     showSwal(type){

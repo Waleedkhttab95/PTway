@@ -7,4 +7,8 @@
     .sidebar{
         display: none !important;
     }
+    .img{
+        margin-right: -180px;
+        width: 330px;
+    }
 }

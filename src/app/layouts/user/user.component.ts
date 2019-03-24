@@ -52,10 +52,13 @@ export class UserComponent implements OnInit {
           this.id[i]
         ])
       }
+      console.log(this.data)
     })
   }
   onClick(id: string) {
-    this.dataService.changeMessage(id);
+    console.log(id)
+    this.dataService.storeDataoffer(id);
+
   }
   logout() {
     this.authService.logOut();
