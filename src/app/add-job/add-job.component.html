@@ -42,22 +42,7 @@
                     </mat-form-field>
                   </div>
               
-                      <div class="col-md-6">
-                          <label class="bmd-label-floating custom-label">- التخصص</label>
-                        <mat-form-field>
-                          <mat-select  name="personal_Skills" formControlName="personal_Skills"
-                           >
-                            <mat-option *ngFor="let CompanySpecialist of CompanySpecialists" [value]="CompanySpecialist.value"
-                              class="options">
-                              {{CompanySpecialist.viewValue}}
-                            </mat-option>
-                          </mat-select>
-                          <mat-error *ngIf="personal_Skills.hasError('required')">
-                            يجب عليك اختيار <strong>نشاط العمل</strong>
-                          </mat-error>
-                        </mat-form-field>
-                     
-                    </div>
+                 
                   <div class="col-md-6">
                     <label class="bmd-label-floating custom-label">- الدولة</label>
                     <mat-form-field>

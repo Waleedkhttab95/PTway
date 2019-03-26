@@ -3,8 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import {environment} from '../../environments/environment';
 import swal from 'sweetalert2';
-const BackUrl = 'https://ptway-dev.herokuapp.com/api';
+const BackUrl = environment.BackUrl;
 @Injectable({ providedIn: 'root' })
 
 export class offerService {
@@ -23,11 +24,7 @@ export class offerService {
     }
 
     addAcceptence(data: any) {
-        this.http.post(BackUrl+'/postAcc' , data).subscribe(result =>{
-            console.log(result)
-            this.showSwal('secc');
-            this.router.navigate(['/candidates-list']);
-        });
+       return this.http.post(BackUrl+'/postAcc' , data);
     }
 
     getAcceptence(id: string) {
@@ -37,7 +34,7 @@ export class offerService {
     startJob(data: any) {
         this.http.post(BackUrl+'/start/job', data).subscribe(result =>{
             this.showSwal('secc');
-            this.router.navigate(['/acceptance-list']);
+            this.router.navigate(['/my-offers']);
 
         })
     }

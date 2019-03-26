@@ -4,6 +4,8 @@ import { offerService } from '../my-offers/offer.service';
 import { AuthService } from '../auth/auth.service';
 import { JobService } from '../add-job/job.service';
 import { JobData } from '../add-job/job-data.model';
+import { Router } from '@angular/router';
+import swal from 'sweetalert2';
 
 declare interface DataTable {
   headerRow: string[];
@@ -17,52 +19,39 @@ declare const $: any;
   templateUrl: './candidates-list.component.html',
   styleUrls: ['./candidates-list.component.css']
 })
-export class CandidatesListComponent implements OnInit, AfterViewInit {
+export class CandidatesListComponent implements OnInit {
   rowDataMainForm: any;
 
-  ngAfterViewInit() {
-    $('#datatables').DataTable({
-      "pagingType": "full_numbers",
-      "lengthMenu": [
-        [10, 25, 50, -1],
-        [10, 25, 50, "All"]
-      ],
-      responsive: true,
-      language: {
-        search: "_INPUT_",
-        searchPlaceholder: "Search records",
-      }
+  Dtable() {
+    setTimeout(function () {
+      $('#datatables').DataTable({
+        "pagingType": "full_numbers",
+        "lengthMenu": [
+          [10, 25, 50, -1],
+          [10, 25, 50, "All"]
+        ],
+        responsive: true,
+        language: {
+          search: "_INPUT_",
+          searchPlaceholder: "Search records",
+        }
+  
+      });
+  
+      const table = $('#datatables').DataTable();
+      
+  
+    
+      $('.card .material-datatables label').addClass('form-group');
 
-    });
+    }, 100)
 
-    const table = $('#datatables').DataTable();
-
-    // Edit record
-    // table.on('click', '.edit', function(e) {
-    //   const $tr = $(this).closest('tr');
-    //   const data = table.row($tr).data();
-    //   alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
-    //   e.preventDefault();
-    // });
-
-    // // Delete a record
-    // table.on('click', '.remove', function(e) {
-    //   const $tr = $(this).closest('tr');
-    //   table.row($tr).remove().draw();
-    //   e.preventDefault();
-    // });
-
-    // //Like record
-    // table.on('click', '.like', function(e) {
-    //   alert('You clicked on Like button');
-    //   e.preventDefault();
-    // });
-
-    $('.card .material-datatables label').addClass('form-group');
   }
+
   public dataTable: DataTable;
   constructor(private data: DataService, public offerService: offerService
-    , public authService: AuthService, public jobService: JobService, private changeDetectorRef: ChangeDetectorRef) { }
+    , public authService: AuthService, public jobService: JobService,
+     private changeDetectorRef: ChangeDetectorRef,private router: Router) { }
    jobData: JobData; 
   jobId: string
   dataRows : any[] = [];
@@ -91,7 +80,7 @@ export class CandidatesListComponent implements OnInit, AfterViewInit {
           ])
           
        }
-     
+     this.Dtable()
       });
 
     this.dataTable = {
@@ -102,13 +91,22 @@ export class CandidatesListComponent implements OnInit, AfterViewInit {
       ]
    };
 
-   this.jobService.getJobRequierdNumber(this.jobId).subscribe((res: any)=>{
-    console.log(res.job.limit_Number)
-     this.CandidatesNumber = res.req_n;
-    this.count = res.limit_n;
-    })
+  this.getReqNumber();
   }
 
+  getReqNumber() {
+    this.jobService.getJobRequierdNumber(this.jobId).subscribe((res: any)=>{
+   
+      this.CandidatesNumber = res.req_n;
+     this.count = res.limit_n;
+
+     if(this.CandidatesNumber == this.count) {
+       this.showSwal('warning-message');
+       this.router.navigate(['/my-offers']);
+
+     }
+     })
+  }
   onAccepted(id: string) {
    // this.count++;
     this.Acc = {
@@ -116,8 +114,11 @@ export class CandidatesListComponent implements OnInit, AfterViewInit {
       acceptedName: id
     }
   
-    this.offerService.addAcceptence(this.Acc);
-    console.log(this.count);
+    this.offerService.addAcceptence(this.Acc).subscribe(result =>{
+      this.showSwal('secc');
+      this.getReqNumber()
+      this.router.navigate(['/candidates-list']);
+  });;
   }
 
   deleteRow(rowNumber: number) {
@@ -128,6 +129,27 @@ export class CandidatesListComponent implements OnInit, AfterViewInit {
 
 onSelect(id) {
 this.data.storeDataUser(id);
+}
+
+showSwal(type){
+  if (type == 'secc') {
+  swal({
+    title: "تمت العملية بنجاح!",
+    buttonsStyling: false,
+    confirmButtonClass: 'btn btn-success',
+    confirmButtonText:'نعم',
+    type:'success',
+  }).catch(swal.noop)
+} 
+if (type == 'warning-message') {
+  swal({
+    title: "لقد أكتمل العدد!",
+    text: "شكرا لك لقد أكتمل عدد المطلوبين !",
+    buttonsStyling: false,
+    confirmButtonClass: "btn btn-warning",
+    type: "warning"
+  }).catch(swal.noop)
+}
 }
 
 }

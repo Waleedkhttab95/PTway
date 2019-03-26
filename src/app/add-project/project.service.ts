@@ -3,9 +3,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import {environment} from '../../environments/environment'
 import { ProjectData } from './project-data.model';
 import swal from 'sweetalert2';
-const BackUrl = 'https://ptway-dev.herokuapp.com/api';
+
+const BackUrl = environment.BackUrl;
 @Injectable({ providedIn: 'root' })
 
 export class ProjectService {

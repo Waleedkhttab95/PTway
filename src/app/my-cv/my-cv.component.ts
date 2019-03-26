@@ -31,6 +31,7 @@ export class MyCvComponent implements OnInit {
   facebook:  string;
   twitter:  string;
   instagram:  string;
+  work_Hours: Number;
   linkedin:  string;
   imagePath:  string;
   isLoading = false;
@@ -60,6 +61,7 @@ export class MyCvComponent implements OnInit {
         this.universty= res.universty;
         this.Education_level=  res.Education_level;
         this.public_Major=  res.public_Major;
+        this.work_Hours = res.work_Hours;
         this.spMajor=  res.spicifc_Major;
         this.languages=  res.languages;
         this.skills=  res.skills;

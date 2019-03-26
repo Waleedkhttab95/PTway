@@ -30,6 +30,7 @@ export class CompanyProfileComponent implements OnInit {
       this.authService.autoAuthUser();
       this.companyName = this.authService.getCompanyName();
       console.log(res.imagePath);
+    
       this.imagePath = res.imagePath,
       this.country = res.country,
       this.city = res.city,

@@ -4,12 +4,13 @@ import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { SignUpData } from './sign-up-data.model';
 import { Observable, of } from 'rxjs';
+import {environment} from '../../environments/environment'
 import { map, catchError, tap } from 'rxjs/operators';
 import { ErrorHandler } from "@angular/core";
 // import { UNAUTHORIZED, BAD_REQUEST, FORBIDDEN } from "http-status-codes";
 // import { ToastsManager, Toast, ToastOptions } from "ng6-toastr";
 
-const BackUrl = 'https://ptway-dev.herokuapp.com/api';
+const BackUrl = environment.BackUrl;
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json'

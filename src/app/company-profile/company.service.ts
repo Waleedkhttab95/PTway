@@ -3,8 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
+import {environment} from '../../environments/environment'
 import { map, catchError, tap } from 'rxjs/operators';
-const BackUrl = 'https://ptway-dev.herokuapp.com/api';
+const BackUrl = environment.BackUrl;
 
 @Injectable({ providedIn: 'root' })
 

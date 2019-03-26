@@ -16,49 +16,36 @@ declare const $: any;
   styleUrls: ['./my-projects.component.css']
 })
 
-export class MyProjectsComponent implements OnInit, AfterViewInit {
+export class MyProjectsComponent implements OnInit {
   rowDataMainForm: any;
   isLoading = false;
-
-  ngAfterViewInit() {
-    $('#datatables').DataTable({
-      "pagingType": "full_numbers",
-      "lengthMenu": [
-        [10, 25, 50, -1],
-        [10, 25, 50, "All"]
-      ],
-      responsive: true,
-      language: {
-        search: "_INPUT_",
-        searchPlaceholder: "Search records",
-      }
-
-    });
-
-    const table = $('#datatables').DataTable();
+  Dtable() {
+    setTimeout(function () {
+      $('#datatables').DataTable({
+        "pagingType": "full_numbers",
+        "lengthMenu": [
+          [10, 25, 50, -1],
+          [10, 25, 50, "All"]
+        ],
+        responsive: true,
+        language: {
+          search: "_INPUT_",
+          searchPlaceholder: "Search records",
+        }
+  
+      });
+  
+      const table = $('#datatables').DataTable();
+      
+  
     
+      $('.card .material-datatables label').addClass('form-group');
 
-    // Edit record
-    table.on('click', '.edit', function (e) {
-      const $tr = $(this).closest('tr');
-      const data = table.row($tr).data();
-      alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
-      e.preventDefault();
-    });
+    }, 100)
 
-    // Delete a record
-
-
-    //Like record
-    table.on('click', '.like', function (e) {
-      alert('You clicked on Like button');
-      e.preventDefault();
-    });
-
-    $('.card .material-datatables label').addClass('form-group');
-    this.authService.autoAuthUser();
-    this.fetchData();
+    
   }
+
   public dataTable: DataTable;
   // tslint:disable-next-line: member-ordering
 
@@ -69,6 +56,8 @@ export class MyProjectsComponent implements OnInit, AfterViewInit {
   idRows: any[] = [];
   // tslint:disable-next-line: member-ordering
 
+ 
+  
   ngOnInit() {
 
     this.isLoading=true;
@@ -79,8 +68,9 @@ export class MyProjectsComponent implements OnInit, AfterViewInit {
       ]
 
     };
+    this.authService.autoAuthUser();
+    this.fetchData();
 
-    this.isLoading = false;
   }
 
   fetchData() {
@@ -94,6 +84,9 @@ export class MyProjectsComponent implements OnInit, AfterViewInit {
           this.idRows[i]
         ])
       }
+      this.Dtable()
+      this.isLoading = false;
+
     });
 
   }

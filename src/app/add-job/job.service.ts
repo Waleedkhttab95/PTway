@@ -3,10 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { JobData } from './job-data.model';
+import {environment} from '../../environments/environment'
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 
-const BackUrl = 'https://ptway-dev.herokuapp.com/api';
+const BackUrl = environment.BackUrl;
 import swal from 'sweetalert2';
 @Injectable({ providedIn: 'root' })
 
@@ -33,7 +34,7 @@ export class JobService {
                     country: responseData.country,
                     city: responseData.city,
                     gender: responseData.gender,
-                    personal_Skills: responseData.personal_Skills,
+                  //  personal_Skills: responseData.personal_Skills,
                     public_Major: responseData.public_Major,
                     jobAd: responseData._id
 
@@ -160,7 +161,7 @@ export class JobService {
     showSwal(type){
         if (type == 'secc') {
         swal({
-          title: "تمت عملية الحذف بنجاح!",
+          title: "تمت عملية الإضافة بنجاح!",
           buttonsStyling: false,
           confirmButtonText:'نعم',
           type:'success',

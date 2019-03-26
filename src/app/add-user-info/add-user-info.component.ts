@@ -31,17 +31,12 @@ export class AddUserInfoComponent implements OnInit {
   currentspMajor: string[];
   spMajors = [];
   majorID = "";
+  educationId = "";
 
   study_statuses = [
-    {value: 'High-school-first-year', viewValue: 'اول ثانوي'},
-    {value: 'High-school-second-year', viewValue: 'ثاني ثانوي'},
-    {value: 'High-school-third-year', viewValue: 'ثالث ثانوي'},
-    {value: 'University-first-year', viewValue: 'اول جامعة'},
-    {value: 'University-second-year', viewValue: 'ثاني جامعة'},
-    {value: 'University-third-year', viewValue: 'ثالث جامعة'},
-    {value: 'University-forth-year', viewValue: 'رابع جامعة'},
-    {value: 'University-fith-year', viewValue: 'خامس جامعة'},
-    {value: 'Undergraduate', viewValue: 'خريج'},
+   
+  
+   
   ];
 
   currentstudy_degree: string[];
@@ -50,6 +45,7 @@ export class AddUserInfoComponent implements OnInit {
     {value: 'HS', viewValue: 'الثانوية العامية'},
     {value: 'BHO', viewValue: 'البكالريويس'},
     {value: 'MASTER', viewValue: 'المساتر'},
+    {value: 'Undergraduate', viewValue: 'خريج'}
   ];
 
   currentgender: string[];
@@ -181,6 +177,38 @@ export class AddUserInfoComponent implements OnInit {
     this.majorID = this.userResumeForm.value.public_Major;
     console.log(this.majorID);
     this.getspMajors(this.majorID);
+  }
+
+  checkspEducation(){
+    this.study_statuses = [];
+    this.educationId = this.userResumeForm.value.education_degree;
+    if(this.educationId == "HS") {
+      this.study_statuses.push(
+        {value: 'High-school-first-year', viewValue: 'اول ثانوي'},
+        {value: 'High-school-second-year', viewValue: 'ثاني ثانوي'},
+        {value: 'High-school-third-year', viewValue: 'ثالث ثانوي'}
+      )
+    }
+   else if(this.educationId == "BHO") {
+      this.study_statuses.push(
+        {value: 'University-first-year', viewValue: 'اول جامعة'},
+    {value: 'University-second-year', viewValue: 'ثاني جامعة'},
+    {value: 'University-third-year', viewValue: 'ثالث جامعة'},
+    {value: 'University-forth-year', viewValue: 'رابع جامعة'},
+    {value: 'University-fith-year', viewValue: 'خامس جامعة'}
+      )
+    }
+
+    else if(this.educationId == "MASTER") {
+      this.study_statuses.push(
+        {value: 'master-first-year', viewValue: 'اول ماستر'},
+    {value: 'master-second-year', viewValue: 'ثاني ماستر'},
+    {value: 'master-third-year', viewValue: 'ثالث ماستر'},
+  
+      )
+    }
+
+  
   }
   limitPS() {
     console.log(this.personal_Skills.value.length);

@@ -85,14 +85,12 @@ private fb: FormBuilder, public signSerive: SignUpService, public userSerivce: U
       console.log(data.id);
       for (var i = 0; i < data.count; i++) {
         this.projects.push({ value: data.id[i], viewValue: data.projectName[i] });
-        console.log(data.id[i])
+        
       }
       if(this.projects.length == 0){
-        console.log("inside condtion")
         this.router.navigate(['/error-message']);
       }
-      console.log(this.projects.length);
-      console.log(this.projects);
+     
     });
   }
 
@@ -159,7 +157,7 @@ private fb: FormBuilder, public signSerive: SignUpService, public userSerivce: U
       required_Number: new FormControl(),
     });
     this.isLoading=false;
-    console.log("heeeeeeeeeeeeeey");
+   
   }
 
   addJob() {
@@ -170,7 +168,7 @@ private fb: FormBuilder, public signSerive: SignUpService, public userSerivce: U
       contract: this.addProjcetForm.value.contracts,
       project: this.addProjcetForm.value.projects,
       job_Name: this.addProjcetForm.value.job_Name,
-      job_skills: this.addProjcetForm.value.job_skills,
+      // job_skills: this.addProjcetForm.value.job_skills,
       startDate: this.addProjcetForm.value.startDate,
       country: this.addProjcetForm.value.country,
       city: this.addProjcetForm.value.city,
@@ -183,7 +181,7 @@ private fb: FormBuilder, public signSerive: SignUpService, public userSerivce: U
       required_Number: this.addProjcetForm.value.required_Number
     }
 
-
+    console.log(this.data);
     this.rest.addJob(this.data);
   }
 

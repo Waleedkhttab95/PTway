@@ -84,6 +84,8 @@ export class SidebarComponent implements OnInit {
         console.log(this.authService.getCompanyName())
         this.name = this.authService.getCompanyName()
         this.companyService.getCompanyInfo().subscribe((res:any) =>{
+            
+            if(res.imagePath == null) this.imagePath = '../../assets/img/default-avatar.png';
             this.imagePath = res.imagePath;
         })
         this.menuItems = ROUTES.filter(menuItem => menuItem);

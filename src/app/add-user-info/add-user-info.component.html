@@ -81,7 +81,7 @@
                     <label class="bmd-label-floating custom-label">- المرحلة الدراسية</label>
                     <mat-form-field>
                       <mat-select placeholder="" formControlName="education_degree" name="education_degree">
-                        <mat-option *ngFor="let study_degree of study_degrees" [value]="study_degree.value">
+                        <mat-option *ngFor="let study_degree of study_degrees" [value]="study_degree.value" (click)="checkspEducation()">
                           {{study_degree.viewValue}}
                         </mat-option>
                       </mat-select>
@@ -115,7 +115,7 @@
                     <label class="bmd-label-floating custom-label">- المستوى التعليمي</label>
                     <mat-form-field>
                       <mat-select placeholder="" formControlName="Education_level" name="Education_level">
-                        <mat-option *ngFor="let study_degree of study_degrees" [value]="study_degree.value">
+                        <mat-option *ngFor="let study_degree of study_statuses" [value]="study_degree.value">
                           {{study_degree.viewValue}}
                         </mat-option>
                       </mat-select>

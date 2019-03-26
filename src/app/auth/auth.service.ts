@@ -2,6 +2,7 @@ import { Subject } from 'rxjs';
 import { AuthData } from './auth-data.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {environment} from '../../environments/environment'
 import { Router } from '@angular/router';
 import swal from 'sweetalert2';
  declare var $: any;
@@ -13,7 +14,7 @@ declare interface JQueryStatic {
   notify: any;
 }
 
-const BackUrl = 'https://ptway-dev.herokuapp.com/api';
+const BackUrl = environment.BackUrl;
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
