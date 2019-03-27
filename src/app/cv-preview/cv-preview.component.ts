@@ -10,30 +10,31 @@ import { DataService } from '../data.service';
 })
 export class CvPreviewComponent implements OnInit {
 
-  country: string;
-  study_degree : string;
-  fullName:  string;
-  education_degree:  string;
-  gender:  string;
-  mobile:  string;
-  birthDate:  string;
-  city:  string;
-  universty: string;
-  Education_level:  string;
-  public_Major:  string;
-  spMajor:  string;
-  languages:  string;
-  skills:  string;
-  personal_Skills:  string;
-  hoppies:  string;
-  social_Status:  string;
-  about:  string;
-  personal_web:  string;
-  facebook:  string;
-  twitter:  string;
-  instagram:  string;
-  linkedin:  string;
-  imagePath:  string;
+  country: string = "";
+  study_degree : string = "";
+  fullName:  string = "";
+  education_degree:  string = "";
+  gender:  string = "";
+  mobile:  string = "";
+  birthDate:  string = "";
+  city:  string = "";
+  universty: string = "";
+  Education_level:  string = "";
+  public_Major:  string = "";
+  spMajor:  string = "";
+  languages:  string = "";
+  skills:  string = "";
+  work_Hours: Number;
+  personal_Skills:  string = "";
+  hoppies:  string = "";
+  social_Status:  string = "";
+  about:  string = "";
+  personal_web:  string = "";
+  facebook:  string = "";
+  twitter:  string = "";
+  instagram:  string = "";
+  linkedin:  string = "";
+  imagePath:  string = "";
 
   constructor(public userService: UserService, public authService: AuthService, public dataService: DataService) { }
 
@@ -54,18 +55,20 @@ export class CvPreviewComponent implements OnInit {
       this.Education_level=  res.Education_level;
       this.public_Major=  res.public_Major;
       this.spMajor=  res.spicifc_Major;
+      this.work_Hours = res.work_Hours;
       this.languages=  res.languages;
       this.skills=  res.skills;
       this.personal_Skills=  res.personal_Skills;
       this.hoppies=  res.hoppies;
       this.social_Status=  res.social_Status;
       this.about=  res.about;
-      this.personal_web=  res.personal_web;
-      this.facebook=  res.facebook;
-      this.twitter=  res.twitter;
-      this.instagram=  res.instagram;
-      this.linkedin=  res.linkedin;
-      this.imagePath=  res.imagePath;
+      if(res.personal_web != "null") this.personal_web= res.personal_web ;
+        if(res.facebook != "null") this.facebook= res.facebook ;
+        if(res.twitter != "null") this.twitter= res.twitter ;
+        if(res.instagram != "null") this.instagram= res.instagram ;
+        if(res.linkedin != "null") this.linkedin= res.linkedin ;
+        if(res.linkedin != "null") this.linkedin= res.linkedin ;
+        if(res.imagePath != "null") this.imagePath= res.imagePath ;
   })
 
   }

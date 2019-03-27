@@ -3,6 +3,7 @@ import PerfectScrollbar from 'perfect-scrollbar';
 import { Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
+import { UserService } from 'src/app/my-cv/user.service';
 
 
 declare const $: any;
@@ -75,9 +76,10 @@ export class SideComponent implements OnInit {
     private sidebarVisible: boolean;
     mobile_menu_visible: any = 0;
     private _router: Subscription;
+    count: Number;
 
-
-    constructor(private router: Router, private element: ElementRef, public authService: AuthService) {
+    constructor(private router: Router, private element: ElementRef,public userService: UserService,
+         public authService: AuthService) {
         this.sidebarVisible = false;
     }
     public menuItems: any[];
@@ -97,6 +99,11 @@ export class SideComponent implements OnInit {
           this.sidebarClose();
         });
         this.menuItems = ROUTES.filter(menuItem => menuItem);
+
+        this.userService.getUnreadNotification().subscribe((res: any) => {
+            console.log(res);
+            this.count = res.count;
+          })
     }
     updatePS(): void {
         if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {

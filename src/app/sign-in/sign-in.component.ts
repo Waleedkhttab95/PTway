@@ -26,7 +26,7 @@ export class SignInComponent implements OnInit, OnDestroy {
   submitted = false;
   returnUrl: string;
   mood: boolean = true;
-  
+  signAs: string = "عضو";
   constructor(private element: ElementRef,
     public authService: AuthService, private route: ActivatedRoute, private router: Router,
     private fb: FormBuilder) {
@@ -61,6 +61,7 @@ export class SignInComponent implements OnInit, OnDestroy {
       card.classList.remove('card-hidden');
     }, 700);
 
+   
     this.userloginForm = this.fb.group({
       email: new FormControl(),
       password: new FormControl()
@@ -97,6 +98,7 @@ export class SignInComponent implements OnInit, OnDestroy {
 
   companyMood(){
     this.mood  = false;
+    this.signAs = "شركة";
     let activeLink = document.getElementById('userMood');
     let link = document.getElementById('companyMood');
     activeLink.className = 'fake-link';
@@ -105,6 +107,7 @@ export class SignInComponent implements OnInit, OnDestroy {
   }
   userMood(){
     this.mood  = true;
+    this.signAs = "عضو";
     let activeLink = document.getElementById('companyMood');
     let link = document.getElementById('userMood');
     activeLink.className = 'fake-link';

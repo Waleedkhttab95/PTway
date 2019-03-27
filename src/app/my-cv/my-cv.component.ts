@@ -9,31 +9,31 @@ import { AuthService } from '../auth/auth.service';
 })
 export class MyCvComponent implements OnInit {
 
-  country: string;
-  study_degree : string;
-  fullName:  string;
-  education_degree:  string;
-  gender:  string;
-  mobile:  string;
-  birthDate:  string;
-  city:  string;
-  universty: string;
-  Education_level:  string;
-  public_Major:  string;
-  spMajor:  string;
-  languages:  string;
-  skills:  string;
-  personal_Skills:  string;
-  hoppies:  string;
-  social_Status:  string;
-  about:  string;
-  personal_web:  string;
-  facebook:  string;
-  twitter:  string;
-  instagram:  string;
+  country: string = "";
+  study_degree : string = "";
+  fullName:  string = "";
+  education_degree:  string = "";
+  gender:  string = "";
+  mobile:  string = "";
+  birthDate:  string = "";
+  city:  string = "";
+  universty: string = "";
+  Education_level:  string = "";
+  public_Major:  string = "";
+  spMajor:  string = "";
+  languages:  string = "";
+  skills:  string = "";
+  personal_Skills:  string = "";
+  hoppies:  string = "";
+  social_Status:  string = "";
+  about:  string = "";
+  personal_web:  string = "";
+  facebook:  string = "";
+  twitter:  string = "";
+  instagram:  string = "";
   work_Hours: Number;
-  linkedin:  string;
-  imagePath:  string;
+  linkedin:  string = "";
+  imagePath:  string = "";
   isLoading = false;
 
   constructor(public userService: UserService, public authService: AuthService) { }
@@ -48,6 +48,7 @@ export class MyCvComponent implements OnInit {
       console.log(this.isLoading);
       this.userService.getUserInfo().subscribe((res: any) =>{
         console.log(res);
+        
         // the same syntax res. 
         
         this.country= res.country;
@@ -69,14 +70,17 @@ export class MyCvComponent implements OnInit {
         this.hoppies=  res.hoppies;
         this.social_Status=  res.social_Status;
         this.about=  res.about;
-        this.personal_web=  res.personal_web;
-        this.facebook=  res.facebook;
-        this.twitter=  res.twitter;
-        this.instagram=  res.instagram;
-        this.linkedin=  res.linkedin;
-        this.imagePath=  res.imagePath;
+
+        if(res.personal_web != "null") this.personal_web= res.personal_web ;
+        if(res.facebook != "null") this.facebook= res.facebook ;
+        if(res.twitter != "null") this.twitter= res.twitter ;
+        if(res.instagram != "null") this.instagram= res.instagram ;
+        if(res.linkedin != "null") this.linkedin= res.linkedin ;
+        if(res.linkedin != "null") this.linkedin= res.linkedin ;
+        if(res.imagePath != "null") this.imagePath= res.imagePath ;
+
         this.isLoading = false;
-      
+     
     })
 
 

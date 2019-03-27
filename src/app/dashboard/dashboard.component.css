@@ -2,10 +2,18 @@
     /* position: fixed;
     bottom: 0;
     width: 100%; */
-    margin-top: 45%;
+    margin-top: 5%;
     text-align: right;
 }
 ::ng-deep .mat-raised-button.btn.btn-round, .mat-raised-button.btn:not([class*=mat-elevation-z]).btn-round, .btn.btn-round .custon-btn{
     margin-left: 2%;
     font-family: 'Cairo', 'Changa';
+}
+
+.custom_row{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 300px;
+    margin-right: -15px;
+    margin-left: -15px;
 }

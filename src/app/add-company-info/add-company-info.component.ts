@@ -24,7 +24,9 @@ export class AddCompanyInfoComponent implements OnInit {
   cities = [];
 
   postcompanyinfo() {
-    console.log(this.comapnyResumeForm.value);
+    if (this.comapnyResumeForm.invalid) {
+      return;
+    }
     this.rest.postcompanyinfo(this.comapnyResumeForm.value);
   }
 
@@ -58,13 +60,19 @@ export class AddCompanyInfoComponent implements OnInit {
     this.getcity();
     this.getcountry();
     this.comapnyResumeForm = this.fb.group({
-      country: new FormControl(),
-      address: new FormControl(),
-      info: new FormControl(),
+      country: new FormControl(null ,
+         {validators: [Validators.required]}),
+      address: new FormControl(null ,
+         {validators: [Validators.required]}),
+      info: new FormControl(null ,
+         {validators: [Validators.required]}),
       image: new FormControl(null , {asyncValidators: [mimeType]}),
-      vision: new FormControl(),
-      message: new FormControl(),
-      city: new FormControl(),
+      vision: new FormControl(null ,
+         {validators: [Validators.required]}),
+      message: new FormControl(null ,
+         {validators: [Validators.required]}),
+      city: new FormControl(null ,
+         {validators: [Validators.required]}),
       personal_web: new FormControl(),
       facebook: new FormControl(),
       twitter: new FormControl(),

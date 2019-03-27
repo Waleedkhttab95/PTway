@@ -79,7 +79,9 @@ export class AddUserInfoComponent implements OnInit {
   ];
 
   postuserinfo() {
-    console.log(this.userResumeForm.value);
+    if (this.userResumeForm.invalid) {
+      return;
+    }
    this.rest.addUserInfo(this.userResumeForm.value);
   }
 
@@ -146,24 +148,41 @@ export class AddUserInfoComponent implements OnInit {
     this.getuniversty();
     this.userResumeForm = this.fb.group({
       // cvImg: new FormControl(),
-      country: new FormControl(),
+      country: new FormControl(null ,
+        {validators: [Validators.required]}),
       image: new FormControl(null , {asyncValidators: [mimeType]}),
-      study_degree: new FormControl(),
-      fullName: new FormControl(),
-      education_degree: new FormControl(),
-      gender: new FormControl(),
-      mobile: new FormControl(),
-      birthDate: new FormControl(),
-      city: new FormControl(),
-      universty: new FormControl(),
-      Education_level: new FormControl(),
-      public_Major: new FormControl(),
-      spMajor: new FormControl(),
-      languages: new FormControl(),
-      skills: new FormControl(),
-      personal_Skills: new FormControl(),
-      hoppies: new FormControl(),
-      social_Status: new FormControl(),
+      study_degree: new FormControl(null ,
+         {validators: [Validators.required]}),
+      fullName: new FormControl(null ,
+         {validators: [Validators.required]}),
+      education_degree: new FormControl(null ,
+         {validators: [Validators.required]}),
+      gender: new FormControl(null ,
+         {validators: [Validators.required]}),
+      mobile: new FormControl(null ,
+         {validators: [Validators.required]}),
+      birthDate: new FormControl(null ,
+         {validators: [Validators.required]}),
+      city: new FormControl(null ,
+         {validators: [Validators.required]}),
+      universty: new FormControl(null ,
+         {validators: [Validators.required]}),
+      Education_level: new FormControl(null ,
+         {validators: [Validators.required]}),
+      public_Major: new FormControl(null ,
+         {validators: [Validators.required]}),
+      spMajor: new FormControl(null ,
+         {validators: [Validators.required]}),
+      languages: new FormControl(null ,
+         {validators: [Validators.required]}),
+      skills: new FormControl(null ,
+         {validators: [Validators.required]}),
+      personal_Skills: new FormControl(null ,
+         {validators: [Validators.required]}),
+      hoppies: new FormControl(null ,
+         {validators: [Validators.required]}),
+      social_Status: new FormControl(null ,
+         {validators: [Validators.required]}),
       about: new FormControl(),
       personal_web: new FormControl(),
       facebook: new FormControl(),

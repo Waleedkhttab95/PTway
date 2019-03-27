@@ -19,6 +19,7 @@
     color: #00263E;
     text-decoration: none;
     cursor: pointer;
+   font-size: 19px
 }
 @media screen and (max-width: 767px) {
     .custom-fotter{

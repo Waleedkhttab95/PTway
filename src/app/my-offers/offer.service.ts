@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import {environment} from '../../environments/environment';
 import swal from 'sweetalert2';
 const BackUrl = environment.BackUrl;
+// const BackUrl = 'http://localhost:5000/api'
 @Injectable({ providedIn: 'root' })
 
 export class offerService {

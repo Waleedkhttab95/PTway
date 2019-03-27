@@ -20,7 +20,7 @@ private fb: FormBuilder, public signSerive: SignUpService, public userSerivce: U
 
   isLoading=false;
 
-  addProjcetForm: FormGroup;
+  addJobForm: FormGroup;
   selectedValue: string;
   startDate: Date;
   job_Name: string;
@@ -138,23 +138,35 @@ private fb: FormBuilder, public signSerive: SignUpService, public userSerivce: U
     this.getcity();
     this.getmajors();
     this.getspecialization()
-    this.addProjcetForm = new FormGroup({
-      country: new FormControl(),
-      city: new FormControl(),
-      personal_Skills : new FormControl('', [
-        Validators.required
-      ]),
-      gender: new FormControl(),
-      public_Major: new FormControl(),
-      contracts: new FormControl(),
-      startDate: new FormControl(),
-      projects: new FormControl(),
-      job_Name: new FormControl(),
-      job_skills: new FormControl(),
-      work_hours: new FormControl(),
-      work_days: new FormControl(),
-      salary: new FormControl(),
-      required_Number: new FormControl(),
+    this.addJobForm = new FormGroup({
+      country: new FormControl(null ,
+         {validators: [Validators.required]}),
+      city: new FormControl(null ,
+         {validators: [Validators.required]}),
+      personal_Skills : new FormControl(null ,
+        {validators: [Validators.required]}),
+      gender: new FormControl(null ,
+         {validators: [Validators.required]}),
+      public_Major: new FormControl(null ,
+         {validators: [Validators.required]}),
+      contracts: new FormControl(null ,
+         {validators: [Validators.required]}),
+      startDate: new FormControl(null ,
+         {validators: [Validators.required]}),
+      projects: new FormControl(null ,
+         {validators: [Validators.required]}),
+      job_Name: new FormControl(null ,
+         {validators: [Validators.required]}),
+      job_skills: new FormControl(null ,
+         {validators: [Validators.required]}),
+      work_hours: new FormControl(null ,
+         {validators: [Validators.required]}),
+      work_days: new FormControl(null ,
+         {validators: [Validators.required]}),
+      salary: new FormControl(null ,
+         {validators: [Validators.required]}),
+      required_Number: new FormControl(null ,
+         {validators: [Validators.required]}),
     });
     this.isLoading=false;
    
@@ -162,23 +174,26 @@ private fb: FormBuilder, public signSerive: SignUpService, public userSerivce: U
 
   addJob() {
 
+    if (this.addJobForm.invalid) {
+      return;
+    }
 
     this.data = {
 
-      contract: this.addProjcetForm.value.contracts,
-      project: this.addProjcetForm.value.projects,
-      job_Name: this.addProjcetForm.value.job_Name,
-      // job_skills: this.addProjcetForm.value.job_skills,
-      startDate: this.addProjcetForm.value.startDate,
-      country: this.addProjcetForm.value.country,
-      city: this.addProjcetForm.value.city,
-      public_Major: this.addProjcetForm.value.public_Major,
-      work_hours: this.addProjcetForm.value.work_hours,
-      work_days: this.addProjcetForm.value.work_days,
-      salary: this.addProjcetForm.value.salary,
-      gender: this.addProjcetForm.value.gender,
-      personal_Skills: this.addProjcetForm.value.personal_Skills,
-      required_Number: this.addProjcetForm.value.required_Number
+      contract: this.addJobForm.value.contracts,
+      project: this.addJobForm.value.projects,
+      job_Name: this.addJobForm.value.job_Name,
+      // job_skills: this.addJobForm.value.job_skills,
+      startDate: this.addJobForm.value.startDate,
+      country: this.addJobForm.value.country,
+      city: this.addJobForm.value.city,
+      public_Major: this.addJobForm.value.public_Major,
+      work_hours: this.addJobForm.value.work_hours,
+      work_days: this.addJobForm.value.work_days,
+      salary: this.addJobForm.value.salary,
+      gender: this.addJobForm.value.gender,
+      personal_Skills: this.addJobForm.value.personal_Skills,
+      required_Number: this.addJobForm.value.required_Number
     }
 
     console.log(this.data);

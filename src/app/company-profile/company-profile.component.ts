@@ -31,18 +31,20 @@ export class CompanyProfileComponent implements OnInit {
       this.companyName = this.authService.getCompanyName();
       console.log(res.imagePath);
     
-      this.imagePath = res.imagePath,
-      this.country = res.country,
-      this.city = res.city,
-      this.address = res.address,
-      this.info = res.info,
-      this.vision = res.vision,
-      this.message = res.message,
-      this.personal_web = res.personal_web,
-      this.facebook = res.facebook,
-      this.twitter = res.twitter,
-      this.instagram = res.instagram,
-      this.linkedin = res.linkedin
+      
+      this.country = res.country;
+      this.city = res.city;
+      this.address = res.address;
+      this.info = res.info;
+      this.vision = res.vision;
+      this.message = res.message;
+      if(res.personal_web != "null") this.personal_web= res.personal_web ;
+      if(res.facebook != "null") this.facebook= res.facebook ;
+      if(res.twitter != "null") this.twitter= res.twitter ;
+      if(res.instagram != "null") this.instagram= res.instagram ;
+      if(res.linkedin != "null") this.linkedin= res.linkedin ;
+      if(res.imagePath != "null") this.imagePath= res.imagePath ;
+     
    
   })
   }

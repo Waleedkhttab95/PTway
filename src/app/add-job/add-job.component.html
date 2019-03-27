@@ -12,9 +12,9 @@
           </div>
           <div class="col-md-8 custom-card">
             <div class="card-body">
-              <form (submit)="addJob()" [formGroup]="addProjcetForm">
+              <form (submit)="addJob()" [formGroup]="addJobForm">
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                     <label class="bmd-label-floating custom-label">- نوع التعاقد</label>
                     <mat-form-field>
                       <mat-select placeholder="" formControlName="contracts" name="contract">
@@ -63,7 +63,7 @@
                       </mat-select>
                     </mat-form-field>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                       <label class="bmd-label-floating custom-label">- التخصص العام</label>
                       <mat-form-field>
                         <mat-select placeholder="" formControlName="public_Major" name="public_Major">
@@ -73,6 +73,25 @@
                         </mat-select>
                       </mat-form-field>
                     </div>
+                    <div class="col-md-6">
+                        <label class="bmd-label-floating custom-label">- الجنس</label>
+                        <mat-form-field>
+                          <mat-select placeholder="" formControlName="gender" name="gender">
+                            <mat-option *ngFor="let gender of genders" [value]="gender.value">
+                              {{gender.viewValue}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-6">
+                        <label class="bmd-label-floating custom-label">- المهارات الشخصية</label>
+                        <mat-form-field>
+                          <mat-select placeholder="" formControlName="personal_Skills" name="personal_Skills"
+                            multiple>
+                            <mat-option *ngFor="let personal_Skill of personal_SkillList" [value]="personal_Skill">{{personal_Skill}}</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
                   <div class="col-md-6">
                     <label class="bmd-label-floating custom-label">- ساعات العمل اليومية</label>
                     <mat-form-field class="example-full-width">
@@ -92,25 +111,7 @@
                       <input matInput placeholder="" type="number" formControlName="salary" name="salary">
                     </mat-form-field>
                   </div>
-                  <div class="col-md-6">
-                    <label class="bmd-label-floating custom-label">- الجنس</label>
-                    <mat-form-field>
-                      <mat-select placeholder="" formControlName="gender" name="gender">
-                        <mat-option *ngFor="let gender of genders" [value]="gender.value">
-                          {{gender.viewValue}}
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-                  <div class="col-md-6">
-                    <label class="bmd-label-floating custom-label">- المهارات الشخصية</label>
-                    <mat-form-field>
-                      <mat-select placeholder="" formControlName="personal_Skills" name="personal_Skills"
-                        multiple>
-                        <mat-option *ngFor="let personal_Skill of personal_SkillList" [value]="personal_Skill">{{personal_Skill}}</mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
+            
                   <div class="col-md-6">
                     <label class="bmd-label-floating custom-label">-تاريخ البدأ</label>
                     <mat-form-field>
