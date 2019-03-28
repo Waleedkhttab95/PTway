@@ -29,7 +29,6 @@ export class CompanyProfileComponent implements OnInit {
     this.companyService.getCompanyInfo().subscribe((res: any) =>{
       this.authService.autoAuthUser();
       this.companyName = this.authService.getCompanyName();
-      console.log(res.imagePath);
     
       
       this.country = res.country;

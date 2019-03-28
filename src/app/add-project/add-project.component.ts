@@ -54,11 +54,8 @@ export class AddProjectComponent implements OnInit {
       return;
     }
     
-    console.log(this.status);
-    console.log(this.projectId);
 
     if(this.status === true) {
-      console.log('here');
      this.updateData = {
        id: this.projectId,
       projectName: this.form.value.title,

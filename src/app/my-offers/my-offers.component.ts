@@ -55,7 +55,6 @@ export class MyOffersComponent implements OnInit {
     this.projectId = this.data.getStoreData();
     this.authService.autoAuthUser();
     this.jobService.getJobs(this.projectId).subscribe(response => {
-      console.log(response);
       for (var i = 0; i < response.count; i++) {
         this.dataRows.push(response.jobNames[i]);
         this.idRows.push(response.id[i]);
@@ -71,7 +70,6 @@ export class MyOffersComponent implements OnInit {
       headerRow: ['اسم الإعلان', 'قائمة المرشحين', 'قائمة المقبولين', 'حذف الإعلان'],
       dataRows: []
     };
-    console.log(this.dataTable.dataRows);
   }
   onCandidates(id) {
     this.data.storeDataJob(id);
@@ -103,7 +101,6 @@ export class MyOffersComponent implements OnInit {
 
  
  deleteRow(rowNumber: number) {
-  console.log(rowNumber);
   this.dataTable.dataRows.splice(rowNumber, 1);
   this.changeDetectorRef.detectChanges();
 }

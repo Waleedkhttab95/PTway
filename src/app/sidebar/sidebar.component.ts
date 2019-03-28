@@ -81,7 +81,6 @@ export class SidebarComponent implements OnInit {
     };
     ngOnInit() {
         this.authService.autoAuthUser();
-        console.log(this.authService.getCompanyName())
         this.name = this.authService.getCompanyName()
         this.companyService.getCompanyInfo().subscribe((res:any) =>{
             

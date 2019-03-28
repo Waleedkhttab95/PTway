@@ -41,48 +41,59 @@ private fb: FormBuilder, public signSerive: SignUpService, public userSerivce: U
 
   currentgender: string[];
   genders = [
-    { value: 'male', viewValue: 'ذكر' },
-    { value: 'female', viewValue: 'انثى' },
+    { value: 'ذكر', viewValue: 'ذكر' },
+    { value: 'انثى', viewValue: 'انثى' },
   ];
 
   languages = new FormControl();
-  languageList: string[] = ['العربية', 'الانجليزية', 'الفرنسية', 'الاسبانية', 'الايطالية'];
+  languageList: string[] = ['العربية', 'الانجليزية', 'الفرنسية', 'الاسبانية', 'الكورية','أوردو'];
 
   
 
   personal_Skills = new FormControl();
-  personal_SkillList: string[] = ['الإلقاء', 'التعبير'];
+  personal_SkillList = []
+//   personal_SkillList: string[] =  ['التعامل مع الجمهور', 'التواصل الفعال', 
+//   'حل المشكلات', 'العمل من خلال الفريق', 'القدرة على الالقاء',
+//   'التفكير الابداعي', 'تقب التوجه','المبادرة', 'اتخاذ القرارات'
+// ,'الالتزام و تحمل المسؤولية', 'ادارة الوقت','العمل تحت الضغط','التعامل مع المواقف الصعبة'
+// ,'التفاوض و الافناع','ادارة الأزمات', 'القدرة على التكيف و المرونة'
+// ];
 
 
 
   getcontracts() {
     this.contracts = [];
     this.rest.getcontracts().subscribe((data: {}) => {
-      console.log("Here");
       for (let key in data) {
         this.contracts.push({ value: data[key]._id, viewValue: data[key].contractName });
 
       }
-      console.log(this.contracts);
 
     });
   }
 
+  getskills() {
+    this.personal_SkillList = [];
+    this.rest.getPersonalSkills().subscribe((data: {}) => {
+      for (let key in data) {
+        this.personal_SkillList.push({ value: data[key]._id, viewValue: data[key].skillName });
+
+      }
+
+    });
+  }
   getspecialization() {
     this.CompanySpecialists = [];
     this.signSerive.getspecialization().subscribe((data: {}) => {
-      console.log(data);
       for (let key in data) {
         this.CompanySpecialists.push({ value: data[key]._id, viewValue: data[key].specialistName });
       }
-      console.log(this.CompanySpecialists);
     });
   }
 
   getprojects(id) {
     this.projects = [];
     this.rest.getprojects(id).subscribe((data) => {
-      console.log(data.id);
       for (var i = 0; i < data.count; i++) {
         this.projects.push({ value: data.id[i], viewValue: data.projectName[i] });
         
@@ -97,11 +108,9 @@ private fb: FormBuilder, public signSerive: SignUpService, public userSerivce: U
   getcountry() {
     this.countries = [];
     this.rest.getcountry().subscribe((data: {}) => {
-      console.log(data);
       for (let key in data) {
         this.countries.push({ value: data[key]._id, viewValue: data[key].countryName });
       }
-      console.log(this.countries);
     });
   }
 
@@ -111,7 +120,6 @@ private fb: FormBuilder, public signSerive: SignUpService, public userSerivce: U
  
       for (let key in data) {
         this.majors.push({ value: data[key]._id, viewValue: data[key].majorName });
-        // console.log(this.majorID);
       }
      
     });
@@ -120,11 +128,9 @@ private fb: FormBuilder, public signSerive: SignUpService, public userSerivce: U
   getcity() {
     this.cities = [];
     this.rest.getcity().subscribe((data: {}) => {
-      console.log(data);
       for (let key in data) {
         this.cities.push({ value: data[key]._id, viewValue: data[key].cityName });
       }
-      console.log(this.cities);
     });
   }
 
@@ -137,6 +143,7 @@ private fb: FormBuilder, public signSerive: SignUpService, public userSerivce: U
     this.getcountry();
     this.getcity();
     this.getmajors();
+    this.getskills();
     this.getspecialization()
     this.addJobForm = new FormGroup({
       country: new FormControl(null ,
@@ -196,7 +203,6 @@ private fb: FormBuilder, public signSerive: SignUpService, public userSerivce: U
       required_Number: this.addJobForm.value.required_Number
     }
 
-    console.log(this.data);
     this.rest.addJob(this.data);
   }
 

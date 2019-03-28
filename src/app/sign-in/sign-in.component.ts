@@ -40,11 +40,9 @@ export class SignInComponent implements OnInit, OnDestroy {
       return;
     }
     if(this.mood == true){
-      console.log(this.mood)
       this.authService.login(form.value.email, form.value.password);
     }
     else{
-      console.log(this.mood)
       this.authService.companyLogin(form.value.email, form.value.password);
     }
   }
@@ -103,7 +101,6 @@ export class SignInComponent implements OnInit, OnDestroy {
     let link = document.getElementById('companyMood');
     activeLink.className = 'fake-link';
     link.classList.remove('fake-link');
-    console.log(link.className);
   }
   userMood(){
     this.mood  = true;
@@ -112,7 +109,6 @@ export class SignInComponent implements OnInit, OnDestroy {
     let link = document.getElementById('userMood');
     activeLink.className = 'fake-link';
     link.classList.remove('fake-link');
-    console.log(link.className);
   }
 
 }

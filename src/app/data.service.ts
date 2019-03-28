@@ -45,7 +45,6 @@ public storeDataJob(jobId) {
 
  
  public storeDataoffer(offerId) {
-   console.log("Data offer")
   localStorage.setItem('offer',offerId);
  }
 

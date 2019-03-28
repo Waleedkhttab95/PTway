@@ -1,141 +1,369 @@
-<article class="resume-wrapper text-center position-relative">
-    <div class="resume-wrapper-inner mx-auto text-right bg-white shadow-lg">
-      <header class="resume-header pt-4 pt-md-0">
-        <div class="media flex-column flex-md-row">
-          <img class="mr-3 img-fluid picture mx-auto" [src]="imagePath" alt="">
-          <div class="media-body p-4 d-flex flex-column flex-md-row mx-auto mx-lg-0">
-            <div class="primary-info">
-              <h1 class="name mt-0 mb-1 text-white text-uppercase text-uppercase">{{fullName}}</h1>
-              <ul class="list-unstyled">
-                <li class="mb-2"><a>{{country}} - {{city}}</a></li>
-                <li><a href="#"><i class="fa fa-mobile-phone fa-fw mr-2" data-fa-transform="grow-6"></i>{{mobile}}</a></li>
-              </ul>
-            </div>
-            <!--//primary-info-->
-            <div class="secondary-info mr-md-auto mt-2">
-              <ul class="resume-social list-unstyled">
-                <li class="mb-3"><a href="#"><span class="fa-container text-center mr-2"><i class="fa fa-linkedin fa-fw"></i></span>{{linkedin}}</a></li>
-                <li class="mb-3"><a href="#"><span class="fa-container text-center mr-2"><i class="fa fa-twitter"></i></span>{{twitter}}</a></li>
-                <li class="mb-3"><a href="#"><span class="fa-container text-center mr-2"><i class="fa fa-facebook"></i></span>{{facebook}}</a></li>
-                <li class="mb-3"><a href="#"><span class="fa-container text-center mr-2"><i class="fa fa-instagram"></i></span>{{instagram}}</a></li>
-                <li><a href="#"><span class="fa-container text-center mr-2"><i class="fa fa-globe"></i></span>{{personal_web}}</a></li>
-              </ul>
-            </div>
-            <!--//secondary-info-->
-          </div>
-          <!--//media-body-->
-        </div>
-        <!--//media-->
-      </header>
-      <div class="resume-body p-5">
-        <section class="resume-section summary-section mb-5">
-          <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">الوصف الشخصي</h2>
-          <div class="resume-section-content">
-            <p class="mb-0">{{about}}</p>
-          </div>
-        </section>
-        <!--//summary-section-->
-        <div class="row">
-          <div class="col-lg-9">
-            <section class="resume-section education-section mb-5">
-              <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">المستوى التعلمي</h2>
-              <div class="resume-section-content">
-                <ul class="list-unstyled">
-                  <li class="mb-2">
-                    <div class="resume-degree font-weight-bold">MSc in Computer Science</div>
-                    <div class="resume-degree-org">University College London</div>
-                    <div class="resume-degree-time">2010 - 2011</div>
-                  </li>
-                </ul>
-              </div>
-            </section>
-            <section class="resume-section language-section mb-5">
-              <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">اللغات</h2>
-              <div class="resume-section-content">
-                <ul class="list-unstyled resume-lang-list">
-                  <li class="mb-2"><span class="resume-lang-name font-weight-bold">English</span></li>
-                  <li class="mb-2 align-middle"><span class="resume-lang-name font-weight-bold">French</span></li>
-                  <li><span class="resume-lang-name font-weight-bold">Spanish</span></li>
-                </ul>
-              </div>
-            </section>
-            <!--//experience-section-->
-          </div>
-          <div class="col-lg-3">
-            <section class="resume-section skills-section mb-5">
-              <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">مهارات العمل</h2>
-              <div class="resume-section-content">
-                <div class="resume-skill-item">
-                  <ul class="list-unstyled mb-4">
-                    <li class="mb-2">
-                      <div class="resume-skill-name">Angular</div>
-                      <div class="progress resume-progress">
-                        <div class="progress-bar theme-progress-bar-dark" role="progressbar" style="width: 98%"
-                          aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                        </div>
-                      </div>
-                    </li>
-                    <li class="mb-2">
-                      <div class="resume-skill-name">React</div>
-                      <div class="progress resume-progress">
-                        <div class="progress-bar theme-progress-bar-dark" role="progressbar" style="width: 94%"
-                          aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </li>
-                    <li class="mb-2">
-                      <div class="resume-skill-name">JavaScript</div>
-                      <div class="progress resume-progress">
-                        <div class="progress-bar theme-progress-bar-dark" role="progressbar" style="width: 96%"
-                          aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </li>
-                    <li class="mb-2">
-                      <div class="resume-skill-name">Node.js</div>
-                      <div class="progress resume-progress">
-                        <div class="progress-bar theme-progress-bar-dark" role="progressbar" style="width: 92%"
-                          aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-                <!--//resume-skill-item-->
-                <!--//resume-skill-item-->
-                <div class="resume-skill-item">
-                  <h4 class="resume-skills-cat font-weight-bold">المهارات الشخصية</h4>
-                  <ul class="list-inline">
-                    <li class="list-inline-item"><span class="badge badge-light">DevOps</span></li>
-                    <li class="list-inline-item"><span class="badge badge-light">Code Review</span></li>
-                  </ul>
-                </div>
-                <!--//resume-skill-item-->
-              </div>
-              <!--resume-section-content-->
-            </section>
-            <!--//skills-section-->
+<div class="wrapper wrapper-full-page">
+    <mat-spinner
+      style="position:fixed;top:50%;left:50%;margin:0 auto;"
+      mode="indeterminate"
+      *ngIf="isLoading"
+    ></mat-spinner>
+    <article
+      class="resume-wrapper text-center position-relative"
+      *ngIf="!isLoading"
+    >
+      <html>
+        <head>
+          <meta
+            name="viewport"
+            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          />
+          <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+          <link
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            rel="stylesheet"
+          />
+          <link
+            href="https://fonts.googleapis.com/css?family=Changa"
+            rel="stylesheet"
+          />
+          <link
+            href="https://fonts.googleapis.com/css?family=Anton"
+            rel="stylesheet"
+          />
+          <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          />
+        </head>
   
-            <!--//education-section-->
+        <body>
+          <div class="linear-background resume-container pt-5 pb-5">
+            <div class="resume">
+              <div class="row">
+                <!--RESUME INFORMATION HERE-->
+                <div class="col-sm-4 resume-info">
+                  <div class="row">
+                    <div class="col-md-12 text-center">
+                      <img [src]="imagePath" class="personal-image" />
+                      <span class="personal-image-ribbon">
+                        التواصل
+                      </span>
+                    </div>
+                  </div>
+                  <hr class="resume-info-separator mt-5 mb-5" />
   
-            <!--//language-section-->
-            <section class="resume-section interests-section mb-5">
-              <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">الهوايات</h2>
-              <div class="resume-section-content">
-                <ul class="list-unstyled">
-                  <li class="mb-1">Climbing</li>
-                  <li class="mb-1">Snowboarding</li>
-                  <li class="mb-1">Cooking</li>
-                </ul>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <h5 class="text-resume-color">
+                        نبذة
+                      </h5>
+                      <p class="text-snow text-small">
+                        {{ about }}
+                      </p>
+                    </div>
+                  </div>
+                  <hr class="resume-info-separator mt-5 mb-5" />
+  
+                  <div class="row">
+                    <div class="col-md-12">
+                      <h5 class="text-resume-color">
+                        الجامعة
+                      </h5>
+                      <p class="text-snow text-small">
+                        {{ universty }}
+                      </p>
+                    </div>
+                  </div>
+                  <hr class="resume-info-separator mt-5 mb-5" />
+  
+                  <div class="row">
+                    <div class="col-md-12">
+                      <h5 class="text-resume-color">
+                        المرحلة الدراسية
+                      </h5>
+                      <p class="text-snow text-small">
+                        {{ education_degree }}
+                      </p>
+  
+                      <h5 class="text-resume-color">
+                        المستوى الدراسي
+                      </h5>
+                      <p class="text-snow text-small">
+                        {{ Education_level }}
+                      </p>
+                    </div>
+                  </div>
+                  <hr class="resume-info-separator mt-5 mb-5" />
+  
+                  <div class="row">
+                    <div class="col-md-12">
+                      <h5 class="text-resume-color">
+                        الشهادة التي أحملها
+                      </h5>
+                      <p class="text-snow text-small">
+                        {{ study_degree }}
+                      </p>
+                    </div>
+                  </div>
+                  <hr class="resume-info-separator mt-5 mb-5" />
+                </div>
+                <!--RESUME DETAILS HERE -->
+                <div class="col-sm-8 resume-details">
+                  <!--Person Name-->
+                  <div>
+                    <h2>
+                      {{ fullName }}
+                    </h2>
+                  </div>
+                  <!-- info icons and details -->
+                  <div class="personal-info">
+                    <ul class="personal-info-list">
+                      <!--LIST OF ICONS AND INFO-->
+                      <li>
+                        <i class="resume-icon fa fa-phone" aria-hidden="true"></i>
+                        <span>
+                          {{ mobile }}    
+                        </span>
+                      </li>
+  
+                      <li>
+                        <i class="fa fa-calendar resume-icon" aria-hidden="true"
+                          ></i
+                        >
+                        <span>
+                          {{ birthDate }}
+                        </span>
+                      </li>
+  
+                      <li>
+                        <i class="resume-icon fa fa-map-marker" aria-hidden="true"></i>
+                        <span> {{ country }} - {{ city }} </span>
+                      </li>
+  
+                      <li>
+                        <i class="resume-icon fa fa-genderless" aria-hidden="true"></i>
+                        <span>
+                          {{ gender }}
+                        </span>
+                      </li>
+  
+                      <li>
+                        <i class="resume-icon fa fa-hashtag" aria-hidden="true"></i>
+                        <span>
+                          {{ social_Status }}
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+  
+                  <hr class="resume-separator mt-5" />
+  
+                  <div class="resume-statistics">
+                    <!--EACH 4 ARE IN ROW TAG -->
+                    <div class="row justify-center">
+                      <div class="statistic-item col-sm-4">
+                        <!--NUMBER TO DISPLAY-->
+                        <span>
+                          {{ work_Hours }}
+                        </span>
+                        <!--DETAILS ABOUT STATISTIC-->
+                        <p class="resume-text mt-4 text-center">
+                          عدد ساعات العمل
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <hr class="resume-separator" />
+  
+                  <div class="resume-experiences">
+                    <div class="single-field">
+                      <div>
+                        <h5>
+                          التخصص العام
+                        </h5>
+                      </div>
+                      <div class="w-100 overflow-hidden">
+                        <p class="subtitle-paragraph">
+                          {{ public_Major }}
+                        </p>
+                      </div>
+  
+                      <hr
+                        class="resume-separator"
+                        style="width: 100px; margin-right: 3px"
+                      />
+  
+                      <div>
+                        <h5>
+                          التخصص الدقيق
+                        </h5>
+                      </div>
+                      <div class="w-100 overflow-hidden">
+                        <p class="subtitle-paragraph">
+                          {{ spMajor }}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <hr class="resume-separator" />
+  
+                  <div class="resume-experiences">
+                    <div class="single-field">
+                      <div>
+                        <h5>
+                          المهارات العملية
+                        </h5>
+                      </div>
+                      <div class="w-100 overflow-hidden">
+                        <p class="subtitle-paragraph">
+                          {{ skills }}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <hr class="resume-separator" />
+  
+                  <div class="resume-experiences">
+                    <div class="single-field">
+                      <div>
+                        <h5>
+                          المهارات الشخصية
+                        </h5>
+                      </div>
+                      <div class="w-100 overflow-hidden">
+                        <p class="subtitle-paragraph">
+                          {{ personal_Skills }}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div class="personal-skills">
+                              
+                                  <div class="row">
+          
+                                      <div class="col-md-6">
+                                          <p class="resume-text">
+                                              NodeJs
+                                          </p>
+                                          <div class="progress">
+                                              <div class="progress-bar" style="width:75%;" role="progressbar" aria-valuenow="75"
+                                                  aria-valuemin="0" aria-valuemax="100"></div>
+                                          </div>
+                                      </div>
+                                      <div class="col-md-6">
+                                          <p class="resume-text">
+                                              AngularJs
+                                          </p>
+                                          <div class="progress">
+                                              <div class="progress-bar" style="width: 50%;" role="progressbar" aria-valuenow="50"
+                                                  aria-valuemin="0" aria-valuemax="100"></div>
+                                          </div>
+                                      </div>
+                                  </div>
+          
+                                  <div class="row">
+          
+                                      <div class="col-md-6">
+                                          <p class="resume-text">
+                                              MongoDB
+                                          </p>
+                                          <div class="progress">
+                                              <div class="progress-bar" style="width:85%;" role="progressbar" aria-valuenow="85"
+                                                  aria-valuemin="0" aria-valuemax="100"></div>
+                                          </div>
+                                      </div>
+                                      <div class="col-md-6">
+                                          <p class="resume-text">
+                                              ReactJs
+                                          </p>
+                                          <div class="progress">
+                                              <div class="progress-bar" style="width: 30%;" role="progressbar" aria-valuenow="30"
+                                                  aria-valuemin="0" aria-valuemax="100"></div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div> -->
+                  <hr class="resume-separator mt-4" />
+                  <div class="hobbies mt-5">
+                    <div>
+                      <h5>
+                        الهوايات
+                      </h5>
+  
+                      <br />
+  
+                      <mat-chip-list>
+                        <mat-chip
+                          style="background-color: #2c5b79;color: white; "
+                        >
+                          {{ hoppies }}</mat-chip
+                        >
+                      </mat-chip-list>
+  
+                      <hr
+                        class="resume-separator"
+                        style="width: 100px; margin-right: 3px"
+                      />
+  
+                      <h5>
+                        اللغات
+                      </h5>
+  
+                      <br />
+  
+                      <mat-chip-list>
+                        <mat-chip
+                          style="background-color: #2c5b79;color: white; "
+                        >
+                          {{ languages }}</mat-chip
+                        >
+                      </mat-chip-list>
+                    </div>
+  
+                    <!--EACH 4 IN A ROW-->
+                    <!-- <div class="row">
+                                      <div class="col-md-3 text-center">
+                                          <img class="responsive-img" src="bicycle .svg" />
+                                          <p class="resume-text">
+                                              Bicycling Hobby
+                                          </p>
+                                      </div>
+          
+                                      <div class="col-md-3 text-center">
+                                          <img class="responsive-img" src="football.svg" />
+                                          <p class="resume-text">
+                                              Football Hobby
+                                          </p>
+                                      </div>
+                                      <div class="col-md-3 text-center">
+                                          <img class="responsive-img" src="dualshock.svg" />
+                                          <p class="resume-text">
+                                              Playstation Hobby
+                                          </p>
+                                      </div>
+          
+                                      <div class="col-md-3 text-center">
+                                          <img class="responsive-img" src="adventurer.svg" />
+                                          <p class="resume-text">
+                                              Adventuring Hobby
+                                          </p>
+                                      </div>
+                                  </div> -->
+                  </div>
+                  <hr class="resume-separator" />
+  
+                  <div class="resume-footer">
+                    <p class="resume-text text-small"></p>
+                  </div>
+                </div>
               </div>
-            </section>
-            <!--//interests-section-->
+            </div>
           </div>
-        </div>
-        <!--//row-->
-      </div>
-      <!--//resume-body-->
-    </div>
-  </article>
-<div class="col-md-12">
-  <div class="card-footer">
-    <button mat-raised-button type="button"   [routerLink]="['/candidates-list']" class="btn btn-fill btn-primary cutom-btn">رجوع</button>
+          <script
+            script="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+          ></script>
+        </body>
+      </html>
+    </article>
   </div>
-</div>
+  

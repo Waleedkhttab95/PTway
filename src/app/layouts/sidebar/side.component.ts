@@ -101,7 +101,6 @@ export class SideComponent implements OnInit {
         this.menuItems = ROUTES.filter(menuItem => menuItem);
 
         this.userService.getUnreadNotification().subscribe((res: any) => {
-            console.log(res);
             this.count = res.count;
           })
     }

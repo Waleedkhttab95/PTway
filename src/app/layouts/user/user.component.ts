@@ -38,7 +38,6 @@ export class UserComponent implements OnInit {
     });
 
     this.userService.getUnreadNotification().subscribe((res: any) => {
-      console.log(res);
       this.count = res.count;
     })
 
@@ -52,11 +51,9 @@ export class UserComponent implements OnInit {
           this.id[i]
         ])
       }
-      console.log(this.data)
     })
   }
   onClick(id: string) {
-    console.log(id)
     this.dataService.storeDataoffer(id);
 
   }

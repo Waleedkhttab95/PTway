@@ -50,7 +50,6 @@ isLoading=false;
     this.isLoading=true;
     
 this.userService.getAllNotification().subscribe((response:any) =>{
-  console.log(response.result[1])
   this.count +=1;
   for(var i=0 ; i <response.result.length ; i++) {
     for(var j=0 ; j <response.result.length ; j++){

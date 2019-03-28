@@ -60,9 +60,7 @@ export class AuthService {
           CompanySpecialist: CompanySpecialist, sector: sector, password: password, isActive:false };
           this.http.post<{ token: String }>(BackUrl + '/companyRegistreing', authData)
           .subscribe((response :any) => {
-            console.log(response.token)
             if (response.token) {
-              console.log('Here')
               this.token = response.token;
               this.isAuth = true;
               this.isCompany = "true";
@@ -83,9 +81,7 @@ export class AuthService {
           CompanySpecialist: CompanySpecialist, sector: sector, password: password };
           this.http.post<{ token: String }>(BackUrl + '/companyRegistreing', authData)
           .subscribe((response :any) => {
-            console.log(response.token)
             if (response.token) {
-              console.log('Here')
               this.token = response.token;
               this.isAuth = true;
               this.isCompany = "true";
@@ -106,7 +102,6 @@ export class AuthService {
     const authData: AuthData = { email: email, password: password };
     this.http.post<{ token: string, userId: string }>(BackUrl + '/login', authData)
       .subscribe(response => {
-        console.log(response);
         const token = response.token;
         if (token) {
           this.token = token;
@@ -130,7 +125,6 @@ export class AuthService {
     const authData: AuthData = { email: email, password: password };
     this.http.post<{ token: string, userId: string ,companyName: string}>(BackUrl + '/com_login', authData)
       .subscribe(response => {
-        console.log(response);
         const token = response.token;
         if (token) {
           this.token = token;

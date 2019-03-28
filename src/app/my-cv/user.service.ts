@@ -51,7 +51,6 @@ export class UserService {
 
         this.http
             .post(BackUrl + '/postuserinfo', postData).subscribe(response => {
-                console.log(response)
                 this.router.navigate(['/my-cv']);
             });
     }
@@ -83,7 +82,6 @@ export class UserService {
        // postData.append ('linkedin',data.linkedin);
      //   postData.append ('imagePath',data.image,data.fullName);
 
-        console.log(postData);
 
 
         this.http
@@ -111,7 +109,6 @@ export class UserService {
     }
 
     getUnreadNotification() {
-        console.log(this.auth.getUserId());
         return this.http
             .get(BackUrl + '/get/unread/notification');
     }

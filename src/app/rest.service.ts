@@ -30,7 +30,6 @@ export class RestService {
   }
 
   userRegistreing(data:any): Observable<any> {
-    console.log(data);
     return this.http.post<any>(BackUrl + 'api/userRegistreing', JSON.stringify(data), httpOptions).pipe(
       tap((data) => console.log(`user Registre succes w/ id=${data.id}`)),
       catchError(this.handleError<any>('userRegistreing'))
@@ -38,7 +37,6 @@ export class RestService {
   }
 
   companyRegistreing(data:any): Observable<any> {
-    console.log(data);
     return this.http.post<any>(BackUrl + 'api/companyRegistreing', JSON.stringify(data), httpOptions).pipe(
       tap((data) => console.log(`comapny Registre succes w/ id=${data.id}`)),
       catchError(this.handleError<any>('companyRegistreing'))
@@ -46,7 +44,6 @@ export class RestService {
   }
 
   postuserinfo(data:any): Observable<any> {
-    console.log(data);
     return this.http.post<any>(BackUrl + 'api/postuserinfo', JSON.stringify(data), httpOptions).pipe(
       tap((data) => console.log(`user succes complete his data  w/ id=${data.id}`)),
       catchError(this.handleError<any>('postuserinfo'))

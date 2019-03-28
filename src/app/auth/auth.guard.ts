@@ -15,7 +15,6 @@ export class AuthGuard implements CanActivate {
     this.authService.autoAuthUser();
     const isAuth = this.authService.getIsAuth();
     const isCompany = this.authService.getIsCompany();
-    console.log(isCompany);
 // tslint:disable-next-line: triple-equals
     if (!isAuth || isCompany == 'true') {
       this.router.navigate(['/sign-in']);

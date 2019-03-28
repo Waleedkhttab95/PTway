@@ -15,7 +15,6 @@ export class Auth_company_Guard implements CanActivate {
       this.authService.autoAuthUser();
     const isAuth = this.authService.getIsAuth();
     const isCompany = this.authService.getIsCompany();
-    console.log(isCompany);
     if (!isAuth && isCompany !== 'true') {
       this.router.navigate(['/sign-in']);
     }

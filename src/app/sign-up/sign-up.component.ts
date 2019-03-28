@@ -84,33 +84,27 @@ export class SignUpComponent implements OnInit, OnDestroy {
   getsectors() {
     this.sectors = [];
     this.rest.getsectors().subscribe((data: {}) => {
-      console.log(data);
       for (let key in data) {
         this.sectors.push({ value: data[key].key, viewValue: data[key].sectorName });
       }
-      console.log(this.sectors);
     });
   }
 
   getspecialization() {
     this.CompanySpecialists = [];
     this.rest.getspecialization().subscribe((data: {}) => {
-      console.log(data);
       for (let key in data) {
         this.CompanySpecialists.push({ value: data[key]._id, viewValue: data[key].specialistName });
       }
-      console.log(this.CompanySpecialists);
     });
   }
 
   userRegistreing() {
-    console.log(this.userRegistrForm.value);
     this.authService.createUser(this.userRegistrForm.value.firstName, this.userRegistrForm.value.lastName,
       this.userRegistrForm.value.email, this.userRegistrForm.value.password);
   }
 
   companyRegistreing() {
-    console.log(this.companyRegistrForm.value);
     this.authService.createCompany(this.companyRegistrForm.value.companyName, this.companyRegistrForm.value.email
       , this.companyRegistrForm.value.CompanySpecialist, this.companyRegistrForm.value.sector
       , this.companyRegistrForm.value.password);

@@ -122,7 +122,6 @@ export class CandidatesListComponent implements OnInit {
   }
 
   deleteRow(rowNumber: number) {
-    console.log(rowNumber);
     this.dataTable.dataRows.splice(rowNumber, 1);
     this.changeDetectorRef.detectChanges();
   }

@@ -34,7 +34,6 @@ export class JobOfferComponent implements OnInit {
     this.jobService.getJob(id).subscribe((res:any) =>{
     
 
-      console.log(res)
         this.city= res.City,
         this.contract= res.Contract,
         this.country= res.Country,

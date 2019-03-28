@@ -24,7 +24,6 @@ export class ProjectService {
       .subscribe(responseData => {
         this.showSwal('secc');
         this.projectId = responseData._id;
-          console.log(this.projectId);
 
          this.router.navigate(['/my-projects']);
       });

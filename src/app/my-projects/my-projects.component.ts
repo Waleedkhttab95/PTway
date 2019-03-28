@@ -107,7 +107,6 @@ export class MyProjectsComponent implements OnInit {
   }
 
   deleteRow(rowNumber: number) {
-    console.log('testdeletRow');
     this.dataTable.dataRows.splice(rowNumber, 1);
     this.changeDetectorRef.detectChanges();
   }

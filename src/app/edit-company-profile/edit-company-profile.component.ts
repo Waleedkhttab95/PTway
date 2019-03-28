@@ -43,22 +43,18 @@ export class EditCompanyProfileComponent implements OnInit {
     getcountry() {
       this.countries = [];
       this.jobService.getcountry().subscribe((data: {}) => {
-        console.log(data);
         for (let key in data) {
           this.countries.push({ value: data[key]._id, viewValue: data[key].countryName });
         }
-        console.log(this.countries);
       });
     }
   
     getcity() {
       this.cities = [];
       this.jobService.getcity().subscribe((data: {}) => {
-        console.log(data);
         for (let key in data) {
           this.cities.push({ value: data[key]._id, viewValue: data[key].cityName });
         }
-        console.log(this.cities);
       });
     }
 
@@ -83,7 +79,6 @@ export class EditCompanyProfileComponent implements OnInit {
 
     
     this.companyService.getCompanyInfo().subscribe((result:any) =>{
-      console.log(result);
       
       if(result.personal_web != 'null') this.personal_web = result.personal_web;
       if(result.facebook != 'null') this.facebook = result.facebook;
@@ -108,7 +103,6 @@ export class EditCompanyProfileComponent implements OnInit {
   }
 
   onUpdate() {
-   console.log(this.comapnyResumeForm.value);
   }
 
 }

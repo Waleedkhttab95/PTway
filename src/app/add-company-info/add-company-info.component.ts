@@ -33,24 +33,24 @@ export class AddCompanyInfoComponent implements OnInit {
   getcountry() {
     this.countries = [];
     this.rest.getcountry().subscribe((data: {}) => {
-      console.log(data);
+  
       for (let key in data) {
         this.countries.push({ value: data[key]._id, viewValue: data[key].countryName });
 
 
       }
-      console.log(this.countries);
+    
     });
   }
 
   getcity() {
     this.cities = [];
     this.rest.getcity().subscribe((data: {}) => {
-      console.log(data);
+      
       for (let key in data) {
         this.cities.push({ value: data[key]._id, viewValue: data[key].cityName });
       }
-      console.log(this.cities);
+     
     });
   }
 

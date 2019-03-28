@@ -6,7 +6,7 @@
     direction: rtl;
 }
 *{
-    font-family: 'Anton', sans-serif;
+    font-family: 'Changa', sans-serif;
     direction: rtl;
     text-align: right;
 }
@@ -39,6 +39,11 @@ box-shadow: 10px 10px 44px 0px rgba(0,0,0,0.75);
 h2{
     font-weight: bolder;
 }
+h5{
+    font-size: 1.4rem;
+}
+
+
 .resume-info{
     padding: 30px 6px;
     background: #00263E;
@@ -73,13 +78,12 @@ h2{
     margin-left: 12px;
 }
 .personal-info-list li span{
-    font-family: sans-serif;
+   
     font-weight: 300;
-    font-size: 12px;
+    font-size: 15px;
 }
 .resume-text{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 13px;
+    font-size: 18px;
     color: grey;
 }
 
@@ -100,7 +104,7 @@ h2{
     text-align: center;
     width: 3em;
     color: #53b6a2;
-    font-size: 22px;
+    font-size: 45px;
 }
 .resume-experiences .single-field h5{
     float: right;
@@ -112,7 +116,7 @@ h2{
 }
 
 .subtitle-paragraph{
-    font-size: 14px;
+    font-size: 18px;
     color: rgb(100, 100, 100);
 }
 .single-field{
@@ -174,15 +178,28 @@ h2{
     color: snow;
 }
 .text-small{
-    font-size: 12px;
+    font-size: 1.1rem;
     font-weight: 200;
 }
 
+.justify-center{
+    justify-content: center;
+}
+
 @media(max-width:575px){
+
     .resume-info{
         padding: 30px 40px;
     }
     .resume-details{
         padding: 30px 40px;
     }
+    .statistic-item{
+        text-align: center;
+    }
+    .personal-info-list li{
+        float: none;
+        margin-bottom: 8px;
+    }
+    
 }

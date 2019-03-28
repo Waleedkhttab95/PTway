@@ -27,7 +27,6 @@ export class JobService {
         this.http
             .post(BackUrl + '/postjob', data)
             .subscribe((responseData: any) => {
-                console.log(responseData);
 
                 this.showSwal('secc');
                 this.jobData = {
@@ -42,7 +41,6 @@ export class JobService {
 
                 this.http
                 .post(BackUrl + '/send/Jobad', this.jobData,{responseType: 'text'}).subscribe((res: any) =>{
-                    console.log("send job")
                     this.router.navigate(['/my-projects']);
                 });
             });
@@ -86,26 +84,13 @@ export class JobService {
             .delete(BackUrl + '/deletejob?id=' + id);
     }
 
-    // getcountry() {
-    //     this.http
-    //         .get(BackUrl + '/getcountry').subscribe(data => {
-    //             console.log(data);
-    //             return data;
-    //         });
-    // }
+   
     getcountry(): Observable<any> {
         return this.http.get(BackUrl + '/getcountry').pipe(
             map(this.extractData));
     }
 
-    // getcity() {
-    //     this.http
-    //         .get(BackUrl + '/getcity').subscribe(data => {
-    //             console.log(data);
-    //             return data;
-    //         });
-    // }
-
+   
     getcity(): Observable<any> {
         return this.http.get(BackUrl + '/getcity').pipe(
             map(this.extractData));
@@ -114,7 +99,6 @@ export class JobService {
     getsectors() {
         this.http
             .get(BackUrl + '/getsectors').subscribe(data => {
-                console.log(data);
                 return data;
             });
     }
@@ -122,37 +106,31 @@ export class JobService {
     getspecialization() {
         this.http
             .get(BackUrl + '/getspec').subscribe(data => {
-                console.log(data);
                 return data;
             });
     }
 
-    // getcontracts() {
-    //     this.http
-    //     .get(BackUrl + '/getcontracts').subscribe(data =>{
-    //         console.log(data);
-    //         return data;
-    //     });
-    // }
-
+   
     getcontracts(): Observable<any> {
         return this.http.get(BackUrl + '/getcontracts').pipe(
             map(this.extractData));
     }
 
-    // getprojects() {
-    //     this.http
-    //         .get(BackUrl + '/getprojects')
-    //         .subscribe(data => {
-    //             console.log(data);
-    //         });
-    // }
+
 
     getprojects(id: String) {
         return this.http
         .get<{projectName: [String],  count: Number, id: [String]}>(BackUrl + '/getprojects?id='+ id)
     }
 
+    getSkills() {
+        return this.http
+        .get(BackUrl + '/get/skills')
+    }
+    getPersonalSkills() {
+        return this.http
+        .get(BackUrl + '/get/p_skills')
+    }
     getJobRequierdNumber(id) {
         return this.http
         .get(BackUrl+'/getjob/req?id='+ id)
