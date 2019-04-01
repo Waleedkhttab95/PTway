@@ -33,10 +33,6 @@ app.use(
 );
 app.use(error);
 
-app.get('/', function(req,res) {
-    
-  res.sendFile(path.join(__dirname+'/angular/index.html'));
-  });
 
 
 
@@ -57,9 +53,10 @@ require('./services/updateResume')();
 require('./startup/prod')(app);
 
 
-
-
-
+app.get('/*', function(req,res) {
+    
+  res.sendFile(path.join(__dirname+'/angular/index.html'));
+  });
 
 
 
