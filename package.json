@@ -8,10 +8,11 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "node server.js",
+    "start": "node ./Backend/index.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
+    "server": "nodemon ./Backend/index.js",
     "e2e": "ng e2e",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install",
     "heroku-postbuild": "ng build --prod"
@@ -64,6 +65,7 @@
     "ng2-toastr": "^4.1.2",
     "ng6-toastr": "^6.0.0",
     "ngx-chips": "1.9.8",
+    "nodemon": "^1.18.10",
     "nouislider": "9.2.0",
     "path": "^0.12.7",
     "perfect-scrollbar": "1.1.0",

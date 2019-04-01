@@ -15,7 +15,7 @@ export const AppRoutes: Routes = [
     {
       
       path: '',
-      redirectTo: '/my-cv',
+      redirectTo: '/sign-in',
       pathMatch: 'full',
     }, {
       path: '',
