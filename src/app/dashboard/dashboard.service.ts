@@ -14,6 +14,6 @@ export class DashboardService {
     constructor(private http: HttpClient, private router: Router) { }
 
     getCounts() {
-       return this.http.get(BackUrl + '/get/counts', {responseType: 'text'})
+       return this.http.get(BackUrl + '/get/counts')
     }
 }

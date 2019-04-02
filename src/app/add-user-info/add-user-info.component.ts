@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { mimeType } from './mime-type.validator';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import {  FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../my-cv/user.service';
 import { JobService } from '../add-job/job.service';
 
@@ -12,7 +12,7 @@ import { JobService } from '../add-job/job.service';
 })
 export class AddUserInfoComponent implements OnInit {
 
-  constructor(public rest:UserService, private route: ActivatedRoute, private router: Router,private fb: FormBuilder,
+  constructor(public rest:UserService, private route: ActivatedRoute, private router: Router,
     public jobService : JobService) { }
 
   userResumeForm: FormGroup;
@@ -96,12 +96,7 @@ export class AddUserInfoComponent implements OnInit {
     {value: 'متزوج', viewValue: 'متزوج'},
   ];
 
-  postuserinfo() {
-    if (this.userResumeForm.invalid) {
-      return;
-    }
-   this.rest.addUserInfo(this.userResumeForm.value);
-  }
+
 
   getcountry() {
     this.countries = [];
@@ -179,49 +174,49 @@ export class AddUserInfoComponent implements OnInit {
     this.getcountry();
     this.getmajors();
     this.getuniversty();
-    this.userResumeForm = this.fb.group({
+    this.userResumeForm = new FormGroup({
       // cvImg: new FormControl(),
-      country: new FormControl(null ,
+      'country': new FormControl(null ,
         {validators: [Validators.required]}),
-      image: new FormControl(null , {asyncValidators: [mimeType]}),
-      study_degree: new FormControl(null ,
+      'image': new FormControl(null , {asyncValidators: [mimeType]}),
+      'study_degree': new FormControl(null ,
          {validators: [Validators.required]}),
-      fullName: new FormControl(null ,
+      'fullName': new FormControl(null ,
          {validators: [Validators.required]}),
-      education_degree: new FormControl(null ,
+      'education_degree': new FormControl(null ,
          {validators: [Validators.required]}),
-      gender: new FormControl(null ,
+      'gender': new FormControl(null ,
          {validators: [Validators.required]}),
-      mobile: new FormControl(null ,
+      'mobile': new FormControl(null ,
          {validators: [Validators.required]}),
-      birthDate: new FormControl(null ,
+      'birthDate': new FormControl(null ,
          {validators: [Validators.required]}),
-      city: new FormControl(null ,
+      'city': new FormControl(null ,
          {validators: [Validators.required]}),
-      universty: new FormControl(null ,
+      'universty': new FormControl(null ,
          {validators: [Validators.required]}),
-      Education_level: new FormControl(null ,
+      'Education_level': new FormControl(null ,
          {validators: [Validators.required]}),
-      public_Major: new FormControl(null ,
+      'public_Major': new FormControl(null ,
          {validators: [Validators.required]}),
-      spMajor: new FormControl(null ,
+      'spMajor': new FormControl(null ,
          {validators: [Validators.required]}),
-      languages: new FormControl(null ,
+      'languages': new FormControl(null ,
          {validators: [Validators.required]}),
-      skills: new FormControl(null ,
+      'skills': new FormControl(null ,
          {validators: [Validators.required]}),
-      personal_Skills: new FormControl(null ,
+      'personal_Skills': new FormControl(null ,
          {validators: [Validators.required]}),
-      hoppies: new FormControl(null ,
+      'hoppies': new FormControl(null ,
          {validators: [Validators.required]}),
-      social_Status: new FormControl(null ,
+      'social_Status': new FormControl(null ,
          {validators: [Validators.required]}),
-      about: new FormControl(),
-      personal_web: new FormControl(),
-      facebook: new FormControl(),
-      twitter: new FormControl(),
-      instagram: new FormControl(),
-      linkedin: new FormControl()
+      'about':  new FormControl(),
+      'personal_web':  new FormControl(),
+      'facebook':  new FormControl(),
+      'twitter':  new FormControl(),
+      'instagram':  new FormControl(),
+      'linkedin':  new FormControl(),
     });
   }
 
@@ -258,7 +253,13 @@ export class AddUserInfoComponent implements OnInit {
   
       )
     }
-
+    else if(this.educationId == "Undergraduate") {
+      this.study_statuses.push(
+        {value: 'Undergraduate', viewValue: 'خريج'}
+  
+      )
+    }
+    
   
   }
   limitPS() {
@@ -276,7 +277,14 @@ export class AddUserInfoComponent implements OnInit {
     }
   }
 
-
+  postuserinfo() {
+    
+    if(this.userResumeForm.invalid) {
+     
+      return;
+    }
+   this.rest.addUserInfo(this.userResumeForm.value);
+  }
   onImagePicked(event: Event) {
     const file = (event.target as HTMLInputElement).files[0];
     this.userResumeForm.patchValue({image: file});

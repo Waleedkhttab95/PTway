@@ -7,6 +7,8 @@ const multer = require('multer');
 }
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
+       
+        if(!file) console.log("does not exist file")
         const isValid = MIME_TYPE_MAP[file.mimetype];
         let error = new Error("Invalid mime type");
         if(isValid) {

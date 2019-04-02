@@ -54,6 +54,7 @@ export class SignInComponent implements OnInit, OnDestroy {
     body.classList.add('login-page');
     body.classList.add('off-canvas-sidebar');
     const card = document.getElementsByClassName('card')[0];
+    this.userMood();
     setTimeout(function () {
       // after 1000 ms we add the class animated to the login/register card
       card.classList.remove('card-hidden');
@@ -99,16 +100,16 @@ export class SignInComponent implements OnInit, OnDestroy {
     this.signAs = "شركة";
     let activeLink = document.getElementById('userMood');
     let link = document.getElementById('companyMood');
-    activeLink.className = 'fake-link';
-    link.classList.remove('fake-link');
+    link.className = 'fake-link';
+    activeLink.className = 'fake-link2';
   }
   userMood(){
     this.mood  = true;
     this.signAs = "عضو";
     let activeLink = document.getElementById('companyMood');
     let link = document.getElementById('userMood');
-    activeLink.className = 'fake-link';
-    link.classList.remove('fake-link');
+    link.className = 'fake-link';
+    activeLink.className = 'fake-link2';
   }
 
 }

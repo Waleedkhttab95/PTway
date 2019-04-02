@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  BackUrl: 'https://ptway-dev.herokuapp.com/api'
+  BackUrl: 'http://localhost:80/api'//'https://ptway-dev.herokuapp.com/api'
 };

@@ -14,15 +14,22 @@ const {Company} = require('../models/Companies/Companies')
 module.exports = (app) => {
     //post user information
     app.post('/api/postuserinfo',auth,file, (req, res) => {
+        
         const url = req.protocol + '://' + req.get("host");     
-
+        var imagePath = '';
+        if(!req.file){
+           imagePath = "null"
+        }
+        else{
+            imagePath= url + "/images/" + req.file.filename;
+        }
         try{
             new UserInfo({
                 user: req.user._id,
                 country: req.body.country,
                 study_degree: req.body.study_degree,
                 fullName: req.body.fullName,
-                imagePath: url + "/images/" + req.file.filename,
+                imagePath:imagePath,
                 education_degree: req.body.education_degree,
                 gender: req.body.gender,
                 mobile: req.body.mobile,
@@ -49,6 +56,7 @@ module.exports = (app) => {
                     res.send(user);
                 });
         } catch(ex) {
+            
         }
        
     })
@@ -56,14 +64,22 @@ module.exports = (app) => {
 
     //post company information
     app.post('/api/postcompanyinfo', auth,file, (req, res) => {
-        const url = req.protocol + '://' + req.get("host");     
+        const url = req.protocol + '://' + req.get("host"); 
+        var imagePath = '';
+        if(!req.file){
+           imagePath = "null"
+        }
+        else{
+            imagePath= url + "/images/" + req.file.filename;
+        }
+            
         try{
             new CompanyInfo({
                 company: req.user._id,
                 country: req.body.country,
                 address: req.body.address,
                 info: req.body.info,
-                imagePath: url + "/images/" + req.file.filename,
+                imagePath: imagePath,
                 vision: req.body.vision,
                 message: req.body.message,
                 city: req.body.city,

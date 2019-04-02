@@ -16,10 +16,24 @@
     margin-bottom: 8%;
 }
 .fake-link {
+    text-decoration: none;
+    background-color: #00263E;
+    color: white;
+    padding: 0 12px;
+    border-radius: 5px;
+}
+.fake-link2 {
     color: #00263E;
+    padding: 0 12px;
+    border-radius: 5px;
+    border:1px solid #00263E;
     text-decoration: none;
     cursor: pointer;
-   font-size: 19px
+ 
+}
+.type-seprator{
+    margin-left:8px;
+    margin-right:8px;
 }
 @media screen and (max-width: 767px) {
     .custom-fotter{

@@ -33,7 +33,7 @@ export class MyCvComponent implements OnInit {
   instagram:  string = "";
   work_Hours: Number;
   linkedin:  string = "";
-  imagePath:  string = "";
+  imagePath:  string = "./assets/img/image_placeholder.jpg";
   isLoading = false;
 
   constructor(public userService: UserService, public authService: AuthService) { }
@@ -67,7 +67,7 @@ export class MyCvComponent implements OnInit {
         this.personal_Skills=  res.personal_Skills;
         this.hoppies=  res.hoppies;
         this.social_Status=  res.social_Status;
-        this.about=  res.about;
+        
 
    
 
@@ -103,6 +103,7 @@ export class MyCvComponent implements OnInit {
 
 
     if(res.personal_web != "null") this.personal_web= res.personal_web ;
+    if(res.about != "null") this.about= res.about ;
     if(res.facebook != "null") this.facebook= res.facebook ;
     if(res.twitter != "null") this.twitter= res.twitter ;
     if(res.instagram != "null") this.instagram= res.instagram ;
