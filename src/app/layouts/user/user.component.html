@@ -19,8 +19,8 @@ style="background-color:#00263E !important;">
         <li class="nav-item dropdown" routerLinkActive="active">
           <a class="nav-link" href="#pablo" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
-            <i class="material-icons">notifications</i>قائمة العروض
-            <span class="notification">{{count}}</span>
+            <i class="material-icons">notifications</i>فرص العمل
+            <span *ngIf="!emptyNoti" class="notification">{{count}}</span>
             <p>
               <span class="d-lg-none d-md-block">Some Actions</span>
             </p>

@@ -13,6 +13,7 @@ export interface RouteInfo {
     path: string;
     title: string;
     type: string;
+    
     icontype: string;
     collapse?: string;
     children?: ChildrenItems[];
@@ -74,6 +75,7 @@ export const ROUTES: RouteInfo[] = [{
 export class SideComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
+    emptyNoti = true;
     mobile_menu_visible: any = 0;
     private _router: Subscription;
     count: Number;
@@ -101,6 +103,7 @@ export class SideComponent implements OnInit {
         this.menuItems = ROUTES.filter(menuItem => menuItem);
 
         this.userService.getUnreadNotification().subscribe((res: any) => {
+            if(res.count != 0) this.emptyNoti = false
             this.count = res.count;
           })
     }

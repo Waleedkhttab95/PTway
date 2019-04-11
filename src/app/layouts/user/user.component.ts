@@ -15,6 +15,7 @@ export class UserComponent implements OnInit {
   private _router: Subscription;
   private toggleButton: any;
   private sidebarVisible: boolean;
+  emptyNoti = true;
   mobile_menu_visible: any = 0;
   
   constructor(private router: Router, 
@@ -38,6 +39,7 @@ export class UserComponent implements OnInit {
     });
 
     this.userService.getUnreadNotification().subscribe((res: any) => {
+      if(res.count != 0) this.emptyNoti = false
       this.count = res.count;
     })
 

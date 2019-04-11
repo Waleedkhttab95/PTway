@@ -15,9 +15,10 @@ declare const $: any;
   templateUrl: './offers-list.component.html',
   styleUrls: ['./offers-list.component.css']
 })
-export class OffersListComponent implements OnInit, AfterViewInit {
+export class OffersListComponent implements OnInit {
 isLoading=false;
-  ngAfterViewInit() {
+Dtable() {
+  setTimeout(function () {
     $('#datatables').DataTable({
       "pagingType": "full_numbers",
       "lengthMenu": [
@@ -33,12 +34,15 @@ isLoading=false;
     });
 
     const table = $('#datatables').DataTable();
+    
 
-   
   
-
     $('.card .material-datatables label').addClass('form-group');
-  }
+
+  }, 200)
+
+  
+}
   public dataTable: DataTable;
   constructor(public userService: UserService, public dataService: DataService,public jobService: JobService) { }
 
@@ -64,6 +68,8 @@ this.userService.getAllNotification().subscribe((response:any) =>{
       ])
   }
 
+  this.Dtable()
+  this.isLoading=false;
  });
     this.dataTable = {
       headerRow: [ '#','العرض',  'الاجراءات' ],
@@ -72,7 +78,8 @@ this.userService.getAllNotification().subscribe((response:any) =>{
    
       ]
    };
-   this.isLoading=false;
+
+
 
   }
 
