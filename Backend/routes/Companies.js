@@ -9,6 +9,10 @@ const {Accepted } = require('../models/Companies/Accepted');
 const {City} = require('../models/Shared/City');
 const {Country} = require('../models/Shared/Country');
 const {Notification} = require('../models/Notification');
+const {JobAd_admin} = require('../models/admin/Job_Ad_Admin');
+const {Project_Admin} = require('../models/admin/Project_Admin');
+const {Company} = require('../models/Companies/Companies')
+
 
 module.exports = (app) => {
 
@@ -52,6 +56,12 @@ module.exports = (app) => {
         res.status(200).send(Cs);
      });
 
+     // get company sector type
+     app.get('/api/get/companytype', auth,async(req,res) =>{
+        const type = await Company.findById(req.user._id);
+           res.status(200).send(type.sector);       
+       });
+       
      // POST PROJECT 
         app.post('/api/postproject',auth, (req,res) =>{
             new Project({
@@ -64,6 +74,15 @@ module.exports = (app) => {
                 res.send(result);
             });
 
+            new Project_Admin({
+                projectName: req.body.projectName,
+                projectDescription : req.body.projectDescription,
+                company: req.user._id
+
+            }).save()
+            .then(result =>{
+                res.send(result);
+            });
         });
 
         // counts of projects, Jobs 
@@ -94,11 +113,37 @@ module.exports = (app) => {
         })
 
           // POST job Ad 
-          app.post('/api/postjob', (req,res) =>{
+          app.post('/api/postjob', auth,(req,res) =>{
             new JobAd({
+                company: req.user._id,
                 contract : req.body.contract,
                 project: req.body.project,
                 job_Name: req.body.job_Name,
+                descreption: req.body.descreption,
+                job_skills : req.body.job_skills,
+                country: req.body.country,
+                city: req.body.city,
+                public_Major: req.body.public_Major,
+                startDate: req.body.startDate,
+                work_hours: req.body.work_hours,
+                work_days: req.body.work_days,
+                salary: req.body.salary,
+                gender: req.body.gender,
+                personal_Skills: req.body.personal_Skills,
+                required_Number: req.body.required_Number
+            }).save()
+            .then(result =>{
+                res.send(result);
+            });
+
+
+
+            new JobAd_admin({
+                company: req.user._id,
+                contract : req.body.contract,
+                project: req.body.project,
+                job_Name: req.body.job_Name,
+                descreption: req.body.descreption,
                 job_skills : req.body.job_skills,
                 country: req.body.country,
                 city: req.body.city,
@@ -176,6 +221,7 @@ module.exports = (app) => {
                 Country: countres.countryName,
                 City: cites.cityName,
                 Contract: contract.contractName,
+                contractType: contract.days,
                 public_Major: public_Major.majorName
             });
         });

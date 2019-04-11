@@ -33,9 +33,17 @@
 .custom-label{
     float: right;
 }
-::ng-deep .btn-primary{
-    margin-right: auto;
-}
+
 ::ng-deep .mat-raised-button.btn.btn-primary, .mat-raised-button.btn:not([class*=mat-elevation-z]).btn-primary, .btn.btn-primary .custom-btn{
     font-family: 'Cairo', 'Changa';
 }
+
+
+.off-canvas-sidebar .footer {
+    
+      
+      bottom: 0;
+      width: 100%;
+      left: 0;
+    
+  }

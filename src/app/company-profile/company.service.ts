@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import {environment} from '../../environments/environment'
 import { map, catchError, tap } from 'rxjs/operators';
+import { text } from '@angular/core/src/render3';
 const BackUrl = environment.BackUrl;
 
 @Injectable({ providedIn: 'root' })
@@ -19,6 +20,14 @@ getCompanyInfo() {
     
 }
 
+getCompanyInfoById(id) {
+return this.http.get(BackUrl+'/getcompanyinfoById?id='+id);
+}
+
+getCompanySector() {
+   
+    return this.http.get(BackUrl+ '/get/companytype',{responseType:'text'});
+}
 updateCompanyInfo(data: any) {
     this.http
     .put(BackUrl + '/put/companyinfo', data).subscribe(response => {

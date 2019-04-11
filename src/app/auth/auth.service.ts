@@ -176,6 +176,11 @@ export class AuthService {
     localStorage.removeItem('userId');
     localStorage.removeItem('isCompany');
     localStorage.removeItem('companyName');
+    localStorage.removeItem('projectId');
+    localStorage.removeItem('jobId');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('offer');
+
   }
 
   getIsAuth() {

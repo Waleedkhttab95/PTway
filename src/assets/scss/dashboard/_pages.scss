@@ -351,9 +351,9 @@
 
 .pricing-page{
   padding: 0 !important;
-
+ 
     .title{
-        color: $white-color;
+        color: #009ad0;
         margin-top: 5vh;
     }
 
@@ -378,7 +378,7 @@
 
     .footer{
       z-index: 2;
-      color: $white-color;
+      position: inherit;
 
       .container{
           padding: 0;

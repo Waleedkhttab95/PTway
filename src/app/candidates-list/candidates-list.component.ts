@@ -84,7 +84,7 @@ export class CandidatesListComponent implements OnInit {
       });
 
     this.dataTable = {
-      headerRow: [ 'الأسم', 'السيرة الذاتية', 'الإجراءات' ],
+      headerRow: [ 'الأسم', 'السيرة الذاتية', 'قبول المرشح' ],
 
       dataRows: [
          

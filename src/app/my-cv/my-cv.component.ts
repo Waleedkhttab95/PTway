@@ -33,7 +33,7 @@ export class MyCvComponent implements OnInit {
   instagram:  string = "";
   work_Hours: Number;
   linkedin:  string = "";
-  imagePath:  string = "./assets/img/image_placeholder.jpg";
+  imagePath:  string = "./assets/img/avatar.png";
   isLoading = false;
 
   constructor(public userService: UserService, public authService: AuthService) { }
@@ -41,12 +41,12 @@ export class MyCvComponent implements OnInit {
   ngOnInit() {
 
 
-    
+    localStorage.removeItem('offer');
+
       // to get user info
       this.isLoading = true;
       this.userService.getUserInfo().subscribe((res: any) =>{
-        
-     
+   
        
 
         // the same syntax res. 
@@ -66,7 +66,7 @@ export class MyCvComponent implements OnInit {
         this.skills=  res.skills;
         this.personal_Skills=  res.personal_Skills;
         this.hoppies=  res.hoppies;
-        this.social_Status=  res.social_Status;
+        this.social_Status=  this.social_Status;
         
 
    
@@ -81,28 +81,39 @@ export class MyCvComponent implements OnInit {
   handling(res) {
 
     if(res.study_degree == 'HS') this.study_degree = "الثانوية العامة";
-    else if(res.study_degree == 'BHO') this.study_degree = "البكالريوس";
+    else if(res.study_degree == 'BHO') this.study_degree = "البكالوريوس";
     else if(res.study_degree == 'MASTER') this.study_degree = "الماستر";
 
     if(res.education_degree == 'HS') this.education_degree = "الثانوية العامة";
-    else if(res.education_degree == 'BHO') this.education_degree = "البكالريوس";
+    else if(res.education_degree == 'BHO') this.education_degree = "البكالوريوس";
     else if(res.education_degree == 'MASTER') this.education_degree = "الماستر";
+    else if(res.education_degree == 'diploma') this.education_degree = "دبلوم";
     else if(res.education_degree == 'Undergraduate') this.education_degree = "خريج";
 
     if(res.Education_level == 'High-school-first-year') this.Education_level = "اول ثانوي";
     else if(res.Education_level == 'High-school-second-year') this.Education_level = "ثاني ثنوي";
     else if(res.Education_level == 'High-school-third-year') this.Education_level = "ثالث ثنوي";
-    else if(res.Education_level == 'University-first-year') this.Education_level = "اول جامعة";
-    else if(res.Education_level == 'University-second-year') this.Education_level = "ثاني جامعة";
-    else if(res.Education_level == 'University-third-year') this.Education_level = "ثالث جامعة";
-    else if(res.Education_level == 'University-forth-year') this.Education_level = "رابع جامعة";
-    else if(res.Education_level == 'University-fith-year') this.Education_level = "خامس جامعة";
+    else if(res.Education_level == 'University-first-year') this.Education_level = "فصل أول بكالوريوس";
+    else if(res.Education_level == 'University-second-year') this.Education_level =  "فصل ثاني بكالوريوس";
+    else if(res.Education_level == 'University-third-year') this.Education_level = "فصل ثالث بكالوريوس";
+    else if(res.Education_level == 'University-forth-year') this.Education_level =  "فصل رابع بكالوريوس";
+    else if(res.Education_level == 'University-fith-year') this.Education_level =  "فصل خامس بكالوريوس";
+    else if(res.Education_level == 'University-sixth-year') this.Education_level =  "فصل سادس بكالوريوس";
+    else if(res.Education_level == 'University-seventh-year') this.Education_level =  "فصل سابع بكالوريوس";
+    else if(res.Education_level == 'University-eigth-year') this.Education_level =  "فصل ثامن بكالوريوس";
+    else if(res.Education_level == 'University-ninth-year') this.Education_level =  "فصل تاسع بكالوريوس";
+    else if(res.Education_level == 'University-ten-year') this.Education_level = "فصل عاشر بكالوريوس";
     else if(res.Education_level == 'master-first-year') this.Education_level = "اول ماستر";
     else if(res.Education_level == 'master-second-year') this.Education_level = "ثاني ماستر";
     else if(res.Education_level == 'master-third-year') this.Education_level = "ثالث ماستر";
+    else if(res.Education_level == 'diploma-first-year') this.Education_level = "فصل أول دبلوم";
+    else if(res.Education_level == 'diploma-second-year') this.Education_level = "فصل ثاني دبلوم";
+    else if(res.Education_level == 'diploma-third-year') this.Education_level = "فصل ثالث دبلوم";
+    else if(res.Education_level == 'diploma-fourth-year') this.Education_level = "فصل رابع دبلوم";
 
-
+    
     if(res.personal_web != "null") this.personal_web= res.personal_web ;
+    if(res.social_Status != "null") this.social_Status= res.social_Status ;
     if(res.about != "null") this.about= res.about ;
     if(res.facebook != "null") this.facebook= res.facebook ;
     if(res.twitter != "null") this.twitter= res.twitter ;

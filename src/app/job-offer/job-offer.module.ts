@@ -6,11 +6,13 @@ import {JobOfferRoutes} from './job-offer.routing';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '../app.module';
+import { MatProgressSpinnerModule } from '@angular/material';
 
 @NgModule({
   declarations: [JobOfferComponent],
   imports: [
     CommonModule,
+    MatProgressSpinnerModule,
     RouterModule.forChild(JobOfferRoutes),
     FormsModule,
     MaterialModule

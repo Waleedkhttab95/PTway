@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {  FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../my-cv/user.service';
 import { JobService } from '../add-job/job.service';
+import swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-add-user-info',
@@ -47,6 +49,7 @@ export class AddUserInfoComponent implements OnInit {
     {value: 'HS', viewValue: 'الثانوية العامية'},
     {value: 'BHO', viewValue: 'البكالريويس'},
     {value: 'MASTER', viewValue: 'المساتر'},
+    {value: 'diploma', viewValue: 'ديبلوم'},
     {value: 'Undergraduate', viewValue: 'خريج'}
   ];
 
@@ -168,6 +171,7 @@ export class AddUserInfoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.showSwal('warning-message');
     this.getcity();
     this.getSkills();
     this.getPersonalskills();
@@ -179,39 +183,28 @@ export class AddUserInfoComponent implements OnInit {
       'country': new FormControl(null ,
         {validators: [Validators.required]}),
       'image': new FormControl(null , {asyncValidators: [mimeType]}),
-      'study_degree': new FormControl(null ,
-         {validators: [Validators.required]}),
+      'study_degree': new FormControl(""),
       'fullName': new FormControl(null ,
          {validators: [Validators.required]}),
-      'education_degree': new FormControl(null ,
-         {validators: [Validators.required]}),
+      'education_degree': new FormControl(""),
       'gender': new FormControl(null ,
          {validators: [Validators.required]}),
-      'mobile': new FormControl(null ,
-         {validators: [Validators.required]}),
+      'mobile': new FormControl(""),
       'birthDate': new FormControl(null ,
          {validators: [Validators.required]}),
       'city': new FormControl(null ,
          {validators: [Validators.required]}),
-      'universty': new FormControl(null ,
-         {validators: [Validators.required]}),
-      'Education_level': new FormControl(null ,
-         {validators: [Validators.required]}),
+      'universty': new FormControl(),
+      'Education_level': new FormControl(""),
       'public_Major': new FormControl(null ,
          {validators: [Validators.required]}),
-      'spMajor': new FormControl(null ,
-         {validators: [Validators.required]}),
-      'languages': new FormControl(null ,
-         {validators: [Validators.required]}),
-      'skills': new FormControl(null ,
-         {validators: [Validators.required]}),
-      'personal_Skills': new FormControl(null ,
-         {validators: [Validators.required]}),
-      'hoppies': new FormControl(null ,
-         {validators: [Validators.required]}),
-      'social_Status': new FormControl(null ,
-         {validators: [Validators.required]}),
-      'about':  new FormControl(),
+      'spMajor': new FormControl(),
+      'languages': new FormControl(""),
+      'skills': new FormControl(),
+      'personal_Skills': new FormControl(),
+      'hoppies': new FormControl(""),
+      'social_Status': new FormControl(),
+      'about':  new FormControl(""),
       'personal_web':  new FormControl(),
       'facebook':  new FormControl(),
       'twitter':  new FormControl(),
@@ -237,11 +230,16 @@ export class AddUserInfoComponent implements OnInit {
     }
    else if(this.educationId == "BHO") {
       this.study_statuses.push(
-        {value: 'University-first-year', viewValue: 'اول جامعة'},
-    {value: 'University-second-year', viewValue: 'ثاني جامعة'},
-    {value: 'University-third-year', viewValue: 'ثالث جامعة'},
-    {value: 'University-forth-year', viewValue: 'رابع جامعة'},
-    {value: 'University-fith-year', viewValue: 'خامس جامعة'}
+        {value: 'University-first-year', viewValue: 'فصل أول'},
+    {value: 'University-second-year', viewValue: 'فصل ثاني'},
+    {value: 'University-third-year', viewValue: 'فصل ثالث'},
+    {value: 'University-forth-year', viewValue: 'فصل رابع'},
+    {value: 'University-fith-year', viewValue: 'فصل خامس'},
+    {value: 'University-sixth-year', viewValue: 'فصل سادس'},
+    {value: 'University-seventh-year', viewValue: 'فصل سابع'},
+    {value: 'University-eigth-year', viewValue: 'فصل ثامن'},
+    {value: 'University-ninth-year', viewValue: 'فصل تاسع'},
+    {value: 'University-ten-year', viewValue: 'فصل عاشر'},
       )
     }
 
@@ -251,6 +249,14 @@ export class AddUserInfoComponent implements OnInit {
     {value: 'master-second-year', viewValue: 'ثاني ماستر'},
     {value: 'master-third-year', viewValue: 'ثالث ماستر'},
   
+      )
+    }
+    else if(this.educationId == "diploma") {
+      this.study_statuses.push(
+        {value: 'diploma-first-year', viewValue: 'فصل اول'},
+    {value: 'diploma-second-year', viewValue: 'فصل ثاني'},
+    {value: 'diploma-third-year', viewValue: 'فصل ثالث'},
+    {value: 'diploma-fourth-year', viewValue: 'فصل رابع'},
       )
     }
     else if(this.educationId == "Undergraduate") {
@@ -279,11 +285,14 @@ export class AddUserInfoComponent implements OnInit {
 
   postuserinfo() {
     
-    if(this.userResumeForm.invalid) {
+    if(this.userResumeForm.get('fullName').invalid || this.userResumeForm.get('country').invalid
+    || this.userResumeForm.get('city').invalid || this.userResumeForm.get('gender').invalid ||
+    this.userResumeForm.get('public_Major').invalid || this.userResumeForm.get('public_Major').invalid) {
      
       return;
     }
-   this.rest.addUserInfo(this.userResumeForm.value);
+    console.log(this.userResumeForm.value)
+this.rest.addUserInfo(this.userResumeForm.value);
   }
   onImagePicked(event: Event) {
     const file = (event.target as HTMLInputElement).files[0];
@@ -296,4 +305,16 @@ export class AddUserInfoComponent implements OnInit {
     reader.readAsDataURL(file);
     }
 
+    showSwal(type){
+    
+    if (type == 'warning-message') {
+      swal({
+        title: "تنبيه!",
+        text: "إدخالك لجميع المعلومات يساهم بزيادة فرصتك للحصول على وظيفة",
+        buttonsStyling: false,
+        confirmButtonClass: "btn btn-warning",
+        type: "warning"
+      }).catch(swal.noop)
+    }
+    }
 }

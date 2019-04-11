@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { JobService } from '../add-job/job.service';
 import { DataService } from '../data.service';
 import { UserService } from '../my-cv/user.service';
+import { CompanyService } from '../company-profile/company.service';
 
 @Component({
   selector: 'app-job-offer',
@@ -10,8 +11,10 @@ import { UserService } from '../my-cv/user.service';
 })
 export class JobOfferComponent implements OnInit {
 
-  constructor(public jobService:JobService,private dataService: DataService, public userService: UserService) { }
+  constructor(public jobService:JobService,private dataService: DataService, public userService: UserService,
+    public companyService:CompanyService) { }
 
+    isLoading = false;
   offerId: string;
   job: Object;
   city: string
@@ -19,12 +22,21 @@ export class JobOfferComponent implements OnInit {
   country: string ;
   gender: string ;
   job_Name: string ;
+  description: string;
   public_Major: string ;
   salary: string ;
   startDate: string;
   work_days: string ;
   work_hours: string ;
+  companyName: string;
+  companyInfo:string;
+  companyImg: string = './assets/img/avatar.png';
+  companyWebsite: string;
+  companyCountry: string;
+  companyCity: string;
+  salaryType: string = "شهريا"
   ngOnInit() {
+    this.isLoading = true;
      this.offerId = this.dataService.getStoreDataOffer()
     this.getJobOffer(this.offerId);
   }
@@ -33,17 +45,28 @@ export class JobOfferComponent implements OnInit {
   
     this.jobService.getJob(id).subscribe((res:any) =>{
     
-
-        this.city= res.City,
-        this.contract= res.Contract,
-        this.country= res.Country,
-        this.gender= res.job.gender,
-        this.job_Name= res.job.job_Name,
-        this.public_Major= res.public_Major,
-        this.salary= res.job.salary,
-        this.startDate= this.DateFormat(res.job.startDate),
-        this.work_days= res.job.work_days,
-        this.work_hours= res.job.work_hours
+      this.city= res.City,
+      this.contract= res.Contract,
+      this.country= res.Country,
+      this.gender= res.job.gender,
+      this.job_Name= res.job.job_Name,
+      this.description= res.job.descreption,
+      this.public_Major= res.public_Major,
+      this.salary= res.job.salary,
+      this.startDate= this.DateFormat(res.job.startDate),
+      this.work_days= res.job.work_days,
+      this.work_hours= res.job.work_hours
+      if(res.contractType == 59) this.salaryType = 'يوميا'
+      this.companyService.getCompanyInfoById(res.job.company).subscribe((res:any) =>{
+        this.companyName = res.compnayName
+        this.companyCountry = res.country
+        this.companyCity = res.city
+        this.companyInfo = res.info
+        if(res.imagePath != null) this.companyImg = res.imagePath;
+        this.isLoading = false;
+      
+      })
+ 
       
     });
   }

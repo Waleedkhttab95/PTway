@@ -36,7 +36,7 @@
                         cancelButtonText='إلغاء الأمر' type="warning" showCancelButton="true" cancelButtonClass="btn btn-danger"
                         (confirm)="onDelete(row[1]); deleteRow(rowIndex)">
                       </swal>
-                      <button [swal]="deleteSwal" mat-raised-button class="btn btn-danger btn-round custon-btn">حذف</button>
+                      <a class="btn btn-link btn-danger btn-just-icon edit" [swal]="deleteSwal"><i class="material-icons">delete_sweep</i></a>
                     </td>
                   </tr>
                 </tbody>

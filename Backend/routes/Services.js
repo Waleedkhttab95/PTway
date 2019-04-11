@@ -25,7 +25,7 @@ module.exports = (app) =>{
 
         const result = await UserInfo
         .find({ country: country,city: city
-        ,gender: gender,personal_Skills: personal_Skills,public_Major: public_Major })
+        ,gender: gender,public_Major: public_Major })
         .select("user");
 
         result.forEach(function(r) {
@@ -151,9 +151,9 @@ module.exports = (app) =>{
         if(contract_days.days == -1) return res.status(200).send('long term contract !');
         var Ed = new Date();
         
-        Ed = Ed.addDays(start_day.startDate,contract_days.days);
+        Ed = Ed.addDays(start_day.startDate,start_day.work_days);
 
-        const workHours = start_day.work_hours * contract_days.days ; 
+        const workHours = start_day.work_hours * start_day.work_days ; 
        
 
         new endDate({
@@ -183,7 +183,13 @@ module.exports = (app) =>{
             return Math.round(difference_ms/one_day); 
           }
           const start_day = await JobAd.findById(req.body.jobAd_id);
-          
+          const update_limit_number = await JobAd.updateOne({ '_id': req.body.jobAd_id },
+          {
+              $set: {
+                limit_Number : start_day.limit_Number-1
+              }
+          }
+      )
           //Set the two dates
           var startD  = new Date(start_day.startDate); 
           var calcDate = new Date(startD.getFullYear() , startD.getMonth()-1, startD.getDate());
@@ -195,14 +201,29 @@ module.exports = (app) =>{
 
           const current_user = await UserInfo.findOne({'user' : req.body.user});
 
-
-          current_user.work_Hours += workHours;
-          current_user.save();
+          const update_user = await UserInfo.updateOne({'user' : req.body.user},
+          {
+            $set: {
+                work_Hours : current_user.work_Hours + workHours
+            }
+        }
+          );
+         
           const deleteAccepted = await Accepted.findOneAndDelete({'acceptedName' : req.body.user, 'jobAd': req.body.jobAd_id});
           res.status(200).send("updated !");
 
     })
-
-   
+    function todayDate(){
+        today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; //As January is 0.
+        var yyyy = today.getFullYear();
+        
+        if(dd<10) dd='0'+dd;
+        if(mm<10) mm='0'+mm;
+        var dd=mm+'/'+dd+'/'+yyyy ;
+        return dd;
+    }
+ 
  
 }

@@ -13,10 +13,10 @@
             <div class="card-body">
               <form (submit)="postuserinfo()" [formGroup]="userResumeForm">
                 <div class="row">
-                  <div class="col-md-8 col-sm-4">
+                  <div class="col-md-8 col-sm-4 image-card">
                     <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                       <div class="fileinput-new thumbnail">
-                        <img src="./assets/img/image_placeholder.jpg"  alt="...">
+                        <img  src="../../assets/img/avatar.png"  alt="...">
                       </div>
                       <div class="fileinput-preview fileinput-exists thumbnail"></div>
                       <div>
@@ -31,160 +31,20 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-8">
+                  <div class="col-md-12">
+                      <label class="sweet-underline"> 1-المعلومات الشخصية</label>
+                      <hr class="sweet-hr"/>
+                  </div>
+                  
+                  <div class="col-md-8 padding">
                     <label class="bmd-label-floating custom-label">- الأسم الكامل  *</label>
                     <mat-form-field class="example-full-width">
-                      <input matInput placeholder="" type="text" formControlName="fullName" name="">
+                      <input matInput placeholder="" type="text"  maxlength="30 "  formControlName="fullName" name="">
                       <mat-error *ngIf="userResumeForm.get('fullName').invalid">هذا الحقل مطلوب</mat-error>
 
                     </mat-form-field>
                   </div>
-                  <br>
-                  <div class="col-md-6">
-                    <label class="bmd-label-floating custom-label">- مكان الأقامة  *</label>
-                    <mat-form-field>
-                      <mat-select placeholder="" formControlName="country" name="">
-                        <mat-option *ngFor="let country of countries" [value]="country.value">
-                          {{country.viewValue}}
-                        </mat-option>
-                      </mat-select>
-                      <mat-error *ngIf="userResumeForm.get('country').invalid">هذا الحقل مطلوب</mat-error>
-
-                    </mat-form-field>
-                  </div>
-                  <div class="col-md-6">
-                    <label class="bmd-label-floating custom-label">- المدينة  *</label>
-                    <mat-form-field>
-                      <mat-select placeholder="" formControlName="city" name="">
-                        <mat-option *ngFor="let city of cities" [value]="city.value">
-                          {{city.viewValue}}
-                        </mat-option>
-                      </mat-select>
-                      <mat-error *ngIf="userResumeForm.get('city').invalid">هذا الحقل مطلوب</mat-error>
-                    </mat-form-field>
-                  </div>
-                  <br>
-                  <div class="col-md-6">
-                    <label class="bmd-label-floating custom-label">- الجامعة  *</label>
-                    <mat-form-field>
-                      <mat-select placeholder="" formControlName="universty" name="">
-                        <mat-option *ngFor="let universty of universties" [value]="universty.value">
-                          {{universty.viewValue}}
-                        </mat-option>
-                      </mat-select>
-                      <mat-error *ngIf="userResumeForm.get('universty').invalid">هذا الحقل مطلوب</mat-error>
-                    </mat-form-field>
-                  </div>
-                  <div class="col-md-6">
-                    <label class="bmd-label-floating custom-label">-  الشهادة التي تحملها  *</label>
-                    <mat-form-field>
-                      <mat-select placeholder="" formControlName="study_degree" name="study_degree">
-                        <mat-option *ngFor="let study_degree of certificate" [value]="study_degree.value">
-                          {{study_degree.viewValue}}
-                        </mat-option>
-                      </mat-select>
-                      <mat-error *ngIf="userResumeForm.get('study_degree').invalid">هذا الحقل مطلوب</mat-error>
-                    </mat-form-field>
-                  </div>
-                  <div class="col-md-6">
-                    <label class="bmd-label-floating custom-label">- المرحلة الدراسية  *</label>
-                    <mat-form-field>
-                      <mat-select placeholder="" formControlName="education_degree" name="education_degree">
-                        <mat-option *ngFor="let study_degree of study_degrees" [value]="study_degree.value" (click)="checkspEducation()">
-                          {{study_degree.viewValue}}
-                        </mat-option>
-                      </mat-select>
-                      <mat-error *ngIf="userResumeForm.get('education_degree').invalid">هذا الحقل مطلوب</mat-error>
-                    </mat-form-field>
-                  </div>
-                  <div class="col-md-6">
-                      <label class="bmd-label-floating custom-label">- المستوى التعليمي  *</label>
-                      <mat-form-field>
-                        <mat-select placeholder="" formControlName="Education_level" name="Education_level">
-                          <mat-option *ngFor="let study_degree of study_statuses" [value]="study_degree.value">
-                            {{study_degree.viewValue}}
-                          </mat-option>
-                        </mat-select>
-                        <mat-error *ngIf="userResumeForm.get('Education_level').invalid">هذا الحقل مطلوب</mat-error>
-
-                      </mat-form-field>
-                    </div>
-
-                    <div class="col-md-6">
-                        <label class="bmd-label-floating custom-label">- التخصص العام  *</label>
-                        <mat-form-field>
-                          <mat-select placeholder="" formControlName="public_Major" name="public_Major">
-                            <mat-option *ngFor="let major of majors" (click)="checkspMajor()" [value]="major.value">
-                              {{major.viewValue}}
-                            </mat-option>
-                          </mat-select>
-                          <mat-error *ngIf="userResumeForm.get('public_Major').invalid">هذا الحقل مطلوب</mat-error>
-
-                        </mat-form-field>
-                      </div>
-                      <div class="col-md-6">
-                        <label class="bmd-label-floating custom-label">- التخصص الدقيق  *</label>
-                        <mat-form-field>
-                          <mat-select placeholder="" formControlName="spMajor" name="spMajor">
-                            <mat-option *ngFor="let spMajor of spMajors" [value]="spMajor.value">
-                              {{spMajor.viewValue}}
-                            </mat-option>
-                          </mat-select>
-                          <mat-error *ngIf="userResumeForm.get('spMajor').invalid">هذا الحقل مطلوب</mat-error>
-
-                        </mat-form-field>
-                      </div>
-
-                      <div class="col-md-6">
-                          <label class="bmd-label-floating custom-label">- مهارات العمل  *</label>
-                          <mat-form-field>
-                              <mat-select placeholder="" formControlName="skills" name="skills"
-                              multiple>
-                              <mat-option *ngFor="let s of skillList" [value]="s.value">
-                                  {{s.viewValue}}
-                                </mat-option>
-                            </mat-select>
-                            <mat-error *ngIf="userResumeForm.get('skills').invalid">هذا الحقل مطلوب</mat-error>
-                          </mat-form-field>
-                        </div>
-                        <div class="col-md-6">
-                          <label class="bmd-label-floating custom-label">- المهارات الشخصية  *</label>
-                          <mat-form-field>
-                          <mat-select placeholder="" formControlName="personal_Skills" name="personal_Skills"
-                          multiple>
-                          <mat-option *ngFor="let s of personal_SkillList" [value]="s.value">
-                              {{s.viewValue}}
-                            </mat-option>
-                        </mat-select>
-                        <mat-error *ngIf="userResumeForm.get('personal_Skills').invalid">هذا الحقل مطلوب</mat-error>
-
-                      </mat-form-field>
-                        </div>
-
-
-
-                  <div class="col-md-6">
-                      <label class="bmd-label-floating custom-label">- اللغات  *</label>
-                      <mat-form-field>
-                        <mat-select placeholder="" formControlName="languages" name="languages" multiple>
-                          <mat-option *ngFor="let language of languageList" [value]="language">{{language}}</mat-option>
-                        </mat-select>
-                        <mat-error *ngIf="userResumeForm.get('languages').invalid">هذا الحقل مطلوب</mat-error>
-
-                      </mat-form-field>
-                    </div>
-                 
-                    <div class="col-md-6">
-                      <label class="bmd-label-floating custom-label">- الهوايات  *</label>
-                      <mat-form-field>
-                        <mat-select placeholder="" formControlName="hoppies" name="hoppies" multiple>
-                          <mat-option *ngFor="let hoppy of hoppyList" [value]="hoppy">{{hoppy}}</mat-option>
-                        </mat-select>
-                        <mat-error *ngIf="userResumeForm.get('hoppies').invalid">هذا الحقل مطلوب</mat-error>
-                      </mat-form-field>
-                    </div>
-
-                  
+                    
                   <div class="col-md-6">
                       <label class="bmd-label-floating custom-label">- الجنس  *</label>
                       <mat-form-field>
@@ -210,33 +70,191 @@
                
               
                   <div class="col-md-6">
-                      <label class="bmd-label-floating custom-label">- رقم الجوال  *</label>
+                      <label class="bmd-label-floating custom-label">- رقم الجوال  </label>
                       <mat-form-field class="example-full-width">
                         <input matInput placeholder="" type="tel" formControlName="mobile" name="mobile">
-                        <mat-error *ngIf="userResumeForm.get('mobile').invalid">هذا الحقل مطلوب</mat-error>
 
                       </mat-form-field>
                     </div>
             
                   <div class="col-md-6">
-                    <label class="bmd-label-floating custom-label">- الحالة الآجتماعية  *</label>
+                    <label class="bmd-label-floating custom-label">- الحالة الآجتماعية  </label>
                     <mat-form-field>
                       <mat-select placeholder="" formControlName="social_Status" name="social_Status">
                         <mat-option *ngFor="let social_Status of social_Statuss" [value]="social_Status.value">
                           {{social_Status.viewValue}}
                         </mat-option>
                       </mat-select>
-                      <mat-error *ngIf="userResumeForm.get('social_Status').invalid">هذا الحقل مطلوب</mat-error>
                     </mat-form-field>
                   </div>
 
+                  <br>
+                  <div class="col-md-12">
+                      <label class='sweet-underline'>2-العنوان</label>
+                      <hr class="sweet-hr"/>
+
+                  </div>
+                  <div class="col-md-6 padding">
+                    <label class="bmd-label-floating custom-label">- الدولة  *</label>
+                    <mat-form-field>
+                      <mat-select placeholder="" formControlName="country" name="">
+                        <mat-option *ngFor="let country of countries" [value]="country.value">
+                          {{country.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                      <mat-error *ngIf="userResumeForm.get('country').invalid">هذا الحقل مطلوب</mat-error>
+
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6 padding">
+                    <label class="bmd-label-floating custom-label">- المدينة  *</label>
+                    <mat-form-field>
+                      <mat-select placeholder="" formControlName="city" name="">
+                        <mat-option *ngFor="let city of cities" [value]="city.value">
+                          {{city.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                      <mat-error *ngIf="userResumeForm.get('city').invalid">هذا الحقل مطلوب</mat-error>
+                    </mat-form-field>
+                  </div>
+                  <br>
+                  <div class="col-md-12">
+                      <label class='sweet-underline'>3-المعلومات التعليمية</label>
+                      <hr class="sweet-hr"/>
+
+                  </div>
+                  <div class="col-md-6 padding">
+                    <label class="bmd-label-floating custom-label">- الجامعة  </label>
+                    <mat-form-field>
+                      <mat-select placeholder="" formControlName="universty" name="">
+                        <mat-option *ngFor="let universty of universties" [value]="universty.value">
+                          {{universty.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6 padding">
+                    <label class="bmd-label-floating custom-label">-  الشهادة التي تحملها  </label>
+                    <mat-form-field>
+                      <mat-select placeholder="" formControlName="study_degree" name="study_degree">
+                        <mat-option *ngFor="let study_degree of certificate" [value]="study_degree.value">
+                          {{study_degree.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
                   <div class="col-md-6">
+                    <label class="bmd-label-floating custom-label">- المرحلة الدراسية </label>
+                    <mat-form-field>
+                      <mat-select placeholder="" formControlName="education_degree" name="education_degree">
+                        <mat-option *ngFor="let study_degree of study_degrees" [value]="study_degree.value" (click)="checkspEducation()">
+                          {{study_degree.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                      <label class="bmd-label-floating custom-label">- المستوى التعليمي  </label>
+                      <mat-form-field>
+                        <mat-select placeholder="" formControlName="Education_level" name="Education_level">
+                          <mat-option *ngFor="let study_degree of study_statuses" [value]="study_degree.value">
+                            {{study_degree.viewValue}}
+                          </mat-option>
+                        </mat-select>
+
+                      </mat-form-field>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="bmd-label-floating custom-label">- التخصص العام  *</label>
+                        <mat-form-field>
+                          <mat-select placeholder="" formControlName="public_Major" name="public_Major">
+                            <mat-option *ngFor="let major of majors" (click)="checkspMajor()" [value]="major.value">
+                              {{major.viewValue}}
+                            </mat-option>
+                          </mat-select>
+                          <mat-error *ngIf="userResumeForm.get('public_Major').invalid">هذا الحقل مطلوب</mat-error>
+
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-6">
+                        <label class="bmd-label-floating custom-label">- التخصص الدقيق  </label>
+                        <mat-form-field>
+                          <mat-select placeholder="" formControlName="spMajor" name="spMajor">
+                            <mat-option *ngFor="let spMajor of spMajors" [value]="spMajor.value">
+                              {{spMajor.viewValue}}
+                            </mat-option>
+                          </mat-select>
+
+                        </mat-form-field>
+                      </div>
+
+                      <div class="col-md-12">
+                          <label class='sweet-underline'>4-المهارات و الهوايات</label>
+                          <hr class="sweet-hr"/>
+
+                      </div>
+
+                      <div class="col-md-6 padding">
+                          <label class="bmd-label-floating custom-label">- مهارات العمل  </label>
+                          <mat-form-field>
+                              <mat-select placeholder="" formControlName="skills" name="skills"
+                              multiple>
+                              <mat-option *ngFor="let s of skillList" [value]="s.value">
+                                  {{s.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                        <div class="col-md-6 padding">
+                          <label class="bmd-label-floating custom-label">- المهارات الشخصية </label>
+                          <mat-form-field>
+                          <mat-select placeholder="" formControlName="personal_Skills" name="personal_Skills"
+                          multiple>
+                          <mat-option *ngFor="let s of personal_SkillList" [value]="s.value">
+                              {{s.viewValue}}
+                            </mat-option>
+                        </mat-select>
+
+                      </mat-form-field>
+                        </div>
+
+
+
+                  <div class="col-md-6">
+                      <label class="bmd-label-floating custom-label">- اللغات  </label>
+                      <mat-form-field>
+                        <mat-select placeholder="" formControlName="languages" name="languages" multiple>
+                          <mat-option *ngFor="let language of languageList" [value]="language">{{language}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="userResumeForm.get('languages').invalid">هذا الحقل مطلوب</mat-error>
+
+                      </mat-form-field>
+                    </div>
+                 
+                    <div class="col-md-6">
+                      <label class="bmd-label-floating custom-label">- الهوايات </label>
+                      <mat-form-field>
+                        <mat-select placeholder="" formControlName="hoppies" name="hoppies" multiple>
+                          <mat-option *ngFor="let hoppy of hoppyList" [value]="hoppy">{{hoppy}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="userResumeForm.get('hoppies').invalid">هذا الحقل مطلوب</mat-error>
+                      </mat-form-field>
+                    </div>
+
+                    <div class="col-md-12">
+                        <label class='sweet-underline'>5-التواصل الاجتماعي</label>
+                        <hr class="sweet-hr"/>
+
+                    </div>
+                
+                  <div class="col-md-6 padding">
                     <label class="bmd-label-floating custom-label">- الموقع الشخصي</label>
                     <mat-form-field class="example-full-width">
                       <input matInput placeholder="" type="url" formControlName="personal_web" name="personal_web">
                     </mat-form-field>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-6 padding">
                     <label class="bmd-label-floating custom-label">- facebook link</label>
                     <mat-form-field class="example-full-width">
                       <input matInput placeholder="" type="url" formControlName="facebook" name="facebook">

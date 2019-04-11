@@ -32,6 +32,26 @@ export const AppRoutes: Routes = [
         path: 'add-job',
         canActivate:[Auth_company_Guard],
         loadChildren: './add-job/add-job.module#AddJobModule'
+    },
+    {
+        path: 'short-term',
+        canActivate:[Auth_company_Guard],
+        loadChildren: './add-job/contracts/short-term-contract/short-term.module#ShortTermModule'
+    },
+    {
+        path: 'long-term',
+        canActivate:[Auth_company_Guard],
+        loadChildren: './add-job/contracts/long-term-contract/long-term.module#LongTermModule'
+    },
+    {
+        path: 'cont-contract',
+        canActivate:[Auth_company_Guard],
+        loadChildren: './add-job/contracts/continuous-contract/cont.module#ContinuousModule'
+    },
+    {
+        path: 'volunteer-contract',
+        canActivate:[Auth_company_Guard],
+        loadChildren: './add-job/contracts/volunteer-contract/volunteer.module#VolunteerModule'
     }, {
         path: 'my-projects',
         canActivate:[Auth_company_Guard],

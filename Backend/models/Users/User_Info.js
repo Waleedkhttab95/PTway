@@ -5,12 +5,12 @@ const {Schema} = mongoose;
 const user_infoSchema = new Schema({
     user : {type: mongoose.Schema.Types.ObjectId, ref:'users', required:true},
     key : {type:String},
-    fullName: {type:String},
+    fullName: {type:String, required:true},
     work_Hours: {
         type: Number,
         default: 0
     },
-    country: {type: mongoose.Schema.Types.ObjectId, ref:'Country'}
+    country: {type: mongoose.Schema.Types.ObjectId, ref:'Country', required:true}
     ,
     
     study_degree:{
@@ -24,7 +24,7 @@ const user_infoSchema = new Schema({
     
     gender: {
         type:String
-      
+        , required:true
     },
     mobile: {
         type:String
@@ -34,7 +34,7 @@ const user_infoSchema = new Schema({
       
     },
     
-    city: {type: mongoose.Schema.Types.ObjectId, ref:'City'},
+    city: {type: mongoose.Schema.Types.ObjectId, ref:'City', required:true},
     
   
     Education_level: {

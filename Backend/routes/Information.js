@@ -15,6 +15,7 @@ module.exports = (app) => {
     //post user information
     app.post('/api/postuserinfo',auth,file, (req, res) => {
         
+        var universty , spMajor,skills,personal_Skills;
         const url = req.protocol + '://' + req.get("host");     
         var imagePath = '';
         if(!req.file){
@@ -24,6 +25,12 @@ module.exports = (app) => {
             imagePath= url + "/images/" + req.file.filename;
         }
         try{
+            if(req.body.universty == null) universty = null;
+            if(req.body.spMajor == null) spMajor = null;
+            if(req.body.skills == null) skills = null;
+            if(req.body.personal_Skills == null) personal_Skills = null;
+
+            console.log(req.body.universty)
             new UserInfo({
                 user: req.user._id,
                 country: req.body.country,
@@ -34,14 +41,14 @@ module.exports = (app) => {
                 gender: req.body.gender,
                 mobile: req.body.mobile,
                 birthDate: req.body.birthDate,
-                universty: req.body.universty,
+                universty: universty,
                 city: req.body.city,
                 Education_level: req.body.Education_level,
                 public_Major: req.body.public_Major,
-                spMajor: req.body.spMajor,
+                spMajor: spMajor,
                 languages: req.body.languages,
-                skills: req.body.skills,
-                personal_Skills: req.body.personal_Skills,
+                skills: skills,
+                personal_Skills: personal_Skills,
                 hoppies: req.body.hoppies,
                 social_Status: req.body.social_Status,
                 about: req.body.about,
@@ -103,71 +110,79 @@ module.exports = (app) => {
         const info = await UserInfo.findOne({ 'user': req.user._id });
         if (!info) return res.status(401).send('not found');
 
-        const country = await Country.findById(info.country);
-        const city = await City.findById(info.city);
-        const cpublic_Major = await publicMajor.findById(info.public_Major);
-        const cspicifc_Major = await spMajor.findById(info.spMajor);
-        
-
-        const universty = await Universty.findById(info.universty);
-        const company = [];
- 
-for(var c = 0 ; c < info.companies.length ; c++) {
-    const result = await Company.findById(info.companies[c]).select("companyName -_id");
-    company.push(result.companyName)
-
-}
-    const skill = []
-   
-    for(var i = 0 ; i < info.skills.length ; i++) {
-        const result = await Skills.findById(info.skills[i]).select("skillName -_id");
-        skill.push(result.skillName)
-
-    }
-
-    const Personlskill =[]
-  
-    for(var j = 0 ; j < info.personal_Skills.length ; j++) {
-        
-        const result = await PersonalSkills.findById(info.personal_Skills[j]).select("skillName -_id");
-        
-        Personlskill.push(result.skillName)
-
-    }
-
-
         try{
 
-            res.status(200).json({
-                country: country.countryName,
-                study_degree: info.study_degree,
-               imagePath: info.imagePath,
-                education_degree: info.education_degree,
-                gender: info.gender,
-                mobile: info.mobile,
-                fullName: info.fullName,
-                work_Hours: info.work_Hours,
-                birthDate: info.birthDate,
-                universty: universty.universtyName,
-                companies: company,
-                city: city.cityName,
-                Education_level: info.Education_level,
-                public_Major: cpublic_Major.majorName,
-                spicifc_Major: cspicifc_Major.majorName,
-                languages: info.languages,
-                skills: skill,
-                personal_Skills: Personlskill,
-                hoppies: info.hoppies,
-                social_Status: info.social_Status,
-                about: info.about,
-                personal_web: info.personal_web,
-                facebook: info.facebook,
-                twitter: info.twitter,
-                instagram: info.instagram,
-                linkedin: info.linkedin,
-            });
-        } catch(ex) {
+            var uni = "";
+            var spMaj = "";
+            const country = await Country.findById(info.country);
+            const city = await City.findById(info.city);
+            const cpublic_Major = await publicMajor.findById(info.public_Major);
+            const cspicifc_Major = await spMajor.findById(info.spMajor);
+            if(cspicifc_Major) spMaj = cspicifc_Major.majorName;
+    
+            const universty = await Universty.findById(info.universty);
+             if(universty) uni = universty.universtyName;
+    
+            const company = [];
+     
+    for(var c = 0 ; c < info.companies.length ; c++) {
+        const result = await Company.findById(info.companies[c]).select("companyName -_id");
+        company.push(result.companyName)
+    
+    }
+        const skill = []
+       
+        for(var i = 0 ; i < info.skills.length ; i++) {
+    
+            const result = await Skills.findById(info.skills[i]).select("skillName -_id");
+            skill.push(result.skillName)
         }
+    
+        const Personlskill =[]
+      
+        for(var j = 0 ; j < info.personal_Skills.length ; j++) {
+            
+            const result = await PersonalSkills.findById(info.personal_Skills[j]).select("skillName -_id");
+            
+            Personlskill.push(result.skillName)
+    
+        }
+    
+    
+      
+                res.status(200).json({
+                    country: country.countryName,
+                    study_degree: info.study_degree,
+                   imagePath: info.imagePath,
+                    education_degree: info.education_degree,
+                    gender: info.gender,
+                    mobile: info.mobile,
+                    fullName: info.fullName,
+                    work_Hours: info.work_Hours,
+                    birthDate: info.birthDate,
+                    universty: uni,
+                    companies: company,
+                    city: city.cityName,
+                    Education_level: info.Education_level,
+                    public_Major: cpublic_Major.majorName,
+                    spicifc_Major: spMaj,
+                    languages: info.languages,
+                    skills: skill,
+                    personal_Skills: Personlskill,
+                    hoppies: info.hoppies,
+                    social_Status: info.social_Status,
+                    about: info.about,
+                    personal_web: info.personal_web,
+                    facebook: info.facebook,
+                    twitter: info.twitter,
+                    instagram: info.instagram,
+                    linkedin: info.linkedin,
+                });
+            
+        }catch(ex){
+            console.log(ex)
+        }
+     
     })
 
       //Get user info by ID
@@ -176,12 +191,18 @@ for(var c = 0 ; c < info.companies.length ; c++) {
         const info = await UserInfo.findOne({ 'user': id });
         if (!info) return res.status(401).send('not found');
 
+        
+        var uni = "";
+        var spMaj = "";
         const country = await Country.findById(info.country);
         const city = await City.findById(info.city);
         const cpublic_Major = await publicMajor.findById(info.public_Major);
         const cspicifc_Major = await spMajor.findById(info.spMajor);
+        if(cspicifc_Major) spMaj = cspicifc_Major.majorName;
 
         const universty = await Universty.findById(info.universty);
+        if(universty) uni = universty.universtyName;
+
         const company = [];
  
         for(var c = 0 ; c < info.companies.length ; c++) {
@@ -219,12 +240,12 @@ for(var c = 0 ; c < info.companies.length ; c++) {
                 fullName: info.fullName,
                 work_Hours: info.work_Hours,
                 birthDate: info.birthDate,
-                universty: universty.universtyName,
+                universty: uni,
                 companies: company,
                 city: city.cityName,
                 Education_level: info.Education_level,
                 public_Major: cpublic_Major.majorName,
-                spicifc_Major: cspicifc_Major.majorName,
+                spicifc_Major:spMaj,
                 languages: info.languages,
                 skills: skill,
                 personal_Skills: Personlskill,
@@ -249,6 +270,7 @@ for(var c = 0 ; c < info.companies.length ; c++) {
 
             const country = await Country.findById(info.country);
             const city = await City.findById(info.city);
+            
             res.status(200).json({
                 country: country.countryName,
                 city: city.cityName,
@@ -268,6 +290,35 @@ for(var c = 0 ; c < info.companies.length ; c++) {
       
     })
 
+      //Get company info by CompanyID
+      app.get('/api/getcompanyinfoById', auth, async (req, res) => {
+         const id = req.query.id;
+        try{
+            const info = await CompanyInfo.findOne({ 'company': id });
+            if (!info) return res.status(401).send('not found');
+
+            const country = await Country.findById(info.country);
+            const city = await City.findById(info.city);
+            const company_Name = await Company.findById(info.company);
+            res.status(200).json({
+                compnayName: company_Name.companyName,
+                country: country.countryName,
+                city: city.cityName,
+                address: info.address,
+                imagePath: info.imagePath,
+                info: info.info,
+                vision: info.vision,
+                message: info.message,
+                personal_web: info.personal_web,
+                facebook: info.facebook,
+                twitter: info.twitter,
+                instagram: info.instagram,
+                linkedin: info.linkedin
+            });
+        } catch(ex) {
+        }
+      
+    })
     app.put('/api/put/userinfo', auth,file,async (req, res) => {
     
         let imPath = req.body.imagePath;
