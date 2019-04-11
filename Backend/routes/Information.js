@@ -15,10 +15,10 @@ module.exports = (app) => {
     //post user information
     app.post('/api/postuserinfo',auth,file, (req, res) => {
         
-        var universty =null
-        var spMajor = null
-        skills = null
-        personal_Skills = null;
+        var universty 
+        var spMajor 
+       var skills
+       var personal_Skills ;
         const url = req.protocol + '://' + req.get("host");     
         var imagePath = '';
         if(!req.file){
@@ -28,13 +28,15 @@ module.exports = (app) => {
             imagePath= url + "/images/" + req.file.filename;
         }
         try{
-            if(req.body.universty != null) universty = req.body.universty ;
-            if(req.body.spMajor != null) spMajor = req.body.spMajor ;
-            if(req.body.skills != null) skills = req.body.skills ;
-            if(req.body.personal_Skills != null) personal_Skills = req.body.personal_Skills;
+            if(req.body.universty != 'null') universty = req.body.universty ;
+            if(req.body.spMajor != 'null') spMajor = req.body.spMajor ;
+            if(req.body.skills != 'null') skills = req.body.skills ;
+            if(req.body.personal_Skills != 'null') personal_Skills = req.body.personal_Skills ;
+
+
+            
 
            console.log(req.body.universty);
-           console.log("HEllo")
             new UserInfo({
                 user: req.user._id,
                 country: req.body.country,
@@ -135,7 +137,6 @@ module.exports = (app) => {
     
     }
         const skill = []
-       
         for(var i = 0 ; i < info.skills.length ; i++) {
     
             const result = await Skills.findById(info.skills[i]).select("skillName -_id");

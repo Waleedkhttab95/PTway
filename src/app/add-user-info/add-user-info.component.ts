@@ -46,16 +46,16 @@ export class AddUserInfoComponent implements OnInit {
   currentstudy_degree: string[];
 
   study_degrees = [
-    {value: 'HS', viewValue: 'الثانوية العامية'},
-    {value: 'BHO', viewValue: 'البكالريويس'},
+    {value: 'HS', viewValue: 'الثانوية العامة'},
+    {value: 'BHO', viewValue: 'البكالوريوس'},
     {value: 'MASTER', viewValue: 'المساتر'},
     {value: 'diploma', viewValue: 'ديبلوم'},
     {value: 'Undergraduate', viewValue: 'خريج'}
   ];
 
   certificate = [
-    {value: 'HS', viewValue: 'الثانوية العامية'},
-    {value: 'BHO', viewValue: 'البكالريويس'},
+    {value: 'HS', viewValue: 'الثانوية العامة'},
+    {value: 'BHO', viewValue: 'البكالوريوس'},
     {value: 'MASTER', viewValue: 'المساتر'}
   ];
 
@@ -90,7 +90,7 @@ export class AddUserInfoComponent implements OnInit {
   mySelections: string[];
 
   hoppies = new FormControl();
-  hoppyList: string[] = ['القراءة', 'الكتابة'];
+  hoppyList: string[] = ['القراءة', 'الكتابة', 'السباحة','الرياضة', 'العاب الفيديو'];
 
   currentsocial_Status: string[];
 
