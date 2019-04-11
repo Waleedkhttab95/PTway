@@ -22,7 +22,16 @@ export class UserService {
     }
 
     addUserInfo(data: any) {
+
         const postData = new FormData();
+        var skills = [];
+        var personal_Skills = [];
+        for (var i = 0; i < data.skills.length; i++) {
+            postData.append('skills[]', data.skills[i]);
+        }
+        for (var i = 0; i < data.personal_Skills.length; i++) {
+            postData.append('personal_Skills[]', data.personal_Skills[i]);
+        }
         postData.append ('country',data.country);
         postData.append ('study_degree',data.study_degree);
         postData.append ('fullName',data.fullName);
@@ -36,8 +45,8 @@ export class UserService {
         postData.append ('public_Major',data.public_Major);
         postData.append ('spMajor',data.spMajor);
         postData.append ('languages',data.languages);
-        postData.append ('skills',data.skills);
-        postData.append ('personal_Skills',data.personal_Skills);
+       // postData.append ('skills',data.skills);
+       // postData.append ('personal_Skills',data.personal_Skills);
         postData.append ('hoppies',data.hoppies);
         postData.append ('social_Status',data.social_Status);
         postData.append ('about',data.about);

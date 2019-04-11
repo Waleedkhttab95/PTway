@@ -17,8 +17,8 @@ module.exports = (app) => {
         
         var universty 
         var spMajor 
-       var skills
-       var personal_Skills ;
+       var skills = [];
+       var personal_Skills = [] ;
         const url = req.protocol + '://' + req.get("host");     
         var imagePath = '';
         if(!req.file){
@@ -35,8 +35,7 @@ module.exports = (app) => {
 
 
             
-
-           console.log(req.body.universty);
+          
             new UserInfo({
                 user: req.user._id,
                 country: req.body.country,
