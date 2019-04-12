@@ -292,6 +292,18 @@ export class AddUserInfoComponent implements OnInit {
       return;
     }
   
+    var img = <HTMLInputElement>document.getElementById('file');
+    
+    if(img.files.length > 0){
+      console.log("false")
+      img.disabled = false;
+    }
+    else{
+      console.log("true")
+
+      img.disabled = true;
+    }
+console.log(this.userResumeForm.value)
   this.rest.addUserInfo(this.userResumeForm.value);
   }
   onImagePicked(event: Event) {

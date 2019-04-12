@@ -26,13 +26,7 @@ export class UserService {
         const postData = new FormData();
         var skills = [];
         var personal_Skills = [];
-        if(data.image == null){
-            postData.append ('image',null,data.fullName);
-        }
-        else{
-            postData.append ('image',data.image,data.fullName);
-
-        }
+    
 
         if(data.skills != null) {
             for (var i = 0; i < data.skills.length; i++) {
