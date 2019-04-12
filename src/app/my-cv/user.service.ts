@@ -26,6 +26,14 @@ export class UserService {
         const postData = new FormData();
         var skills = [];
         var personal_Skills = [];
+        if(data.image == null){
+            postData.append ('image',null,data.fullName);
+        }
+        else{
+            postData.append ('image',data.image,data.fullName);
+
+        }
+
         if(data.skills != null) {
             for (var i = 0; i < data.skills.length; i++) {
                 postData.append('skills[]', data.skills[i]);
@@ -69,7 +77,7 @@ export class UserService {
         postData.append ('twitter',data.twitter);
         postData.append ('instagram',data.instagram);
         postData.append ('linkedin',data.linkedin);
-        postData.append ('image',data.image,data.fullName);
+        
 
 
         this.http
