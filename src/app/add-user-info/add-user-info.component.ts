@@ -284,14 +284,14 @@ export class AddUserInfoComponent implements OnInit {
   }
 
   postuserinfo() {
-    
+  
     if(this.userResumeForm.get('fullName').invalid || this.userResumeForm.get('country').invalid
     || this.userResumeForm.get('city').invalid || this.userResumeForm.get('gender').invalid ||
     this.userResumeForm.get('public_Major').invalid || this.userResumeForm.get('birthDate').invalid) {
      
       return;
     }
-    console.log(this.userResumeForm.value)
+  
   this.rest.addUserInfo(this.userResumeForm.value);
   }
   onImagePicked(event: Event) {

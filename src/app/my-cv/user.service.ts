@@ -26,12 +26,26 @@ export class UserService {
         const postData = new FormData();
         var skills = [];
         var personal_Skills = [];
-        for (var i = 0; i < data.skills.length; i++) {
-            postData.append('skills[]', data.skills[i]);
+        if(data.skills != null) {
+            for (var i = 0; i < data.skills.length; i++) {
+                postData.append('skills[]', data.skills[i]);
+            }
         }
+       else{
+        postData.append('skills', data.skills);
+       }
+
+       if(data.personal_Skills != null) {
         for (var i = 0; i < data.personal_Skills.length; i++) {
             postData.append('personal_Skills[]', data.personal_Skills[i]);
         }
+       }
+       else{
+        postData.append('personal_Skills', data.personal_Skills);
+       } 
+
+
+
         postData.append ('country',data.country);
         postData.append ('study_degree',data.study_degree);
         postData.append ('fullName',data.fullName);
