@@ -133,7 +133,8 @@ module.exports = (app) => {
                 required_Number: req.body.required_Number
             }).save()
             .then(result =>{
-                res.send(result);
+                console.log("result"+result)
+                res.send(result)
             });
 
 
@@ -157,7 +158,7 @@ module.exports = (app) => {
                 required_Number: req.body.required_Number
             }).save()
             .then(result =>{
-                res.send(result);
+                console.log(result)
             });
 
         });

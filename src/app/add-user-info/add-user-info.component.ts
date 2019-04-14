@@ -46,17 +46,17 @@ export class AddUserInfoComponent implements OnInit {
   currentstudy_degree: string[];
 
   study_degrees = [
-    {value: 'HS', viewValue: 'الثانوية العامة'},
-    {value: 'BHO', viewValue: 'البكالوريوس'},
-    {value: 'MASTER', viewValue: 'المساتر'},
+    {value: 'HS', viewValue: 'ثانوية عامة'},
+    {value: 'BHO', viewValue: 'بكالوريوس'},
+    {value: 'MASTER', viewValue: 'ماستر'},
     {value: 'diploma', viewValue: 'ديبلوم'},
     {value: 'Undergraduate', viewValue: 'خريج'}
   ];
 
   certificate = [
-    {value: 'HS', viewValue: 'الثانوية العامة'},
-    {value: 'BHO', viewValue: 'البكالوريوس'},
-    {value: 'MASTER', viewValue: 'المساتر'}
+    {value: 'HS', viewValue: 'ثانوية عامة'},
+    {value: 'BHO', viewValue: 'بكالوريوس'},
+    {value: 'MASTER', viewValue: 'ماستر'}
   ];
 
   currentgender: string[];

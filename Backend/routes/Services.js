@@ -27,7 +27,7 @@ module.exports = (app) =>{
         .find({ country: country,city: city
         ,gender: gender,public_Major: public_Major })
         .select("user");
-
+            console.log("send noti"+req.body.jobAd)
         result.forEach(function(r) {
            new Notification({
             content : jobAd,
@@ -114,6 +114,7 @@ module.exports = (app) =>{
         const contents = [];
         for(var i = 0 ; i < lastNotification.length ; i++) {
             const content = await JobAd.findById( lastNotification[i].content).select("job_Name -_id");
+        console.log(lastNotification[i].content)
             contents.push(content);
           }
 
