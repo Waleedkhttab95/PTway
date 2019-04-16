@@ -56,7 +56,8 @@ export class AddUserInfoComponent implements OnInit {
   certificate = [
     {value: 'HS', viewValue: 'ثانوية عامة'},
     {value: 'BHO', viewValue: 'بكالوريوس'},
-    {value: 'MASTER', viewValue: 'ماستر'}
+    {value: 'MASTER', viewValue: 'ماستر'},
+    {value: 'diploma', viewValue: 'ديبلوم'}
   ];
 
   currentgender: string[];
