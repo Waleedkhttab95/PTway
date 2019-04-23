@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  BackUrl: 'http://ptway.net/api'
+  BackUrl: 'https://ptway.net/api'
 };
