@@ -44,6 +44,7 @@ export class ShortTermComponent implements OnInit {
     genders = [
       { value: 'ذكر', viewValue: 'ذكر' },
       { value: 'انثى', viewValue: 'انثى' },
+      { value: 'both', viewValue: 'ذكر و انثى' }
     ];
   
     languages = new FormControl();
@@ -156,8 +157,8 @@ export class ShortTermComponent implements OnInit {
           {validators: [Validators.required]}),
         gender: new FormControl(null ,
            {validators: [Validators.required]}),
-        public_Major: new FormControl(null ,
-           {validators: [Validators.required]}),
+        // public_Major: new FormControl(null ,
+        //    {validators: [Validators.required]}),
         startDate: new FormControl(null ,
            {validators: [Validators.required]}),
         projects: new FormControl(null ,
@@ -196,7 +197,7 @@ export class ShortTermComponent implements OnInit {
         country: this.addJobForm.value.country,
         city: this.addJobForm.value.city,
         descreption: this.addJobForm.value.description,
-        public_Major: this.addJobForm.value.public_Major,
+     //   public_Major: this.addJobForm.value.public_Major,
         work_hours: this.addJobForm.value.work_hours,
         work_days: this.addJobForm.value.work_days,
         salary: this.addJobForm.value.salary,

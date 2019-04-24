@@ -42,7 +42,7 @@ module.exports = () =>{
     });
 
     cron.schedule('0 0 * * *',async () =>{
-        
+        console.log("Here Corn")
         today = new Date();
         var dd = today.getDate();
         var mm = today.getMonth()+1; //As January is 0.

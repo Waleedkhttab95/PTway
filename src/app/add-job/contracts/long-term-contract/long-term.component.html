@@ -43,10 +43,10 @@
                    
                       
                       <mat-form-field class="example-full-width">
-                        <input matInput placeholder="* بحد اقصى 8 ساعات" type="number" formControlName="work_hours"
-                          name="work_hours" min="1" max="8">
+                        <input matInput placeholder="* بحد اقصى 6 ساعات" type="number" formControlName="work_hours"
+                          name="work_hours" min="1" max="6">
                       </mat-form-field>
-                      <mat-error *ngIf="addJobForm.get('work_hours').invalid">يجب الاختيار بحد ادنى 1 او اقصى 8</mat-error>
+                      <mat-error *ngIf="addJobForm.get('work_hours').invalid">يجب الاختيار بحد ادنى 1 او اقصى 6</mat-error>
   
                     </div>
               
@@ -135,7 +135,7 @@
                       <hr class="sweet-hr"/>
                   </div>
 
-                  <div class="col-md-12">
+                  <!-- <div class="col-md-12">
                       <label class="bmd-label-floating custom-label">- التخصص العام</label>
                       <mat-form-field>
                         <mat-select placeholder="" formControlName="public_Major" name="public_Major">
@@ -144,7 +144,7 @@
                           </mat-option>
                         </mat-select>
                       </mat-form-field>
-                    </div>
+                    </div> -->
             
                       <div class="col-md-6">
                         <label class="bmd-label-floating custom-label">- المهارات الشخصية</label>

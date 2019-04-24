@@ -18,13 +18,17 @@
                 style="width:100%">
                 <thead>
                   <tr>
-                    <th>{{ dataTable.headerRow[0] }}</th>
-                    <th>{{ dataTable.headerRow[1] }}</th>
+                      <th>{{ dataTable.headerRow[0] }}</th>
+                      <th>{{ dataTable.headerRow[1] }}</th>
+                      <th>{{ dataTable.headerRow[2] }}</th>
+                  
+                 
                   </tr>
                 </thead>
                 <tbody>
                   <tr *ngFor="let row of dataTable.dataRows">
-                    <td>{{row[0]}}</td>
+                      <td>{{row[0]}}</td>
+                    <td>{{row[1]}}</td>
                     <td>
                       <swal
                           #deleteSwal

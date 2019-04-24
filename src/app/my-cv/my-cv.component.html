@@ -34,9 +34,30 @@
       </head>
 
       <body>
+     
+ 
+   
+
         <div class="linear-background resume-container pt-5 pb-5">
+            <div class="personal-skills">
+                <div class="row">
+                    <div class="col-md-6 center-prog">
+                        <p class="resume-text">
+                          نسبة إكتمال سيرتك الذاتية : {{progress}} %
+                        </p>
+                        <div class="progress">
+                            <div class="progress-bar" [ngStyle]="{'width.%':progress}" role="progressbar" aria-valuenow="75"
+                                aria-valuemin="0" aria-valuemax="100"></div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
           <div class="resume">
             <div class="row">
+          
+        
               <!--RESUME INFORMATION HERE-->
               <div class="col-sm-4 resume-info">
                 <div class="row">
@@ -48,6 +69,9 @@
                   </div>
                 </div>
                 <hr class="resume-info-separator mt-5 mb-5" />
+
+                <!--swal for not fund info-->
+           
 
                 <div class="row">
                   <div class="col-md-12">

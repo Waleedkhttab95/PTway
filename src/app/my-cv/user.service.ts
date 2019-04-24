@@ -23,10 +23,15 @@ export class UserService {
 
     addUserInfo(data: any) {
 
+        
+
+
+
+
         const postData = new FormData();
         var skills = [];
         var personal_Skills = [];
-       
+   
 
         if(data.skills != null) {
             for (var i = 0; i < data.skills.length; i++) {
@@ -46,6 +51,7 @@ export class UserService {
         postData.append('personal_Skills', data.personal_Skills);
        } 
 
+       
 
 
         postData.append ('country',data.country);
@@ -72,7 +78,7 @@ export class UserService {
         postData.append ('instagram',data.instagram);
         postData.append ('linkedin',data.linkedin);
 
-       // postData.append ('image',data.image,data.fullName);
+       postData.append ('image',data.image,data.fullName);
 
 
 
@@ -85,41 +91,67 @@ export class UserService {
 
     updateUserInfo(data: any) {
         const postData = new FormData();
+        var skills = [];
+        var personal_Skills = [];
+        var mobile = data.mobile;
+        if(data.mobile != null)
+         mobile = '00966'+data.mobile;
+
+        if(data.skills != null) {
+            for (var i = 0; i < data.skills.length; i++) {
+                postData.append('skills[]', data.skills[i]);
+            }
+        }
+       else{
+        postData.append('skills', data.skills);
+       }
+
+       if(data.personal_Skills != null) {
+        for (var i = 0; i < data.personal_Skills.length; i++) {
+            postData.append('personal_Skills[]', data.personal_Skills[i]);
+        }
+       }
+       else{
+        postData.append('personal_Skills', data.personal_Skills);
+       } 
+
+
+
         postData.append ('country',data.country);
-        // postData.append ('study_degree',data.study_degree);
-        // postData.append ('fullName',data.fullName);
-        // postData.append ('education_degree',data.education_degree);
-        // postData.append ('gender',data.gender);
-         postData.append ('mobile',data.mobile);
-        // postData.append ('birthDate',data.birthDate);
-        // postData.append ('city',data.city);
-        // postData.append ('universty',data.universty);
-        // postData.append ('Education_level',data.Education_level);
-        // postData.append ('public_Major',data.public_Major);
-        // postData.append ('spMajor',data.spMajor);
-        // postData.append ('languages',data.languages);
-        // postData.append ('skills',data.skills);
-        // postData.append ('personal_Skills',data.personal_Skills);
-        // postData.append ('hoppies',data.hoppies);
-        // postData.append ('social_Status',data.social_Status);
-        // postData.append ('about',data.about);
-        // postData.append ('personal_web',data.personal_web);
-        // postData.append ('facebook',data.facebook);
-        // postData.append ('twitter',data.twitter);
-     //   postData.append ('instagram',data.instagram);
-       // postData.append ('linkedin',data.linkedin);
-     //   postData.append ('imagePath',data.image,data.fullName);
+        postData.append ('study_degree',data.study_degree);
+        postData.append ('fullName',data.fullName);
+        postData.append ('education_degree',data.education_degree);
+        postData.append ('gender',data.gender);
+        postData.append ('mobile',mobile);
+        postData.append ('birthDate',data.birthDate);
+        postData.append ('city',data.city);
+        postData.append ('universty',data.universty);
+        postData.append ('Education_level',data.Education_level);
+        postData.append ('public_Major',data.public_Major);
+        postData.append ('spMajor',data.spMajor);
+        postData.append ('languages',data.languages);
+       // postData.append ('skills',data.skills);
+       // postData.append ('personal_Skills',data.personal_Skills);
+        postData.append ('hoppies',data.hoppies);
+        postData.append ('social_Status',data.social_Status);
+        postData.append ('about',data.about);
+        postData.append ('personal_web',data.personal_web);
+        postData.append ('facebook',data.facebook);
+        postData.append ('twitter',data.twitter);
+        postData.append ('instagram',data.instagram);
+        postData.append ('linkedin',data.linkedin);
 
-
-
+       // postData.append ('image',data.image,data.fullName);
+       console.log(data)
         this.http
-            .put(BackUrl + '/put/userinfo', postData).subscribe(response => {
+            .put(BackUrl + '/put/userinfo', data).subscribe(response => {
                 this.router.navigate(['/my-cv']);
             });
     }
     getUserInfo() {
         return this.http
-            .get(BackUrl + '/getuserinfo');
+            .get(BackUrl + '/getuserinfo')
+            ;
     }
 
     getUserInfoById(id) {
@@ -129,13 +161,17 @@ export class UserService {
 
     //navbar component
     //sidebar component
-
+    
 
     getUser() {
         return this.http
             .get(BackUrl + '/currentuser');
     }
 
+    getUserEdit() {
+        return this.http
+            .get(BackUrl + '/getuserinfo/edit');
+    }
     getUnreadNotification() {
         return this.http
             .get(BackUrl + '/get/unread/notification');

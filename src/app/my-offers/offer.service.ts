@@ -19,6 +19,7 @@ export class offerService {
 
     addCandidate(data: any) {
         this.http.post(BackUrl+'/postBodyC',data).subscribe(() =>{
+            this.showSwal('secc');
             this.router.navigate(['/']);
 
         })
@@ -51,7 +52,7 @@ export class offerService {
     showSwal(type){
         if (type == 'secc') {
         swal({
-          title: "تمت العملية بنجاح!",
+          title: "تم تقديم الطلب , سوف تتواصل معك الشركة في حال اختيارك",
           buttonsStyling: false,
           confirmButtonClass: 'btn btn-success',
           confirmButtonText:'نعم',

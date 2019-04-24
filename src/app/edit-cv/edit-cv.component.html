@@ -1,236 +1,325 @@
 <div class="main-content">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-8 custom-card">
-          <div class="card">
-            <div class="card-header card-header-primary card-header-icon">
-              <div class="card-icon">
-                <i class="material-icons">portrait</i>
-              </div>
-              <h4 class="card-title custom-title">تعديل السيرة الذاتية</h4>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8 custom-card">
+        <div class="card">
+          <div class="card-header card-header-primary card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">portrait</i>
             </div>
-            <div class="col-md-8 custom-card">
-              <div class="card-body">
-                <form  [formGroup]="userResumeForm">
-                  <div class="row">
-                    <div class="col-md-8 col-sm-4">
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                        <div class="fileinput-new thumbnail">
-                          <img [src]="imagePreview"  alt="...">
-                        </div>
-                        <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                        <div>
-                          <span class="btn btn-primary btn-round btn-file">
-                            <span class="fileinput-new">قم بأختيار الصورة الشخصية</span>
-                            <span class="fileinput-exists">استبدال </span>
-                            <input type="file" #fileUpload (change)="onImagePicked($event)" />
-                          </span>
-                          <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput">
-                            <i class="fa fa-times"></i> حذف
-                          </a>
-                        </div>
+            <h4 class="card-title custom-title">السيرة الذاتية للأعضاء</h4>
+          </div>
+          <div class="col-md-8 custom-card">
+            <div class="card-body">
+              <form (submit)="postuserinfo()" [formGroup]="userResumeForm">
+                <div class="row">
+                  <!-- <div class="col-md-8 col-sm-4 image-card">
+                    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                      <div class="fileinput-new thumbnail">
+                        <img  src="../../assets/img/avatar.png"  alt="...">
+                      </div>
+                      <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                      <div>
+                        <span class="btn btn-primary btn-round btn-file">
+                          <span class="fileinput-new">قم بأختيار الصورة الشخصية</span>
+                          <span class="fileinput-exists">استبدال </span>
+                          <input id="file" type="file" #fileUpload (change)="onImagePicked($event)" />
+                        </span>
+                        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput">
+                          <i class="fa fa-times"></i> حذف
+                        </a>
                       </div>
                     </div>
-                    <div class="col-md-6">
-                      <label class="bmd-label-floating custom-label">- الأسم الكامل</label>
-                      <mat-form-field class="example-full-width">
-                        <input matInput placeholder="" type="text" formControlName="fullName" name="fullName">
-                      </mat-form-field>
-                    </div>
-                    <div class="col-md-6">
-                      <label class="bmd-label-floating custom-label">- مكان الأقامة</label>
-                      <mat-form-field>
-                        <mat-select placeholder="" formControlName="country" name="country">
-                          <mat-option *ngFor="let country of countries" [value]="country.value">
-                            {{country.viewValue}}
-                          </mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                    </div>
-                    <div class="col-md-6">
-                      <label class="bmd-label-floating custom-label">- المدينة</label>
-                      <mat-form-field>
-                        <mat-select placeholder="" formControlName="city" name="city">
-                          <mat-option *ngFor="let city of cities" [value]="city.value">
-                            {{city.viewValue}}
-                          </mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                    </div>
-                    <div class="col-md-6">
-                      <label class="bmd-label-floating custom-label">- الجامعة</label>
-                      <mat-form-field>
-                        <mat-select placeholder="" formControlName="universty" name="universty">
-                          <mat-option *ngFor="let universty of universties" [value]="universty.value">
-                            {{universty.viewValue}}
-                          </mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                    </div>
-                    <div class="col-md-4">
-                      <label class="bmd-label-floating custom-label">- الشهادة التي تحملها</label>
-                      <mat-form-field>
-                        <mat-select placeholder="" formControlName="study_degree" name="study_degree">
-                          <mat-option *ngFor="let study_degree of study_degrees" [value]="study_degree.value">
-                            {{study_degree.viewValue}}
-                          </mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                    </div>
-                    <div class="col-md-4">
-                      <label class="bmd-label-floating custom-label">- المرحلة الدراسية</label>
-                      <mat-form-field>
-                        <mat-select placeholder="" formControlName="education_degree" name="education_degree">
-                          <mat-option *ngFor="let study_degree of study_degrees" [value]="study_degree.value">
-                            {{study_degree.viewValue}}
-                          </mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                    </div>
-                    <div class="col-md-4">
-                      <label class="bmd-label-floating custom-label">- الجنس</label>
+                  </div> -->
+                  <div class="col-md-12">
+                      <label class="sweet-underline"> 1-المعلومات الشخصية</label>
+                      <hr class="sweet-hr"/>
+                  </div>
+                  
+                  <div class="col-md-8 padding">
+                    <label class="bmd-label-floating custom-label">- الأسم الكامل  *</label>
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="" type="text"  maxlength="30 "  formControlName="fullName" name="">
+
+                    </mat-form-field>
+                  </div>
+                    
+                  <div class="col-md-6">
+                      <label class="bmd-label-floating custom-label">- الجنس  *</label>
                       <mat-form-field>
                         <mat-select placeholder="" formControlName="gender" name="gender">
                           <mat-option *ngFor="let gender of genders" [value]="gender.value">
                             {{gender.viewValue}}
                           </mat-option>
                         </mat-select>
+
                       </mat-form-field>
                     </div>
-                    <div class="col-md-6">
-                      <label class="bmd-label-floating custom-label">- رقم الجوال</label>
+                  <div class="col-md-6">
+                    <label class="bmd-label-floating custom-label">- تاريخ الميلاد  *</label>
+                    <mat-form-field>
+                      <input matInput [matDatepicker]="picker" placeholder="" formControlName="birthDate" name="birthDate">
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+
+                    </mat-form-field>
+                  </div>
+               
+              
+                  <div class="col-md-6">
+                      <label class="bmd-label-floating custom-label">- رقم الجوال  </label>
                       <mat-form-field class="example-full-width">
                         <input matInput placeholder="" type="tel" formControlName="mobile" name="mobile">
+
                       </mat-form-field>
                     </div>
-                    <div class="col-md-6">
-                      <label class="bmd-label-floating custom-label">- تاريخ الميلاد</label>
-                      <mat-form-field>
-                        <input matInput [matDatepicker]="picker" placeholder="" formControlName="birthDate" name="birthDate">
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                      </mat-form-field>
-                    </div>
-                    <div class="col-md-6">
-                      <label class="bmd-label-floating custom-label">- المستوى التعليمي</label>
+            
+                  <div class="col-md-6">
+                    <label class="bmd-label-floating custom-label">- الحالة الآجتماعية  </label>
+                    <mat-form-field>
+                      <mat-select placeholder="" formControlName="social_Status" name="social_Status">
+                        <mat-option *ngFor="let social_Status of social_Statuss" [value]="social_Status.value">
+                          {{social_Status.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+
+                  <br>
+                  <div class="col-md-12">
+                      <label class='sweet-underline'>2-العنوان</label>
+                      <hr class="sweet-hr"/>
+
+                  </div>
+                  <div class="col-md-6 padding">
+                    <label class="bmd-label-floating custom-label">- الدولة  *</label>
+                    <mat-form-field>
+                      <mat-select placeholder="" formControlName="country" name="">
+                        <mat-option *ngFor="let country of countries" [value]="country.value">
+                          {{country.viewValue}}
+                        </mat-option>
+                      </mat-select>
+
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6 padding">
+                    <label class="bmd-label-floating custom-label">- المدينة  *</label>
+                    <mat-form-field>
+                      <mat-select placeholder="" formControlName="city" name="">
+                        <mat-option *ngFor="let city of cities" [value]="city.value">
+                          {{city.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <br>
+                  <div class="col-md-12">
+                      <label class='sweet-underline'>3-المعلومات التعليمية</label>
+                      <hr class="sweet-hr"/>
+
+                  </div>
+                  <div class="col-md-6 padding">
+                    <label class="bmd-label-floating custom-label">- الجامعة  </label>
+                    <mat-form-field>
+                      <mat-select placeholder="" formControlName="universty" name="">
+                        <mat-option *ngFor="let universty of universties" [value]="universty.value">
+                          {{universty.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6 padding">
+                    <label class="bmd-label-floating custom-label">-  الشهادة التي تحملها  </label>
+                    <mat-form-field>
+                      <mat-select placeholder="" formControlName="study_degree" name="study_degree">
+                        <mat-option *ngFor="let study_degree of certificate" [value]="study_degree.value">
+                          {{study_degree.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="bmd-label-floating custom-label">- المرحلة الدراسية الحالية </label>
+                    <mat-form-field>
+                      <mat-select placeholder="" formControlName="education_degree" name="education_degree">
+                        <mat-option *ngFor="let study_degree of study_degrees" [value]="study_degree.value" (click)="checkspEducation()">
+                          {{study_degree.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                      <label class="bmd-label-floating custom-label">- المستوى التعليمي  </label>
                       <mat-form-field>
                         <mat-select placeholder="" formControlName="Education_level" name="Education_level">
-                          <mat-option *ngFor="let study_degree of study_degrees" [value]="study_degree.value">
+                          <mat-option *ngFor="let study_degree of study_statuses" [value]="study_degree.value">
                             {{study_degree.viewValue}}
                           </mat-option>
                         </mat-select>
+
                       </mat-form-field>
                     </div>
+
                     <div class="col-md-6">
-                      <label class="bmd-label-floating custom-label">- التخصص العام</label>
-                      <mat-form-field>
-                        <mat-select placeholder="" formControlName="public_Major" name="public_Major">
-                          <mat-option *ngFor="let major of majors" (click)="checkspMajor()" [value]="major.value">
-                            {{major.viewValue}}
-                          </mat-option>
+                        <label class="bmd-label-floating custom-label">- التخصص العام  *</label>
+                        <mat-form-field>
+                          <mat-select placeholder="" formControlName="public_Major" name="public_Major">
+                            <mat-option *ngFor="let major of majors" (click)="checkspMajor()" [value]="major.value">
+                              {{major.viewValue}}
+                            </mat-option>
+                          </mat-select>
+
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-6">
+                        <label class="bmd-label-floating custom-label">- التخصص الدقيق  </label>
+                        <mat-form-field>
+                          <mat-select placeholder="" formControlName="spMajor" name="spMajor">
+                            <mat-option *ngFor="let spMajor of spMajors" [value]="spMajor.value">
+                              {{spMajor.viewValue}}
+                            </mat-option>
+                          </mat-select>
+
+                        </mat-form-field>
+                      </div>
+
+                      <div class="col-md-12">
+                          <label class='sweet-underline'>4-المهارات و الهوايات</label>
+                          <hr class="sweet-hr"/>
+
+                      </div>
+
+                      <div class="col-md-6 padding">
+                          <label class="bmd-label-floating custom-label">- مهارات العمل  </label>
+                          <mat-form-field>
+                              <mat-select placeholder="" formControlName="skills" name="skills" (selectionChange)="changed()"
+                              multiple>
+                              <mat-option *ngFor="let s of skillList" [value]="s.value">
+                                  {{s.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                        <div class="col-md-6 padding">
+                          <label class="bmd-label-floating custom-label">- المهارات الشخصية </label>
+                          <mat-form-field>
+                          <mat-select  placeholder="" formControlName="personal_Skills" name="personal_Skills"
+                          multiple (selectionChange)="changed2()">
+                          <mat-option *ngFor="let s of personal_SkillList" [value]="s.value">
+                              {{s.viewValue}}
+                            </mat-option>
                         </mat-select>
+
                       </mat-form-field>
-                    </div>
-                    <div class="col-md-6">
-                      <label class="bmd-label-floating custom-label">- التخصص الدقيق</label>
+                        </div>
+
+
+
+                  <div class="col-md-6">
+                      <label class="bmd-label-floating custom-label">- اللغات  </label>
                       <mat-form-field>
-                        <mat-select placeholder="" formControlName="spMajor" name="spMajor">
-                          <mat-option *ngFor="let spMajor of spMajors" [value]="spMajor.value">
-                            {{spMajor.viewValue}}
-                          </mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                    </div>
-                    <div class="col-md-6">
-                      <label class="bmd-label-floating custom-label">- اللغات</label>
-                      <mat-form-field>
-                        <mat-select placeholder="" formControlName="languages" name="languages" multiple>
+                        <mat-select  placeholder="" formControlName="languages" name="languages" multiple>
                           <mat-option *ngFor="let language of languageList" [value]="language">{{language}}</mat-option>
                         </mat-select>
+                        <mat-error *ngIf="userResumeForm.get('languages').invalid">هذا الحقل مطلوب</mat-error>
+
                       </mat-form-field>
                     </div>
+                 
                     <div class="col-md-6">
-                      <label class="bmd-label-floating custom-label">- مهارات العمل</label>
-                      <mat-form-field>
-                        <mat-select placeholder="" (selectionChange)="limitSkils()" formControlName="skills" name="skills" multiple>
-                          <mat-option *ngFor="let skill of skillList" [value]="skill">{{skill}}</mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                    </div>
-                    <div class="col-md-6">
-                      <label class="bmd-label-floating custom-label">- المهارات الشخصية</label>
-                      <mat-form-field>
-                        <mat-select placeholder="" (selectionChange)="limitPS()" formControlName="personal_Skills" name="personal_Skills"
-                          multiple>
-                          <mat-option *ngFor="let personal_Skill of personal_SkillList" [value]="personal_Skill">{{personal_Skill}}</mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                    </div>
-                    <div class="col-md-6">
-                      <label class="bmd-label-floating custom-label">- الهوايات</label>
+                      <label class="bmd-label-floating custom-label">- الهوايات </label>
                       <mat-form-field>
                         <mat-select placeholder="" formControlName="hoppies" name="hoppies" multiple>
                           <mat-option *ngFor="let hoppy of hoppyList" [value]="hoppy">{{hoppy}}</mat-option>
                         </mat-select>
+                        <mat-error *ngIf="userResumeForm.get('hoppies').invalid">هذا الحقل مطلوب</mat-error>
                       </mat-form-field>
                     </div>
-                    <div class="col-md-6">
-                      <label class="bmd-label-floating custom-label">- الحالة الآجتماعية</label>
-                      <mat-form-field>
-                        <mat-select placeholder="" formControlName="social_Status" name="social_Status">
-                          <mat-option *ngFor="let social_Status of social_Statuss" [value]="social_Status.value">
-                            {{social_Status.viewValue}}
-                          </mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                    </div>
-                    <div class="col-md-6">
-                      <label class="bmd-label-floating custom-label">- الموقع الشخصي</label>
-                      <mat-form-field class="example-full-width">
-                        <input matInput placeholder="" type="url" formControlName="personal_web" name="personal_web">
-                      </mat-form-field>
-                    </div>
-                    <div class="col-md-6">
-                      <label class="bmd-label-floating custom-label">- facebook link</label>
-                      <mat-form-field class="example-full-width">
-                        <input matInput placeholder="" type="url" formControlName="facebook" name="facebook">
-                      </mat-form-field>
-                    </div>
-                    <div class="col-md-6">
-                      <label class="bmd-label-floating custom-label">- twitter link</label>
-                      <mat-form-field class="example-full-width">
-                        <input matInput placeholder="" type="url" formControlName="twitter" name="twitter">
-                      </mat-form-field>
-                    </div>
-                    <div class="col-md-6">
-                      <label class="bmd-label-floating custom-label">- instagram link</label>
-                      <mat-form-field class="example-full-width">
-                        <input matInput placeholder="" type="url" formControlName="instagram" name="instagram">
-                      </mat-form-field>
-                    </div>
-                    <div class="col-md-6">
-                      <label class="bmd-label-floating custom-label">- linkedin link</label>
-                      <mat-form-field class="example-full-width">
-                        <input matInput placeholder="" type="url" formControlName="linkedin" name="linkedin">
-                      </mat-form-field>
-                    </div>
+
                     <div class="col-md-12">
-                      <label class="bmd-label-floating custom-label">- الوصف الشخصي</label>
-                      <mat-form-field class="example-full-width">
-                        <textarea matInput placeholder="" maxlength="200" formControlName="about" name="about"></textarea>
-                      </mat-form-field>
+                        <label class='sweet-underline'>5-التواصل الاجتماعي</label>
+                        <hr class="sweet-hr"/>
+
                     </div>
-                    <div class="col-md-12">
-                      <div class="card-footer">
-                        <button mat-raised-button type="submit" (click)='onSubmit()' class="btn btn-fill btn-primary">حفظ</button>
-                      </div>
+                
+                  <div class="col-md-6 padding">
+                    <label class="bmd-label-floating custom-label">- الموقع الشخصي</label>
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="" type="url" formControlName="personal_web" name="personal_web">
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6 padding">
+                    <label class="bmd-label-floating custom-label">- facebook link</label>
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="" type="url" formControlName="facebook" name="facebook">
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="bmd-label-floating custom-label">- twitter link</label>
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="" type="url" formControlName="twitter" name="twitter">
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="bmd-label-floating custom-label">- instagram link</label>
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="" type="url" formControlName="instagram" name="instagram">
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="bmd-label-floating custom-label">- linkedin link</label>
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="" type="url" formControlName="linkedin" name="linkedin">
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-12">
+                    <label class="bmd-label-floating custom-label">- الوصف الشخصي</label>
+                    <mat-form-field class="example-full-width">
+                      <textarea matInput placeholder="" maxlength="200" formControlName="about" name="about"></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="card-footer">
+                      <button mat-raised-button type="submit" class="btn btn-fill btn-primary">حفظ</button>
                     </div>
                   </div>
-                </form>
-              </div>
+                </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
+
+<script>
+    const select = document.querySelector('.multi-select');
+
+    select.addEventListener('change', (event) => {
+
+        // Count the number of selected values, you can use map or for loop or whatever you want,
+        // just be sure to get the "selected" attribute from the option to determine if it's selected
+        // or not
+        const selected = Object.values(select.options)
+            .filter(option => option.selected);
+
+
+        // get the length of the selected ones to handle the limit
+        if (selected.length > 3) {
+
+            //Get index of the last selected value to remove it from the selections
+            const last_index = selected.length - 1;
+
+            //loop through the select values ,and remove the final value selected
+            /* <<!! MAKE SURE THAT ANGULAR TAKES THE VALUE OF THE SELECT AFTER THIS SCRIPT,
+            I DON'T KNOW HOW ANGUALR HANDLE VALUES !!>> */
+            Object.values(select.options).map((option, index) => {
+                if (index === last_index) {
+                    option.selected = false;
+                }
+            });
+        }
+
+    });
+</script>

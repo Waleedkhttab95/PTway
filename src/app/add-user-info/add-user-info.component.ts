@@ -5,6 +5,7 @@ import {  FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../my-cv/user.service';
 import { JobService } from '../add-job/job.service';
 import swal from 'sweetalert2';
+declare var $: any;
 
 
 @Component({
@@ -49,7 +50,7 @@ export class AddUserInfoComponent implements OnInit {
     {value: 'HS', viewValue: 'ثانوية عامة'},
     {value: 'BHO', viewValue: 'بكالوريوس'},
     {value: 'MASTER', viewValue: 'ماستر'},
-    {value: 'diploma', viewValue: 'ديبلوم'},
+    {value: 'diploma', viewValue: 'دبلوم'},
     {value: 'Undergraduate', viewValue: 'خريج'}
   ];
 
@@ -57,7 +58,8 @@ export class AddUserInfoComponent implements OnInit {
     {value: 'HS', viewValue: 'ثانوية عامة'},
     {value: 'BHO', viewValue: 'بكالوريوس'},
     {value: 'MASTER', viewValue: 'ماستر'},
-    {value: 'diploma', viewValue: 'ديبلوم'}
+    {value: 'diploma', viewValue: 'دبلوم'},
+    {value: 'noncertificate', viewValue: 'لايوجد'}
   ];
 
   currentgender: string[];
@@ -175,7 +177,7 @@ export class AddUserInfoComponent implements OnInit {
     this.showSwal('warning-message');
     this.getcity();
     this.getSkills();
-    this.getPersonalskills();
+    this.getPersonalskills(); 
     this.getcountry();
     this.getmajors();
     this.getuniversty();
@@ -226,21 +228,22 @@ export class AddUserInfoComponent implements OnInit {
       this.study_statuses.push(
         {value: 'High-school-first-year', viewValue: 'اول ثانوي'},
         {value: 'High-school-second-year', viewValue: 'ثاني ثانوي'},
-        {value: 'High-school-third-year', viewValue: 'ثالث ثانوي'}
+        {value: 'High-school-third-year', viewValue: 'ثالث ثانوي'},
+        {value: 'High-school-fourth-year', viewValue: 'رابع ثانوي'}
       )
     }
    else if(this.educationId == "BHO") {
       this.study_statuses.push(
-        {value: 'University-first-year', viewValue: 'فصل أول'},
-    {value: 'University-second-year', viewValue: 'فصل ثاني'},
-    {value: 'University-third-year', viewValue: 'فصل ثالث'},
-    {value: 'University-forth-year', viewValue: 'فصل رابع'},
-    {value: 'University-fith-year', viewValue: 'فصل خامس'},
-    {value: 'University-sixth-year', viewValue: 'فصل سادس'},
-    {value: 'University-seventh-year', viewValue: 'فصل سابع'},
-    {value: 'University-eigth-year', viewValue: 'فصل ثامن'},
-    {value: 'University-ninth-year', viewValue: 'فصل تاسع'},
-    {value: 'University-ten-year', viewValue: 'فصل عاشر'},
+        {value: 'University-first-year', viewValue: 'مستوى أول'},
+    {value: 'University-second-year', viewValue: 'مستوى ثاني'},
+    {value: 'University-third-year', viewValue: 'مستوى ثالث'},
+    {value: 'University-forth-year', viewValue: 'مستوى رابع'},
+    {value: 'University-fith-year', viewValue: 'مستوى خامس'},
+    {value: 'University-sixth-year', viewValue: 'مستوى سادس'},
+    {value: 'University-seventh-year', viewValue: 'مستوى سابع'},
+    {value: 'University-eigth-year', viewValue: 'مستوى ثامن'},
+    {value: 'University-ninth-year', viewValue: 'مستوى تاسع'},
+    {value: 'University-ten-year', viewValue: 'مستوى عاشر'},
       )
     }
 
@@ -294,16 +297,38 @@ export class AddUserInfoComponent implements OnInit {
     }
   
     var img = <HTMLInputElement>document.getElementById('file');
-    
-    if(img.files.length > 0){
-      console.log("false")
-      img.disabled = false;
-    }
-    else{
-      console.log("true")
 
-      img.disabled = true;
-    }
+    if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1) {
+      console.log("input file 1")
+      var $inputs = $('input[type="file"]:not([disabled])', this.userResumeForm);
+      $inputs.each(function(_, input) {
+          if (img.files.length > 0) return
+          $(input).prop('disabled', true);
+      });
+  }
+  
+  
+  
+  // Re-enable empty file fields after creating FormData.
+  if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1) {
+    console.log("input file 2")
+
+      $inputs.prop('disabled', false);
+  }
+
+
+
+    // var img = <HTMLInputElement>document.getElementById('file');
+    
+    // if(img.files.length > 0){
+    //   console.log("false")
+    //   img.disabled = false;
+    // }
+    // else{
+    //   console.log("true")
+
+    //   img.disabled = true;
+    // }
 console.log(this.userResumeForm.value)
   this.rest.addUserInfo(this.userResumeForm.value);
   }

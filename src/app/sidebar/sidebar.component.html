@@ -50,17 +50,19 @@
             </a>
         </li>
         <li routerLinkActive="active" class="nav-item">
+                <a [routerLink]="['/my-projects']" class="nav-link">
+                    <i class="material-icons">next_week</i>
+                    <p>المشاريع الخاصة بي</p>
+                </a>
+            </li>
+            
+        <li routerLinkActive="active" class="nav-item">
             <a [routerLink]="['/add-job']" class="nav-link">
                 <i class="material-icons">rate_review</i>
                 <p>اضافة عرض عمل</p>
             </a>
         </li>
-        <li routerLinkActive="active" class="nav-item">
-            <a [routerLink]="['/my-projects']" class="nav-link">
-                <i class="material-icons">next_week</i>
-                <p>المشاريع الخاصة بي</p>
-            </a>
-        </li>
+      
         <li routerLinkActive="active" class="nav-item">
             <a (click)="logout()" [routerLink]="['null']" class="nav-link">
                 <i class="material-icons">input</i>

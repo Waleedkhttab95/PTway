@@ -20,23 +20,43 @@ module.exports = (app) =>{
               const city= req.body.city;
               const gender= req.body.gender;
               // const  personal_Skills= req.body.personal_Skills;
-              const public_Major = req.body.public_Major;
+              // const public_Major = req.body.public_Major;
               const jobAd = req.body.jobAd;
+              
+        if(gender == "both") {
+            const result = await UserInfo
+            .find({ country: country,city: city})
+            .select("user");
 
-        const result = await UserInfo
-        .find({ country: country,city: city
-        ,gender: gender,public_Major: public_Major })
-        .select("user");
-            console.log("send noti"+req.body.jobAd)
-        result.forEach(function(r) {
-           new Notification({
-            content : jobAd,
-            user : r.user,
-            isRead: false
-           }).save();
-        })
+            result.forEach(function(r) {
+                new Notification({
+                 content : jobAd,
+                 user : r.user,
+                 isRead: false
+                }).save();
+             })
+     
+             res.status(200).send("Done .");
+        }
+        else {
+            const result = await UserInfo
+            .find({ country: country,city: city
+            ,gender: gender})
+            .select("user");
 
-        res.status(200).send("Done .");
+            result.forEach(function(r) {
+                new Notification({
+                 content : jobAd,
+                 user : r.user,
+                 isRead: false
+                }).save();
+             })
+     
+             res.status(200).send("Done .");
+        }
+    
+
+    
     });
 
    

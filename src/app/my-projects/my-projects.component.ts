@@ -19,9 +19,12 @@ declare const $: any;
 export class MyProjectsComponent implements OnInit {
   rowDataMainForm: any;
   isLoading = false;
+  count: number = 0;
+
   Dtable() {
     setTimeout(function () {
       $('#datatables').DataTable({
+     
         "pagingType": "full_numbers",
         "lengthMenu": [
           [10, 25, 50, -1],
@@ -30,7 +33,17 @@ export class MyProjectsComponent implements OnInit {
         responsive: true,
         language: {
           search: "_INPUT_",
-          searchPlaceholder: "Search records",
+          searchPlaceholder: "بحث",
+          sInfo: "عرض _START_ الى _END_ من _TOTAL_ ",
+          sLengthMenu:"عرض _MENU_ ",
+          sZeroRecords: "لا يوجد نتائج",
+          sEmptyTable: "لا يوجد نتائج",
+          oPaginate: {
+            sFirst:    "الأولى",
+            sLast:     "الأخيرة",
+            sNext:     "التالية",
+            sPrevious: "السابقة" 
+        },
         }
   
       });
@@ -62,7 +75,7 @@ export class MyProjectsComponent implements OnInit {
 
     this.isLoading=true;
     this.dataTable = {
-      headerRow: ['اسم المشروع', 'تعديل المشروع', 'حذف المشروع'],
+      headerRow: ['#','اسم المشروع', 'تعديل المشروع', 'حذف المشروع','اضافة اعلان وظيفي'],
 
       dataRows: [
       ]
@@ -75,13 +88,15 @@ export class MyProjectsComponent implements OnInit {
 
   fetchData() {
     this.projectService.getprojects().subscribe(response => {
-
       for (var i = 0; i < response.count; i++) {
         this.dataRows.push(response.projectName[i]);
         this.idRows.push(response.id[i]);
+        this.count +=1;
         this.dataTable.dataRows.push([
+          this.count,
           this.dataRows[i],
-          this.idRows[i]
+          this.idRows[i],
+         
         ])
       }
       this.Dtable()

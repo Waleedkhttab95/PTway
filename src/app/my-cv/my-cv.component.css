@@ -43,6 +43,10 @@ h5{
     font-size: 1.2rem;
 }
 
+.center-prog{
+   width:800px; 
+   margin:0 auto;
+}
 
 .resume-info{
     padding: 30px 6px;
@@ -204,3 +208,13 @@ h5{
     
 }
 
+.first{
+    height: 100px;
+    width: 100%;
+    background: #ddd;
+}
+
+.second{
+    height: 10px;
+    background: #009200;
+}

@@ -78,6 +78,14 @@ export class JobService {
            
             ;
     }
+
+    getJobPreview(id: String) {
+        return this.http
+             .get(BackUrl + '/preview/getjob?id=' + id)
+            
+             ;
+     }
+    
     
     deleteJob(id: String) {
       return this.http
@@ -139,7 +147,7 @@ export class JobService {
     showSwal(type){
         if (type == 'secc') {
         swal({
-          title: "تمت عملية الإضافة بنجاح!",
+          title: "تم إرسال طلبكم ,وسوف يتم عرض المتقدمين في قائمة المرشحين",
           buttonsStyling: false,
           confirmButtonText:'نعم',
           type:'success',

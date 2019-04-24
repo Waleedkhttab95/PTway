@@ -18,7 +18,7 @@ declare const $: any;
   styleUrls: ['./acceptance-list.component.css']
 })
 export class AcceptanceListComponent implements OnInit {
-
+countOfRows: number =0;
   Dtable() {
     setTimeout(function () {
       $('#datatables').DataTable({
@@ -30,7 +30,17 @@ export class AcceptanceListComponent implements OnInit {
         responsive: true,
         language: {
           search: "_INPUT_",
-          searchPlaceholder: "Search records",
+          searchPlaceholder: "بحث",
+          sInfo: "عرض _START_ الى _END_ من _TOTAL_ ",
+          sLengthMenu:"عرض _MENU_ ",
+          sZeroRecords: "لا يوجد نتائج",
+          sEmptyTable: "لا يوجد نتائج",
+          oPaginate: {
+            sFirst:    "الأولى",
+            sLast:     "الأخيرة",
+            sNext:     "التالية",
+            sPrevious: "السابقة" 
+        },
         }
   
       });
@@ -64,14 +74,15 @@ export class AcceptanceListComponent implements OnInit {
 
      this.authService.autoAuthUser();
      this.offerService.getAcceptence(this.jobId).subscribe(response =>{
-
+      
       for(var i=0 ; i < response.count ; i++) {
            this.dataRows.push(response.username[i]);
            this.idRows.push(response.AcceptedNames[i]);
-
+          this.countOfRows +=1;
          
 
            this.dataTable.dataRows.push([
+             this.countOfRows,
             this.dataRows[i],
             this.idRows[i]
           ])
@@ -80,7 +91,7 @@ export class AcceptanceListComponent implements OnInit {
      this.Dtable()
       });
     this.dataTable = {
-      headerRow: [ 'الأسم', 'اجرائات العقد' ],
+      headerRow: ['#', 'الأسم', 'اجرائات العقد' ],
 
       dataRows: [
      

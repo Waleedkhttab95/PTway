@@ -4,6 +4,7 @@ import { JobService } from '../add-job/job.service';
 import { MyProjectsComponent } from '../my-projects/my-projects.component';
 import { DataService } from '../data.service';
 import swal from 'sweetalert2';
+import { ActivatedRoute } from '@angular/router';
 declare interface DataTable {
   headerRow: string[];
   dataRows: string[][];
@@ -29,7 +30,17 @@ export class MyOffersComponent implements OnInit {
         responsive: true,
         language: {
           search: "_INPUT_",
-          searchPlaceholder: "Search records",
+          searchPlaceholder: "بحث",
+          sInfo: "عرض _START_ الى _END_ من _TOTAL_ ",
+          sLengthMenu:"عرض _MENU_ ",
+          sZeroRecords: "لا يوجد نتائج",
+          sEmptyTable: "لا يوجد نتائج",
+          oPaginate: {
+            sFirst:    "الأولى",
+            sLast:     "الأخيرة",
+            sNext:     "التالية",
+            sPrevious: "السابقة" 
+        },
         }
   
       });
@@ -67,7 +78,7 @@ export class MyOffersComponent implements OnInit {
       this.isLoading = false;
     });
     this.dataTable = {
-      headerRow: ['اسم الإعلان', 'قائمة المرشحين', 'قائمة المقبولين', 'حذف الإعلان'],
+      headerRow: ['اسم الإعلان','استعراض الإعلان', 'قائمة المرشحين', 'قائمة المقبولين', 'حذف الإعلان'],
       dataRows: []
     };
   }
@@ -75,6 +86,9 @@ export class MyOffersComponent implements OnInit {
     this.data.storeDataJob(id);
   }
 
+  onPreview(id) {
+    this.data.storeDataJob(id);
+  }
   onAccepted(id) {
     this.data.storeDataJob(id);
   }

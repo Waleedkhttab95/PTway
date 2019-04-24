@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import {environment} from '../../environments/environment'
 import { ProjectData } from './project-data.model';
 import swal from 'sweetalert2';
+import { DataService } from '../data.service';
 
 const BackUrl = environment.BackUrl;
 @Injectable({ providedIn: 'root' })
@@ -16,7 +17,7 @@ export class ProjectService {
 
     private project: ProjectData[] = [];
     projectId: String;
-    constructor(private http: HttpClient, private router: Router) {}
+    constructor(private http: HttpClient, private router: Router, private data: DataService) {}
 
     addproject(data: any) {
       this.http
@@ -44,6 +45,7 @@ export class ProjectService {
         const response =  this.http
         .put(BackUrl+ '/put/project', data,{ responseType: 'text'})
         .subscribe(responseData => {
+          this.data.changeStatus(false);
            this.router.navigate(['/my-projects']);
         });;
     }

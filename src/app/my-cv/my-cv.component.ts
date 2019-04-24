@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './user.service';
 import { AuthService } from '../auth/auth.service';
+import swal from 'sweetalert2';
+import { Router } from '@angular/router';
+declare var $: any;
 
 @Component({
   selector: 'app-my-cv',
@@ -8,7 +11,7 @@ import { AuthService } from '../auth/auth.service';
   styleUrls: ['./my-cv.component.css']
 })
 export class MyCvComponent implements OnInit {
-
+  progress: any = 40;
   country: string = "";
   study_degree : string = "";
   fullName:  string = "";
@@ -36,18 +39,17 @@ export class MyCvComponent implements OnInit {
   imagePath:  string = "./assets/img/avatar.png";
   isLoading = false;
 
-  constructor(public userService: UserService, public authService: AuthService) { }
+  constructor(public userService: UserService, public authService: AuthService, private router: Router) { }
 
   ngOnInit() {
 
-
+   
     localStorage.removeItem('offer');
 
       // to get user info
       this.isLoading = true;
       this.userService.getUserInfo().subscribe((res: any) =>{
    
-       
 
         // the same syntax res. 
         this.handling(res);
@@ -68,12 +70,15 @@ export class MyCvComponent implements OnInit {
         this.hoppies=  res.hoppies;
         this.social_Status=  this.social_Status;
         
-
+        this.progressBar()
    
 
         this.isLoading = false;
      
-    })
+    }, error => {
+      console.log("error")
+    this.onSwal()
+    });
 
 
   }
@@ -93,16 +98,16 @@ export class MyCvComponent implements OnInit {
     if(res.Education_level == 'High-school-first-year') this.Education_level = "اول ثانوي";
     else if(res.Education_level == 'High-school-second-year') this.Education_level = "ثاني ثنوي";
     else if(res.Education_level == 'High-school-third-year') this.Education_level = "ثالث ثنوي";
-    else if(res.Education_level == 'University-first-year') this.Education_level = "فصل أول بكالوريوس";
-    else if(res.Education_level == 'University-second-year') this.Education_level =  "فصل ثاني بكالوريوس";
-    else if(res.Education_level == 'University-third-year') this.Education_level = "فصل ثالث بكالوريوس";
-    else if(res.Education_level == 'University-forth-year') this.Education_level =  "فصل رابع بكالوريوس";
-    else if(res.Education_level == 'University-fith-year') this.Education_level =  "فصل خامس بكالوريوس";
-    else if(res.Education_level == 'University-sixth-year') this.Education_level =  "فصل سادس بكالوريوس";
-    else if(res.Education_level == 'University-seventh-year') this.Education_level =  "فصل سابع بكالوريوس";
-    else if(res.Education_level == 'University-eigth-year') this.Education_level =  "فصل ثامن بكالوريوس";
-    else if(res.Education_level == 'University-ninth-year') this.Education_level =  "فصل تاسع بكالوريوس";
-    else if(res.Education_level == 'University-ten-year') this.Education_level = "فصل عاشر بكالوريوس";
+    else if(res.Education_level == 'University-first-year') this.Education_level = "مستوى أول بكالوريوس";
+    else if(res.Education_level == 'University-second-year') this.Education_level =  "مستوى ثاني بكالوريوس";
+    else if(res.Education_level == 'University-third-year') this.Education_level = "مستوى ثالث بكالوريوس";
+    else if(res.Education_level == 'University-forth-year') this.Education_level =  "مستوى رابع بكالوريوس";
+    else if(res.Education_level == 'University-fith-year') this.Education_level =  "مستوى خامس بكالوريوس";
+    else if(res.Education_level == 'University-sixth-year') this.Education_level =  "مستوى سادس بكالوريوس";
+    else if(res.Education_level == 'University-seventh-year') this.Education_level =  "مستوى سابع بكالوريوس";
+    else if(res.Education_level == 'University-eigth-year') this.Education_level =  "مستوى ثامن بكالوريوس";
+    else if(res.Education_level == 'University-ninth-year') this.Education_level =  "مستوى تاسع بكالوريوس";
+    else if(res.Education_level == 'University-ten-year') this.Education_level = "مستوى عاشر بكالوريوس";
     else if(res.Education_level == 'master-first-year') this.Education_level = "اول ماستر";
     else if(res.Education_level == 'master-second-year') this.Education_level = "ثاني ماستر";
     else if(res.Education_level == 'master-third-year') this.Education_level = "ثالث ماستر";
@@ -118,7 +123,6 @@ export class MyCvComponent implements OnInit {
     if(res.facebook != "null") this.facebook= res.facebook ;
     if(res.twitter != "null") this.twitter= res.twitter ;
     if(res.instagram != "null") this.instagram= res.instagram ;
-    if(res.linkedin != "null") this.linkedin= res.linkedin ;
     if(res.linkedin != "null") this.linkedin= res.linkedin ;
     if(res.imagePath != "null") this.imagePath= res.imagePath ;
   }
@@ -140,5 +144,27 @@ export class MyCvComponent implements OnInit {
     
    const currentDate = mm + '/' + dd + '/' + yyyy;
     return currentDate;
+  }
+
+  progressBar() {
+    if(this.mobile != "") this.progress += 5;
+    if(this.social_Status != "") this.progress += 5;
+    if(this.study_degree != "") this.progress += 5;
+    if(this.education_degree != "") this.progress += 5;
+    if(this.Education_level != "") this.progress += 5;
+    if(this.universty != "") this.progress += 5;
+    if(this.spMajor != "") this.progress += 5;
+    if(this.skills != "") this.progress += 5;
+    if(this.personal_Skills != "") this.progress += 5;
+    if(this.hoppies != "") this.progress += 5;
+    if(this.languages != "") this.progress += 5;
+    if(this.instagram != "" || this.facebook != "" || this.twitter != "" 
+    ||this.linkedin != "" ||this.personal_web != "" || this.about != "") this.progress += 5;
+  }
+
+
+
+  onSwal() {
+    this.router.navigate(['/add-user-info']);
   }
 }

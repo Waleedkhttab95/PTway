@@ -13,7 +13,7 @@ const adSchema = new Schema({
    city: {type: mongoose.Schema.Types.ObjectId, ref:'City', required:true},
   // study_status: {type:String,  required:true},
   // education_degree:{type: String, required:true},
-   public_Major: {type: mongoose.Schema.Types.ObjectId, ref:'Public_Major', required:true},
+  // public_Major: {type: mongoose.Schema.Types.ObjectId, ref:'Public_Major'},
   // spicifc_Major: {type:String, required:true},
    work_hours: {type:Number, required:true},
    work_days: {type:Number, required:true},

@@ -10,6 +10,8 @@ import { MaterialModule } from '../app.module';
 import { MyCvRoutes } from './my-cv.routing';
 import { FormGroup } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material';
+import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
+
 
 @NgModule({
   declarations: [MyCvComponent],
@@ -20,6 +22,12 @@ import { MatProgressSpinnerModule } from '@angular/material';
     FormsModule,
     ReactiveFormsModule,
     NouisliderModule,
+    SweetAlert2Module.forRoot({
+      buttonsStyling: false,
+      customClass: 'modal-content',
+      confirmButtonClass: 'btn btn-primary',
+      cancelButtonClass: 'btn'
+  }),
     TagInputModule,
     MaterialModule
   ]

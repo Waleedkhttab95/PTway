@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CompanyService } from '../company-profile/company.service';
+import { ActivatedRoute ,ParamMap } from '@angular/router';
 
 
 @Component({
@@ -10,9 +11,13 @@ import { CompanyService } from '../company-profile/company.service';
 export class AddJobComponent implements OnInit, OnDestroy{
   test: Date = new Date();
   isVolunteer= false;
-  constructor(public companyService:CompanyService) { }
+  constructor(public companyService:CompanyService,  public route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.paramMap.subscribe((paramMap: ParamMap) =>{
+console.log(paramMap.get('jobId'))
+    })
+
     this.companyService.getCompanySector().subscribe((res:any) =>{
       console.log(res)
       if(res == "VO") this.isVolunteer = true;

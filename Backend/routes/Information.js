@@ -15,8 +15,8 @@ module.exports = (app) => {
     //post user information
     app.post('/api/postuserinfo',auth,file, (req, res) => {
         
-        var universty 
-        var spMajor 
+        var universty = null;
+        var spMajor = null;
        var skills = [];
        var personal_Skills = [] ;
         const url = req.protocol + '://' + req.get("host");     
@@ -34,7 +34,8 @@ module.exports = (app) => {
             if(req.body.personal_Skills != 'null') personal_Skills = req.body.personal_Skills ;
 
 
-            
+            //console.log(req.body)
+
           
             new UserInfo({
                 user: req.user._id,
@@ -64,7 +65,7 @@ module.exports = (app) => {
                 linkedin: req.body.linkedin,
              }).save()
                  .then(user => {
-
+                    console.log(user)
                     res.send(user);
                  });
         } catch(ex) {
@@ -188,6 +189,22 @@ module.exports = (app) => {
         }
      
     })
+
+
+        //Get user info by USerID for edit
+        app.get('/api/getuserinfo/edit', auth, async (req, res) => {
+            //const id = req.query.id;
+            const info = await UserInfo.findOne({ 'user': req.user._id });
+            if (!info) return res.status(401).send('not found');
+   console.log("user info : " + info)
+                    res.status(200).json({
+                        info: info
+                    });
+                
+            })
+         
+        
+
 
       //Get user info by ID
       app.get('/api/get/userinfo', auth, async (req, res) => {
@@ -323,32 +340,47 @@ module.exports = (app) => {
         }
       
     })
-    app.put('/api/put/userinfo', auth,file,async (req, res) => {
-    
-        let imPath = req.body.imagePath;
-        if(req.file) {
-          const url = req.protocol + '://' + req.get("host");
-          imPath= url + "/images/" + req.file.filename
+    app.put('/api/put/userinfo', auth,async (req, res) => {
+   
+        var universty 
+        var spMajor 
+       var skills = [];
+       var personal_Skills = [] ;
+        const url = req.protocol + '://' + req.get("host");     
+        var imagePath = '';
+        if(!req.file){
+           imagePath = "null"
         }
+        else{
+            imagePath= url + "/images/" + req.file.filename;
+        }
+        try{
+            if(req.body.universty != 'null') universty = req.body.universty ;
+            if(req.body.spMajor != 'null') spMajor = req.body.spMajor ;
+            if(req.body.skills != 'null') skills = req.body.skills ;
+            if(req.body.personal_Skills != 'null') personal_Skills = req.body.personal_Skills ;
 
-        const info = await UserInfo.updateOne({ 'user': req.user.id },
+
+            console.log("the body :"+req.body.universty)
+        const info = await UserInfo.updateOne({ 'user': req.user._id },
             {
                 $set: {
                     country: req.body.country,
-                    study_status: req.body.study_status,
                     study_degree: req.body.study_degree,
+                    fullName: req.body.fullName,
+                  //  imagePath:imagePath,
                     education_degree: req.body.education_degree,
                     gender: req.body.gender,
-                    imagePath: imPath,
                     mobile: req.body.mobile,
                     birthDate: req.body.birthDate,
+                    universty: universty,
                     city: req.body.city,
                     Education_level: req.body.Education_level,
                     public_Major: req.body.public_Major,
-                    spicifc_Major: req.body.spicifc_Major,
+                    spMajor: spMajor,
                     languages: req.body.languages,
-                    skills: req.body.skills,
-                    personal_Skills: req.body.personal_Skills,
+                    skills: skills,
+                    personal_Skills: personal_Skills,
                     hoppies: req.body.hoppies,
                     social_Status: req.body.social_Status,
                     about: req.body.about,
@@ -362,7 +394,12 @@ module.exports = (app) => {
         )//condition
         if (!info) return res.status(401).send('not found');
         
-        res.status(200).send("Updated");
+        res.status(200).json({
+            message: "Successful !"
+        });
+    }catch(ex) {
+        console.log(ex)
+    }
     })
 
     app.put('/api/put/companyinfo',auth,file, async (req,res) => {

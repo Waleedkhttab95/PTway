@@ -33,3 +33,50 @@
 .custom-label{
     float: right;
 }
+
+
+
+hr.sweet-hr {
+    overflow: visible; /* For IE */
+    height: 30px;
+    border-style: solid;
+    border-color: rgb(114, 113, 113);
+    border-width: 1px 0 0 0;
+    border-radius: 20px;
+    margin-bottom: 0px;
+}
+hr.sweet-hr:before { /* Not really supposed to work, but does */
+    display: block;
+    content: "";
+    height: 30px;
+    margin-top: -31px;
+    border-style: solid;
+    border-color: rgb(88, 88, 88);
+    border-width: 0 0 1px 0;
+    border-radius: 20px;
+}
+
+
+.sweet-underline{
+    margin-top: 17px;
+    direction: rtl;
+    text-align: right;
+    font-weight: bold;
+    font-size: 15px;
+    display: block;
+    color: rgb(63, 63, 63);
+}
+
+
+
+.padding{
+    padding-top: 25px;
+    
+}
+
+@media(max-width:575px){
+
+    .image-card{
+        margin-left: 30px;
+    }
+}

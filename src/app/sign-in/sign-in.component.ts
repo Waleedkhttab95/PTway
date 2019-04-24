@@ -26,6 +26,7 @@ export class SignInComponent implements OnInit, OnDestroy {
   submitted = false;
   returnUrl: string;
   mood: boolean = true;
+  notAuth= false;
   signAs: string = "عضو";
   constructor(private element: ElementRef,
     public authService: AuthService, private route: ActivatedRoute, private router: Router,
@@ -48,29 +49,49 @@ export class SignInComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    var navbar: HTMLElement = this.element.nativeElement;
-    this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
-    const body = document.getElementsByTagName('body')[0];
-    body.classList.add('login-page');
-    body.classList.add('off-canvas-sidebar');
-    const card = document.getElementsByClassName('card')[0];
-    this.userMood();
-    setTimeout(function () {
-      // after 1000 ms we add the class animated to the login/register card
-      card.classList.remove('card-hidden');
-    }, 700);
 
-   
-    this.userloginForm = this.fb.group({
-      email: new FormControl(),
-      password: new FormControl()
-    });
+    this.authService.autoAuthUser();
+    const isAuth = this.authService.getIsAuth();
+    const isCompany = this.authService.getIsCompany();
 
-    this.authStatusSub = this.authService.getAuthStatusListener().subscribe(
-      authStatus => {
-        this.isLoading = false;
-      }
-    );
+    if (isAuth && isCompany == 'false') {
+      console.log('is user')
+      this.router.navigate(['/my-cv']);
+    }
+    else if (isAuth && isCompany == 'true') {
+      console.log('is company')
+
+      this.router.navigate(['/dashboard']);
+    }
+    else {
+      console.log('not auth')
+
+      this.notAuth = true;
+      var navbar: HTMLElement = this.element.nativeElement;
+      this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
+      const body = document.getElementsByTagName('body')[0];
+      body.classList.add('login-page');
+      body.classList.add('off-canvas-sidebar');
+      const card = document.getElementsByClassName('card')[0];
+      this.userMood();
+      setTimeout(function () {
+        // after 1000 ms we add the class animated to the login/register card
+        card.classList.remove('card-hidden');
+      }, 700);
+  
+     
+      this.userloginForm = this.fb.group({
+        email: new FormControl(),
+        password: new FormControl()
+      });
+  
+      this.authStatusSub = this.authService.getAuthStatusListener().subscribe(
+        authStatus => {
+          this.isLoading = false;
+        }
+      );
+    }
+ 
   }
   sidebarToggle() {
     var toggleButton = this.toggleButton;
@@ -92,7 +113,7 @@ export class SignInComponent implements OnInit, OnDestroy {
     const body = document.getElementsByTagName('body')[0];
     body.classList.remove('login-page');
     body.classList.remove('off-canvas-sidebar');
-    this.authStatusSub.unsubscribe();
+    if(this.notAuth) this.authStatusSub.unsubscribe();
   }
 
   companyMood(){

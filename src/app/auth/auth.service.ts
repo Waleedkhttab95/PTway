@@ -146,7 +146,15 @@ export class AuthService {
 
 
   autoAuthUser() {
-    this.token = this.getAuthData().token;
+    if(this.getAuthData().token == undefined){
+      console.log("hh")
+      this.token = this.getAuthData().token;
+
+    }
+    else{
+      console.log("hh")
+      return null
+    }
     this.isAuth = true;
     this.isCompany = this.getAuthData().isCompany;
     this.companyName = this.getAuthData().companyName;
@@ -206,7 +214,10 @@ export class AuthService {
     const companyName = localStorage.getItem('companyName');
 
     if (!token) {
-      return;
+      
+      return {
+        token: null
+      } ;
     }
     return {
       token: token,

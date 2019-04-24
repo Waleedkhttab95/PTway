@@ -44,6 +44,7 @@ export class LongTermComponent implements OnInit {
     genders = [
       { value: 'ذكر', viewValue: 'ذكر' },
       { value: 'انثى', viewValue: 'انثى' },
+      { value: 'both', viewValue: 'ذكر و انثى' }
     ];
   
     languages = new FormControl();
@@ -161,8 +162,8 @@ export class LongTermComponent implements OnInit {
           {validators: [Validators.required]}),
         gender: new FormControl(null ,
            {validators: [Validators.required]}),
-        public_Major: new FormControl(null ,
-           {validators: [Validators.required]}),
+        // public_Major: new FormControl(null ,
+        //    {validators: [Validators.required]}),
         startDate: new FormControl(null ,
            {validators: [Validators.required]}),
         projects: new FormControl(null ,
@@ -172,7 +173,7 @@ export class LongTermComponent implements OnInit {
            description: new FormControl(null ,
             {validators: [Validators.required]}),
         work_hours: new FormControl(1 ,
-           {validators: [Validators.required,Validators.min(1), Validators.max(8)]}),
+           {validators: [Validators.required,Validators.min(1), Validators.max(6)]}),
         work_days: new FormControl(null ,
            {validators: [Validators.required]}),
         salary: new FormControl(1500 ,
@@ -200,7 +201,7 @@ export class LongTermComponent implements OnInit {
         startDate: this.addJobForm.value.startDate,
         country: this.addJobForm.value.country,
         city: this.addJobForm.value.city,
-        public_Major: this.addJobForm.value.public_Major,
+     //   public_Major: this.addJobForm.value.public_Major,
         work_hours: this.addJobForm.value.work_hours,
         descreption: this.addJobForm.value.description,
         work_days: this.addJobForm.value.work_days,

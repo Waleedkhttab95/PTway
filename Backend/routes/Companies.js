@@ -227,6 +227,29 @@ module.exports = (app) => {
             });
         });
 
+        // get job preview ( for companies)
+        app.get('/api/preview/getjob',auth, async (req,res) =>{
+            const id = req.query.id;
+          
+           const job= await JobAd.findById(id);
+            if(!job) return res.status(401).send('not found');
+            const countres = await Country.findById(job.country);
+            const cites = await City.findById(job.city);
+            const contract = await Contract.findById(job.contract);
+            const public_Major = await publicMajor.findById(job.public_Major);
+            const result = await Notification.findOne({'content' : id , 'user' : req.user._id});
+
+        
+            res.status(200).json({
+                job: job,
+                Country: countres.countryName,
+                City: cites.cityName,
+                Contract: contract.contractName,
+                contractType: contract.days,
+                public_Major: public_Major.majorName
+            });
+        });
+
            //Get requierd number of staff
            app.get('/api/getjob/req',auth, async (req,res) =>{
             const id = req.query.id;

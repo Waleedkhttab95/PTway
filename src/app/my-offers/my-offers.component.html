@@ -34,6 +34,11 @@
                   <tr *ngFor="let row of dataTable.dataRows; let rowIndex = index">
                     <td><a >{{row[0]}}</a></td>
                     <td>
+                      <button mat-raised-button class="btn btn-primary btn-round" (click)="onPreview(row[1])"
+                        [routerLink]="['/job-offer-preview']">استعراض
+                      </button>
+                    </td>
+                    <td>
                       <button mat-raised-button class="btn btn-primary btn-round" (click)="onCandidates(row[1])"
                         [routerLink]="['/candidates-list']">عرض القائمة 
                       </button>

@@ -33,7 +33,17 @@ export class CandidatesListComponent implements OnInit {
         responsive: true,
         language: {
           search: "_INPUT_",
-          searchPlaceholder: "Search records",
+          searchPlaceholder: "بحث",
+          sInfo: "عرض _START_ الى _END_ من _TOTAL_ ",
+          sLengthMenu:"عرض _MENU_ ",
+          sZeroRecords: "لا يوجد نتائج",
+          sEmptyTable: "لا يوجد نتائج",
+          oPaginate: {
+            sFirst:    "الأولى",
+            sLast:     "الأخيرة",
+            sNext:     "التالية",
+            sPrevious: "السابقة" 
+        },
         }
   
       });

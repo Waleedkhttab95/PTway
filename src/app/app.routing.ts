@@ -28,11 +28,19 @@ export const AppRoutes: Routes = [
         path: 'add-project',
         canActivate:[Auth_company_Guard],
         loadChildren: './add-project/add-project.module#AddProjectModule'
-    }, {
+    }, 
+    {
         path: 'add-job',
         canActivate:[Auth_company_Guard],
         loadChildren: './add-job/add-job.module#AddJobModule'
     },
+   
+    {
+        path: 'add-job/:jobId',
+        canActivate:[Auth_company_Guard],
+        loadChildren: './add-job/add-job.module#AddJobModule'
+    },
+    
     {
         path: 'short-term',
         canActivate:[Auth_company_Guard],
@@ -62,7 +70,7 @@ export const AppRoutes: Routes = [
         loadChildren: './job-offer-check/job-offer-check.module#JobOfferCheckModule'
     }, {
         path: 'job-offer-preview',
-        canActivate:[AuthGuard],
+        canActivate:[Auth_company_Guard],
         loadChildren: './job-offer-preview/job-offer-preview.module#JobOfferPreviewModule'
     }, {
         path: 'my-offers',
