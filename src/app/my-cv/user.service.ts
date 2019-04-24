@@ -78,7 +78,7 @@ export class UserService {
         postData.append ('instagram',data.instagram);
         postData.append ('linkedin',data.linkedin);
 
-       postData.append ('image',data.image,data.fullName);
+      // postData.append ('image',data.image,data.fullName);
 
 
 
