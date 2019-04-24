@@ -210,7 +210,7 @@ module.exports = (app) => {
             const countres = await Country.findById(job.country);
             const cites = await City.findById(job.city);
             const contract = await Contract.findById(job.contract);
-            const public_Major = await publicMajor.findById(job.public_Major);
+          //  const public_Major = await publicMajor.findById(job.public_Major);
             const result = await Notification.findOne({'content' : id , 'user' : req.user._id});
 
             if(result.isRead == false){
@@ -223,7 +223,7 @@ module.exports = (app) => {
                 City: cites.cityName,
                 Contract: contract.contractName,
                 contractType: contract.days,
-                public_Major: public_Major.majorName
+             //   public_Major: public_Major.majorName
             });
         });
 
@@ -236,7 +236,7 @@ module.exports = (app) => {
             const countres = await Country.findById(job.country);
             const cites = await City.findById(job.city);
             const contract = await Contract.findById(job.contract);
-            const public_Major = await publicMajor.findById(job.public_Major);
+          //  const public_Major = await publicMajor.findById(job.public_Major);
             const result = await Notification.findOne({'content' : id , 'user' : req.user._id});
 
         
@@ -246,7 +246,7 @@ module.exports = (app) => {
                 City: cites.cityName,
                 Contract: contract.contractName,
                 contractType: contract.days,
-                public_Major: public_Major.majorName
+               // public_Major: public_Major.majorName
             });
         });
 

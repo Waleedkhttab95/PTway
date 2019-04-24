@@ -123,6 +123,7 @@ module.exports = (app) => {
             const country = await Country.findById(info.country);
             const city = await City.findById(info.city);
             const cpublic_Major = await publicMajor.findById(info.public_Major);
+     
             const cspicifc_Major = await spMajor.findById(info.spMajor);
             if(cspicifc_Major) spMaj = cspicifc_Major.majorName;
     
@@ -137,21 +138,29 @@ module.exports = (app) => {
     
     }
         const skill = []
-        for(var i = 0 ; i < info.skills.length ; i++) {
+      
+        if(info.skills != null){
+            console.log('wwwa')
+            for(var i = 0 ; i < info.skills.length ; i++) {
     
-            const result = await Skills.findById(info.skills[i]).select("skillName -_id");
-            skill.push(result.skillName)
+                const result = await Skills.findById(info.skills[i]).select("skillName -_id");
+                skill.push(result.skillName)
+            }
         }
+   
     
         const Personlskill =[]
       
-        for(var j = 0 ; j < info.personal_Skills.length ; j++) {
+        if(info.personal_Skills != null) {
+            for(var j = 0 ; j < info.personal_Skills.length ; j++) {
             
-            const result = await PersonalSkills.findById(info.personal_Skills[j]).select("skillName -_id");
-            
-            Personlskill.push(result.skillName)
-    
+                const result = await PersonalSkills.findById(info.personal_Skills[j]).select("skillName -_id");
+                
+                Personlskill.push(result.skillName)
+        
+            }
         }
+     
     
     
       

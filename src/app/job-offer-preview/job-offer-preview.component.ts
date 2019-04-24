@@ -44,14 +44,14 @@ export class JobOfferPreviewComponent implements OnInit {
   getJobOffer(id:string) {
   
     this.jobService.getJobPreview(id).subscribe((res:any) =>{
-    
+    console.log(res)
       this.city= res.City,
       this.contract= res.Contract,
       this.country= res.Country,
       this.gender= res.job.gender,
       this.job_Name= res.job.job_Name,
       this.description= res.job.descreption,
-      this.public_Major= res.public_Major,
+     // this.public_Major= res.public_Major,
       this.salary= res.job.salary,
       this.startDate= this.DateFormat(res.job.startDate),
       this.work_days= res.job.work_days,

@@ -50,7 +50,7 @@ export class SignInComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.authService.autoAuthUser();
+   
     const isAuth = this.authService.getIsAuth();
     const isCompany = this.authService.getIsCompany();
 

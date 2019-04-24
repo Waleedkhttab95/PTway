@@ -103,8 +103,13 @@ const onListening = () => {
   const bind = typeof addr === "string" ? "pipe " + addr : "port " + port;
   debug("Listening on " + bind);
 };
-
-const port = normalizePort(process.env.PORT || "5000");
+var port = "80";
+if(process.env.NODE_ENV === 'production'){
+   port = normalizePort(process.env.PORT || "5000");
+}
+else{
+   port = normalizePort(process.env.PORT || "80");
+}
 app.set("port", port);
 
 const server = http.createServer(app);
