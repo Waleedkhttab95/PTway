@@ -81,7 +81,7 @@ module.exports = (app) => {
 
             }).save()
             .then(result =>{
-                res.send(result);
+              console.log(result)
             });
         });
 

@@ -10,18 +10,25 @@ const {Project} = require('../models/Companies/Project');
 
 module.exports = () =>{
     cron.schedule('0 0 * * *',async () =>{
-        
+        console.log("calculate hours")
         today = new Date();
-        var dd = today.getDate();
-        var mm = today.getMonth()+1; //As January is 0.
-        var yyyy = today.getFullYear();
+     
+        Date.prototype.addDays = function (startDate) {
+            
+            var date = new Date(startDate);
+            date.setDate(date.getDate() + 1);
+            
+            return date;
+        }
+
+        current_today = new Date();
+        current_today = current_today.addDays(today)
+        var dateFormat = new Date(current_today.getFullYear(), current_today.getMonth(), current_today.getDate(), 0, 0, 0);
+
         
-        if(dd<10) dd='0'+dd;
-        if(mm<10) mm='0'+mm;
-        var dd=mm+'/'+dd+'/'+yyyy ;
-  
-        const end_date = await endDate.find({'endDate' : dd});
-        
+        const end_date = await endDate.find({'endDate' : dateFormat});
+        console.log(end_date)
+
         if(end_date) {
             for(var i = 0 ; i< end_date.length ; i++){
                 const users = await Accepted.find({'jobAd' : end_date[i].jobAd}).select('acceptedName -_id');
@@ -44,17 +51,28 @@ module.exports = () =>{
     cron.schedule('0 0 * * *',async () =>{
         console.log("Here Corn")
         today = new Date();
-        var dd = today.getDate();
-        var mm = today.getMonth()+1; //As January is 0.
-        var yyyy = today.getFullYear();
-        
-        if(dd<10) dd='0'+dd;
-        if(mm<10) mm='0'+mm;
-        var dd=mm+'/'+dd+'/'+yyyy ;
-  
-        const jobAds = await JobAd.find({'startDate' : dd});
+       
+      
+     
+     
+        Date.prototype.addDays = function (startDate) {
+            
+            var date = new Date(startDate);
+            date.setDate(date.getDate() + 1);
+            
+            return date;
+        }
+
+        current_today = new Date();
+        current_today = current_today.addDays(today)
+        var dateFormat = new Date(current_today.getFullYear(), current_today.getMonth(), current_today.getDate(), 0, 0, 0);
+
+        const jobAds = await JobAd.find({'startDate' : dateFormat});
+      
+
         console.log(jobAds);
         for(var i = 0 ; i < jobAds.length ; i++) {
+            console.log("Here Corn loop")
             startJob(jobAds[i]._id);
         }
     });
@@ -69,7 +87,7 @@ module.exports = () =>{
             return date;
         }
         const start_day = await JobAd.findById(jobAd);
-        console.log("here")
+        console.log("here caluculate start job")
         const contract_days = await Contract.findById(start_day.contract).select('days -_id');
         if(contract_days.days == -1) return 'long term contract !';
         var Ed = new Date();
