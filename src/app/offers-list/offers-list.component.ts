@@ -64,12 +64,13 @@ Dtable() {
     this.isLoading=true;
     
 this.userService.getAllNotification().subscribe((response:any) =>{
-  this.count +=1;
+ 
+  console.log(response.result[1][0].job_Name)
   for(var i=0 ; i <response.result.length ; i++) {
-    for(var j=0 ; j <response.result.length ; j++){
-      this.dataRows.push(response.result[i][j].job_Name);
-      this.idRows.push(response.result[i][j]._id);
-    }
+    
+      this.dataRows.push(response.result[i][0].job_Name);
+      this.idRows.push(response.result[i][0]._id);
+      this.count +=1;
       
       this.dataTable.dataRows.push([
         this.count,

@@ -291,9 +291,13 @@ module.exports = (app) => {
         } catch(ex) {
         }
     })
-    //Get company info by CompanyID
+
+    // Get company info by CompanyID
+
     app.get('/api/getcompanyinfo', auth, async (req, res) => {
+
         // const id = req.query.id;
+
         try{
             const info = await CompanyInfo.findOne({ 'company': req.user._id });
             if (!info) return res.status(401).send('not found');
