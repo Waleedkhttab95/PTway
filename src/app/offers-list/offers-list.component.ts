@@ -65,8 +65,9 @@ Dtable() {
     
 this.userService.getAllNotification().subscribe((response:any) =>{
  
-  console.log(response.result[1][0].job_Name)
-  for(var i=0 ; i <response.result.length ; i++) {
+  console.log(response.result.length)
+  if(response.result.length != 0) {
+    for(var i=0 ; i <response.result.length ; i++) {
     
       this.dataRows.push(response.result[i][0].job_Name);
       this.idRows.push(response.result[i][0]._id);
@@ -78,6 +79,8 @@ this.userService.getAllNotification().subscribe((response:any) =>{
         this.idRows[i]
       ])
   }
+  }
+ 
 
   this.Dtable()
   this.isLoading=false;
