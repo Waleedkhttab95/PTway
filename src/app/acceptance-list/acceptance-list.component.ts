@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { DataService } from '../data.service';
 import { offerService } from '../my-offers/offer.service';
 import { AuthService } from '../auth/auth.service';
@@ -57,7 +57,7 @@ countOfRows: number =0;
 
   public dataTable: DataTable;
   constructor(private data: DataService, public offerService: offerService
-    , public authService: AuthService, public jobService: JobService) { }
+    , public authService: AuthService, public jobService: JobService, private changeDetectorRef: ChangeDetectorRef) { }
     
     jobId: string
     dataRows : any[] = [];
@@ -116,6 +116,10 @@ countOfRows: number =0;
     
     }
   
+    deleteRow(rowNumber: number) {
+      this.dataTable.dataRows.splice(rowNumber, 1);
+      this.changeDetectorRef.detectChanges();
+    }
    
 
 

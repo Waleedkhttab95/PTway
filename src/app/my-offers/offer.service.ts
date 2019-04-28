@@ -43,7 +43,7 @@ export class offerService {
 
     endJob(data: any) {
         const response = this.http.post(BackUrl+'/end/job', data,{ responseType: 'text'}).subscribe(result =>{
-            this.showSwal('secc');
+            this.showSwal('secc2');
             this.router.navigate(['/acceptance-list']);
             
 
@@ -53,6 +53,16 @@ export class offerService {
         if (type == 'secc') {
         swal({
           title: "تم تقديم الطلب , سوف تتواصل معك الشركة في حال اختيارك",
+          buttonsStyling: false,
+          confirmButtonClass: 'btn btn-success',
+          confirmButtonText:'نعم',
+          type:'success',
+        }).catch(swal.noop)
+      } 
+
+      if (type == 'secc2') {
+        swal({
+          title: "تم انهاء العقد",
           buttonsStyling: false,
           confirmButtonClass: 'btn btn-success',
           confirmButtonText:'نعم',
