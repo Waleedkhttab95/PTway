@@ -296,39 +296,7 @@ export class AddUserInfoComponent implements OnInit {
       return;
     }
   
-    var img = <HTMLInputElement>document.getElementById('file');
-
-    if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1) {
-      console.log("input file 1")
-      var $inputs = $('input[type="file"]:not([disabled])', this.userResumeForm);
-      $inputs.each(function(_, input) {
-          if (img.files.length > 0) return
-          $(input).prop('disabled', true);
-      });
-  }
-  
-  
-  
-  // Re-enable empty file fields after creating FormData.
-  if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1) {
-    console.log("input file 2")
-
-      $inputs.prop('disabled', false);
-  }
-
-
-
-    // var img = <HTMLInputElement>document.getElementById('file');
-    
-    // if(img.files.length > 0){
-    //   console.log("false")
-    //   img.disabled = false;
-    // }
-    // else{
-    //   console.log("true")
-
-    //   img.disabled = true;
-    // }
+ 
 console.log(this.userResumeForm.value)
   this.rest.addUserInfo(this.userResumeForm.value);
   }
