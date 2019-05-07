@@ -20,6 +20,7 @@ module.exports = (app) => {
        var skills = [];
        var personal_Skills = [] ;
         const url = req.protocol + '://' + req.get("host");     
+        console.log(req.protocol + '://' + req.get("host")) 
         var imagePath = '';
         if(!req.file){
            imagePath = "null"
@@ -353,8 +354,8 @@ module.exports = (app) => {
         }
       
     })
-    app.put('/api/put/userinfo', auth,async (req, res) => {
-   
+    app.put('/api/put/userinfo',[auth,file],async (req, res)=> {
+        console.log('here put')
         var universty 
         var spMajor 
        var skills = [];
@@ -362,9 +363,11 @@ module.exports = (app) => {
         const url = req.protocol + '://' + req.get("host");     
         var imagePath = '';
         if(!req.file){
+            console.log('not file')
            imagePath = "null"
         }
         else{
+            console.log('file')
             imagePath= url + "/images/" + req.file.filename;
         }
         try{
@@ -374,14 +377,14 @@ module.exports = (app) => {
             if(req.body.personal_Skills != 'null') personal_Skills = req.body.personal_Skills ;
 
 
-            console.log("the body :"+req.body.universty)
+           
         const info = await UserInfo.updateOne({ 'user': req.user._id },
             {
                 $set: {
                     country: req.body.country,
                     study_degree: req.body.study_degree,
                     fullName: req.body.fullName,
-                  //  imagePath:imagePath,
+                    imagePath:imagePath,
                     education_degree: req.body.education_degree,
                     gender: req.body.gender,
                     mobile: req.body.mobile,

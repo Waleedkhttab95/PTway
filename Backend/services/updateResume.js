@@ -23,11 +23,11 @@ module.exports = () =>{
 
         current_today = new Date();
         current_today = current_today.addDays(today)
-        var dateFormat = new Date(current_today.getFullYear(), current_today.getMonth(), current_today.getDate(), 0, 0, 0);
+        var dateFormat = new Date(current_today.getFullYear(), current_today.getMonth(), current_today.getDate(), 27, 0, 0);
 
-        
+        console.log(dateFormat)
+
         const end_date = await endDate.find({'endDate' : dateFormat});
-        console.log(end_date)
 
         if(end_date) {
             for(var i = 0 ; i< end_date.length ; i++){
@@ -65,8 +65,8 @@ module.exports = () =>{
 
         current_today = new Date();
         current_today = current_today.addDays(today)
-        var dateFormat = new Date(current_today.getFullYear(), current_today.getMonth(), current_today.getDate(), 0, 0, 0);
-
+        var dateFormat = new Date(current_today.getFullYear(), current_today.getMonth(), current_today.getDate());
+        console.log(dateFormat)
         const jobAds = await JobAd.find({'startDate' : dateFormat});
       
 

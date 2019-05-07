@@ -20,8 +20,10 @@ const app = express();
 app.use(cors());
 
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use("/images", express.static(path.join("images")));
 app.use(express.static(__dirname + '/angular'));
 app.use(express.json());

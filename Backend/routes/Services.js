@@ -155,6 +155,16 @@ module.exports = (app) =>{
 
     })
 
+         //DELETE notifiction by Id
+         app.delete('/api/deletenoti', async (req,res) =>{
+            const id = req.query.id;
+         
+            const notiDelete= await Notification.findOneAndDelete({'content': id})
+         
+            if(!notiDelete) return res.status(400).send('not found');
+            res.send("Deleted !");
+    });
+
     // Start Job
 
     app.post('/api/start/job', async (req, res) => {
