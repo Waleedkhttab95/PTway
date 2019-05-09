@@ -50,30 +50,35 @@ export class MyCvComponent implements OnInit {
       this.isLoading = true;
       this.userService.getUserInfo().subscribe((res: any) =>{
    
-
+        if(res.status == false) {
+          this.onSwal()
+        }
+        else{
+          this.handling(res);
+        
+          this.country= res.country;
+          this.fullName=  res.fullName;
+          this.gender=  res.gender;
+          this.mobile=  res.mobile;
+          this.birthDate=  this.DateFormat(res.birthDate);;
+          this.city=  res.city;
+          this.universty= res.universty;
+          this.public_Major=  res.public_Major;
+          this.work_Hours = res.work_Hours;
+          this.spMajor=  res.spicifc_Major;
+          this.languages=  res.languages;
+          this.skills=  res.skills;
+          this.personal_Skills=  res.personal_Skills;
+          this.hoppies=  res.hoppies;
+          this.social_Status=  this.social_Status;
+          
+          this.progressBar()
+     
+  
+          this.isLoading = false;
+        }
         // the same syntax res. 
-        this.handling(res);
-        
-        this.country= res.country;
-        this.fullName=  res.fullName;
-        this.gender=  res.gender;
-        this.mobile=  res.mobile;
-        this.birthDate=  this.DateFormat(res.birthDate);;
-        this.city=  res.city;
-        this.universty= res.universty;
-        this.public_Major=  res.public_Major;
-        this.work_Hours = res.work_Hours;
-        this.spMajor=  res.spicifc_Major;
-        this.languages=  res.languages;
-        this.skills=  res.skills;
-        this.personal_Skills=  res.personal_Skills;
-        this.hoppies=  res.hoppies;
-        this.social_Status=  this.social_Status;
-        
-        this.progressBar()
-   
-
-        this.isLoading = false;
+       
      
     }, error => {
       console.log("error")

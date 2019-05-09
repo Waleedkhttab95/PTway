@@ -115,7 +115,9 @@ module.exports = (app) => {
     app.get('/api/getuserinfo', auth, async (req, res) => {
         //const id = req.query.id;
         const info = await UserInfo.findOne({ 'user': req.user._id });
-        if (!info) return res.status(401).send('not found');
+        if (!info) return res.status(200).json({
+            status : false
+        });
 
         try{
 
@@ -166,9 +168,10 @@ module.exports = (app) => {
     
       
                 res.status(200).json({
+                    status : true,
                     country: country.countryName,
                     study_degree: info.study_degree,
-                   imagePath: info.imagePath,
+                    imagePath: info.imagePath,
                     education_degree: info.education_degree,
                     gender: info.gender,
                     mobile: info.mobile,
