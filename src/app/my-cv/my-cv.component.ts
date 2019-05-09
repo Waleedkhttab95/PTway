@@ -77,7 +77,7 @@ export class MyCvComponent implements OnInit {
      
     }, error => {
       console.log("error")
-    this.onSwal()
+   // this.onSwal()
     });
 
 
