@@ -164,7 +164,7 @@ module.exports = (app) =>{
 
             }
          
-            if(!notiDelete) return res.status(400).send('not found');
+            if(!notifications) return res.status(400).send('not found');
             res.send("Deleted !");
     });
 
