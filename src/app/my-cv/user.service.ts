@@ -101,13 +101,13 @@ export class UserService {
 
     updateUserInfo(data: any) {
         const postData = new FormData();
-        var img = <HTMLInputElement>document.getElementById('file');
+        // var img = <HTMLInputElement>document.getElementById('file');
         
-        if(img.files.length > 0){
-            postData.append ('image',data.image,data.fullName);
-          console.log("false")
-        //   img.disabled = false;
-        }
+        // if(img.files.length > 0){
+        //     postData.append ('image',data.image,data.fullName);
+        //   console.log("false")
+        // //   img.disabled = false;
+        // }
        
         var skills = [];
         var personal_Skills = [];

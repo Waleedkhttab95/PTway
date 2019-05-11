@@ -188,7 +188,7 @@ export class EditCvComponent implements OnInit {
     this.userResumeForm = new FormGroup({
       // cvImg: new FormControl(),
       'country': new FormControl(null ),
-      'image': new FormControl(null , {asyncValidators: [mimeType]}),
+      // 'image': new FormControl(null , {asyncValidators: [mimeType]}),
       'study_degree': new FormControl(null),
       'fullName': new FormControl(null ),
       'education_degree': new FormControl(null),
@@ -220,7 +220,7 @@ export class EditCvComponent implements OnInit {
       this.userResumeForm.setValue({
         // cvImg: new FormControl(),
         'country': res.info.country ,
-        'image': ( res.info.imagePath, {asyncValidators: [mimeType]}),
+        // 'image': ( res.info.imagePath, {asyncValidators: [mimeType]}),
         'study_degree': res.info.study_degree,
         'fullName': res.info.fullName ,
         'education_degree': res.info.education_degree,
