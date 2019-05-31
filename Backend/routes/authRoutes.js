@@ -36,7 +36,7 @@ module.exports = (app) => {
     if (!user) return res.status(400).send('خطأ في البريد أو الرقم السرّي');
 
     const validPassword = await bcrypt.compare(req.body.password, user.password, (error, result) => {
-
+console.log(user.isConfirmed)
       if (!result) return res.status(400).send('خطأ في البريد أو الرقم السرّي');
       if (!user.isConfirmed) return res.status(400).send('نرجو تفعيل الحساب أولًا'); // in case he didnt confirm
       const token = user.generateAuthToken();
