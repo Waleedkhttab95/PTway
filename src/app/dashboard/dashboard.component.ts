@@ -4,6 +4,7 @@ import { LegendItem, ChartType } from '../md/md-chart/md-chart.component';
 
 import * as Chartist from 'chartist';
 import { DashboardService } from './dashboard.service';
+import { Router } from '@angular/router';
 
 declare const $: any;
 
@@ -18,16 +19,25 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   projects: Number = 0;
   jobs: Number = 0;
   accepted: Number = 0;
-   constructor(private dashboardService: DashboardService) { }
+   constructor(private dashboardService: DashboardService,private router: Router) { }
   public ngOnInit() {
       this.isLoading = true;
-     this.dashboardService.getCounts().subscribe((result:any) =>{
-      this.projects = result.projects;
-      this.jobs = result.jobs;
-      this.accepted = result.acceptes;
-      this.isLoading = false
-     })
+      this.dashboardService.getCompanyInfo().subscribe((res:any) =>{
+        if(res.status == false) {
+            this.router.navigate(['/add-company-info']);
 
+          }
+          else{
+            this.dashboardService.getCounts().subscribe((result:any) =>{
+                this.projects = result.projects;
+                this.jobs = result.jobs;
+                this.accepted = result.acceptes;
+                this.isLoading = false
+               })
+          
+          }
+      })
+    
 
    }
    ngAfterViewInit() {

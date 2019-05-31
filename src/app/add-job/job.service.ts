@@ -53,6 +53,7 @@ export class JobService {
             jobAd: jobAd
         }
         this.http.post(BackUrl + '/postBodyC', jobAd).subscribe(result =>{
+            this.showSwal('apply')
             this.router.navigate(['/my-cv']);
         })
     }
@@ -148,6 +149,15 @@ export class JobService {
         if (type == 'secc') {
         swal({
           title: "تم إرسال طلبكم ,وسوف يتم عرض المتقدمين في قائمة المرشحين",
+          buttonsStyling: false,
+          confirmButtonText:'نعم',
+          type:'success',
+          confirmButtonClass:'btn btn-success'
+        }).catch(swal.noop)
+      }
+      if (type == 'apply') {
+        swal({
+          title: "تهانينا ! تم إرسال سيرتكم الذاتية للشركة المعلنة , حظاً موفقاً",
           buttonsStyling: false,
           confirmButtonText:'نعم',
           type:'success',

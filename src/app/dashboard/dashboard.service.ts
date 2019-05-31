@@ -16,4 +16,9 @@ export class DashboardService {
     getCounts() {
        return this.http.get(BackUrl + '/get/counts')
     }
+
+    getCompanyInfo() {
+        return this.http.get(BackUrl + '/getcompanyinfo')
+
+    }
 }

@@ -5,5 +5,7 @@ module.exports = {
     cookieKey: 'ptwayyourway',
     jwtKey: 'ptwayyourway',
     user: 'no-reply@ptway.net',
-    pass: 'ptway@ptway'  
+    pass: 'ptway@ptway'  ,
+    mail_url: 'http://localhost:80',
+    redirect_url: 'http://localhost:4200'
 };

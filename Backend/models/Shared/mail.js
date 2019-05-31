@@ -34,7 +34,8 @@ async function sendVerifMail(name, email) {
             if (err) return err;
 
             // response
-            const url = `https://ptway.net/api/confirmation/${token}`;
+            const url =keys.mail_url+ `/api/confirmation/${token}`;
+            console.log(url)
             transporter.sendMail({
                 to: email,
                 subject: ' PTway نوّرت',
@@ -63,7 +64,7 @@ async function companySendVerifMail(name, email) {
             if (err) return err;
 
             // response
-            const url = `https://ptway.net/api/com_confirmation/${token}`;
+            const url = keys.mail_url+`/api/com_confirmation/${token}`;
             transporter.sendMail({
                 to: email,
                 subject: ' PTway نوّرتوا',
@@ -80,7 +81,7 @@ async function sendResetEmail(id, email , name) {
     const ccemail = fs.readFileSync(__dirname + '/email-Reset.html', 'utf-8');
     const comemail = hogan.compile(ccemail);
     
-    const url = `https://ptway.net/api/reset?id=`+id;
+    const url = keys.mail_url+`/api/reset?id=`+id;
     transporter.sendMail({
         to: email,
         subject: ' PTway تغيير الرقم السري ',
@@ -90,7 +91,9 @@ async function sendResetEmail(id, email , name) {
 
 
 async function sendJobOffer(email , name) {
-    const url = `https://ptway.net`;
+    const url = keys.mail_url;
+    const ccemail = fs.readFileSync(__dirname + '/email-JobsAd.html', 'utf-8');
+    const comemail = hogan.compile(ccemail);
     transporter.sendMail({
         to: email,
         subject: ' PTway عرض وظيفي',

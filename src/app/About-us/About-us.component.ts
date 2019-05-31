@@ -88,7 +88,7 @@ export class AboutusComponent implements OnInit, OnDestroy {
         continue;
       }
       else {
-        elements[i].style.display = "none";
+        // elements[i].style.display = "none";
       }
     }
     var a = document.getElementById(btn);

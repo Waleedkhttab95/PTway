@@ -61,8 +61,8 @@ module.exports = (app) => {
     } catch (e) {
       res.send('error' + e);
     }
-
-    return res.redirect('https://ptway.net/sign-in');
+    const path = keys.redirect_url+'/sign-in';
+    return res.redirect(path);
   });
 
   app.put('/api/changePassword', async (req, res) => {
@@ -100,7 +100,9 @@ module.exports = (app) => {
   app.get('/api/reset', async (req , res) => {
     const id = req.query.id; 
     console.log(id);
-    return res.redirect(`https://ptway.net/resetPassword?id=`+id);
+    const path =keys.redirect_url+`/resetPassword?id=`+id;
+    console.log(path)
+    return res.redirect(path);
   });
   
 
@@ -158,8 +160,8 @@ module.exports = (app) => {
     } catch (e) {
       res.send('error' + e);
     }
-
-    return res.redirect('https://ptway.net/sign-in');
+    const path = keys.redirect_url+'/sign-in'
+    return res.redirect(path);
   });
 
   app.put('/api/com_changePassword', async (req, res) => {
