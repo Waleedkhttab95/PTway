@@ -1,0 +1,149 @@
+.custom-input{
+    width: 90%;
+}
+.mat-form-field{
+    text-align: right;
+}
+.custom-message{
+    text-align: center;
+    color: brown;
+    font-weight: bold;
+}
+::ng-deep .mat-form-field-empty.mat-form-field-label {
+    font-family: 'Cairo', 'Changa';
+}
+.custom-div{
+    margin-bottom: 8%;
+}
+.fake-link {
+    text-decoration: none;
+    background-color: #00263E;
+    color: white;
+    padding: 0 12px;
+    border-radius: 5px;
+}
+.fake-link2 {
+    color: #00263E;
+    padding: 0 12px;
+    border-radius: 5px;
+    border:1px solid #00263E;
+    text-decoration: none;
+    cursor: pointer;
+ 
+}
+.type-seprator{
+    margin-left:8px;
+    margin-right:8px;
+}
+@media screen and (max-width: 767px) {
+    .custom-fotter{
+        float: none;
+        margin-left: auto;
+        margin-right: auto;
+        display: inline-block;
+    }
+}
+
+button{
+    margin-left: 5px; 
+    border: none;
+    outline: none;
+    padding: 10px 16px;
+    cursor: pointer;
+}
+
+
+p{
+    font-family: 'Cairo', 'Changa';
+    font-size: 23px;
+    color: #00263E;
+    line-height: 40px;
+}
+a{
+    font-family: 'Cairo', 'Changa';
+    color: #00263E;
+    cursor: pointer;
+}
+
+li{
+    margin-top: 40px;    
+}
+
+.testimonials-container {
+    padding-bottom: 70px;
+}
+ 
+.testimonial-list {
+    margin-top: 30px;
+    text-align: center;
+}
+ 
+.testimonial-list .testimonial-image img {
+    max-width: 160px;
+    border-radius: 4px;
+}
+ 
+.testimonial-list .testimonial-text {
+    margin-top: 30px;
+    opacity: 0.8;
+}
+ 
+.testimonial-list .testimonial-text a {
+    color: #fff;
+    border-bottom: 1px dashed #fff;
+}
+.testimonial-list .testimonial-text a:hover, 
+.testimonial-list .testimonial-text a:focus { color: #fff; border: 0; }
+ 
+.testimonial-list .nav-tabs {
+    margin-top: 45px;
+    border: 0;
+    justify-content: center;
+}
+ 
+.testimonial-list .nav-tabs li {
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+ 
+.testimonial-list .nav-tabs li a {
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    background: none;
+    border: 1px solid #fff;
+    border-color: rgba(255, 255, 255, 0.8);
+    -moz-border-radius: 50%; -webkit-border-radius: 50%; border-radius: 50%;
+}
+ 
+.testimonial-list .nav-tabs li a:hover,
+.testimonial-list .nav-tabs li a:focus {
+    background: #fff;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #fff;
+    border-color: rgba(255, 255, 255, 0.8);
+}
+ 
+.testimonial-list .nav-tabs li a.active,
+.testimonial-list .nav-tabs li a.active:focus {
+    background: #00263e; /* Old browsers */
+    background: -moz-linear-gradient(top,  #00263e 0%, #00263e 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#00263e), color-stop(100%,#00263e)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #00263e 0%,#00263e 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #00263e 0%,#00263e 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #00263e 0%,#00263e 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #00263e 0%,#00263e 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00263e', endColorstr='#00263e',GradientType=0 ); /* IE6-9 */
+ 
+    border: 1px solid #fff;
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+#myTab{
+    margin-right: 300px;
+    margin-top: 40px;
+}
+
+

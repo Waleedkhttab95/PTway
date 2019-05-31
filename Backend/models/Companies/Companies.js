@@ -28,6 +28,10 @@ CompanySpecialist: {type: mongoose.Schema.Types.ObjectId, ref:'Specialists'},
 isActive : {
     type: Boolean , 
     default: true
+},
+isConfirmed:{
+    type:Boolean,
+    required: true
 }
 });
 

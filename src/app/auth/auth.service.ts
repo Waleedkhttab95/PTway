@@ -2,10 +2,10 @@ import { Subject } from 'rxjs';
 import { AuthData } from './auth-data.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {environment} from '../../environments/environment'
+import { environment } from '../../environments/environment'
 import { Router } from '@angular/router';
 import swal from 'sweetalert2';
- declare var $: any;
+declare var $: any;
 // declare const $: any;
 
 import 'bootstrap-notify';
@@ -23,7 +23,7 @@ export class AuthService {
   private token: string;
   private userId: string;
   private companyName: string;
-  
+
   private authStatusListener = new Subject<boolean>();
   constructor(private http: HttpClient, private router: Router) { }
   getToken() {
@@ -36,66 +36,82 @@ export class AuthService {
 
   createUser(firstName: string, lastName: string, email: string, password: string) {
     const authData = { firstName: firstName, lastName: lastName, email: email, password: password };
-    this.http.post<{token: string}>(BackUrl + '/userRegistreing', authData)
+    this.http.post<{ token: string }>(BackUrl + '/userRegistreing', authData)
       .subscribe((response: any) => {
-        if (response.token) {
-          this.token = response.token;
-          this.isAuth = true;
-          this.isCompany = "false";
-          this.authStatusListener.next(true);
-          this.saveAuthData(response.token, this.userId, this.isCompany);
-        this.router.navigate(['/add-user-info']);
-      }
-    }, error => {
+        this.showSwal('confirmation-email');
+        this.router.navigate(['/sign-in']);
+        // if (response.token) {
+        //   this.token = response.token;
+        //   this.isAuth = true;
+        //   this.isCompany = "false";
+        //   this.authStatusListener.next(true);
+        //   this.saveAuthData(response.token, this.userId, this.isCompany);
+        //   this.router.navigate(['/add-user-info']);
+        // }
+      }, error => {
+        $.notify({ message: error.error },
+          { type: 'danger' })
         this.authStatusListener.next(false);
       });
-   
+
   }
 
   createCompany(companyName: string, email: string, CompanySpecialist: string, sector: string, password: string) {
-  
 
-       if (sector == "VO") {
-        const authData = { companyName: companyName, email: email,
-          CompanySpecialist: CompanySpecialist, sector: sector, password: password, isActive:false };
-          this.http.post<{ token: String }>(BackUrl + '/companyRegistreing', authData)
-          .subscribe((response :any) => {
-            if (response.token) {
-              this.token = response.token;
-              this.isAuth = true;
-              this.isCompany = "true";
-              this.companyName = authData.companyName;
-              this.authStatusListener.next(true);
-              this.saveAuthData(response.token, this.userId, this.isCompany);
-              this.showSwal('warning-message');
-              this.router.navigate(['/sign-in']);
-       }
-          }, error => {
-            this.authStatusListener.next(false);
-          });
-      
 
-      }
-      else {
-        const authData = { companyName: companyName, email: email,
-          CompanySpecialist: CompanySpecialist, sector: sector, password: password };
-          this.http.post<{ token: String }>(BackUrl + '/companyRegistreing', authData)
-          .subscribe((response :any) => {
-            if (response.token) {
-              this.token = response.token;
-              this.isAuth = true;
-              this.isCompany = "true";
-              this.companyName = authData.companyName;
-              this.authStatusListener.next(true);
-              this.saveAuthData(response.token, this.userId, this.isCompany);
-              this.router.navigate(['/add-company-info']);
+    if (sector == "VO") {
+      const authData = {
+        companyName: companyName, email: email,
+        CompanySpecialist: CompanySpecialist, sector: sector, password: password, isActive: false
+      };
+      this.http.post<{ token: String }>(BackUrl + '/companyRegistreing', authData)
+        .subscribe((response: any) => {
+          this.showSwal('confirmation-email');
+          this.router.navigate(['/sign-in']);
+          // if (response.token) {
+          //   this.token = response.token;
+          //   this.isAuth = true;
+          //   this.isCompany = "true";
+          //   this.companyName = authData.companyName;
+          //   this.authStatusListener.next(true);
+          //   this.saveAuthData(response.token, this.userId, this.isCompany);
+          //   this.showSwal('warning-message');
+          //   this.router.navigate(['/sign-in']);
+          // }
+        }, error => {
+          $.notify({ message: error.error },
+            { type: 'danger' })
+          this.authStatusListener.next(false);
+        });
 
-       }
-          }, error => {
-            this.authStatusListener.next(false);
-          });
-      }
- 
+
+    }
+    else {
+      const authData = {
+        companyName: companyName, email: email,
+        CompanySpecialist: CompanySpecialist, sector: sector, password: password
+      };
+      this.http.post<{ token: String }>(BackUrl + '/companyRegistreing', authData)
+        .subscribe((response: any) => {
+          this.showSwal('confirmation-email');
+          this.router.navigate(['/sign-in']);
+          // if (response.token) {
+          //   this.token = response.token;
+          //   this.isAuth = true;
+          //   this.isCompany = "true";
+          //   this.companyName = authData.companyName;
+          //   this.authStatusListener.next(true);
+          //   this.saveAuthData(response.token, this.userId, this.isCompany);
+          //   this.router.navigate(['/add-company-info']);
+
+          // }
+        }, error => {
+          $.notify({ message: error.error },
+            { type: 'danger' })
+          this.authStatusListener.next(false);
+        });
+    }
+
   }
 
   login(email: string, password: string) {
@@ -114,16 +130,16 @@ export class AuthService {
         }
 
       }, error => {
-        $.notify({message: error.error },
-          {  type: 'danger'})
-  
+        $.notify({ message: error.error },
+          { type: 'danger' })
+
         this.authStatusListener.next(false);
       });
   }
 
   companyLogin(email: string, password: string) {
     const authData: AuthData = { email: email, password: password };
-    this.http.post<{ token: string, userId: string ,companyName: string}>(BackUrl + '/com_login', authData)
+    this.http.post<{ token: string, userId: string, companyName: string }>(BackUrl + '/com_login', authData)
       .subscribe(response => {
         const token = response.token;
         if (token) {
@@ -133,13 +149,58 @@ export class AuthService {
           this.userId = response.userId;
           this.companyName = response.companyName;
           this.authStatusListener.next(true);
-          this.saveAuthData(token, this.userId, this.isCompany,this.companyName);
+          this.saveAuthData(token, this.userId, this.isCompany, this.companyName);
           this.router.navigate(['/dashboard']);
         }
 
       }, error => {
-        $.notify({message: error.error },
-          {  type: 'danger'})
+        $.notify({ message: error.error },
+          { type: 'danger' })
+        this.authStatusListener.next(false);
+      });
+  }
+
+  sendResetEmail(email: string) {
+    const data = { email };
+    this.http.post(BackUrl + '/resetPassword', data, { responseType: "arraybuffer" })
+      .subscribe(response => {
+        console.log('email sent');
+        $.notify({ message: 'ارسلنا بريد تغيير الرقم السري لبريدك' },
+          { type: 'success' })
+        this.router.navigate(['/sign-in']);
+      }, error => {
+        $.notify({ message: 'البريد المدخل غير صحيح' },
+          { type: 'danger' })
+        this.authStatusListener.next(false);
+      });
+  }
+
+  companySendResetEmail(email: string) {
+    const data = { email };
+    this.http.post(BackUrl + '/com_resetPassword', data, { responseType: "arraybuffer" })
+      .subscribe(response => {
+        console.log('email sent');
+        $.notify({ message: 'ارسلنا بريد تغيير الرقم السري لبريدك' },
+          { type: 'success' })
+        this.router.navigate(['/sign-in']);
+      }, error => {
+        $.notify({ message: 'البريد المدخل غير صحيح' },
+          { type: 'danger' })
+        this.authStatusListener.next(false);
+      });
+  }
+
+
+  resetPassword(newPassword: string, id: string) {
+    const data = { newPassword: newPassword };
+    this.http.put(BackUrl + '/reset?id=' + id, data)
+      .subscribe(response => {
+        $.notify({ message: 'غيّرنا لك الرقم السري' },
+          { type: 'success' })
+        this.router.navigate(['/sign-in']);
+      }, error => {
+        $.notify({ message: error.error },
+          { type: 'danger' })
         this.authStatusListener.next(false);
       });
   }
@@ -164,7 +225,7 @@ export class AuthService {
     this.router.navigate(['/sign-in']);
   }
 
-  private saveAuthData(token: string, userId: string, isCompany: string, companyName?:string) {
+  private saveAuthData(token: string, userId: string, isCompany: string, companyName?: string) {
     localStorage.setItem('token', token);
     localStorage.setItem('userId', userId);
     localStorage.setItem('isCompany', isCompany);
@@ -206,7 +267,7 @@ export class AuthService {
     const companyName = localStorage.getItem('companyName');
 
     if (!token) {
-      return  ;
+      return;
     }
     return {
       token: token,
@@ -223,6 +284,16 @@ export class AuthService {
         buttonsStyling: false,
         confirmButtonClass: "btn btn-warning",
         type: "warning"
+      }).catch(swal.noop)
+    }
+
+    if (type == 'confirmation-email') {
+      swal({
+        title: "التسجيل",
+        text: "تم إرسال رسالة بريد لحسابكم المسجل الرجاء تفعيل البريد",
+        buttonsStyling: false,
+        confirmButtonClass: "btn btn-warning",
+        type: "success"
       }).catch(swal.noop)
     }
   }

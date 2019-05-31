@@ -8,6 +8,7 @@ const auth = require('../middleware/auth');
 const dateTime = require('node-datetime');
 const {Accepted } = require('../models/Companies/Accepted');
 const {Candidate} = require('../models/Companies/Candidates');
+const { sendJobOffer } = require('../models/Shared/mail');
 
 
 
@@ -28,7 +29,15 @@ module.exports = (app) =>{
             .find({ country: country,city: city})
             .select("user");
 
-            result.forEach(function(r) {
+            result.forEach(async function(r) {
+                //here write email code
+                // r.user is giving the id
+                const user  = await User.findById(r.user);
+                if(user) 
+                {
+                    sendJobOffer(user.email , user.firstName);
+                }
+
                 new Notification({
                  content : jobAd,
                  user : r.user,
@@ -44,7 +53,12 @@ module.exports = (app) =>{
             ,gender: gender})
             .select("user");
 
-            result.forEach(function(r) {
+            result.forEach(async function(r) {
+                const user  = await User.findById(r.user);
+                if(user) 
+                {
+                    sendJobOffer(user.email , user.firstName);
+                }
                 new Notification({
                  content : jobAd,
                  user : r.user,

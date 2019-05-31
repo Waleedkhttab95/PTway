@@ -1,10 +1,11 @@
 <div class="wrapper wrapper-full-page">
-  <div class="page-header register-page header-filter" filter-color="black" style="background-image: url('./assets/img/register.jpg'); background-size: cover; background-position: top center;">
+  <div class="page-header register-page header-filter" filter-color="black"
+    style="background-image: url('./assets/img/register.jpg'); background-size: cover; background-position: top center;">
     <div class="container">
-        <a class="navbar-brand-logo">
-      
-            <!-- <img src="../../../assets/img/logo.png" style="width: 320px;Margin-top: -75px; margin-right: -90px;"> -->
-          </a>
+      <a class="navbar-brand-logo">
+
+        <!-- <img src="../../../assets/img/logo.png" style="width: 320px;Margin-top: -75px; margin-right: -90px;"> -->
+      </a>
       <div class="row">
         <div class="col-md-10 ml-auto mr-auto">
           <div class="card card-signup">
@@ -148,8 +149,8 @@
                         </div>
                         <div class="form-check">
                           <label class="form-check-label">
-                            <input class="form-check-input" formControlName="agrreTerms" name="agrreTerms" type="checkbox"
-                              value="" required>
+                            <input class="form-check-input" formControlName="agrreTerms" name="agrreTerms"
+                              type="checkbox" value="" required>
                             <span class="form-check-sign custom-check-sign">
                               <span class="check"></span>
                             </span>
@@ -158,8 +159,8 @@
                           </label>
                         </div>
                         <div class="text-center">
-                          <button class="btn btn-primary btn-round mt-4" id="submitBtn" [disabled]="userRegistrForm.invalid"
-                            type="submit" name="submit">ابدأ الان</button>
+                          <button class="btn btn-primary btn-round mt-4" id="submitBtn"
+                            [disabled]="userRegistrForm.invalid" type="submit" name="submit">ابدأ الان</button>
                         </div>
                       </form>
                     </div>
@@ -234,8 +235,8 @@
                               </span>
                             </div>
                             <mat-form-field>
-                              <input matInput placeholder="اسم الجهة..." name="companyName" formControlName="companyName"
-                                [errorStateMatcher]="matcher" type="text">
+                              <input matInput placeholder="اسم الجهة..." name="companyName"
+                                formControlName="companyName" [errorStateMatcher]="matcher" type="text">
                               <mat-error *ngIf="companyName.hasError('text') && !companyName.hasError('required')">
                                 يجب عليك ادخال اسم الجهة بالشكل الصحيح
                               </mat-error>
@@ -267,10 +268,10 @@
                         <div class="form-group has-default">
                           <div class="input-group">
                             <mat-form-field>
-                              <mat-select placeholder="نشاط العمل..." name="CompanySpecialist" formControlName="CompanySpecialist"
-                                [errorStateMatcher]="matcher">
-                                <mat-option *ngFor="let CompanySpecialist of CompanySpecialists" [value]="CompanySpecialist.value"
-                                  class="options">
+                              <mat-select placeholder="نشاط العمل..." name="CompanySpecialist"
+                                formControlName="CompanySpecialist" [errorStateMatcher]="matcher">
+                                <mat-option *ngFor="let CompanySpecialist of CompanySpecialists"
+                                  [value]="CompanySpecialist.value" class="options">
                                   {{CompanySpecialist.viewValue}}
                                 </mat-option>
                               </mat-select>
@@ -321,13 +322,13 @@
                             <span class="form-check-sign custom-check-sign">
                               <span class="check"></span>
                             </span>
-                            الموافقة على 
+                            الموافقة على
                             <a href="#something">الشروط و الاحكام</a>.
                           </label>
                         </div>
                         <div class="text-center">
-                          <button class="btn btn-primary btn-round mt-4" [disabled]="companyRegistrForm.invalid" type="submit"
-                            name="submit">ابدأ الان</button>
+                          <button class="btn btn-primary btn-round mt-4" [disabled]="companyRegistrForm.invalid"
+                            type="submit" name="submit">ابدأ الان</button>
                         </div>
                       </form>
                     </div>
@@ -343,22 +344,25 @@
       <div class="container">
         <nav class="pull-left">
           <ul>
-          
-            <li>
-              <a href="https://creative-tim.com/about-us">
-                من نحن
-              </a>
-            </li>
-            <li>
-              <a href="http://blog.creative-tim.com">
-                سياسة الخصوصية
-              </a>
-            </li>
-            <li>
-              <a href="https://www.creative-tim.com/license">
-                الشروط والأحكام
-              </a>
-            </li>
+
+              <li>
+                  <!-- <a class="txt2" [routerLink]="['/aboutus']"> -->
+                    <a>
+                    من نحن
+                  </a>
+                </li>
+                <li>
+                  <!-- <a class="txt2" [routerLink]="['/policies']"> -->
+                    <a>
+                    سياسة الخصوصية
+                  </a>
+                </li>
+                <li>
+                  <!-- <a class="txt2" [routerLink]="['/Conditions']"> -->
+                    <a>
+                    الشروط والأحكام
+                  </a>
+                </li>
           </ul>
         </nav>
         <div class="copyright pull-right custom-fotter">

@@ -30,7 +30,11 @@ password: {
     required: true,
     unique: false
 },
-isAdmin:Boolean
+isAdmin:Boolean,
+isConfirmed:{
+    type:Boolean,
+    required: true
+}
 });
 
 userSchema.methods.generateAuthToken = function() {
@@ -51,5 +55,27 @@ function validateUser(user) {
 
     return Joi.validate(user, Schema);
 }
+
+// function generateAuthTokenForEmails(userId){
+//     jwt.sign(
+//         // payload as json:
+//         {userId}, // to know which user
+//         // secret
+//         keys.jwtKey,
+//         // expire in hour
+//         {expiresIn : '1d'},
+//         //callback
+//         (err , token) => {
+//             if (err) return err;
+
+//             // response
+//             console.log(token);
+//             return token;
+//         } 
+//     )
+// }
+
+
 exports.User = User;
 exports.validate = validateUser;
+// exports.emailAuth = generateAuthTokenForEmails;

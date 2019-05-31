@@ -1,4 +1,5 @@
 const { User, validate } = require('../models/Users/User');
+const { sendVerifMail ,companySendVerifMail } = require('../models/Shared/mail');
 const { Company } = require('../models/Companies/Companies');
 const _ = require('lodash');
 const bcrypt = require('bcrypt-nodejs');
@@ -14,7 +15,7 @@ module.exports = (app) => {
     const { error } = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
-    
+
     let user = await User.findOne({ email: req.body.email });
     if (user) return res.status(400).send('User already registered');
 
@@ -28,13 +29,12 @@ module.exports = (app) => {
       user.password = hash;
       user.save();
     });
-
-
-
+    user.isConfirmed = false; // initially will be false 
+    sendVerifMail(user.firstName , user.email);
     const token = user.generateAuthToken();
     res.status(200).json({
       token: token
-      });;
+    });;
   });
 
 
@@ -68,12 +68,15 @@ module.exports = (app) => {
     });
 
 
+    company.isConfirmed = false; // initially will be false 
+    companySendVerifMail(company.companyName , company.email);
+
 
     const token = company.generateAuthToken();
-   
+
     res.status(200).json({
       token: token
-      });;
+    });;
   });
 };
 

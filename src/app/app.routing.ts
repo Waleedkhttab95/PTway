@@ -106,6 +106,18 @@ export const AppRoutes: Routes = [
       }, {
         path: 'sign-in',
         loadChildren: './sign-in/sign-in.module#SignInModule'
+      },{
+        path: 'reset',
+        loadChildren: './reset/reset.module#resetModule'
+      },{
+        path: 'resetPassword',
+        loadChildren: './resetPassword/resetPassword.module#resetPasswordModule'
+      },{
+        path: 'aboutus',
+        loadChildren: './About-us/About-us.module#AboutusModule'
+      },{
+        path: 'Conditions',
+        loadChildren: './Conditions/Conditions.module#ConditionsModule'
       }
     ]}, {
         path: '',
