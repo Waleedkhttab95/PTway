@@ -33,7 +33,7 @@ password: {
 isAdmin:Boolean,
 isConfirmed:{
     type:Boolean,
-    required: true
+   default:false
 }
 });
 

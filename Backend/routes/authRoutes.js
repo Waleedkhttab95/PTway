@@ -38,7 +38,16 @@ module.exports = (app) => {
     const validPassword = await bcrypt.compare(req.body.password, user.password, (error, result) => {
 
       if (!result) return res.status(400).send('خطأ في البريد أو الرقم السرّي');
-      if (!user.isConfirmed) return res.status(400).send('نرجو تفعيل الحساب أولًا'); // in case he didnt confirm
+
+      if (user.isConfirmed != undefined){
+        
+
+        if (user.isConfirmed == false) {
+          console.log('false')
+          return res.status(400).send('نرجو تفعيل الحساب أولًا'); // in case he didnt confirm
+
+        }
+      }
       const token = user.generateAuthToken();
       res.status(200).json({
         token: token,
@@ -137,7 +146,14 @@ module.exports = (app) => {
 
       if (!result) return res.status(400).send('خطأ في البريد أو الرقم السرّي');
       if (company.isActive == false) return res.status(400).send('يجب الموافقة من طرف إدارة الموقع .');
-      if (!company.isConfirmed) return res.status(400).send('نرجو تفعيل الحساب أولًا'); // in case he didnt confirm
+    
+      if (company.isConfirmed != undefined){
+        if (company.isConfirmed == false) {
+          return res.status(400).send('نرجو تفعيل الحساب أولًا'); // in case he didnt confirm
+
+        }
+      }
+
       const token = company.generateAuthToken();
       res.status(200).json({
         token: token,
