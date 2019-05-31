@@ -13,65 +13,70 @@ const {Company} = require('../models/Companies/Companies')
 
 module.exports = (app) => {
     //post user information
-    app.post('/api/postuserinfo',auth,file, (req, res) => {
-        
-        var universty = null;
-        var spMajor = null;
-       var skills = [];
-       var personal_Skills = [] ;
-        const url = req.protocol + '://' + req.get("host");     
-        console.log(req.protocol + '://' + req.get("host")) 
-        var imagePath = '';
-        if(!req.file){
-           imagePath = "null"
+    app.post('/api/postuserinfo',auth,file, async (req, res) => {
+        const current_user = await UserInfo.findOne({'user' : req.user._id})
+        if(!current_user) {
+            var universty = null;
+            var spMajor = null;
+           var skills = [];
+           var personal_Skills = [] ;
+            const url = req.protocol + '://' + req.get("host");     
+            console.log(req.protocol + '://' + req.get("host")) 
+            var imagePath = '';
+            if(!req.file){
+               imagePath = "null"
+            }
+            else{
+                imagePath= url + "/images/" + req.file.filename;
+            }
+            try{
+                if(req.body.universty != 'null') universty = req.body.universty ;
+                if(req.body.spMajor != 'null') spMajor = req.body.spMajor ;
+                if(req.body.skills != 'null') skills = req.body.skills ;
+                if(req.body.personal_Skills != 'null') personal_Skills = req.body.personal_Skills ;
+    
+    
+                //console.log(req.body)
+    
+              
+                new UserInfo({
+                    user: req.user._id,
+                    country: req.body.country,
+                    study_degree: req.body.study_degree,
+                    fullName: req.body.fullName,
+                    imagePath:imagePath,
+                    education_degree: req.body.education_degree,
+                    gender: req.body.gender,
+                    mobile: req.body.mobile,
+                    birthDate: req.body.birthDate,
+                    universty: universty,
+                    city: req.body.city,
+                    Education_level: req.body.Education_level,
+                    public_Major: req.body.public_Major,
+                    spMajor: spMajor,
+                    languages: req.body.languages,
+                    skills: skills,
+                    personal_Skills: personal_Skills,
+                    hoppies: req.body.hoppies,
+                    social_Status: req.body.social_Status,
+                    about: req.body.about,
+                    personal_web: req.body.personal_web,
+                    facebook: req.body.facebook,
+                    twitter: req.body.twitter,
+                    instagram: req.body.instagram,
+                    linkedin: req.body.linkedin,
+                 }).save()
+                     .then(user => {
+                        console.log(user)
+                        res.send(user);
+                     });
+            } catch(ex) {
+                
+            }
         }
-        else{
-            imagePath= url + "/images/" + req.file.filename;
-        }
-        try{
-            if(req.body.universty != 'null') universty = req.body.universty ;
-            if(req.body.spMajor != 'null') spMajor = req.body.spMajor ;
-            if(req.body.skills != 'null') skills = req.body.skills ;
-            if(req.body.personal_Skills != 'null') personal_Skills = req.body.personal_Skills ;
-
-
-            //console.log(req.body)
-
-          
-            new UserInfo({
-                user: req.user._id,
-                country: req.body.country,
-                study_degree: req.body.study_degree,
-                fullName: req.body.fullName,
-                imagePath:imagePath,
-                education_degree: req.body.education_degree,
-                gender: req.body.gender,
-                mobile: req.body.mobile,
-                birthDate: req.body.birthDate,
-                universty: universty,
-                city: req.body.city,
-                Education_level: req.body.Education_level,
-                public_Major: req.body.public_Major,
-                spMajor: spMajor,
-                languages: req.body.languages,
-                skills: skills,
-                personal_Skills: personal_Skills,
-                hoppies: req.body.hoppies,
-                social_Status: req.body.social_Status,
-                about: req.body.about,
-                personal_web: req.body.personal_web,
-                facebook: req.body.facebook,
-                twitter: req.body.twitter,
-                instagram: req.body.instagram,
-                linkedin: req.body.linkedin,
-             }).save()
-                 .then(user => {
-                    console.log(user)
-                    res.send(user);
-                 });
-        } catch(ex) {
-            
-        }
+      else{
+          res.status(204).send("this user already stored information")
+      }
        
     })
 
@@ -115,7 +120,9 @@ module.exports = (app) => {
     app.get('/api/getuserinfo', auth, async (req, res) => {
         //const id = req.query.id;
         const info = await UserInfo.findOne({ 'user': req.user._id });
-        if (!info) return res.status(401).send('not found');
+        if (!info) return res.status(200).json({
+            status : false
+        });
 
         try{
 
@@ -166,9 +173,10 @@ module.exports = (app) => {
     
       
                 res.status(200).json({
+                    status : true,
                     country: country.countryName,
                     study_degree: info.study_degree,
-                   imagePath: info.imagePath,
+                    imagePath: info.imagePath,
                     education_degree: info.education_degree,
                     gender: info.gender,
                     mobile: info.mobile,

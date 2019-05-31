@@ -29,7 +29,6 @@ export class UserService {
 
 
         const postData = new FormData();
-        var img = <HTMLInputElement>document.getElementById('file');
 
 
         var img = <HTMLInputElement>document.getElementById('file');
@@ -102,6 +101,14 @@ export class UserService {
 
     updateUserInfo(data: any) {
         const postData = new FormData();
+        // var img = <HTMLInputElement>document.getElementById('file');
+        
+        // if(img.files.length > 0){
+        //     postData.append ('image',data.image,data.fullName);
+        //   console.log("false")
+        // //   img.disabled = false;
+        // }
+       
         var skills = [];
         var personal_Skills = [];
         var mobile = data.mobile;
@@ -153,7 +160,6 @@ export class UserService {
         postData.append ('linkedin',data.linkedin);
 
        // postData.append ('image',data.image,data.fullName);
-       console.log(data)
         this.http
             .put(BackUrl + '/put/userinfo', data).subscribe(response => {
                 this.router.navigate(['/my-cv']);
