@@ -32,10 +32,8 @@ password: {
 },
 isAdmin:Boolean,
 isConfirmed:{
-    type:Boolean
-   
-}
-});
+    type:Boolean,
+   default:fals});
 
 userSchema.methods.generateAuthToken = function() {
     const token = jwt.sign({_id: this._id, isAdmin: this.isAdmin}, keys.jwtKey);

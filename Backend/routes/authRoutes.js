@@ -39,7 +39,7 @@ module.exports = (app) => {
 console.log(user.isConfirmed)
       if (!result) return res.status(400).send('خطأ في البريد أو الرقم السرّي');
 
-      if (user.isConfirmed != undefined){
+      if (user.isConfirmed !='undefined'){
         
 
         if (user.isConfirmed == false) {
