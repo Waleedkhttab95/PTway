@@ -34,7 +34,7 @@ async function sendVerifMail(name, email) {
             if (err) return err;
 
             // response
-            const url = `https://ptway.net/api/confirmation/${token}`;
+            const url = `http://localhost:80/api/confirmation/${token}`;
             transporter.sendMail({
                 to: email,
                 subject: ' PTway نوّرت',
@@ -63,7 +63,7 @@ async function companySendVerifMail(name, email) {
             if (err) return err;
 
             // response
-            const url = `https://ptway.net/api/com_confirmation/${token}`;
+            const url = `http://localhost:80/api/com_confirmation/${token}`;
             transporter.sendMail({
                 to: email,
                 subject: ' PTway نوّرتوا',
@@ -80,7 +80,7 @@ async function sendResetEmail(id, email , name) {
     const ccemail = fs.readFileSync(__dirname + '/email-Reset.html', 'utf-8');
     const comemail = hogan.compile(ccemail);
     
-    const url = `https://ptway.net/api/reset?id=`+id;
+    const url = `http://localhost:80/api/reset?id=`+id;
     transporter.sendMail({
         to: email,
         subject: ' PTway تغيير الرقم السري ',

@@ -62,7 +62,7 @@ module.exports = (app) => {
       res.send('error' + e);
     }
 
-    return res.redirect('https://ptway.net/sign-in');
+    return res.redirect('http://localhost:4200/sign-in');
   });
 
   app.put('/api/changePassword', async (req, res) => {
@@ -100,7 +100,7 @@ module.exports = (app) => {
   app.get('/api/reset', async (req , res) => {
     const id = req.query.id; 
     console.log(id);
-    return res.redirect(`https://ptway.net/resetPassword?id=`+id);
+    return res.redirect(`http://localhost:4200/resetPassword?id=`+id);
   });
   
 
@@ -159,7 +159,7 @@ module.exports = (app) => {
       res.send('error' + e);
     }
 
-    return res.redirect('https://ptway.net/sign-in');
+    return res.redirect('http://localhost:4200/sign-in');
   });
 
   app.put('/api/com_changePassword', async (req, res) => {
