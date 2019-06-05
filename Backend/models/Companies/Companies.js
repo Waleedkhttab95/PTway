@@ -30,8 +30,8 @@ isActive : {
     default: true
 },
 isConfirmed:{
-    type:Boolean,
-    required: true
+    type:Boolean
+    
 }
 });
 

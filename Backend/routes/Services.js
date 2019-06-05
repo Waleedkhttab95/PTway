@@ -9,6 +9,8 @@ const dateTime = require('node-datetime');
 const {Accepted } = require('../models/Companies/Accepted');
 const {Candidate} = require('../models/Companies/Candidates');
 const { sendJobOffer } = require('../models/Shared/mail');
+const {User} = require('../models/Users/User');
+
 
 
 

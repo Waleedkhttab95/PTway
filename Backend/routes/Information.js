@@ -309,7 +309,9 @@ module.exports = (app) => {
 
         try{
             const info = await CompanyInfo.findOne({ 'company': req.user._id });
-            if (!info) return res.status(401).send('not found');
+            if (!info) return res.status(200).json({
+                status : false
+            });
 
             const country = await Country.findById(info.country);
             const city = await City.findById(info.city);
@@ -336,6 +338,7 @@ module.exports = (app) => {
       //Get company info by CompanyID
       app.get('/api/getcompanyinfoById', auth, async (req, res) => {
          const id = req.query.id;
+         console.log(id)
         try{
             const info = await CompanyInfo.findOne({ 'company': id });
             if (!info) return res.status(401).send('not found');

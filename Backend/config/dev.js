@@ -4,6 +4,8 @@ module.exports = {
     mongoURI: 'mongodb://ptway_admin:waleedkh95@ds059702.mlab.com:59702/ptway-dev',
     cookieKey: 'ptwayyourway',
     jwtKey: 'ptwayyourway',
-    user: 'pplpl9890@gmail.com',
-    pass: 'pplpl9890pplpl9890'  
+    user: 'no-reply@ptway.net',
+    pass: 'ptway@ptway'  ,
+    mail_url: 'http://localhost:80',
+    redirect_url: 'http://localhost:4200'
 };
