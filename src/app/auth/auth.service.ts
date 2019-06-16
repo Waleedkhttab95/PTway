@@ -9,6 +9,7 @@ declare var $: any;
 // declare const $: any;
 
 import 'bootstrap-notify';
+import { SwalComponent } from '@toverux/ngx-sweetalert2';
 
 declare interface JQueryStatic {
   notify: any;
@@ -112,6 +113,20 @@ export class AuthService {
         });
     }
 
+  }
+
+
+  resend(email: string){
+    const authData = { email: email };
+    this.http.post<{ token: string }>(BackUrl + '/resend', authData)
+      .subscribe((response: any) => {
+        $.notify({ message: 'تم إعادة إرسال البريد' },
+          { type: 'success' })
+      }, error => {
+        $.notify({ message: error.error },
+          { type: 'danger' })
+        this.authStatusListener.next(false);
+      });
   }
 
   login(email: string, password: string) {
@@ -290,10 +305,32 @@ export class AuthService {
     if (type == 'confirmation-email') {
       swal({
         title: "التسجيل",
-        text: "تم إرسال رسالة بريد لحسابكم المسجل الرجاء تفعيل البريد",
+        text: "تم إرسال رسالة بريد لحسابكم المسجل الرجاء تفعيل البريد , و التأكد من البريد المهمل . في حال لم يصل البريد بعد دقيقتين اضغط على اعادة ارسال",
         buttonsStyling: false,
+        cancelButtonClass: "btn btn-success",
+        showCancelButton: true,
+        cancelButtonText: "تمام",
+        confirmButtonText: "اعادة ارسال",
         confirmButtonClass: "btn btn-warning",
-        type: "success"
+        type: "success",
+        showLoaderOnConfirm: true,
+        preConfirm: () => {
+         return swal({
+            title: "التسجيل",
+            text: "ادخل بريدك المسجل لدينا",
+            buttonsStyling: false,
+            confirmButtonClass: "btn btn-success",
+            input: 'text',
+            showLoaderOnConfirm: true,
+            preConfirm: (email) => {
+              try{
+                return this.resend(email)
+              } catch(error){
+                return "خطأ"
+              }
+            }
+          }).catch(swal.noop)
+        }
       }).catch(swal.noop)
     }
   }

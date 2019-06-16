@@ -78,6 +78,18 @@ module.exports = (app) => {
       token: token
     });;
   });
+
+
+
+  app.post('/api/resend' , async (req, res) => {
+    const user = await User.findOne({ email: req.body.email });
+    try{
+      sendVerifMail(user.firstName , user.email);
+      res.status(200).send();
+    } catch(e){
+      res.status(400).send(e);
+    }
+  });
 };
 
 

@@ -7,7 +7,7 @@ const { Company, validateCompany } = require('../models/Companies/Companies');
 const Joi = require('joi');
 const jwt = require('jsonwebtoken');
 const keys = require('../../Backend/config/keys');
-const { sendResetEmail } = require('../models/Shared/mail');
+const { sendResetEmail, sendHelloEmail } = require('../models/Shared/mail');
 
 
 module.exports = (app) => {
@@ -36,11 +36,11 @@ module.exports = (app) => {
     if (!user) return res.status(400).send('خطأ في البريد أو الرقم السرّي');
 
     const validPassword = await bcrypt.compare(req.body.password, user.password, (error, result) => {
-console.log(user.isConfirmed)
+      console.log(user.isConfirmed)
       if (!result) return res.status(400).send('خطأ في البريد أو الرقم السرّي');
 
-      if (user.isConfirmed !='undefined'){
-        
+      if (user.isConfirmed != 'undefined') {
+
 
         if (user.isConfirmed == false) {
           console.log('false')
@@ -66,11 +66,11 @@ console.log(user.isConfirmed)
     try {
       const decoded = jwt.verify(req.params.token, keys.jwtKey);
       console.log(decoded.email);
-      await User.findOneAndUpdate({email : decoded.email}, { isConfirmed: true });
+      await User.findOneAndUpdate({ email: decoded.email }, { isConfirmed: true });
     } catch (e) {
       res.send('error' + e);
     }
-    const path = keys.redirect_url+'/sign-in';
+    const path = keys.redirect_url + '/sign-in';
     return res.redirect(path);
   });
 
@@ -101,19 +101,19 @@ console.log(user.isConfirmed)
       return res.status(400).send('البريد المدخل غير صحيح');
     }
     else {
-      sendResetEmail(user._id, user.email ,  user.firstName);
+      sendResetEmail(user._id, user.email, user.firstName);
       return res.status(200).send('ارسلنا بريد تغيير الرقم السري لبريدك');
     }
   });
 
-  app.get('/api/reset', async (req , res) => {
-    const id = req.query.id; 
+  app.get('/api/reset', async (req, res) => {
+    const id = req.query.id;
     console.log(id);
-    const path =keys.redirect_url+`/resetPassword?id=`+id;
+    const path = keys.redirect_url + `/resetPassword?id=` + id;
     console.log(path)
     return res.redirect(path);
   });
-  
+
 
   app.put('/api/reset', async (req, res) => {
     try {
@@ -127,7 +127,7 @@ console.log(user.isConfirmed)
       });
       // res.status(200).send('The password has been changed');
       console.log('done');
-      
+
     } catch (e) {
       res.send('error' + e);
     }
@@ -146,8 +146,8 @@ console.log(user.isConfirmed)
 
       if (!result) return res.status(400).send('خطأ في البريد أو الرقم السرّي');
       if (company.isActive == false) return res.status(400).send('يجب الموافقة من طرف إدارة الموقع .');
-    
-      if (company.isConfirmed != undefined){
+
+      if (company.isConfirmed != undefined) {
         if (company.isConfirmed == false) {
           return res.status(400).send('نرجو تفعيل الحساب أولًا'); // in case he didnt confirm
 
@@ -172,11 +172,11 @@ console.log(user.isConfirmed)
   app.get('/api/com_confirmation/:token', async (req, res) => {
     try {
       const decoded = jwt.verify(req.params.token, keys.jwtKey);
-      await Company.findOneAndUpdate({email : decoded.email}, { isConfirmed: true });
+      await Company.findOneAndUpdate({ email: decoded.email }, { isConfirmed: true });
     } catch (e) {
       res.send('error' + e);
     }
-    const path = keys.redirect_url+'/sign-in'
+    const path = keys.redirect_url + '/sign-in'
     return res.redirect(path);
   });
 
@@ -212,8 +212,8 @@ console.log(user.isConfirmed)
     }
   });
 
-  
-  
+
+
   app.put('/api/com_reset', async (req, res) => {
     try {
       const salt = await bcrypt.genSalt(10, (error, hash) => {
@@ -226,16 +226,12 @@ console.log(user.isConfirmed)
       });
       // res.status(200).send('The password has been changed');
       console.log('done');
-      
+
     } catch (e) {
       res.send('error' + e);
     }
   });
 
-
-
-
-  
 
   app.get('/api/info', async (req, res) => {
     const user2 = await User.findOne({ email: req.body.email });
@@ -253,4 +249,3 @@ console.log(user.isConfirmed)
     return Joi.validate(req, Schema);
   }
 };
-
