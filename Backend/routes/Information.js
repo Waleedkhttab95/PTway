@@ -20,8 +20,9 @@ module.exports = (app) => {
             var spMajor = null;
            var skills = [];
            var personal_Skills = [] ;
+           
             const url = req.protocol + '://' + req.get("host");     
-            console.log(req.protocol + '://' + req.get("host")) 
+            console.log("the body is :0 " + req.body) 
             var imagePath = '';
             if(!req.file){
                imagePath = "null"

@@ -57,8 +57,7 @@ module.exports = (app) => {
     
     app.post('/api/post/universty', (req,res) =>{
         new Universty({
-            key: req.body.key,
-            universtyName: req.body.universtyName
+            
             }).save()
             .then(result =>{
                 res.send(result);
