@@ -27,8 +27,6 @@ async function sendVerifMail(name, email) {
          }, // to know which user
         // secret
         keys.jwtKey,
-        // expire in hour
-        { expiresIn: '1d' },
         //callback
         (err, token) => {
             if (err) return err;
@@ -101,9 +99,21 @@ async function sendJobOffer(email , name) {
     });
 };
 
+async function sendHelloEmail(email) {
+    const url = keys.mail_url;
+    const ccemail = fs.readFileSync(__dirname + '/email-hello.html', 'utf-8');
+    const comemail = hogan.compile(ccemail);
+    transporter.sendMail({
+        bcc: email,
+        subject: ' ما ضبّطك أحد ؟ حنّا نضبّطك',
+        html: comemail.render(),
+    });
+};
+
 
 
 exports.sendVerifMail = sendVerifMail;
 exports.sendResetEmail = sendResetEmail;
 exports.sendJobOffer = sendJobOffer;
 exports.companySendVerifMail = companySendVerifMail;
+exports.sendHelloEmail = sendHelloEmail;
