@@ -14,6 +14,7 @@ const {Company} = require('../models/Companies/Companies')
 module.exports = (app) => {
     //post user information
     app.post('/api/postuserinfo',auth,file, async (req, res) => {
+        console.log("1")
         const current_user = await UserInfo.findOne({'user' : req.user._id})
         if(!current_user) {
             var universty = null;
@@ -22,7 +23,6 @@ module.exports = (app) => {
            var personal_Skills = [] ;
            
             const url = req.protocol + '://' + req.get("host");     
-            console.log("the body is :0 " + req.body) 
             var imagePath = '';
             if(!req.file){
                imagePath = "null"

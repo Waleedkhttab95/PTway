@@ -7,7 +7,8 @@ const notificationSchema = new Schema({
  content : {type: mongoose.Schema.Types.ObjectId, ref:'Job_Ad'},
  user : {type: mongoose.Schema.Types.ObjectId, ref:'User'},
  date : {type: Date, default: Date.now()},
- isRead: {type: Boolean, default: false}
+ isRead: {type: Boolean, default: false},
+ apply: {type: Boolean}
 });
 
 

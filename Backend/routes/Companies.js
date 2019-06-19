@@ -205,7 +205,7 @@ module.exports = (app) => {
         //Get job by Id
         app.get('/api/getjob',auth, async (req,res) =>{
             const id = req.query.id;
-          
+            var apply_job = false;
            const job= await JobAd.findById(id);
             if(!job) return res.status(401).send('not found');
             const countres = await Country.findById(job.country);
@@ -218,12 +218,22 @@ module.exports = (app) => {
                 result.isRead = true;
                 result.save();
             }
+           
+
+           if(result.apply != undefined) {
+          
+            apply_job = result.apply
+           }
+
+
+
             res.status(200).json({
                 job: job,
                 Country: countres.countryName,
                 City: cites.cityName,
                 Contract: contract.contractName,
                 contractType: contract.days,
+                apply: apply_job
              //   public_Major: public_Major.majorName
             });
         });

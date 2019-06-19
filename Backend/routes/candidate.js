@@ -1,15 +1,24 @@
 const {Candidate} = require('../models/Companies/Candidates');
 const {User} = require('../models/Users/User');
 const auth = require('../middleware/auth');
+const {Notification} = require('../models/Notification');
+
 module.exports = (app) =>{
 
   // apply Job
- app.post('/api/postBodyC',auth,(req,res)=>{
+ app.post('/api/postBodyC',auth, async (req,res)=>{
    new Candidate({
     candidateName : req.user._id ,
     jobAd : req.body.jobAd
    }).save()
 .then (result => {res.send(result);})
+
+const result = await Notification.findOne({'content' : req.body.jobAd , 'user' : req.user._id});
+
+         if(result.apply == false){
+             result.apply = true;
+             result.save();
+         }
 });
 
 app.get('/api/getCandites',async (req,res)=>{

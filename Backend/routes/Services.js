@@ -43,7 +43,8 @@ module.exports = (app) =>{
                 new Notification({
                  content : jobAd,
                  user : r.user,
-                 isRead: false
+                 isRead: false,
+                 apply: false
                 }).save();
              })
      
@@ -64,7 +65,8 @@ module.exports = (app) =>{
                 new Notification({
                  content : jobAd,
                  user : r.user,
-                 isRead: false
+                 isRead: false,
+                 apply: false
                 }).save();
              })
      
