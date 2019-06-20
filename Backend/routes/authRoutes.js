@@ -7,7 +7,7 @@ const { Company, validateCompany } = require('../models/Companies/Companies');
 const Joi = require('joi');
 const jwt = require('jsonwebtoken');
 const keys = require('../../Backend/config/keys');
-const { sendResetEmail, sendHelloEmail } = require('../models/Shared/mail');
+const { sendResetEmail } = require('../models/Shared/mail');
 
 
 module.exports = (app) => {

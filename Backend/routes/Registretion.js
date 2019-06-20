@@ -31,6 +31,7 @@ module.exports = (app) => {
     });
     user.isConfirmed = false; // initially will be false 
     sendVerifMail(user.firstName , user.email);
+    
     const token = user.generateAuthToken();
     res.status(200).json({
       token: token

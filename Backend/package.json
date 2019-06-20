@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@sendgrid/mail": "^6.4.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
     "compression": "^1.7.3",
@@ -37,6 +38,7 @@
     "nodemon": "^1.18.9",
     "passport": "^0.4.0",
     "passport-google-oauth20": "^1.0.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "sendgrid": "^5.2.3"
   }
 }
