@@ -3,6 +3,8 @@ import { JobService } from '../add-job/job.service';
 import { DataService } from '../data.service';
 import { UserService } from '../my-cv/user.service';
 import { CompanyService } from '../company-profile/company.service';
+import swal from 'sweetalert2';
+declare var $: any;
 
 @Component({
   selector: 'app-job-offer',
@@ -17,6 +19,7 @@ export class JobOfferComponent implements OnInit {
     isLoading = false;
   offerId: string;
   job: Object;
+  apply: boolean;
   city: string
   contract: string ;
   country: string ;
@@ -44,7 +47,10 @@ export class JobOfferComponent implements OnInit {
   getJobOffer(id:string) {
   
     this.jobService.getJob(id).subscribe((res:any) =>{
-    
+     this.apply = res.apply
+     if(this.apply == true ) {
+       this.showSwal('warning-message')
+     }
       this.city= res.City,
       this.contract= res.Contract,
       this.country= res.Country,
@@ -93,5 +99,20 @@ export class JobOfferComponent implements OnInit {
 
   onApply() {
     this.jobService.applyJob(this.offerId);
+  }
+
+  onBack() {
+    
+  }
+  showSwal(type) {
+    if (type == 'warning-message') {
+      swal({
+        title: "لقد تقدمت بالفعل لهذه الوظيفة!",
+        text: "شكرا لك , لقد تقدمت لهذه الوظيفة سابقا و نتمنى لك التوفيق !",
+        buttonsStyling: false,
+        confirmButtonClass: "btn btn-warning",
+        type: "success"
+      }).catch(swal.noop)
+    }
   }
 }
