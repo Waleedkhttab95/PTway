@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
-
+import { Meta } from '@angular/platform-browser';
 
 declare let ga: Function;
 
@@ -13,7 +13,14 @@ declare let ga: Function;
 export class AppComponent implements OnInit {
   private _router: Subscription;
 
-  constructor( private router: Router ) {
+  constructor( private router: Router,private meta: Meta ) {
+
+    this.meta.addTags([
+      {name: 'description', content: 'باحث عن وظيفة جزئية أو صاحب عمل, سجل في منصتنا'},
+      {name: 'author', content: 'Ptway'},
+      {name: 'keywords', content: 'ptway, part_time'}
+    ]);
+
 
        // subscribe to router events and send page views to Google Analytics
        this.router.events.subscribe(event => {

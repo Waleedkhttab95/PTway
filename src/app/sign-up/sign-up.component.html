@@ -155,7 +155,7 @@
                               <span class="check"></span>
                             </span>
                             الموافقة على
-                            <a>الشروط و الأحكام</a>
+                            <a  [routerLink]="['/Conditions']">الشروط و الأحكام</a>
                           </label>
                         </div>
                         <div class="text-center">
@@ -316,14 +316,15 @@
                           </div>
                         </div>
                         <div class="form-check">
+                            الموافقة على
+                            <a [routerLink]="['/Conditions']">الشروط و الاحكام</a>.
                           <label class="form-check-label">
                             <input class="form-check-input" formControlName="agrreTermsCompany" name="agrreTermsCompany"
                               type="checkbox" value="" required>
                             <span class="form-check-sign custom-check-sign">
                               <span class="check"></span>
                             </span>
-                            الموافقة على
-                            <a href="#something">الشروط و الاحكام</a>.
+                         
                           </label>
                         </div>
                         <div class="text-center">
@@ -344,25 +345,23 @@
       <div class="container">
         <nav class="pull-left">
           <ul>
-
-              <li>
+<!-- 
+              <li> -->
                   <!-- <a class="txt2" [routerLink]="['/aboutus']"> -->
-                    <a>
+                    <!-- <a>
                     من نحن
                   </a>
                 </li>
-                <li>
+                <li> -->
                   <!-- <a class="txt2" [routerLink]="['/policies']"> -->
-                    <a>
+                    <!-- <a>
                     سياسة الخصوصية
                   </a>
-                </li>
-                <li>
-                  <!-- <a class="txt2" [routerLink]="['/Conditions']"> -->
-                    <a>
-                    الشروط والأحكام
-                  </a>
-                </li>
+                </li> -->
+                <!-- <li>
+               
+                    <a class="txt2" [routerLink]="['/Conditions']">  الشروط والأحكام</a>
+                </li> -->
           </ul>
         </nav>
         <div class="copyright pull-right custom-fotter">
