@@ -9,6 +9,7 @@ const ad_adminSchema = new Schema({
    job_Name: {type: String , required:true},
    job_skills: {type: mongoose.Schema.Types.ObjectId, ref:'Specialists'},
    country:  {type: mongoose.Schema.Types.ObjectId, ref:'Country'},
+   createDate: {type: Date , default:Date.now()},
    city: {type: mongoose.Schema.Types.ObjectId, ref:'City'},
   // study_status: {type:String,  required:true},
   // education_degree:{type: String, required:true},

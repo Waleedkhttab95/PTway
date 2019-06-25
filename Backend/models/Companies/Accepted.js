@@ -6,6 +6,7 @@ const AcceptedSchema = new Schema({
 
     jobAd : {type: mongoose.Schema.Types.ObjectId, ref:'Job_Ad'},
     acceptedName :{type: mongoose.Schema.Types.ObjectId, ref:'User'},
+    createDate: {type: Date , default:Date.now()},
     key : {type:String}
 });
 

@@ -30,6 +30,8 @@ password: {
     required: true,
     unique: false
 },
+createDate: {type: Date , default:Date.now()},
+
 isAdmin:Boolean,
 isConfirmed:{
     type:Boolean

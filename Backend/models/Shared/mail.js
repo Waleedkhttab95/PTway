@@ -18,7 +18,6 @@ let transporter = nodemailer.createTransport({
 });
 
 
-
 async function sendVerifMail(name, email) {
     console.log('send nodemalier')
     const ccemail = fs.readFileSync(__dirname + '/email.html', 'utf-8');

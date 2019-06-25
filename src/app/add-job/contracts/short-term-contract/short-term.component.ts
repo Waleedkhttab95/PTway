@@ -44,7 +44,7 @@ export class ShortTermComponent implements OnInit {
     genders = [
       { value: 'ذكر', viewValue: 'ذكر' },
       { value: 'انثى', viewValue: 'انثى' },
-      { value: 'both', viewValue: 'ذكر و انثى' }
+      { value: 'ذكر و انثى', viewValue: 'ذكر و انثى' }
     ];
   
     languages = new FormControl();
