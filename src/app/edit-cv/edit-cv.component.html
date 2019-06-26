@@ -64,14 +64,14 @@
                     
                   <div class="col-md-6">
                       <label class="bmd-label-floating custom-label">- الجنس  *</label>
-                      <mat-form-field>
-                        <mat-select placeholder="" formControlName="gender" name="gender">
-                          <mat-option *ngFor="let gender of genders" [value]="gender.value">
+                     
+                        <select class="custom-select d-block w-100" placeholder="" formControlName="gender" name="gender">
+                          <option *ngFor="let gender of genders" [value]="gender.value">
                             {{gender.viewValue}}
-                          </mat-option>
-                        </mat-select>
+                          </option>
+                        </select>
 
-                      </mat-form-field>
+                    
                     </div>
                   <div class="col-md-6">
                     <label class="bmd-label-floating custom-label">- تاريخ الميلاد  *</label>
@@ -94,13 +94,13 @@
             
                   <div class="col-md-6">
                     <label class="bmd-label-floating custom-label">- الحالة الآجتماعية  </label>
-                    <mat-form-field>
-                      <mat-select placeholder="" formControlName="social_Status" name="social_Status">
-                        <mat-option *ngFor="let social_Status of social_Statuss" [value]="social_Status.value">
+             
+                      <select class="custom-select d-block w-100" placeholder="" formControlName="social_Status" name="social_Status">
+                        <option *ngFor="let social_Status of social_Statuss" [value]="social_Status.value">
                           {{social_Status.viewValue}}
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
+                        </option>
+                      </select>
+               
                   </div>
 
                   <br>
@@ -111,24 +111,24 @@
                   </div>
                   <div class="col-md-6 padding">
                     <label class="bmd-label-floating custom-label">- الدولة  *</label>
-                    <mat-form-field>
-                      <mat-select placeholder="" formControlName="country" name="">
-                        <mat-option *ngFor="let country of countries" [value]="country.value">
+                   
+                      <select class="custom-select d-block w-100" placeholder="" formControlName="country" name="">
+                        <option *ngFor="let country of countries" [value]="country.value">
                           {{country.viewValue}}
-                        </mat-option>
-                      </mat-select>
+                        </option>
+                      </select>
 
-                    </mat-form-field>
+                   
                   </div>
                   <div class="col-md-6 padding">
                     <label class="bmd-label-floating custom-label">- المدينة  *</label>
-                    <mat-form-field>
-                      <mat-select placeholder="" formControlName="city" name="">
-                        <mat-option *ngFor="let city of cities" [value]="city.value">
+                   
+                      <select class="custom-select d-block w-100" placeholder="" formControlName="city" name="">
+                        <option *ngFor="let city of cities" [value]="city.value">
                           {{city.viewValue}}
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
+                        </option>
+                      </select>
+                   
                   </div>
                   <br>
                   <div class="col-md-12">
@@ -138,67 +138,67 @@
                   </div>
                   <div class="col-md-6 padding">
                     <label class="bmd-label-floating custom-label">- الجامعة  </label>
-                    <mat-form-field>
-                      <mat-select placeholder="" formControlName="universty" name="">
-                        <mat-option *ngFor="let universty of universties" [value]="universty.value">
+                 
+                      <select class="custom-select d-block w-100" placeholder="" formControlName="universty" name="">
+                        <option *ngFor="let universty of universties" [value]="universty.value">
                           {{universty.viewValue}}
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
+                        </option>
+                      </select>
+               
                   </div>
                   <div class="col-md-6 padding">
                     <label class="bmd-label-floating custom-label">-  الشهادة التي تحملها  </label>
-                    <mat-form-field>
-                      <mat-select placeholder="" formControlName="study_degree" name="study_degree">
-                        <mat-option *ngFor="let study_degree of certificate" [value]="study_degree.value">
+                 
+                      <select class="custom-select d-block w-100" placeholder="" formControlName="study_degree" name="study_degree">
+                        <option *ngFor="let study_degree of certificate" [value]="study_degree.value">
                           {{study_degree.viewValue}}
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
+                        </option>
+                      </select>
+              
                   </div>
                   <div class="col-md-6">
                     <label class="bmd-label-floating custom-label">- المرحلة الدراسية الحالية </label>
-                    <mat-form-field>
-                      <mat-select placeholder="" formControlName="education_degree" name="education_degree">
-                        <mat-option *ngFor="let study_degree of study_degrees" [value]="study_degree.value" (click)="checkspEducation()">
+                 
+                      <select class="custom-select d-block w-100" placeholder="" formControlName="education_degree" name="education_degree">
+                        <option *ngFor="let study_degree of study_degrees" [value]="study_degree.value" (click)="checkspEducation()">
                           {{study_degree.viewValue}}
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
+                        </option>
+                      </select>
+                  
                   </div>
                   <div class="col-md-6">
                       <label class="bmd-label-floating custom-label">- المستوى التعليمي  </label>
-                      <mat-form-field>
-                        <mat-select placeholder="" formControlName="Education_level" name="Education_level">
-                          <mat-option *ngFor="let study_degree of study_statuses" [value]="study_degree.value">
+                   
+                        <select class="custom-select d-block w-100" placeholder="" formControlName="Education_level" name="Education_level">
+                          <option *ngFor="let study_degree of study_statuses" [value]="study_degree.value">
                             {{study_degree.viewValue}}
-                          </mat-option>
-                        </mat-select>
+                          </option>
+                        </select>
 
-                      </mat-form-field>
+                    
                     </div>
 
                     <div class="col-md-6">
                         <label class="bmd-label-floating custom-label">- التخصص العام  *</label>
-                        <mat-form-field>
-                          <mat-select placeholder="" formControlName="public_Major" name="public_Major">
-                            <mat-option *ngFor="let major of majors" (click)="checkspMajor()" [value]="major.value">
+                     
+                          <select class="custom-select d-block w-100" placeholder="" formControlName="public_Major" name="public_Major">
+                            <option *ngFor="let major of majors" (click)="checkspMajor()" [value]="major.value">
                               {{major.viewValue}}
-                            </mat-option>
-                          </mat-select>
+                            </option>
+                          </select>
 
-                        </mat-form-field>
+                      
                       </div>
                       <div class="col-md-6">
                         <label class="bmd-label-floating custom-label">- التخصص الدقيق  </label>
-                        <mat-form-field>
-                          <mat-select placeholder="" formControlName="spMajor" name="spMajor">
-                            <mat-option *ngFor="let spMajor of spMajors" [value]="spMajor.value">
+                     
+                          <select class="custom-select d-block w-100" placeholder="" formControlName="spMajor" name="spMajor">
+                            <option *ngFor="let spMajor of spMajors" [value]="spMajor.value">
                               {{spMajor.viewValue}}
-                            </mat-option>
-                          </mat-select>
+                            </option>
+                          </select>
 
-                        </mat-form-field>
+                      
                       </div>
 
                       <div class="col-md-12">
