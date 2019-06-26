@@ -16,9 +16,11 @@ export class AppComponent implements OnInit {
   constructor( private router: Router,private meta: Meta ) {
 
     this.meta.addTags([
-      {name: 'description', content: 'باحث عن وظيفة جزئية أو صاحب عمل, سجل في منصتنا'},
+      {name: 'description', content: '!باحث عن وظيفة جزئية أو صاحب عمل, سجل في منصتنا'},
       {name: 'author', content: 'Ptway'},
-      {name: 'keywords', content: 'ptway, part_time'}
+// tslint:disable-next-line: max-line-length
+      {name: 'keywords',
+       content: 'وظيفة جزئية,صيفي,تطوع,وظائف,السعودية,وظيفة كوم,وظائف نسائية,وظائف اليوم,وظائف الرياض,job,riyadh,saudi arabia,part-time,jobs near me,jobs jeddah,jobs,ptway,work,volunter,volunteing,vacancy,vacancies,offers '}
     ]);
 
 
