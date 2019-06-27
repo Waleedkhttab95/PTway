@@ -39,7 +39,7 @@
                   <div class="col-md-8 padding">
                     <label class="bmd-label-floating custom-label">- الأسم الكامل  *</label>
                     <mat-form-field class="example-full-width">
-                      <input matInput placeholder="" type="text"  maxlength="30 "  formControlName="fullName" name="">
+                      <input matInput placeholder="" type="text"  maxlength="30 "  formControlName="fullName" name="" required>
                       <mat-error *ngIf="userResumeForm.get('fullName').invalid">هذا الحقل مطلوب</mat-error>
 
                     </mat-form-field>
@@ -48,7 +48,7 @@
                   <div class="col-md-6">
                       <label class="bmd-label-floating custom-label">- الجنس  *</label>
                    
-                        <select class="custom-select d-block w-100" placeholder="" formControlName="gender" name="gender">
+                        <select class="custom-select d-block w-100" placeholder="" formControlName="gender" name="gender" required>
                           <option *ngFor="let gender of genders" [value]="gender.value">
                             {{gender.viewValue}}
                           </option>
@@ -60,7 +60,7 @@
                   <div class="col-md-6">
                     <label class="bmd-label-floating custom-label">- تاريخ الميلاد  *</label>
                     <mat-form-field>
-                      <input matInput [matDatepicker]="picker" placeholder="" formControlName="birthDate" name="birthDate">
+                      <input matInput [matDatepicker]="picker" placeholder="" formControlName="birthDate" name="birthDate" required>
                       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                       <mat-datepicker #picker></mat-datepicker>
                       <mat-error *ngIf="userResumeForm.get('birthDate').invalid">هذا الحقل مطلوب</mat-error>
@@ -97,7 +97,7 @@
                   <div class="col-md-6 padding">
                     <label class="bmd-label-floating custom-label">- الدولة  *</label>
                    
-                      <select class="custom-select d-block w-100" placeholder="" formControlName="country" name="">
+                      <select class="custom-select d-block w-100" placeholder="" formControlName="country" name="" required>
                         <option *ngFor="let country of countries" [value]="country.value">
                           {{country.viewValue}}
                         </option>
@@ -108,7 +108,7 @@
                   <div class="col-md-6 padding">
                     <label class="bmd-label-floating custom-label">- المدينة  *</label>
                     
-                      <select class="custom-select d-block w-100" placeholder="" formControlName="city" name="">
+                      <select class="custom-select d-block w-100" placeholder="" formControlName="city" name="" required>
                         <option *ngFor="let city of cities" [value]="city.value">
                           {{city.viewValue}}
                         </option>
@@ -167,7 +167,7 @@
                     <div class="col-md-6">
                         <label class="bmd-label-floating custom-label">- التخصص العام  *</label>
                        
-                          <select class="custom-select d-block w-100" placeholder="" formControlName="public_Major" name="public_Major">
+                          <select class="custom-select d-block w-100" placeholder="" formControlName="public_Major" name="public_Major" required>
                             <option *ngFor="let major of majors" (click)="checkspMajor()" [value]="major.value">
                               {{major.viewValue}}
                             </option>
