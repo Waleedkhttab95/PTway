@@ -292,7 +292,7 @@ export class AddUserInfoComponent implements OnInit {
     if(this.userResumeForm.get('fullName').invalid || this.userResumeForm.get('country').invalid
     || this.userResumeForm.get('city').invalid || this.userResumeForm.get('gender').invalid ||
     this.userResumeForm.get('public_Major').invalid || this.userResumeForm.get('birthDate').invalid) {
-     this.validData = true;
+    
       return;
     }
   

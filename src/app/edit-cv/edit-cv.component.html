@@ -158,13 +158,15 @@
                   </div>
                   <div class="col-md-6">
                     <label class="bmd-label-floating custom-label">- المرحلة الدراسية الحالية </label>
+                 <mat-form-field>
+
                  
                       <select class="custom-select d-block w-100" placeholder="" formControlName="education_degree" name="education_degree">
                         <option *ngFor="let study_degree of study_degrees" [value]="study_degree.value" (click)="checkspEducation()">
                           {{study_degree.viewValue}}
                         </option>
                       </select>
-                  
+                    </mat-form-field>
                   </div>
                   <div class="col-md-6">
                       <label class="bmd-label-floating custom-label">- المستوى التعليمي  </label>
@@ -180,13 +182,13 @@
 
                     <div class="col-md-6">
                         <label class="bmd-label-floating custom-label">- التخصص العام  *</label>
-                     
-                          <select class="custom-select d-block w-100" placeholder="" formControlName="public_Major" name="public_Major">
-                            <option *ngFor="let major of majors" (click)="checkspMajor()" [value]="major.value">
+                        <mat-form-field>
+                          <mat-select  placeholder="" formControlName="public_Major" name="public_Major">
+                            <mat-option *ngFor="let major of majors" (click)="checkspMajor()" [value]="major.value">
                               {{major.viewValue}}
-                            </option>
-                          </select>
-
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
                       
                       </div>
                       <div class="col-md-6">

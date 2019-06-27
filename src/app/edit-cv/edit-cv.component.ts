@@ -254,6 +254,7 @@ export class EditCvComponent implements OnInit {
   }
 
   checkspEducation(){
+    console.log("here")
     this.study_statuses = [];
     this.educationId = this.userResumeForm.value.education_degree;
     if(this.educationId == "HS") {
