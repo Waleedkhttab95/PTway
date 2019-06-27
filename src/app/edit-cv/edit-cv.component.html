@@ -164,7 +164,7 @@
                    
                  
                       <select class="custom-select d-block w-100" placeholder="" formControlName="education_degree" name="education_degree">
-                        <option *ngFor="let study_degree of study_degrees" [value]="study_degree.value" (click)="checkspEducation()">
+                        <option *ngFor="let study_degree of study_degrees" [value]="study_degree.value" (change)="checkspEducation()">
                           {{study_degree.viewValue}}
                         </option>
                       </select>
