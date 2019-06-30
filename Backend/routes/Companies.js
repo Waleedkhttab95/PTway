@@ -347,7 +347,7 @@ module.exports = (app) => {
     });
 
 
-    app.get('/api/getCompanyAds', async (req, res) => {
+    app.get('/api/getCompanyAds',auth, async (req, res) => {
         var jobObjArray = [];
         try {
             if(!req.user._id) return res.status(400).send('الشركة غير مسجلة');
@@ -362,8 +362,9 @@ module.exports = (app) => {
             // });
             for (let index = 0; index < advs.length; index++) {
                 const advId = advs[index]._id;
+                const advName= advs[index].job_Name;
                 const candidates = await Candidate.find({ 'jobAd': advId }).countDocuments();
-                const obj = { advId, candidates };
+                const obj = { advId,advName, candidates };
                 jobObjArray.push(obj);
             }
             return res.status(200).send(jobObjArray);

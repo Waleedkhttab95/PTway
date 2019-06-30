@@ -15,6 +15,14 @@ export class EditCvComponent implements OnInit {
 
   constructor(public rest:UserService, private route: ActivatedRoute, private router: Router,
     public jobService : JobService) { }
+    isComplete = false;
+    disabled=false;
+    ShowFilter=false;
+    limitSelection= false;
+    cc: any =[];
+    selectedItems:any =[];
+    dropdownSettings: any={};
+
 
   userResumeForm: FormGroup;
 
@@ -131,9 +139,11 @@ export class EditCvComponent implements OnInit {
     this.personal_SkillList = [];
     this.jobService.getPersonalSkills().subscribe((data: {}) => {
       for (let key in data) {
-        this.personal_SkillList.push({ value: data[key]._id, viewValue: data[key].skillName });
-
+        this.personal_SkillList.push({ item_id: data[key]._id, item_text: data[key].skillName });
+        this.isComplete = true;
       }
+    
+     
 
     });
   }
@@ -143,7 +153,8 @@ export class EditCvComponent implements OnInit {
     this.skillList= [];
     this.jobService.getSkills().subscribe((data: {}) => {
       for (let key in data) {
-        this.skillList.push({ value: data[key]._id, viewValue: data[key].skillName });
+        this.skillList.push({ item_id: data[key]._id, item_text: data[key].skillName });
+       
 
       }
 
@@ -179,12 +190,28 @@ export class EditCvComponent implements OnInit {
   }
 
   ngOnInit() {
+    // this.cc =[
+    //   {item_id:1, item_text: 'delhi'},
+    //   {item_id:2, item_text: 'delhi'}
+    // ]
+   
     this.getcity();
     this.getSkills();
     this.getPersonalskills();
     this.getcountry();
     this.getmajors();
     this.getuniversty();
+    console.log(this.cc)
+   
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'item_text',
+      itemsShowLimit: 3,
+      enableCheckAll: false,
+      limitSelection:4,
+      allowSearchFilterL: this.ShowFilter
+    };
     this.userResumeForm = new FormGroup({
       // cvImg: new FormControl(),
       'country': new FormControl(null ),
@@ -214,7 +241,7 @@ export class EditCvComponent implements OnInit {
     });
     
     this.rest.getUserEdit().subscribe((res:any) =>{
-      console.log(res)
+    
       this.getspMajors(res.info.public_Major);
       this.checkNull(res.info);
       this.userResumeForm.setValue({
@@ -250,9 +277,25 @@ export class EditCvComponent implements OnInit {
 
   checkspMajor(){
     this.majorID = this.userResumeForm.value.public_Major;
-    this.getspMajors(this.majorID);
+    if(this.majorID != null) this.getspMajors(this.majorID);
   }
+  onSelect(item: any){
+    this.userResumeForm.value.skills.push(item.item_id) ;
+ 
+  }
+  onSelect2(item: any){
+    this.userResumeForm.value.personal_Skills.push(item.item_id) ;
+ 
+  }
+  onSelect3(item: any){
+    this.userResumeForm.value.languages.push(item.item_id) ;
+ 
+  }
+  onSelect4(item: any){
 
+    this.userResumeForm.value.hoppies.push(item.item_id) ;
+    console.log(this.userResumeForm.value.hoppies)
+  }
   checkspEducation(){
     console.log("here")
     this.study_statuses = [];
@@ -335,6 +378,10 @@ export class EditCvComponent implements OnInit {
 console.log(this.userResumeForm.value)
   this.rest.updateUserInfo(this.userResumeForm.value);
   }
+
+  test() {
+    console.log('Test')
+  }
   onImagePicked(event: Event) {
     const file = (event.target as HTMLInputElement).files[0];
     this.userResumeForm.patchValue({image: file});
@@ -346,6 +393,8 @@ console.log(this.userResumeForm.value)
     reader.readAsDataURL(file);
     }
 
+
+   
     checkNull(res) {
       if(res.personal_web != "null") this.personal_web= res.personal_web ;
       if(res.about != "null") this.about= res.about ;

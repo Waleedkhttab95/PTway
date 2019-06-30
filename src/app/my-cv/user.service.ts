@@ -162,7 +162,7 @@ export class UserService {
        // postData.append ('image',data.image,data.fullName);
         this.http
             .put(BackUrl + '/put/userinfo', data).subscribe(response => {
-                // this.router.navigate(['/my-cv']);
+                 this.router.navigate(['/my-cv']);
             });
     }
     getUserInfo() {
