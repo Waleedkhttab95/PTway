@@ -26,7 +26,7 @@ export class ProjectService {
         this.showSwal('secc');
         this.projectId = responseData._id;
 
-         this.router.navigate(['/my-projects']);
+         this.router.navigate(['/add-job']);
       });
     }
 

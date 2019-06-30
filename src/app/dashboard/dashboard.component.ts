@@ -5,6 +5,7 @@ import { LegendItem, ChartType } from '../md/md-chart/md-chart.component';
 import * as Chartist from 'chartist';
 import { DashboardService } from './dashboard.service';
 import { Router } from '@angular/router';
+import { DataService } from '../data.service';
 
 declare const $: any;
 
@@ -14,14 +15,25 @@ declare const $: any;
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
-
+    public tableData3: TableData;
+    dataRows: any[] = [];
+    idRows: any[] = [];
+    candidates: any[] = [];
     isLoading = false;
+    isEmpty = false;
   projects: Number = 0;
   jobs: Number = 0;
   accepted: Number = 0;
-   constructor(private dashboardService: DashboardService,private router: Router) { }
+  dataRows2 :any = [];
+   constructor(private dashboardService: DashboardService,private data: DataService,private router: Router) { }
   public ngOnInit() {
       this.isLoading = true;
+      this.tableData3 = {
+        headerRow: [ 'العرض', 'عدد المرشحين',  'الإطلاع' ],
+        dataRows: []
+     };
+   
+      
       this.dashboardService.getCompanyInfo().subscribe((res:any) =>{
         if(res.status == false) {
             this.router.navigate(['/add-company-info']);
@@ -34,7 +46,24 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 this.accepted = result.acceptes;
                 this.isLoading = false
                })
-          
+               this.dashboardService.getAllOffers().subscribe((result:any) =>{
+                   if(result.length == 0) this.isEmpty =true;
+                for (var i = 0; i < result.length; i++) {
+                  
+                    this.dataRows.push(result[i].advName);
+                    this.idRows.push(result[i].advId);
+                   this.candidates.push(result[i].candidates)
+                    this.tableData3.dataRows.push([
+                      
+                      this.dataRows[i],
+                      this.idRows[i],
+                      this.candidates[i],
+                    ])
+                  }
+                  
+                 console.log(this.tableData3.dataRows[0][0])
+
+               })
           }
       })
     
@@ -69,4 +98,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
            });
        }
    }
+
+   onCandidates(id) {
+    this.data.storeDataJob(id);
+  }
 }

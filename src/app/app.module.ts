@@ -8,6 +8,7 @@ import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import {AuthGuard} from '../app/auth/auth.guard';
 import {Auth_company_Guard} from '../app/auth/auth.company.guard';
+import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
 
 import {
   MatAutocompleteModule,
@@ -57,6 +58,7 @@ import {AuthInterceptor} from './auth-interceptor';
 import { AppRoutes } from './app.routing';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SideModule } from './layouts/sidebar/side.module';
+import { from } from 'rxjs';
 
 @NgModule({
   exports: [
@@ -111,7 +113,8 @@ export class MaterialModule {}
         FooterModule,
         FixedpluginModule,
         ReactiveFormsModule,
-        HttpClientModule
+        HttpClientModule,
+        NgMultiSelectDropDownModule.forRoot()
     ],
     declarations: [
         AppComponent,

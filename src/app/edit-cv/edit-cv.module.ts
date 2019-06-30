@@ -9,6 +9,7 @@ import { SelectModule } from 'ng2-select';
 import { MaterialModule } from '../app.module';
 import { EditCvRoutes } from './edit-cv.routing';
 import { FormGroup } from '@angular/forms';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   declarations: [EditCvComponent],
@@ -19,7 +20,8 @@ import { FormGroup } from '@angular/forms';
     ReactiveFormsModule,
     NouisliderModule,
     TagInputModule,
-    MaterialModule
+    MaterialModule,
+    NgMultiSelectDropDownModule.forRoot()
   ]
 })
 export class EditCvModule { }

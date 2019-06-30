@@ -21,4 +21,8 @@ export class DashboardService {
         return this.http.get(BackUrl + '/getcompanyinfo')
 
     }
+
+    getAllOffers() {
+        return this.http.get(BackUrl + '/getCompanyAds')
+     }
 }
