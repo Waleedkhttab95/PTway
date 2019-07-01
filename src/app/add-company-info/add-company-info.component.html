@@ -23,7 +23,7 @@
                         <span class="btn btn-primary btn-round btn-file">
                           <span class="fileinput-new">قم بأختيار الصورة الشخصية</span>
                           <span class="fileinput-exists">استبدال </span>
-                          <input type="file" #fileUpload (change)="onImagePicked($event)" />
+                          <input id="file" type="file" #fileUpload (change)="onImagePicked($event)" />
                         </span>
                         <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput">
                           <i class="fa fa-times"></i> حذف

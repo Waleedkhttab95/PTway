@@ -352,7 +352,7 @@ module.exports = (app) => {
         try {
             if(!req.user._id) return res.status(400).send('الشركة غير مسجلة');
             const advs = await JobAd.find({ 'company': req.user._id}).sort({createDate: -1}).limit(3);
-            if (!advs || advs.length == 0) return res.status(400).send('لا تملك الشركة  إعلانات');
+            // if (!advs || advs.length == 0) return res.status(400).send('لا تملك الشركة  إعلانات');
             // advs.forEach(async (adv , index) => {
             //     const advId = adv._id;
             //     const candidates = await Candidate.find({ 'jobAd': advId }).countDocuments();

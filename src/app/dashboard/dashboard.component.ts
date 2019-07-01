@@ -21,6 +21,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     candidates: any[] = [];
     isLoading = false;
     isEmpty = false;
+    isOne = false;
+    isTwo = false;
+    isThree=false;
   projects: Number = 0;
   jobs: Number = 0;
   accepted: Number = 0;
@@ -47,7 +50,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 this.isLoading = false
                })
                this.dashboardService.getAllOffers().subscribe((result:any) =>{
+                 console.log(result.length)
                    if(result.length == 0) this.isEmpty =true;
+                  else if(result.length == 1) this.isOne =true;
+                  else if(result.length == 2) this.isTwo =true;
+                  else if(result.length == 3) this.isThree =true;
+
                 for (var i = 0; i < result.length; i++) {
                   
                     this.dataRows.push(result[i].advName);

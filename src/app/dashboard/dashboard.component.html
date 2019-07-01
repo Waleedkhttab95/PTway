@@ -62,7 +62,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                  <tr class="table-success">
+                                  <tr class="table-success" *ngIf="isOne == true || isTwo == true || isThree == true">
                                       <td>{{tableData3.dataRows[0][0]}}</td>
                                       <td>{{tableData3.dataRows[0][2]}}</td>
                                       <button mat-raised-button mat-min-fab class="btn btn-primary btn-just-icon btn-round"
@@ -72,7 +72,7 @@
                                           </button>
 
                                   </tr>
-                                  <tr >
+                                  <tr *ngIf=" isTwo == true">
                                       <td>{{tableData3.dataRows[1][0]}}</td>
                                       <td>{{tableData3.dataRows[1][2]}}</td>
                                       <button mat-raised-button mat-min-fab class="btn btn-primary btn-just-icon btn-round"
@@ -82,7 +82,7 @@
                                           </button>
 
                                   </tr>
-                                  <tr class="table-info">
+                                  <tr class="table-info" *ngIf="isThree == true">
                                       <td>{{tableData3.dataRows[2][0]}}</td>
                                       <td>{{tableData3.dataRows[2][2]}}</td>
                                     

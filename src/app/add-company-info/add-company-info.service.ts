@@ -38,10 +38,18 @@ export class AddCompanyInfoService {
   postcompanyinfo(data: any){
 
     const postData = new FormData();
+    var img = <HTMLInputElement>document.getElementById('file');
+        
+    if(img.files.length > 0){
+        postData.append ('image',data.image,data.fullName);
+      console.log("false")
+    //   img.disabled = false;
+    }
+   
     postData.append ('country',data.country);
     postData.append ('address',data.address);
     postData.append ('info',data.info);
-    postData.append ('image',data.image, data.info);
+    // postData.append ('image',data.image, data.info);
     postData.append ('vision',data.vision);
     postData.append ('message',data.message);
     postData.append ('city',data.city);
