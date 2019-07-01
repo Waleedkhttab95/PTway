@@ -44,7 +44,7 @@ export class LongTermComponent implements OnInit {
     genders = [
       { value: 'ذكر', viewValue: 'ذكر' },
       { value: 'انثى', viewValue: 'انثى' },
-      { value: 'ذكر و انثى', viewValue: 'ذكر و انثى' }
+      { value: 'both', viewValue: 'ذكر و انثى' }
     ];
   
     languages = new FormControl();
