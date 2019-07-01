@@ -97,24 +97,24 @@
                   <div class="col-md-6 padding">
                     <label class="bmd-label-floating custom-label">- الدولة  *</label>
                   
-                      <select class="custom-select d-block w-100" placeholder="" formControlName="country" name="">
-                        <option *ngFor="let country of countries" [value]="country.value">
+                      <mat-select  placeholder="" formControlName="country" name="">
+                        <mat-option *ngFor="let country of countries" [value]="country.value">
                           {{country.viewValue}}
-                        </option>
-                      </select>
-                      <!-- <mat-error *ngIf="userResumeForm.get('country').invalid && validData ==true">هذا الحقل مطلوب</mat-error> -->
+                        </mat-option>
+                      </mat-select>
+                      <mat-error *ngIf="userResumeForm.get('country').invalid && validData ==true">هذا الحقل مطلوب</mat-error>
 
                    
                   </div>
                   <div class="col-md-6 padding">
                     <label class="bmd-label-floating custom-label">- المدينة  *</label>
                
-                      <select class="custom-select d-block w-100" placeholder="" formControlName="city" name="">
-                        <option *ngFor="let city of cities" [value]="city.value">
+                      <mat-select placeholder="" formControlName="city" name="">
+                        <mat-option *ngFor="let city of cities" [value]="city.value">
                           {{city.viewValue}}
-                        </option>
-                      </select>
-                      <!-- <mat-error *ngIf="userResumeForm.get('city').invalid && validData ==true">هذا الحقل مطلوب</mat-error> -->
+                        </mat-option>
+                      </mat-select>
+                      <mat-error *ngIf="userResumeForm.get('city').invalid && validData ==true">هذا الحقل مطلوب</mat-error>
                   
                   </div>
                   <br>
@@ -168,12 +168,12 @@
                     <div class="col-md-6">
                         <label class="bmd-label-floating custom-label">- التخصص العام  *</label>
                         
-                          <select class="custom-select d-block w-100" placeholder="" formControlName="public_Major" name="public_Major">
-                            <option *ngFor="let major of majors"  [value]="major.value">
+                          <mat-select  placeholder="" formControlName="public_Major" name="public_Major">
+                            <mat-option *ngFor="let major of majors"  [value]="major.value">
                               {{major.viewValue}}
-                            </option>
-                          </select>
-                          <!-- <mat-error *ngIf="userResumeForm.get('public_Major').invalid && validData ==true">هذا الحقل مطلوب</mat-error> -->
+                            </mat-option>
+                          </mat-select>
+                          <mat-error *ngIf="userResumeForm.get('public_Major').invalid && validData ==true">هذا الحقل مطلوب</mat-error>
 
                       
                       </div>
