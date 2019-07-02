@@ -107,11 +107,11 @@ export class MyCvComponent implements OnInit {
 
     if(res.study_degree == 'HS') this.study_degree = "الثانوية العامة";
     else if(res.study_degree == 'BHO') this.study_degree = "البكالوريوس";
-    else if(res.study_degree == 'MASTER') this.study_degree = "الماستر";
+    else if(res.study_degree == 'MASTER') this.study_degree = "ماجستير";
 
     if(res.education_degree == 'HS') this.education_degree = "الثانوية العامة";
     else if(res.education_degree == 'BHO') this.education_degree = "البكالوريوس";
-    else if(res.education_degree == 'MASTER') this.education_degree = "الماستر";
+    else if(res.education_degree == 'MASTER') this.education_degree = "ماجستير";
     else if(res.education_degree == 'diploma') this.education_degree = "دبلوم";
     else if(res.education_degree == 'Undergraduate') this.education_degree = "خريج";
 
@@ -128,9 +128,9 @@ export class MyCvComponent implements OnInit {
     else if(res.Education_level == 'University-eigth-year') this.Education_level =  "مستوى ثامن بكالوريوس";
     else if(res.Education_level == 'University-ninth-year') this.Education_level =  "مستوى تاسع بكالوريوس";
     else if(res.Education_level == 'University-ten-year') this.Education_level = "مستوى عاشر بكالوريوس";
-    else if(res.Education_level == 'master-first-year') this.Education_level = "اول ماستر";
-    else if(res.Education_level == 'master-second-year') this.Education_level = "ثاني ماستر";
-    else if(res.Education_level == 'master-third-year') this.Education_level = "ثالث ماستر";
+    else if(res.Education_level == 'master-first-year') this.Education_level = "اول ماجستير";
+    else if(res.Education_level == 'master-second-year') this.Education_level = "ثاني ماجستير";
+    else if(res.Education_level == 'master-third-year') this.Education_level = "ثالث ماجستير";
     else if(res.Education_level == 'diploma-first-year') this.Education_level = "فصل أول دبلوم";
     else if(res.Education_level == 'diploma-second-year') this.Education_level = "فصل ثاني دبلوم";
     else if(res.Education_level == 'diploma-third-year') this.Education_level = "فصل ثالث دبلوم";

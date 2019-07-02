@@ -60,6 +60,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SideModule } from './layouts/sidebar/side.module';
 import { from } from 'rxjs';
 
+
 @NgModule({
   exports: [
     MatAutocompleteModule,
@@ -93,8 +94,7 @@ import { from } from 'rxjs';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule
-  ],
-  declarations: [],
+  ]
  
 })
 export class MaterialModule {}

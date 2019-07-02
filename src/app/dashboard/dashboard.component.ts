@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     dataRows: any[] = [];
     idRows: any[] = [];
     candidates: any[] = [];
+    projectName: any[] = [];
     isLoading = false;
     isEmpty = false;
     isOne = false;
@@ -32,7 +33,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   public ngOnInit() {
       this.isLoading = true;
       this.tableData3 = {
-        headerRow: [ 'العرض', 'عدد المرشحين',  'الإطلاع' ],
+        headerRow: [ 'العرض','المشروع', 'عدد المتقدمين',  'الإطلاع' ],
         dataRows: []
      };
    
@@ -50,7 +51,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 this.isLoading = false
                })
                this.dashboardService.getAllOffers().subscribe((result:any) =>{
-                 console.log(result.length)
                    if(result.length == 0) this.isEmpty =true;
                   else if(result.length == 1) this.isOne =true;
                   else if(result.length == 2) this.isTwo =true;
@@ -61,15 +61,16 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                     this.dataRows.push(result[i].advName);
                     this.idRows.push(result[i].advId);
                    this.candidates.push(result[i].candidates)
+                   this.projectName.push(result[i].projectName)
                     this.tableData3.dataRows.push([
                       
                       this.dataRows[i],
                       this.idRows[i],
                       this.candidates[i],
+                      this.projectName[i],
                     ])
                   }
                   
-                 console.log(this.tableData3.dataRows[0][0])
 
                })
           }

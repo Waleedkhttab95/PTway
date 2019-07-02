@@ -351,7 +351,9 @@ module.exports = (app) => {
         var jobObjArray = [];
         try {
             if(!req.user._id) return res.status(400).send('الشركة غير مسجلة');
-            const advs = await JobAd.find({ 'company': req.user._id}).sort({createDate: -1}).limit(3);
+            const advs = await JobAd.find({ 'company': req.user._id}).sort({createDate: -1}).limit(3)
+            .populate('project')
+            console.log(advs[0].project)
             // if (!advs || advs.length == 0) return res.status(400).send('لا تملك الشركة  إعلانات');
             // advs.forEach(async (adv , index) => {
             //     const advId = adv._id;
@@ -363,8 +365,9 @@ module.exports = (app) => {
             for (let index = 0; index < advs.length; index++) {
                 const advId = advs[index]._id;
                 const advName= advs[index].job_Name;
+                const projectName = advs[index].project.projectName;
                 const candidates = await Candidate.find({ 'jobAd': advId }).countDocuments();
-                const obj = { advId,advName, candidates };
+                const obj = { advId,advName, candidates,projectName };
                 jobObjArray.push(obj);
             }
             return res.status(200).send(jobObjArray);

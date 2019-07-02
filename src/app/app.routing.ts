@@ -40,7 +40,6 @@ export const AppRoutes: Routes = [
         canActivate:[Auth_company_Guard],
         loadChildren: './add-job/add-job.module#AddJobModule'
     },
-    
     {
         path: 'short-term',
         canActivate:[Auth_company_Guard],
@@ -66,7 +65,7 @@ export const AppRoutes: Routes = [
         loadChildren: './my-projects/my-projects.module#MyProjectsModule'
     }, {
         path: 'job-offer-check',
-        canActivate:[AuthGuard],
+        canActivate:[Auth_company_Guard],
         loadChildren: './job-offer-check/job-offer-check.module#JobOfferCheckModule'
     }, {
         path: 'job-offer-preview',

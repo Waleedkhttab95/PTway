@@ -49,7 +49,7 @@ export class AddUserInfoComponent implements OnInit {
   study_degrees = [
     {value: 'HS', viewValue: 'ثانوية عامة'},
     {value: 'BHO', viewValue: 'بكالوريوس'},
-    {value: 'MASTER', viewValue: 'ماستر'},
+    {value: 'MASTER', viewValue: 'ماجستير'},
     {value: 'diploma', viewValue: 'دبلوم'},
     {value: 'Undergraduate', viewValue: 'خريج'}
   ];
@@ -57,7 +57,7 @@ export class AddUserInfoComponent implements OnInit {
   certificate = [
     {value: 'HS', viewValue: 'ثانوية عامة'},
     {value: 'BHO', viewValue: 'بكالوريوس'},
-    {value: 'MASTER', viewValue: 'ماستر'},
+    {value: 'MASTER', viewValue: 'ماجستير'},
     {value: 'diploma', viewValue: 'دبلوم'},
     {value: 'noncertificate', viewValue: 'لايوجد'}
   ];
@@ -249,9 +249,9 @@ export class AddUserInfoComponent implements OnInit {
 
     else if(this.educationId == "MASTER") {
       this.study_statuses.push(
-        {value: 'master-first-year', viewValue: 'اول ماستر'},
-    {value: 'master-second-year', viewValue: 'ثاني ماستر'},
-    {value: 'master-third-year', viewValue: 'ثالث ماستر'},
+        {value: 'master-first-year', viewValue: 'اول ماجستير'},
+    {value: 'master-second-year', viewValue: 'ثاني ماجستير'},
+    {value: 'master-third-year', viewValue: 'ثالث ماجستير'},
   
       )
     }
