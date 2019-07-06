@@ -2,45 +2,45 @@ const mongoose = require('mongoose');
 const Joi = require('joi');
 const jwt = require('jsonwebtoken');
 const keys = require('../../config/keys');
-const {Schema} = mongoose;
+const { Schema } = mongoose;
 
 const userSchema = new Schema({
-key : {type:String},
-googleId: String,
-firstName: {
-    type:String,
-    required: true,
-    maxlength: 50,
-    unique: false
-},
-lastName: {
-    type:String,
-    required: true,
-    maxlength: 50,
-    unique: false
-},
-email: {
-    type:String,
-    required: true,
-    minlength: 5,
-    maxlength: 255
-},
-password: {
-    type:String,
-    required: true,
-    unique: false
-},
-createDate: {type: Date , default:Date.now()},
+    key: { type: String },
+    googleId: String,
+    firstName: {
+        type: String,
+        required: true,
+        maxlength: 50,
+        unique: false
+    },
+    lastName: {
+        type: String,
+        required: true,
+        maxlength: 50,
+        unique: false
+    },
+    email: {
+        type: String,
+        required: true,
+        minlength: 5,
+        maxlength: 255
+    },
+    password: {
+        type: String,
+        required: true,
+        unique: false
+    },
+    createDate: { type: Date, default: Date.now() },
 
-isAdmin:Boolean,
-isConfirmed:{
-    type:Boolean
-   
-}
+    isAdmin: Boolean,
+    isConfirmed: {
+        type: Boolean
+
+    }
 });
 
-userSchema.methods.generateAuthToken = function() {
-    const token = jwt.sign({_id: this._id, isAdmin: this.isAdmin}, keys.jwtKey);
+userSchema.methods.generateAuthToken = function () {
+    const token = jwt.sign({ _id: this._id, isAdmin: this.isAdmin }, keys.jwtKey);
 
     return token;
 }
@@ -56,6 +56,24 @@ function validateUser(user) {
     };
 
     return Joi.validate(user, Schema);
+}
+
+function getAge(DOB) {
+    // the DOB come in 1998-02-15T21:00:00.000Z format so let's reformat it as M/D/Y
+    var dob = JSON.stringify(DOB);
+    var DOBsplitted = dob.split('T')[0];
+    var year = DOBsplitted.split('-')[0];
+    var month = DOBsplitted.split('-')[1];
+    var day = DOBsplitted.split('-')[2];
+    var DOBjoined = month + '/' + day + '/' + year;
+    var today = new Date();
+    var birthDate = new Date(DOBjoined);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age = age - 1;
+    }
+    return age;
 }
 
 // function generateAuthTokenForEmails(userId){
@@ -80,4 +98,5 @@ function validateUser(user) {
 
 exports.User = User;
 exports.validate = validateUser;
+exports.getAge = getAge;
 // exports.emailAuth = generateAuthTokenForEmails;

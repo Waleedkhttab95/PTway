@@ -106,6 +106,7 @@ module.exports = (app) => {
     }
   });
 
+  // just to redirect from the url that sends to the email
   app.get('/api/reset', async (req, res) => {
     const id = req.query.id;
     console.log(id);
@@ -114,23 +115,45 @@ module.exports = (app) => {
     return res.redirect(path);
   });
 
-
+  // TO change the password
   app.put('/api/reset', async (req, res) => {
-    try {
-      const salt = await bcrypt.genSalt(10, (error, hash) => {
-        if (error) res.status(400)
-      });
-      await bcrypt.hash(req.body.newPassword, salt, null, async (error, hash) => {
-        if (error) res.status(400)
-        await User.findByIdAndUpdate(req.query.id, { $set: { password: hash } }, { new: true });
-        res.status(204).send('done changing');
-      });
-      // res.status(200).send('The password has been changed');
-      console.log('done');
+    const user = User.findById(req.query.id);
+    if (user._id == undefined) {
+      try {
+        const salt = await bcrypt.genSalt(10, (error, hash) => {
+          if (error) res.status(400)
+        });
+        await bcrypt.hash(req.body.newPassword, salt, null, async (error, hash) => {
+          if (error) res.status(400)
+          await Company.findByIdAndUpdate(req.query.id, { $set: { password: hash } }, { new: true });
+          res.status(204).send('done changing');
+        });
+        // res.status(200).send('The password has been changed');
+        console.log('done');
 
-    } catch (e) {
-      res.send('error' + e);
+      } catch (e) {
+        res.send('error' + e);
+      }
     }
+    else {
+      try {
+        const salt = await bcrypt.genSalt(10, (error, hash) => {
+          if (error) res.status(400)
+        });
+        await bcrypt.hash(req.body.newPassword, salt, null, async (error, hash) => {
+          if (error) res.status(400)
+          await User.findByIdAndUpdate(req.query.id, { $set: { password: hash } }, { new: true });
+          res.status(204).send('done changing');
+        });
+        // res.status(200).send('The password has been changed');
+        console.log('done');
+
+      } catch (e) {
+        res.send('error' + e);
+      }
+    }
+
+
   });
 
   // for company 
@@ -196,7 +219,7 @@ module.exports = (app) => {
           if (error) res.status(400)
           await Company.findByIdAndUpdate(companyId, { $set: { password: hash } }, { new: true });
         });
-        return res.status(200).send('غيّرنا لك الرقم السري');
+        return res.status(200).send('غيّرنا لكم الرقم السري');
       }
     });
   });
@@ -221,6 +244,8 @@ module.exports = (app) => {
       });
       await bcrypt.hash(req.body.newPassword, salt, null, async (error, hash) => {
         if (error) res.status(400)
+        console.log(req.query.id)
+        console.log(hash)
         await Company.findByIdAndUpdate(req.query.id, { $set: { password: hash } }, { new: true });
         res.status(204).send('done changing');
       });

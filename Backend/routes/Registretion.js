@@ -84,12 +84,27 @@ module.exports = (app) => {
 
   app.post('/api/resend' , async (req, res) => {
     const user = await User.findOne({ email: req.body.email });
+    //  if the email for a company 
+    if(!user){  
+      try{
+        const company = await Company.findOne({ email: req.body.email });
+        companySendVerifMail(company.companyName , company.email);
+        res.status(200).send();
+      } catch(e){
+        res.status(400).send(e);
+        console.log(e);
+      }
+    }
+    // if the email for a user
+    else {
     try{
       sendVerifMail(user.firstName , user.email);
       res.status(200).send();
     } catch(e){
       res.status(400).send(e);
+      console.log(e);
     }
+  }
   });
 };
 
