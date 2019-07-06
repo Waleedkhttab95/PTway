@@ -51,11 +51,12 @@ export class JobOfferComponent implements OnInit {
      if(this.apply == true ) {
        this.showSwal('warning-message')
      }
+     if( res.job.gender == 'both') this.gender = 'ذكر و انثى'
+     else this.gender = res.job.gender,
       this.city= res.City,
       this.contract= res.Contract,
       this.country= res.Country
-     // if( res.job.gender == 'both') this.gender = 'ذكر و انثى'
-       this.gender = res.job.gender,
+    //   this.gender = res.job.gender,
       this.job_Name= res.job.job_Name,
       this.description= res.job.descreption,
       this.public_Major= res.public_Major,
