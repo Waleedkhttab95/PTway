@@ -117,9 +117,12 @@ module.exports = (app) => {
 
   // TO change the password
   app.put('/api/reset', async (req, res) => {
-    const user = User.findById(req.query.id);
-    if (user._id == undefined) {
+    
+    const user = await User.findById(req.query.id);
+  
+    if (user == null) {
       try {
+        console.log('Test reset')
         const salt = await bcrypt.genSalt(10, (error, hash) => {
           if (error) res.status(400)
         });
