@@ -91,7 +91,7 @@ countOfRows: number =0;
      this.Dtable()
       });
     this.dataTable = {
-      headerRow: ['#', 'الأسم', 'اجرائات العقد' ],
+      headerRow: ['#', 'الأسم','السيرة الذاتية', 'اجرائات العقد' ],
 
       dataRows: [
      
@@ -121,6 +121,9 @@ countOfRows: number =0;
       this.changeDetectorRef.detectChanges();
     }
    
+    onSelect(id) {
+      this.data.storeDataUser(id);
+      }
 
 
 }

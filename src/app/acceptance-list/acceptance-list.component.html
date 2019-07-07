@@ -21,6 +21,8 @@
                       <th>{{ dataTable.headerRow[0] }}</th>
                       <th>{{ dataTable.headerRow[1] }}</th>
                       <th>{{ dataTable.headerRow[2] }}</th>
+                      <th>{{ dataTable.headerRow[3] }}</th>
+
                   
                  
                   </tr>
@@ -28,7 +30,9 @@
                 <tbody>
                   <tr *ngFor="let row of dataTable.dataRows; let rowIndex = index">
                       <td>{{row[0]}}</td>
-                    <td>{{row[1]}}</td>
+                      <td>{{row[1]}}</td>
+
+                      <td><button mat-raised-button class="btn btn-primary btn-round" (click)='onSelect(row[2])' [routerLink]="['/cv-preview']">عرض السيرة الذاتية</button></td>
                    
                     <td>
                       <swal

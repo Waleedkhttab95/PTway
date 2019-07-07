@@ -22,17 +22,17 @@
                   <tr>
                     <th>{{ dataTable.headerRow[0] }}</th>
                     <th>{{ dataTable.headerRow[1] }}</th>
-                    <th>{{ dataTable.headerRow[2] }}</th>
+                    <!-- <th>{{ dataTable.headerRow[2] }}</th> -->
                   </tr>
                 </thead>
                 <tbody>
                   <tr *ngFor="let row of dataTable.dataRows">
                     <td>{{row[0]}}</td>
                     <td><a [routerLink]="['/job-offer']" (click)='onSelect(row[2])'>{{row[1]}}</a></td>
-                    <td>
+                    <!-- <td>
                         <a class="btn btn-link btn-success btn-just-icon edit" (click)="onAccepted(row[2])"><i class="material-icons">done</i></a>
                     </td>
-                   
+                    -->
                   </tr>
                 </tbody>
               </table>
