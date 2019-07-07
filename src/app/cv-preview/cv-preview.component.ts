@@ -24,6 +24,7 @@ export class CvPreviewComponent implements OnInit {
   spMajor:  string = "";
   languages:  string = "";
   skills:  string = "";
+  email: string = "";
   work_Hours: Number;
   personal_Skills:  string = "";
   hoppies:  string = "";
@@ -52,6 +53,7 @@ export class CvPreviewComponent implements OnInit {
       this.fullName=  res.fullName;
       this.gender=  res.gender;
       this.mobile=  res.mobile;
+      this.email= res.email;
       this.birthDate=  this.DateFormat(res.birthDate);;
       this.city=  res.city;
       this.universty= res.universty;

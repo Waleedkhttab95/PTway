@@ -10,6 +10,8 @@ const {Skills} = require('../models/Users/skills');
 const {PersonalSkills} = require('../models/Users/Personal_Skills');
 const {Universty} = require('../models/Shared/Universty');
 const {Company} = require('../models/Companies/Companies')
+const {User} = require('../models/Users/User');
+
 
 module.exports = (app) => {
     //post user information
@@ -229,6 +231,7 @@ module.exports = (app) => {
       app.get('/api/get/userinfo', auth, async (req, res) => {
         const id = req.query.id;
         const info = await UserInfo.findOne({ 'user': id });
+        const user = await User.findById(id);
         if (!info) return res.status(401).send('not found');
 
         
@@ -271,6 +274,7 @@ module.exports = (app) => {
         try{
 
             res.status(200).json({
+                email:user.email,
                 country: country.countryName,
                 study_degree: info.study_degree,
                imagePath: info.imagePath,
