@@ -7,6 +7,8 @@ const { getAge } = require('../models/Users/User');
 const { UserInfo } = require('../models/Users/User_Info');
 const { JobAd } = require('../models/Companies/Job_Ad');
 const { Project } = require('../models/Companies/Project');
+const {Candidate} = require('../models/Companies/Candidates');
+const {Accepted} =  require('../models/Companies/Accepted');
 module.exports = (app) => {
 
     app.put('/api/companyApproval', async (req, res) => {
@@ -30,7 +32,7 @@ module.exports = (app) => {
 
     // return count of company based sector or sp
 
-    app.get('/api/get/company/:sector?/:sp?', async (req, res) => {
+    app.get('/api/get/count/company/:sector?/:sp?', async (req, res) => {
         const sector = req.query.sector;
         const sp = req.query.sp;
 
@@ -70,17 +72,16 @@ module.exports = (app) => {
 
     // return count of company based country & city & sector & sp
     app.get('/api/get/company/country/sector/:country?/:city?/:sector?/:sp?', async (req, res) => {
-        console.log('Test')
-
         const sector = req.query.sector;
         const sp = req.query.sp;
 
         if (sector != undefined && sp != undefined) {
+
             var result1 = 0;
 
             var result2 = await CompanyInfo.find({ 'country': req.query.country, 'city': req.query.city })
             for (var i = 0; i < result2.length; i++) {
-                result1 += await Company.findOne({ '_id': result2[i].company, 'sector': sector, 'CompanySpecialist': sp }).countDocuments();
+                result1 += await Company.findOne({ '_id': result2[i].company, 'sector': sector, 'CompanySpecialist': sp })
             }
             return res.status(200).json({
                 result: result1
@@ -91,7 +92,7 @@ module.exports = (app) => {
 
             var result = 0;
 
-            var result2 = await CompanyInfo.find({ 'country': req.query.country, 'city': req.query.city }).countDocuments()
+            var result2 = await CompanyInfo.find({ 'country': req.query.country, 'city': req.query.city })
             for (var i = 0; i < result2.length; i++) {
                 result += await Company.findOne({ '_id': result2[i].company, 'sector': sector }).countDocuments();
             }
@@ -101,10 +102,12 @@ module.exports = (app) => {
             });
         }
         if (sp != undefined) {
+
             var result = 0;
-            var result2 = await CompanyInfo.find({ 'country': req.query.country, 'city': req.query.city }).countDocuments()
+            var result2 = await CompanyInfo.find({ 'country': req.query.country, 'city': req.query.city })
 
             for (var i = 0; i < result2.length; i++) {
+
                 result += await Company.findOne({ '_id': result2[i].company, 'CompanySpecialist': sp }).countDocuments();
 
             }
@@ -135,19 +138,21 @@ module.exports = (app) => {
     });
 
     // Getting users depends on countries and cities
-    app.get('/api/get/UsersDepenedsOnArea', async (req, res) => {
+    app.get('/api/get/UsersDepenedsOnArea/:country?/:city?', async (req, res) => {
         try {
-            const country = await Country.findOne({ 'countryName': req.body.Country });
-            const CountryId = country._id;
-            const city = await City.findOne({ 'cityName': req.body.City });
-            const CityId = city._id;
+           // recevie URL Paramaters
+            const CountryId = req.query.country;
+            
+            const CityId = req.query.city;
 
             if (!CountryId || !CityId) {
                 res.status(400).send('معلومات الدولة أو المدينة خاطئة');
             }
             else {
                 const Users = await UserInfo.find({ 'country': CountryId, 'city': CityId }).countDocuments();
-                res.status(200).json(Users);
+                res.status(200).json({
+                    users: Users
+                });
             }
         }
         catch (error) {
@@ -157,7 +162,7 @@ module.exports = (app) => {
     });
 
     // Getting users depends on age
-    app.get('/api/get/UsersDepenedsOnAge', async (req, res) => {
+    app.get('/api/get/UsersDepenedsOnAge/:age?', async (req, res) => {
         var ages = [];
         try {
             const Users = await UserInfo.find();
@@ -168,7 +173,7 @@ module.exports = (app) => {
                 for (let index = 0; index < Users.length; index++) {
                     var DOB = Users[index].birthDate;
                     var age = getAge(DOB);
-                    if (age == req.body.age) {
+                    if (age == req.query.age) {
                         ages.push(age);
                     }
                 }
@@ -219,4 +224,32 @@ module.exports = (app) => {
             res.status(400).send('خطأ');
         }
     });
+
+    // return Candidties and Accepted users for Job offer
+    app.get('/api/get/cand/acc/:jobId?', async (req,res) =>{
+        
+
+        const candidates = await Candidate.find({'jobAd' : req.query.jobId}).countDocuments();
+        const accepted = await Accepted.find({'jobAd' : req.query.jobId}).countDocuments();
+
+        return res.status(200).json({
+            candidates: candidates,
+            accepted:accepted
+        });
+
+    });
+
+    // return count of Projects and job offers for each company
+
+    app.get('/api/get/projects/jobs/:companyId?', async (req,res) =>{
+
+        const projects = await Project.find({'company': req.query.companyId}).countDocuments();
+        const jobAds = await JobAd.find({'company': req.query.companyId}).countDocuments();
+
+        
+        return res.status(200).json({
+            projects: projects,
+            jobAds:jobAds
+        });
+    })
 }
