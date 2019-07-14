@@ -252,4 +252,91 @@ module.exports = (app) => {
             jobAds:jobAds
         });
     })
+
+    // return All users
+    app.get('/api/get/allUsers', async (req,res) =>{
+        const users = await User.find();
+        if(!users) return res.status(401).send('not users exist .')
+
+        return res.status(200).json({
+            users : users
+        })
+    });
+
+
+       // return All users Info
+       app.get('/api/get/allUsersInfo', async (req,res) =>{
+           console.log('Test')
+        const users = await UserInfo.find();
+        if(!users) return res.status(401).send('not users exist .')
+
+        return res.status(200).json({
+            users : users
+        })
+    });
+
+    // Confirm user 
+    app.put('/api/confitm/user/:id?', async (req,res) =>{
+        const user = await User.updateOne({'_id': req.query.id},
+        {
+            $set: {
+                isConfirmed: true
+            }
+        });
+        if (!user) return res.status(401).send('user not exist');
+
+       return res.status(200).json({
+            message: "Successful !"
+        });
+        
+    });
+
+     // Block user 
+     app.put('/api/block/user/:id?', async (req,res) =>{
+        const user = await User.updateOne({'_id': req.query.id},
+        {
+            $set: {
+                isConfirmed: false
+            }
+        });
+        if (!user) return res.status(401).send('user not exist');
+
+       return res.status(200).json({
+            message: "Successful !"
+        });
+        
+    });
+
+
+       // Confirm Company 
+       app.put('/api/confitm/company/:id?', async (req,res) =>{
+        const company = await Company.updateOne({'_id': req.query.id},
+        {
+            $set: {
+                isConfirmed: true
+            }
+        });
+        if (!company) return res.status(401).send('company not exist');
+
+       return res.status(200).json({
+            message: "Successful !"
+        });
+        
+    });
+
+     // Block company 
+     app.put('/api/block/company/:id?', async (req,res) =>{
+        const company = await Company.updateOne({'_id': req.query.id},
+        {
+            $set: {
+                isConfirmed: false
+            }
+        });
+        if (!company) return res.status(401).send('user not exist');
+
+       return res.status(200).json({
+            message: "Successful !"
+        });
+        
+    });
 }

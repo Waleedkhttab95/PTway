@@ -33,6 +33,7 @@ const userSchema = new Schema({
     createDate: { type: Date, default: Date.now() },
 
     isAdmin: Boolean,
+    isSubAdmin: Boolean,
     isConfirmed: {
         type: Boolean
 
@@ -40,7 +41,7 @@ const userSchema = new Schema({
 });
 
 userSchema.methods.generateAuthToken = function () {
-    const token = jwt.sign({ _id: this._id, isAdmin: this.isAdmin }, keys.jwtKey);
+    const token = jwt.sign({ _id: this._id, isAdmin: this.isAdmin,isSubAdmin: this.isSubAdmin }, keys.jwtKey);
 
     return token;
 }

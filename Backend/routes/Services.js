@@ -87,12 +87,18 @@ module.exports = (app) =>{
        var result = [];
         const notifications = await Notification
         .find({user: req.user._id})
-        .select('-user');
+        .select('-user')
+        .sort({'date' : -1});
+
         for(var i = 0 ; i<notifications.length ; i++){
              result.push(await JobAd
             .find({_id : notifications[i].content})
+            .sort({ date: -1 })
             .select("job_Name _id") 
              )
+
+             
+
         }
        
       

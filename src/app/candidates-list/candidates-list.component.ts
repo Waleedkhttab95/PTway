@@ -44,7 +44,9 @@ export class CandidatesListComponent implements OnInit {
             sNext:     "التالية",
             sPrevious: "السابقة" 
         },
-        }
+
+        },
+        "aaSorting": [[ 1, "asc" ]]
   
       });
   
