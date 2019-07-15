@@ -32,7 +32,7 @@ export class JobOfferComponent implements OnInit {
   work_days: string ;
   work_hours: string ;
   companyName: string;
-  companyInfo:string;
+  companyInfo:string = '';
   companyImg: string = './assets/img/avatar.png';
   companyWebsite: string;
   companyCountry: string;
@@ -69,8 +69,8 @@ export class JobOfferComponent implements OnInit {
         this.companyName = res.compnayName
         this.companyCountry = res.country
         this.companyCity = res.city
-        this.companyInfo = res.info
-        if(res.imagePath != null) this.companyImg = res.imagePath;
+       if(res.info != "null") this.companyInfo = res.info;
+        if(res.imagePath != "null") this.companyImg = res.imagePath;
         this.isLoading = false;
       
       })
