@@ -28,7 +28,7 @@ module.exports = (app) =>{
               
         if(gender == "both") {
             const result = await UserInfo
-            .find({ country: country,city: city, spMajor: '5caf5645ffec65462ec2a0d3'})
+            .find({ country: country,city: city, spMajor: '5caf5639ffec65462ec2a0d1'})
             .select("user");
 
             result.forEach(async function(r) {
