@@ -328,7 +328,11 @@ module.exports = (app) => {
     app.delete('/api/deletejob', async (req, res) => {
         const id = req.query.id;
         const job = await JobAd.findByIdAndDelete(id);
+<<<<<<< HEAD
           const notiCount = await Notification.find({'content': id});
+=======
+        const notiCount = await Notification.find({'content': id});
+>>>>>>> e9e8f9fb327fc578cf571aa5c89081e55bd9b630
 
         for(var i =0 ; i< notiCount.length; i++) {
             const notiDelete = await Notification.findByIdAndDelete(notiCount[i]._id)
@@ -336,7 +340,10 @@ module.exports = (app) => {
 
         }
         if (!job) return res.status(400).send('not found');
+<<<<<<< HEAD
         
+=======
+>>>>>>> e9e8f9fb327fc578cf571aa5c89081e55bd9b630
         res.send("Deleted !");
     });
 
@@ -352,6 +359,30 @@ module.exports = (app) => {
         });
     });
 
+
+    // Edit JobAd
+    
+    app.put('/api/put/job', async (req, res) => {
+        const jobAd = await JobAd.updateOne({ '_id': req.body.id }, {
+            $set: {
+                contract: req.body.contract,
+                job_Name: req.body.job_Name,
+                country: req.body.country,
+                city: req.body.city,
+                work_hours: req.body.work_hours,
+                work_days: req.body.work_days,
+                salary: req.body.salary,
+                descreption: req.body.descreption,
+                required_Number: req.body.required_Number,
+                startDate: req.body.startDate
+
+
+            }
+
+        }).then(result =>{
+            res.status(200).send("Done .");
+        });
+    });
 
     app.get('/api/getCompanyAds',auth, async (req, res) => {
         var jobObjArray = [];

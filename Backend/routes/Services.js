@@ -23,12 +23,12 @@ module.exports = (app) =>{
               const city= req.body.city;
               const gender= req.body.gender;
               // const  personal_Skills= req.body.personal_Skills;
-             //  const public_Major = req.body.public_Major;
+               const public_Major = req.body.public_Major;
               const jobAd = req.body.jobAd;
               
         if(gender == "both") {
             const result = await UserInfo
-            .find({ country: country,city: city})
+            .find({ country: country,city: city, spMajor: public_Major})
             .select("user");
 
             result.forEach(async function(r) {
@@ -132,7 +132,7 @@ module.exports = (app) =>{
          const contract = await Contract.findById(job.contract);
          const public_Major = await public_Major.findById(job.public_Major);
          const result = await Notification.findOne({'content' : id , 'user' : req.user._id});
-
+        debugger;
          if(result.isRead == false){
              result.isRead = true;
              result.save();
