@@ -39,10 +39,10 @@ export class JobService {
 
                 }
                
-                this.http
-                .post(BackUrl + '/send/Jobad', this.jobData,{responseType: 'text'}).subscribe((res: any) =>{
-                    this.router.navigate(['/my-projects']);
-                });
+                // this.http
+                // .post(BackUrl + '/send/Jobad', this.jobData,{responseType: 'text'}).subscribe((res: any) =>{
+                //     this.router.navigate(['/my-projects']);
+                // });
             });
 
       
