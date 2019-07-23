@@ -23,12 +23,12 @@ module.exports = (app) =>{
               const city= req.body.city;
               const gender= req.body.gender;
               // const  personal_Skills= req.body.personal_Skills;
-               const public_Major = req.body.public_Major;
+              // const public_Major = req.body.public_Major;
               const jobAd = req.body.jobAd;
               
         if(gender == "both") {
             const result = await UserInfo
-            .find({ country: country,city: city, spMajor: '5caf5639ffec65462ec2a0d1'})
+            .find({ country: country,city: city})
             .select("user");
 
             result.forEach(async function(r) {
