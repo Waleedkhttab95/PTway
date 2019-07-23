@@ -328,22 +328,18 @@ module.exports = (app) => {
     app.delete('/api/deletejob', async (req, res) => {
         const id = req.query.id;
         const job = await JobAd.findByIdAndDelete(id);
-<<<<<<< HEAD
+
           const notiCount = await Notification.find({'content': id});
-=======
-        const notiCount = await Notification.find({'content': id});
->>>>>>> e9e8f9fb327fc578cf571aa5c89081e55bd9b630
+
 
         for(var i =0 ; i< notiCount.length; i++) {
             const notiDelete = await Notification.findByIdAndDelete(notiCount[i]._id)
-            if (!notiDelete) return res.status(400).send('not found');
+
 
         }
-        if (!job) return res.status(400).send('not found');
-<<<<<<< HEAD
         
-=======
->>>>>>> e9e8f9fb327fc578cf571aa5c89081e55bd9b630
+
+
         res.send("Deleted !");
     });
 
