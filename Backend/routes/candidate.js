@@ -7,18 +7,25 @@ module.exports = (app) =>{
 
   // apply Job
  app.post('/api/postBodyC',auth, async (req,res)=>{
-   new Candidate({
-    candidateName : req.user._id ,
-    jobAd : req.body.jobAd
-   }).save()
-.then (result => {res.send(result);})
-
-const result = await Notification.findOne({'content' : req.body.jobAd , 'user' : req.user._id});
-
-         if(result.apply == false){
-             result.apply = true;
-             result.save();
-         }
+   const user = await Candidate.findOne({'candidateName' :req.user._id  , 'jobAd' : req.body.jobAd});
+   if(!user){
+    new Candidate({
+      candidateName : req.user._id ,
+      jobAd : req.body.jobAd
+     }).save()
+  .then (result => {res.send(result);})
+  
+  const result = await Notification.findOne({'content' : req.body.jobAd , 'user' : req.user._id});
+  
+           if(result.apply == false){
+               result.apply = true;
+               result.save();
+           }
+   }
+   else {
+     return res.status(200).send('this user already exist')
+   }
+   
 });
 
 app.get('/api/getCandites',async (req,res)=>{
@@ -29,6 +36,7 @@ app.get('/api/getCandites',async (req,res)=>{
 app.get('/api/getOneCandi',async(req,res)=>{
   const usernames = [];
 const Bresult = await Candidate.find({'jobAd':req.query.jobAd})
+.sort({'createDate': 1 })
 if (!Bresult) return res.status(401).send('notFound')
 const candidateNames = Bresult.map(x => x.candidateName);
 const ids = Bresult.map(x=> x._id);

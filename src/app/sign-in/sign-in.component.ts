@@ -50,9 +50,11 @@ export class SignInComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-   
+   this.authService.autoAuthUser();
     const isAuth = this.authService.getIsAuth();
     const isCompany = this.authService.getIsCompany();
+    console.log(this.authService.getIsAuth() )
+    console.log( this.authService.getIsCompany() )
 
     if (isAuth && isCompany == 'false') {
       console.log('is user')
@@ -73,7 +75,7 @@ export class SignInComponent implements OnInit, OnDestroy {
       body.classList.add('login-page');
       body.classList.add('off-canvas-sidebar');
       const card = document.getElementsByClassName('card')[0];
-      this.userMood();
+    //  this.userMood();
       setTimeout(function () {
         // after 1000 ms we add the class animated to the login/register card
         card.classList.remove('card-hidden');

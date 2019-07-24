@@ -23,7 +23,7 @@ module.exports = (app) =>{
               const city= req.body.city;
               const gender= req.body.gender;
               // const  personal_Skills= req.body.personal_Skills;
-             //  const public_Major = req.body.public_Major;
+              // const public_Major = req.body.public_Major;
               const jobAd = req.body.jobAd;
               
         if(gender == "both") {
@@ -87,12 +87,18 @@ module.exports = (app) =>{
        var result = [];
         const notifications = await Notification
         .find({user: req.user._id})
-        .select('-user');
+        .select('-user')
+        .sort({'date' : -1});
+
         for(var i = 0 ; i<notifications.length ; i++){
              result.push(await JobAd
             .find({_id : notifications[i].content})
+            .sort({ date: -1 })
             .select("job_Name _id") 
              )
+
+             
+
         }
        
       
@@ -126,7 +132,7 @@ module.exports = (app) =>{
          const contract = await Contract.findById(job.contract);
          const public_Major = await public_Major.findById(job.public_Major);
          const result = await Notification.findOne({'content' : id , 'user' : req.user._id});
-
+        debugger;
          if(result.isRead == false){
              result.isRead = true;
              result.save();

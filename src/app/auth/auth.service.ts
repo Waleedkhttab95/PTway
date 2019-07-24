@@ -276,7 +276,9 @@ export class AuthService {
   }
 
   private getAuthData() {
-    const token = localStorage.getItem('token');
+    var token ='null';
+   if(localStorage.getItem('token') != null)
+     token = localStorage.getItem('token');
     const user = localStorage.getItem('userId');
     const isCompany = localStorage.getItem('isCompany');
     const companyName = localStorage.getItem('companyName');
