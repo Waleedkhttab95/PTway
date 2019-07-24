@@ -117,6 +117,18 @@ async function sendHelloEmail(email) {
     // });
 };
 
+async function adminEmail(subject , message , email , name) {
+    const url = keys.mail_url;
+    const ccemail = fs.readFileSync(__dirname + '/adminEmail.html', 'utf-8');
+    const comemail = hogan.compile(ccemail);
+    transporter.sendMail({
+        from: 'no-reply@ptway.net',
+        to: email,
+        subject: subject,
+        html: comemail.render({name : name , message : message}),
+    });
+};
+
 
 
 exports.sendVerifMail = sendVerifMail;
@@ -124,3 +136,4 @@ exports.sendResetEmail = sendResetEmail;
 exports.sendJobOffer = sendJobOffer;
 exports.companySendVerifMail = companySendVerifMail;
 //exports.sendHelloEmail = sendHelloEmail;
+exports.adminEmail = adminEmail;
