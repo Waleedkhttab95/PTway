@@ -324,7 +324,7 @@ module.exports = (app) => {
     // By Id
     app.get('/api/get/searchCompanyById/:id?', async (req, res) => {
         try {
-            const id = '5d231bbc14cec2565899befc';
+            const id = req.query.id;
             const company = await Company.findById(id);
             if (!company) {
                 res.status(400).json('الشركة غير مسجلة');
@@ -415,8 +415,8 @@ module.exports = (app) => {
     // Now we do the CRUD for users
     // *************************************
 
-    // Create
-    app.post('/api/post/createNewUser', async (req, res) => {
+    // Create Sub Admin
+    app.post('/api/post/createNewSubUser', async (req, res) => {
         try {
             const { error } = validate(req.body);
             if (error) return res.status(400).send(error.details[0].message);
@@ -433,12 +433,14 @@ module.exports = (app) => {
             const hashPassword = await bcrypt.hash(user.password, salt, null, (error, hash) => {
                 if (error) res.status(400)
                 user.password = hash;
+                user.isConfirmed = false; // initially will be false 
+                user.isSubAdmin = true;
                 user.save();
             });
-            user.isConfirmed = false; // initially will be false 
+            
             sendVerifMail(user.firstName, user.email);
 
-            res.status(200).send('تم إضافة المستخدم بنجاح');
+            res.status(200).send(user);
         }
         catch (error) {
             console.log(error);
@@ -742,7 +744,7 @@ module.exports = (app) => {
         }
     });
 
-    })
+  
 
     // return All users
     app.get('/api/get/allUsers', async (req,res) =>{
