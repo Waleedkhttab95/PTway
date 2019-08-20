@@ -19,7 +19,7 @@ export class EditCvComponent implements OnInit {
     disabled=false;
     ShowFilter=false;
     limitSelection= false;
-    cc: any =[];
+    cc =[];
     selectedItems:any =[];
     dropdownSettings: any={};
 
@@ -151,6 +151,7 @@ export class EditCvComponent implements OnInit {
   
   getSkills() {
     this.skillList= [];
+    
     this.jobService.getSkills().subscribe((data: {}) => {
       for (let key in data) {
         this.skillList.push({ item_id: data[key]._id, item_text: data[key].skillName });
@@ -190,10 +191,9 @@ export class EditCvComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.cc =[
-    //   {item_id:1, item_text: 'delhi'},
-    //   {item_id:2, item_text: 'delhi'}
-    // ]
+    this.cc =[
+      {item_id: "5c9cc0ac8b79d42be48419a3", item_text: "التواصل مع الجمهور"}      
+    ]
    
     this.getcity();
     this.getSkills();
@@ -284,6 +284,7 @@ export class EditCvComponent implements OnInit {
  
   }
   onSelect2(item: any){
+
     this.userResumeForm.value.personal_Skills.push(item.item_id) ;
  
   }

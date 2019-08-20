@@ -4,6 +4,7 @@ import { DataService } from '../data.service';
 import { UserService } from '../my-cv/user.service';
 import { CompanyService } from '../company-profile/company.service';
 import swal from 'sweetalert2';
+import { Router } from '@angular/router';
 declare var $: any;
 
 @Component({
@@ -14,12 +15,13 @@ declare var $: any;
 export class JobOfferComponent implements OnInit {
 
   constructor(public jobService:JobService,private dataService: DataService, public userService: UserService,
-    public companyService:CompanyService) { }
+    public companyService:CompanyService, private router: Router) { }
 
     isLoading = false;
   offerId: string;
   job: Object;
   apply: boolean;
+  locked: boolean;
   city: string
   contract: string ;
   country: string ;
@@ -48,8 +50,13 @@ export class JobOfferComponent implements OnInit {
   
     this.jobService.getJob(id).subscribe((res:any) =>{
      this.apply = res.apply
+     this.locked = res.job.isLock;
      if(this.apply == true ) {
        this.showSwal('warning-message')
+     }
+     if(this.locked== true) {
+      this.showSwal('warning-message2')
+      this.router.navigate(['/offers-list']);
      }
      if( res.job.gender == 'both') this.gender = 'ذكر و انثى'
      else this.gender = res.job.gender,
@@ -111,6 +118,15 @@ export class JobOfferComponent implements OnInit {
       swal({
         title: "لقد تقدمت بالفعل لهذه الوظيفة!",
         text: "شكرا لك , لقد تقدمت لهذه الوظيفة سابقا و نتمنى لك التوفيق !",
+        buttonsStyling: false,
+        confirmButtonClass: "btn btn-warning",
+        type: "success"
+      }).catch(swal.noop)
+    }
+    if (type == 'warning-message2') {
+      swal({
+        title: "تم الإكتفاء!",
+        text: "شكرا لك , لقد تم إكتمال عدد المرشحين لهذه الوظيفة !",
         buttonsStyling: false,
         confirmButtonClass: "btn btn-warning",
         type: "success"
