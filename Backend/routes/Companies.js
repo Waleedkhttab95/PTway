@@ -343,6 +343,29 @@ module.exports = (app) => {
         res.send("Deleted !");
     });
 
+    // Lock Job
+    app.put('/api/lockJob/:id?', async (req,res) =>{
+        const job = await JobAd.updateOne({'_id': req.query.id}, {
+            $set: {
+                isLock: true
+            }
+        }).then(result =>{
+            res.status(200).send("Done .");
+        });
+    })
+
+      // UnLock Job
+      app.put('/api/unlockJob/:id?', async (req,res) =>{
+        const job = await JobAd.updateOne({'_id': req.query.id}, {
+            $set: {
+                isLock: false
+            }
+        }).then(result =>{
+            res.status(200).send("Done .");
+        });
+    })
+
+
     app.put('/api/put/project', async (req, res) => {
         const projectt = await Project.updateOne({ '_id': req.body.id }, {
             $set: {

@@ -78,7 +78,7 @@ export class MyOffersComponent implements OnInit {
       this.isLoading = false;
     });
     this.dataTable = {
-      headerRow: ['اسم الإعلان','استعراض الإعلان', 'قائمة المرشحين', 'قائمة المقبولين', 'حذف الإعلان'],
+      headerRow: ['اسم الإعلان','استعراض الإعلان', 'قائمة المرشحين', 'قائمة المقبولين','إيقاف الإعلان', 'حذف الإعلان'],
       dataRows: []
     };
   }
@@ -93,6 +93,10 @@ export class MyOffersComponent implements OnInit {
     this.data.storeDataJob(id);
   }
 
+  onLock(id) {
+    console.log('hh')
+    this.jobService.lockJob(id);
+  }
   onDelete(id) {
     this.jobService.deleteJob(id).subscribe(() => {
       this.showSwal('secc');

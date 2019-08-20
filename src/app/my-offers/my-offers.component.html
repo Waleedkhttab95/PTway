@@ -28,6 +28,9 @@
                     <th>{{ dataTable.headerRow[1] }}</th>
                     <th>{{ dataTable.headerRow[2] }}</th>
                     <th>{{ dataTable.headerRow[3] }}</th>
+                    <th>{{ dataTable.headerRow[4] }}</th>
+                    <th>{{ dataTable.headerRow[5] }}</th>
+
                   </tr>
                 </thead>
                 <tbody>
@@ -47,6 +50,13 @@
                       <button mat-raised-button class="btn btn-primary btn-round" (click)="onAccepted(row[1])"
                         [routerLink]="['/acceptance-list']">عرض القائمة</button>
                     </td>
+                    <td class="text-right">
+                        <swal #lockSwal title="انتـبه!" text="عند إيقاف الإعلان سوف تتوقف عن إستقبال المرشحين" confirmButtonText='نعم'
+                          cancelButtonText='إلغاء الأمر' type="warning" showCancelButton="true" cancelButtonClass="btn btn-danger"
+                          (confirm)="onLock(row[1]);">
+                        </swal>
+                        <a class="btn btn-link btn-danger btn-just-icon edit" [swal]="lockSwal"><i class="material-icons">lock</i></a>
+                      </td>
                     <td class="text-right">
                       <swal #deleteSwal title="انتـبه!" text="هل انت متأكد من الحذف" confirmButtonText='نعم'
                         cancelButtonText='إلغاء الأمر' type="warning" showCancelButton="true" cancelButtonClass="btn btn-danger"

@@ -80,6 +80,15 @@ export class JobService {
             ;
     }
 
+    lockJob(id: String) {
+         this.http
+             .put(BackUrl + '/lockJob?id=' + id, null).subscribe(responseData =>{
+                this.showSwal('locked');
+             })
+            
+             ;
+     }
+
     getJobPreview(id: String) {
         return this.http
              .get(BackUrl + '/preview/getjob?id=' + id)
@@ -164,6 +173,14 @@ export class JobService {
           confirmButtonClass:'btn btn-success'
         }).catch(swal.noop)
       }
-
+      if (type == 'locked') {
+        swal({
+          title: "لقد تم إيقاف الإعلان , لن تستقبل أيا مرشح بعد الأن",
+          buttonsStyling: false,
+          confirmButtonText:'نعم',
+          type:'success',
+          confirmButtonClass:'btn btn-success'
+        }).catch(swal.noop)
+      }
 }
 }

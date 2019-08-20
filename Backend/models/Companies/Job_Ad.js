@@ -8,6 +8,7 @@ const adSchema = new Schema({
    contract: {type: mongoose.Schema.Types.ObjectId, ref:'Contracts', required:true},
    project: {type: mongoose.Schema.Types.ObjectId, ref:'Projects'},
    company: {type: mongoose.Schema.Types.ObjectId, ref:'companies'},
+   isLock: {type: Boolean , default: false},
    job_Name: {type: String , required:true},
    job_skills: {type: mongoose.Schema.Types.ObjectId, ref:'Specialists'},
    country:  {type: mongoose.Schema.Types.ObjectId, ref:'Country', required:true},
