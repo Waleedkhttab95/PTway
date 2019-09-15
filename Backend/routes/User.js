@@ -1,10 +1,11 @@
 const {User} = require('../models/Users/User');
 const {Skills} = require('../models/Users/skills');
 const {PersonalSkills} = require('../models/Users/Personal_Skills');
+const auth = require('../middleware/auth');
 
 module.exports = (app) => {
 
-    app.get('/api/get/user', async (req,res) =>{
+    app.get('/api/get/user', auth, async (req,res) =>{
         const id = req.query.id;
 
         const user = await User.findById(id);
@@ -43,5 +44,24 @@ module.exports = (app) => {
     app.get('/api/get/p_skills', async (req,res) =>{
         const PersonalS = await PersonalSkills.find();
         res.send(PersonalS);
+    })
+
+    app.put('/api/subuser', auth, async (req,res) =>{
+
+        let user = await User.findOne({ email: req.body.email });
+
+        if (! user) return res.status(400).send('User not exist');
+
+        const update = await User.findOneAndUpdate({'_id': user._id},
+        {
+          $set: {
+              isSubUser : true,
+              company: req.user._id
+          }
+      })
+
+      res.status(200).send('Successful !');
+
+
     })
 }

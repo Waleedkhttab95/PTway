@@ -37,7 +37,12 @@ const userSchema = new Schema({
     isConfirmed: {
         type: Boolean
 
-    }
+    },
+    isSubUser: {
+        type: Boolean
+    },
+    company:{type: mongoose.Schema.Types.ObjectId, ref:'companies'},
+
 });
 
 userSchema.methods.generateAuthToken = function () {

@@ -1,59 +1,62 @@
-const {Accepted } = require('../models/Companies/Accepted');
+const { Accepted } = require('../models/Companies/Accepted');
 const mongoose = require('mongoose');
-const {User} = require('../models/Users/User');
-const {Candidate} = require('../models/Companies/Candidates');
-const {JobAd} = require('../models/Companies/Job_Ad');
-module.exports = (app) =>{
-    app.post('/api/postAcc', async (req,res)=>{
-        new Accepted  ({
-            jobAd : req.body.jobAd ,
-            acceptedName : req.body.acceptedName
-}).save()
-.then(async result=>{
-    const req_number = await JobAd.findById(req.body.jobAd);
-    const job = await JobAd.updateOne({'_id': req.body.jobAd},{
-        $set: { 
-          limit_Number: req_number.limit_Number + 1
-           } 
-    })
-    
-    const deleteCandidate = await Candidate.remove({'candidateName': req.body.acceptedName});
-    res.send(result);
-})
-});
+const { User } = require('../models/Users/User');
+const { Candidate } = require('../models/Companies/Candidates');
+const { JobAd } = require('../models/Companies/Job_Ad');
+const auth = require('../middleware/auth');
 
-app.get('/api/getAllAccepts',async (req,res)=>{
-    const result = await Accepted.find();
-    res.send(result);
-});
 
-app.get('/api/getOneAccepted',async(req,res)=>{
-    const usernames = [];
+module.exports = (app) => {
+    app.post('/api/postAcc', auth, async (req, res) => {
+        new Accepted({
+            jobAd: req.body.jobAd,
+            acceptedName: req.body.acceptedName
+        }).save()
+            .then(async result => {
+                const req_number = await JobAd.findById(req.body.jobAd);
+                const job = await JobAd.updateOne({ '_id': req.body.jobAd }, {
+                    $set: {
+                        limit_Number: req_number.limit_Number + 1
+                    }
+                })
 
-const oneR = await Accepted.find({'jobAd': req.query.jobAd})
-if(oneR){
+                const deleteCandidate = await Candidate.remove({ 'candidateName': req.body.acceptedName });
+                res.send(result);
+            })
+    });
 
-    const AcceptedNames = oneR.map(x => x.acceptedName);
-    const ids = oneR.map(x=> x._id);
+    app.get('/api/getAllAccepts', auth, async (req, res) => {
+        const result = await Accepted.find();
+        res.send(result);
+    });
 
-    for(var i = 0 ; i < AcceptedNames.length ; i++) {
+    app.get('/api/getOneAccepted', auth, async (req, res) => {
+        const usernames = [];
 
-        const users = await User.findById( AcceptedNames[i]).select("firstName lastName -_id");
-        usernames.push(users);
-      }
+        const oneR = await Accepted.find({ 'jobAd': req.query.jobAd })
+        if (oneR) {
 
-      const username = usernames.map(x => x.firstName +' '+ x.lastName);
+            const AcceptedNames = oneR.map(x => x.acceptedName);
+            const ids = oneR.map(x => x._id);
 
-    
-  res.status(200).json({
-    AcceptedNames: AcceptedNames,
-    username: username, 
-    id: ids,
-    count : oneR.length
-  });
-}
+            for (var i = 0; i < AcceptedNames.length; i++) {
 
-else
-res.send("not found");
-});
+                const users = await User.findById(AcceptedNames[i]).select("firstName lastName -_id");
+                usernames.push(users);
+            }
+
+            const username = usernames.map(x => x.firstName + ' ' + x.lastName);
+
+
+            res.status(200).json({
+                AcceptedNames: AcceptedNames,
+                username: username,
+                id: ids,
+                count: oneR.length
+            });
+        }
+
+        else
+            res.send("not found");
+    });
 }

@@ -12,6 +12,7 @@ companyName: {
     maxlength: 50,
     unique: false
 },
+company:{type: mongoose.Schema.Types.ObjectId, ref:'companies'},
 email: {
     type:String,
     required: true,

@@ -115,12 +115,13 @@ module.exports = (app) => {
 
     // POST job Ad 
     app.post('/api/postjob', auth, (req, res) => {
-
+        var lock_date = lockDate();
         new JobAd({
             company: req.user._id,
             contract: req.body.contract,
             project: req.body.project,
             job_Name: req.body.job_Name,
+            lockDate: lock_date,
             descreption: req.body.descreption,
             job_skills: req.body.job_skills,
             country: req.body.country,
@@ -184,14 +185,14 @@ module.exports = (app) => {
 
     // Get all jobs Ad 
 
-    app.get('/api/getjobs', async (req, res) => {
+    app.get('/api/getjobs', auth, async (req, res) => {
         const jobs = await JobAd.find();
         res.send(jobs);
     })
 
 
     //Get project by Id
-    app.get('/api/getproject', async (req, res) => {
+    app.get('/api/getproject', auth, async (req, res) => {
         const id = req.query.id;
         const project = await Project.findById(id);
         if (!project) return res.status(401).send('not found');
@@ -279,7 +280,7 @@ module.exports = (app) => {
     });
 
     // get job by project
-    app.get('/api/get/jobs', async (req, res) => {
+    app.get('/api/get/jobs', auth, async (req, res) => {
         const id = req.query.projectid;
 
         const job = await JobAd.find({ project: id });
@@ -316,7 +317,7 @@ module.exports = (app) => {
 
 
     //DELETE project by Id
-    app.delete('/api/deleteproject', async (req, res) => {
+    app.delete('/api/deleteproject', auth, async (req, res) => {
         const id = req.query.id;
 
         const project = await Project.findByIdAndDelete(id);
@@ -325,7 +326,7 @@ module.exports = (app) => {
     });
 
     //DELETE job by Id
-    app.delete('/api/deletejob', async (req, res) => {
+    app.delete('/api/deletejob', auth, async (req, res) => {
         const id = req.query.id;
         const job = await JobAd.findByIdAndDelete(id);
 
@@ -344,7 +345,7 @@ module.exports = (app) => {
     });
 
     // Lock Job
-    app.put('/api/lockJob/:id?', async (req,res) =>{
+    app.put('/api/lockJob/:id?', auth, async (req,res) =>{
         const job = await JobAd.updateOne({'_id': req.query.id}, {
             $set: {
                 isLock: true
@@ -355,7 +356,7 @@ module.exports = (app) => {
     })
 
       // UnLock Job
-      app.put('/api/unlockJob/:id?', async (req,res) =>{
+      app.put('/api/unlockJob/:id?', auth, async (req,res) =>{
         const job = await JobAd.updateOne({'_id': req.query.id}, {
             $set: {
                 isLock: false
@@ -366,7 +367,7 @@ module.exports = (app) => {
     })
 
 
-    app.put('/api/put/project', async (req, res) => {
+    app.put('/api/put/project', auth, async (req, res) => {
         const projectt = await Project.updateOne({ '_id': req.body.id }, {
             $set: {
                 projectName: req.body.projectName,
@@ -381,7 +382,7 @@ module.exports = (app) => {
 
     // Edit JobAd
     
-    app.put('/api/put/job', async (req, res) => {
+    app.put('/api/put/job', auth, async (req, res) => {
         const jobAd = await JobAd.updateOne({ '_id': req.body.id }, {
             $set: {
                 contract: req.body.contract,
@@ -434,6 +435,24 @@ module.exports = (app) => {
     });
 
 
+    // Function to Calculate Lock Date
+
+    function lockDate() {
+        Date.prototype.addDays = function (startDate,days) {
+            
+            var date = new Date(startDate);
+            date.setDate(date.getDate() + days);
+            
+            return date;
+        }
+
+        var Ld = new Date();
+        var today = Date.now();
+
+        Ld = Ld.addDays(today,14);
+
+        return Ld;
+    }
 
 
 
