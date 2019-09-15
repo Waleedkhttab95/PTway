@@ -2,7 +2,7 @@ const { Company } = require('../models/Companies/Companies');
 const { User, validate } = require('../models/Users/User');
 const _ = require('lodash');
 const bcrypt = require('bcrypt-nodejs');
-const { sendVerifMail, companySendVerifMail, adminEmail} = require('../models/Shared/mail');
+const { sendVerifMail, companySendVerifMail, adminEmail} = require('../services/email/mail');
 const { CompanyInfo } = require('../models/Companies/Company_Info')
 const { Country } = require('../models/Shared/Country');
 const { City } = require('../models/Shared/City');
@@ -14,6 +14,7 @@ const { Candidate } = require('../models/Companies/Candidates');
 const { Accepted } = require('../models/Companies/Accepted');
 const { CompanySpecialist } = require('../models/Companies/CompanySpecialist');
 const { Sector } = require('../models/Companies/Sector');
+
 
 module.exports = (app) => {
 
