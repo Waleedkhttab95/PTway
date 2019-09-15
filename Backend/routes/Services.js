@@ -8,7 +8,7 @@ const auth = require('../middleware/auth');
 const dateTime = require('node-datetime');
 const {Accepted } = require('../models/Companies/Accepted');
 const {Candidate} = require('../models/Companies/Candidates');
-const { sendJobOffer } = require('../models/Shared/mail');
+const { sendJobOffer } = require('../services/email/mail');
 const {User} = require('../models/Users/User');
 
 
@@ -16,7 +16,7 @@ const {User} = require('../models/Users/User');
 
 module.exports = (app) =>{
 
-    app.post('/api/send/Jobad', async (req,res) =>{
+    app.post('/api/send/Jobad', auth, async (req,res) =>{
 
              // const job_skills = req.body.job_skills;
               const country=req.body.country;
@@ -107,6 +107,21 @@ module.exports = (app) =>{
         });
     });
 
+    // Edit notification
+    app.put('/api/edit/notification',auth,async (req,res) =>{
+        const content = req.body.content
+        const date = req.body.date;
+
+        const notification = await Notification.updateMany({'content' : content},
+        {
+
+            $set: { date: date }
+        }
+        );
+
+        res.status(200).send('Updated ');
+    })
+
     // Get all notifications ..
 
     app.get('/api/get/allnotifications',auth, async (req,res) =>{
@@ -180,7 +195,7 @@ module.exports = (app) =>{
     })
 
          //DELETE notifiction by Id
-         app.delete('/api/deletenoti', async (req,res) =>{
+         app.delete('/api/deletenoti', auth, async (req,res) =>{
             const id = req.query.id;
             const notifications= await Notification.find({'content': id})
             console.log(notifications.length)

@@ -2,7 +2,7 @@ const { Company } = require('../models/Companies/Companies');
 const { User, validate } = require('../models/Users/User');
 const _ = require('lodash');
 const bcrypt = require('bcrypt-nodejs');
-const { sendVerifMail, companySendVerifMail, adminEmail} = require('../models/Shared/mail');
+const { sendVerifMail, companySendVerifMail, adminEmail} = require('../services/email/mail');
 const { CompanyInfo } = require('../models/Companies/Company_Info')
 const { Country } = require('../models/Shared/Country');
 const { City } = require('../models/Shared/City');
@@ -14,6 +14,7 @@ const { Candidate } = require('../models/Companies/Candidates');
 const { Accepted } = require('../models/Companies/Accepted');
 const { CompanySpecialist } = require('../models/Companies/CompanySpecialist');
 const { Sector } = require('../models/Companies/Sector');
+
 
 module.exports = (app) => {
 
@@ -172,7 +173,7 @@ module.exports = (app) => {
         var ages = [];
         try {
             const Users = await UserInfo.find();
-            if (!Users) {
+            if (!Users  || Users.length == 0) {
                 return res.status(400).send(' لا توجد معلومات');
             }
             else {
@@ -303,7 +304,7 @@ module.exports = (app) => {
         try {
             const firstName = req.query.firstName;
             const user = await User.find({ 'firstName': { '$regex': firstName, '$options': 'i' } }); // could be many users with same first name,,
-            if (!user) {
+            if (!user  || user.length == 0) {
                 res.status(400).json('المستخدم غير مسجل');
             }
             res.status(200).send(user);
@@ -358,7 +359,7 @@ module.exports = (app) => {
         try {
             const companyName = req.query.companyName;
             const company = await Company.find({ 'companyName': { '$regex': companyName, '$options': 'i' } }); // could be many users with same companyName,,
-            if (!company) {
+            if (!company || company.length == 0) {
                 res.status(400).json('الشركة غير مسجلة');
             }
             res.status(200).send(company);
@@ -379,7 +380,7 @@ module.exports = (app) => {
             }
             const sectorKey = sector.key;
             const company = await Company.find({ 'sector': sectorKey }); // could be many users with same sector,,
-            if (!company) {
+            if (!company || company.length == 0) {
                 res.status(400).json('الشركة غير مسجلة');
             }
             res.status(200).send(company);
@@ -400,7 +401,7 @@ module.exports = (app) => {
             }
             const idForCompanySpecialist = Specialist._id;
             const company = await Company.find({ 'CompanySpecialist': idForCompanySpecialist }); // could be many users with same CompanySpecialist,,
-            if (!company) {
+            if (!company || company.length == 0) {
                 res.status(400).json('الشركة غير مسجلة');
             }
             res.status(200).send(company);
@@ -453,9 +454,6 @@ module.exports = (app) => {
     // and will return the user object , so we will use the object to show the info.
     app.get('/api/get/readUser', async (req, res) => {
         try {
-            const { error } = validate(req.body);
-            if (error) return res.status(400).send(error.details[0].message);
-
             const user = req.body.user; //it's array maybe single record or multiple be attention!!
             if (!user) return res.status(400).send('المستخدم غير موجود');
             res.status(200).json(user);
@@ -470,19 +468,19 @@ module.exports = (app) => {
     // the concept behind the write is: search API will look for id,email and first name 
     // and will return the user object , so we will use the object to write the info.
     app.put('/api/put/writeOnUser/:updateType?/:value?', async (req, res) => {
-        try {
-            const { error } = validate(req.body);
-            if (error) return res.status(400).send(error.details[0].message);
-
+        try {            
             const user = req.body.user; //it's array maybe single record or multiple be attention!!
             if (!user) return res.status(400).send('المستخدم غير موجود');
             const id = user._id;
             const type = req.query.updateType;
             const value = req.query.value;
+            if (!id || !type || !value) {
+                return res.status(400).send('إحدى المعلومات ناقصة');
+            }
             switch (type) {
                 case 'email':
                     {
-                        User.updateOne({ '_id': id }, {
+                        await User.updateOne({ '_id': id }, {
                             $set: { email: value }
                         });
                         break;
@@ -490,7 +488,7 @@ module.exports = (app) => {
 
                 case 'firstName':
                     {
-                        User.updateOne({ '_id': id }, {
+                        await User.updateOne({ '_id': id }, {
                             $set: { firstName: value }
                         });
                         break;
@@ -498,7 +496,7 @@ module.exports = (app) => {
 
                 case 'lastName':
                     {
-                        User.updateOne({ '_id': id }, {
+                        await User.updateOne({ '_id': id }, {
                             $set: { lastName: value }
                         });
                         break;
@@ -506,7 +504,7 @@ module.exports = (app) => {
 
                 case 'isConfirmed':
                     {
-                        User.updateOne({ '_id': id }, {
+                        await User.updateOne({ '_id': id }, {
                             $set: { isConfirmed: value }
                         });
                         break;
@@ -531,12 +529,12 @@ module.exports = (app) => {
     // and will return the user object , so we will use the object to delete the info.
     app.delete('/api/delete/deleteUser', async (req, res) => {
         try {
-            const { error } = validate(req.body);
-            if (error) return res.status(400).send(error.details[0].message);
-
             const user = req.body.user; //it's object be attention!!
             if (!user) return res.status(400).send('المستخدم غير موجود');
             const id = user._id;
+            if (!id) {
+                return res.status(400).send('إحدى المعلومات ناقصة');
+            }
             await User.deleteOne({ '_id': id });
             res.status(200).send('تم حذف المستخدم');
         }
@@ -552,10 +550,13 @@ module.exports = (app) => {
     // *************************************
 
     // Create
-    app.post('/apt/post/createNewComapny', async (reeq, res) => {
+    app.post('/api/post/createNewComapny', async (req, res) => {
         try {
             let company = await Company.findOne({ email: req.body.email });
             if (company) return res.status(400).send('الشركة مسجلة مسبقًا');
+            if (!req.body.companyName || !req.body.email || !req.body.password || !req.body.sector || !req.body.CompanySpecialist || !req.body.isActive ) {
+                return res.status(400).send('إحدى المعلومات ناقصة');
+            }
             company = new Company({
                 companyName: req.body.companyName,
                 email: req.body.email,
@@ -563,25 +564,30 @@ module.exports = (app) => {
                 sector: req.body.sector,
                 CompanySpecialist: req.body.CompanySpecialist,
                 isActive: req.body.isActive
-            });
-            const salt = await bcrypt.genSalt(10, (error, hash) => {
-                if (error) res.status(400)
-
-            });
-            const hashPassword = await bcrypt.hash(company.password, salt, null, (error, hash) => {
-                if (error) res.status(400)
-                company.password = hash;
-                company.save();
-            });
-
-
-            company.isConfirmed = false; // initially will be false 
-            companySendVerifMail(company.companyName, company.email);
-
-
-            const token = company.generateAuthToken();
-
-            res.status(200).send('تم إضافة الشركة بنجاح');
+            }).save()
+                .then(async result => {
+                    const salt = await bcrypt.genSalt(10, (error, hash) => {
+                        if (error) res.status(400)
+        
+                    });
+                    const hashPassword = await bcrypt.hash(company.password, salt, null, (error, hash) => {
+                        if (error) res.status(400)
+                        company.password = hash;
+                        company.save();
+                    });
+        
+        
+                    company.isConfirmed = false; // initially will be false 
+                    companySendVerifMail(company.companyName, company.email);
+        
+        
+                    const token = company.generateAuthToken();
+        
+                    res.status(200).send('تم إضافة الشركة بنجاح');
+                })
+                    .catch(error => {
+                        return res.status(400).send('خطأ في المعلومات');
+                    })
         }
         catch (error) {
             console.log(error);
@@ -614,10 +620,13 @@ module.exports = (app) => {
             const id = company._id;
             const type = req.query.updateType;
             const value = req.query.value;
+            if (!id || !type || !value) {
+                return res.status(400).send('إحدى المعلومات ناقصة');
+            }
             switch (type) {
                 case 'email':
                     {
-                        Company.updateOne({ '_id': id }, {
+                        await Company.updateOne({ '_id': id }, {
                             $set: { email: value }
                         });
                         break;
@@ -625,7 +634,7 @@ module.exports = (app) => {
 
                 case 'companyName':
                     {
-                        Company.updateOne({ '_id': id }, {
+                        await Company.updateOne({ '_id': id }, {
                             $set: { companyName: value }
                         });
                         break;
@@ -633,7 +642,7 @@ module.exports = (app) => {
 
                 case 'isActive':
                     {
-                        Company.updateOne({ '_id': id }, {
+                        await Company.updateOne({ '_id': id }, {
                             $set: { isActive: value }
                         });
                         break;
@@ -641,7 +650,7 @@ module.exports = (app) => {
 
                 case 'isConfirmed':
                     {
-                        Company.updateOne({ '_id': id }, {
+                        await Company.updateOne({ '_id': id }, {
                             $set: { isConfirmed: value }
                         });
                         break;
@@ -652,7 +661,7 @@ module.exports = (app) => {
                         // const sector i was trying to get sector key from sector name , and i wanna to check whether the data is array or one object in find()
                         const wholesector = Sector.findOne({ 'sectorName': value });
                         const sectorKey = wholesector.key;
-                        Company.updateOne({ '_id': id }, {
+                        await Company.updateOne({ '_id': id }, {
                             $set: { sector: sectorKey }
                         });
                         break;
@@ -662,7 +671,7 @@ module.exports = (app) => {
                     {
                         const companySp = CompanySpecialist.findOne({ 'specialistName': value });
                         const companySpId = companySp._id;
-                        Company.updateOne({ '_id': id }, {
+                        await Company.updateOne({ '_id': id }, {
                             $set: { CompanySpecialist: companySpId }
                         });
                         break;
@@ -692,6 +701,9 @@ module.exports = (app) => {
             const company = req.body.company; //it's object be attention!!
             if (!company) return res.status(400).send('الشركة غير موجودة');
             const id = company._id;
+            if (!id) {
+                return res.status(400).send('إحدى المعلومات ناقصة');
+            }
             await Company.deleteOne({ '_id': id });
             res.status(200).send('تم حذف الشركة');
         }
@@ -706,9 +718,6 @@ module.exports = (app) => {
     // he will have the option to send a message so we will got an object from search API's
     app.get('/api/get/messagesToUser', async (req, res) => {
         try {
-            const { error } = validate(req.body);
-            if (error) return res.status(400).send(error.details[0].message);
-
             const user = req.body.user; //it's object be attention!!
             if (!user) return res.status(400).send('المستخدم غير موجود');
             const email = user.email;
@@ -749,7 +758,7 @@ module.exports = (app) => {
     // return All users
     app.get('/api/get/allUsers', async (req,res) =>{
         const users = await User.find();
-        if(!users) return res.status(401).send('not users exist .')
+        if(!users  || users.length == 0) return res.status(401).send('not users exist .')
 
         return res.status(200).json({
             users : users
@@ -761,7 +770,7 @@ module.exports = (app) => {
        app.get('/api/get/allUsersInfo', async (req,res) =>{
            console.log('Test')
         const users = await UserInfo.find();
-        if(!users) return res.status(401).send('not users exist .')
+        if(!users || users.length == 0) return res.status(401).send('not users exist .')
 
         return res.status(200).json({
             users : users

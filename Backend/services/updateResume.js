@@ -10,7 +10,6 @@ const {Project} = require('../models/Companies/Project');
 
 module.exports = () =>{
     cron.schedule('0 0 * * *',async () =>{
-        console.log("calculate hours")
         today = new Date();
      
         Date.prototype.addDays = function (startDate) {
@@ -28,6 +27,11 @@ module.exports = () =>{
 
 
         const end_date = await endDate.find({'endDate' : dateFormat});
+        
+        // call lockJob function to check job locked or not
+
+        lockJob(dateFormat)
+
 
         if(end_date) {
             for(var i = 0 ; i< end_date.length ; i++){
@@ -105,6 +109,22 @@ console.log(dateFormat)
         }).save().then(user =>{
             return user;
         })
+    }
+
+
+   async function lockJob(date) {
+
+     
+        const lock_date = await JobAd.updateMany({'lockDate' : date},
+        {
+
+            $set: { isLock: true, }
+        }
+        );
+
+        
+
+
     }
 // 00 00 00 * * *
 // 0 0 * * *

@@ -1,9 +1,10 @@
 const { User, validate } = require('../models/Users/User');
-const { sendVerifMail ,companySendVerifMail } = require('../models/Shared/mail');
+const { sendVerifMail ,companySendVerifMail } = require('../services/email/mail');
 const { Company } = require('../models/Companies/Companies');
 const _ = require('lodash');
 const bcrypt = require('bcrypt-nodejs');
-const mongoose = require('mongoose');
+const auth = require('../middleware/auth');
+
 
 
 module.exports = (app) => {
@@ -17,7 +18,9 @@ module.exports = (app) => {
 
 
     let user = await User.findOne({ email: req.body.email });
-    if (user) return res.status(400).send('User already registered');
+    let company = await Company.findOne({ email: req.body.email });
+
+    if (user && company) return res.status(400).send('User already registered');
 
     user = new User(_.pick(req.body, ['firstName', 'lastName', 'email', 'password']));
     const salt = await bcrypt.genSalt(10, (error, hash) => {
@@ -49,9 +52,56 @@ module.exports = (app) => {
 
 
     let company = await Company.findOne({ email: req.body.email });
-    if (company) return res.status(400).send('User already registered');
+    let user = await User.findOne({ email: req.body.email });
+
+    if (company && user) return res.status(400).send('User already registered');
+
     company = new Company({
       companyName: req.body.companyName,
+      company: null,
+      email: req.body.email,
+      password: req.body.password,
+      sector: req.body.sector,
+      CompanySpecialist: req.body.CompanySpecialist,
+      isActive: req.body.isActive
+    });
+    const salt = await bcrypt.genSalt(10, (error, hash) => {
+      if (error) res.status(400)
+
+    });
+    const hashPassword = await bcrypt.hash(company.password, salt, null, (error, hash) => {
+      if (error) res.status(400)
+      company.password = hash;
+      company.save();
+    });
+
+
+    company.isConfirmed = false; // initially will be false 
+    companySendVerifMail(company.companyName , company.email);
+
+
+    const token = company.generateAuthToken();
+
+    res.status(200).json({
+      token: token
+    });;
+  });
+
+
+  app.post('/api/subcompanyRegistreing',auth, async (req, res) => {
+
+    // const { error } = validateCompany(req.body);
+    // if (error) return res.status(400).send(error.details[0].message);
+
+
+    let company = await Company.findOne({ email: req.body.email });
+    let user = await User.findOne({ email: req.body.email });
+
+    if (company && user) return res.status(400).send('User already registered');
+
+    company = new Company({
+      companyName: req.body.companyName,
+      company: req.user._id,
       email: req.body.email,
       password: req.body.password,
       sector: req.body.sector,
