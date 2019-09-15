@@ -53,7 +53,7 @@ module.exports = (app) =>{
         else {
             const result = await UserInfo
             .find({ country: country,city: city
-            ,gender: gender})
+            ,gender: gender })
             .select("user");
 
             result.forEach(async function(r) {
