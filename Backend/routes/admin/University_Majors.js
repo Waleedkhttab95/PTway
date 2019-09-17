@@ -328,16 +328,17 @@ module.exports = (app) => {
     // *************************************
 
     // Create
-    app.post('/api/post/subMajor', (req, res) => {
+    app.post('/api/post/subMajor', async (req, res) => {
         try {
             const subMajor = req.body.subMajorName;
             const key = req.body.key;
-            const publicMajor = req.body.public_Major;
-            if (!subMajor || !key || !publicMajor) return res.status(400).send('المعلومات غير مكتمله');
+            let public_Major = await publicMajor.findOne({ 'majorName': { '$regex': req.body.public_Major, '$options': 'i' } });
+            public_Major = public_Major._id;
+            if (!subMajor || !key || !public_Major) return res.status(400).send('المعلومات غير مكتمله');
             new spMajor({
                 key: key,
                 majorName: subMajor,
-                public_Major: publicMajor
+                public_Major: public_Major
             }).save()
                 .then(result => {
                     res.send(result);
@@ -372,7 +373,7 @@ module.exports = (app) => {
                     }
                 case 'public_Major':
                     {
-                        const public_Major = await publicMajor.findOne({ 'majorName': value });
+                        const public_Major = await publicMajor.findOne({ 'majorName': { '$regex': value, '$options': 'i' } });
                         if (!public_Major) return res.status(400).send('التخصص غير مسجل');
                         const publicMajorId = public_Major._id;
                         await spMajor.updateOne({ '_id': id }, {
