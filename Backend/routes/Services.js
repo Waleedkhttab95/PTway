@@ -108,7 +108,7 @@ module.exports = (app) =>{
     });
 
     // Edit notification
-    app.put('/api/edit/notification',auth,async (req,res) =>{
+    app.put('/api/edit/notification',async (req,res) =>{
         const content = req.body.content
         const date = req.body.date;
 
