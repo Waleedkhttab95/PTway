@@ -141,14 +141,14 @@ module.exports = (app) => {
     // *************************************
 
     // Create
-    app.post('/api/post/country', (req,res) =>{
+    app.post('/api/post/country', async (req,res) =>{
         try {
             const countryName = req.body.countryName
-            new Country({
+            await new Country({
                 countryName: countryName
             }).save()
             .then(result =>{
-                res.status(200).send(result);
+                res.status(200).send('تم إضافة الدولة');
             });
         }
         catch (error) {
@@ -210,7 +210,7 @@ module.exports = (app) => {
             const cityName = req.body.cityName;
             const countryName = req.body.countryName;
             const countryId = await Country.findOne({ 'countryName' : countryName });
-            new City({
+            await new City({
                 cityName: cityName,
                 country: countryId
             }).save()

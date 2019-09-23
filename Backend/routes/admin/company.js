@@ -23,10 +23,14 @@ module.exports = (app) => {
 
     // return count of company based sector or sp
 
-    app.get('/api/get/count/company/:sector?/:sp?', async (req, res) => {
+    app.get('/api/get/count/company', async (req, res) => {
         const sector = req.query.sector;
-        const sp = req.query.sp;
-
+        const sp = req.query.sp;   //sp is shortcut for CompanySpecialist
+    
+        if(!sector || !sp){
+            return res.status(400).send('خطأ في البيانات');
+        }
+    
         if (sector != undefined && sp != undefined) {
             const result = await Company.find({ 'sector': sector, 'CompanySpecialist': sp }).countDocuments();
             return res.status(200).json({
@@ -42,13 +46,10 @@ module.exports = (app) => {
         }
         if (sp != undefined) {
             const result = await Company.find({ 'CompanySpecialist': sp }).countDocuments();
-
             return res.status(200).json({
                 result: result
             });
         }
-
-
     });
 
     // return count of comapny based country & city
@@ -72,7 +73,7 @@ module.exports = (app) => {
 
             var result2 = await CompanyInfo.find({ 'country': req.query.country, 'city': req.query.city })
             for (var i = 0; i < result2.length; i++) {
-                result1 += await Company.findOne({ '_id': result2[i].company, 'sector': sector, 'CompanySpecialist': sp })
+                result1 += await Company.findOne({ '_id': result2[i].company, 'sector': sector, 'CompanySpecialist': sp }).countDocuments();
             }
             return res.status(200).json({
                 result: result1
