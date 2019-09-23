@@ -287,6 +287,39 @@ module.exports = (app) =>{
           res.status(200).send("updated !");
 
     })
+
+    // retrive all phone numbers
+
+    app.get('/api/get/phonenumbers',async (req,res) =>{
+        const jobId = req.query.jobAd;
+        var phoneNumbers = []
+
+        const job = await JobAd.findById(jobId);
+        if(!job) return res.status('401').send('not found jobAd !')
+
+        const results = await Candidate.find({'jobAd': jobId});
+        if(results){
+            results.forEach( result =>{            
+                var number =  UserInfo.findOne({'user':result.candidateName}).then(num =>{
+                    phoneNumbers.push(num.mobile);
+                    
+                   
+                    if(phoneNumbers.length == results.length){
+                        return res.send(phoneNumbers)
+    
+                    }
+                });
+
+              
+    
+            })
+
+        }
+        
+
+
+
+    })
     function todayDate(){
         today = new Date();
         var dd = today.getDate();
