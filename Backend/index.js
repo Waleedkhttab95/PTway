@@ -56,6 +56,7 @@ require('./routes/candidate')(app);
 require('./routes/Accept')(app);
 require('./routes/term')(app);
 require('./routes/User')(app);
+require('./routes/temp')(app);
 require('./services/updateResume')();
 require('./startup/prod')(app);
 

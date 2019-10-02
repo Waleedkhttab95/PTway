@@ -187,6 +187,7 @@ export class LongTermComponent implements OnInit {
   
     addJob() {
   
+
       if (this.addJobForm.invalid) {
         console.log("invalid form")
         return;
@@ -210,6 +211,8 @@ export class LongTermComponent implements OnInit {
         personal_Skills: this.addJobForm.value.personal_Skills,
         required_Number: this.addJobForm.value.required_Number
       }
+      console.log(this.data);
+
        this.rest.addJob(this.data);
     }
   

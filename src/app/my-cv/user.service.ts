@@ -6,6 +6,8 @@ import { AuthService } from '../auth/auth.service';
 import { Observable, of } from 'rxjs';
 import {environment} from '../../environments/environment'
 import { map, catchError, tap } from 'rxjs/operators';
+import swal from 'sweetalert2';
+declare var $: any;
 
 
 const BackUrl = environment.BackUrl;
@@ -228,4 +230,28 @@ export class UserService {
         return this.http.get(BackUrl + '/get/universty').pipe(
             map(this.extractData));
     }
+
+    add_temp_data(data:any) {
+       
+       
+     
+        this.http.post(BackUrl+'/temp/post', data).subscribe(response => {
+        this.showSwal('warning-message');
+        this.router.navigate(['/']);
+
+    });
+    }
+
+    showSwal(type){
+    
+        if (type == 'warning-message') {
+          swal({
+            title: "تم الإرسال!",
+            text: "تم إرسال معلوماتك و سوف يتم التواصل معكم قريبا , شكرا لك",
+            buttonsStyling: false,
+            confirmButtonClass: "btn btn-warning",
+            type: "success"
+          }).catch(swal.noop)
+        }
+        }
 }

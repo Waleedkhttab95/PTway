@@ -105,7 +105,9 @@ export const AppRoutes: Routes = [
       }, {
         path: 'sign-in',
         loadChildren: './sign-in/sign-in.module#SignInModule'
-      },{
+      },
+  
+      {
         path: 'reset',
         loadChildren: './reset/reset.module#resetModule'
       },{
@@ -126,7 +128,8 @@ export const AppRoutes: Routes = [
             path: 'my-cv',
             canActivate:[AuthGuard],
             loadChildren: './my-cv/my-cv.module#MyCvModule'
-        } , {
+        } , 
+        {
             path: 'offers-list',
             canActivate:[AuthGuard],
             loadChildren: './offers-list/offers-list.module#OffersListModule'
@@ -156,7 +159,11 @@ export const AppRoutes: Routes = [
             canActivate:[Auth_company_Guard],
             loadChildren: './cv-preview/cv-preview.module#CvPreviewModule'
         }
-      ]}
+      ]},
+      {
+        path: 'temp',
+        loadChildren: './temp/temp.module#tempModule'
+      },
 ];
 
 
