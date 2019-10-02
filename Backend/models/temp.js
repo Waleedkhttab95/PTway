@@ -2,38 +2,38 @@ const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
 const temp = new Schema({
-    key : {type:String},
-    fullName: {type:String, required:true},
-    
+    city : {type:String},
+    fullName: {type:String},
+    email: {type: String},
     study_degree:{
     type: String
     },
+    universty:{
+        type: String
+        },
+        major:{
+            type: String
+            },        
 
     gender: {
         type:String
     },
     mobile: {
         type:String
-    },
-    Age: {
-        type:Number
-    },    
-  
-    expirence: {
+    }, 
+      
+    nationalty: {
         type:String
       
     },
-    
-    public_Major: {
-        type:String
+    birthDate: {
+        type:Date
       
     },
-
-    languages: [{type:String}],
-    skills: {type:String },
+    courses: [{type:String}],
+    skills: [{type:String }],
     
    
-  
     about: {
         type:String
       
@@ -42,9 +42,9 @@ const temp = new Schema({
 
 });
 
-const temp = mongoose.model('temp', temp);
+const tempD = mongoose.model('temp', temp);
 
 
-exports.temp = temp;
+exports.temp = tempD;
 
 
