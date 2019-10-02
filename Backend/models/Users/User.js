@@ -30,7 +30,7 @@ const userSchema = new Schema({
         required: true,
         unique: false
     },
-    createDate: { type: Date, default: Date.now() },
+    createDate: {type: Date , default:new Date()},
 
     isAdmin: Boolean,
     isSubAdmin: Boolean,

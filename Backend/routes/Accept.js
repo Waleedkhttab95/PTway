@@ -10,7 +10,8 @@ module.exports = (app) => {
     app.post('/api/postAcc', auth, async (req, res) => {
         new Accepted({
             jobAd: req.body.jobAd,
-            acceptedName: req.body.acceptedName
+            acceptedName: req.body.acceptedName,
+            createDate: Date.now()
         }).save()
             .then(async result => {
                 const req_number = await JobAd.findById(req.body.jobAd);

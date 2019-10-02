@@ -9,7 +9,7 @@ projectName : {type: String , required:true},
 projectDescription : {type:String, required: true},
 createDate: {type: Date , default:Date.now()},
 status : {type: Boolean , default: true},
-date : {type: Date , default: Date.now()}
+date : {type: Date , default: new Date()}
 });
 
 
