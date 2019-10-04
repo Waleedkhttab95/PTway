@@ -30,7 +30,7 @@ isActive : {
     type: Boolean , 
     default: true
 },
-createDate: {type: Date , default:Date.now()},
+createDate: {type: Date , default:new Date()},
 isConfirmed:{
     type:Boolean
     

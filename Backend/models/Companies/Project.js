@@ -4,7 +4,7 @@ const {Schema} = mongoose;
 
 const projectSchema = new Schema({
 key : {type:String},
-createDate: {type: Date , default:Date.now()},
+createDate: {type: Date , default:new Date()},
 company:{type: mongoose.Schema.Types.ObjectId, ref:'companies'},
 projectName : {type: String , required:true},
 projectDescription : {type:String, required: true},

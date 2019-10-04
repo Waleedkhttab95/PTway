@@ -11,7 +11,8 @@ module.exports = (app) => {
     if (!user) {
       new Candidate({
         candidateName: req.user._id,
-        jobAd: req.body.jobAd
+        jobAd: req.body.jobAd,
+        createDate:Date.now()
       }).save()
         .then(result => { res.send(result); })
 
