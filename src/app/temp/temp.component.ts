@@ -195,10 +195,10 @@ export class tempComponent implements OnInit {
         {validators: [Validators.required]}),
       'gender': new FormControl(null ,
         {validators: [Validators.required]}),
-      'phone': new FormControl(null ,
+      'mobile': new FormControl(null ,
         {validators: [Validators.required]}),
       'about': new FormControl(null),
-      'nationality': new FormControl(null ,
+      'nationalty': new FormControl(null ,
         {validators: [Validators.required]}),
       'email': new FormControl(null ,
         {validators: [Validators.required]}),
@@ -235,15 +235,15 @@ export class tempComponent implements OnInit {
   postuserinfo() {
 
     if(this.userTempForm.get('fullName').invalid || this.userTempForm.get('city').invalid
-    || this.userTempForm.get('phone').invalid || this.userTempForm.get('gender').invalid ||
-    this.userTempForm.get('email').invalid || this.userTempForm.get('nationality').invalid
+    || this.userTempForm.get('mobile').invalid || this.userTempForm.get('gender').invalid ||
+    this.userTempForm.get('email').invalid || this.userTempForm.get('nationalty').invalid
     || this.userTempForm.get('birthDate').invalid|| this.userTempForm.get('major').invalid
     || this.userTempForm.get('universty').invalid|| this.userTempForm.get('gpa').invalid
     || this.userTempForm.get('study_degree').invalid) {
       this.validData = true;
       return;
     }
-
+    console.log(this.userTempForm.value)
   this.rest.add_temp_data(this.userTempForm.value);
   }
 

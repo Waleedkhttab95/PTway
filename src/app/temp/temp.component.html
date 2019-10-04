@@ -32,10 +32,10 @@
                   <div class="col-md-8 padding">
                     <label class="bmd-label-floating custom-label">- رقم الهاتف  *</label>
                     <mat-form-field class="example-full-width">
-                      <input matInput placeholder="" type="text"  maxlength="30 "  formControlName="phone" name="">
+                      <input matInput placeholder="" type="text"  maxlength="30 "  formControlName="mobile" name="">
 
                     </mat-form-field>
-                    <mat-error *ngIf="userTempForm.get('phone').invalid && validData">هذا الحقل مطلوب</mat-error>
+                    <mat-error *ngIf="userTempForm.get('mobile').invalid && validData">هذا الحقل مطلوب</mat-error>
 
                   </div>
 
@@ -66,14 +66,14 @@
                     <div class="col-md-6">
                       <label class="bmd-label-floating custom-label">- الجنسية  *</label>
                       <mat-form-field>
-                        <mat-select placeholder="" formControlName="nationality" name="nationality">
+                        <mat-select placeholder="" formControlName="nationalty" name="nationalty">
                           <mat-option *ngFor="let nat of nationality" [value]="nat.value">
                             {{nat.viewValue}}
                           </mat-option>
                         </mat-select>
 
                       </mat-form-field>
-                      <mat-error *ngIf="userTempForm.get('nationality').invalid && validData">هذا الحقل مطلوب</mat-error>
+                      <mat-error *ngIf="userTempForm.get('nationalty').invalid && validData">هذا الحقل مطلوب</mat-error>
 
                     </div>
 
@@ -90,13 +90,7 @@
                   </div>
                
 
-                  <div class="col-md-12">
-                    <label class="bmd-label-floating custom-label">- الوصف الشخصي</label>
-                    <mat-form-field class="example-full-width">
-                      <textarea matInput placeholder="" maxlength="200" formControlName="about" name="about"></textarea>
-                    </mat-form-field>
-
-                  </div>
+         
                   <br>
                   <div class="col-md-12">
                       <label class='sweet-underline'>2-العنوان</label>
@@ -108,11 +102,8 @@
                     <label class="bmd-label-floating custom-label">- المدينة  *</label>
                
                     <mat-form-field>
-                      <mat-select placeholder="" formControlName="city" name="">
-                        <mat-option *ngFor="let city of cities" [value]="city.value">
-                          {{city.viewValue}}
-                        </mat-option>
-                      </mat-select>
+                        <input matInput placeholder="" type="text"  maxlength="30 "  formControlName="city" name="">
+
                     </mat-form-field>
                     <mat-error *ngIf="userTempForm.get('city').invalid && validData">هذا الحقل مطلوب</mat-error>
 
@@ -156,10 +147,13 @@
                       </div>
                   
                       <div class="col-md-6">
-                        <label class="bmd-label-floating custom-label">- المعدل *</label>
+                        <label class="bmd-label-floating custom-label">- العام *</label>
                         <mat-form-field>
-                          <input matInput placeholder="" type="text"  maxlength="30 "  formControlName="gpa" name="">
-                        </mat-form-field>
+                            <input matInput [matDatepicker]="picker5" placeholder="" formControlName="gpa" name="gpa">
+                            <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+                            <mat-datepicker #picker5></mat-datepicker>
+      
+                          </mat-form-field>
                         <mat-error *ngIf="userTempForm.get('gpa').invalid && validData">هذا الحقل مطلوب</mat-error>
 
                       </div>
