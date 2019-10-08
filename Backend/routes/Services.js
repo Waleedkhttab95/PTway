@@ -294,12 +294,16 @@ module.exports = (app) =>{
         const jobId = req.query.jobAd;
         var phoneNumbers = []
         var fullName = []
+        var email = [];
         const job = await JobAd.findById(jobId);
         if(!job) return res.status('401').send('not found jobAd !')
 
         const results = await Candidate.find({'jobAd': jobId});
         if(results){
-            results.forEach( result =>{            
+            results.forEach( result =>{  
+                var emails = User.findById(result.candidateName).then(em =>{
+                    email.push(em.email)
+                })          
                 var number =  UserInfo.findOne({'user':result.candidateName}).then(num =>{
                     phoneNumbers.push(num.mobile);
                     fullName.push(num.fullName);
@@ -308,7 +312,8 @@ module.exports = (app) =>{
 
                         return  res.status(200).json({
                             name: fullName,
-                            numbers: phoneNumbers
+                            numbers: phoneNumbers,
+                            email:email
                         })
 
     

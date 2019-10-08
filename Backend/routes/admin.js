@@ -168,6 +168,37 @@ module.exports = (app) => {
         }
     });
 
+       // Getting users depends on major and spMajor
+       app.get('/api/get/UsersDepenedsOnMajor/:major?/:spMajor?', async (req, res) => {
+        try {
+            // recevie URL Paramaters
+            const major = req.query.major;
+
+            const spMajor = req.query.spMajor;
+
+            if (!major || !spMajor) {
+                res.status(400).send('معلومات التخصص خاطئة');
+            }
+
+            if(spMajor == undefined){
+                const Users = await UserInfo.find({ 'public_Major': major }).countDocuments();
+                res.status(200).json({
+                    users: Users
+                });
+            }
+            else {
+                const Users = await UserInfo.find({ 'public_Major': major, 'spMajor': spMajor }).countDocuments();
+                res.status(200).json({
+                    users: Users
+                });
+            }
+        }
+        catch (error) {
+            console.log(error);
+            res.status(400).send('خطأ');
+        }
+    });
+
     // Getting users depends on age
     app.get('/api/get/UsersDepenedsOnAge/:age?', async (req, res) => {
         var ages = [];
