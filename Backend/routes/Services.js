@@ -23,7 +23,7 @@ module.exports = (app) =>{
               const city= req.body.city;
               const gender= req.body.gender;
               // const  personal_Skills= req.body.personal_Skills;
-              // const public_Major = req.body.public_Major;
+              // const public_Major = req.body.public_Major; public_Major :'5caf520fffec65462ec2a0a2'
               const jobAd = req.body.jobAd;
               
         if(gender == "both") {
@@ -293,7 +293,7 @@ module.exports = (app) =>{
     app.get('/api/get/phonenumbers',async (req,res) =>{
         const jobId = req.query.jobAd;
         var phoneNumbers = []
-
+        var fullName = []
         const job = await JobAd.findById(jobId);
         if(!job) return res.status('401').send('not found jobAd !')
 
@@ -302,10 +302,13 @@ module.exports = (app) =>{
             results.forEach( result =>{            
                 var number =  UserInfo.findOne({'user':result.candidateName}).then(num =>{
                     phoneNumbers.push(num.mobile);
-                    
+                    fullName.push(num.fullName);
                    
                     if(phoneNumbers.length == results.length){
-                        return res.send(phoneNumbers)
+                        return  res.status(200).json({
+                            name: fullName,
+                            numbers: phoneNumbers
+                        })
     
                     }
                 });
