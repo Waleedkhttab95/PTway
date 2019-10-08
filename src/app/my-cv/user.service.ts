@@ -242,6 +242,15 @@ export class UserService {
     });
     }
 
+    get_temp_data(){
+        return this.http
+        .get(BackUrl + '/gettemp');
+    }
+    
+    get_temp_cv(id) {
+        return this.http
+        .get(BackUrl + '/gettemp/cv?id=' + id);
+    }
     showSwal(type){
     
         if (type == 'warning-message') {

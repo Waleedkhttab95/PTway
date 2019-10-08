@@ -18,6 +18,10 @@ const temp = new Schema({
     gender: {
         type:String
     },
+    gpa:{
+        type:Date
+
+    },
     mobile: {
         type:String
     }, 

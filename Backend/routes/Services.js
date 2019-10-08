@@ -305,7 +305,7 @@ module.exports = (app) =>{
                     
                    
                     if(phoneNumbers.length == results.length){
-                        return res.send(phoneNumbers)
+                        return res.status(200).send(phoneNumbers)
     
                     }
                 });

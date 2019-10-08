@@ -22,12 +22,14 @@ new temp({
     fullName: req.body.fullName,
     study_degree: req.body.study_degree,
     gender: req.body.gender,
+    city:req.body.city,
     mobile:req.body.mobile,
     nationalty:req.body.nationalty,
     birthDate: req.body.birthDate,
     universty: req.body.universty,
     major: req.body.major,
     email: req.body.email,
+    gpa:req.body.gpa,
     courses: coursesArr,
     skills: skillsArr,
     about: req.body.about
@@ -60,4 +62,21 @@ res.status(200).send(User)
 
 })
 
+
+app.get('/api/gettemp', async (req, res) => {
+   const result = await temp.find().select('fullName');
+   res.status(200).send(result);
+ });
+
+ app.get('/api/gettemp/cv', async (req, res) => {
+   const info = await temp.findById(req.query.id);
+   if(!info) return res.status(400).send('not found')
+   const exp = await tempExp.findOne({'temp': req.query.id})
+   if(!exp) return res.status(400).send('not found')
+
+   res.status(200).json({
+      info: info,
+      exp: exp
+    });
+ });
 }

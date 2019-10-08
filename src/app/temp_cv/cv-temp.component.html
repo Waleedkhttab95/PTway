@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <title>CV</title>
+  </head>
+  <body>
+    <div class="root">
+      <div class="container">
+        <div class="row header">
+          <div class="col-md-6 contact-info">
+           
+            <div class="phone-contact">
+              <img src="../../assets/img/call.svg" alt="">
+              <span>{{mobile}}</span>
+            </div>
+            <div class ='email-contact'>
+            <img src="../../assets/img/at.svg" alt="">   
+              <span>{{email}}</span>
+            </div>
+          </div>
+          <div class="col-md-6 logo">
+            <img src="../../assets/img/ptway.svg" alt="">
+            </div>
+        </div>
+        <div class="row employee-name">
+          <h4>{{fullName}}</h4>
+        </div>
+        <div class="row">
+          <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="row  main-container">
+                <span class="col-md-3 user-information">
+                    <input type="checkbox" >
+                    <label for=""> {{nationalty}} </label>
+                  </span>
+                  <span class=" col-md-3 user-information">
+                      <input type="checkbox" >
+                      <label for=""> {{birthDate}} </label>
+                  </span>
+                  <span class="col-md-3 user-information">
+                      <input type="checkbox" >
+                      <label for=""> {{city}} </label>
+                  </span>
+            </div>
+           
+            <div class=" cv-content">
+              <div class=" ">
+                  <table class="table table-bordered"> 
+                      <tbody>
+                     
+                             <tr>
+                               <td colspan="2" class="title">الشهادات التعليمية  :
+                               </td> 
+                              </tr> 
+                        <tr>
+                          <th scope="row">{{gpa}}</th>
+                          <td>
+                            <u class='education-title'>
+                               {{education_degree}}
+                            </u>
+                           <p>
+                             {{universty}}
+                           </p> 
+                          </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="title">الخبرات العملية:</td> 
+                          </tr>
+                          <tr>
+                              <th scope="row">{{date_work1}}</th>
+                              <td>
+                                  <u class='education-title'>
+                                     {{work1}}
+                                  </u>
+                                 <p>
+                                   {{workname1}}
+                                   </p> 
+                              </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">{{date_work2}}</th>
+                                <td>
+                                    <u class='education-title'>
+                                        {{work2}}
+
+                                    </u>
+                                   <p>
+                                      {{workname2}}
+
+                                  </p> 
+                                </td>
+                              </tr>
+                              <tr>
+                                  <th scope="row">{{date_work3}}</th>
+                                  <td>
+                                      <u class='education-title'>
+                                          {{work3}}
+
+                                      </u>
+                                     <p>
+                                        {{workname3}}
+
+                                    </p> 
+                                  </td>
+                                </tr>
+                              
+                      </tbody>
+                    </table>
+                    <div class="cv-elm">
+                        <span class="title">الدورات التدريبية:</span>
+                    </div>
+                    <table class="table table-bordered">
+                      
+                        <tbody>
+                          <tr>
+                              <td class="tt">{{course1}}</td>
+                            
+
+                          </tr>
+                          <tr>
+                            <td class="tt">{{course2}}</td>
+
+                          </tr>
+                          <tr>
+                            <td class="tt">{{course3}}</td>
+                           
+                          </tr>
+                          <tr>
+                              <td class="tt">{{course4}}</td>
+                             
+                            </tr>
+                        </tbody>
+                      </table>
+                      <div class="cv-elm">
+                          <span class="title">المهارات:</span>
+                      </div>
+                      <ul class="skill">
+                          <li>{{skill1}}</li>
+                          <li>{{skill2}}</li>
+                          <li>{{skill3}}</li>
+                          <li>{{skill4}}</li>
+                      </ul>
+              </div>
+             
+            </div>
+    
+          </div>
+          <div class="col-md-1"></div>
+        </div>
+          <div class="footer">
+              <a href="www.majda-alkenani.com">www.ptway.net</a>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  </body>
+  
+</html>

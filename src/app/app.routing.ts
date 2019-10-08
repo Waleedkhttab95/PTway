@@ -164,6 +164,15 @@ export const AppRoutes: Routes = [
         path: 'temp',
         loadChildren: './temp/temp.module#tempModule'
       },
+      {
+        path: 'temp-cand-list',
+        loadChildren: './temp_list/temp_list.module#tempListModule'
+      },
+      {
+        path: 'temp-prev-cv',
+        loadChildren: './temp_cv/cv-temp.module#CvTempModule'
+      },
+      
 ];
 
 
