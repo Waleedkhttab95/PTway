@@ -148,6 +148,8 @@ module.exports = (app) => {
     app.get('/api/get/UsersDepenedsOnArea/:country?/:city?', async (req, res) => {
         try {
             // recevie URL Paramaters
+            console.log('area query', req.query);
+            
             const CountryId = req.query.country;
 
             const CityId = req.query.city;
@@ -180,7 +182,7 @@ module.exports = (app) => {
                 res.status(400).send('معلومات التخصص خاطئة');
             }
 
-            if(spMajor == undefined){
+            if( spMajor.includes('undefined')){  
                 const Users = await UserInfo.find({ 'public_Major': major }).countDocuments();
                 res.status(200).json({
                     users: Users

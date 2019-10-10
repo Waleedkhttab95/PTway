@@ -51,7 +51,8 @@ module.exports = (app) => {
       const token = user.generateAuthToken();
       res.status(200).json({
         token: token,
-        userId: user._id
+        userId: user._id,
+        isAdmin: user.isAdmin ? true: false,
       });;
     });
 
