@@ -30,6 +30,7 @@ module.exports = (app) => {
     const hashPassword = await bcrypt.hash(user.password, salt, null, (error, hash) => {
       if (error) res.status(400)
       user.password = hash;
+      user.createDate = Date.now();
       user.save();
     });
     user.isConfirmed = false; // initially will be false 

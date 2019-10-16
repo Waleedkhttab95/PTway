@@ -44,6 +44,7 @@ module.exports = (app) =>{
                  content : jobAd,
                  user : r.user,
                  isRead: false,
+                 date: Date.now(),
                  apply: false
                 }).save();
              })
@@ -66,6 +67,7 @@ module.exports = (app) =>{
                  content : jobAd,
                  user : r.user,
                  isRead: false,
+                 date: Date.now(),
                  apply: false
                 }).save();
              })
