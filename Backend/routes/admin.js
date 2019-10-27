@@ -177,8 +177,9 @@ module.exports = (app) => {
             
        
 
-            if(spMajor == undefined){
-       
+
+            if( spMajor.includes('undefined')){  
+
                 const Users = await UserInfo.find({ 'public_Major': major }).countDocuments();
                 res.status(200).json({
                     users: Users
