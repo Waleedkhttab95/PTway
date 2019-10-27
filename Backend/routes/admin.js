@@ -173,14 +173,13 @@ module.exports = (app) => {
         try {
             // recevie URL Paramaters
             const major = req.query.major;
-
             const spMajor = req.query.spMajor;
+            
+       
 
-            if (!major || !spMajor) {
-                res.status(400).send('معلومات التخصص خاطئة');
-            }
 
             if( spMajor.includes('undefined')){  
+
                 const Users = await UserInfo.find({ 'public_Major': major }).countDocuments();
                 res.status(200).json({
                     users: Users
@@ -225,16 +224,21 @@ module.exports = (app) => {
     });
 
     // Getting the growth rate
-    app.get('/api/get/growthRate', async (req, res) => {
+    app.get('/api/get/growthRate/:date?', async (req, res) => {
         var today = new Date();
         var ourDate = new Date();
+        ourDate = req.query.date;
         var pastDate = ourDate.getDate() - 7;
         ourDate.setDate(pastDate);
         try {
             const currentUsers = await User.find().countDocuments();
             const aWeekAgoUsers = await User.find({ "createDate": { "$gte": ourDate, "$lt": today } }).countDocuments();
             var growthRate = ((currentUsers - aWeekAgoUsers) / aWeekAgoUsers) * 100;
-            res.status(200).json(growthRate);
+            res.status(200).json({
+                growthRate: growthRate,
+                today : Date.now()
+            }
+                );
         }
         catch (error) {
             console.log(error);
