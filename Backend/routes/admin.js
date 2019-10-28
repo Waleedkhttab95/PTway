@@ -18,12 +18,25 @@ const { Sector } = require('../models/Companies/Sector');
 
 module.exports = (app) => {
 
+
+    // Active Pandding company
     app.put('/api/companyApproval', async (req, res) => {
 
         await Company.updateOne({ '_id': req.body.id }, {
             $set: { isActive: true, }
         })
         res.status(200).send("Updated");
+
+    })
+
+
+    
+    // return Pandding company
+    app.get('/api/get/companyApproval', async (req, res) => {
+        const result = await Company.find({"isActive":false})
+        res.status(200).json({
+            result: result
+        });
 
     })
 
@@ -361,7 +374,7 @@ module.exports = (app) => {
     app.get('/api/get/searchCompanyById/:id?', async (req, res) => {
         try {
             const id = req.query.id;
-            const company = await Company.findById(id);
+            const company = await Company.findById(id).populate('CompanySpecialist');
             if (!company) {
                 res.status(400).json('الشركة غير مسجلة');
             }
@@ -377,7 +390,7 @@ module.exports = (app) => {
     app.get('/api/get/searchCompanyByEmail/:email?', async (req, res) => {
         try {
             const email = req.query.email;
-            const company = await Company.findOne({ 'email': email });
+            const company = await Company.findOne({ 'email': email }).populate('CompanySpecialist');
             if (!company) {
                 res.status(400).json('الشركة غير مسجلة');
             }
@@ -393,7 +406,8 @@ module.exports = (app) => {
     app.get('/api/get/searchCompanyByName/:companyName?', async (req, res) => {
         try {
             const companyName = req.query.companyName;
-            const company = await Company.find({ 'companyName': { '$regex': companyName, '$options': 'i' } }); // could be many users with same companyName,,
+            const company = await Company.find({ 'companyName': { '$regex': companyName, '$options': 'i' } })
+            .populate('CompanySpecialist'); // could be many users with same companyName,,
             if (!company || company.length == 0) {
                 res.status(400).json('الشركة غير مسجلة');
             }
@@ -413,8 +427,8 @@ module.exports = (app) => {
             if (!sector) {
                 res.status(400).json('القطاع غير مسجل');
             }
-            const sectorKey = sector.key;
-            const company = await Company.find({ 'sector': sectorKey }); // could be many users with same sector,,
+            const sectorKey = sector._id;
+            const company = await Company.find({ 'sector': sectorKey }).populate('CompanySpecialist'); // could be many users with same sector,,
             if (!company || company.length == 0) {
                 res.status(400).json('الشركة غير مسجلة');
             }
@@ -429,13 +443,13 @@ module.exports = (app) => {
     // By CompanySpecialist
     app.get('/api/get/searchCompanyByCompanySpecialist/:CompanySp?', async (req, res) => {
         try {
-            const companySpecialist = 'تكنولوجيا المعلومات';
+            const companySpecialist = req.query.CompanySp;
             const Specialist = await CompanySpecialist.findOne({ 'specialistName': companySpecialist });
             if (!Specialist) {
                 res.status(400).json('التخصص غير مسجل');
             }
             const idForCompanySpecialist = Specialist._id;
-            const company = await Company.find({ 'CompanySpecialist': idForCompanySpecialist }); // could be many users with same CompanySpecialist,,
+            const company = await Company.find({ 'CompanySpecialist': idForCompanySpecialist }).populate('CompanySpecialist'); // could be many users with same CompanySpecialist,,
             if (!company || company.length == 0) {
                 res.status(400).json('الشركة غير مسجلة');
             }
@@ -695,7 +709,7 @@ module.exports = (app) => {
                     {
                         // const sector i was trying to get sector key from sector name , and i wanna to check whether the data is array or one object in find()
                         const wholesector = Sector.findOne({ 'sectorName': value });
-                        const sectorKey = wholesector.key;
+                        const sectorKey = wholesector._id;
                         await Company.updateOne({ '_id': id }, {
                             $set: { sector: sectorKey }
                         });

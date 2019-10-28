@@ -73,6 +73,7 @@ module.exports = (app) => {
     const hashPassword = await bcrypt.hash(company.password, salt, null, (error, hash) => {
       if (error) res.status(400)
       company.password = hash;
+      company.createDate = Date.now();
       company.save();
     });
 

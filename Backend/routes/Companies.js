@@ -66,6 +66,7 @@ module.exports = (app) => {
     // POST PROJECT 
     app.post('/api/postproject', auth, (req, res) => {
         new Project({
+            createDate: Date.now(),
             projectName: req.body.projectName,
             projectDescription: req.body.projectDescription,
             company: req.user._id
@@ -76,6 +77,7 @@ module.exports = (app) => {
             });
 
         new Project_Admin({
+            createDate: Date.now(),
             projectName: req.body.projectName,
             projectDescription: req.body.projectDescription,
             company: req.user._id
@@ -117,6 +119,7 @@ module.exports = (app) => {
     app.post('/api/postjob', auth, (req, res) => {
         var lock_date = lockDate();
         new JobAd({
+            createDate: Date.now(),
             company: req.user._id,
             contract: req.body.contract,
             project: req.body.project,
@@ -143,10 +146,12 @@ module.exports = (app) => {
 
 
         new JobAd_admin({
+            createDate: Date.now(),
             company: req.user._id,
             contract: req.body.contract,
             project: req.body.project,
             job_Name: req.body.job_Name,
+            lockDate: lock_date,
             descreption: req.body.descreption,
             job_skills: req.body.job_skills,
             country: req.body.country,

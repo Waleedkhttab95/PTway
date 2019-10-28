@@ -7,7 +7,7 @@ key : {type:String},
 company:{type: mongoose.Schema.Types.ObjectId, ref:'companies'},
 projectName : {type: String , required:true},
 projectDescription : {type:String, required: true},
-createDate: {type: Date , default:Date.now()},
+createDate: {type: Date },
 status : {type: Boolean , default: true},
 date : {type: Date , default: new Date()}
 });
