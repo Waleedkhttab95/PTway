@@ -38,15 +38,15 @@ module.exports = (app) => {
         }
 
         if (!sector.includes(undefined)) {
-            const result = await Company.find({ 'sector': sector }).countDocuments();
+            const sector_result = await Company.find({ 'sector': sector }).countDocuments();
             return res.status(200).json({
-                result: result
+                result: {sector_result}
             });
         }
         if (!sp.includes(undefined)) {
-            const result = await Company.find({ 'CompanySpecialist': sp }).countDocuments();
+            const sp_result = await Company.find({ 'CompanySpecialist': sp }).countDocuments();
             return res.status(200).json({
-                result: result
+                result: {sp_result}
             });
         }
     });
