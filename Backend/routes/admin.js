@@ -52,33 +52,33 @@ module.exports = (app) => {
 
     // return count of company based sector or sp
 
-    app.get('/api/get/count/company/:sector?/:sp?', async (req, res) => {
-        const sector = req.query.sector;
-        const sp = req.query.sp;
+    // app.get('/api/get/count/company/:sector?/:sp?', async (req, res) => {
+    //     const sector = req.query.sector;
+    //     const sp = req.query.sp;
 
-        if (sector != undefined && sp != undefined) {
-            const result = await Company.find({ 'sector': sector, 'CompanySpecialist': sp }).countDocuments();
-            return res.status(200).json({
-                result: result
-            });
-        }
+    //     if (sector != undefined && sp != undefined) {
+    //         const result = await Company.find({ 'sector': sector, 'CompanySpecialist': sp }).countDocuments();
+    //         return res.status(200).json({
+    //             result: result
+    //         });
+    //     }
 
-        if (sector != undefined) {
-            const result = await Company.find({ 'sector': sector }).countDocuments();
-            return res.status(200).json({
-                result: result
-            });
-        }
-        if (sp != undefined) {
-            const result = await Company.find({ 'CompanySpecialist': sp }).countDocuments();
+    //     if (sector != undefined) {
+    //         const result = await Company.find({ 'sector': sector }).countDocuments();
+    //         return res.status(200).json({
+    //             result: result
+    //         });
+    //     }
+    //     if (sp != undefined) {
+    //         const result = await Company.find({ 'CompanySpecialist': sp }).countDocuments();
 
-            return res.status(200).json({
-                result: result
-            });
-        }
+    //         return res.status(200).json({
+    //             result: result
+    //         });
+    //     }
 
 
-    });
+    // });
 
     // return count of comapny based country & city
 
