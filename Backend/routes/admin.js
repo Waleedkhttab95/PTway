@@ -423,12 +423,12 @@ module.exports = (app) => {
     app.get('/api/get/searchCompanyBySector/:sectorName?', async (req, res) => {
         try {
             const sectorName = req.query.sectorName;
-            const sector = await Sector.findOne({ 'sectorName': sectorName });
-            if (!sector) {
-                res.status(400).json('القطاع غير مسجل');
-            }
-            const sectorKey = sector._id;
-            const company = await Company.find({ 'sector': sectorKey }).populate('CompanySpecialist'); // could be many users with same sector,,
+            // const sector = await Sector.findOne({ 'sectorName': sectorName });
+            // if (!sector) {
+            //     res.status(400).json('القطاع غير مسجل');
+            // }
+            // const sectorKey = sector.sectorName;
+            const company = await Company.find({ 'sector': sectorName }).populate('CompanySpecialist'); // could be many users with same sector,,
             if (!company || company.length == 0) {
                 res.status(400).json('الشركة غير مسجلة');
             }
