@@ -26,28 +26,27 @@ module.exports = (app) => {
     app.get('/api/get/count/company', async (req, res) => {
         const sector = req.query.sector;
         const sp = req.query.sp;   //sp is shortcut for CompanySpecialist
-    
         if(!sector || !sp){
             return res.status(400).send('خطأ في البيانات');
         }
     
-        if (sector != undefined && sp != undefined) {
+        if (!sector.includes(undefined) && !sp.includes(undefined)) {
             const result = await Company.find({ 'sector': sector, 'CompanySpecialist': sp }).countDocuments();
             return res.status(200).json({
                 result: result
             });
         }
 
-        if (sector != undefined) {
-            const result = await Company.find({ 'sector': sector }).countDocuments();
+        if (!sector.includes(undefined)) {
+            const sector_result = await Company.find({ 'sector': sector }).countDocuments();
             return res.status(200).json({
-                result: result
+                result: {sector_result}
             });
         }
-        if (sp != undefined) {
-            const result = await Company.find({ 'CompanySpecialist': sp }).countDocuments();
+        if (!sp.includes(undefined)) {
+            const sp_result = await Company.find({ 'CompanySpecialist': sp }).countDocuments();
             return res.status(200).json({
-                result: result
+                result: {sp_result}
             });
         }
     });
