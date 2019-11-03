@@ -180,7 +180,7 @@ module.exports = (app) => {
                 res.status(400).json('التخصص غير مسجل');
             }
             const majorId = major._id;
-            const spmajor = await spMajor.findOne({ 'public_Major': majorId }).populate('public_Major'); // could be many subMajors with same name,,
+            const spmajor = await spMajor.find({ 'public_Major': majorId }).populate('public_Major'); // could be many subMajors with same name,,
             if (!spmajor) {
                 res.status(400).json('التخصص الدقيق غير مسجل');
             }
