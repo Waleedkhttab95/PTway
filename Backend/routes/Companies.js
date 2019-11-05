@@ -117,7 +117,7 @@ module.exports = (app) => {
 
     // POST job Ad 
     app.post('/api/postjob', auth, (req, res) => {
-        var lock_date = lockDate();
+        var lock_date = lockDate(); 
         new JobAd({
             createDate: Date.now(),
             company: req.user._id,
@@ -141,6 +141,8 @@ module.exports = (app) => {
             .then(result => {
                 console.log("result" + result)
                 res.send(result)
+            }).catch((e)=>{
+                res.status(500).send('error',e)
             });
 
 
@@ -191,7 +193,7 @@ module.exports = (app) => {
     // Get all jobs Ad 
 
     app.get('/api/getjobs', auth, async (req, res) => {
-        const jobs = await JobAd.find();
+        const jobs = await JobAd.find().populate('project').populate('city').populate('company').populate('contract');
         res.send(jobs);
     })
 
@@ -248,7 +250,7 @@ module.exports = (app) => {
     // get job preview ( for companies)
     app.get('/api/preview/getjob', auth, async (req, res) => {
         const id = req.query.id;
-
+        
         const job = await JobAd.findById(id);
         if (!job) return res.status(401).send('not found');
         const countres = await Country.findById(job.country);
