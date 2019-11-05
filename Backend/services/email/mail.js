@@ -12,7 +12,7 @@ let transporter = nodemailer.createTransport({
     secure: true, // use SSL
     auth: {
         user: 'apikey',//keys.user,
-        pass:'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'//keys.pass
+        pass:'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'//keys.pass
     }
     
 });

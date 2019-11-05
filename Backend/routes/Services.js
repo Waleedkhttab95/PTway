@@ -23,7 +23,7 @@ module.exports = (app) =>{
               const city= req.body.city;
               const gender= req.body.gender;
               // const  personal_Skills= req.body.personal_Skills;
-              // const public_Major = req.body.public_Major; public_Major :'5caf520fffec65462ec2a0a2'
+              // const public_Major = req.body.public_Major; public_Major :'5caf4161ffec65462ec2a094'
               const jobAd = req.body.jobAd;
               
         if(gender == "both") {
