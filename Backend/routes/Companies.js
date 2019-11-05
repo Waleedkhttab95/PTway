@@ -171,7 +171,7 @@ module.exports = (app) => {
 
     });
 
-    // Get all projects
+    // Get all projects for company
 
     app.get('/api/getprojects', auth, async (req, res) => {
         const id = req.user._id;
@@ -187,12 +187,30 @@ module.exports = (app) => {
     });
 
 
+     // Get all projects 
+
+     app.get('/api/getAllProjects', auth, async (req, res) => {
+        const projects = await Project.find();
+        res.send(projects);
+    })
 
     // Get all jobs Ad 
 
     app.get('/api/getjobs', auth, async (req, res) => {
         const jobs = await JobAd.find();
         res.send(jobs);
+    })
+
+
+    // get all jobs for company by email
+    app.get('/api/getjobsByEmail/:companyId?', auth, async (req, res) => {
+        const company = await Company.findOne({'email': req.query.email})
+        if (!company) return res.status(402).send('not found company')
+
+        const jobs = await JobAd.find({'company': company._id});
+        if (!jobs) return res.status(402).send('not found Jobs for this company')
+
+        res.status(200).send(jobs);
     })
 
 
