@@ -154,21 +154,21 @@ module.exports = (app) => {
         }
     });
 
-    // Get all
-    app.get('/api/get/allSubMajors', async (req, res) => {
-        try {
-            const Submajors = await spMajor.find();
-            if (!Submajors) {
-                res.status(400).send('لا يوجد تخصصات');
-            }
-            res.status(200).send(Submajors);
-        }
-        catch (error) {
-            console.log(error);
-            res.status(400).send('خطأ');
-        }
+    // // Get all
+    // app.get('/api/get/allSubMajors', async (req, res) => {
+    //     try {
+    //         const Submajors = await spMajor.find();
+    //         if (!Submajors) {
+    //             res.status(400).send('لا يوجد تخصصات');
+    //         }
+    //         res.status(200).send(Submajors);
+    //     }
+    //     catch (error) {
+    //         console.log(error);
+    //         res.status(400).send('خطأ');
+    //     }
 
-    });
+    // });
 
 
     // GET subMajor By Major name
@@ -180,7 +180,7 @@ module.exports = (app) => {
                 res.status(400).json('التخصص غير مسجل');
             }
             const majorId = major._id;
-            const spmajor = await spMajor.findOne({ 'public_Major': majorId }); // could be many subMajors with same name,,
+            const spmajor = await spMajor.find({ 'public_Major': majorId }).populate('public_Major'); // could be many subMajors with same name,,
             if (!spmajor) {
                 res.status(400).json('التخصص الدقيق غير مسجل');
             }
@@ -332,9 +332,10 @@ module.exports = (app) => {
         try {
             const subMajor = req.body.subMajorName;
             const key = req.body.key;
-            let public_Major = await publicMajor.findOne({ 'majorName': { '$regex': req.body.public_Major, '$options': 'i' } });
-            public_Major = public_Major._id;
+            let public_Major = await publicMajor.findOne({ 'majorName': { '$regex': req.body.public_Major, '$options': 'i' } }).populate('public_Major');
+            // public_Major = public_Major._id;
             if (!subMajor || !key || !public_Major) return res.status(400).send('المعلومات غير مكتمله');
+            
             new spMajor({
                 key: key,
                 majorName: subMajor,
