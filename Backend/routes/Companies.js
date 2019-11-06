@@ -203,7 +203,7 @@ module.exports = (app) => {
 
 
     // get all jobs for company by email
-    app.get('/api/getjobsByEmail/:companyId?', auth, async (req, res) => {
+    app.get('/api/getjobsByEmail/:email?', auth, async (req, res) => {
         const company = await Company.findOne({'email': req.query.email})
         if (!company) return res.status(402).send('not found company')
 
