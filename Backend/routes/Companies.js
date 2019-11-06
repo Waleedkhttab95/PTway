@@ -209,7 +209,7 @@ module.exports = (app) => {
         const company = await Company.findOne({'email': req.query.email})
         if (!company) return res.status(402).send('not found company')
 
-        const jobs = await JobAd.find({'company': company._id});
+        const jobs = await JobAd.find({'company': company._id}).populate('company').populate('city');
         if (!jobs) return res.status(402).send('not found Jobs for this company')
 
         res.status(200).send(jobs);
