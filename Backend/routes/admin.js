@@ -33,7 +33,7 @@ module.exports = (app) => {
     
     // return Pandding company
     app.get('/api/get/companyApproval', async (req, res) => {
-        const result = await Company.find({"isActive":false})
+        const result = await Company.find({"isActive":false}).populate('CompanySpecialist')
         res.status(200).json({
             result: result
         });
@@ -489,7 +489,7 @@ module.exports = (app) => {
             });
             
             sendVerifMail(user.firstName, user.email);
-
+                
             res.status(200).send(user);
         }
         catch (error) {
