@@ -31,6 +31,7 @@ isActive : {
     default: true
 },
 createDate: {type: Date},
+sortDate: {type: Date},
 isConfirmed:{
     type:Boolean
     
@@ -42,6 +43,7 @@ companySchema.methods.generateAuthToken = function() {
 
     return token;
 }
+companySchema.index({ sortDate: 1 }); 
 const Company = mongoose.model('companies', companySchema);
 
 // function validateCompany(company) {

@@ -5,6 +5,7 @@ const {Schema} = mongoose;
 const adSchema = new Schema({
    key : {type:String},
 createDate: {type: Date },
+sortDate: {type: Date},
    contract: {type: mongoose.Schema.Types.ObjectId, ref:'Contracts', required:true},
    project: {type: mongoose.Schema.Types.ObjectId, ref:'Projects'},
    company: {type: mongoose.Schema.Types.ObjectId, ref:'companies'},
@@ -35,7 +36,7 @@ createDate: {type: Date },
   // age_To : {type:Number,required:true}
 });
 
-
+adSchema.index({ sortDate: 1, project: 1 }); 
 const JobAd = mongoose.model('JobAds', adSchema);
 
 

@@ -118,8 +118,11 @@ module.exports = (app) => {
     // POST job Ad 
     app.post('/api/postjob', auth, (req, res) => {
         var lock_date = lockDate(); 
+        var today = new Date();
+        today.setHours(0, 0, 0, 0);
         new JobAd({
             createDate: Date.now(),
+            sortDate : today,
             company: req.user._id,
             contract: req.body.contract,
             project: req.body.project,
@@ -206,6 +209,7 @@ module.exports = (app) => {
 
     // get all jobs for company by email
     app.get('/api/getjobsByEmail/:email?', auth, async (req, res) => {
+        console.log( req.query.email)
         const company = await Company.findOne({'email': req.query.email})
         if (!company) return res.status(402).send('not found company')
 

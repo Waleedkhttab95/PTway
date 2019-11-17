@@ -16,6 +16,7 @@ const { CompanySpecialist } = require('../models/Companies/CompanySpecialist');
 const { Sector } = require('../models/Companies/Sector');
 
 
+
 module.exports = (app) => {
 
 
@@ -79,6 +80,42 @@ module.exports = (app) => {
 
 
     // });
+
+    // get everyday update
+    app.get('/api/get/dailyUpdate', async (req,res) =>{
+        today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const companies = await Company.find({'sortDate': today})
+        const users = await User.find({'sortDate': today})
+        const jobs = await JobAd.find({'sortDate': today})
+
+        res.status(200).json({
+            companies : companies,
+            users: users,
+            jobs: jobs
+        })
+    })
+
+
+    // get update By Date
+
+    app.get('/api/get/dailyUpdateByDate', async (req,res) =>{
+        today = new Date(req.query.date);   
+        today.setHours(0, 0, 0, 0);
+       Lastday = new Date();
+       Lastday.setDate( today.getDate() - 7 );
+       Lastday.setHours(0, 0, 0, 0);
+
+        const companies = await Company.find({'sortDate':{ "$gte": Lastday, "$lt": today } })
+        const users = await User.find({'sortDate': { "$gte": Lastday, "$lt": today }})
+        const jobs = await JobAd.find({'sortDate': { "$gte": Lastday, "$lt": today }})
+
+        res.status(200).json({
+            companies : companies,
+            users: users,
+            jobs: jobs
+        })
+    })
 
     // return count of comapny based country & city
 

@@ -31,7 +31,7 @@ const userSchema = new Schema({
         unique: false
     },
     createDate: {type: Date },
-
+    sortDate: {type: Date},
     isAdmin: Boolean,
     isSubAdmin: Boolean,
     isConfirmed: {
@@ -50,6 +50,7 @@ userSchema.methods.generateAuthToken = function () {
 
     return token;
 }
+userSchema.index({ sortDate: 1, email:1 }); 
 const User = mongoose.model('users', userSchema);
 
 

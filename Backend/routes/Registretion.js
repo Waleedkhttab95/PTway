@@ -29,8 +29,11 @@ module.exports = (app) => {
     });
     const hashPassword = await bcrypt.hash(user.password, salt, null, (error, hash) => {
       if (error) res.status(400)
+      today = new Date();
+      today.setHours(0, 0, 0, 0);
       user.password = hash;
       user.createDate = Date.now();
+      user.sortDate = today
       user.save();
     });
     user.isConfirmed = false; // initially will be false 
@@ -72,8 +75,11 @@ module.exports = (app) => {
     });
     const hashPassword = await bcrypt.hash(company.password, salt, null, (error, hash) => {
       if (error) res.status(400)
+      today = new Date();
+      today.setHours(0, 0, 0, 0);
       company.password = hash;
       company.createDate = Date.now();
+      company.sortDate= today
       company.save();
     });
 
