@@ -34,7 +34,7 @@ module.exports = (app) => {
     
     // return Pandding company
     app.get('/api/get/companyApproval', async (req, res) => {
-        const result = await Company.find({"isActive":false})
+        const result = await Company.find({"isActive":false}).populate('CompanySpecialist')
         res.status(200).json({
             result: result
         });
@@ -526,7 +526,7 @@ module.exports = (app) => {
             });
             
             sendVerifMail(user.firstName, user.email);
-
+                
             res.status(200).send(user);
         }
         catch (error) {
@@ -745,20 +745,22 @@ module.exports = (app) => {
                 case 'sector':
                     {
                         // const sector i was trying to get sector key from sector name , and i wanna to check whether the data is array or one object in find()
-                        const wholesector = Sector.findOne({ 'sectorName': value });
-                        const sectorKey = wholesector._id;
+                        // const wholesector = Sector.findOne({ 'sectorName': value });
+                        // const sectorKey = wholesector._id;
                         await Company.updateOne({ '_id': id }, {
-                            $set: { sector: sectorKey }
+                            $set: { sector: value }
                         });
                         break;
                     }
 
                 case 'CompanySpecialist':
                     {
-                        const companySp = CompanySpecialist.findOne({ 'specialistName': value });
-                        const companySpId = companySp._id;
+                        // const companySp = CompanySpecialist.findOne({ 'specialistName': value });
+                        // const companySpId = companySp._id;
+                        console.log('value',value,id);
+                        
                         await Company.updateOne({ '_id': id }, {
-                            $set: { CompanySpecialist: companySpId }
+                            $set: { CompanySpecialist: value }
                         });
                         break;
                     }
