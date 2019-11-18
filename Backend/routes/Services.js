@@ -339,38 +339,30 @@ module.exports = (app) =>{
         var fullName = []
         var email = [];
     
-        const results = await UserInfo.find({'city': city,'public_Major':major}).select('fullName mobile -_id');
-        // if(results){
-        //     results.forEach( result =>{  
-        //         var emails = User.findById(result.user).then(em =>{
-        //             email.push(em.email)
-        //         })          
-        //         var number =  UserInfo.findOne({'user':result.candidateName}).then(num =>{
-        //             phoneNumbers.push(num.mobile);
-        //             fullName.push(num.fullName);
+        const results = await UserInfo.find({'city': city,'public_Major':major}).select('fullName mobile user -_id');
+        if(results){
+            results.forEach( result =>{
+
+                 
+               
+                    phoneNumbers.push(result.mobile);
+                    fullName.push(result.fullName);
                    
-        //             if(phoneNumbers.length == results.length){
+                    if(phoneNumbers.length == results.length){
 
-        //                 return  res.status(200).json({
-        //                     name: fullName,
-        //                     numbers: phoneNumbers,
-        //                     email:email
-        //                 })
+                        return  res.status(200).json({
+                            name: fullName,
+                            numbers: phoneNumbers
+                           
+                        })
 
     
-        //             }
-        //         });
-
-              
+                    }
     
-        //     })
+            })
 
-        // }
-        
-        return  res.status(200).json({
-                              name: results.fullName,
-                              numbers: results.mobile
-                            })
+        }
+     
 
 
     })
