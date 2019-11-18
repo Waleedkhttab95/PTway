@@ -290,7 +290,7 @@ module.exports = (app) =>{
 
     })
 
-    // retrive all phone numbers
+    // retrive all phone numbers By Job AD
 
     app.get('/api/get/phonenumbers',async (req,res) =>{
         const jobId = req.query.jobAd;
@@ -327,8 +327,50 @@ module.exports = (app) =>{
             })
 
         }
+    })
         
+    
+         // retrive all phone numbers By city and Major
 
+    app.get('/api/get/phonenumbersByCityAndMajor',async (req,res) =>{
+        const city = req.query.city;
+        const major = req.query.major;
+        var phoneNumbers = []
+        var fullName = []
+        var email = [];
+    
+        const results = await UserInfo.find({'city': city,'major':major}).select('fullName mobile -_id');
+        // if(results){
+        //     results.forEach( result =>{  
+        //         var emails = User.findById(result.user).then(em =>{
+        //             email.push(em.email)
+        //         })          
+        //         var number =  UserInfo.findOne({'user':result.candidateName}).then(num =>{
+        //             phoneNumbers.push(num.mobile);
+        //             fullName.push(num.fullName);
+                   
+        //             if(phoneNumbers.length == results.length){
+
+        //                 return  res.status(200).json({
+        //                     name: fullName,
+        //                     numbers: phoneNumbers,
+        //                     email:email
+        //                 })
+
+    
+        //             }
+        //         });
+
+              
+    
+        //     })
+
+        // }
+        
+        return  res.status(200).json({
+                              name: results.fullName,
+                              numbers: results.mobile
+                            })
 
 
     })
@@ -344,5 +386,5 @@ module.exports = (app) =>{
         return dd;
     }
  
- 
 }
+
