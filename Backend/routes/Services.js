@@ -339,7 +339,7 @@ module.exports = (app) =>{
         var fullName = []
         var email = [];
     
-        const results = await UserInfo.find({'city': city,'major':major}).select('fullName mobile -_id');
+        const results = await UserInfo.find({'city': city,'public_Major':major}).select('fullName mobile -_id');
         // if(results){
         //     results.forEach( result =>{  
         //         var emails = User.findById(result.user).then(em =>{
