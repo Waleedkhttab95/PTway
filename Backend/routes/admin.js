@@ -99,11 +99,50 @@ module.exports = (app) => {
 
     // get update By Date
 
-    app.get('/api/get/dailyUpdateByDate', async (req,res) =>{
+    app.get('/api/get/dailyUpdateByDateWeek/:date?', async (req,res) =>{
         today = new Date(req.query.date);   
         today.setHours(0, 0, 0, 0);
        Lastday = new Date();
        Lastday.setDate( today.getDate() - 7 );
+       Lastday.setHours(0, 0, 0, 0);
+
+        const companies = await Company.find({'sortDate':{ "$gte": Lastday, "$lt": today } })
+        const users = await User.find({'sortDate': { "$gte": Lastday, "$lt": today }})
+        const jobs = await JobAd.find({'sortDate': { "$gte": Lastday, "$lt": today }})
+
+        res.status(200).json({
+            companies : companies,
+            users: users,
+            jobs: jobs
+        })
+    })
+
+    // get update By Date before month
+
+    app.get('/api/get/dailyUpdateByDateBeforeMonth/:date?', async (req,res) =>{
+        today = new Date(req.query.date);   
+        today.setHours(0, 0, 0, 0);
+       Lastday = new Date();
+       Lastday.setDate( today.getDate() - 30 );
+       Lastday.setHours(0, 0, 0, 0);
+
+        const companies = await Company.find({'sortDate':{ "$gte": Lastday, "$lt": today } })
+        const users = await User.find({'sortDate': { "$gte": Lastday, "$lt": today }})
+        const jobs = await JobAd.find({'sortDate': { "$gte": Lastday, "$lt": today }})
+
+        res.status(200).json({
+            companies : companies,
+            users: users,
+            jobs: jobs
+        })
+    })
+
+       // get update between 2 dates
+
+       app.get('/api/get/dailyUpdateByDateBeforeMonth/:date?/:date2?', async (req,res) =>{
+        today = new Date(req.query.date);   
+        today.setHours(0, 0, 0, 0);
+       Lastday = new Date(req.query.date2);
        Lastday.setHours(0, 0, 0, 0);
 
         const companies = await Company.find({'sortDate':{ "$gte": Lastday, "$lt": today } })
