@@ -973,4 +973,106 @@ module.exports = (app) => {
         });
         
     });
+
+    // post job ad by admin
+
+    app.post('/api/post/jobAd',async (req,res) =>{
+        var lock_date = lockDate(); 
+        var today = new Date();
+        today.setHours(0, 0, 0, 0);
+        new JobAd({
+            createDate: Date.now(),
+            sortDate : today,
+            company: req.user._id,
+            contract: req.body.contract,
+            project: req.body.project,
+            job_Name: req.body.job_Name,
+            lockDate: lock_date,
+            descreption: req.body.descreption,
+            job_skills: req.body.job_skills,
+            country: req.body.country,
+            city: req.body.city,
+            public_Major: req.body.public_Major,
+            spMajor: req.body.spMajor,
+            universty: req.body.universty,
+            startDate: req.body.startDate,
+            work_hours: req.body.work_hours,
+            work_days: req.body.work_days,
+            salary: req.body.salary,
+            gender: req.body.gender,
+            personal_Skills: req.body.personal_Skills,
+            required_Number: req.body.required_Number
+        }).save()
+            .then(result => {
+               send_jobs(req.body , result._id)
+                res.send(result)
+            }).catch((e)=>{
+                res.status(500).send('error',e)
+            });
+
+    })
+
+   async function send_jobs(body, jobAdId) {
+
+         const country=body.country;
+         const city= body.city;
+         const gender= body.gender;
+         const public_Major = body.public_Major;
+         const spMajor = body.spMajor;
+         const universty = body.universty;
+         const jobAd =jobAdId;
+         
+   if(gender == "both") {
+       const result = await UserInfo
+       .find({ country: country,city: city,public_Major: public_Major,
+    spMajor: spMajor,universty: universty })
+       .select("user");
+
+       result.forEach(async function(r) {
+           //here write email code
+           // r.user is giving the id
+           const user  = await User.findById(r.user);
+           if(user) 
+           {
+               sendJobOffer(user.email , user.firstName);
+           }
+
+           new Notification({
+            content : jobAd,
+            user : r.user,
+            isRead: false,
+            date: Date.now(),
+            apply: false
+           }).save();
+        })
+
+        res.status(200).send("Done .");
+   }
+   else {
+       const result = await UserInfo
+       .find({ country: country,city: city
+       ,gender: gender ,public_Major: public_Major,
+       spMajor: spMajor,universty: universty})
+       .select("user");
+
+       result.forEach(async function(r) {
+           const user  = await User.findById(r.user);
+           if(user) 
+           {
+               sendJobOffer(user.email , user.firstName);
+           }
+           new Notification({
+            content : jobAd,
+            user : r.user,
+            isRead: false,
+            date: Date.now(),
+            apply: false
+           }).save();
+        })
+
+        res.status(200).send("Done .");
+   }
+
+
+    }
 }
