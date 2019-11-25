@@ -49,7 +49,11 @@ module.exports = (app) => {
         res.status(200).send(sectors);
     });
 
-
+    // get all companies
+    app.get('/api/get/allCompanies', async (req, res) => {
+        const companies = await Company.find();
+        res.status(200).send(companies);
+    });
     // Get all specializzation
 
     app.get('/api/getspec', async (req, res) => {
@@ -191,6 +195,20 @@ module.exports = (app) => {
         });
     });
 
+    // Get all projects for company by id
+
+    app.get('/api/getprojectsById/:_id?', auth, async (req, res) => {
+        const id = req.query._id;
+        const proj = await Project.find({ company: id });
+        const projectNames = proj.map(x => x.projectName);
+        const projectId = proj.map(x => x._id);
+
+        res.status(200).json({
+            projectName: projectNames,
+            count: proj.length,
+            id: projectId
+        });
+    });
 
      // Get all projects 
 
