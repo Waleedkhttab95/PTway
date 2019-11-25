@@ -294,29 +294,32 @@ module.exports = (app) =>{
 
     app.get('/api/get/phonenumbers',async (req,res) =>{
         const jobId = req.query.jobAd;
-        var phoneNumbers = []
-        var fullName = []
-        var email = [];
+        var data = []
+        var dataModel ;
+       var tempEmail;
         const job = await JobAd.findById(jobId);
         if(!job) return res.status('401').send('not found jobAd !')
 
         const results = await Candidate.find({'jobAd': jobId});
         if(results){
             results.forEach( result =>{  
+              
                 var emails = User.findById(result.candidateName).then(em =>{
-                    email.push(em.email)
+                  tempEmail = em.email
+                
                 })          
                 var number =  UserInfo.findOne({'user':result.candidateName}).then(num =>{
-                    phoneNumbers.push(num.mobile);
-                    fullName.push(num.fullName);
                    
-                    if(phoneNumbers.length == results.length){
+                   dataModel = {
+                       number: num.mobile,
+                       name: num.fullName,
+                       email: tempEmail
+                   }
+                   data.push(dataModel)
+                  
+                    if(data.length == results.length){
 
-                        return  res.status(200).json({
-                            name: fullName,
-                            numbers: phoneNumbers,
-                            email:email
-                        })
+                        return  res.status(200).send(data)
 
     
                     }
@@ -335,9 +338,9 @@ module.exports = (app) =>{
     app.get('/api/get/phonenumbersByCityAndMajor',async (req,res) =>{
         const city = req.query.city;
         const major = req.query.major;
-        var phoneNumbers = []
-        var fullName = []
-        var email = [];
+        var data = []
+        var dataModel ;
+
     
         const results = await UserInfo.find({'city': city,'public_Major':major}).select('fullName mobile user -_id');
         if(results){
@@ -345,16 +348,16 @@ module.exports = (app) =>{
 
                  
                
-                    phoneNumbers.push(result.mobile);
-                    fullName.push(result.fullName);
+                dataModel = {
+                    number: num.mobile,
+                    name: num.fullName,
+                    email: tempEmail
+                }
+                data.push(dataModel)
                    
-                    if(phoneNumbers.length == results.length){
+                    if(data.length == results.length){
 
-                        return  res.status(200).json({
-                            name: fullName,
-                            numbers: phoneNumbers
-                           
-                        })
+                        return  res.status(200).send(data)
 
     
                     }

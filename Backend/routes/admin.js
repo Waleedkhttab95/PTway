@@ -85,9 +85,10 @@ module.exports = (app) => {
     app.get('/api/get/dailyUpdate', async (req,res) =>{
         today = new Date();
         today.setHours(0, 0, 0, 0);
+        console.log(today)
         const companies = await Company.find({'sortDate': today})
         const users = await User.find({'sortDate': today})
-        const jobs = await JobAd.find({'sortDate': today})
+        const jobs = await JobAd.find({'sortDate': today}).populate('project').populate('city').populate('company').populate('contract')
 
         res.status(200).json({
             companies : companies,
@@ -108,7 +109,7 @@ module.exports = (app) => {
 
         const companies = await Company.find({'sortDate':{ "$gte": Lastday, "$lt": today } })
         const users = await User.find({'sortDate': { "$gte": Lastday, "$lt": today }})
-        const jobs = await JobAd.find({'sortDate': { "$gte": Lastday, "$lt": today }})
+        const jobs = await JobAd.find({'sortDate': { "$gte": Lastday, "$lt": today }}).populate('project').populate('city').populate('company').populate('contract')
 
         res.status(200).json({
             companies : companies,
@@ -128,7 +129,7 @@ module.exports = (app) => {
 
         const companies = await Company.find({'sortDate':{ "$gte": Lastday, "$lt": today } })
         const users = await User.find({'sortDate': { "$gte": Lastday, "$lt": today }})
-        const jobs = await JobAd.find({'sortDate': { "$gte": Lastday, "$lt": today }})
+        const jobs = await JobAd.find({'sortDate': { "$gte": Lastday, "$lt": today }}).populate('project').populate('city').populate('company').populate('contract')
 
         res.status(200).json({
             companies : companies,
@@ -147,7 +148,7 @@ module.exports = (app) => {
 
         const companies = await Company.find({'sortDate':{ "$gte": Lastday, "$lt": today } })
         const users = await User.find({'sortDate': { "$gte": Lastday, "$lt": today }})
-        const jobs = await JobAd.find({'sortDate': { "$gte": Lastday, "$lt": today }})
+        const jobs = await JobAd.find({'sortDate': { "$gte": Lastday, "$lt": today }}).populate('project').populate('city').populate('company').populate('contract')
 
         res.status(200).json({
             companies : companies,
