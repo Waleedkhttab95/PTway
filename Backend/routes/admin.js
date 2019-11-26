@@ -983,7 +983,7 @@ module.exports = (app) => {
         new JobAd({
             createDate: Date.now(),
             sortDate : today,
-            company: req.user._id,
+            company: req.body._id,
             contract: req.body.contract,
             project: req.body.project,
             job_Name: req.body.job_Name,
@@ -1075,4 +1075,25 @@ module.exports = (app) => {
 
 
     }
+
+       // Function to Calculate Lock Date
+
+       function lockDate() {
+        Date.prototype.addDays = function (startDate,days) {
+            
+            var date = new Date(startDate);
+            date.setDate(date.getDate() + days);
+            
+            return date;
+        }
+
+        var Ld = new Date();
+        var today = Date.now();
+
+        Ld = Ld.addDays(today,14);
+
+        return Ld;
+    }
+
+
 }
