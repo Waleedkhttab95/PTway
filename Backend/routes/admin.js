@@ -993,7 +993,7 @@ module.exports = (app) => {
             country: req.body.country,
             city: req.body.city,
             public_Major: req.body.public_Major,
-            spMajor: req.body.spMajor,
+            spicifc_Major: req.body.spMajor,
             universty: req.body.universty,
             startDate: req.body.startDate,
             work_hours: req.body.work_hours,
@@ -1007,13 +1007,14 @@ module.exports = (app) => {
                send_jobs(req.body , result._id)
                 res.send(result)
             }).catch((e)=>{
-                res.status(500).send('error',e)
+                console.log(e)
+                res.status(401).send('error',e)
             });
 
     })
 
    async function send_jobs(body, jobAdId) {
-
+   
          const country=body.country;
          const city= body.city;
          const gender= body.gender;
@@ -1070,7 +1071,7 @@ module.exports = (app) => {
            }).save();
         })
 
-        res.status(200).send("Done .");
+        
    }
 
 

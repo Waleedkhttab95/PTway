@@ -296,7 +296,7 @@ module.exports = (app) =>{
         const jobId = req.query.jobAd;
         var data = []
         var dataModel ;
-       var tempEmail;
+      
         const job = await JobAd.findById(jobId);
         if(!job) return res.status('401').send('not found jobAd !')
 
@@ -304,16 +304,13 @@ module.exports = (app) =>{
         if(results){
             results.forEach( result =>{  
               
-                var emails = User.findById(result.candidateName).then(em =>{
-                  tempEmail = em.email
-                
-                })          
-                var number =  UserInfo.findOne({'user':result.candidateName}).then(num =>{
                    
+                var number =  UserInfo.findOne({'user':result.candidateName}).populate('user').then(num =>{
+                   console.log(num.user.email)
                    dataModel = {
                        number: num.mobile,
                        name: num.fullName,
-                       email: tempEmail
+                       email: num.user.email
                    }
                    data.push(dataModel)
                   
@@ -342,16 +339,15 @@ module.exports = (app) =>{
         var dataModel ;
 
     
-        const results = await UserInfo.find({'city': city,'public_Major':major}).select('fullName mobile user -_id');
+        const results = await UserInfo.find({'city': city,'public_Major':major}).populate('user')
+        .select('fullName mobile user -_id');
         if(results){
-            results.forEach( result =>{
+            results.forEach( num =>{
 
-                 
-               
                 dataModel = {
                     number: num.mobile,
                     name: num.fullName,
-                    email: tempEmail
+                    email: num.user.email
                 }
                 data.push(dataModel)
                    
