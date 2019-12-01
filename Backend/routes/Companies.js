@@ -214,7 +214,7 @@ module.exports = (app) => {
 
     // Get all jobs Ad 
 
-    app.get('/api/getjobs', auth, async (req, res) => {
+    app.get('/api/getjobs', async (req, res) => {
         const jobs = await JobAd.find().populate('project').populate('city').populate('company').populate('contract');
         res.send(jobs);
     })
