@@ -93,7 +93,10 @@ module.exports = (app) => {
         res.status(200).json({
             companies : companies,
             users: users,
-            jobs: jobs
+            jobs: jobs,
+            companiesCount : companies.length,
+            usersCount: users.length,
+            jobsCount: jobs.length
         })
     })
 
@@ -115,7 +118,10 @@ module.exports = (app) => {
         res.status(200).json({
             companies : companies,
             users: users,
-            jobs: jobs
+            jobs: jobs,
+            companiesCount : companies.length,
+            usersCount: users.length,
+            jobsCount: jobs.length
         })
     })
 
@@ -137,7 +143,10 @@ module.exports = (app) => {
         res.status(200).json({
             companies : companies,
             users: users,
-            jobs: jobs
+            jobs: jobs,
+            companiesCount : companies.length,
+            usersCount: users.length,
+            jobsCount: jobs.length
         })
     })
 
@@ -157,7 +166,10 @@ module.exports = (app) => {
         res.status(200).json({
             companies : companies,
             users: users,
-            jobs: jobs
+            jobs: jobs,
+            companiesCount : companies.length,
+            usersCount: users.length,
+            jobsCount: jobs.length
         })
     })
 
@@ -261,6 +273,35 @@ module.exports = (app) => {
             res.status(400).send('خطأ');
         }
     });
+
+
+    // Getting users depends on  cities and major
+    app.get('/api/get/UsersDepenedsOnAreaAndMajor/:country?/:city?/:major?/:spmajor?', async (req, res) => {
+        try {
+            // recevie URL Paramaters
+            const CountryId = req.query.country;
+
+            const CityId = req.query.city;
+            const major = req.query.major;
+            const spmajor = req.query.spmajor;
+
+            if (!CountryId || !CityId) {
+                res.status(400).send('معلومات الدولة أو المدينة خاطئة');
+            }
+            else {
+                const Users = await UserInfo.find({ 'country': CountryId, 'city': CityId,
+                'public_Major':major, 'spMajor':spmajor }).countDocuments();
+                res.status(200).json({
+                    users: Users
+                });
+            }
+        }
+        catch (error) {
+            console.log(error);
+            res.status(400).send('خطأ');
+        }
+    });
+
 
        // Getting users depends on major and spMajor
        app.get('/api/get/UsersDepenedsOnMajor/:major?/:spMajor?', async (req, res) => {

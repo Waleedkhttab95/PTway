@@ -215,7 +215,8 @@ module.exports = (app) => {
     // Get all jobs Ad 
 
     app.get('/api/getjobs', auth, async (req, res) => {
-        const jobs = await JobAd.find().populate('project').populate('city').populate('company').populate('contract');
+        const jobs = await JobAd.find().populate('project').populate('city').populate('company').populate('contract')
+        .sort({createDate: -1});
         res.send(jobs);
     })
 
@@ -226,7 +227,8 @@ module.exports = (app) => {
         const company = await Company.findOne({'email': req.query.email})
         if (!company) return res.status(402).send('not found company')
 
-        const jobs = await JobAd.find({'company': company._id}).populate('company').populate('city');
+        const jobs = await JobAd.find({'company': company._id}).populate('company').populate('city')
+        .sort({createDate: -1});
         if (!jobs) return res.status(402).send('not found Jobs for this company')
 
         res.status(200).send(jobs);
