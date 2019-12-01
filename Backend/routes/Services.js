@@ -366,6 +366,42 @@ module.exports = (app) =>{
 
 
     })
+
+    // By city and gender
+
+    app.get('/api/get/phonenumbersByCityAndGender',async (req,res) =>{
+        const city = req.query.city;
+       
+        var data = []
+        var dataModel ;
+
+    
+        const results = await UserInfo.find({'city': city,'gender':'انثى'}).populate('user')
+        .select('fullName mobile user -_id');
+        if(results){
+            results.forEach( num =>{
+
+                dataModel = {
+                    number: num.mobile,
+                    name: num.fullName,
+                    email: num.user.email
+                }
+                data.push(dataModel)
+                   
+                    if(data.length == results.length){
+
+                        return  res.status(200).send(data)
+
+    
+                    }
+    
+            })
+
+        }
+     
+
+
+    })
     function todayDate(){
         today = new Date();
         var dd = today.getDate();
