@@ -301,6 +301,7 @@ module.exports = (app) =>{
         if(!job) return res.status('401').send('not found jobAd !')
 
         const results = await Candidate.find({'jobAd': jobId});
+        if(!job) return res.status('401').send('not found Candidate !')
         if(results){
             results.forEach( result =>{  
               
@@ -342,6 +343,8 @@ module.exports = (app) =>{
     
         const results = await UserInfo.find({'city': city,'public_Major':major,'spMajor':spMajor}).populate('user')
         .select('fullName mobile user -_id');
+        if(!results) return res.status('401').send('not found Candidate !')
+
         if(results){
             results.forEach( num =>{
 
