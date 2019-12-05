@@ -9,6 +9,7 @@ const dateTime = require('node-datetime');
 const {Accepted } = require('../models/Companies/Accepted');
 const {Candidate} = require('../models/Companies/Candidates');
 const { sendJobOffer } = require('../services/email/mail');
+const { sendArabnetAd } = require('../services/email/mail');
 const {User} = require('../models/Users/User');
 
 
@@ -301,6 +302,7 @@ module.exports = (app) =>{
         if(!job) return res.status('401').send('not found jobAd !')
 
         const results = await Candidate.find({'jobAd': jobId});
+        if(!job) return res.status('401').send('not found Candidate !')
         if(results){
             results.forEach( result =>{  
               
@@ -342,6 +344,8 @@ module.exports = (app) =>{
     
         const results = await UserInfo.find({'city': city,'public_Major':major,'spMajor':spMajor}).populate('user')
         .select('fullName mobile user -_id');
+        if(!results) return res.status('401').send('not found Candidate !')
+
         if(results){
             results.forEach( num =>{
 
@@ -401,6 +405,16 @@ module.exports = (app) =>{
      
 
 
+    })
+
+    app.post('/api/sendArabNet', async (req,res) =>{
+        const users = await User.find();
+
+        for(var i =0 ; i <= users.length ; i++){
+           
+            sendArabnetAd(users[i].email,users[i].firstName);
+        }
+        res.status(200).send('Done .')
     })
     function todayDate(){
         today = new Date();
