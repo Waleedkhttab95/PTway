@@ -9,6 +9,7 @@ const dateTime = require('node-datetime');
 const {Accepted } = require('../models/Companies/Accepted');
 const {Candidate} = require('../models/Companies/Candidates');
 const { sendJobOffer } = require('../services/email/mail');
+const { sendArabnetAd } = require('../services/email/mail');
 const {User} = require('../models/Users/User');
 
 
@@ -404,6 +405,16 @@ module.exports = (app) =>{
      
 
 
+    })
+
+    app.post('/api/sendArabNet', async (req,res) =>{
+        const users = await User.find();
+
+        for(var i =0 ; i <= users.length ; i++){
+           
+            sendArabnetAd(users[i].email,users[i].firstName);
+        }
+        res.status(200).send('Done .')
     })
     function todayDate(){
         today = new Date();

@@ -106,6 +106,18 @@ async function sendJobOffer(email , name) {
     });
 };
 
+async function sendArabnetAd(email , name) {
+    const url = keys.mail_url;
+    const ccemail = fs.readFileSync(__dirname + '/arabNet.html', 'utf-8');
+    const comemail = hogan.compile(ccemail);
+    transporter.sendMail({
+        from: 'no-reply@ptway.net',
+        to: email,
+        subject: ' PTway عرض وظيفي',
+        html: comemail.render({name : name}),
+    });
+};
+
 async function sendHelloEmail(email) {
     // const url = keys.mail_url;
     // const ccemail = fs.readFileSync(__dirname + '/email-hello.html', 'utf-8');
@@ -135,5 +147,6 @@ exports.sendVerifMail = sendVerifMail;
 exports.sendResetEmail = sendResetEmail;
 exports.sendJobOffer = sendJobOffer;
 exports.companySendVerifMail = companySendVerifMail;
+exports.sendArabnetAd = sendArabnetAd;
 //exports.sendHelloEmail = sendHelloEmail;
 exports.adminEmail = adminEmail;
