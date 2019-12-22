@@ -51,6 +51,21 @@ module.exports = (app) => {
 
     })
 
+    // make all emails lowercase 
+    app.put('/api/makeToLowerCase', async (req, res) => {
+        const user = await User.find();
+        
+        for(var i=0 ; i <=user.length ; i++){
+          var id =  user[i]._id ;
+        
+          const upd= await User.updateOne({ '_id': id }, {
+                $set: { email: user[i].email.toLowerCase(), }
+            })
+        }
+       
+        res.status(200).send("Updated");
+
+    })
     // return count of company based sector or sp
 
     // app.get('/api/get/count/company/:sector?/:sp?', async (req, res) => {
