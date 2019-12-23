@@ -113,7 +113,7 @@ async function sendArabnetAd(email , name) {
     transporter.sendMail({
         from: 'no-reply@ptway.net',
         to: email,
-        subject: ' PTway فرصتك لحضور ملتقى عرب نت مع ',
+        subject: ' PTwayفرصتك لحضور ملتى عرب نت مع "
         html: comemail.render({name : name}),
     });
 };

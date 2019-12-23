@@ -34,6 +34,7 @@ module.exports = (app) => {
       user.password = hash;
       user.createDate = Date.now();
       user.sortDate = today
+      user.email = user.email.toLowerCase()
       user.save();
     });
     user.isConfirmed = false; // initially will be false 
@@ -80,6 +81,7 @@ module.exports = (app) => {
       company.password = hash;
       company.createDate = Date.now();
       company.sortDate= today
+      company.email = company.email.toLowerCase()
       company.save();
     });
 
