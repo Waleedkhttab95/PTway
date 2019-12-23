@@ -97,7 +97,7 @@ module.exports = (app) => {
   });
 
   app.post('/api/resetPassword', async (req, res) => {
-    const user = await User.findOne({ email: req.body.toLowerCase() });
+    const user = await User.findOne({ email: req.body.email });
     if (!user) {
       return res.status(400).send('البريد المدخل غير صحيح');
     }
@@ -229,7 +229,7 @@ module.exports = (app) => {
   });
 
   app.post('/api/com_resetPassword', async (req, res) => {
-    const company = await Company.findOne({ email: req.body.toLowerCase() });
+    const company = await Company.findOne({ email: req.body.email });
     if (!company) {
       return res.status(400).send('البريد المدخل غير صحيح');
     }
