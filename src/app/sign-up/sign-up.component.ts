@@ -72,6 +72,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
   constructor(public rest: SignUpService, public authService: AuthService, private route: ActivatedRoute, private router: Router, private fb: FormBuilder) { }
 
   test: Date = new Date();
+  disable = false;
   isLoading = false;
   private authStatusSub: Subscription;
   selectedValue: string;
@@ -100,11 +101,14 @@ export class SignUpComponent implements OnInit, OnDestroy {
   }
 
   userRegistreing() {
+    this.disable = true;
     this.authService.createUser(this.userRegistrForm.value.firstName, this.userRegistrForm.value.lastName,
       this.userRegistrForm.value.email, this.userRegistrForm.value.password);
+    
   }
 
   companyRegistreing() {
+    this.disable = true;
     this.authService.createCompany(this.companyRegistrForm.value.companyName, this.companyRegistrForm.value.email
       , this.companyRegistrForm.value.CompanySpecialist, this.companyRegistrForm.value.sector
       , this.companyRegistrForm.value.password);

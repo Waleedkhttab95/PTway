@@ -20,7 +20,7 @@ module.exports = (app) => {
     let user = await User.findOne({ email: req.body.email });
     let company = await Company.findOne({ email: req.body.email });
 
-    if (user || company) return res.status(400).send('User already registered');
+    if (user || company) return res.status(400).send('المستخدم مسجل مسبقا !');
 
     user = new User(_.pick(req.body, ['firstName', 'lastName', 'email', 'password']));
     const salt = await bcrypt.genSalt(10, (error, hash) => {
@@ -59,7 +59,7 @@ module.exports = (app) => {
     let company = await Company.findOne({ email: req.body.email });
     let user = await User.findOne({ email: req.body.email });
 
-    if (company || user) return res.status(400).send('User already registered');
+    if (company || user) return res.status(400).send('المستخدم مسجل مسبقا');
 
     company = new Company({
       companyName: req.body.companyName,
@@ -107,7 +107,7 @@ module.exports = (app) => {
     let company = await Company.findOne({ email: req.body.email });
     let user = await User.findOne({ email: req.body.email });
 
-    if (company || user) return res.status(400).send('User already registered');
+    if (company || user) return res.status(400).send('المستخدم مسجل مسبقا');
 
     company = new Company({
       companyName: req.body.companyName,
