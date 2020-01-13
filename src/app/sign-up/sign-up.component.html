@@ -160,7 +160,7 @@
                         </div>
                         <div class="text-center">
                           <button class="btn btn-primary btn-round mt-4" id="submitBtn"
-                            [disabled]="userRegistrForm.invalid" type="submit" name="submit">ابدأ الان</button>
+                            [disabled]="userRegistrForm.invalid || disable == true" type="submit" name="submit">ابدأ الان</button>
                         </div>
                       </form>
                     </div>
@@ -328,7 +328,7 @@
                           </label>
                         </div>
                         <div class="text-center">
-                          <button class="btn btn-primary btn-round mt-4" [disabled]="companyRegistrForm.invalid"
+                          <button class="btn btn-primary btn-round mt-4" [disabled]="companyRegistrForm.invalid|| disable == true"
                             type="submit" name="submit">ابدأ الان</button>
                         </div>
                       </form>

@@ -18,6 +18,7 @@ export class JobOfferComponent implements OnInit {
     public companyService:CompanyService, private router: Router) { }
 
     isLoading = false;
+    disable= false;
   offerId: string;
   job: Object;
   apply: boolean;
@@ -107,6 +108,7 @@ export class JobOfferComponent implements OnInit {
 
 
   onApply() {
+    this.disable = true;
     this.jobService.applyJob(this.offerId);
   }
 
