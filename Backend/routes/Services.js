@@ -98,7 +98,8 @@ module.exports = (app) =>{
              result.push(await JobAd
             .find({_id : notifications[i].content})
             .sort({ date: -1 })
-            .select("job_Name _id descreption") 
+            .select("job_Name _id descreption") ,
+            notifications[i].apply
              )
 
              
