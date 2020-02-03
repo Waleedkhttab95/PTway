@@ -24,7 +24,8 @@ module.exports = (app) =>{
               const city= req.body.city;
               const gender= req.body.gender;
               // const  personal_Skills= req.body.personal_Skills;
-              // const public_Major = req.body.public_Major; public_Major :'5caf4161ffec65462ec2a094'
+              // const public_Major = req.body.public_Major; public_Major :'5caf4ffbffec65462ec2a09a' , '5caf5618ffec65462ec2a0ce'
+           
               const jobAd = req.body.jobAd;
               
         if(gender == "both") {
@@ -55,7 +56,7 @@ module.exports = (app) =>{
         else {
             const result = await UserInfo
             .find({ country: country,city: city
-            ,gender: gender })
+            ,gender: gender})
             .select("user");
 
             result.forEach(async function(r) {
@@ -97,7 +98,7 @@ module.exports = (app) =>{
              result.push(await JobAd
             .find({_id : notifications[i].content})
             .sort({ date: -1 })
-            .select("job_Name _id") 
+            .select("job_Name _id descreption") 
              )
 
              

@@ -27,7 +27,7 @@ const ad_adminSchema = new Schema({
      descreption: {type:String,required:true}, 
     // languages: {type:String,required:true},
     // job_Responsibility: {type:String,required:true},
-     personal_Skills: {type: String, required: true},
+     personal_Skills:  {type: mongoose.Schema.Types.ObjectId,ref:'PersonalSkills', required: true},
      required_Number:{type:Number,required:true},
      startDate: {type: Date, required: true},
      limit_Number: {type: Number , default: 0}
