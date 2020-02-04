@@ -150,11 +150,11 @@ module.exports = (app) => {
     }
         const skill = []
         if(info.skills != null){
-            console.log('wwwa')
+           
             for(var i = 0 ; i < info.skills.length ; i++) {
     
                 const result = await Skills.findById(info.skills[i]).select("skillName -_id");
-                console.log( result)
+                
                 skill.push(result.skillName)
             }
          

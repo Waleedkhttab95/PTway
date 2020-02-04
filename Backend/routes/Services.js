@@ -89,23 +89,32 @@ module.exports = (app) =>{
     app.get('/api/get/notifications',auth, async (req,res) =>{
         const userId = req.query.userId;
        var result = [];
+        var temp ;
         const notifications = await Notification
         .find({user: req.user._id})
         .select('-user')
         .sort({'date' : -1});
 
         for(var i = 0 ; i<notifications.length ; i++){
-             result.push(await JobAd
-            .find({_id : notifications[i].content})
+            var jobAd = await JobAd
+            .findOne({_id : notifications[i].content})
             .sort({ date: -1 })
-            .select("job_Name _id descreption") ,
-            notifications[i].apply
-             )
+            .select("job_Name _id descreption company")
 
+            var status = notifications[i].apply
+
+            temp = new Object({
+                jobAd : jobAd,
+                status : status
+            });
+          
+             result.push( temp  )
+          
              
-
+            
         }
-       
+
+   
       
         res.status(200).json({
             result: result

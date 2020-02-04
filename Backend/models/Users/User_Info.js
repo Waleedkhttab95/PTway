@@ -10,6 +10,14 @@ const user_infoSchema = new Schema({
         type: Number,
         default: 0
     },
+    profile_views: {
+        type: Number,
+        default: 0
+    },
+    aplled_jobs: {
+        type: Number,
+        default: 0
+    },
     country: {type: mongoose.Schema.Types.ObjectId, ref:'Country', required:true}
     ,
     

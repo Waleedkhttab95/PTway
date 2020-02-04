@@ -30,6 +30,8 @@ const userSchema = new Schema({
         required: true,
         unique: false
     },
+    email_notification:{type: Boolean, default: true},
+    personal_notification:{type: Boolean, default: true},
     createDate: {type: Date },
     sortDate: {type: Date},
     isAdmin: Boolean,
