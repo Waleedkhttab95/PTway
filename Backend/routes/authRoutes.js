@@ -76,9 +76,9 @@ module.exports = (app) => {
   });
 
   app.put('/api/changePassword',auth, async (req, res) => {
-    //const user = await User.findOne({ email: req.body.email });
+    const user = await User.findById(req.user._id);
     const userId = req.user._id;
-    await bcrypt.compare(req.body.prevPassword, req.user.password, async (error, result) => {
+    await bcrypt.compare(req.body.prevPassword, user.password, async (error, result) => {
       if (!result) {
         return res.status(400).send('الرقم السري القديم غير صحيح');
       }
