@@ -76,4 +76,12 @@ module.exports = (app) => {
 
         res.status(200).send(jobs)
     })
+
+    app.put('/api/changeEmailNotification', auth , async(req,res) =>{
+        const user = User.findByIdAndUpdate(req.user._id, 
+        { $set: { email_notification: req.body.status } });
+        return res.status(200).send('Done . ');
+
+
+    })
 }

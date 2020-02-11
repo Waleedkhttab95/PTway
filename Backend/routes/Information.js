@@ -235,7 +235,8 @@ module.exports = (app) => {
         const user = await User.findById(id);
         if (!info) return res.status(401).send('not found');
 
-        
+        info.profile_views += 1;
+        info.save();
         var uni = "";
         var spMaj = "";
         const country = await Country.findById(info.country);
@@ -372,7 +373,6 @@ module.exports = (app) => {
       
     })
     app.put('/api/put/userinfo',[auth,file],async (req, res)=> {
-        console.log('here put', req.body)
         var universty 
         var spMajor 
        var skills = [];
@@ -380,19 +380,21 @@ module.exports = (app) => {
         const url = req.protocol + '://' + req.get("host");     
         var imagePath = '';
         if(!req.file){
-            console.log('not file')
+          
            imagePath = "null"
         }
         else{
-            console.log('file')
             imagePath= url + "/images/" + req.file.filename;
         }
         try{
+
             if(req.body.universty != 'null') universty = req.body.universty ;
             if(req.body.spMajor != 'null') spMajor = req.body.spMajor ;
             if(req.body.skills != 'null') skills = req.body.skills ;
             if(req.body.personal_Skills != 'null') personal_Skills = req.body.personal_Skills ;
 
+
+        
 
            
         const info = await UserInfo.updateOne({ 'user': req.user._id },
@@ -412,7 +414,7 @@ module.exports = (app) => {
                     public_Major: req.body.public_Major,
                     spMajor: spMajor,
                     languages: req.body.languages,
-                    skills: skills,
+                    skills:skills,
                     personal_Skills: personal_Skills,
                     hoppies: req.body.hoppies,
                     social_Status: req.body.social_Status,

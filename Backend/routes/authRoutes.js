@@ -75,10 +75,10 @@ module.exports = (app) => {
     return res.redirect(path);
   });
 
-  app.put('/api/changePassword', async (req, res) => {
-    const user = await User.findOne({ email: req.body.email });
-    const userId = user._id;
-    await bcrypt.compare(req.body.prevPassword, user.password, async (error, result) => {
+  app.put('/api/changePassword',auth, async (req, res) => {
+    //const user = await User.findOne({ email: req.body.email });
+    const userId = req.user._id;
+    await bcrypt.compare(req.body.prevPassword, req.user.password, async (error, result) => {
       if (!result) {
         return res.status(400).send('الرقم السري القديم غير صحيح');
       }
