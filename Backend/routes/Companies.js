@@ -466,9 +466,10 @@ module.exports = (app) => {
             for (let index = 0; index < advs.length; index++) {
                 const advId = advs[index]._id;
                 const advName= advs[index].job_Name;
+                const jobCreate = advs[index].createDate;
                 const projectName = advs[index].project.projectName;
                 const candidates = await Candidate.find({ 'jobAd': advId }).countDocuments();
-                const obj = { advId,advName, candidates,projectName };
+                const obj = { advId,advName, candidates,projectName,jobCreate };
                 jobObjArray.push(obj);
             }
             return res.status(200).send(jobObjArray);

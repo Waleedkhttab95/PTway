@@ -315,7 +315,8 @@ module.exports = (app) => {
         // const id = req.query.id;
 
         try{
-            const info = await CompanyInfo.findOne({ 'company': req.user._id });
+            const info = await CompanyInfo.findOne({ 'company': req.user._id })
+            .populate('company');
             if (!info) return res.status(200).json({
                 status : false
             });
