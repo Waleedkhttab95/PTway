@@ -185,13 +185,9 @@ module.exports = (app) => {
     app.get('/api/getprojects', auth, async (req, res) => {
         const id = req.user._id;
         const proj = await Project.find({ company: id });
-        const projectNames = proj.map(x => x.projectName);
-        const projectId = proj.map(x => x._id);
 
         res.status(200).json({
-            projectName: projectNames,
-            count: proj.length,
-            id: projectId
+            proj
         });
     });
 
