@@ -184,10 +184,16 @@ module.exports = (app) => {
 
     app.get('/api/getprojects', auth, async (req, res) => {
         const id = req.user._id;
+        const JobAdsCount= [];
         const proj = await Project.find({ company: id });
+        
+        for(var i =0 ; i < proj.length ; i++){
+            var jobAds = await JobAd.find({'project': proj[i]}).countDocuments()
+            JobAdsCount.push(jobAds);
 
+        }
         res.status(200).json({
-            proj
+            proj,JobAdsCount
         });
     });
 
