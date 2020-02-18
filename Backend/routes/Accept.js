@@ -34,26 +34,23 @@ module.exports = (app) => {
     app.get('/api/getOneAccepted', auth, async (req, res) => {
         const usernames = [];
 
-        const oneR = await Accepted.find({ 'jobAd': req.query.jobAd })
-        if (oneR) {
+        const response = await Accepted.find({ 'jobAd': req.query.jobAd })
+        if (response) {
 
-            const AcceptedNames = oneR.map(x => x.acceptedName);
-            const ids = oneR.map(x => x._id);
+            // const AcceptedNames = oneR.map(x => x.acceptedName);
+            // const ids = oneR.map(x => x._id);
 
-            for (var i = 0; i < AcceptedNames.length; i++) {
+            // for (var i = 0; i < AcceptedNames.length; i++) {
 
-                const users = await User.findById(AcceptedNames[i]).select("firstName lastName -_id");
-                usernames.push(users);
-            }
+            //     const users = await User.findById(AcceptedNames[i]).select("firstName lastName -_id");
+            //     usernames.push(users);
+            // }
 
-            const username = usernames.map(x => x.firstName + ' ' + x.lastName);
+            // const username = usernames.map(x => x.firstName + ' ' + x.lastName);
 
 
             res.status(200).json({
-                AcceptedNames: AcceptedNames,
-                username: username,
-                id: ids,
-                count: oneR.length
+                response
             });
         }
 

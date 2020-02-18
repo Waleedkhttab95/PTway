@@ -45,22 +45,20 @@ module.exports = (app) => {
     const usernames = [];
     const Bresult = await Candidate.find({ 'jobAd': req.query.jobAd })
       .sort({ 'createDate': 1 })
+      .populate('candidateName')
     if (!Bresult) return res.status(401).send('notFound')
-    const candidateNames = Bresult.map(x => x.candidateName);
-    const ids = Bresult.map(x => x._id);
+    // const candidateNames = Bresult.map(x => x.candidateName);
+    // const ids = Bresult.map(x => x._id);
 
-    for (var i = 0; i < candidateNames.length; i++) {
-      const users = await User.findById(candidateNames[i]).select("firstName lastName -_id")
-      usernames.push(users);
-    }
+    // for (var i = 0; i < candidateNames.length; i++) {
+    //   const users = await User.findById(candidateNames[i]).select("firstName lastName -_id")
+    //   usernames.push(users);
+    // }
 
-    const username = usernames.map(x => x.firstName + ' ' + x.lastName);
+    // const username = usernames.map(x => x.firstName + ' ' + x.lastName);
 
     res.status(200).json({
-      candidateNames: candidateNames,
-      username: username,
-      id: ids,
-      count: Bresult.length
+     Bresult
     });
 
 

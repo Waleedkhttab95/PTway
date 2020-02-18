@@ -361,7 +361,11 @@ module.exports = (app) => {
     //DELETE project by Id
     app.delete('/api/deleteproject', auth, async (req, res) => {
         const id = req.query.id;
+        const jobAds = await JobAd.find({'project': id});
 
+        for(let i = 0 ; i< jobAds.length ; i++){
+            await JobAd.findByIdAndDelete(jobAds[i]._id)
+        }
         const project = await Project.findByIdAndDelete(id);
         if (!project) return res.status(401).send('not found');
         res.send(project);
