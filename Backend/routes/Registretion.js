@@ -46,7 +46,44 @@ module.exports = (app) => {
     });;
   });
 
+ // sub account Registrion '
+ app.post('/api/subUserRegistreing',auth, async (req,res) =>{
+  const { error } = validate(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
 
+
+  let user = await User.findOne({ email: req.body.email });
+  let company = await Company.findOne({ email: req.body.email });
+
+  if (user || company) return res.status(400).send('المستخدم مسجل مسبقا !');
+
+  user = new User(_.pick(req.body, ['firstName', 'lastName', 'email', 'password']));
+  const salt = await bcrypt.genSalt(10, (error, hash) => {
+    if (error) res.status(400)
+
+  });
+  const hashPassword = await bcrypt.hash(user.password, salt, null, (error, hash) => {
+    if (error) res.status(400)
+    today = new Date();
+    today.setHours(0, 0, 0, 0);
+    user.password = hash;
+    user.createDate = Date.now();
+    user.sortDate = today
+    user.email = user.email.toLowerCase()
+    user.isSubUser = true;
+    user.company = req.user._id;
+    user.save();
+  });
+  user.isConfirmed = true; // initially will be false 
+  
+  const token = user.generateAuthToken();
+  res.status(200).json({
+    token: token
+  });;
+});
+
+
+ 
 
   // for Companies Regitstrion *
 
@@ -129,8 +166,7 @@ module.exports = (app) => {
     });
 
 
-    company.isConfirmed = false; // initially will be false 
-    companySendVerifMail(company.companyName , company.email);
+    company.isConfirmed = true; // initially will be false 
 
 
     const token = company.generateAuthToken();
