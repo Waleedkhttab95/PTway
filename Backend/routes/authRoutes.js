@@ -96,6 +96,30 @@ module.exports = (app) => {
     });
   });
 
+  // change password for company
+
+  
+  app.put('/api/changePasswordCompany',auth, async (req, res) => {
+    const company = await Company.findById(req.user._id);
+    const userId = req.user._id;
+    await bcrypt.compare(req.body.prevPassword, company.password, async (error, result) => {
+      if (!result) {
+        return res.status(400).send('الرقم السري القديم غير صحيح');
+      }
+
+      else {
+        const salt = await bcrypt.genSalt(10, (error, hash) => {
+          if (error) res.status(400)
+        });
+        await bcrypt.hash(req.body.newPassword, salt, null, async (error, hash) => {
+          if (error) res.status(400)
+          await Company.findByIdAndUpdate(userId, { $set: { password: hash } }, { new: true });
+        });
+        return res.status(200).send('غيّرنا لك الرقم السري');
+      }
+    });
+  });
+
   app.post('/api/resetPassword', async (req, res) => {
     const user = await User.findOne({ email: req.body.email.toLowerCase() });
     if (!user) {
@@ -165,7 +189,7 @@ module.exports = (app) => {
   app.post('/api/com_login', async (req, res) => {
     // const {error} = validateCompany(req.body);
     // if(error) return res.status(400).send(error.details[0].message);
-
+ 
 
     let company = await Company.findOne({ email: req.body.email.toLowerCase() });
     if (!company) return res.status(400).send('خطأ في البريد أو الرقم السرّي');

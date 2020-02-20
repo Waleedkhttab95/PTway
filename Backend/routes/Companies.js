@@ -13,6 +13,8 @@ const { JobAd_admin } = require('../models/admin/Job_Ad_Admin');
 const { Project_Admin } = require('../models/admin/Project_Admin');
 const { Company } = require('../models/Companies/Companies');
 const { Candidate } = require('../models/Companies/Candidates');
+const { User } = require('../models/Users/User');
+
 
 
 module.exports = (app) => {
@@ -185,8 +187,21 @@ module.exports = (app) => {
     app.get('/api/getprojects', auth, async (req, res) => {
         const id = req.user._id;
         const JobAdsCount= [];
-        const proj = await Project.find({ company: id });
-        
+      
+
+        var pageNo = parseInt(req.query.pageNo)
+        var size = 3
+        var query = {}
+
+        if(pageNo < 0 || pageNo === 0) {
+            response = {"error" : true,"message" : "invalid page number, should start with 1"};
+            return res.json(response)
+      }
+
+      query.skip = size * (pageNo - 1)
+      query.limit = size
+      const proj = await Project.find({ company: id },{},query);
+
         for(var i =0 ; i < proj.length ; i++){
             var jobAds = await JobAd.find({'project': proj[i]}).countDocuments()
             JobAdsCount.push(jobAds);
@@ -481,6 +496,26 @@ module.exports = (app) => {
         }
     });
 
+    // get all sub accounts
+    app.get('/api/getSubUsers',auth, async (req,res) =>{
+        const users = await User.find({'isSubUser': true , 'company':req.user._id})
+        if(!user) return res.status(401).send('not found any users !')
+
+        res.status(200).json({
+            users : users
+        })
+    })
+
+    // enable and desable subAccount
+    app.put('/api/switchSubUser',auth, async (req,res) =>{
+        const user = await User.findById(req.query.userId);
+        if (!user) return res.status(401).status('user not found')
+
+        user.isSubUser = !user.isSubUser;
+        user.save();
+
+        res.status(200).send('Updated !')
+    })
 
     // Function to Calculate Lock Date
 
