@@ -499,7 +499,7 @@ module.exports = (app) => {
     // get all sub accounts
     app.get('/api/getSubUsers',auth, async (req,res) =>{
         const users = await User.find({'isSubUser': true , 'company':req.user._id})
-        if(!user) return res.status(401).send('not found any users !')
+        if(!users) return res.status(401).send('not found any users !')
 
         res.status(200).json({
             users : users
