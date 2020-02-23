@@ -418,15 +418,12 @@ module.exports = (app) =>{
 
     })
 
-    app.post('/api/sendArabNet', async (req,res) =>{
-        const users = await User.find();
+  // By study degree
+  app.get('/api/get/usersByStudeyDegree',async (req,res) =>{
+    const users = await UserInfo.find({'education_degree': req.query.ed})
 
-        for(var i =0 ; i <= users.length ; i++){
-           
-            sendArabnetAd(users[i].email,users[i].firstName);
-        }
-        res.status(200).send('Done .')
-    })
+    res.status(200).send(users)
+  })
     function todayDate(){
         today = new Date();
         var dd = today.getDate();

@@ -316,7 +316,7 @@ module.exports = (app) => {
 
         try{
             const info = await CompanyInfo.findOne({ 'company': req.user._id })
-            .populate('company');
+            .populate('company city country');
             if (!info) return res.status(200).json({
                 status : false
             });
@@ -325,18 +325,7 @@ module.exports = (app) => {
             const city = await City.findById(info.city);
             
             res.status(200).json({
-                country: country.countryName,
-                city: city.cityName,
-                address: info.address,
-                imagePath: info.imagePath,
-                info: info.info,
-                vision: info.vision,
-                message: info.message,
-                personal_web: info.personal_web,
-                facebook: info.facebook,
-                twitter: info.twitter,
-                instagram: info.instagram,
-                linkedin: info.linkedin
+               info
             });
         } catch(ex) {
         }
