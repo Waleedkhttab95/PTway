@@ -36,14 +36,25 @@ module.exports = (app) => {
 
   });
 
-  app.get('/api/getCandites', auth, async (req, res) => {
-    const result = await Candidate.find();
-    res.send(result);
-  });
-
+ 
   app.get('/api/getOneCandi', auth, async (req, res) => {
     const usernames = [];
-    const Bresult = await Candidate.find({ 'jobAd': req.query.jobAd })
+    var pageNo = parseInt(req.query.pageNo)
+    var size = 3
+    var query = {}
+
+    if(pageNo < 0 || pageNo === 0) {
+        response = {"error" : true,"message" : "invalid page number, should start with 1"};
+        return res.json(response)
+  }
+
+  query.skip = size * (pageNo - 1)
+  query.limit = size
+
+  const candidatesCount = await Candidate.count({  'jobAd': req.query.jobAd }); // get pages count
+  var totalPages = Math.ceil(candidatesCount / size)
+
+    const Bresult = await Candidate.find({ 'jobAd': req.query.jobAd },{},query)
       .sort({ 'createDate': 1 })
       .populate('candidateName')
     if (!Bresult) return res.status(401).send('notFound')
@@ -58,7 +69,7 @@ module.exports = (app) => {
     // const username = usernames.map(x => x.firstName + ' ' + x.lastName);
 
     res.status(200).json({
-     Bresult
+     Bresult,totalPages
     });
 
 

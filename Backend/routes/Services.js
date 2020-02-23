@@ -103,6 +103,9 @@ module.exports = (app) =>{
       query.skip = size * (pageNo - 1)
       query.limit = size
 
+      const notificationsCounts = await Notification
+      .count({user: req.user._id})
+      var totalPages = Math.ceil(notificationsCounts / size)
         const notifications = await Notification
         .find({user: req.user._id},{},query)
         .select('-user')
@@ -130,7 +133,8 @@ module.exports = (app) =>{
    
       
         res.status(200).json({
-            result: result
+            result: result,
+            totalPages
         });
     });
 

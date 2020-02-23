@@ -200,7 +200,11 @@ module.exports = (app) => {
 
       query.skip = size * (pageNo - 1)
       query.limit = size
-      const proj = await Project.find({ company: id },{},query);
+
+      const projectCount = await Project.count({ company: id });
+      var totalPages = Math.ceil(projectCount / size)
+      const proj = await Project.find({ company: id },{},query)
+      .sort({ date: -1 });
 
         for(var i =0 ; i < proj.length ; i++){
             var jobAds = await JobAd.find({'project': proj[i]}).countDocuments()
@@ -208,7 +212,7 @@ module.exports = (app) => {
 
         }
         res.status(200).json({
-            proj,JobAdsCount
+            proj,JobAdsCount,totalPages
         });
     });
 

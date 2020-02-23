@@ -26,15 +26,24 @@ module.exports = (app) => {
             })
     });
 
-    app.get('/api/getAllAccepts', auth, async (req, res) => {
-        const result = await Accepted.find();
-        res.send(result);
-    });
+ 
 
     app.get('/api/getOneAccepted', auth, async (req, res) => {
         const usernames = [];
+        var pageNo = parseInt(req.query.pageNo)
+        var size = 3
+        var query = {}
+        if(pageNo < 0 || pageNo === 0) {
+            response = {"error" : true,"message" : "invalid page number, should start with 1"};
+            return res.json(response)
+      }
+    
+      query.skip = size * (pageNo - 1)
+      query.limit = size
 
-        const response = await Accepted.find({ 'jobAd': req.query.jobAd })
+      const acceptedCount = await Accepted.count({  'jobAd': req.query.jobAd }); // get pages count
+      var totalPages = Math.ceil(acceptedCount / size)
+        const response = await Accepted.find({ 'jobAd': req.query.jobAd },{},query)
         if (response) {
 
             // const AcceptedNames = oneR.map(x => x.acceptedName);
@@ -51,7 +60,7 @@ module.exports = (app) => {
 
 
             res.status(200).json({
-                response
+                response,totalPages
             });
         }
 
