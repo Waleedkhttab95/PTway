@@ -90,8 +90,21 @@ module.exports = (app) =>{
         const userId = req.query.userId;
        var result = [];
         var temp ;
+        var pageNo = parseInt(req.query.pageNo)
+        var size = 3
+        var query = {}
+
+        
+        if(pageNo < 0 || pageNo === 0) {
+            response = {"error" : true,"message" : "invalid page number, should start with 1"};
+            return res.json(response)
+      }
+
+      query.skip = size * (pageNo - 1)
+      query.limit = size
+
         const notifications = await Notification
-        .find({user: req.user._id})
+        .find({user: req.user._id},{},query)
         .select('-user')
         .sort({'date' : -1});
 
