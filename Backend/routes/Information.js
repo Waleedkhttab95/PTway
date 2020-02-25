@@ -16,7 +16,7 @@ const {User} = require('../models/Users/User');
 module.exports = (app) => {
     //post user information
     app.post('/api/postuserinfo',auth,file, async (req, res) => {
-        console.log("1")
+  
         const current_user = await UserInfo.findOne({'user' : req.user._id})
         if(!current_user) {
             var universty = null;
@@ -44,7 +44,7 @@ module.exports = (app) => {
               
                 new UserInfo({
                     user: req.user._id,
-                    country: req.body.country,
+                    country: '5caf3248ffec65462ec2a05e',
                     study_degree: req.body.study_degree,
                     fullName: req.body.fullName,
                     imagePath:imagePath,
@@ -394,6 +394,9 @@ module.exports = (app) => {
                     study_degree: req.body.study_degree,
                     fullName: req.body.fullName,
                     imagePath:imagePath,
+                    jobCategory: req.body.jobCategory,
+                    availabilityStatus: req.body.availabilityStatus,
+                    userStatus: req.body.userStatus,
                     education_degree: req.body.education_degree,
                     gender: req.body.gender,
                     mobile: req.body.mobile,

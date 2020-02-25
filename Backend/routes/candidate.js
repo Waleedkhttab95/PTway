@@ -40,7 +40,7 @@ module.exports = (app) => {
   app.get('/api/getOneCandi', auth, async (req, res) => {
     const usernames = [];
     var pageNo = parseInt(req.query.pageNo)
-    var size = 3
+    var size = 5
     var query = {}
 
     if(pageNo < 0 || pageNo === 0) {

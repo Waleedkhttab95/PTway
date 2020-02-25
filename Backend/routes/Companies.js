@@ -2,9 +2,9 @@ const { Sector } = require('../models/Companies/Sector');
 const { CompanySpecialist } = require('../models/Companies/CompanySpecialist');
 const { Project } = require('../models/Companies/Project');
 const { JobAd } = require('../models/Companies/Job_Ad');
-const { publicMajor } = require('../models/Shared/Public_Major');
 const auth = require('../middleware/auth');
 const { Contract } = require('../models/Companies/Contract');
+const {UserInfo} = require('../models/Users/User_Info');
 const { Accepted } = require('../models/Companies/Accepted');
 const { City } = require('../models/Shared/City');
 const { Country } = require('../models/Shared/Country');
@@ -14,6 +14,7 @@ const { Project_Admin } = require('../models/admin/Project_Admin');
 const { Company } = require('../models/Companies/Companies');
 const { Candidate } = require('../models/Companies/Candidates');
 const { User } = require('../models/Users/User');
+const { sendJobOffer } = require('../services/email/mail');
 
 
 
@@ -148,7 +149,7 @@ module.exports = (app) => {
             required_Number: req.body.required_Number
         }).save()
             .then(result => {
-                console.log("result" + result)
+                send_JobAds(result)
                 res.send(result)
             }).catch((e)=>{
                 res.status(500).send('error',e)
@@ -541,7 +542,70 @@ module.exports = (app) => {
     }
 
 
+   async function send_JobAds(jobAd) {
 
+             const country=jobAd.country;
+             const city= jobAd.city;
+             const gender= jobAd.gender;
+             // const  personal_Skills= jobAd.personal_Skills;
+             // const public_Major = jobAd.public_Major; public_Major :'5caf4ffbffec65462ec2a09a' , '5caf5618ffec65462ec2a0ce'
+          
+             const jobAdId = jobAd._id;
+             
+       if(gender == "both") {
+           const result = await UserInfo
+           .find({ country: country,city: city})
+           .select("user");
+
+           result.forEach(async function(r) {
+               //here write email code
+               // r.user is giving the id
+               const user  = await User.findById(r.user);
+               if(user) 
+               {
+                   sendJobOffer(user.email , user.firstName);
+               }
+
+               new Notification({
+                content : jobAdId,
+                user : r.user,
+                isRead: false,
+                date: Date.now(),
+                apply: false
+               }).save();
+            })
+    
+            res.status(200).send("Done .");
+       }
+       else {
+           const result = await UserInfo
+           .find({ country: country,city: city
+           ,gender: gender})
+           .select("user");
+
+           result.forEach(async function(r) {
+               const user  = await User.findById(r.user);
+               if(user) 
+               {
+                   sendJobOffer(user.email , user.firstName);
+               }
+               new Notification({
+                content : jobAdId,
+                user : r.user,
+                isRead: false,
+                date: Date.now(),
+                apply: false
+               }).save();
+            })
+    
+            res.status(200).send("Done .");
+       }
+   
+
+   
+ 
+
+    }
 
 
 

@@ -1,86 +1,18 @@
 const {UserInfo} = require('../models/Users/User_Info');
-const {CompanyInfo} = require('../models/Companies/Company_Info');
 const {Notification} = require('../models/Notification');
 const {endDate} = require('../models/Companies/EndDates');
 const {JobAd} = require('../models/Companies/Job_Ad');
 const {Contract} = require('../models/Companies/Contract');
 const auth = require('../middleware/auth');
-const dateTime = require('node-datetime');
 const {Accepted } = require('../models/Companies/Accepted');
 const {Candidate} = require('../models/Companies/Candidates');
-const { sendJobOffer } = require('../services/email/mail');
-const { sendArabnetAd } = require('../services/email/mail');
-const {User} = require('../models/Users/User');
 
 
 
 
 module.exports = (app) =>{
 
-    app.post('/api/send/Jobad', auth, async (req,res) =>{
-
-             // const job_skills = req.body.job_skills;
-              const country=req.body.country;
-              const city= req.body.city;
-              const gender= req.body.gender;
-              // const  personal_Skills= req.body.personal_Skills;
-              // const public_Major = req.body.public_Major; public_Major :'5caf4ffbffec65462ec2a09a' , '5caf5618ffec65462ec2a0ce'
-           
-              const jobAd = req.body.jobAd;
-              
-        if(gender == "both") {
-            const result = await UserInfo
-            .find({ country: country,city: city})
-            .select("user");
-
-            result.forEach(async function(r) {
-                //here write email code
-                // r.user is giving the id
-                const user  = await User.findById(r.user);
-                if(user) 
-                {
-                    sendJobOffer(user.email , user.firstName);
-                }
-
-                new Notification({
-                 content : jobAd,
-                 user : r.user,
-                 isRead: false,
-                 date: Date.now(),
-                 apply: false
-                }).save();
-             })
-     
-             res.status(200).send("Done .");
-        }
-        else {
-            const result = await UserInfo
-            .find({ country: country,city: city
-            ,gender: gender})
-            .select("user");
-
-            result.forEach(async function(r) {
-                const user  = await User.findById(r.user);
-                if(user) 
-                {
-                    sendJobOffer(user.email , user.firstName);
-                }
-                new Notification({
-                 content : jobAd,
-                 user : r.user,
-                 isRead: false,
-                 date: Date.now(),
-                 apply: false
-                }).save();
-             })
-     
-             res.status(200).send("Done .");
-        }
-    
-
-    
-    });
-
+ 
    
 
 
