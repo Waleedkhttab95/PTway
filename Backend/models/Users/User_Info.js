@@ -9,7 +9,7 @@ const user_infoSchema = new Schema({
     work_Hours: {type: Number,default: 0},
     profile_views: {type: Number, default: 0},
     aplled_jobs: {type: Number, default: 0},
-    jobCategory: { type: mongoose.Schema.Types.ObjectId, ref: 'jobCategory' },
+    jobCategory: [{ type: mongoose.Schema.Types.ObjectId, ref: 'jobCategory' }],
     availabilityStatus: {type: String},
     userStatus: {type:String},
     country: { type: mongoose.Schema.Types.ObjectId, ref: 'Country', required: true },

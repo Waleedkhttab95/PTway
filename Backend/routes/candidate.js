@@ -10,7 +10,7 @@ module.exports = (app) => {
   // apply Job
   app.post('/api/postBodyC', auth, async (req, res) => {
     const user = await Candidate.findOne({ 'candidateName': req.user._id, 'jobAd': req.body.jobAd });
-    const info = await UserInfo.findById(req.user._id);
+    const info = await UserInfo.findOne({'user' : req.user._id});
 
     if (!user) {
       new Candidate({
