@@ -6,6 +6,8 @@ const {Contract} = require('../models/Companies/Contract');
 const auth = require('../middleware/auth');
 const {Accepted } = require('../models/Companies/Accepted');
 const {Candidate} = require('../models/Companies/Candidates');
+const { CompanyInfo } = require('../models/Companies/Company_Info');
+const _ = require('lodash');
 
 
 
@@ -47,12 +49,16 @@ module.exports = (app) =>{
             var jobAd = await JobAd
             .findOne({_id : notifications[i].content})
             .sort({ date: -1 })
-            .select("job_Name _id descreption company")
-
+            .populate('company')
+            .select("job_Name _id descreption company isLock")
+            var companyImage = await CompanyInfo
+            .findOne({'company': jobAd.company._id})
+            .select("imagePath")
             var status = notifications[i].apply
-
             temp = new Object({
-                jobAd : jobAd,
+                compName: jobAd.company.companyName,
+                imagePath: companyImage.imagePath,
+                jobAd : _.pick(jobAd,['job_Name','_id','descreption', 'isLock']),
                 status : status
             });
           

@@ -39,8 +39,7 @@ module.exports = (app) => {
                 if(req.body.personal_Skills != 'null') personal_Skills = req.body.personal_Skills ;
     
     
-                //console.log(req.body)
-    
+              
               
                 new UserInfo({
                     user: req.user._id,
@@ -122,7 +121,8 @@ module.exports = (app) => {
     //Get user info by USerID
     app.get('/api/getuserinfo', auth, async (req, res) => {
         //const id = req.query.id;
-        const info = await UserInfo.findOne({ 'user': req.user._id });
+        const info = await UserInfo.findOne({ 'user': req.user._id })
+        .populate('user');
         if (!info) return res.status(200).json({
             status : false
         });
@@ -172,12 +172,16 @@ module.exports = (app) => {
         
             }
         }
-     
-    
+        
+
+        var profileComplete = progressBar(info)
+        
     
       
                 res.status(200).json({
                     status : true,
+                    email: info.user.email,
+                    profileComplete:profileComplete,
                     country: country.countryName,
                     study_degree: info.study_degree,
                     imagePath: info.imagePath,
@@ -463,4 +467,27 @@ module.exports = (app) => {
             })
         res.status(200).send("Updated");
     })
+
+
+    // functions
+    // calculate profile complete
+    function progressBar(info) {
+        var count = 40
+        console.log(info.mobile)
+        if(info.mobile != "") count += 5;
+        if(info.social_Status != "") count += 5;
+        if(info.study_degree != "") count += 5;
+        if(info.education_degree != "") count += 5;
+        if(info.Education_level != "") count += 5;
+        if(info.universty != "") count += 5;
+        if(info.spMajor != "") count += 5;
+        if(info.skills != "") count += 5;
+        if(info.personal_Skills != "") count += 5;
+        if(info.hoppies != "") count += 5;
+        if(info.languages != "") count += 5;
+        if(info.instagram != "" || info.facebook != "" || info.twitter != "" 
+        ||info.linkedin != "" ||info.personal_web != "" || info.about != "") count += 5;
+        
+        return count
+      }
 }
