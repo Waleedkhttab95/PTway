@@ -440,11 +440,15 @@ module.exports = (app) => {
     }
     })
 
-    app.put('/api/put/companyinfo',auth,file, async (req,res) => {
-        let imPath = req.body.imagePath;
-        if(req.file) {
-          const url = req.protocol + '://' + req.get("host");
-          imPath= url + "/images/" + req.file.filename
+    app.put('/api/put/companyinfo',[auth,file], async (req,res) => {
+        const url = req.protocol + '://' + req.get("host");     
+        var imagePath = '';
+        if(!req.file){
+          
+           imagePath = req.body.image
+        }
+        else{
+            imagePath= url + "/images/" + req.file.filename;
         }
 
         const companyId = await CompanyInfo.updateOne({'company': req.user._id },
@@ -456,7 +460,7 @@ module.exports = (app) => {
                     address: req.body.address,
                     info: req.body.about,
                     vision: req.body.vision,
-                    imagePath: imPath,
+                    imagePath: imagePath,
                     message: req.body.message,
                     city: req.body.city,
                     personal_web: req.body.personal_web,
