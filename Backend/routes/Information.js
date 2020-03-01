@@ -98,6 +98,7 @@ module.exports = (app) => {
             new CompanyInfo({
                 company: req.user._id,
                 country: req.body.country,
+                phone:req.body.phone,
                 address: req.body.address,
                 info: req.body.info,
                 imagePath: imagePath,
@@ -446,14 +447,14 @@ module.exports = (app) => {
           imPath= url + "/images/" + req.file.filename
         }
 
-        const companyId = await CompanyInfo.updateOne({'company': req.user.id },
+        const companyId = await CompanyInfo.updateOne({'company': req.user._id },
             {
                 
                 $set: {
                     
                     country: req.body.country,
                     address: req.body.address,
-                    info: req.body.info,
+                    info: req.body.about,
                     vision: req.body.vision,
                     imagePath: imPath,
                     message: req.body.message,

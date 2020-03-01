@@ -563,6 +563,7 @@ module.exports = (app) => {
                const user  = await User.findById(r.user);
                if(user) 
                {
+                   if(user.email_notification == true)
                    sendJobOffer(user.email , user.firstName);
                }
 
