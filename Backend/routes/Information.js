@@ -226,7 +226,11 @@ module.exports = (app) => {
         //Get user info by USerID for edit
         app.get('/api/getuserinfo/edit', auth, async (req, res) => {
             //const id = req.query.id;
-            const info = await UserInfo.findOne({ 'user': req.user._id }).populate('city').populate('universty').populate('country').populate('public_Major').populate('spMajor');
+            const info = await UserInfo.findOne({ 'user': req.user._id }).populate('city')
+            .populate('universty')
+            .populate('country')
+            .populate('public_Major').populate('spMajor')
+            .populate('jobCategory');
             if (!info) return res.status(401).send('not found');
    console.log("user info : " + info)
                     res.status(200).json({
