@@ -381,6 +381,7 @@ module.exports = (app) => {
         var spMajor 
        var skills = [];
        var personal_Skills = [] ;
+       var jobCategory = [];
         const url = req.protocol + '://' + req.get("host");     
         var imagePath = '';
         if(!req.file){
@@ -396,6 +397,8 @@ module.exports = (app) => {
             if(req.body.spMajor != 'null') spMajor = req.body.spMajor ;
             if(req.body.skills != 'null') skills = req.body.skills ;
             if(req.body.personal_Skills != 'null') personal_Skills = req.body.personal_Skills ;
+            if(req.body.jobCategory != 'null') jobCategory = req.body.jobCategory ;
+
 
 
         
@@ -408,7 +411,7 @@ module.exports = (app) => {
                     study_degree: req.body.study_degree,
                     fullName: req.body.fullName,
                     imagePath:imagePath,
-                    jobCategory: req.body.jobCategory,
+                    jobCategory:jobCategory,
                     availabilityStatus: req.body.availabilityStatus,
                     userStatus: req.body.userStatus,
                     education_degree: req.body.education_degree,

@@ -38,7 +38,7 @@ module.exports = (app) => {
       user.save();
     });
     user.isConfirmed = false; // initially will be false 
-    sendVerifMail(user.firstName , user.email);
+    sendVerifMail(user.firstName , user.email,user._id);
     
     const token = user.generateAuthToken();
     res.status(200).json({

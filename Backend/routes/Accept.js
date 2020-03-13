@@ -43,7 +43,7 @@ module.exports = (app) => {
 
       const acceptedCount = await Accepted.count({  'jobAd': req.query.jobAd }); // get pages count
       var totalPages = Math.ceil(acceptedCount / size)
-        const response = await Accepted.find({ 'jobAd': req.query.jobAd },{},query)
+        const response = await Accepted.find({ 'jobAd': req.query.jobAd },{},query).populate('acceptedName')
         if (response) {
 
             // const AcceptedNames = oneR.map(x => x.acceptedName);

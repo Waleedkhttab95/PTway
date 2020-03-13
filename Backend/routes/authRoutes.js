@@ -66,8 +66,8 @@ module.exports = (app) => {
   app.get('/api/confirmation/:token', async (req, res) => {
     try {
       const decoded = jwt.verify(req.params.token, keys.jwtKey);
-      console.log(decoded.email);
-      await User.findOneAndUpdate({ email: decoded.email }, { isConfirmed: true });
+      console.log(decoded)
+      await User.findByIdAndUpdate(decoded._id, { isConfirmed: true });
     } catch (e) {
       res.send('error' + e);
     }
