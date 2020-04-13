@@ -56,12 +56,13 @@ async function companySendVerifMail(name, email) {
         // payload as json:
         { 
             name,
-            email
+            email,
+            _id
          }, // to know which user
         // secret
         keys.jwtKey,
         // expire in hour
-        { expiresIn: '1d' },
+        { expiresIn: '2d' },
         //callback
         (err, token) => {
             if (err) return err;
