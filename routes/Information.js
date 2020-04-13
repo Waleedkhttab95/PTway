@@ -182,6 +182,7 @@ module.exports = (app) => {
                 res.status(200).json({
                     status : true,
                     email: info.user.email,
+                    isConfirmed: info.user.isConfirmed,
                     profileComplete:profileComplete,
                     country: country.countryName,
                     study_degree: info.study_degree,
