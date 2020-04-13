@@ -71,7 +71,7 @@ module.exports = (app) => {
     } catch (e) {
       res.send('error' + e);
     }
-    const path = keys.redirect_url + '/sign-in';
+    const path = keys.redirect_url + '/user/login';
     return res.redirect(path);
   });
 
@@ -227,7 +227,7 @@ module.exports = (app) => {
     } catch (e) {
       res.send('error' + e);
     }
-    const path = keys.redirect_url + '/sign-in'
+    const path = keys.redirect_url + '/company/login'
     return res.redirect(path);
   });
 
