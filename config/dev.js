@@ -7,6 +7,6 @@ module.exports = {
     user: 'pt.activetion@gmail.com',
     pass: 'rreomoacibrhmxaw'  ,
     mail_url: 'http://localhost:80',
-    redirect_url: 'http://localhost:4200',
+    redirect_url: 'http://localhost:3000',
     send_grid_key:'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'
 };
