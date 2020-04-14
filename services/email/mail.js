@@ -49,7 +49,7 @@ async function sendVerifMail(name, email,_id) {
 }
 
 
-async function companySendVerifMail(name, email) {
+async function companySendVerifMail(name, email,_id) {
     const ccemail = fs.readFileSync(__dirname + '/com-email.html', 'utf-8');
     const comemail = hogan.compile(ccemail);
     jwt.sign(

@@ -124,7 +124,7 @@ module.exports = (app) => {
 
 
     company.isConfirmed = false; // initially will be false 
-    companySendVerifMail(company.companyName , company.email);
+    companySendVerifMail(company.companyName , company.email,company._id);
 
 
     const token = company.generateAuthToken();
