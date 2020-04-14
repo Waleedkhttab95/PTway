@@ -84,8 +84,7 @@ module.exports = (app) => {
 
 
     //post company information
-    app.post('/api/postcompanyinfo',file, (req, res) => {
-        
+    app.post('/api/postcompanyinfo', auth,file, (req, res) => {
         const url = req.protocol + '://' + req.get("host"); 
         var imagePath = '';
         if(!req.file){
