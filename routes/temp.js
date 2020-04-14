@@ -11,6 +11,7 @@ module.exports = (app) =>{
       birthDate : req.body.birthDate,
       gender: req.body.gender,
       isSaudi: req.body.isSaudi,
+      company:req.body.company,
       nationality: req.body.nationality,
       city:req.body.city, 
       street: req.body.street,

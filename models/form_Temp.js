@@ -13,6 +13,7 @@ const formSchema = new Schema({
  mobile: Number,
  email: String,
  avilableCar:String,
+ company: String,
  carType:String,
  carModel:String,
  jobTitle:String,
