@@ -272,6 +272,7 @@ module.exports = (app) => {
         }
             const skill = []
            
+            if(info.skills != null)
             for(var i = 0 ; i < info.skills.length ; i++) {
                 const result = await Skills.findById(info.skills[i]).select("skillName -_id");
                 skill.push(result.skillName)
@@ -280,6 +281,7 @@ module.exports = (app) => {
         
             const Personlskill =[]
           
+            if(info.personal_Skills != null)
             for(var j = 0 ; j < info.personal_Skills.length ; j++) {
                 
                 const result = await PersonalSkills.findById(info.personal_Skills[j]).select("skillName -_id");

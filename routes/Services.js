@@ -14,8 +14,9 @@ const _ = require('lodash');
 
 module.exports = (app) =>{
 
- 
-   
+    
+
+
 
 
     // Get all notifications content ..
@@ -375,7 +376,6 @@ module.exports = (app) =>{
 
   
 
-   
 
   // By study degree
   app.get('/api/get/usersByStudeyDegree',async (req,res) =>{

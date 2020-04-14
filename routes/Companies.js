@@ -563,7 +563,7 @@ module.exports = (app) => {
                const user  = await User.findById(r.user);
                if(user) 
                {
-                   if(user.email_notification == true)
+                   if(user.email_notification == true && user.isConfirmed == true)
                    sendJobOffer(user.email , user.firstName);
                }
 
@@ -588,8 +588,10 @@ module.exports = (app) => {
                const user  = await User.findById(r.user);
                if(user) 
                {
+
+                if(user.email_notification == true && user.isConfirmed == true)
                    sendJobOffer(user.email , user.firstName);
-               }
+            }
                new Notification({
                 content : jobAdId,
                 user : r.user,
