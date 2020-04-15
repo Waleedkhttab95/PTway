@@ -537,7 +537,7 @@ module.exports = (app) => {
         var today = Date.now();
 
         Ld = Ld.addDays(today,14);
-
+        Ld.setHours(0, 0, 0, 0);
         return Ld;
     }
 
