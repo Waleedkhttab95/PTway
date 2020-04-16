@@ -67,7 +67,7 @@ module.exports = (app) => {
     try {
       const decoded = jwt.verify(req.params.token, keys.jwtKey);
       console.log(decoded.email);
-      await User.findOneAndUpdate({ email: decoded.email }, { isConfirmed: true });
+      await User.findByIdAndUpdate(decoded._id, { isConfirmed: true });
     } catch (e) {
       res.send('error' + e);
     }
@@ -199,7 +199,9 @@ module.exports = (app) => {
   app.get('/api/com_confirmation/:token', async (req, res) => {
     try {
       const decoded = jwt.verify(req.params.token, keys.jwtKey);
-      await Company.findOneAndUpdate({ email: decoded.email }, { isConfirmed: true });
+      await Company.findByIdAndUpdate(decoded._id, { isConfirmed: true });
+
+      
     } catch (e) {
       res.send('error' + e);
     }

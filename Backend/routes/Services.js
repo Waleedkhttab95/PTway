@@ -331,7 +331,42 @@ module.exports = (app) =>{
         }
     })
         
+// by universty
+     
+
+       app.get('/api/get/phonenumbersByUniversty',async (req,res) =>{
+        const universty = req.query.universty;
+      const city = req.query.city; 
+        var data = []
+        var dataModel ;
+
     
+        const results = await UserInfo.find({'universty': universty,'city':city}).populate('user')
+        .select('fullName mobile user -_id');
+        if(results){
+            results.forEach( num =>{
+
+                dataModel = {
+                    number: num.mobile,
+                    name: num.fullName,
+                    email: num.user.email
+                }
+                data.push(dataModel)
+                   
+                    if(data.length == results.length){
+
+                        return  res.status(200).send(data)
+
+    
+                    }
+    
+            })
+
+        }
+     
+
+
+    })    
          // retrive all phone numbers By city and Major
 
     app.get('/api/get/phonenumbersByCityAndMajor',async (req,res) =>{

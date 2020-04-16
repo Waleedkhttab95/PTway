@@ -18,7 +18,7 @@ let transporter = nodemailer.createTransport({
 });
 
 
-async function sendVerifMail(name, email) {
+async function sendVerifMail(name, email,_id) {
     console.log('send nodemalier')
     const ccemail = fs.readFileSync(__dirname + '/email.html', 'utf-8');
     const comemail = hogan.compile(ccemail);
@@ -26,7 +26,8 @@ async function sendVerifMail(name, email) {
         // payload as json:
         { 
             name,
-            email
+            email,
+_id
          }, // to know which user
         // secret
         keys.jwtKey,
@@ -48,19 +49,20 @@ async function sendVerifMail(name, email) {
 }
 
 
-async function companySendVerifMail(name, email) {
+async function companySendVerifMail(name, email,_id) {
     const ccemail = fs.readFileSync(__dirname + '/com-email.html', 'utf-8');
     const comemail = hogan.compile(ccemail);
     jwt.sign(
         // payload as json:
         { 
             name,
-            email
+            email,
+_id
          }, // to know which user
         // secret
         keys.jwtKey,
         // expire in hour
-        { expiresIn: '1d' },
+        { expiresIn: '2d' },
         //callback
         (err, token) => {
             if (err) return err;
