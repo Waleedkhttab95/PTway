@@ -293,7 +293,9 @@ module.exports = (app) => {
             apply_job = result.apply
         }
 
-
+        if(job.gender == 'both') {
+            job.gender = 'ذكر و انثى'
+        }
 
         res.status(200).json({
             job: job,

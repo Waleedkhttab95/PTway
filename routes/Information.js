@@ -132,6 +132,9 @@ module.exports = (app) => {
 
             var uni = "";
             var spMaj = "";
+            var study_degree = study_degreeCheck(info)
+            var education_degree = education_degreeCheck(info);
+            var Education_level = Education_levelCheck(info)
             const country = await Country.findById(info.country);
             const city = await City.findById(info.city);
             const cpublic_Major = await publicMajor.findById(info.public_Major);
@@ -185,9 +188,9 @@ module.exports = (app) => {
                     isConfirmed: info.user.isConfirmed,
                     profileComplete:profileComplete,
                     country: country.countryName,
-                    study_degree: info.study_degree,
+                    study_degree: study_degree,
                     imagePath: info.imagePath,
-                    education_degree: info.education_degree,
+                    education_degree: education_degree,
                     gender: info.gender,
                     mobile: info.mobile,
                     fullName: info.fullName,
@@ -201,7 +204,7 @@ module.exports = (app) => {
                     aplled_jobs: info.aplled_jobs,
                     companies: company,
                     city: city.cityName,
-                    Education_level: info.Education_level,
+                    Education_level: Education_level,
                     public_Major: cpublic_Major.majorName,
                     spicifc_Major: spMaj,
                     languages: info.languages,
@@ -423,7 +426,7 @@ module.exports = (app) => {
                     birthDate: req.body.birthDate,
                     universty: universty,
                     city: req.body.city,
-                    Education_level: req.body.Education_level,
+                    Education_level: req.body.education_level,
                     public_Major: req.body.public_Major,
                     spMajor: spMajor,
                     languages: req.body.languages,
@@ -488,21 +491,68 @@ module.exports = (app) => {
     // calculate profile complete
     function progressBar(info) {
         var count = 40
-        console.log(info.mobile)
-        if(info.mobile != "") count += 5;
-        if(info.social_Status != "") count += 5;
-        if(info.study_degree != "") count += 5;
-        if(info.education_degree != "") count += 5;
-        if(info.Education_level != "") count += 5;
-        if(info.universty != "") count += 5;
-        if(info.spMajor != "") count += 5;
-        if(info.skills != "") count += 5;
-        if(info.personal_Skills != "") count += 5;
-        if(info.hoppies != "") count += 5;
-        if(info.languages != "") count += 5;
-        if(info.instagram != "" || info.facebook != "" || info.twitter != "" 
-        ||info.linkedin != "" ||info.personal_web != "" || info.about != "") count += 5;
-        
+        if(info.mobile != undefined ) count += 5;
+        if(info.social_Status !=undefined) count += 5;
+        if(info.study_degree !=undefined) count += 5;
+        if(info.education_degree !=undefined) count += 5;
+        if(info.Education_level !=undefined) count += 5;
+        if(info.universty !=undefined) count += 5;
+        if(info.spMajor !=undefined) count += 5;
+        if(info.skills.length != 0) count += 5;
+        if(info.personal_Skills.length != 0 ) count += 5;
+        if(info.hoppies.length != 0) count += 5;
+        if(info.languages.length != 0) count += 5;
+        if(info.instagram !=undefined || info.facebook !=undefined || info.twitter !=undefined 
+        ||info.linkedin !=undefined ||info.personal_web !=undefined || info.about !=undefined) count += 5;
+        console.log(info)
+
         return count
+      }
+
+      function study_degreeCheck(res) {
+        var study_degree = ""
+        if(res.study_degree == 'HS') study_degree = "الثانوية العامة";
+        else if(res.study_degree == 'BHO') study_degree = "البكالريوس";
+        else if(res.study_degree == 'MASTER') study_degree = "الماستر";
+
+        return study_degree;
+      }
+
+      function education_degreeCheck(res) {
+          var education_degree = ""
+        if(res.education_degree == 'HS')education_degree = "الثانوية العامة";
+        else if(res.education_degree == 'BHO')education_degree = "البكالريوس";
+        else if(res.education_degree == 'MASTER')education_degree = "الماستر";
+        else if(res.education_degree == 'diploma')education_degree = "دبلوم";
+        else if(res.education_degree == 'Undergraduate')education_degree = "خريج";
+
+        return education_degree;
+      }
+
+      function Education_levelCheck(res) {
+          var Education_level = ""
+
+          if(res.Education_level == 'High-school-first-year') Education_level = "اول ثانوي";
+          else if(res.Education_level == 'High-school-second-year') Education_level = "ثاني ثنوي";
+          else if(res.Education_level == 'High-school-third-year') Education_level = "ثالث ثنوي";
+          else if(res.Education_level == 'University-first-year') Education_level = "اول جامعة";
+          else if(res.Education_level == 'University-second-year') Education_level = "ثاني جامعة";
+          else if(res.Education_level == 'University-third-year') Education_level = "ثالث جامعة";
+          else if(res.Education_level == 'University-forth-year') Education_level = "رابع جامعة";
+          else if(res.Education_level == 'University-fith-year') Education_level = "خامس جامعة";
+          else if(res.Education_level == 'University-sixth-year') Education_level =  "فصل سادس بكالوريوس";
+          else if(res.Education_level == 'University-seventh-year') Education_level =  "فصل سابع بكالوريوس";
+          else if(res.Education_level == 'University-eigth-year') Education_level =  "فصل ثامن بكالوريوس";
+          else if(res.Education_level == 'University-ninth-year') Education_level =  "فصل تاسع بكالوريوس";
+          else if(res.Education_level == 'University-ten-year') Education_level = "فصل عاشر بكالوريوس";
+          else if(res.Education_level == 'master-first-year') Education_level = "اول ماستر";
+          else if(res.Education_level == 'master-second-year') Education_level = "ثاني ماستر";
+          else if(res.Education_level == 'master-third-year') Education_level = "ثالث ماستر";
+          else if(res.Education_level == 'diploma-first-year') Education_level = "فصل أول دبلوم";
+          else if(res.Education_level == 'diploma-second-year') Education_level = "فصل ثاني دبلوم";
+          else if(res.Education_level == 'diploma-third-year') Education_level = "فصل ثالث دبلوم";
+          else if(res.Education_level == 'diploma-fourth-year') Education_level = "فصل رابع دبلوم";
+
+          return Education_level;
       }
 }
