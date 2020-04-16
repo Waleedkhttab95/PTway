@@ -504,7 +504,6 @@ module.exports = (app) => {
         if(info.languages.length != 0) count += 5;
         if(info.instagram !=undefined || info.facebook !=undefined || info.twitter !=undefined 
         ||info.linkedin !=undefined ||info.personal_web !=undefined || info.about !=undefined) count += 5;
-        console.log(info)
 
         return count
       }
