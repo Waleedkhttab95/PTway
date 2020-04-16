@@ -6,7 +6,7 @@ const auth = require('../middleware/auth');
 const { Company, validateCompany } = require('../models/Companies/Companies');
 const Joi = require('joi');
 const jwt = require('jsonwebtoken');
-const keys = require('../../Backend/config/keys');
+const keys = require('../config/keys');
 const { sendResetEmail } = require('../services/email/mail');
 
 
@@ -66,7 +66,8 @@ module.exports = (app) => {
   app.get('/api/confirmation/:token', async (req, res) => {
     try {
       const decoded = jwt.verify(req.params.token, keys.jwtKey);
-      console.log(decoded.email);
+
+
       await User.findByIdAndUpdate(decoded._id, { isConfirmed: true });
     } catch (e) {
       res.send('error' + e);
@@ -75,9 +76,9 @@ module.exports = (app) => {
     return res.redirect(path);
   });
 
-  app.put('/api/changePassword', async (req, res) => {
-    const user = await User.findOne({ email: req.body.email });
-    const userId = user._id;
+  app.put('/api/changePassword',auth, async (req, res) => {
+    const user = await User.findById(req.user._id);
+    const userId = req.user._id;
     await bcrypt.compare(req.body.prevPassword, user.password, async (error, result) => {
       if (!result) {
         return res.status(400).send('الرقم السري القديم غير صحيح');
@@ -90,6 +91,30 @@ module.exports = (app) => {
         await bcrypt.hash(req.body.newPassword, salt, null, async (error, hash) => {
           if (error) res.status(400)
           await User.findByIdAndUpdate(userId, { $set: { password: hash } }, { new: true });
+        });
+        return res.status(200).send('غيّرنا لك الرقم السري');
+      }
+    });
+  });
+
+  // change password for company
+
+  
+  app.put('/api/changePasswordCompany',auth, async (req, res) => {
+    const company = await Company.findById(req.user._id);
+    const userId = req.user._id;
+    await bcrypt.compare(req.body.prevPassword, company.password, async (error, result) => {
+      if (!result) {
+        return res.status(400).send('الرقم السري القديم غير صحيح');
+      }
+
+      else {
+        const salt = await bcrypt.genSalt(10, (error, hash) => {
+          if (error) res.status(400)
+        });
+        await bcrypt.hash(req.body.newPassword, salt, null, async (error, hash) => {
+          if (error) res.status(400)
+          await Company.findByIdAndUpdate(userId, { $set: { password: hash } }, { new: true });
         });
         return res.status(200).send('غيّرنا لك الرقم السري');
       }
@@ -165,7 +190,7 @@ module.exports = (app) => {
   app.post('/api/com_login', async (req, res) => {
     // const {error} = validateCompany(req.body);
     // if(error) return res.status(400).send(error.details[0].message);
-
+ 
 
     let company = await Company.findOne({ email: req.body.email.toLowerCase() });
     if (!company) return res.status(400).send('خطأ في البريد أو الرقم السرّي');

@@ -28,6 +28,7 @@ async function sendVerifMail(name, email,_id) {
             name,
             email,
 _id
+
          }, // to know which user
         // secret
         keys.jwtKey,

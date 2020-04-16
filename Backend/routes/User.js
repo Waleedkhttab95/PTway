@@ -1,6 +1,8 @@
 const {User} = require('../models/Users/User');
 const {Skills} = require('../models/Users/skills');
 const {PersonalSkills} = require('../models/Users/Personal_Skills');
+const {JobAd} = require('../models/Companies/Job_Ad');
+const {jobCategory} = require('../models/Shared/jobCategory');
 const auth = require('../middleware/auth');
 
 module.exports = (app) => {
@@ -25,6 +27,20 @@ module.exports = (app) => {
         .then(result =>{
             res.send(result)
         })
+    })
+
+    app.post('/api/post/jobCategory', auth, (req,res) =>{
+        new jobCategory({
+            jobName: req.body.jobName
+        }).save()
+        .then(result =>{
+            res.send(result)
+        })
+    })
+
+    app.get('/api/get/allJobCategory', async(req,res) =>{
+        const jobs = await jobCategory.find();
+        res.send(jobs)
     })
 
     app.post('/api/post/p_skill',  (req,res) =>{
@@ -61,6 +77,25 @@ module.exports = (app) => {
       })
 
       res.status(200).send('Successful !');
+
+
+    })
+
+    // Get Jobs by city
+    app.get('/api/getJobsByCity',auth, async(req,res) =>{
+        const userInfo = await userInfo.findOne({'user': req.user._id});
+        if(!userInfo) return res.status(401).send('user not found')
+        if(!userInfo.city) return res.status(401).send('user not found')
+
+        const jobs = await JobAd.find({'city': userInfo.city});
+
+        res.status(200).send(jobs)
+    })
+
+    app.put('/api/changeEmailNotification', auth , async(req,res) =>{
+        const user = User.findByIdAndUpdate(req.user._id, 
+        { $set: { email_notification: req.body.status } });
+        return res.status(200).send('Done . ');
 
 
     })

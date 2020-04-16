@@ -2,19 +2,26 @@ const { Candidate } = require('../models/Companies/Candidates');
 const { User } = require('../models/Users/User');
 const auth = require('../middleware/auth');
 const { Notification } = require('../models/Notification');
+const { UserInfo } = require('../models/Users/User_Info');
+
 
 module.exports = (app) => {
 
   // apply Job
   app.post('/api/postBodyC', auth, async (req, res) => {
     const user = await Candidate.findOne({ 'candidateName': req.user._id, 'jobAd': req.body.jobAd });
+    const info = await UserInfo.findOne({'user' : req.user._id});
+
     if (!user) {
       new Candidate({
         candidateName: req.user._id,
         jobAd: req.body.jobAd,
         createDate:Date.now()
       }).save()
-        .then(result => { res.send(result); })
+        .then(result => { 
+            info.aplled_jobs +=1;
+            info.save();
+          res.send(result); })
 
       const result = await Notification.findOne({ 'content': req.body.jobAd, 'user': req.user._id });
 
@@ -29,31 +36,40 @@ module.exports = (app) => {
 
   });
 
-  app.get('/api/getCandites', auth, async (req, res) => {
-    const result = await Candidate.find();
-    res.send(result);
-  });
-
+ 
   app.get('/api/getOneCandi', auth, async (req, res) => {
     const usernames = [];
-    const Bresult = await Candidate.find({ 'jobAd': req.query.jobAd })
+    var pageNo = parseInt(req.query.pageNo)
+    var size = 5
+    var query = {}
+
+    if(pageNo < 0 || pageNo === 0) {
+        response = {"error" : true,"message" : "invalid page number, should start with 1"};
+        return res.json(response)
+  }
+
+  query.skip = size * (pageNo - 1)
+  query.limit = size
+
+  const candidatesCount = await Candidate.count({  'jobAd': req.query.jobAd }); // get pages count
+  var totalPages = Math.ceil(candidatesCount / size)
+
+    const Bresult = await Candidate.find({ 'jobAd': req.query.jobAd },{},query)
       .sort({ 'createDate': 1 })
+      .populate('candidateName')
     if (!Bresult) return res.status(401).send('notFound')
-    const candidateNames = Bresult.map(x => x.candidateName);
-    const ids = Bresult.map(x => x._id);
+    // const candidateNames = Bresult.map(x => x.candidateName);
+    // const ids = Bresult.map(x => x._id);
 
-    for (var i = 0; i < candidateNames.length; i++) {
-      const users = await User.findById(candidateNames[i]).select("firstName lastName -_id")
-      usernames.push(users);
-    }
+    // for (var i = 0; i < candidateNames.length; i++) {
+    //   const users = await User.findById(candidateNames[i]).select("firstName lastName -_id")
+    //   usernames.push(users);
+    // }
 
-    const username = usernames.map(x => x.firstName + ' ' + x.lastName);
+    // const username = usernames.map(x => x.firstName + ' ' + x.lastName);
 
     res.status(200).json({
-      candidateNames: candidateNames,
-      username: username,
-      id: ids,
-      count: Bresult.length
+     Bresult,totalPages
     });
 
 

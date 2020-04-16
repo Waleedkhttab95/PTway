@@ -1,85 +1,20 @@
 const {UserInfo} = require('../models/Users/User_Info');
-const {CompanyInfo} = require('../models/Companies/Company_Info');
 const {Notification} = require('../models/Notification');
 const {endDate} = require('../models/Companies/EndDates');
 const {JobAd} = require('../models/Companies/Job_Ad');
 const {Contract} = require('../models/Companies/Contract');
 const auth = require('../middleware/auth');
-const dateTime = require('node-datetime');
 const {Accepted } = require('../models/Companies/Accepted');
 const {Candidate} = require('../models/Companies/Candidates');
-const { sendJobOffer } = require('../services/email/mail');
-const { sendArabnetAd } = require('../services/email/mail');
-const {User} = require('../models/Users/User');
+const { CompanyInfo } = require('../models/Companies/Company_Info');
+const _ = require('lodash');
 
 
 
 
 module.exports = (app) =>{
 
-    app.post('/api/send/Jobad', auth, async (req,res) =>{
-
-             // const job_skills = req.body.job_skills;
-              const country=req.body.country;
-              const city= req.body.city;
-              const gender= req.body.gender;
-              // const  personal_Skills= req.body.personal_Skills;
-              // const public_Major = req.body.public_Major; public_Major :'5caf4161ffec65462ec2a094'
-              const jobAd = req.body.jobAd;
-              
-        if(gender == "both") {
-            const result = await UserInfo
-            .find({ country: country,city: city})
-            .select("user");
-
-            result.forEach(async function(r) {
-                //here write email code
-                // r.user is giving the id
-                const user  = await User.findById(r.user);
-                if(user) 
-                {
-                    sendJobOffer(user.email , user.firstName);
-                }
-
-                new Notification({
-                 content : jobAd,
-                 user : r.user,
-                 isRead: false,
-                 date: Date.now(),
-                 apply: false
-                }).save();
-             })
-     
-             res.status(200).send("Done .");
-        }
-        else {
-            const result = await UserInfo
-            .find({ country: country,city: city
-            ,gender: gender })
-            .select("user");
-
-            result.forEach(async function(r) {
-                const user  = await User.findById(r.user);
-                if(user) 
-                {
-                    sendJobOffer(user.email , user.firstName);
-                }
-                new Notification({
-                 content : jobAd,
-                 user : r.user,
-                 isRead: false,
-                 date: Date.now(),
-                 apply: false
-                }).save();
-             })
-     
-             res.status(200).send("Done .");
-        }
-    
-
-    
-    });
-
+ 
    
 
 
@@ -88,25 +23,56 @@ module.exports = (app) =>{
     app.get('/api/get/notifications',auth, async (req,res) =>{
         const userId = req.query.userId;
        var result = [];
+        var temp ;
+        var pageNo = parseInt(req.query.pageNo)
+        var size = 3
+        var query = {}
+
+        
+        if(pageNo < 0 || pageNo === 0) {
+            response = {"error" : true,"message" : "invalid page number, should start with 1"};
+            return res.json(response)
+      }
+
+      query.skip = size * (pageNo - 1)
+      query.limit = size
+
+      const notificationsCounts = await Notification
+      .count({user: req.user._id})
+      var totalPages = Math.ceil(notificationsCounts / size)
         const notifications = await Notification
-        .find({user: req.user._id})
+        .find({user: req.user._id},{},query)
         .select('-user')
         .sort({'date' : -1});
 
         for(var i = 0 ; i<notifications.length ; i++){
-             result.push(await JobAd
-            .find({_id : notifications[i].content})
+            var jobAd = await JobAd
+            .findOne({_id : notifications[i].content})
             .sort({ date: -1 })
-            .select("job_Name _id") 
-             )
-
+            .populate('company')
+            .select("job_Name _id descreption company isLock")
+            var companyImage = await CompanyInfo
+            .findOne({'company': jobAd.company._id})
+            .select("imagePath")
+            var status = notifications[i].apply
+            temp = new Object({
+                compName: jobAd.company.companyName,
+                imagePath: companyImage.imagePath,
+                jobAd : _.pick(jobAd,['job_Name','_id','descreption', 'isLock']),
+                status : status
+            });
+          
+             result.push( temp  )
+          
              
-
+            
         }
-       
+
+   
       
         res.status(200).json({
-            result: result
+            result: result,
+            totalPages
         });
     });
 
@@ -442,15 +408,14 @@ module.exports = (app) =>{
 
     })
 
-    app.post('/api/sendArabNet', async (req,res) =>{
-        const users = await User.find();
+  // By study degree
+  app.get('/api/get/usersByStudeyDegree',async (req,res) =>{
+    const users = await UserInfo.find({'education_degree': req.query.ed})
+    .populate("user")
+    .select("user")
 
-        for(var i =0 ; i <= users.length ; i++){
-           
-            sendArabnetAd(users[i].email,users[i].firstName);
-        }
-        res.status(200).send('Done .')
-    })
+    res.status(200).send(users)
+  })
     function todayDate(){
         today = new Date();
         var dd = today.getDate();

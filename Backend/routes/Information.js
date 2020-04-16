@@ -16,7 +16,7 @@ const {User} = require('../models/Users/User');
 module.exports = (app) => {
     //post user information
     app.post('/api/postuserinfo',auth,file, async (req, res) => {
-        console.log("1")
+  
         const current_user = await UserInfo.findOne({'user' : req.user._id})
         if(!current_user) {
             var universty = null;
@@ -39,12 +39,11 @@ module.exports = (app) => {
                 if(req.body.personal_Skills != 'null') personal_Skills = req.body.personal_Skills ;
     
     
-                //console.log(req.body)
-    
+              
               
                 new UserInfo({
                     user: req.user._id,
-                    country: req.body.country,
+                    country: '5caf3248ffec65462ec2a05e',
                     study_degree: req.body.study_degree,
                     fullName: req.body.fullName,
                     imagePath:imagePath,
@@ -99,6 +98,7 @@ module.exports = (app) => {
             new CompanyInfo({
                 company: req.user._id,
                 country: req.body.country,
+                phone:req.body.phone,
                 address: req.body.address,
                 info: req.body.info,
                 imagePath: imagePath,
@@ -122,7 +122,8 @@ module.exports = (app) => {
     //Get user info by USerID
     app.get('/api/getuserinfo', auth, async (req, res) => {
         //const id = req.query.id;
-        const info = await UserInfo.findOne({ 'user': req.user._id });
+        const info = await UserInfo.findOne({ 'user': req.user._id })
+        .populate('user');
         if (!info) return res.status(200).json({
             status : false
         });
@@ -150,11 +151,11 @@ module.exports = (app) => {
     }
         const skill = []
         if(info.skills != null){
-            console.log('wwwa')
+           
             for(var i = 0 ; i < info.skills.length ; i++) {
     
                 const result = await Skills.findById(info.skills[i]).select("skillName -_id");
-                console.log( result)
+                
                 skill.push(result.skillName)
             }
          
@@ -172,12 +173,16 @@ module.exports = (app) => {
         
             }
         }
-     
-    
+        
+
+        var profileComplete = progressBar(info)
+        
     
       
                 res.status(200).json({
                     status : true,
+                    email: info.user.email,
+                    profileComplete:profileComplete,
                     country: country.countryName,
                     study_degree: info.study_degree,
                     imagePath: info.imagePath,
@@ -186,8 +191,13 @@ module.exports = (app) => {
                     mobile: info.mobile,
                     fullName: info.fullName,
                     work_Hours: info.work_Hours,
+                    userStatus : info.userStatus,
+                    availabilityStatus: info.availabilityStatus,
+                    jobCategory: info.jobCategory,
                     birthDate: info.birthDate,
                     universty: uni,
+                    profile_views: info.profile_views,
+                    aplled_jobs: info.aplled_jobs,
                     companies: company,
                     city: city.cityName,
                     Education_level: info.Education_level,
@@ -216,7 +226,11 @@ module.exports = (app) => {
         //Get user info by USerID for edit
         app.get('/api/getuserinfo/edit', auth, async (req, res) => {
             //const id = req.query.id;
-            const info = await UserInfo.findOne({ 'user': req.user._id });
+            const info = await UserInfo.findOne({ 'user': req.user._id }).populate('city')
+            .populate('universty')
+            .populate('country')
+            .populate('public_Major').populate('spMajor')
+            .populate('jobCategory');
             if (!info) return res.status(401).send('not found');
    console.log("user info : " + info)
                     res.status(200).json({
@@ -235,7 +249,8 @@ module.exports = (app) => {
         const user = await User.findById(id);
         if (!info) return res.status(401).send('not found');
 
-        
+        info.profile_views += 1;
+        info.save();
         var uni = "";
         var spMaj = "";
         const country = await Country.findById(info.country);
@@ -314,7 +329,8 @@ module.exports = (app) => {
         // const id = req.query.id;
 
         try{
-            const info = await CompanyInfo.findOne({ 'company': req.user._id });
+            const info = await CompanyInfo.findOne({ 'company': req.user._id })
+            .populate('company city country');
             if (!info) return res.status(200).json({
                 status : false
             });
@@ -323,18 +339,7 @@ module.exports = (app) => {
             const city = await City.findById(info.city);
             
             res.status(200).json({
-                country: country.countryName,
-                city: city.cityName,
-                address: info.address,
-                imagePath: info.imagePath,
-                info: info.info,
-                vision: info.vision,
-                message: info.message,
-                personal_web: info.personal_web,
-                facebook: info.facebook,
-                twitter: info.twitter,
-                instagram: info.instagram,
-                linkedin: info.linkedin
+               info
             });
         } catch(ex) {
         }
@@ -372,27 +377,31 @@ module.exports = (app) => {
       
     })
     app.put('/api/put/userinfo',[auth,file],async (req, res)=> {
-        console.log('here put')
         var universty 
         var spMajor 
        var skills = [];
        var personal_Skills = [] ;
+       var jobCategory = [];
         const url = req.protocol + '://' + req.get("host");     
         var imagePath = '';
         if(!req.file){
-            console.log('not file')
+          
            imagePath = "null"
         }
         else{
-            console.log('file')
             imagePath= url + "/images/" + req.file.filename;
         }
         try{
+
             if(req.body.universty != 'null') universty = req.body.universty ;
             if(req.body.spMajor != 'null') spMajor = req.body.spMajor ;
             if(req.body.skills != 'null') skills = req.body.skills ;
             if(req.body.personal_Skills != 'null') personal_Skills = req.body.personal_Skills ;
+            if(req.body.jobCategory != 'null') jobCategory = req.body.jobCategory ;
 
+
+
+        
 
            
         const info = await UserInfo.updateOne({ 'user': req.user._id },
@@ -402,6 +411,9 @@ module.exports = (app) => {
                     study_degree: req.body.study_degree,
                     fullName: req.body.fullName,
                     imagePath:imagePath,
+                    jobCategory:jobCategory,
+                    availabilityStatus: req.body.availabilityStatus,
+                    userStatus: req.body.userStatus,
                     education_degree: req.body.education_degree,
                     gender: req.body.gender,
                     mobile: req.body.mobile,
@@ -412,7 +424,7 @@ module.exports = (app) => {
                     public_Major: req.body.public_Major,
                     spMajor: spMajor,
                     languages: req.body.languages,
-                    skills: skills,
+                    skills:skills,
                     personal_Skills: personal_Skills,
                     hoppies: req.body.hoppies,
                     social_Status: req.body.social_Status,
@@ -435,23 +447,27 @@ module.exports = (app) => {
     }
     })
 
-    app.put('/api/put/companyinfo',auth,file, async (req,res) => {
-        let imPath = req.body.imagePath;
-        if(req.file) {
-          const url = req.protocol + '://' + req.get("host");
-          imPath= url + "/images/" + req.file.filename
+    app.put('/api/put/companyinfo',[auth,file], async (req,res) => {
+        const url = req.protocol + '://' + req.get("host");     
+        var imagePath = '';
+        if(!req.file){
+          
+           imagePath = req.body.image
+        }
+        else{
+            imagePath= url + "/images/" + req.file.filename;
         }
 
-        const companyId = await CompanyInfo.updateOne({'company': req.user.id },
+        const companyId = await CompanyInfo.updateOne({'company': req.user._id },
             {
                 
                 $set: {
                     
                     country: req.body.country,
                     address: req.body.address,
-                    info: req.body.info,
+                    info: req.body.about,
                     vision: req.body.vision,
-                    imagePath: imPath,
+                    imagePath: imagePath,
                     message: req.body.message,
                     city: req.body.city,
                     personal_web: req.body.personal_web,
@@ -463,4 +479,27 @@ module.exports = (app) => {
             })
         res.status(200).send("Updated");
     })
+
+
+    // functions
+    // calculate profile complete
+    function progressBar(info) {
+        var count = 40
+        console.log(info.mobile)
+        if(info.mobile != "") count += 5;
+        if(info.social_Status != "") count += 5;
+        if(info.study_degree != "") count += 5;
+        if(info.education_degree != "") count += 5;
+        if(info.Education_level != "") count += 5;
+        if(info.universty != "") count += 5;
+        if(info.spMajor != "") count += 5;
+        if(info.skills != "") count += 5;
+        if(info.personal_Skills != "") count += 5;
+        if(info.hoppies != "") count += 5;
+        if(info.languages != "") count += 5;
+        if(info.instagram != "" || info.facebook != "" || info.twitter != "" 
+        ||info.linkedin != "" ||info.personal_web != "" || info.about != "") count += 5;
+        
+        return count
+      }
 }

@@ -15,7 +15,7 @@ require('./models/Users/User');
 require('./services/passport');
 
 
-mongoose.connect(keys.mongoURI)
+mongoose.connect(keys.mongoURI,{ useFindAndModify: false })
 const app = express();
 app.use(cors());
 

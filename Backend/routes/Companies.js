@@ -2,9 +2,9 @@ const { Sector } = require('../models/Companies/Sector');
 const { CompanySpecialist } = require('../models/Companies/CompanySpecialist');
 const { Project } = require('../models/Companies/Project');
 const { JobAd } = require('../models/Companies/Job_Ad');
-const { publicMajor } = require('../models/Shared/Public_Major');
 const auth = require('../middleware/auth');
 const { Contract } = require('../models/Companies/Contract');
+const {UserInfo} = require('../models/Users/User_Info');
 const { Accepted } = require('../models/Companies/Accepted');
 const { City } = require('../models/Shared/City');
 const { Country } = require('../models/Shared/Country');
@@ -13,6 +13,9 @@ const { JobAd_admin } = require('../models/admin/Job_Ad_Admin');
 const { Project_Admin } = require('../models/admin/Project_Admin');
 const { Company } = require('../models/Companies/Companies');
 const { Candidate } = require('../models/Companies/Candidates');
+const { User } = require('../models/Users/User');
+const { sendJobOffer } = require('../services/email/mail');
+
 
 
 module.exports = (app) => {
@@ -146,7 +149,7 @@ module.exports = (app) => {
             required_Number: req.body.required_Number
         }).save()
             .then(result => {
-                console.log("result" + result)
+                send_JobAds(result)
                 res.send(result)
             }).catch((e)=>{
                 res.status(500).send('error',e)
@@ -184,14 +187,33 @@ module.exports = (app) => {
 
     app.get('/api/getprojects', auth, async (req, res) => {
         const id = req.user._id;
-        const proj = await Project.find({ company: id });
-        const projectNames = proj.map(x => x.projectName);
-        const projectId = proj.map(x => x._id);
+        const JobAdsCount= [];
+      
 
+        var pageNo = parseInt(req.query.pageNo)
+        var size = 3
+        var query = {}
+
+        if(pageNo < 0 || pageNo === 0) {
+            response = {"error" : true,"message" : "invalid page number, should start with 1"};
+            return res.json(response)
+      }
+
+      query.skip = size * (pageNo - 1)
+      query.limit = size
+
+      const projectCount = await Project.count({ company: id });
+      var totalPages = Math.ceil(projectCount / size)
+      const proj = await Project.find({ company: id },{},query)
+      .sort({ date: -1 });
+
+        for(var i =0 ; i < proj.length ; i++){
+            var jobAds = await JobAd.find({'project': proj[i]}).countDocuments()
+            JobAdsCount.push(jobAds);
+
+        }
         res.status(200).json({
-            projectName: projectNames,
-            count: proj.length,
-            id: projectId
+            proj,JobAdsCount,totalPages
         });
     });
 
@@ -331,14 +353,10 @@ module.exports = (app) => {
         const id = req.query.projectid;
 
         const job = await JobAd.find({ project: id });
-        if (!job) return res.status(401).send('not found');
-        const jobName = job.map(x => x.job_Name);
-        const jobId = job.map(x => x._id);
+      
 
         res.status(200).json({
-            jobNames: jobName,
-            count: job.length,
-            id: jobId
+          job
         });
     });
     //Post Contract
@@ -366,7 +384,11 @@ module.exports = (app) => {
     //DELETE project by Id
     app.delete('/api/deleteproject', auth, async (req, res) => {
         const id = req.query.id;
+        const jobAds = await JobAd.find({'project': id});
 
+        for(let i = 0 ; i< jobAds.length ; i++){
+            await JobAd.findByIdAndDelete(jobAds[i]._id)
+        }
         const project = await Project.findByIdAndDelete(id);
         if (!project) return res.status(401).send('not found');
         res.send(project);
@@ -469,9 +491,10 @@ module.exports = (app) => {
             for (let index = 0; index < advs.length; index++) {
                 const advId = advs[index]._id;
                 const advName= advs[index].job_Name;
+                const jobCreate = advs[index].createDate;
                 const projectName = advs[index].project.projectName;
                 const candidates = await Candidate.find({ 'jobAd': advId }).countDocuments();
-                const obj = { advId,advName, candidates,projectName };
+                const obj = { advId,advName, candidates,projectName,jobCreate };
                 jobObjArray.push(obj);
             }
             return res.status(200).send(jobObjArray);
@@ -481,6 +504,26 @@ module.exports = (app) => {
         }
     });
 
+    // get all sub accounts
+    app.get('/api/getSubUsers',auth, async (req,res) =>{
+        const users = await User.find({'isSubUser': true , 'company':req.user._id})
+        if(!users) return res.status(401).send('not found any users !')
+
+        res.status(200).json({
+            users : users
+        })
+    })
+
+    // enable and desable subAccount
+    app.put('/api/switchSubUser',auth, async (req,res) =>{
+        const user = await User.findById(req.query.userId);
+        if (!user) return res.status(401).status('user not found')
+
+        user.isSubUser = !user.isSubUser;
+        user.save();
+
+        res.status(200).send('Updated !')
+    })
 
     // Function to Calculate Lock Date
 
@@ -502,7 +545,71 @@ module.exports = (app) => {
     }
 
 
+   async function send_JobAds(jobAd) {
 
+             const country=jobAd.country;
+             const city= jobAd.city;
+             const gender= jobAd.gender;
+             // const  personal_Skills= jobAd.personal_Skills;
+             // const public_Major = jobAd.public_Major; public_Major :'5caf4ffbffec65462ec2a09a' , '5caf5618ffec65462ec2a0ce'
+          
+             const jobAdId = jobAd._id;
+             
+       if(gender == "both") {
+           const result = await UserInfo
+           .find({ country: country,city: city})
+           .select("user");
+
+           result.forEach(async function(r) {
+               //here write email code
+               // r.user is giving the id
+               const user  = await User.findById(r.user);
+               if(user) 
+               {
+                   if(user.email_notification == true)
+                   sendJobOffer(user.email , user.firstName);
+               }
+
+               new Notification({
+                content : jobAdId,
+                user : r.user,
+                isRead: false,
+                date: Date.now(),
+                apply: false
+               }).save();
+            })
+    
+            res.status(200).send("Done .");
+       }
+       else {
+           const result = await UserInfo
+           .find({ country: country,city: city
+           ,gender: gender})
+           .select("user");
+
+           result.forEach(async function(r) {
+               const user  = await User.findById(r.user);
+               if(user) 
+               {
+                   sendJobOffer(user.email , user.firstName);
+               }
+               new Notification({
+                content : jobAdId,
+                user : r.user,
+                isRead: false,
+                date: Date.now(),
+                apply: false
+               }).save();
+            })
+    
+            res.status(200).send("Done .");
+       }
+   
+
+   
+ 
+
+    }
 
 
 

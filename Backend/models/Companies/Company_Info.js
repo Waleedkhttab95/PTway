@@ -7,6 +7,7 @@ const company_infoSchema = new Schema({
     company:{type: mongoose.Schema.Types.ObjectId, ref:'companies'},
     country:  {type: mongoose.Schema.Types.ObjectId, ref:'Country'},
     imagePath : {type: String},
+    phone: {type:Number},
     address: {
         type:String,
         required:true
@@ -23,14 +24,12 @@ const company_infoSchema = new Schema({
       
     },
     vision: {
-        type:String,
-        required:true
+        type:String
       
     },
     
     message: {
-        type:String,
-        required:true
+        type:String
       
     },
     
