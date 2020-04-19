@@ -398,15 +398,7 @@ module.exports = (app) => {
         const id = req.query.id;
         const job = await JobAd.findByIdAndDelete(id);
 
-          const notiCount = await Notification.find({'content': id});
-
-
-        for(var i =0 ; i< notiCount.length; i++) {
-            const notiDelete = await Notification.findByIdAndDelete(notiCount[i]._id)
-
-
-        }
-        
+        delete_Noti(id);
 
 
         res.send("Deleted !");
@@ -613,5 +605,14 @@ module.exports = (app) => {
     }
 
 
+    async function delete_Noti(id) {
+        const notifications= await Notification.find({'content': id})
+        
+        for(var i = 0 ; notifications.length > i ; i++){
+         await Notification.findOneAndDelete({'content': notifications[i].content})
+            
+        }
+     
+    }
 
 }

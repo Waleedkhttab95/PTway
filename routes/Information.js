@@ -383,6 +383,7 @@ module.exports = (app) => {
       
     })
     app.put('/api/put/userinfo',[auth,file],async (req, res)=> {
+        console.log(req.body)
         var universty 
         var spMajor 
        var skills = [];
@@ -490,16 +491,17 @@ module.exports = (app) => {
     // functions
     // calculate profile complete
     function progressBar(info) {
+        console.log(info.study_degree)
         var count = 40
-        if(info.mobile != undefined ) count += 5;
+        if(info.mobile != undefined || info.mobile != "") count += 5;
         if(info.social_Status !=undefined) count += 5;
         if(info.study_degree !=undefined) count += 5;
         if(info.education_degree !=undefined) count += 5;
         if(info.Education_level !=undefined) count += 5;
         if(info.universty !=undefined) count += 5;
         if(info.spMajor !=undefined) count += 5;
-        if(info.skills.length != 0) count += 5;
-        if(info.personal_Skills.length != 0 ) count += 5;
+        if(info.skills != null ) count += 5;
+        if(info.personal_Skills != null) count += 5;
         if(info.hoppies.length != 0) count += 5;
         if(info.languages.length != 0) count += 5;
         if(info.instagram !=undefined || info.facebook !=undefined || info.twitter !=undefined 
