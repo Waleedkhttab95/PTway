@@ -165,13 +165,13 @@ module.exports = (app) =>{
     })
 
          //DELETE notifiction by Id
-         app.delete('/api/deletenoti', auth, async (req,res) =>{
+         app.delete('/api/deletenoti', async (req,res) =>{
             const id = req.query.id;
             const notifications= await Notification.find({'content': id})
             console.log(notifications.length)
             for(var i = 0 ; notifications.length > i ; i++){
                 const notiDelete= await Notification.findOneAndDelete({'content': notifications[i].content})
-                console.log(notifications[i].content)
+                
             }
          
             if(!notifications) return res.status(400).send('not found');
