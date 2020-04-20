@@ -52,18 +52,21 @@ module.exports = (app) =>{
             .sort({ date: -1 })
             .populate('company')
             .select("job_Name _id descreption company isLock")
-            var companyImage = await CompanyInfo
-            .findOne({'company': jobAd.company._id})
-            .select("imagePath")
-            var status = notifications[i].apply
-            temp = new Object({
-                compName: jobAd.company.companyName,
-                imagePath: companyImage.imagePath,
-                jobAd : _.pick(jobAd,['job_Name','_id','descreption', 'isLock']),
-                status : status
-            });
-          
-             result.push( temp  )
+            if(jobAd) {
+                var companyImage = await CompanyInfo
+                .findOne({'company': jobAd.company._id})
+                .select("imagePath")
+                var status = notifications[i].apply
+                temp = new Object({
+                    compName: jobAd.company.companyName,
+                    imagePath: companyImage.imagePath,
+                    jobAd : _.pick(jobAd,['job_Name','_id','descreption', 'isLock']),
+                    status : status
+                });
+              
+                 result.push( temp  )
+            }
+           
           
              
             
