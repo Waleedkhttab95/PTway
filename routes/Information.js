@@ -502,8 +502,8 @@ module.exports = (app) => {
         if(info.spMajor !=undefined) count += 5;
         if(info.skills != null ) count += 5;
         if(info.personal_Skills != null) count += 5;
-        if(info.hoppies.length != 0) count += 5;
-        if(info.languages.length != 0) count += 5;
+        if(info.hoppies != null) count += 5;
+        if(info.languages != null) count += 5;
         if(info.instagram !=undefined || info.facebook !=undefined || info.twitter !=undefined 
         ||info.linkedin !=undefined ||info.personal_web !=undefined || info.about !=undefined) count += 5;
 
