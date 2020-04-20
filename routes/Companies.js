@@ -610,7 +610,7 @@ module.exports = (app) => {
         const notifications= await Notification.find({'content': id})
         
         for(var i = 0 ; notifications.length > i ; i++){
-         await Notification.findOneAndDelete({'content': notifications[i].content})
+          Notification.findOneAndDelete({'content': notifications[i].content})
             
         }
      
