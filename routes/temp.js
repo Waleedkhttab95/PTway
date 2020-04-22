@@ -1,5 +1,5 @@
 const {formTemp} = require('../models/form_Temp')
-const {formTemp2} = require('../models/form_Temp2')
+const {formTemp2} = require('../models/form_temp2')
 
 
 
