@@ -132,6 +132,18 @@ async function adminEmail(subject , message , email , name) {
     });
 };
 
+async function contactEmail(  message , email , name) {
+    const url = keys.mail_url;
+    const ccemail = fs.readFileSync(__dirname + '/contact-us.html', 'utf-8');
+    const comemail = hogan.compile(ccemail);
+    transporter.sendMail({
+        from: 'no-reply@ptway.net',
+        to: 'info@ptway.net',
+        subject: 'تواصل معنا',
+        html: comemail.render({name : name , message : message}),
+    });
+};
+
 
 
 exports.sendVerifMail = sendVerifMail;

@@ -8,7 +8,7 @@ const formSchema = new Schema({
  gender: String,
  isSaudi: String,
  nationality: String,
- city:String, 
+ city:{ type: mongoose.Schema.Types.ObjectId, ref: 'City' }, 
  street: String,
  mobile: Number,
  email: String,
