@@ -26,6 +26,7 @@ module.exports = (app) =>{
       timeToDelivier:req.body.timeToDelivier,
       mobileOS: req.body.mobileOS,
       exp: req.body.exp,
+      social: req.body.social,
       ptwayMember:req.body.ptwayMember
    }).save().then(result => { 
     res.send(result); })
