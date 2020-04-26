@@ -137,8 +137,8 @@ async function contactEmail(  message , email , name) {
     const ccemail = fs.readFileSync(__dirname + '/contact-us.html', 'utf-8');
     const comemail = hogan.compile(ccemail);
     transporter.sendMail({
-        from: 'no-reply@ptway.net',
-        to: 'info@ptway.net',
+        from: email,
+        to: 'waleed@ptway.net',
         subject: 'تواصل معنا',
         html: comemail.render({name : name , message : message}),
     });
@@ -150,5 +150,6 @@ exports.sendVerifMail = sendVerifMail;
 exports.sendResetEmail = sendResetEmail;
 exports.sendJobOffer = sendJobOffer;
 exports.companySendVerifMail = companySendVerifMail;
+exports.contactEmail = contactEmail;
 //exports.sendHelloEmail = sendHelloEmail;
 exports.adminEmail = adminEmail;
