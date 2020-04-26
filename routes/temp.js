@@ -41,7 +41,7 @@ module.exports = (app) =>{
 
 app.get('/api/getTemp', async (req,res) =>{
    var users = [];
-   const usersCount = await formTemp.find({'isSaudi': 'سعودي'}).skip(299)
+   const usersCount = await formTemp.find().skip(40)
    .populate('city');
 
    // for(var i =0 ; i< usersCount.length ; i++) {
