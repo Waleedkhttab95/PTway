@@ -1,0 +1,86 @@
+@font-face {
+    font-family: "DINNextLTArabic";
+    src: url("../fonts/ArbFONTS-DINNextLTArabic-Bold-2.ttf");
+    src: url("../fonts/ArbFONTS-DINNextLTArabic-Regular-2.ttf");
+}
+body {
+    background: #ffffff;
+    max-width: 1170px;
+    width: 100%;
+    margin: 0 auto;
+    direction: rtl;
+    font-family: 'DINNextLTArabic';
+}
+.email-message {
+    width: 900px;
+    height: 572px;
+    border-radius: 10px;
+    box-shadow: 0 5px 25px 0 rgba(4, 154, 208, 0.16);
+    background-color: #ffffff;
+    padding: 53px 67px 53px 30px;
+    margin: 30px auto;
+}
+.email-message  h2 {
+        font-size: 40px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.48;
+        letter-spacing: normal;
+        text-align: right;
+        color: #049ad0;
+}
+.email-message h3 {
+    font-size: 30px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.47;
+    letter-spacing: normal;
+    text-align: right;
+    color: #707070;
+}
+.email-message > h3 >span {
+     color: #049ad0 !important; 
+}
+.email-message p {
+    font-size: 25px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.48;
+  letter-spacing: normal;
+  text-align: right;
+  color: #707070;
+}
+.email-message button {
+    max-width: 290px;
+    width: 100%;
+    height: 53px;
+    border-radius: 6px;
+    background-color: #049ad0;
+    font-size: 25px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.48;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    margin: 50px auto;
+    display: block;
+}
+.ps {
+    font-size: 15px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.13;
+  letter-spacing: normal;
+  text-align: left;
+  color: #707070;
+  border-top: solid 1px #707070;
+    padding-top: 30px;
+}
+    
+

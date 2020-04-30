@@ -17,8 +17,8 @@ module.exports = (app) => {
     if (error) return res.status(400).send(error.details[0].message);
 
 
-    let user = await User.findOne({ email: req.body.email });
-    let company = await Company.findOne({ email: req.body.email });
+    let user = await User.findOne({ email: req.body.email.toLowerCase() });
+    let company = await Company.findOne({ email: req.body.email.toLowerCase() });
 
     if (user || company) return res.status(400).send('المستخدم مسجل مسبقا !');
 
@@ -93,8 +93,8 @@ module.exports = (app) => {
     // if (error) return res.status(400).send(error.details[0].message);
 
 
-    let company = await Company.findOne({ email: req.body.email });
-    let user = await User.findOne({ email: req.body.email });
+    let company = await Company.findOne({ email: req.body.email.toLowerCase() });
+    let user = await User.findOne({ email: req.body.email.toLowerCase() });
 
     if (company || user) return res.status(400).send('المستخدم مسجل مسبقا');
 

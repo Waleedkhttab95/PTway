@@ -197,7 +197,7 @@ module.exports = (app) => {
 
       if (!result) return res.status(400).send('خطأ في البريد أو الرقم السرّي');
       if (company.isActive == false) return res.status(400).send('يجب الموافقة من طرف إدارة الموقع .');
-
+      console.log(company)
       if (company.isConfirmed != undefined) {
         if (company.isConfirmed == false) {
           return res.status(400).send('نرجو تفعيل الحساب أولًا'); // in case he didnt confirm
@@ -291,6 +291,8 @@ module.exports = (app) => {
     console.log('user2.password = ' + user2.password);
     res.send(user2.password);
   });
+
+
 
   function validate(req) {
     const Schema = {

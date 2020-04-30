@@ -8,6 +8,8 @@ const {Accepted } = require('../models/Companies/Accepted');
 const {Candidate} = require('../models/Companies/Candidates');
 const { CompanyInfo } = require('../models/Companies/Company_Info');
 const _ = require('lodash');
+const { contactEmail } = require('../services/email/mail');
+
 
 
 
@@ -259,6 +261,12 @@ module.exports = (app) =>{
           const deleteAccepted = await Accepted.findOneAndDelete({'acceptedName' : req.body.user, 'jobAd': req.body.jobAd_id});
           res.status(200).send("updated !");
 
+    })
+
+    // cintact us
+    app.post('/api/contactUs', async(req,res)=>{
+        contactEmail(req.body.message,req.body.email,req.body.name)
+        res.status(200).send('successful !')
     })
 
     // retrive all phone numbers By Job AD
