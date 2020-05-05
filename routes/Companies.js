@@ -559,7 +559,7 @@ module.exports = (app) => {
                if(user) 
                {
                    if(user.email_notification == true && user.isConfirmed == true)
-                   sendJobOffer(user.email , user.firstName);
+                   sendJobOffer(user.email , user.firstName, jobAdId);
                }
 
                new Notification({
@@ -585,7 +585,7 @@ module.exports = (app) => {
                {
 
                 if(user.email_notification == true && user.isConfirmed == true)
-                   sendJobOffer(user.email , user.firstName);
+                   sendJobOffer(user.email , user.firstName, jobAdId);
             }
                new Notification({
                 content : jobAdId,

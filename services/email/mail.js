@@ -96,15 +96,16 @@ async function sendResetEmail(id, email , name) {
 };
 
 
-async function sendJobOffer(email , name) {
+async function sendJobOffer(email , name, id) {
     const url = keys.mail_url;
+    const link = 'https://ptway.net/user/job/' + id;
     const ccemail = fs.readFileSync(__dirname + '/email-JobsAd.html', 'utf-8');
     const comemail = hogan.compile(ccemail);
     transporter.sendMail({
         from: 'no-reply@ptway.net',
         to: email,
         subject: ' PTway عرض وظيفي',
-        html: comemail.render({name : name}),
+        html: comemail.render({name : name , link : link}),
     });
 };
 
