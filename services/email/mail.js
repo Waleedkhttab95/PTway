@@ -139,7 +139,7 @@ async function contactEmail(  message , email , name) {
     const comemail = hogan.compile(ccemail);
     transporter.sendMail({
         from: email,
-        to: 'waleed@ptway.net',
+        to: 'info@ptway.net',
         subject: 'تواصل معنا',
         html: comemail.render({name : name , message : message}),
     });
