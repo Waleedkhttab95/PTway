@@ -52,6 +52,7 @@ module.exports = (app) =>{
         email:req.body.email,
         city: req.body.city,
         jobType:req.body.jobType, 
+        description: req.body.description,
         requiredStaff: req.body.requiredStaff
      }).save().then(result => { 
       res.send(result); })
@@ -64,7 +65,7 @@ module.exports = (app) =>{
 
 app.get('/api/getTemp', async (req,res) =>{
    var users = [];
-   const usersCount = await formTemp.find().skip(8547)
+   const usersCount = await formTemp.find().skip(9176)
    .populate('city');
 
    // for(var i =0 ; i< usersCount.length ; i++) {
