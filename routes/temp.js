@@ -1,5 +1,7 @@
 const {formTemp} = require('../models/form_Temp')
 const {deliveryCompany} = require('../models/delivery-company')
+const {jobLess} = require('../models/jobLess')
+const cv = require('../middleware/cv');
 
 var ObjectId = require('mongoose').Types.ObjectId;
 
@@ -54,6 +56,45 @@ module.exports = (app) =>{
         jobType:req.body.jobType, 
         description: req.body.description,
         requiredStaff: req.body.requiredStaff
+     }).save().then(result => { 
+      res.send(result); })
+   }
+   else{
+      res.status(200).send('Done .')
+   }
+
+})
+
+
+app.post('/api/jobless',cv,async (req,res) =>{
+   const user = await jobLess.findOne({'email': req.body.email})
+
+   const url = req.protocol + '://' + req.get("host");     
+   var cvPath = '';
+   if(!req.file){
+      cvPath = "null"
+   }
+   else{
+      cvPath= url + "/cv/" + req.file.filename;
+   }
+   if(!user){
+
+     new deliveryCompany({
+        name : req.body.name,
+        gender : req.body.gender,
+        mobile: req.body.mobile,
+        email: req.body.email,
+        lastCompany:req.body.lastCompany,
+        lastJobPosition: req.body.lastJobPosition,
+        jobType:req.body.jobType, 
+        Experience: req.body.Experience,
+        YearsOfExperience: req.body.YearsOfExperience,
+        WorkingOutOfCity: req.body.WorkingOutOfCity,
+        Linkedin: req.body.Linkedin,
+        Cv: cvPath
+
+
+
      }).save().then(result => { 
       res.send(result); })
    }
