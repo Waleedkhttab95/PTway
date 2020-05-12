@@ -6,6 +6,7 @@ const multer = require('multer');
     'image/jpg': 'jpg'
 }
 const storage = multer.diskStorage({
+    
     destination: (req, file, cb) => {
        console.log("file")
 
@@ -15,14 +16,14 @@ const storage = multer.diskStorage({
         // if(isValid) {
         //     error = null;
         // }
-        cb(error , "./cv");
+        cb(null , "./cv");
     },
     filename: (req,file,cb) => {
        const name = file.originalname.toLowerCase().split(' ').join('-');
-        const ext = MIME_TYPE_MAP[file.mimetype];
+        const ext = 'pdf';
 
         cb(null, name + '-'+Date.now()+'.'+ext);
     }
 });
 
-module.exports = multer({storage: storage}).single("cv");
+module.exports = multer({storage: storage}).single("file");
