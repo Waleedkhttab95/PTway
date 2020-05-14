@@ -7,6 +7,7 @@ const companiesSchema = new Schema({
  mobile: Number,
  email: String,
  companyName:String,
+ city:{ type: mongoose.Schema.Types.ObjectId, ref: 'City' }, 
  companyLocation: String,
  companySector:String,
  companyType:String,

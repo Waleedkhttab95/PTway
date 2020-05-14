@@ -8,6 +8,7 @@ const jobLessSchema = new Schema({
  mobile: Number,
  email: String,
  lastCompany:String,
+ city:{ type: mongoose.Schema.Types.ObjectId, ref: 'City' }, 
  lastJobPosition: String,
  jobTitle:[String],
  Experience:String,
