@@ -1,5 +1,9 @@
 const {formTemp} = require('../models/form_Temp')
 const {deliveryCompany} = require('../models/delivery-company')
+const {jobLess} = require('../models/jobLess')
+const {jobCompany} = require('../models/companies')
+const cv = require('../middleware/cv');
+const file = require('../middleware/file');
 
 var ObjectId = require('mongoose').Types.ObjectId;
 
@@ -63,9 +67,79 @@ module.exports = (app) =>{
 
 })
 
+
+app.post('/api/companyjob',async (req,res) =>{
+   const user = await jobCompany.findOne({'email': req.body.email})
+   if(!user){
+     new jobCompany({
+        name : req.body.name,
+        mobile : req.body.mobile,
+        email: req.body.email,
+        city: req.body.city,
+        companyName: req.body.companyName,
+        companyLocation:req.body.companyLocation,
+        companySector: req.body.companySector,
+        companyType:req.body.companyType, 
+        companySize: req.body.companySize,
+        companyInfo: req.body.companyInfo,
+        companyWebsite: req.body.companyWebsite,
+        jobTitle: req.body.jobTitle,
+        YearsOfExperience: req.body.YearsOfExperience,
+        contract: req.body.contract
+
+     }).save().then(result => { 
+      res.send(result); })
+   }
+   else{
+      res.status(200).send('Done .')
+   }
+
+})
+
+app.post('/api/jobless',cv,async (req,res) =>{
+
+   const user = await jobLess.findOne({'email': req.body.email})
+   const url = req.protocol + '://' + req.get("host");     
+   var cvPath = '';
+   if(!req.file){
+      cvPath = "null"
+   }
+   else{
+      cvPath= url + "/cv/" + req.file.filename;
+   }
+
+   console.log(req.body.gender)
+   if(!user){
+
+     new jobLess({
+        name : req.body.name,
+        gender : req.body.gender,
+        mobile: req.body.mobile,
+        email: req.body.email,
+        city: req.body.city,
+        lastCompany:req.body.lastCompany,
+        lastJobPosition: req.body.lastJobPosition,
+        jobType:req.body.jobType, 
+        Experience: req.body.Experience,
+        YearsOfExperience: req.body.YearsOfExperience,
+        WorkingOutOfCity: req.body.WorkingOutOfCity,
+        Linkedin: req.body.Linkedin,
+        Cv: cvPath
+
+
+
+     }).save().then(result => { 
+      res.send(result); })
+   }
+   else{
+      res.status(402).send('error .')
+   }
+
+})
+
 app.get('/api/getTemp', async (req,res) =>{
    var users = [];
-   const usersCount = await formTemp.find().skip(9176)
+   const usersCount = await formTemp.find().skip(11407)
    .populate('city');
 
    // for(var i =0 ; i< usersCount.length ; i++) {

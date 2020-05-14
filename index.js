@@ -25,7 +25,10 @@ app.use(cors());
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use("/images", express.static(path.join("images")));
+app.use("/cv", express.static(path.join("cv")));
  app.use(express.static(__dirname + '/build'));
+;
+
 //app.use(express.static(path.join(__dirname, 'build')));
 
 app.use(express.json());
