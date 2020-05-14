@@ -1,5 +1,5 @@
 const {formTemp} = require('../models/form_Temp')
-const {formTemp2} = require('../models/form_temp2')
+const {deliveryCompany} = require('../models/delivery-company')
 
 var ObjectId = require('mongoose').Types.ObjectId;
 
@@ -39,9 +39,33 @@ module.exports = (app) =>{
 
  })
 
+
+
+ app.post('/api/deliveryCompany',async (req,res) =>{
+   const user = await deliveryCompany.findOne({'email': req.body.email})
+   if(!user){
+     new deliveryCompany({
+        name : req.body.name,
+        company : req.body.company,
+        supervisor: req.body.supervisor,
+        supervisorNumber: req.body.supervisorNumber,
+        email:req.body.email,
+        city: req.body.city,
+        jobType:req.body.jobType, 
+        description: req.body.description,
+        requiredStaff: req.body.requiredStaff
+     }).save().then(result => { 
+      res.send(result); })
+   }
+   else{
+      res.status(200).send('Done .')
+   }
+
+})
+
 app.get('/api/getTemp', async (req,res) =>{
    var users = [];
-   const usersCount = await formTemp.find().skip(8308)
+   const usersCount = await formTemp.find().skip(9176)
    .populate('city');
 
    // for(var i =0 ; i< usersCount.length ; i++) {
