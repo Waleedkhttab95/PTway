@@ -8,7 +8,6 @@ const companiesSchema = new Schema({
  email: String,
  companyName:String,
  city:{ type: mongoose.Schema.Types.ObjectId, ref: 'City' }, 
- companyLocation: String,
  companySector:String,
  companyType:String,
  companySize:String,

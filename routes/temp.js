@@ -77,7 +77,6 @@ app.post('/api/companyjob',async (req,res) =>{
         email: req.body.email,
         city: req.body.city,
         companyName: req.body.companyName,
-        companyLocation:req.body.companyLocation,
         companySector: req.body.companySector,
         companyType:req.body.companyType, 
         companySize: req.body.companySize,
