@@ -345,7 +345,8 @@ module.exports = (app) => {
             const city = await City.findById(info.city);
             
             res.status(200).json({
-               info
+               info,
+               status: true
             });
         } catch(ex) {
         }

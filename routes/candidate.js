@@ -12,7 +12,9 @@ module.exports = (app) => {
     const user = await Candidate.findOne({ 'candidateName': req.user._id, 'jobAd': req.body.jobAd });
     const info = await UserInfo.findOne({'user' : req.user._id});
 
+    
     if (!user) {
+      console.log('here')
       new Candidate({
         candidateName: req.user._id,
         jobAd: req.body.jobAd,
