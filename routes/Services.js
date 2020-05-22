@@ -59,9 +59,14 @@ module.exports = (app) =>{
                 .findOne({'company': jobAd.company._id})
                 .select("imagePath")
                 var status = notifications[i].apply
+                var img= "";
+
+                if (companyImage != null)
+                img= companyImage.imagePath;
+
                 temp = new Object({
                     compName: jobAd.company.companyName,
-                    imagePath: companyImage.imagePath,
+                    imagePath: img,
                     jobAd : _.pick(jobAd,['job_Name','_id','descreption', 'isLock']),
                     status : status
                 });
