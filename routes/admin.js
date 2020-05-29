@@ -151,7 +151,6 @@ module.exports = (app) => {
        Lastday.setDate( today.getDate() - 30 );
        Lastday.setHours(0, 0, 0, 0);
 
-
         const companies = await Company.find({'sortDate':{ "$gte": Lastday, "$lt": today } }).populate('CompanySpecialist')
         const users = await User.find({'sortDate': { "$gte": Lastday, "$lt": today }})
         const jobs = await JobAd.find({'sortDate': { "$gte": Lastday, "$lt": today }}).populate('project').populate('city').populate('company').populate('contract')
@@ -169,12 +168,14 @@ module.exports = (app) => {
 
        // get update between 2 dates
 
-       app.get('/api/get/dailyUpdateByDateBeforeMonth/:date?/:date2?', async (req,res) =>{
+       app.get('/api/get/dailyUpdateBybetweendates/:date?/:date2?', async (req,res) =>{
         today = new Date(req.query.date);   
         today.setHours(0, 0, 0, 0);
        Lastday = new Date(req.query.date2);
        Lastday.setHours(0, 0, 0, 0);
 
+        console.log(today)
+        console.log(Lastday)
 
         const companies = await Company.find({'sortDate':{ "$gte": today, "$lt": Lastday } }).populate('CompanySpecialist')
         const users = await User.find({'sortDate': { "$gte": today, "$lt": Lastday }})
