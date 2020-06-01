@@ -125,6 +125,8 @@ module.exports = (app) => {
        Lastday.setDate( today.getDate() - 7 );
        Lastday.setHours(0, 0, 0, 0);
 
+     
+
 
         const companies = await Company.find({'sortDate':{ "$gte": Lastday, "$lt": today } }).populate('CompanySpecialist')
         const users = await User.find({'sortDate': { "$gte": Lastday, "$lt": today }})
@@ -174,9 +176,9 @@ module.exports = (app) => {
        Lastday.setHours(0, 0, 0, 0);
 
 
-        const companies = await Company.find({'sortDate':{ "$gte": Lastday, "$lt": today } }).populate('CompanySpecialist')
-        const users = await User.find({'sortDate': { "$gte": Lastday, "$lt": today }})
-        const jobs = await JobAd.find({'sortDate': { "$gte": Lastday, "$lt": today }}).populate('project').populate('city').populate('company').populate('contract')
+        const companies = await Company.find({'sortDate':{ "$gte": today, "$lt": Lastday } }).populate('CompanySpecialist')
+        const users = await User.find({'sortDate': { "$gte": today, "$lt": Lastday }})
+        const jobs = await JobAd.find({'sortDate': { "$gte": today, "$lt": Lastday }}).populate('project').populate('city').populate('company').populate('contract')
 
         res.status(200).json({
             companies : companies,
