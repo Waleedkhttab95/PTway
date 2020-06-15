@@ -39,7 +39,7 @@ module.exports = (app) => {
   });
 
  
-  app.get('/api/getOneCandi', auth, async (req, res) => {
+  app.get('/api/getOneCandi',auth, async (req, res) => {
     const usernames = [];
     var pageNo = parseInt(req.query.pageNo)
     var size = 5
@@ -58,7 +58,7 @@ module.exports = (app) => {
 
     const Bresult = await Candidate.find({ 'jobAd': req.query.jobAd },{},query)
       .sort({ 'createDate': 1 })
-      .populate('candidateName')
+      .populate('candidateName','firstName lastName')
     if (!Bresult) return res.status(401).send('notFound')
     // const candidateNames = Bresult.map(x => x.candidateName);
     // const ids = Bresult.map(x => x._id);

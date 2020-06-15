@@ -4,6 +4,7 @@ const auth = require('../middleware/auth');
 const file = require('../middleware/file');
 const {City} = require('../models/Shared/City');
 const {spMajor} = require('../models/Shared/SpMajor');
+const { Candidate } = require('../models/Companies/Candidates');
 const {publicMajor} = require('../models/Shared/Public_Major');
 const {Country} = require('../models/Shared/Country');
 const {Skills} = require('../models/Users/skills');
@@ -249,7 +250,12 @@ module.exports = (app) => {
       //Get user info by ID
       app.get('/api/get/userinfo', auth, async (req, res) => {
         const id = req.query.id;
+        const jobAd = req.query.jobAd;
         const info = await UserInfo.findOne({ 'user': id });
+        await Candidate.findOneAndUpdate({'candidateName':id ,'jobAd':jobAd},
+        {
+            isRead: true
+        })
         const user = await User.findById(id);
         if (!info) return res.status(401).send('not found');
 

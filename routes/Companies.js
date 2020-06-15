@@ -571,7 +571,6 @@ module.exports = (app) => {
                }).save();
             })
     
-            res.status(200).send("Done .");
        }
        else {
            const result = await UserInfo
@@ -596,7 +595,6 @@ module.exports = (app) => {
                }).save();
             })
     
-            res.status(200).send("Done .");
        }
    
 
@@ -607,12 +605,8 @@ module.exports = (app) => {
 
 
     async function delete_Noti(id) {
-        const notifications= await Notification.find({'content': id})
+        const notifications= await Notification.deleteMany({'content': id})
         
-        for(var i = 0 ; notifications.length > i ; i++){
-          Notification.findOneAndDelete({'content': notifications[i].content})
-            
-        }
      
     }
 
