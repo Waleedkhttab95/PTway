@@ -138,7 +138,7 @@ app.post('/api/jobless',cv,async (req,res) =>{
 
 app.get('/api/getTemp', async (req,res) =>{
    var users = [];
-   const usersCount = await formTemp.find({"isSaudi":"سعودي"}).skip(6823)
+   const usersCount = await formTemp.find({"isSaudi":"سعودي"}).skip(12432)
    .populate('city');
 
    // for(var i =0 ; i< usersCount.length ; i++) {
