@@ -251,84 +251,28 @@ module.exports = (app) => {
       app.get('/api/get/userinfo', auth, async (req, res) => {
         const id = req.query.id;
         const jobAd = req.query.jobAd;
-        const info = await UserInfo.findOne({ 'user': id });
+        const info = await UserInfo.findOne({ 'user': id })
+        .populate('country city public_Major spMajor universty personal_Skills skills');
         await Candidate.findOneAndUpdate({'candidateName':id ,'jobAd':jobAd},
         {
-            isRead: true
+            $set:{
+                isRead: true
+            }
         })
         const user = await User.findById(id);
         if (!info) return res.status(401).send('not found');
 
         info.profile_views += 1;
         info.save();
-        var uni = "";
-        var spMaj = "";
-        const country = await Country.findById(info.country);
-        const city = await City.findById(info.city);
-        const cpublic_Major = await publicMajor.findById(info.public_Major);
-        const cspicifc_Major = await spMajor.findById(info.spMajor);
-        if(cspicifc_Major) spMaj = cspicifc_Major.majorName;
-
-        const universty = await Universty.findById(info.universty);
-        if(universty) uni = universty.universtyName;
-
-        const company = [];
- 
-        for(var c = 0 ; c < info.companies.length ; c++) {
-            const result = await Company.findById(info.companies[c]).select("companyName -_id");
-            company.push(result.companyName)
-        
-        }
-            const skill = []
-           
-            if(info.skills != null)
-            for(var i = 0 ; i < info.skills.length ; i++) {
-                const result = await Skills.findById(info.skills[i]).select("skillName -_id");
-                skill.push(result.skillName)
-        
-            }
-        
-            const Personlskill =[]
-          
-            if(info.personal_Skills != null)
-            for(var j = 0 ; j < info.personal_Skills.length ; j++) {
-                
-                const result = await PersonalSkills.findById(info.personal_Skills[j]).select("skillName -_id");
-                
-                Personlskill.push(result.skillName)
-        
-            }
+    
+      
         
         try{
 
             res.status(200).json({
                 email:user.email,
-                country: country.countryName,
-                study_degree: info.study_degree,
-               imagePath: info.imagePath,
-                education_degree: info.education_degree,
-                gender: info.gender,
-                mobile: info.mobile,
-                fullName: info.fullName,
-                work_Hours: info.work_Hours,
-                birthDate: info.birthDate,
-                universty: uni,
-                companies: company,
-                city: city.cityName,
-                Education_level: info.Education_level,
-                public_Major: cpublic_Major.majorName,
-                spicifc_Major:spMaj,
-                languages: info.languages,
-                skills: skill,
-                personal_Skills: Personlskill,
-                hoppies: info.hoppies,
-                social_Status: info.social_Status,
-                about: info.about,
-                personal_web: info.personal_web,
-                facebook: info.facebook,
-                twitter: info.twitter,
-                instagram: info.instagram,
-                linkedin: info.linkedin,
+               info: info
+                
             });
         } catch(ex) {
         }
