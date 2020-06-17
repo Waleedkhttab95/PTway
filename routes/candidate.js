@@ -40,9 +40,9 @@ module.exports = (app) => {
 
  
   app.get('/api/getOneCandi',auth, async (req, res) => {
-    const usernames = [];
+    var Bresult = [];
     var pageNo = parseInt(req.query.pageNo)
-    var size = 200
+    var size = 10
     var query = {}
 
     if(pageNo < 0 || pageNo === 0) {
@@ -56,23 +56,28 @@ module.exports = (app) => {
   const candidatesCount = await Candidate.count({  'jobAd': req.query.jobAd }); // get pages count
   var totalPages = Math.ceil(candidatesCount / size)
 
-    const Bresult = await Candidate.find({ 'jobAd': req.query.jobAd },{},query)
+    const users = await Candidate.find({ 'jobAd': req.query.jobAd },{},query)
       .sort({ 'createDate': 1 })
       .populate('candidateName','firstName lastName')
       .populate('jobAd','job_Name')
-    if (!Bresult) return res.status(401).send('notFound')
-    // const candidateNames = Bresult.map(x => x.candidateName);
-    // const ids = Bresult.map(x => x._id);
+    if (!users) return res.status(401).send('notFound')
 
-    // for (var i = 0; i < candidateNames.length; i++) {
-    //   const users = await User.findById(candidateNames[i]).select("firstName lastName -_id")
-    //   usernames.push(users);
-    // }
+  
 
-    // const username = usernames.map(x => x.firstName + ' ' + x.lastName);
+    for(let i = 0 ; i < users.length ; i++){
+      const userInfo =  await UserInfo.findOne({'user': users[i].candidateName})
+      .select('imagePath -_id')
+      const obj = {
+        user: users[i],
+        image: userInfo
+      }
+      Bresult.push(obj)
+    }
+ 
 
     res.status(200).json({
-     Bresult,totalPages
+     Bresult:Bresult,
+     totalPages: totalPages
     });
 
 
