@@ -27,24 +27,12 @@ module.exports = (app) =>{
         const userId = req.query.userId;
        var result = [];
         var temp ;
-        var pageNo = parseInt(req.query.pageNo)
-        var size = 4
-        var query = {}
-
-        
-        if(pageNo < 0 || pageNo === 0) {
-            response = {"error" : true,"message" : "invalid page number, should start with 1"};
-            return res.json(response)
-      }
-
-      query.skip = size * (pageNo - 1)
-      query.limit = size
 
       const notificationsCounts = await Notification
       .count({user: req.user._id})
-      var totalPages = Math.ceil(notificationsCounts / size)
+
         const notifications = await Notification
-        .find({user: req.user._id},{},query)
+        .find({user: req.user._id})
         .select('-user')
         .sort({'date' : -1});
 
@@ -82,8 +70,7 @@ module.exports = (app) =>{
    
       
         res.status(200).json({
-            result: result,
-            totalPages
+            result: result
         });
     });
 
