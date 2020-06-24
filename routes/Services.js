@@ -56,7 +56,8 @@ module.exports = (app) =>{
                     compName: jobAd.company.companyName,
                     imagePath: img,
                     jobAd : _.pick(jobAd,['job_Name','_id','descreption', 'isLock']),
-                    status : status
+                    status : status,
+                    isRead: notifications[i].isRead
                 });
               
                  result.push( temp  )
