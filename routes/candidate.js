@@ -12,7 +12,7 @@ module.exports = (app) => {
     const user = await Candidate.findOne({ 'candidateName': req.user._id, 'jobAd': req.body.jobAd });
     const info = await UserInfo.findOne({'user' : req.user._id});
 
-    
+
     if (!user) {
       console.log('here')
       new Candidate({
@@ -20,7 +20,7 @@ module.exports = (app) => {
         jobAd: req.body.jobAd,
         createDate:Date.now()
       }).save()
-        .then(result => { 
+        .then(result => {
             info.aplled_jobs +=1;
             info.save();
           res.send(result); })
@@ -38,31 +38,31 @@ module.exports = (app) => {
 
   });
 
- 
+
   app.get('/api/getOneCandi',auth, async (req, res) => {
     var Bresult = [];
-    // var pageNo = parseInt(req.query.pageNo)
-    // var size = 10
-    // var query = {}
+    var pageNo = parseInt(req.query.pageNo)
+    var size = 10
+    var query = {}
 
-  //   if(pageNo < 0 || pageNo === 0) {
-  //       response = {"error" : true,"message" : "invalid page number, should start with 1"};
-  //       return res.json(response)
-  // }
+    if(pageNo < 0 || pageNo === 0) {
+        response = {"error" : true,"message" : "invalid page number, should start with 1"};
+        return res.json(response)
+  }
 
-  // query.skip = size * (pageNo - 1)
-  // query.limit = size
+  query.skip = size * (pageNo - 1)
+  query.limit = size
 
-  //const candidatesCount = await Candidate.count({  'jobAd': req.query.jobAd }); // get pages count
-  //var totalPages = Math.ceil(candidatesCount / size)
+  const candidatesCount = await Candidate.count({  'jobAd': req.query.jobAd }); // get pages count
+  var totalPages = Math.ceil(candidatesCount / size)
 
-    const users = await Candidate.find({ 'jobAd': req.query.jobAd })
+    const users = await Candidate.find({ 'jobAd': req.query.jobAd },{},query)
       .sort({ 'createDate': 1 })
       .populate('candidateName','firstName lastName')
       .populate('jobAd','job_Name')
     if (!users) return res.status(401).send('notFound')
 
-  
+
 
     for(let i = 0 ; i < users.length ; i++){
       const userInfo =  await UserInfo.findOne({'user': users[i].candidateName})
@@ -73,10 +73,11 @@ module.exports = (app) => {
       }
       Bresult.push(obj)
     }
- 
+
 
     res.status(200).json({
-     Bresult:Bresult
+     Bresult:Bresult,
+     totalPages: totalPages
     });
 
 
