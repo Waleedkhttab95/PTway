@@ -28,7 +28,7 @@ module.exports = (app) =>{
        var result = [];
         var temp ;
         var pageNo = parseInt(req.query.pageNo)
-        var size = 10
+        var size = 12
         var query = {}
 
         if(pageNo < 0 || pageNo === 0) {
