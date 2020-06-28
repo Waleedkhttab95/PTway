@@ -16,7 +16,7 @@ const { contactEmail } = require('../services/email/mail');
 
 module.exports = (app) =>{
 
-    
+
 
 
 
@@ -27,12 +27,25 @@ module.exports = (app) =>{
         const userId = req.query.userId;
        var result = [];
         var temp ;
+        var pageNo = parseInt(req.query.pageNo)
+        var size = 10
+        var query = {}
+
+        if(pageNo < 0 || pageNo === 0) {
+            response = {"error" : true,"message" : "invalid page number, should start with 1"};
+            return res.json(response)
+      }
+
+      query.skip = size * (pageNo - 1)
+      query.limit = size;
+
 
       const notificationsCounts = await Notification
       .count({user: req.user._id})
+      var totalPages = Math.ceil(notificationsCounts / size)
 
         const notifications = await Notification
-        .find({user: req.user._id})
+        .find({user: req.user._id},{},query)
         .select('-user')
         .sort({'date' : -1});
 
@@ -59,19 +72,20 @@ module.exports = (app) =>{
                     status : status,
                     isRead: notifications[i].isRead
                 });
-              
+
                  result.push( temp  )
             }
-           
-          
-             
-            
+
+
+
+
         }
 
-   
-      
+
+
         res.status(200).json({
-            result: result
+            result: result,
+            totalPages
         });
     });
 
@@ -102,12 +116,12 @@ module.exports = (app) =>{
 
         res.send(notifications);
     });
-   
+
     // Get spicific notification ..
 
     app.get('/api/get/notification',auth, async (req,res) =>{
         const id = req.query.id;
-          
+
         const job= await JobAd.findById(id);
          if(!job) return res.status(401).send('not found');
          const countres = await Country.findById(job.country);
@@ -169,9 +183,9 @@ module.exports = (app) =>{
             console.log(notifications.length)
             for(var i = 0 ; notifications.length > i ; i++){
                 const notiDelete= await Notification.findOneAndDelete({'content': notifications[i].content})
-                
+
             }
-         
+
             if(!notifications) return res.status(400).send('not found');
             res.send("Deleted !");
     });
@@ -181,22 +195,22 @@ module.exports = (app) =>{
     app.post('/api/start/job', async (req, res) => {
 
         Date.prototype.addDays = function (startDate,days) {
-            
+
             var date = new Date(startDate);
             date.setDate(date.getDate() + days);
-            
+
             return date;
         }
         const start_day = await JobAd.findById(req.body.jobAd_id);
-        
+
         const contract_days = await Contract.findById(start_day.contract).select('days -_id');
         if(contract_days.days == -1) return res.status(200).send('long term contract !');
         var Ed = new Date();
-        
+
         Ed = Ed.addDays(start_day.startDate,start_day.work_days);
 
-        const workHours = start_day.work_hours * start_day.work_days ; 
-       
+        const workHours = start_day.work_hours * start_day.work_days ;
+
 
         new endDate({
              endDate: Ed,
@@ -205,24 +219,24 @@ module.exports = (app) =>{
         }).save().then(user =>{
             res.send(user);
         })
-        
+
     })
     app.post('/api/end/job', async (req,res) =>{
-     
+
 
         Date.daysBetween = function( date1, date2 ) {
             //Get 1 day in milliseconds
             var one_day=1000*60*60*24;
-          
+
             // Convert both dates to milliseconds
             var date1_ms = date1.getTime();
             var date2_ms = date2.getTime();
-          
+
             // Calculate the difference in milliseconds
             var difference_ms = date2_ms - date1_ms;
-              
+
             // Convert back to days and return
-            return Math.round(difference_ms/one_day); 
+            return Math.round(difference_ms/one_day);
           }
           const start_day = await JobAd.findById(req.body.jobAd_id);
           const update_limit_number = await JobAd.updateOne({ '_id': req.body.jobAd_id },
@@ -233,13 +247,13 @@ module.exports = (app) =>{
           }
       )
           //Set the two dates
-          var startD  = new Date(start_day.startDate); 
+          var startD  = new Date(start_day.startDate);
           var calcDate = new Date(startD.getFullYear() , startD.getMonth()-1, startD.getDate());
           var today= new Date();
 
           var endDate =  Date.daysBetween(calcDate, today);
 
-          const workHours = start_day.work_hours * endDate ; 
+          const workHours = start_day.work_hours * endDate ;
 
           const current_user = await UserInfo.findOne({'user' : req.body.user});
 
@@ -250,7 +264,7 @@ module.exports = (app) =>{
             }
         }
           );
-         
+
           const deleteAccepted = await Accepted.findOneAndDelete({'acceptedName' : req.body.user, 'jobAd': req.body.jobAd_id});
           res.status(200).send("updated !");
 
@@ -268,16 +282,16 @@ module.exports = (app) =>{
         const jobId = req.query.jobAd;
         var data = []
         var dataModel ;
-      
+
         const job = await JobAd.findById(jobId);
         if(!job) return res.status('401').send('not found jobAd !')
 
         const results = await Candidate.find({'jobAd': jobId});
         if(!job) return res.status('401').send('not found Candidate !')
         if(results){
-            results.forEach( result =>{  
-              
-                   
+            results.forEach( result =>{
+
+
                 var number =  UserInfo.findOne({'user':result.candidateName}).populate('user').then(num =>{
                    console.log(num.user.email)
                    dataModel = {
@@ -286,23 +300,23 @@ module.exports = (app) =>{
                        email: num.user.email
                    }
                    data.push(dataModel)
-                  
+
                     if(data.length == results.length){
 
                         return  res.status(200).send(data)
 
-    
+
                     }
                 });
 
-              
-    
+
+
             })
 
         }
     })
-        
-    
+
+
          // retrive all phone numbers By city and Major
 
     app.get('/api/get/phonenumbersByCityAndMajor',async (req,res) =>{
@@ -312,7 +326,7 @@ module.exports = (app) =>{
         var data = []
         var dataModel ;
 
-    
+
         const results = await UserInfo.find({'city': city,'public_Major':major,'spMajor':spMajor}).populate('user')
         .select('fullName mobile user -_id');
         if(!results) return res.status('401').send('not found Candidate !')
@@ -326,18 +340,18 @@ module.exports = (app) =>{
                     email: num.user.email
                 }
                 data.push(dataModel)
-                   
+
                     if(data.length == results.length){
 
                         return  res.status(200).send(data)
 
-    
+
                     }
-    
+
             })
 
         }
-     
+
 
 
     })
@@ -346,11 +360,11 @@ module.exports = (app) =>{
 
     app.get('/api/get/phonenumbersByCityAndGender',async (req,res) =>{
         const city = req.query.city;
-       
+
         var data = []
         var dataModel ;
 
-    
+
         const results = await UserInfo.find({'city': city,'gender':'انثى'}).populate('user')
         .select('fullName mobile user -_id');
         if(results){
@@ -362,23 +376,23 @@ module.exports = (app) =>{
                     email: num.user.email
                 }
                 data.push(dataModel)
-                   
+
                     if(data.length == results.length){
 
                         return  res.status(200).send(data)
 
-    
+
                     }
-    
+
             })
 
         }
-     
+
 
 
     })
 
-  
+
 
 
   // By study degree
@@ -394,12 +408,12 @@ module.exports = (app) =>{
         var dd = today.getDate();
         var mm = today.getMonth()+1; //As January is 0.
         var yyyy = today.getFullYear();
-        
+
         if(dd<10) dd='0'+dd;
         if(mm<10) mm='0'+mm;
         var dd=mm+'/'+dd+'/'+yyyy ;
         return dd;
     }
- 
+
 }
 
