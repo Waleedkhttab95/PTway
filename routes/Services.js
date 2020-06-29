@@ -28,7 +28,7 @@ module.exports = (app) =>{
        var result = [];
         var temp ;
         var pageNo = parseInt(req.query.pageNo)
-        var size = 12
+        var size = 10
         var query = {}
 
         if(pageNo < 0 || pageNo === 0) {
@@ -43,7 +43,6 @@ module.exports = (app) =>{
       const notificationsCounts = await Notification
       .count({user: req.user._id})
       var totalPages = Math.ceil(notificationsCounts / size)
-
         const notifications = await Notification
         .find({user: req.user._id},{},query)
         .select('-user')
@@ -76,6 +75,10 @@ module.exports = (app) =>{
                  result.push( temp  )
             }
 
+            else {
+
+                await Notification.findOneAndDelete({'content': notifications[i].content})
+            }
 
 
 

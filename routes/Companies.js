@@ -70,7 +70,7 @@ module.exports = (app) => {
         res.status(200).send(type.sector);
     });
 
-    // POST PROJECT 
+    // POST PROJECT
     app.post('/api/postproject', auth, (req, res) => {
         new Project({
             createDate: Date.now(),
@@ -95,7 +95,7 @@ module.exports = (app) => {
             });
     });
 
-    // counts of projects, Jobs 
+    // counts of projects, Jobs
     app.get('/api/get/counts', auth, async (req, res) => {
 
         var projectsCounts = 0;
@@ -122,9 +122,9 @@ module.exports = (app) => {
 
     })
 
-    // POST job Ad 
+    // POST job Ad
     app.post('/api/postjob', auth, (req, res) => {
-        var lock_date = lockDate(); 
+        var lock_date = lockDate();
         var today = new Date();
         today.setHours(0, 0, 0, 0);
         new JobAd({
@@ -188,7 +188,7 @@ module.exports = (app) => {
     app.get('/api/getprojects', auth, async (req, res) => {
         const id = req.user._id;
         const JobAdsCount= [];
-      
+
 
         var pageNo = parseInt(req.query.pageNo)
         var size = 3
@@ -222,19 +222,19 @@ module.exports = (app) => {
     app.get('/api/getprojectsById/:_id?', auth, async (req, res) => {
         const id = req.query._id;
         const proj = await Project.find({ company: id });
-        
+
 
         res.status(200).send(proj)
     });
 
-     // Get all projects 
+     // Get all projects
 
      app.get('/api/getAllProjects', auth, async (req, res) => {
         const projects = await Project.find();
         res.send(projects);
     })
 
-    // Get all jobs Ad 
+    // Get all jobs Ad
 
     app.get('/api/getjobs', auth, async (req, res) => {
         const jobs = await JobAd.find().populate('project').populate('city').populate('company').populate('contract')
@@ -311,7 +311,7 @@ module.exports = (app) => {
     // get job preview ( for companies)
     app.get('/api/preview/getjob', auth, async (req, res) => {
         const id = req.query.id;
-        
+
         const job = await JobAd.findById(id);
         if (!job) return res.status(401).send('not found');
         const countres = await Country.findById(job.country);
@@ -352,7 +352,7 @@ module.exports = (app) => {
         const id = req.query.projectid;
 
         const job = await JobAd.find({ project: id });
-      
+
 
         res.status(200).json({
           job
@@ -441,7 +441,7 @@ module.exports = (app) => {
 
 
     // Edit JobAd
-    
+
     app.put('/api/put/job', auth, async (req, res) => {
         const jobAd = await JobAd.updateOne({ '_id': req.body.id }, {
             $set: {
@@ -520,10 +520,10 @@ module.exports = (app) => {
 
     function lockDate() {
         Date.prototype.addDays = function (startDate,days) {
-            
+
             var date = new Date(startDate);
             date.setDate(date.getDate() + days);
-            
+
             return date;
         }
 
@@ -535,7 +535,7 @@ module.exports = (app) => {
         return Ld;
     }
 
-    
+
 
    async function send_JobAds(jobAd) {
 
@@ -544,9 +544,9 @@ module.exports = (app) => {
              const gender= jobAd.gender;
              // const  personal_Skills= jobAd.personal_Skills;
              // const public_Major = jobAd.public_Major; public_Major :'5caf4ffbffec65462ec2a09a' , '5caf5618ffec65462ec2a0ce'
-          
+
              const jobAdId = jobAd._id;
-             
+
        if(gender == "both") {
            const result = await UserInfo
            .find({ country: country,city: city})
@@ -556,7 +556,7 @@ module.exports = (app) => {
                //here write email code
                // r.user is giving the id
                const user  = await User.findById(r.user);
-               if(user) 
+               if(user)
                {
                    if(user.email_notification == true && user.isConfirmed == true)
                    sendJobOffer(user.email , user.firstName, jobAdId);
@@ -570,7 +570,7 @@ module.exports = (app) => {
                 apply: false
                }).save();
             })
-    
+
        }
        else {
            const result = await UserInfo
@@ -580,7 +580,7 @@ module.exports = (app) => {
 
            result.forEach(async function(r) {
                const user  = await User.findById(r.user);
-               if(user) 
+               if(user)
                {
 
                 if(user.email_notification == true && user.isConfirmed == true)
@@ -594,20 +594,20 @@ module.exports = (app) => {
                 apply: false
                }).save();
             })
-    
-       }
-   
 
-   
- 
+       }
+
+
+
+
 
     }
 
 
     async function delete_Noti(id) {
         const notifications= await Notification.deleteMany({'content': id})
-        
-     
+
+
     }
 
 }
