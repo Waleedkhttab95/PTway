@@ -10,7 +10,6 @@ const bodyParser = require('body-parser');
 require('express-async-errors');
 
 
-
 require('./models/Users/User');
 require('./services/passport');
 
@@ -36,7 +35,7 @@ app.use(
   cookieSession({
       maxAge: 30 * 24 * 60 *60*1000,
       keys: [keys.cookieKey]
-  })  
+  })
 );
 app.use(error);
 
@@ -67,7 +66,7 @@ require('./startup/prod')(app);
 
 
 app.get('/*', function(req,res) {
-    
+
   res.sendFile(path.join(__dirname+'/build/index.html'));
   });
 

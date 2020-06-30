@@ -48,6 +48,27 @@ module.exports = (app) =>{
         .select('-user')
         .sort({'date' : -1});
 
+        result = await filterNotification(notifications);
+
+         while(notifications.length != result.length){
+             console.log(notifications.length)
+             console.log(result.length)
+
+            result = await filterNotification(notifications);
+         }
+
+        res.status(200).json({
+            result: result,
+            totalPages
+        });
+    });
+
+
+    // function to filter and delete notification jobs
+
+    async function filterNotification (notifications) {
+
+        let result = []
         for(var i = 0 ; i<notifications.length ; i++){
             var jobAd = await JobAd
             .findOne({_id : notifications[i].content})
@@ -76,21 +97,16 @@ module.exports = (app) =>{
             }
 
             else {
-
-                await Notification.findOneAndDelete({'content': notifications[i].content})
+                const deleteNot = await Notification.findByIdAndDelete(notifications[i]._id)
             }
 
 
 
         }
 
+        return result;
 
-
-        res.status(200).json({
-            result: result,
-            totalPages
-        });
-    });
+    }
 
     // Edit notification
     app.put('/api/edit/notification',async (req,res) =>{
@@ -358,6 +374,9 @@ module.exports = (app) =>{
 
 
     })
+
+
+
 
     // By city and gender
 
