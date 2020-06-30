@@ -31,7 +31,7 @@ module.exports = (app) => {
     })
 
 
-    
+
     // return Pandding company
     app.get('/api/get/companyApproval', async (req, res) => {
         const result = await Company.find({"isActive":false}).populate('CompanySpecialist')
@@ -51,18 +51,18 @@ module.exports = (app) => {
 
     })
 
-    // make all emails lowercase 
+    // make all emails lowercase
     app.put('/api/makeToLowerCase', async (req, res) => {
         const user = await User.find();
-        
+
         for(var i=0 ; i <=user.length ; i++){
           var id =  user[i]._id ;
-        
+
           const upd= await User.updateOne({ '_id': id }, {
                 $set: { email: user[i].email.toLowerCase(), }
             })
         }
-       
+
         res.status(200).send("Updated");
 
     })
@@ -100,7 +100,7 @@ module.exports = (app) => {
     app.get('/api/get/dailyUpdate', async (req,res) =>{
         today = new Date();
         today.setHours(0, 0, 0, 0);
-       
+
         const companies = await Company.find({'sortDate': today}).populate('CompanySpecialist')
         const users = await User.find({'sortDate': today})
         const jobs = await JobAd.find({'sortDate': today}).populate('project').populate('city').populate('company').populate('contract')
@@ -119,13 +119,13 @@ module.exports = (app) => {
     // get update By Date
 
     app.get('/api/get/dailyUpdateByDateWeek/:date?', async (req,res) =>{
-        today = new Date(req.query.date);   
+        today = new Date(req.query.date);
         today.setHours(0, 0, 0, 0);
        Lastday = new Date();
        Lastday.setDate( today.getDate() - 7 );
        Lastday.setHours(0, 0, 0, 0);
 
-     
+
 
 
         const companies = await Company.find({'sortDate':{ "$gte": Lastday, "$lt": today } }).populate('CompanySpecialist')
@@ -145,7 +145,7 @@ module.exports = (app) => {
     // get update By Date before month
 
     app.get('/api/get/dailyUpdateByDateBeforeMonth/:date?', async (req,res) =>{
-        today = new Date(req.query.date);   
+        today = new Date(req.query.date);
         today.setHours(0, 0, 0, 0);
        Lastday = new Date();
        Lastday.setDate( today.getDate() - 30 );
@@ -169,7 +169,7 @@ module.exports = (app) => {
        // get update between 2 dates
 
        app.get('/api/get/dailyUpdateBybetweendates/:date?/:date2?', async (req,res) =>{
-        today = new Date(req.query.date);   
+        today = new Date(req.query.date);
         today.setHours(0, 0, 0, 0);
        Lastday = new Date(req.query.date2);
        Lastday.setHours(0, 0, 0, 0);
@@ -327,11 +327,11 @@ module.exports = (app) => {
             // recevie URL Paramaters
             const major = req.query.major;
             const spMajor = req.query.spMajor;
-            
-       
 
 
-            if( spMajor.includes('undefined')){  
+
+
+            if( spMajor.includes('undefined')){
 
                 const Users = await UserInfo.find({ 'public_Major': major }).countDocuments();
                 res.status(200).json({
@@ -623,13 +623,13 @@ module.exports = (app) => {
             const hashPassword = await bcrypt.hash(user.password, salt, null, (error, hash) => {
                 if (error) res.status(400)
                 user.password = hash;
-                user.isConfirmed = false; // initially will be false 
+                user.isConfirmed = false; // initially will be false
                 user.isSubAdmin = true;
                 user.save();
             });
-            
+
             sendVerifMail(user.firstName, user.email);
-                
+
             res.status(200).send(user);
         }
         catch (error) {
@@ -639,7 +639,7 @@ module.exports = (app) => {
     });
 
     // Read
-    // the concept behind the read is: search API will look for id,email and first name 
+    // the concept behind the read is: search API will look for id,email and first name
     // and will return the user object , so we will use the object to show the info.
     app.get('/api/get/readUser', async (req, res) => {
         try {
@@ -654,10 +654,10 @@ module.exports = (app) => {
     });
 
     // Write
-    // the concept behind the write is: search API will look for id,email and first name 
+    // the concept behind the write is: search API will look for id,email and first name
     // and will return the user object , so we will use the object to write the info.
     app.put('/api/put/writeOnUser/:updateType?/:value?', async (req, res) => {
-        try {            
+        try {
             const user = req.body.user; //it's array maybe single record or multiple be attention!!
             if (!user) return res.status(400).send('المستخدم غير موجود');
             const id = user._id;
@@ -714,7 +714,7 @@ module.exports = (app) => {
 
 
     // Delete
-    // the concept behind the delete is: search API will look for id,email and first name 
+    // the concept behind the delete is: search API will look for id,email and first name
     // and will return the user object , so we will use the object to delete the info.
     app.delete('/api/delete/deleteUser', async (req, res) => {
         try {
@@ -757,21 +757,21 @@ module.exports = (app) => {
                 .then(async result => {
                     const salt = await bcrypt.genSalt(10, (error, hash) => {
                         if (error) res.status(400)
-        
+
                     });
                     const hashPassword = await bcrypt.hash(company.password, salt, null, (error, hash) => {
                         if (error) res.status(400)
                         company.password = hash;
                         company.save();
                     });
-        
-        
-                    company.isConfirmed = false; // initially will be false 
+
+
+                    company.isConfirmed = false; // initially will be false
                     companySendVerifMail(company.companyName, company.email);
-        
-        
+
+
                     const token = company.generateAuthToken();
-        
+
                     res.status(200).send('تم إضافة الشركة بنجاح');
                 })
                     .catch(error => {
@@ -785,7 +785,7 @@ module.exports = (app) => {
     });
 
     // Read
-    // the concept behind the read is: search API will look for id,email and companyName 
+    // the concept behind the read is: search API will look for id,email and companyName
     // and will return the company object , so we will use the object to show the info.
     app.get('/api/get/readComapny', async (req, res) => {
         try {
@@ -800,7 +800,7 @@ module.exports = (app) => {
     });
 
     // Write
-    // the concept behind the write is: search API will look for id,email and companyName 
+    // the concept behind the write is: search API will look for id,email and companyName
     // and will return the company object , so we will use the object to write the info.
     app.put('/api/put/writeOnCompany/:updateType?/:value?', async (req, res) => {
         try {
@@ -860,8 +860,7 @@ module.exports = (app) => {
                     {
                         // const companySp = CompanySpecialist.findOne({ 'specialistName': value });
                         // const companySpId = companySp._id;
-                        console.log('value',value,id);
-                        
+
                         await Company.updateOne({ '_id': id }, {
                             $set: { CompanySpecialist: value }
                         });
@@ -885,7 +884,7 @@ module.exports = (app) => {
 
 
     // Delete
-    // the concept behind the delete is: search API will look for id,email and companyName 
+    // the concept behind the delete is: search API will look for id,email and companyName
     // and will return the Company object , so we will use the object to delete the info.
     app.delete('/api/delete/deleteCompany', async (req, res) => {
         try {
@@ -944,7 +943,7 @@ module.exports = (app) => {
         }
     });
 
-  
+
 
     // return All users
     app.get('/api/get/allUsers', async (req,res) =>{
@@ -968,7 +967,7 @@ module.exports = (app) => {
         })
     });
 
-    // Confirm user 
+    // Confirm user
     app.put('/api/confitm/user/:id?', async (req,res) =>{
         const user = await User.updateOne({'_id': req.query.id},
         {
@@ -981,10 +980,10 @@ module.exports = (app) => {
        return res.status(200).json({
             message: "Successful !"
         });
-        
+
     });
 
-     // Block user 
+     // Block user
      app.put('/api/block/user/:id?', async (req,res) =>{
         const user = await User.updateOne({'_id': req.query.id},
         {
@@ -997,11 +996,11 @@ module.exports = (app) => {
        return res.status(200).json({
             message: "Successful !"
         });
-        
+
     });
 
 
-       // Confirm Company 
+       // Confirm Company
        app.put('/api/confitm/company/:id?', async (req,res) =>{
         const company = await Company.updateOne({'_id': req.query.id},
         {
@@ -1014,10 +1013,10 @@ module.exports = (app) => {
        return res.status(200).json({
             message: "Successful !"
         });
-        
+
     });
 
-     // Block company 
+     // Block company
      app.put('/api/block/company/:id?', async (req,res) =>{
         const company = await Company.updateOne({'_id': req.query.id},
         {
@@ -1030,13 +1029,13 @@ module.exports = (app) => {
        return res.status(200).json({
             message: "Successful !"
         });
-        
+
     });
 
     // post job ad by admin
 
     app.post('/api/post/jobAd',async (req,res) =>{
-        var lock_date = lockDate(); 
+        var lock_date = lockDate();
         var today = new Date();
         today.setHours(0, 0, 0, 0);
         new JobAd({
@@ -1073,7 +1072,7 @@ module.exports = (app) => {
     })
 
    async function send_jobs(body, jobAdId) {
-   
+
          const country=body.country;
          const city= body.city;
          const gender= body.gender;
@@ -1081,7 +1080,7 @@ module.exports = (app) => {
          const spMajor = body.spMajor;
          const universty = body.universty;
          const jobAd =jobAdId;
-         
+
    if(gender == "both") {
        const result = await UserInfo
        .find({ country: country,city: city,public_Major: public_Major,
@@ -1092,7 +1091,7 @@ module.exports = (app) => {
            //here write email code
            // r.user is giving the id
            const user  = await User.findById(r.user);
-           if(user) 
+           if(user)
            {
                sendJobOffer(user.email , user.firstName);
            }
@@ -1117,7 +1116,7 @@ module.exports = (app) => {
 
        result.forEach(async function(r) {
            const user  = await User.findById(r.user);
-           if(user) 
+           if(user)
            {
                sendJobOffer(user.email , user.firstName);
            }
@@ -1130,7 +1129,7 @@ module.exports = (app) => {
            }).save();
         })
 
-        
+
    }
 
 
@@ -1140,10 +1139,10 @@ module.exports = (app) => {
 
        function lockDate() {
         Date.prototype.addDays = function (startDate,days) {
-            
+
             var date = new Date(startDate);
             date.setDate(date.getDate() + days);
-            
+
             return date;
         }
 

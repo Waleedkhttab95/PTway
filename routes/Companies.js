@@ -245,7 +245,6 @@ module.exports = (app) => {
 
     // get all jobs for company by email
     app.get('/api/getjobsByEmail/:email?', auth, async (req, res) => {
-        console.log( req.query.email)
         const company = await Company.findOne({'email': req.query.email})
         if (!company) return res.status(402).send('not found company')
 
@@ -470,7 +469,6 @@ module.exports = (app) => {
             if(!req.user._id) return res.status(400).send('الشركة غير مسجلة');
             const advs = await JobAd.find({ 'company': req.user._id}).sort({createDate: -1}).limit(3)
             .populate('project')
-            console.log(advs[0].project)
             // if (!advs || advs.length == 0) return res.status(400).send('لا تملك الشركة  إعلانات');
             // advs.forEach(async (adv , index) => {
             //     const advId = adv._id;

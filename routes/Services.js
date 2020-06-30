@@ -43,18 +43,22 @@ module.exports = (app) =>{
       const notificationsCounts = await Notification
       .count({user: req.user._id})
       var totalPages = Math.ceil(notificationsCounts / size)
-        const notifications = await Notification
-        .find({user: req.user._id},{},query)
-        .select('-user')
-        .sort({'date' : -1});
+
+      const notifications = await Notification
+      .find({user: req.user._id},{},query)
+      .select('-user')
+      .sort({'date' : -1});
 
         result = await filterNotification(notifications);
 
          while(notifications.length != result.length){
-             console.log(notifications.length)
-             console.log(result.length)
+            const notifications = await Notification
+            .find({user: req.user._id},{},query)
+            .select('-user')
+            .sort({'date' : -1});
 
             result = await filterNotification(notifications);
+
          }
 
         res.status(200).json({
@@ -103,7 +107,6 @@ module.exports = (app) =>{
 
 
         }
-
         return result;
 
     }
@@ -174,7 +177,6 @@ module.exports = (app) =>{
         const contents = [];
         for(var i = 0 ; i < lastNotification.length ; i++) {
             const content = await JobAd.findById( lastNotification[i].content).select("job_Name -_id");
-        console.log(lastNotification[i].content)
             contents.push(content);
           }
 
@@ -199,7 +201,6 @@ module.exports = (app) =>{
          app.delete('/api/deletenoti', async (req,res) =>{
             const id = req.query.id;
             const notifications= await Notification.find({'content': id})
-            console.log(notifications.length)
             for(var i = 0 ; notifications.length > i ; i++){
                 const notiDelete= await Notification.findOneAndDelete({'content': notifications[i].content})
 
@@ -312,7 +313,6 @@ module.exports = (app) =>{
 
 
                 var number =  UserInfo.findOne({'user':result.candidateName}).populate('user').then(num =>{
-                   console.log(num.user.email)
                    dataModel = {
                        number: num.mobile,
                        name: num.fullName,

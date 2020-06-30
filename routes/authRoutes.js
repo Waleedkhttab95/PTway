@@ -36,14 +36,12 @@ module.exports = (app) => {
     if (!user) return res.status(400).send('خطأ في البريد أو الرقم السرّي');
 
     const validPassword = await bcrypt.compare(req.body.password, user.password, (error, result) => {
-      console.log(user.isConfirmed)
       if (!result) return res.status(400).send('خطأ في البريد أو الرقم السرّي');
 
       if (user.isConfirmed != 'undefined') {
 
 
         if (user.isConfirmed == false) {
-          console.log('false')
           return res.status(400).send('نرجو تفعيل الحساب أولًا'); // in case he didnt confirm
 
         }
@@ -66,7 +64,6 @@ module.exports = (app) => {
   app.get('/api/confirmation/:token', async (req, res) => {
     try {
       const decoded = jwt.verify(req.params.token, keys.jwtKey);
-      console.log(decoded)
       await User.findByIdAndUpdate(decoded._id, { isConfirmed: true });
     } catch (e) {
       res.send('error' + e);
@@ -98,7 +95,7 @@ module.exports = (app) => {
 
   // change password for company
 
-  
+
   app.put('/api/changePasswordCompany',auth, async (req, res) => {
     const company = await Company.findById(req.user._id);
     const userId = req.user._id;
@@ -134,20 +131,17 @@ module.exports = (app) => {
   // just to redirect from the url that sends to the email
   app.get('/api/reset', async (req, res) => {
     const id = req.query.id;
-    console.log(id);
     const path = keys.redirect_url + `/resetPassword?id=` + id;
-    console.log(path)
     return res.redirect(path);
   });
 
   // TO change the password
   app.put('/api/reset', async (req, res) => {
-    
+
     const user = await User.findById(req.query.id);
-  
+
     if (user == null) {
       try {
-        console.log('Test reset')
         const salt = await bcrypt.genSalt(10, (error, hash) => {
           if (error) res.status(400)
         });
@@ -157,7 +151,6 @@ module.exports = (app) => {
           res.status(204).send('done changing');
         });
         // res.status(200).send('The password has been changed');
-        console.log('done');
 
       } catch (e) {
         res.send('error' + e);
@@ -174,7 +167,6 @@ module.exports = (app) => {
           res.status(204).send('done changing');
         });
         // res.status(200).send('The password has been changed');
-        console.log('done');
 
       } catch (e) {
         res.send('error' + e);
@@ -184,12 +176,12 @@ module.exports = (app) => {
 
   });
 
-  // for company 
+  // for company
 
   app.post('/api/com_login', async (req, res) => {
     // const {error} = validateCompany(req.body);
     // if(error) return res.status(400).send(error.details[0].message);
- 
+
 
     let company = await Company.findOne({ email: req.body.email.toLowerCase() });
     if (!company) return res.status(400).send('خطأ في البريد أو الرقم السرّي');
@@ -197,7 +189,6 @@ module.exports = (app) => {
 
       if (!result) return res.status(400).send('خطأ في البريد أو الرقم السرّي');
       if (company.isActive == false) return res.status(400).send('يجب الموافقة من طرف إدارة الموقع .');
-      console.log(company)
       if (company.isConfirmed != undefined) {
         if (company.isConfirmed == false) {
           return res.status(400).send('نرجو تفعيل الحساب أولًا'); // in case he didnt confirm
@@ -272,13 +263,11 @@ module.exports = (app) => {
       });
       await bcrypt.hash(req.body.newPassword, salt, null, async (error, hash) => {
         if (error) res.status(400)
-        console.log(req.query.id)
-        console.log(hash)
+
         await Company.findByIdAndUpdate(req.query.id, { $set: { password: hash } }, { new: true });
         res.status(204).send('done changing');
       });
       // res.status(200).send('The password has been changed');
-      console.log('done');
 
     } catch (e) {
       res.send('error' + e);
@@ -288,7 +277,6 @@ module.exports = (app) => {
 
   app.get('/api/info', async (req, res) => {
     const user2 = await User.findOne({ email: req.body.email });
-    console.log('user2.password = ' + user2.password);
     res.send(user2.password);
   });
 

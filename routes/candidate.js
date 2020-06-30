@@ -14,7 +14,6 @@ module.exports = (app) => {
 
 
     if (!user) {
-      console.log('here')
       new Candidate({
         candidateName: req.user._id,
         jobAd: req.body.jobAd,
