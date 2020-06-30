@@ -405,10 +405,10 @@ module.exports = (app) => {
             if(req.body.spMajor != 'null') spMajor = req.body.spMajor ;
             if(req.body.skills != 'null') skills = req.body.skills ;
             if(req.body.personal_Skills != 'null') personal_Skills = req.body.personal_Skills ;
-            if(req.body.jobCategory != 'null') jobCategory = req.body.jobCategory ;
+            if(req.body.jobCategory != 'null' || req.body.jobCategory != null) jobCategory = req.body.jobCategory ;
 
-
-
+            console.log( req.body.jobCategory)
+            console.log(jobCategory)
         
 
            
