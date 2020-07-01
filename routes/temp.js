@@ -21,7 +21,7 @@ module.exports = (app) =>{
          isSaudi: req.body.isSaudi,
          company:req.body.company,
          nationality: req.body.nationality,
-         city:req.body.city, 
+         city:req.body.city,
          street: req.body.street,
          mobile: req.body.mobile,
          email: req.body.email,
@@ -34,7 +34,7 @@ module.exports = (app) =>{
          exp: req.body.exp,
          social: req.body.social,
          ptwayMember:req.body.ptwayMember
-      }).save().then(result => { 
+      }).save().then(result => {
        res.send(result); })
     }
     else{
@@ -55,10 +55,10 @@ module.exports = (app) =>{
         supervisorNumber: req.body.supervisorNumber,
         email:req.body.email,
         city: req.body.city,
-        jobType:req.body.jobType, 
+        jobType:req.body.jobType,
         description: req.body.description,
         requiredStaff: req.body.requiredStaff
-     }).save().then(result => { 
+     }).save().then(result => {
       res.send(result); })
    }
    else{
@@ -78,7 +78,7 @@ app.post('/api/companyjob',async (req,res) =>{
         city: req.body.city,
         companyName: req.body.companyName,
         companySector: req.body.companySector,
-        companyType:req.body.companyType, 
+        companyType:req.body.companyType,
         companySize: req.body.companySize,
         companyInfo: req.body.companyInfo,
         companyWebsite: req.body.companyWebsite,
@@ -86,7 +86,7 @@ app.post('/api/companyjob',async (req,res) =>{
         YearsOfExperience: req.body.YearsOfExperience,
         contract: req.body.contract
 
-     }).save().then(result => { 
+     }).save().then(result => {
       res.send(result); })
    }
    else{
@@ -98,7 +98,7 @@ app.post('/api/companyjob',async (req,res) =>{
 app.post('/api/jobless',cv,async (req,res) =>{
 
    const user = await jobLess.findOne({'email': req.body.email})
-   const url = req.protocol + '://' + req.get("host");     
+   const url = req.protocol + '://' + req.get("host");
    var cvPath = '';
    if(!req.file){
       cvPath = "null"
@@ -107,7 +107,6 @@ app.post('/api/jobless',cv,async (req,res) =>{
       cvPath= url + "/cv/" + req.file.filename;
    }
 
-   console.log(req.body.gender)
    if(!user){
 
      new jobLess({
@@ -118,7 +117,7 @@ app.post('/api/jobless',cv,async (req,res) =>{
         city: req.body.city,
         lastCompany:req.body.lastCompany,
         lastJobPosition: req.body.lastJobPosition,
-        jobType:req.body.jobType, 
+        jobType:req.body.jobType,
         Experience: req.body.Experience,
         YearsOfExperience: req.body.YearsOfExperience,
         WorkingOutOfCity: req.body.WorkingOutOfCity,
@@ -127,7 +126,7 @@ app.post('/api/jobless',cv,async (req,res) =>{
 
 
 
-     }).save().then(result => { 
+     }).save().then(result => {
       res.send(result); })
    }
    else{
@@ -138,7 +137,7 @@ app.post('/api/jobless',cv,async (req,res) =>{
 
 app.get('/api/getTemp', async (req,res) =>{
    var users = [];
-   const usersCount = await formTemp.find({"isSaudi":"سعودي"}).skip(6823)
+   const usersCount = await formTemp.find({"isSaudi":"سعودي"}).skip(12432)
    .populate('city');
 
    // for(var i =0 ; i< usersCount.length ; i++) {
@@ -153,7 +152,7 @@ app.get('/api/getTemp', async (req,res) =>{
    //    }
    // }
 
-  
+
    res.status(200).json({
       users: usersCount
    })
@@ -167,7 +166,7 @@ app.get('/api/getTemp', async (req,res) =>{
       isSaudi: req.body.isSaudi,
       company:req.body.company,
       nationality: req.body.nationality,
-      city:req.body.city, 
+      city:req.body.city,
       street: req.body.street,
       mobile: req.body.mobile,
       email: req.body.email,
@@ -179,7 +178,7 @@ app.get('/api/getTemp', async (req,res) =>{
       mobileOS: req.body.mobileOS,
       exp: req.body.exp,
       ptwayMember:req.body.ptwayMember
-   }).save().then(result => { 
+   }).save().then(result => {
     res.send(result); })
  })
 }

@@ -14,7 +14,6 @@ module.exports = (app) => {
 
 
     app.put('/api/activealluseraccount', async (req, res) => {
-        console.log('Here')
         await User.updateMany({}, {
 
             $set: { isConfirmed: true, }
@@ -48,7 +47,7 @@ module.exports = (app) => {
         try {
            // recevie URL Paramaters
             const CountryId = req.query.country;
-            
+
             const CityId = req.query.city;
 
             if (!CountryId || !CityId) {
@@ -113,7 +112,7 @@ module.exports = (app) => {
 
     // return Candidties and Accepted users for Job offer
     app.get('/api/get/cand/acc/:jobId?', async (req,res) =>{
-        
+
 
         const candidates = await Candidate.find({'jobAd' : req.query.jobId}).countDocuments();
         const accepted = await Accepted.find({'jobAd' : req.query.jobId}).countDocuments();

@@ -5,8 +5,9 @@ const {Schema} = mongoose;
 const candidatesSchema = new Schema({
 
  candidateName : {type: mongoose.Schema.Types.ObjectId, ref:'users'},
- jobAd : {type: mongoose.Schema.Types.ObjectId, ref:'Job_Ad'},
+ jobAd : {type: mongoose.Schema.Types.ObjectId, ref:'JobAds'},
  createDate: {type: Date },
+ isRead: {type: Boolean, default: false},
  key : {type:String},
 });
 

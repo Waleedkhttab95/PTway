@@ -6,7 +6,7 @@ const fs = require('fs');
 
 
 let transporter = nodemailer.createTransport({
-  
+
     host: 'smtp.sendgrid.net',
     port: 465,
     secure: true, // use SSL
@@ -14,17 +14,16 @@ let transporter = nodemailer.createTransport({
         user: 'apikey',//keys.user,
         pass:'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'//keys.pass
     }
-    
+
 });
 
 
 async function sendVerifMail(name, email,_id) {
-    console.log('send nodemalier')
     const ccemail = fs.readFileSync(__dirname + '/email.html', 'utf-8');
     const comemail = hogan.compile(ccemail);
     jwt.sign(
         // payload as json:
-        { 
+        {
             name,
             email,
             _id
@@ -54,7 +53,7 @@ async function companySendVerifMail(name, email,_id) {
     const comemail = hogan.compile(ccemail);
     jwt.sign(
         // payload as json:
-        { 
+        {
             name,
             email,
             _id
@@ -85,7 +84,7 @@ async function companySendVerifMail(name, email,_id) {
 async function sendResetEmail(id, email , name) {
     const ccemail = fs.readFileSync(__dirname + '/email-Reset.html', 'utf-8');
     const comemail = hogan.compile(ccemail);
-    
+
     const url = keys.mail_url+`/api/reset?id=`+id;
     transporter.sendMail({
         from: 'no-reply@ptway.net',
