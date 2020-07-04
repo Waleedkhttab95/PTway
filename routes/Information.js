@@ -260,20 +260,24 @@ module.exports = (app) => {
         const user = await User.findById(id);
         if (!info) return res.status(401).send('not found');
 
-        info.profile_views += 1;
-        info.save();
+       info.profile_views += 1;
+       info.save();
+      study_degree = study_degreeCheck(info);
+       education_degree = education_degreeCheck(info);
+        Education_level = Education_levelCheck(info);
 
-
-
-        try{
 
             res.status(200).json({
                 email:user.email,
+                study_degree:study_degree,
+                education_degree:education_degree,
+                Education_level: Education_level,
+                personal_Skills: info.personal_Skills.slice(0,5),
+                skills: info.skills.slice(0,5),
                info: info
 
             });
-        } catch(ex) {
-        }
+
     })
 
     // Get company info by CompanyID
@@ -458,7 +462,7 @@ module.exports = (app) => {
       function study_degreeCheck(res) {
         var study_degree = ""
         if(res.study_degree == 'HS') study_degree = "الثانوية العامة";
-        else if(res.study_degree == 'BHO') study_degree = "البكالريوس";
+        else if(res.study_degree == 'BHO') study_degree = "البكالوريس";
         else if(res.study_degree == 'MASTER') study_degree = "الماستر";
 
         return study_degree;
@@ -467,7 +471,7 @@ module.exports = (app) => {
       function education_degreeCheck(res) {
           var education_degree = ""
         if(res.education_degree == 'HS')education_degree = "الثانوية العامة";
-        else if(res.education_degree == 'BHO')education_degree = "البكالريوس";
+        else if(res.education_degree == 'BHO')education_degree = "البكالوريس";
         else if(res.education_degree == 'MASTER')education_degree = "الماستر";
         else if(res.education_degree == 'diploma')education_degree = "دبلوم";
         else if(res.education_degree == 'Undergraduate')education_degree = "خريج";
