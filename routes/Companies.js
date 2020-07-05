@@ -503,6 +503,20 @@ module.exports = (app) => {
         })
     })
 
+    // change Company name
+     // disable Account
+     app.put('/api/changeCompanyName', auth , async(req,res) =>{
+         const newCompanyName = req.body.name;
+         if(!newCompanyName) return res.status(401).send("Invalid Name ")
+
+        const company = await Company.findByIdAndUpdate(req.user._id,
+        { $set: { companyName: newCompanyName } }
+        );
+        return res.status(200).send('updated . ');
+
+
+    });
+
     // enable and desable subAccount
     app.put('/api/switchSubUser',auth, async (req,res) =>{
         const user = await User.findById(req.query.userId);

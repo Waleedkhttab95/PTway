@@ -16,7 +16,7 @@ module.exports = (app) => {
 
         res.status(200).json({
             userName: fullName
-          
+
           });
     })
 
@@ -93,11 +93,22 @@ module.exports = (app) => {
     })
 
     app.put('/api/changeEmailNotification', auth , async(req,res) =>{
-        const user = await User.findByIdAndUpdate(req.user._id, 
+        const user = await User.findByIdAndUpdate(req.user._id,
         { $set: { email_notification: req.body.status } }
         );
         return res.status(200).send('Done . ');
 
 
-    })
+    });
+
+    // disable Account
+    app.put('/api/disableAccount', auth , async(req,res) =>{
+        const user = await User.findByIdAndUpdate(req.user._id,
+        { $set: { isConfirmed: false } }
+        );
+        return res.status(200).send('updated . ');
+
+
+    });
+
 }

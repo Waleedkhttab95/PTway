@@ -15,18 +15,29 @@ module.exports = (app) => {
         }).save()
             .then(async result => {
                 const req_number = await JobAd.findById(req.body.jobAd);
+                // count of limit number of each job
                 const job = await JobAd.updateOne({ '_id': req.body.jobAd }, {
                     $set: {
                         limit_Number: req_number.limit_Number + 1
                     }
-                })
+                });
 
-                const deleteCandidate = await Candidate.remove({ 'candidateName': req.body.acceptedName });
+                // update candidate status
+
+                const candidate = await Candidate.updateOne({ 'candidateName': req.body.acceptedName,'jobAd':req.body.jobAd }, {
+                    $set: {
+                        status: "Accepted"
+                    }
+                });
+
+
+
+
                 res.send(result);
             })
     });
 
- 
+
 
     app.get('/api/getOneAccepted', auth, async (req, res) => {
         const usernames = [];
@@ -37,7 +48,7 @@ module.exports = (app) => {
             response = {"error" : true,"message" : "invalid page number, should start with 1"};
             return res.json(response)
       }
-    
+
       query.skip = size * (pageNo - 1)
       query.limit = size
 
@@ -55,7 +66,7 @@ module.exports = (app) => {
             //     usernames.push(users);
             // }
 
-            
+
             // const username = usernames.map(x => x.firstName + ' ' + x.lastName);
 
 
