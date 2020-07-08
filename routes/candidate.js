@@ -86,8 +86,9 @@ module.exports = (app) => {
   app.put('/api/rejectCandidate',auth, async (req,res) =>{
     const userId = req.body.id;
 
-
     if(!userId) return status(401).send("invalid Paramaters");
+    const add =await Candidate.find({ '_id': userId })
+    console.log(add)
 
     const candidate = await Candidate.updateOne({ '_id': userId }, {
       $set: {
@@ -97,5 +98,5 @@ module.exports = (app) => {
 
   res.status(201).send('Updated status')
 
-  }); 
+  });
 }//endofapp
