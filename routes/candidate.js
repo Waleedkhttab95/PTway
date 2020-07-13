@@ -87,8 +87,8 @@ module.exports = (app) => {
     const userId = req.body.id;
 
     if(!userId) return status(401).send("invalid Paramaters");
-    const add =await Candidate.find({ '_id': userId })
-    console.log(add)
+    const add =await Candidate.findById(userId)
+    console.log(userId)
 
     const candidate = await Candidate.updateOne({ '_id': userId }, {
       $set: {
