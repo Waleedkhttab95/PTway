@@ -77,8 +77,8 @@ module.exports = (app) =>{
             var jobAd = await JobAd
             .findOne({_id : notifications[i].content})
             .sort({ date: -1 })
-            .populate('company')
-            .select("job_Name _id descreption company isLock")
+            .populate('company contract')
+            .select("job_Name _id salary startDate work_hours work_days company isLock")
             if(jobAd) {
                 var companyImage = await CompanyInfo
                 .findOne({'company': jobAd.company._id})

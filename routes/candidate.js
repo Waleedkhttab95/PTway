@@ -39,6 +39,8 @@ module.exports = (app) => {
 
 
   app.get('/api/getOneCandi',auth, async (req, res) => {
+
+    // return candidates data
     var Bresult = [];
     var pageNo = parseInt(req.query.pageNo)
     var size = 10
@@ -73,10 +75,20 @@ module.exports = (app) => {
       Bresult.push(obj)
     }
 
+    // return count of rejected , Acceptable users
+    const usersArray = await Candidate.find({ 'jobAd': req.query.jobAd });
+    let rejectedUsersCount = usersArray.filter(item =>item.status === 'rejected');
+    let acceptableUsersCount = usersArray.filter(item =>item.status === 'Accepted');
+    let waitingUsersCount =usersArray.filter(item =>item.status === 'waiting');
+    let allCandidatesCount = usersArray.length;
 
     res.status(200).json({
      Bresult:Bresult,
-     totalPages
+     totalPages,
+     rejectedUsersCount:rejectedUsersCount.length,
+     acceptableUsersCount:acceptableUsersCount.length,
+     waitingUsersCount: waitingUsersCount.length,
+     allCandidatesCount:allCandidatesCount
     });
 
 
@@ -84,12 +96,12 @@ module.exports = (app) => {
 
   });
 
+  // reject user
   app.put('/api/rejectCandidate',auth, async (req,res) =>{
     const userId = req.body.id;
 
     if(!userId) return status(401).send("invalid Paramaters");
-    const add =await Candidate.findById(userId)
-    console.log(userId)
+
 
     const candidate = await Candidate.updateOne({ '_id': userId }, {
       $set: {
@@ -100,4 +112,70 @@ module.exports = (app) => {
   res.status(201).send('Updated status')
 
   });
+
+    // add to favorite list
+    app.put('/api/addToFavList',auth, async (req,res) =>{
+      const userId = req.body.id;
+
+      if(!userId) return status(401).send("invalid Paramaters");
+
+
+      const candidate = await Candidate.updateOne({ '_id': userId }, {
+        $set: {
+          isFavorite: true
+        }
+    });
+
+    res.status(201).send('Updated status')
+
+    });
+
+    // get list of favorite users
+
+    app.get('/api/getFavCandidates',auth, async (req, res) => {
+      var Bresult = [];
+      var pageNo = parseInt(req.query.pageNo)
+      var size = 10
+      var query = {}
+
+      if(pageNo < 0 || pageNo === 0) {
+          response = {"error" : true,"message" : "invalid page number, should start with 1"};
+          return res.json(response)
+    }
+
+    query.skip = size * (pageNo - 1)
+    query.limit = size
+
+    const candidatesCount = await Candidate.count({  'jobAd': req.query.jobAd }); // get pages count
+    var totalPages = Math.ceil(candidatesCount / size)
+
+      const users = await Candidate.find({ 'jobAd': req.query.jobAd , 'isFavorite': true},{},query)
+        .sort({ 'createDate': 1 })
+        .populate('candidateName','firstName lastName')
+        .populate('jobAd','job_Name')
+      if (!users) return res.status(401).send('notFound')
+
+
+
+      for(let i = 0 ; i < users.length ; i++){
+        const userInfo =  await UserInfo.findOne({'user': users[i].candidateName})
+        .select('imagePath -_id')
+        const obj = {
+          user: users[i],
+          image: userInfo
+        }
+        Bresult.push(obj)
+      }
+
+
+      res.status(200).json({
+       Bresult:Bresult,
+       totalPages
+      });
+
+
+
+
+    });
+
 }//endofapp
