@@ -141,7 +141,7 @@ module.exports = (app) => {
 
   // get list of favorite users
 
-  app.get('/api/getFavCandidates', async (req, res) => {
+  app.get('/api/getFilterCandidates',auth, async (req, res) => {
     const jobAd = req.query.jobAd;
     const pageNo = req.query.pageNo;
     const filterType = req.query.filter;
