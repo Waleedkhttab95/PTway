@@ -47,6 +47,7 @@ module.exports = (app) => {
     var pageNo = parseInt(req.query.pageNo)
     var size = 10
     var query = {}
+    const sortDate = req.query.sort;
 
     if (pageNo < 0 || pageNo === 0) {
       response = { "error": true, "message": "invalid page number, should start with 1" };
@@ -60,7 +61,7 @@ module.exports = (app) => {
     var totalPages = Math.ceil(candidatesCount / size)
 
     const users = await Candidate.find({ 'jobAd': req.query.jobAd }, {}, query)
-      .sort({ 'createDate': 1 })
+      .sort({ 'createDate': sortDate })
       .populate('candidateName', 'firstName lastName')
       .populate('jobAd', 'job_Name')
     if (!users) return res.status(401).send('notFound')
@@ -145,6 +146,7 @@ module.exports = (app) => {
     const jobAd = req.query.jobAd;
     const pageNo = req.query.pageNo;
     const filterType = req.query.filter;
+    const sort = req.query.sort;
     let result;
     if (!jobAd) return status(404).send("need job Id")
     if (!pageNo) return status(404).send("need pageNo")
@@ -154,21 +156,21 @@ module.exports = (app) => {
        result = await getCandidates(pageNo, jobAd, {
         'jobAd': jobAd,
         'isFavorite': true
-      });
+      },sort);
       console.log(result)
     }
     else if (filterType === 'reject') {
        result = await getCandidates(pageNo, jobAd, {
         'jobAd': jobAd,
         'status': "rejected"
-      });
+      },sort);
 
     }
     else if (filterType === 'accept') {
        result = await getCandidates(pageNo, jobAd, {
         'jobAd': jobAd,
         'status': "Accepted"
-      });
+      },sort);
     }
     else{
       return res.status(401).send("invalid filter type")
@@ -184,11 +186,13 @@ module.exports = (app) => {
 
 
 
-  async function getCandidates(pageNo, jobAd, queryFind) {
+  async function getCandidates(pageNo, jobAd, queryFind,sort) {
     var Bresult = [];
     var pageNo = parseInt(pageNo)
     var size = 10
     var query = {}
+
+
 
     if (pageNo < 0 || pageNo === 0) {
       response = { "error": true, "message": "invalid page number, should start with 1" };
@@ -202,7 +206,7 @@ module.exports = (app) => {
     var totalPages = Math.ceil(candidatesCount / size)
 
     const users = await Candidate.find(queryFind, {}, query)
-      .sort({ 'createDate': 1 })
+      .sort({ 'createDate': sort })
       .populate('candidateName', 'firstName lastName')
       .populate('jobAd', 'job_Name')
     if (!users) return res.status(401).send('notFound')

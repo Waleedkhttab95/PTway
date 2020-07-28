@@ -17,10 +17,6 @@ const { contactEmail } = require('../services/email/mail');
 module.exports = (app) =>{
 
 
-
-
-
-
     // Get all notifications content ..
 
     app.get('/api/get/notifications',auth, async (req,res) =>{
@@ -92,7 +88,7 @@ module.exports = (app) =>{
                 temp = new Object({
                     compName: jobAd.company.companyName,
                     imagePath: img,
-                    jobAd : _.pick(jobAd,['job_Name','_id','descreption', 'isLock']),
+                    jobAd : _.pick(jobAd,['job_Name','salary','startDate','work_hours','work_days','_id', 'isLock']),
                     status : status,
                     isRead: notifications[i].isRead
                 });
