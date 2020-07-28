@@ -74,7 +74,7 @@ module.exports = (app) =>{
             .findOne({_id : notifications[i].content})
             .sort({ date: -1 })
             .populate('company contract')
-            .select("job_Name _id salary startDate work_hours work_days company isLock")
+            .select("job_Name _id salary startDate work_hours work_days company isLock contract")
             if(jobAd) {
                 var companyImage = await CompanyInfo
                 .findOne({'company': jobAd.company._id})
@@ -88,7 +88,7 @@ module.exports = (app) =>{
                 temp = new Object({
                     compName: jobAd.company.companyName,
                     imagePath: img,
-                    jobAd : _.pick(jobAd,['job_Name','salary','startDate','work_hours','work_days','_id', 'isLock']),
+                    jobAd : _.pick(jobAd,['job_Name','salary','startDate','work_hours','contract','work_days','_id', 'isLock']),
                     status : status,
                     isRead: notifications[i].isRead
                 });
