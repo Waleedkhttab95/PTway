@@ -87,8 +87,9 @@ module.exports = (app) => {
       const usersArray = await Candidate.find({ 'jobAd': req.query.jobAd });
       rejectedUsersCount = usersArray.filter(item => item.status === 'rejected');
       acceptableUsersCount = usersArray.filter(item => item.status === 'Accepted');
-      waitingUsersCount = usersArray.filter(item => item.status === 'waiting');
+      waitingUsersCount = usersArray.filter(item => item.isRead === false);
       allCandidatesCount = usersArray.length;
+
     }
 
 
