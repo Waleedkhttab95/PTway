@@ -15,6 +15,7 @@ const { Company } = require('../models/Companies/Companies');
 const { Candidate } = require('../models/Companies/Candidates');
 const { User } = require('../models/Users/User');
 const { sendJobOffer } = require('../services/email/mail');
+const { query } = require('express');
 
 
 
@@ -137,6 +138,7 @@ module.exports = (app) => {
             lockDate: lock_date,
             descreption: req.body.descreption,
             job_skills: req.body.job_skills,
+            jobCategory: req.body.jobCategory,
             country: req.body.country,
             city: req.body.city,
             public_Major: req.body.public_Major,
@@ -155,10 +157,9 @@ module.exports = (app) => {
                 res.status(500).send('error',e)
             });
 
-
-
         new JobAd_admin({
             createDate: Date.now(),
+            sortDate : today,
             company: req.user._id,
             contract: req.body.contract,
             project: req.body.project,
@@ -166,6 +167,7 @@ module.exports = (app) => {
             lockDate: lock_date,
             descreption: req.body.descreption,
             job_skills: req.body.job_skills,
+            jobCategory: req.body.jobCategory,
             country: req.body.country,
             city: req.body.city,
             public_Major: req.body.public_Major,
@@ -273,11 +275,10 @@ module.exports = (app) => {
     app.get('/api/getjob', auth, async (req, res) => {
         const id = req.query.id;
         var apply_job = false;
-        const job = await JobAd.findById(id);
+        const job = await JobAd.findById(id)
+        .populate("city country contract ")
+        .populate("company","-password");
         if (!job) return res.status(401).send('not found');
-        const countres = await Country.findById(job.country);
-        const cites = await City.findById(job.city);
-        const contract = await Contract.findById(job.contract);
         //  const public_Major = await publicMajor.findById(job.public_Major);
         const result = await Notification.findOne({ 'content': id, 'user': req.user._id });
 
@@ -298,10 +299,10 @@ module.exports = (app) => {
 
         res.status(200).json({
             job: job,
-            Country: countres.countryName,
-            City: cites.cityName,
-            Contract: contract.contractName,
-            contractType: contract.days,
+            Country: job.country.countryName,
+            City: job.city.cityName,
+            Contract: job.contract.contractName,
+            contractType: job.contract.days,
             apply: apply_job
             //   public_Major: public_Major.majorName
         });
@@ -554,19 +555,33 @@ module.exports = (app) => {
              const country=jobAd.country;
              const city= jobAd.city;
              const gender= jobAd.gender;
-             // const  personal_Skills= jobAd.personal_Skills;
-             // const public_Major = jobAd.public_Major; public_Major :'5caf4ffbffec65462ec2a09a' , '5caf5618ffec65462ec2a0ce'
-
              const jobAdId = jobAd._id;
-
-       if(gender == "both") {
+             const jobCategory = jobAd.jobCategory;
+            const query = {};
+             // check gender if male or female or both
+             if(gender == "both"){
+                query = {
+                country: country,
+                city: city,
+                gender: 'ذكر انثى',
+                jobCategory:jobCategory
+               }
+             }
+             else {
+                 query = {
+                    country: country,
+                    city: city,
+                    gender: gender,
+                    jobCategory:jobCategory
+                   }
+             }
+           // read users with query
            const result = await UserInfo
-           .find({ country: country,city: city})
+           .find(query)
            .select("user");
 
+           // extract users email and send email
            result.forEach(async function(r) {
-               //here write email code
-               // r.user is giving the id
                const user  = await User.findById(r.user);
                if(user)
                {
@@ -582,36 +597,6 @@ module.exports = (app) => {
                 apply: false
                }).save();
             })
-
-       }
-       else {
-           const result = await UserInfo
-           .find({ country: country,city: city
-           ,gender: gender})
-           .select("user");
-
-           result.forEach(async function(r) {
-               const user  = await User.findById(r.user);
-               if(user)
-               {
-
-                if(user.email_notification == true && user.isConfirmed == true)
-                   sendJobOffer(user.email , user.firstName, jobAdId);
-            }
-               new Notification({
-                content : jobAdId,
-                user : r.user,
-                isRead: false,
-                date: Date.now(),
-                apply: false
-               }).save();
-            })
-
-       }
-
-
-
-
 
     }
 

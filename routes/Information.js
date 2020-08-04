@@ -309,16 +309,17 @@ module.exports = (app) => {
       app.get('/api/getcompanyinfoById', auth, async (req, res) => {
          const id = req.query.id;
         try{
-            const info = await CompanyInfo.findOne({ 'company': id });
+            const info = await CompanyInfo.findOne({ 'company': id })
+            .populate("country city")
+            .populate("company","-_id -isConfirmed");
+            console.log(info.city)
             if (!info) return res.status(401).send('not found');
 
-            const country = await Country.findById(info.country);
-            const city = await City.findById(info.city);
-            const company_Name = await Company.findById(info.company);
+
             res.status(200).json({
-                compnayName: company_Name.companyName,
-                country: country.countryName,
-                city: city.cityName,
+                compnayName: info.company.companyName,
+                country: info.country.countryName,
+                city: info.city.cityName,
                 address: info.address,
                 imagePath: info.imagePath,
                 info: info.info,
