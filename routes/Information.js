@@ -57,7 +57,7 @@ module.exports = (app) => {
                     Education_level: req.body.Education_level,
                     public_Major: req.body.public_Major,
                     spMajor: spMajor,
-                    languages: req.body.languages,
+                    languagesWithLevel: req.body.languagesWithLevel,
                     skills: skills,
                     personal_Skills: personal_Skills,
                     hoppies: req.body.hoppies,
@@ -207,7 +207,7 @@ module.exports = (app) => {
                     Education_level: Education_level,
                     public_Major: cpublic_Major.majorName,
                     spicifc_Major: spMaj,
-                    languages: info.languages,
+                    languagesWithLevel: info.languagesWithLevel,
                     skills: skill,
                     personal_Skills: Personlskill,
                     hoppies: info.hoppies,
@@ -381,7 +381,7 @@ module.exports = (app) => {
                     Education_level: req.body.education_level,
                     public_Major: req.body.public_Major,
                     spMajor: spMajor,
-                    languages: req.body.languages,
+                    languagesWithLevel: req.body.languagesWithLevel,
                     skills:skills,
                     personal_Skills: personal_Skills,
                     hoppies: req.body.hoppies,
@@ -453,7 +453,7 @@ module.exports = (app) => {
         if(info.skills != null ) count += 5;
         if(info.personal_Skills != null) count += 5;
         if(info.hoppies != null) count += 5;
-        if(info.languages != null) count += 5;
+        if(info.languagesWithLevel != null) count += 5;
         if(info.instagram !=undefined || info.facebook !=undefined || info.twitter !=undefined
         ||info.linkedin !=undefined ||info.personal_web !=undefined || info.about !=undefined) count += 5;
 
