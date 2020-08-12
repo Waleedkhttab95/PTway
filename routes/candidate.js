@@ -82,4 +82,21 @@ module.exports = (app) => {
 
 
   });
+
+  app.put('/api/rejectCandidate',auth, async (req,res) =>{
+    const userId = req.body.id;
+
+    if(!userId) return status(401).send("invalid Paramaters");
+    const add =await Candidate.findById(userId)
+    console.log(userId)
+
+    const candidate = await Candidate.updateOne({ '_id': userId }, {
+      $set: {
+          status: "rejected"
+      }
+  });
+
+  res.status(201).send('Updated status')
+
+  });
 }//endofapp

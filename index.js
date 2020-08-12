@@ -6,6 +6,7 @@ const error = require('./middleware/error');
 const path = require('path');
 const cookieSession = require('cookie-session');
 const keys = require('./config/keys');
+const rateLimit = require("express-rate-limit");
 const bodyParser = require('body-parser');
 require('express-async-errors');
 
@@ -17,7 +18,16 @@ require('./services/passport');
 mongoose.connect(keys.mongoURI,{ useFindAndModify: false })
 const app = express();
 app.use(cors());
+// Enable if you're behind a reverse proxy
+app.set('trust proxy', 1);
+// to make only 50 request per sec
+const apiLimiter = rateLimit({
+  windowMs: 00 * 6 * 1000, // 15 minutes
+  max: 50
+});
 
+// only apply to requests that begin with /api/
+app.use("/api/", apiLimiter);
 
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: false }));
