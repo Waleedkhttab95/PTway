@@ -27,12 +27,10 @@ module.exports = (app) => {
 
   // for user
   app.post('/api/login', async (req, res) => {
-
     const { error } = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
-
-    let user = await User.findOne({ email: req.body.email.toLowerCase() });
+    let user = await User.findOne({ email: req.body.email.toLowerCase()});
     if (!user) return res.status(400).send('خطأ في البريد أو الرقم السرّي');
 
     const validPassword = await bcrypt.compare(req.body.password, user.password, (error, result) => {
@@ -118,7 +116,7 @@ module.exports = (app) => {
   });
 
   app.post('/api/resetPassword', async (req, res) => {
-    const user = await User.findOne({ email: req.body.email.toLowerCase() });
+    const user = await User.findOne({ email: req.body.email.toLowerCase().split(" ") });
     if (!user) {
       return res.status(400).send('البريد المدخل غير صحيح');
     }
@@ -183,7 +181,7 @@ module.exports = (app) => {
     // if(error) return res.status(400).send(error.details[0].message);
 
 
-    let company = await Company.findOne({ email: req.body.email.toLowerCase() });
+    let company = await Company.findOne({ email: req.body.email.toLowerCase().split(" ") });
     if (!company) return res.status(400).send('خطأ في البريد أو الرقم السرّي');
     const validPassword = await bcrypt.compare(req.body.password, company.password, (error, result) => {
 

@@ -91,9 +91,7 @@ module.exports = (app) => {
             company: req.user._id
 
         }).save()
-            .then(result => {
-                console.log(result)
-            });
+
     });
 
     // counts of projects, Jobs
@@ -179,9 +177,7 @@ module.exports = (app) => {
             personal_Skills: req.body.personal_Skills,
             required_Number: req.body.required_Number
         }).save()
-            .then(result => {
-                console.log(result)
-            });
+
 
     });
 
@@ -557,29 +553,29 @@ module.exports = (app) => {
              const gender= jobAd.gender;
              const jobAdId = jobAd._id;
              const jobCategory = jobAd.jobCategory;
-            const query = {};
+            let query = {};
              // check gender if male or female or both
              if(gender == "both"){
+
                 query = {
-                country: country,
-                city: city,
-                gender: 'ذكر انثى',
-                jobCategory:jobCategory
+                "country": country,
+                "city": city,
+                "jobCategory":jobCategory
                }
              }
              else {
+
                  query = {
-                    country: country,
-                    city: city,
-                    gender: gender,
-                    jobCategory:jobCategory
+                    "country": country,
+                    "city": city,
+                    "gender": gender,
+                    "jobCategory":jobCategory
                    }
              }
            // read users with query
            const result = await UserInfo
            .find(query)
            .select("user");
-
            // extract users email and send email
            result.forEach(async function(r) {
                const user  = await User.findById(r.user);

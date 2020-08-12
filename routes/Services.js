@@ -348,7 +348,6 @@ module.exports = (app) =>{
 
         if(results){
             results.forEach( num =>{
-
                 dataModel = {
                     number: num.mobile,
                     name: num.fullName,
