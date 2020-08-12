@@ -57,7 +57,7 @@ module.exports = (app) => {
                     Education_level: req.body.Education_level,
                     public_Major: req.body.public_Major,
                     spMajor: spMajor,
-                    languages: req.body.languages,
+                    language: req.body.language,
                     skills: skills,
                     personal_Skills: personal_Skills,
                     hoppies: req.body.hoppies,
@@ -123,7 +123,7 @@ module.exports = (app) => {
     app.get('/api/getuserinfo', auth, async (req, res) => {
         //const id = req.query.id;
         const info = await UserInfo.findOne({ 'user': req.user._id })
-        .populate('user');
+        .populate('user country city public_Major spMajor universty');
         if (!info) return res.status(200).json({
             status : false
         });
@@ -135,15 +135,12 @@ module.exports = (app) => {
             var study_degree = study_degreeCheck(info)
             var education_degree = education_degreeCheck(info);
             var Education_level = Education_levelCheck(info)
-            const country = await Country.findById(info.country);
-            const city = await City.findById(info.city);
-            const cpublic_Major = await publicMajor.findById(info.public_Major);
+            const country = info.country.countryName;
+            const city = info.city.cityName;
+            const cpublic_Major = info.public_Major.majorName;
+            if(info.spMajor) spMaj = info.spMajor.majorName;
 
-            const cspicifc_Major = await spMajor.findById(info.spMajor);
-            if(cspicifc_Major) spMaj = cspicifc_Major.majorName;
-
-            const universty = await Universty.findById(info.universty);
-             if(universty) uni = universty.universtyName;
+             if(info.universty) uni = info.universty.universtyName;
 
             const company = [];
 
@@ -177,17 +174,14 @@ module.exports = (app) => {
             }
         }
 
-
         var profileComplete = progressBar(info)
-
-
 
                 res.status(200).json({
                     status : true,
                     email: info.user.email,
                     isConfirmed: info.user.isConfirmed,
                     profileComplete:profileComplete,
-                    country: country.countryName,
+                    country: country,
                     study_degree: study_degree,
                     imagePath: info.imagePath,
                     education_degree: education_degree,
@@ -203,11 +197,11 @@ module.exports = (app) => {
                     profile_views: info.profile_views,
                     aplled_jobs: info.aplled_jobs,
                     companies: company,
-                    city: city.cityName,
+                    city: city,
                     Education_level: Education_level,
-                    public_Major: cpublic_Major.majorName,
+                    public_Major: cpublic_Major,
                     spicifc_Major: spMaj,
-                    languages: info.languages,
+                    languages: info.language,
                     skills: skill,
                     personal_Skills: Personlskill,
                     hoppies: info.hoppies,
@@ -230,13 +224,12 @@ module.exports = (app) => {
         //Get user info by USerID for edit
         app.get('/api/getuserinfo/edit', auth, async (req, res) => {
             //const id = req.query.id;
-            const info = await UserInfo.findOne({ 'user': req.user._id }).populate('city')
-            .populate('universty')
-            .populate('country')
-            .populate('public_Major').populate('spMajor')
-            .populate('jobCategory');
+            const info = await UserInfo.findOne({ 'user': req.user._id })
+            .populate('city universty country public_Major spMajor jobCategory')
+
             if (!info) return res.status(401).send('not found');
-                    res.status(200).json({
+
+            res.status(200).json({
                         info: info
                     });
 
@@ -293,8 +286,6 @@ module.exports = (app) => {
                 status : false
             });
 
-            const country = await Country.findById(info.country);
-            const city = await City.findById(info.city);
 
             res.status(200).json({
                info,
@@ -309,16 +300,17 @@ module.exports = (app) => {
       app.get('/api/getcompanyinfoById', auth, async (req, res) => {
          const id = req.query.id;
         try{
-            const info = await CompanyInfo.findOne({ 'company': id });
+            const info = await CompanyInfo.findOne({ 'company': id })
+            .populate("country city")
+            .populate("company","-_id -isConfirmed");
+            console.log(info.city)
             if (!info) return res.status(401).send('not found');
 
-            const country = await Country.findById(info.country);
-            const city = await City.findById(info.city);
-            const company_Name = await Company.findById(info.company);
+
             res.status(200).json({
-                compnayName: company_Name.companyName,
-                country: country.countryName,
-                city: city.cityName,
+                compnayName: info.company.companyName,
+                country: info.country.countryName,
+                city: info.city.cityName,
                 address: info.address,
                 imagePath: info.imagePath,
                 info: info.info,
@@ -380,7 +372,7 @@ module.exports = (app) => {
                     Education_level: req.body.education_level,
                     public_Major: req.body.public_Major,
                     spMajor: spMajor,
-                    languages: req.body.languages,
+                    language: req.body.language,
                     skills:skills,
                     personal_Skills: personal_Skills,
                     hoppies: req.body.hoppies,
@@ -452,7 +444,7 @@ module.exports = (app) => {
         if(info.skills != null ) count += 5;
         if(info.personal_Skills != null) count += 5;
         if(info.hoppies != null) count += 5;
-        if(info.languages != null) count += 5;
+        if(info.language != null) count += 5;
         if(info.instagram !=undefined || info.facebook !=undefined || info.twitter !=undefined
         ||info.linkedin !=undefined ||info.personal_web !=undefined || info.about !=undefined) count += 5;
 

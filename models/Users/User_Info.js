@@ -28,7 +28,7 @@ const user_infoSchema = new Schema({
     public_Major: { type: mongoose.Schema.Types.ObjectId, ref: 'Public_Major' },
 
     spMajor: { type: mongoose.Schema.Types.ObjectId, ref: 'SpMajor' },
-    languages: [{ type: String }],
+    language: [{ type: String }],
     skills: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Skills' }],
 
     personal_Skills: [{ type: mongoose.Schema.Types.ObjectId, ref: 'PersonalSkills' }],

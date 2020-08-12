@@ -17,10 +17,6 @@ const { contactEmail } = require('../services/email/mail');
 module.exports = (app) =>{
 
 
-
-
-
-
     // Get all notifications content ..
 
     app.get('/api/get/notifications',auth, async (req,res) =>{
@@ -77,8 +73,8 @@ module.exports = (app) =>{
             var jobAd = await JobAd
             .findOne({_id : notifications[i].content})
             .sort({ date: -1 })
-            .populate('company')
-            .select("job_Name _id descreption company isLock")
+            .populate('company contract')
+            .select("job_Name _id salary startDate work_hours work_days company isLock contract")
             if(jobAd) {
                 var companyImage = await CompanyInfo
                 .findOne({'company': jobAd.company._id})
@@ -92,7 +88,7 @@ module.exports = (app) =>{
                 temp = new Object({
                     compName: jobAd.company.companyName,
                     imagePath: img,
-                    jobAd : _.pick(jobAd,['job_Name','_id','descreption', 'isLock']),
+                    jobAd : _.pick(jobAd,['job_Name','salary','startDate','work_hours','contract','work_days','_id', 'isLock']),
                     status : status,
                     isRead: notifications[i].isRead
                 });
@@ -352,7 +348,6 @@ module.exports = (app) =>{
 
         if(results){
             results.forEach( num =>{
-
                 dataModel = {
                     number: num.mobile,
                     name: num.fullName,
