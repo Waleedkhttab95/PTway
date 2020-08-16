@@ -294,132 +294,132 @@ module.exports = (app) =>{
 
     // retrive all phone numbers By Job AD
 
-    app.get('/api/get/phonenumbers',async (req,res) =>{
-        const jobId = req.query.jobAd;
-        var data = []
-        var dataModel ;
+    // app.get('/api/get/phonenumbers',async (req,res) =>{
+    //     const jobId = req.query.jobAd;
+    //     var data = []
+    //     var dataModel ;
 
-        const job = await JobAd.findById(jobId);
-        if(!job) return res.status('401').send('not found jobAd !')
+    //     const job = await JobAd.findById(jobId);
+    //     if(!job) return res.status('401').send('not found jobAd !')
 
-        const results = await Candidate.find({'jobAd': jobId});
-        if(!job) return res.status('401').send('not found Candidate !')
-        if(results){
-            results.forEach( result =>{
-
-
-                var number =  UserInfo.findOne({'user':result.candidateName}).populate('user').then(num =>{
-                   dataModel = {
-                       number: num.mobile,
-                       name: num.fullName,
-                       email: num.user.email
-                   }
-                   data.push(dataModel)
-
-                    if(data.length == results.length){
-
-                        return  res.status(200).send(data)
+    //     const results = await Candidate.find({'jobAd': jobId});
+    //     if(!job) return res.status('401').send('not found Candidate !')
+    //     if(results){
+    //         results.forEach( result =>{
 
 
-                    }
-                });
+    //             var number =  UserInfo.findOne({'user':result.candidateName}).populate('user').then(num =>{
+    //                dataModel = {
+    //                    number: num.mobile,
+    //                    name: num.fullName,
+    //                    email: num.user.email
+    //                }
+    //                data.push(dataModel)
+
+    //                 if(data.length == results.length){
+
+    //                     return  res.status(200).send(data)
+
+
+    //                 }
+    //             });
 
 
 
-            })
+    //         })
 
-        }
-    })
+    //     }
+    // })
 
 
          // retrive all phone numbers By city and Major
 
-    app.get('/api/get/phonenumbersByCityAndMajor',async (req,res) =>{
-        const city = req.query.city;
-        const major = req.query.major;
-        const spMajor = req.query.spMajor;
-        var data = []
-        var dataModel ;
+    // app.get('/api/get/phonenumbersByCityAndMajor',async (req,res) =>{
+    //     const city = req.query.city;
+    //     const major = req.query.major;
+    //     const spMajor = req.query.spMajor;
+    //     var data = []
+    //     var dataModel ;
 
 
-        const results = await UserInfo.find({'city': city,'public_Major':major,'spMajor':spMajor}).populate('user')
-        .select('fullName mobile user -_id');
-        if(!results) return res.status('401').send('not found Candidate !')
+    //     const results = await UserInfo.find({'city': city,'public_Major':major,'spMajor':spMajor}).populate('user')
+    //     .select('fullName mobile user -_id');
+    //     if(!results) return res.status('401').send('not found Candidate !')
 
-        if(results){
-            results.forEach( num =>{
-                dataModel = {
-                    number: num.mobile,
-                    name: num.fullName,
-                    email: num.user.email
-                }
-                data.push(dataModel)
+    //     if(results){
+    //         results.forEach( num =>{
+    //             dataModel = {
+    //                 number: num.mobile,
+    //                 name: num.fullName,
+    //                 email: num.user.email
+    //             }
+    //             data.push(dataModel)
 
-                    if(data.length == results.length){
+    //                 if(data.length == results.length){
 
-                        return  res.status(200).send(data)
-
-
-                    }
-
-            })
-
-        }
+    //                     return  res.status(200).send(data)
 
 
+    //                 }
 
-    })
+    //         })
+
+    //     }
+
+
+
+    // })
 
 
 
 
     // By city and gender
 
-    app.get('/api/get/phonenumbersByCityAndGender',async (req,res) =>{
-        const city = req.query.city;
+    // app.get('/api/get/phonenumbersByCityAndGender',async (req,res) =>{
+    //     const city = req.query.city;
 
-        var data = []
-        var dataModel ;
-
-
-        const results = await UserInfo.find({'city': city,'gender':'انثى'}).populate('user')
-        .select('fullName mobile user -_id');
-        if(results){
-            results.forEach( num =>{
-
-                dataModel = {
-                    number: num.mobile,
-                    name: num.fullName,
-                    email: num.user.email
-                }
-                data.push(dataModel)
-
-                    if(data.length == results.length){
-
-                        return  res.status(200).send(data)
+    //     var data = []
+    //     var dataModel ;
 
 
-                    }
+    //     const results = await UserInfo.find({'city': city,'gender':'انثى'}).populate('user')
+    //     .select('fullName mobile user -_id');
+    //     if(results){
+    //         results.forEach( num =>{
 
-            })
+    //             dataModel = {
+    //                 number: num.mobile,
+    //                 name: num.fullName,
+    //                 email: num.user.email
+    //             }
+    //             data.push(dataModel)
 
-        }
+    //                 if(data.length == results.length){
+
+    //                     return  res.status(200).send(data)
+
+
+    //                 }
+
+    //         })
+
+    //     }
 
 
 
-    })
+    // })
 
 
 
 
   // By study degree
-  app.get('/api/get/usersByStudeyDegree',async (req,res) =>{
-    const users = await UserInfo.find({'education_degree': req.query.ed})
-    .populate("user")
-    .select("user")
+//   app.get('/api/get/usersByStudeyDegree',async (req,res) =>{
+//     const users = await UserInfo.find({"jobCategory":[]})
+//     .populate("user","email -_id")
+//     .select("user -_id")
 
-    res.status(200).send(users)
-  })
+//     res.status(200).send(users)
+//   })
     function todayDate(){
         today = new Date();
         var dd = today.getDate();
