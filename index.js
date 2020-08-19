@@ -55,7 +55,6 @@ app.use(error);
 
 app.use(passport.initialize());
 app.use(passport.session());
-require('./middleware/cache')(client);
 require('./routes/authRoutes')(app);
 require('./routes/Registretion')(app);
 require('./routes/Companies')(app);
