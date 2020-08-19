@@ -201,7 +201,7 @@ module.exports = (app) => {
                     Education_level: Education_level,
                     public_Major: cpublic_Major,
                     spicifc_Major: spMaj,
-                    languagesWithLevel: info.languagesWithLevel,
+                    languages: info.languagesWithLevel,
                     skills: skill,
                     personal_Skills: Personlskill,
                     hoppies: info.hoppies,

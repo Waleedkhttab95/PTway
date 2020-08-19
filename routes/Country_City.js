@@ -3,7 +3,7 @@ const {Country} = require('../models/Shared/Country');
 const {spMajor} = require('../models/Shared/SpMajor');
 const {publicMajor} = require('../models/Shared/Public_Major');
 const {Universty} = require('../models/Shared/Universty');
-module.exports = (app) => {
+module.exports = (app,client) => {
 
     // Post Country
 
@@ -20,7 +20,7 @@ module.exports = (app) => {
     // post City
 
     app.post('/api/postcity', (req,res) =>{
-        
+
         new City({
             cityName: req.body.cityName,
             country: req.body.countryId
@@ -38,7 +38,7 @@ module.exports = (app) => {
             }).save()
             .then(result =>{
                 res.send(result);
-    
+
         })
     })
 
@@ -50,18 +50,18 @@ module.exports = (app) => {
             }).save()
             .then(result =>{
                 res.send(result);
-    
+
         })
     })
 
-    
+
     app.post('/api/post/universty', (req,res) =>{
         new Universty({
             universtyName: req.body.universtyName
             }).save()
             .then(result =>{
                 res.send(result);
-    
+
         })
     })
 
@@ -72,7 +72,7 @@ module.exports = (app) => {
     })
 
     // get all majors
-    
+
     app.get('/api/get/majors', async(req,res) =>{
         const result = await publicMajor.find()
         res.send(result);
@@ -84,11 +84,11 @@ module.exports = (app) => {
         const result = await spMajor.find({'public_Major' : req.query.id})
         res.send(result);
     })
-    
+
       // Get all countres
 
       app.get('/api/getcountry', async(req,res) =>{
-         
+
         const Con = await Country.find()
         res.send(Con);
         })
@@ -97,8 +97,29 @@ module.exports = (app) => {
         // Get all city
 
         app.get('/api/getcity', async (req,res) =>{
+            const type = req.query.type;
+
+            client.get(type,async (err,data) =>{
+                if(err) throw err;
+
+                if(data !== null) {
+                    res.status(201).json({
+                        data
+                    });
+                }
+                else{
             const cityy = await City.find();
-            res.send(cityy);
+            var cityAsString = JSON.stringify(cityy) ;
+            client.setex(type,3200,cityAsString)
+            res.status(201).json({
+                cityAsString
+            });
+        }
+
+
             })
-        
+
+
+            })
+
 }

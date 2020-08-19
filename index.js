@@ -7,14 +7,15 @@ const path = require('path');
 const cookieSession = require('cookie-session');
 const keys = require('./config/keys');
 const bodyParser = require('body-parser');
+const redis = require('redis');
 const rateLimit = require("express-rate-limit");
-
 require('express-async-errors');
-
-
 require('./models/Users/User');
 require('./services/passport');
 
+// create rides for caching data
+const REDIS_PORT = process.env.PORT || 6379;
+const client = redis.createClient(REDIS_PORT);
 
 mongoose.connect(keys.mongoURI,{ useFindAndModify: false })
 const app = express();
@@ -54,10 +55,11 @@ app.use(error);
 
 app.use(passport.initialize());
 app.use(passport.session());
+require('./middleware/cache')(client);
 require('./routes/authRoutes')(app);
 require('./routes/Registretion')(app);
 require('./routes/Companies')(app);
-require('./routes/Country_City')(app);
+require('./routes/Country_City')(app,client);
 require('./routes/Information')(app);
 require('./routes/admin')(app);
 require('./routes/admin/admin')(app);
@@ -138,3 +140,5 @@ const server = http.createServer(app);
 server.on("error", onError);
 server.on("listening", onListening);
 server.listen(port);
+exports.client = client;
+
