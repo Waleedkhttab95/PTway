@@ -4,7 +4,7 @@ const { Company } = require('../models/Companies/Companies');
 const _ = require('lodash');
 const bcrypt = require('bcrypt-nodejs');
 const auth = require('../middleware/auth');
-
+const {superVisor} = require('../models/Companies/superVisors');
 
 
 module.exports = (app) => {
@@ -37,9 +37,9 @@ module.exports = (app) => {
       user.email = user.email.toLowerCase()
       user.save();
     });
-    user.isConfirmed = false; // initially will be false 
+    user.isConfirmed = false; // initially will be false
     sendVerifMail(user.firstName , user.email,user._id);
-    
+
     const token = user.generateAuthToken();
     res.status(200).json({
       token: token
@@ -74,8 +74,8 @@ module.exports = (app) => {
     user.company = req.user._id;
     user.save();
   });
-  user.isConfirmed = true; // initially will be false 
-  
+  user.isConfirmed = true; // initially will be false
+
   const token = user.generateAuthToken();
   res.status(200).json({
     token: token
@@ -83,7 +83,7 @@ module.exports = (app) => {
 });
 
 
- 
+
 
   // for Companies Regitstrion *
 
@@ -98,6 +98,10 @@ module.exports = (app) => {
 
     if (company || user) return res.status(400).send('المستخدم مسجل مسبقا');
 
+    // add superVisor Step //
+    let superVisor = addSuperVisor(req.body);
+
+    // create company obj & save //
     company = new Company({
       companyName: req.body.companyName,
       company: null,
@@ -105,7 +109,8 @@ module.exports = (app) => {
       password: req.body.password,
       sector: req.body.sector,
       CompanySpecialist: req.body.CompanySpecialist,
-      isActive: req.body.isActive
+      isActive: req.body.isActive,
+      superVisor: superVisor
     });
     const salt = await bcrypt.genSalt(10, (error, hash) => {
       if (error) res.status(400)
@@ -123,7 +128,7 @@ module.exports = (app) => {
     });
 
 
-    company.isConfirmed = false; // initially will be false 
+    company.isConfirmed = false; // initially will be false
     companySendVerifMail(company.companyName , company.email,company._id);
 
 
@@ -134,6 +139,20 @@ module.exports = (app) => {
     });;
   });
 
+  // Add superVisor of company
+  function addSuperVisor(req){
+    if(!req) return status(401).send("faild request !");
+
+
+     new superVisor({
+      Name : req.Name,
+      position: req.position,
+      phone: req.phone
+    }).save().then(result =>{
+      return result._id
+    })
+
+  };
 
   app.post('/api/subcompanyRegistreing',auth, async (req, res) => {
 
@@ -166,7 +185,7 @@ module.exports = (app) => {
     });
 
 
-    company.isConfirmed = true; // initially will be false 
+    company.isConfirmed = true; // initially will be false
 
 
     const token = company.generateAuthToken();
@@ -180,8 +199,8 @@ module.exports = (app) => {
 
   app.post('/api/resend' , async (req, res) => {
     const user = await User.findOne({ email: req.body.email });
-    //  if the email for a company 
-    if(!user){  
+    //  if the email for a company
+    if(!user){
       try{
         const company = await Company.findOne({ email: req.body.email });
         companySendVerifMail(company.companyName , company.email);

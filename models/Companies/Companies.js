@@ -27,15 +27,16 @@ password: {
 sector: {type: String},
 CompanySpecialist: {type: mongoose.Schema.Types.ObjectId, ref:'Specialists'},
 isActive : {
-    type: Boolean , 
+    type: Boolean ,
     default: true
 },
 createDate: {type: Date},
 sortDate: {type: Date},
 isConfirmed:{
     type:Boolean
-    
-}
+
+},
+superVisor: {type: mongoose.Schema.Types.ObjectId, ref:'SuperVisor'}
 });
 
 companySchema.methods.generateAuthToken = function() {
@@ -43,7 +44,7 @@ companySchema.methods.generateAuthToken = function() {
 
     return token;
 }
-companySchema.index({ sortDate: 1 }); 
+companySchema.index({ sortDate: 1 });
 const Company = mongoose.model('companies', companySchema);
 
 // function validateCompany(company) {

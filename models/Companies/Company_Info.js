@@ -8,50 +8,16 @@ const company_infoSchema = new Schema({
     country:  {type: mongoose.Schema.Types.ObjectId, ref:'Country'},
     imagePath : {type: String},
     phone: {type:Number},
-    address: {
-        type:String,
-        required:true
-      
-    },
-   
-    
+    address: {type:String, },
     city: {type: mongoose.Schema.Types.ObjectId, ref:'City'},
-    
-  
-    info: {
-        type:String,
-        required:true
-      
-    },
-    vision: {
-        type:String
-      
-    },
-    
-    message: {
-        type:String
-      
-    },
-    
-    
-personal_web:{
-    type: String
-    },
-    
-    facebook: {
-        type: String
-    },
-    twitter: {
-        type:String
-    },
-    
-    instagram: {
-        type:String
-    },
-    
-    linkedin: {
-        type: String
-    }
+    info: { type:String, },
+    vision: { type:String },
+    message: {type:String},
+    personal_web:{ type: String},
+    facebook: { type: String},
+    twitter: { type:String },
+    instagram: {type:String},
+    linkedin: { type: String }
 });
 
 const CompanyInfo = mongoose.model('company_info', company_infoSchema);
