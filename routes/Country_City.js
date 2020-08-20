@@ -103,18 +103,16 @@ module.exports = (app,client) => {
                 if(err) throw err;
 
                 if(data !== null) {
-                    console.log("!null")
                     res.status(201).json({
-                        data
+                        cities:data
                     });
                 }
                 else{
-                    console.log("null")
             const cityy = await City.find();
             var cityAsString = JSON.stringify(cityy) ;
             client.setex(type,3200,cityAsString)
             res.status(201).json({
-                cityAsString
+                cities:cityAsString
             });
         }
 
