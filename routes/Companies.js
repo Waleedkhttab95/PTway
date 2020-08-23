@@ -49,20 +49,58 @@ module.exports = (app) => {
     // Get all sectors
 
     app.get('/api/getsectors', async (req, res) => {
-        const sectors = await Sector.find();
-        res.status(200).send(sectors);
+
+        const type = req.query.type;
+
+        client.get(type,async (err,data) =>{
+            if(err) throw err;
+
+            if(data !== null) {
+                res.status(201).json({
+                    sectors:data
+                });
+            }
+            else{
+                const sectors = await Sector.find();
+                var sectorsToString = JSON.stringify(sectors) ;
+        client.setex(type,3200,sectorsToString)
+        res.status(201).json({
+            sectors:sectorsToString
+        });
+    }
+
+        })
     });
 
     // get all companies
-    app.get('/api/get/allCompanies', async (req, res) => {
-        const companies = await Company.find();
-        res.status(200).send(companies);
-    });
+    // app.get('/api/get/allCompanies', async (req, res) => {
+    //     const companies = await Company.find();
+    //     res.status(200).send(companies);
+    // });
     // Get all specializzation
 
     app.get('/api/getspec', async (req, res) => {
-        const Cs = await CompanySpecialist.find();
-        res.status(200).send(Cs);
+
+        const type = req.query.type;
+
+        client.get(type,async (err,data) =>{
+            if(err) throw err;
+
+            if(data !== null) {
+                res.status(201).json({
+                    Cs:data
+                });
+            }
+            else{
+                const Cs = await CompanySpecialist.find();
+                var CsToString = JSON.stringify(Cs) ;
+        client.setex(type,3200,CsToString)
+        res.status(201).json({
+            Cs:CsToString
+        });
+    }
+
+        })
     });
 
     // get company sector type

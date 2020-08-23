@@ -9,6 +9,7 @@ const {Candidate} = require('../models/Companies/Candidates');
 const { CompanyInfo } = require('../models/Companies/Company_Info');
 const _ = require('lodash');
 const { contactEmail } = require('../services/email/mail');
+const {searchEmp} = require('../models/Shared/searchOfEmploye');
 
 
 
@@ -292,6 +293,33 @@ module.exports = (app) =>{
         res.status(200).send('successful !')
     })
 
+    //search for emp count (Main page)
+    app.get('/api/getEmp', async(req,res) =>{
+        const city = req.query.city;
+        const public_Major = req.query.public_Major;
+        if(!city || !public_Major) return res.status(404).send("not valid params !");
+
+        //query count of users //
+        let query = {
+            "city": city,
+            "public_Major" : public_Major
+        }
+        const result = await UserInfo.find(query).countDocuments();
+
+        // store results to DB
+        new searchEmp({
+            date: Date.now(),
+            city: city,
+            public_Major: public_Major,
+            result: result
+        }).save()
+        .then(r =>{
+            res.status(201).json({
+                result: result
+            })
+        })
+
+    })
     // retrive all phone numbers By Job AD
 
     // app.get('/api/get/phonenumbers',async (req,res) =>{

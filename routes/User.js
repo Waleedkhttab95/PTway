@@ -39,8 +39,26 @@ module.exports = (app) => {
     })
 
     app.get('/api/get/allJobCategory', async(req,res) =>{
-        const jobs = await jobCategory.find();
-        res.send(jobs)
+        const type = req.query.type;
+
+        client.get(type,async (err,data) =>{
+            if(err) throw err;
+
+            if(data !== null) {
+                res.status(201).json({
+                    jobs:data
+                });
+            }
+            else{
+                const jobs = await jobCategory.find();
+                var jobsToString = JSON.stringify(jobs) ;
+        client.setex(type,3200,jobsToString)
+        res.status(201).json({
+            jobs:jobsToString
+        });
+    }
+
+        })
     })
 
     app.post('/api/post/p_skill',  (req,res) =>{
@@ -53,13 +71,50 @@ module.exports = (app) => {
     })
 
     app.get('/api/get/skills', async (req,res) =>{
-        const skills = await Skills.find();
-        res.send(skills)
+        const type = req.query.type;
+
+        client.get(type,async (err,data) =>{
+            if(err) throw err;
+
+            if(data !== null) {
+                res.status(201).json({
+                    skills:data
+                });
+            }
+            else{
+                const skills = await Skills.find();
+                var skillsToString = JSON.stringify(skills) ;
+        client.setex(type,3200,skillsToString)
+        res.status(201).json({
+            skills:skillsToString
+        });
+    }
+
+        })
     })
 
     app.get('/api/get/p_skills', async (req,res) =>{
-        const PersonalS = await PersonalSkills.find();
-        res.send(PersonalS);
+
+        const type = req.query.type;
+
+        client.get(type,async (err,data) =>{
+            if(err) throw err;
+
+            if(data !== null) {
+                res.status(201).json({
+                    PersonalS:data
+                });
+            }
+            else{
+                const PersonalS = await PersonalSkills.find();
+                var PersonalSToString = JSON.stringify(PersonalS) ;
+        client.setex(type,3200,PersonalSToString)
+        res.status(201).json({
+            PersonalS:PersonalSToString
+        });
+    }
+
+        })
     })
 
     app.put('/api/subuser', auth, async (req,res) =>{

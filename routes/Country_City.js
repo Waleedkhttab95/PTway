@@ -67,16 +67,56 @@ module.exports = (app,client) => {
 
     // get all universty
     app.get('/api/get/universty', async(req,res) =>{
-        const uni = await Universty.find()
-        res.send(uni);
+
+        const type = req.query.type;
+
+        client.get(type,async (err,data) =>{
+            if(err) throw err;
+
+            if(data !== null) {
+                res.status(201).json({
+                    universty:data
+                });
+            }
+            else{
+                const uni = await Universty.find()
+                var universtyToString = JSON.stringify(uni) ;
+        client.setex(type,3200,universtyToString)
+        res.status(201).json({
+            universty:universtyToString
+        });
+    }
+
+        })
+
     })
 
     // get all majors
 
     app.get('/api/get/majors', async(req,res) =>{
-        const result = await publicMajor.find()
-        res.send(result);
-    })
+        const type = req.query.type;
+
+        client.get(type,async (err,data) =>{
+            if(err) throw err;
+
+            if(data !== null) {
+                res.status(201).json({
+                    public_Major:data
+                });
+            }
+            else{
+                const result = await publicMajor.find()
+                var resultToString = JSON.stringify(result) ;
+        client.setex(type,3200,resultToString)
+        res.status(201).json({
+            public_Major:resultToString
+        });
+    }
+
+        })
+
+  })
+
 
     // get spMajor
     app.get('/api/get/spMajors', async(req,res) =>{
