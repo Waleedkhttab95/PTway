@@ -19,7 +19,7 @@ const { query } = require('express');
 
 
 
-module.exports = (app) => {
+module.exports = (app,client) => {
 
     // Add Company Sector
     app.post('/api/postsector', (req, res) => {

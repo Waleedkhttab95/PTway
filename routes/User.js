@@ -5,7 +5,7 @@ const {JobAd} = require('../models/Companies/Job_Ad');
 const {jobCategory} = require('../models/Shared/jobCategory');
 const auth = require('../middleware/auth');
 
-module.exports = (app) => {
+module.exports = (app,client) => {
 
     app.get('/api/get/user', auth, async (req,res) =>{
         const id = req.query.id;
