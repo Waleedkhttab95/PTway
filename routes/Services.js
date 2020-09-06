@@ -10,6 +10,8 @@ const { CompanyInfo } = require('../models/Companies/Company_Info');
 const _ = require('lodash');
 const { contactEmail } = require('../services/email/mail');
 const {searchEmp} = require('../models/Shared/searchOfEmploye');
+const { Company } = require('../models/Companies/Companies');
+const company = require('./admin/company');
 
 
 
@@ -320,6 +322,8 @@ module.exports = (app) =>{
         })
 
     })
+  
+
     // retrive all phone numbers By Job AD
 
     // app.get('/api/get/phonenumbers',async (req,res) =>{

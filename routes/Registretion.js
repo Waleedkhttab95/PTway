@@ -99,18 +99,18 @@ module.exports = (app) => {
     if (company || user) return res.status(400).send('المستخدم مسجل مسبقا');
 
     // add superVisor Step //
-    let superVisor = addSuperVisor(req.body);
+    var superVisorResult =  addSuperVisor(req.body);
+
 
     // create company obj & save //
-    company = new Company({
+     company = new Company({
       companyName: req.body.companyName,
       company: null,
       email: req.body.email,
       password: req.body.password,
       sector: req.body.sector,
       CompanySpecialist: req.body.CompanySpecialist,
-      isActive: req.body.isActive,
-      superVisor: superVisor
+      isActive: req.body.isActive
     });
     const salt = await bcrypt.genSalt(10, (error, hash) => {
       if (error) res.status(400)
@@ -124,6 +124,10 @@ module.exports = (app) => {
       company.createDate = Date.now();
       company.sortDate= today
       company.email = company.email.toLowerCase()
+      superVisorResult.then(result =>{
+        company.superVisor= result._id
+        company.save();
+      })
       company.save();
     });
 
@@ -143,15 +147,12 @@ module.exports = (app) => {
   function addSuperVisor(req){
     if(!req) return status(401).send("faild request !");
 
-
-     new superVisor({
+     const result = new superVisor({
       Name : req.Name,
       position: req.position,
       phone: req.phone
-    }).save().then(result =>{
-      return result._id
-    })
-
+    }).save()
+   return result
   };
 
   app.post('/api/subcompanyRegistreing',auth, async (req, res) => {

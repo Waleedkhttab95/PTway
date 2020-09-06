@@ -345,23 +345,24 @@ module.exports = (app,client) => {
     // get job preview ( for companies)
     app.get('/api/preview/getjob', auth, async (req, res) => {
         const id = req.query.id;
-
-        const job = await JobAd.findById(id);
+        const job = await JobAd.findById(id)
+        .populate("city country contract ")
+        .populate("company","-password");
         if (!job) return res.status(401).send('not found');
-        const countres = await Country.findById(job.country);
-        const cites = await City.findById(job.city);
-        const contract = await Contract.findById(job.contract);
         //  const public_Major = await publicMajor.findById(job.public_Major);
-        const result = await Notification.findOne({ 'content': id, 'user': req.user._id });
 
+
+        if(job.gender == 'both') {
+            job.gender = 'ذكر و انثى'
+        }
 
         res.status(200).json({
             job: job,
-            Country: countres.countryName,
-            City: cites.cityName,
-            Contract: contract.contractName,
-            contractType: contract.days,
-            // public_Major: public_Major.majorName
+            Country: job.country.countryName,
+            City: job.city.cityName,
+            Contract: job.contract.contractName,
+            contractType: job.contract.days
+            //   public_Major: public_Major.majorName
         });
     });
 
