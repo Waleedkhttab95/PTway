@@ -2,17 +2,14 @@ const { UserInfo } = require('../models/Users/User_Info');
 const { CompanyInfo } = require('../models/Companies/Company_Info');
 const auth = require('../middleware/auth');
 const file = require('../middleware/file');
-const {City} = require('../models/Shared/City');
-const {spMajor} = require('../models/Shared/SpMajor');
 const { Candidate } = require('../models/Companies/Candidates');
-const {publicMajor} = require('../models/Shared/Public_Major');
-const {Country} = require('../models/Shared/Country');
 const {Skills} = require('../models/Users/skills');
 const {PersonalSkills} = require('../models/Users/Personal_Skills');
-const {Universty} = require('../models/Shared/Universty');
 const {Company} = require('../models/Companies/Companies')
 const {User} = require('../models/Users/User');
-
+const { Notification } = require('../models/Notification');
+const { JobAd } = require('../models/Companies/Job_Ad');
+const { permittedCrossDomainPolicies } = require('helmet');
 
 module.exports = (app) => {
     //post user information
@@ -54,6 +51,7 @@ module.exports = (app) => {
                     birthDate: req.body.birthDate,
                     universty: universty,
                     city: req.body.city,
+                    jobCategory: req.body.jobCategory,
                     Education_level: req.body.Education_level,
                     public_Major: req.body.public_Major,
                     spMajor: spMajor,
@@ -70,6 +68,7 @@ module.exports = (app) => {
                     linkedin: req.body.linkedin,
                  }).save()
                      .then(user => {
+                        send_JobAds_ToNewUsers(user)
                         res.send(user);
                      });
             } catch(ex) {
@@ -85,38 +84,7 @@ module.exports = (app) => {
 
     //post company information
     app.post('/api/postcompanyinfo', auth,file, (req, res) => {
-        const url = req.protocol + '://' + req.get("host");
-        var imagePath = '';
-        if(!req.file){
-           imagePath = "null"
-        }
-        else{
-            imagePath= url + "/images/" + req.file.filename;
-        }
-
-        try{
-            new CompanyInfo({
-                company: req.user._id,
-                country: req.body.country,
-                phone:req.body.phone,
-                address: req.body.address,
-                info: req.body.info,
-                imagePath: imagePath,
-                vision: req.body.vision,
-                message: req.body.message,
-                city: req.body.city,
-                personal_web: req.body.personal_web,
-                facebook: req.body.facebook,
-                twitter: req.body.twitter,
-                instagram: req.body.instagram,
-                linkedin: req.body.linkedin,
-            }).save()
-                .then(company => {
-                    res.send(company);
-                });
-        } catch(ex) {
-        }
-
+        postCompanyInfo(req)
     })
 
     //Get user info by USerID
@@ -282,9 +250,9 @@ module.exports = (app) => {
         try{
             const info = await CompanyInfo.findOne({ 'company': req.user._id })
             .populate('company city country');
-            if (!info) return res.status(200).json({
-                status : false
-            });
+            // if (!info) return res.status(200).json({
+            //     status : false
+            // });
 
 
             res.status(200).json({
@@ -299,13 +267,13 @@ module.exports = (app) => {
       //Get company info by CompanyID
       app.get('/api/getcompanyinfoById', auth, async (req, res) => {
          const id = req.query.id;
+
         try{
             const info = await CompanyInfo.findOne({ 'company': id })
             .populate("country city")
             .populate("company","-_id -isConfirmed");
-            console.log(info.city)
-            if (!info) return res.status(401).send('not found');
 
+            if (!info) return res.status(401).send('not found');
 
             res.status(200).json({
                 compnayName: info.company.companyName,
@@ -323,6 +291,7 @@ module.exports = (app) => {
                 linkedin: info.linkedin
             });
         } catch(ex) {
+            console.log(ex)
         }
 
     })
@@ -397,6 +366,11 @@ module.exports = (app) => {
     })
 
     app.put('/api/put/companyinfo',[auth,file], async (req,res) => {
+        const company = await CompanyInfo.findOne({"company":req.user._id});
+        if(!company){
+            let companyInfo = postCompanyInfo(req);
+            return res.status(200).send(companyInfo);
+        }
         const url = req.protocol + '://' + req.get("host");
         var imagePath = '';
         if(!req.file){
@@ -497,4 +471,90 @@ module.exports = (app) => {
 
           return Education_level;
       }
+
+        // Send job offers to new Reg users
+    async function send_JobAds_ToNewUsers(userData) {
+        const country = userData.country;
+        const city = userData.city;
+        const gender = userData.gender;
+        const jobCategory = userData.jobCategory;
+        let query = {
+            "country": country,
+            "city": city,
+            "jobCategory": {$in:jobCategory},
+            "isLock": false
+        }
+
+        // find job with conditions
+        const jobAds = await JobAd.find(query);
+        if (jobAds) // check if find available jobs or not
+        {
+            // check gender if male or female or both
+            if (jobAds.gender == "both") {
+                for (let i = 0; i < jobAds.length; i++) {
+                    new Notification({
+                        content: jobAds[i]._id,
+                        user: userData.user,
+                        isRead: false,
+                        date: Date.now(),
+                        apply: false
+                    }).save();
+                }
+            }
+            else {
+                for (let i = 0; i < jobAds.length; i++) {
+                    if (jobAds[i].gender == userData.gender) {
+                        new Notification({
+                            content: jobAds[i]._id,
+                            user: userData.user,
+                            isRead: false,
+                            date: Date.now(),
+                            apply: false
+                        }).save();
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+    // post company info
+    async function postCompanyInfo(req) {
+        const url = req.protocol + '://' + req.get("host");
+        var imagePath = '';
+        if(!req.file){
+           imagePath = "null"
+        }
+        else{
+            imagePath= url + "/images/" + req.file.filename;
+        }
+
+        try{
+            new CompanyInfo({
+                company: req.user._id,
+                country: req.body.country,
+                phone:req.body.phone,
+                address: req.body.address,
+                info: req.body.info,
+                imagePath: imagePath,
+                vision: req.body.vision,
+                message: req.body.message,
+                city: req.body.city,
+                personal_web: req.body.personal_web,
+                facebook: req.body.facebook,
+                twitter: req.body.twitter,
+                instagram: req.body.instagram,
+                linkedin: req.body.linkedin,
+            }).save()
+                .then(company => {
+                   return company
+                });
+        } catch(ex) {
+           console.log(ex)
+        }
+
+    }
 }

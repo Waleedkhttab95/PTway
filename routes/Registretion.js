@@ -6,7 +6,6 @@ const bcrypt = require('bcrypt-nodejs');
 const auth = require('../middleware/auth');
 const {superVisor} = require('../models/Companies/superVisors');
 
-
 module.exports = (app) => {
 
   // User Registrion *
@@ -128,7 +127,7 @@ module.exports = (app) => {
         company.superVisor= result._id
         company.save();
       })
-      company.save();
+
     });
 
 
@@ -204,7 +203,7 @@ module.exports = (app) => {
     if(!user){
       try{
         const company = await Company.findOne({ email: req.body.email });
-        companySendVerifMail(company.companyName , company.email);
+        companySendVerifMail(company.companyName , company.email, company._id);
         res.status(200).send();
       } catch(e){
         res.status(400).send(e);
@@ -214,7 +213,7 @@ module.exports = (app) => {
     // if the email for a user
     else {
     try{
-      sendVerifMail(user.firstName , user.email);
+      sendVerifMail(user.firstName , user.email,user._id);
       res.status(200).send();
     } catch(e){
       res.status(400).send(e);

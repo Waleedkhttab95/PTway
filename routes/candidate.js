@@ -4,6 +4,7 @@ const auth = require('../middleware/auth');
 const { Notification } = require('../models/Notification');
 const { UserInfo } = require('../models/Users/User_Info');
 const { result } = require('lodash');
+const { JobAd } = require('../models/Companies/Job_Ad');
 
 
 module.exports = (app) => {
@@ -20,19 +21,32 @@ module.exports = (app) => {
         jobAd: req.body.jobAd,
         createDate: Date.now()
       }).save()
-        .then(result => {
-          info.aplled_jobs += 1;
-          info.save();
-          res.send(result);
-        })
+        .then(async result => {
+          try{
+            info.aplled_jobs += 1;
+            info.save();
+            // add 1 candidate to Job candidates value //
+            const candidateNumber = await JobAd.findById(req.body.jobAd);
+            if(candidateNumber.candidatesNumber == 50 || candidateNumber.candidatesNumber == 100 )
+            // send reminder email
+            candidateNumber.candidatesNumber =+1;
+            candidateNumber.save();
+            // change apply status of this job offer for user //
+            const jobNotification = await Notification.findOne({ 'content': req.body.jobAd, 'user': req.user._id });
 
-      const result = await Notification.findOne({ 'content': req.body.jobAd, 'user': req.user._id });
+            if (jobNotification.apply == false) {
+              jobNotification.apply = true;
+              jobNotification.save();
+            }
 
-      if (result.apply == false) {
-        result.apply = true;
-        result.save();
-      }
-    }
+            res.send(result);
+          }catch(error){
+            console.log(error)
+          }
+
+        });
+     }
+
     else {
       return res.status(200).send('this user already exist')
     }

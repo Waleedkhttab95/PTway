@@ -322,7 +322,7 @@ module.exports = (app) =>{
         })
 
     })
-  
+
 
     // retrive all phone numbers By Job AD
 

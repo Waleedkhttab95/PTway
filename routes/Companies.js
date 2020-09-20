@@ -4,10 +4,8 @@ const { Project } = require('../models/Companies/Project');
 const { JobAd } = require('../models/Companies/Job_Ad');
 const auth = require('../middleware/auth');
 const { Contract } = require('../models/Companies/Contract');
-const {UserInfo} = require('../models/Users/User_Info');
+const { UserInfo } = require('../models/Users/User_Info');
 const { Accepted } = require('../models/Companies/Accepted');
-const { City } = require('../models/Shared/City');
-const { Country } = require('../models/Shared/Country');
 const { Notification } = require('../models/Notification');
 const { JobAd_admin } = require('../models/admin/Job_Ad_Admin');
 const { Project_Admin } = require('../models/admin/Project_Admin');
@@ -15,11 +13,10 @@ const { Company } = require('../models/Companies/Companies');
 const { Candidate } = require('../models/Companies/Candidates');
 const { User } = require('../models/Users/User');
 const { sendJobOffer } = require('../services/email/mail');
-const { query } = require('express');
 
 
 
-module.exports = (app,client) => {
+module.exports = (app, client) => {
 
     // Add Company Sector
     app.post('/api/postsector', (req, res) => {
@@ -52,22 +49,22 @@ module.exports = (app,client) => {
 
         const type = req.query.type;
 
-        client.get(type,async (err,data) =>{
-            if(err) throw err;
+        client.get(type, async (err, data) => {
+            if (err) throw err;
 
-            if(data !== null) {
+            if (data !== null) {
                 res.status(201).json({
-                    sectors:data
+                    sectors: data
                 });
             }
-            else{
+            else {
                 const sectors = await Sector.find();
-                var sectorsToString = JSON.stringify(sectors) ;
-        client.setex(type,3200,sectorsToString)
-        res.status(201).json({
-            sectors:sectorsToString
-        });
-    }
+                var sectorsToString = JSON.stringify(sectors);
+                client.setex(type, 3200, sectorsToString)
+                res.status(201).json({
+                    sectors: sectorsToString
+                });
+            }
 
         })
     });
@@ -83,22 +80,22 @@ module.exports = (app,client) => {
 
         const type = req.query.type;
 
-        client.get(type,async (err,data) =>{
-            if(err) throw err;
+        client.get(type, async (err, data) => {
+            if (err) throw err;
 
-            if(data !== null) {
+            if (data !== null) {
                 res.status(201).json({
-                    Cs:data
+                    Cs: data
                 });
             }
-            else{
+            else {
                 const Cs = await CompanySpecialist.find();
-                var CsToString = JSON.stringify(Cs) ;
-        client.setex(type,3200,CsToString)
-        res.status(201).json({
-            Cs:CsToString
-        });
-    }
+                var CsToString = JSON.stringify(Cs);
+                client.setex(type, 3200, CsToString)
+                res.status(201).json({
+                    Cs: CsToString
+                });
+            }
 
         })
     });
@@ -166,7 +163,7 @@ module.exports = (app,client) => {
         today.setHours(0, 0, 0, 0);
         new JobAd({
             createDate: Date.now(),
-            sortDate : today,
+            sortDate: today,
             company: req.user._id,
             contract: req.body.contract,
             project: req.body.project,
@@ -189,13 +186,13 @@ module.exports = (app,client) => {
             .then(result => {
                 send_JobAds(result)
                 res.send(result)
-            }).catch((e)=>{
-                res.status(500).send('error',e)
+            }).catch((e) => {
+                res.status(500).send('error', e)
             });
 
         new JobAd_admin({
             createDate: Date.now(),
-            sortDate : today,
+            sortDate: today,
             company: req.user._id,
             contract: req.body.contract,
             project: req.body.project,
@@ -223,33 +220,33 @@ module.exports = (app,client) => {
 
     app.get('/api/getprojects', auth, async (req, res) => {
         const id = req.user._id;
-        const JobAdsCount= [];
+        const JobAdsCount = [];
 
 
         var pageNo = parseInt(req.query.pageNo)
         var size = 3
         var query = {}
 
-        if(pageNo < 0 || pageNo === 0) {
-            response = {"error" : true,"message" : "invalid page number, should start with 1"};
+        if (pageNo < 0 || pageNo === 0) {
+            response = { "error": true, "message": "invalid page number, should start with 1" };
             return res.json(response)
-      }
+        }
 
-      query.skip = size * (pageNo - 1)
-      query.limit = size
+        query.skip = size * (pageNo - 1)
+        query.limit = size
 
-      const projectCount = await Project.count({ company: id });
-      var totalPages = Math.ceil(projectCount / size)
-      const proj = await Project.find({ company: id },{},query)
-      .sort({ date: -1 });
+        const projectCount = await Project.count({ company: id });
+        var totalPages = Math.ceil(projectCount / size)
+        const proj = await Project.find({ company: id }, {}, query)
+            .sort({ date: -1 });
 
-        for(var i =0 ; i < proj.length ; i++){
-            var jobAds = await JobAd.find({'project': proj[i]}).countDocuments()
+        for (var i = 0; i < proj.length; i++) {
+            var jobAds = await JobAd.find({ 'project': proj[i] }).countDocuments()
             JobAdsCount.push(jobAds);
 
         }
         res.status(200).json({
-            proj,JobAdsCount,totalPages
+            proj, JobAdsCount, totalPages
         });
     });
 
@@ -263,9 +260,9 @@ module.exports = (app,client) => {
         res.status(200).send(proj)
     });
 
-     // Get all projects
+    // Get all projects
 
-     app.get('/api/getAllProjects', auth, async (req, res) => {
+    app.get('/api/getAllProjects', auth, async (req, res) => {
         const projects = await Project.find();
         res.send(projects);
     })
@@ -274,18 +271,18 @@ module.exports = (app,client) => {
 
     app.get('/api/getjobs', auth, async (req, res) => {
         const jobs = await JobAd.find().populate('project').populate('city').populate('company').populate('contract')
-        .sort({createDate: -1});
+            .sort({ createDate: -1 });
         res.send(jobs);
     })
 
 
     // get all jobs for company by email
     app.get('/api/getjobsByEmail/:email?', auth, async (req, res) => {
-        const company = await Company.findOne({'email': req.query.email})
+        const company = await Company.findOne({ 'email': req.query.email })
         if (!company) return res.status(402).send('not found company')
 
-        const jobs = await JobAd.find({'company': company._id}).populate('company').populate('city')
-        .sort({createDate: -1});
+        const jobs = await JobAd.find({ 'company': company._id }).populate('company').populate('city')
+            .sort({ createDate: -1 });
         if (!jobs) return res.status(402).send('not found Jobs for this company')
 
         res.status(200).send(jobs);
@@ -310,8 +307,8 @@ module.exports = (app,client) => {
         const id = req.query.id;
         var apply_job = false;
         const job = await JobAd.findById(id)
-        .populate("city country contract ")
-        .populate("company","-password");
+            .populate("city country contract ")
+            .populate("company", "-password");
         if (!job) return res.status(401).send('not found');
         //  const public_Major = await publicMajor.findById(job.public_Major);
         const result = await Notification.findOne({ 'content': id, 'user': req.user._id });
@@ -327,7 +324,7 @@ module.exports = (app,client) => {
             apply_job = result.apply
         }
 
-        if(job.gender == 'both') {
+        if (job.gender == 'both') {
             job.gender = 'ذكر و انثى'
         }
 
@@ -346,13 +343,13 @@ module.exports = (app,client) => {
     app.get('/api/preview/getjob', auth, async (req, res) => {
         const id = req.query.id;
         const job = await JobAd.findById(id)
-        .populate("city country contract ")
-        .populate("company","-password");
+            .populate("city country contract ")
+            .populate("company", "-password");
         if (!job) return res.status(401).send('not found');
         //  const public_Major = await publicMajor.findById(job.public_Major);
 
 
-        if(job.gender == 'both') {
+        if (job.gender == 'both') {
             job.gender = 'ذكر و انثى'
         }
 
@@ -390,7 +387,7 @@ module.exports = (app,client) => {
 
 
         res.status(200).json({
-          job
+            job
         });
     });
     //Post Contract
@@ -418,9 +415,9 @@ module.exports = (app,client) => {
     //DELETE project by Id
     app.delete('/api/deleteproject', auth, async (req, res) => {
         const id = req.query.id;
-        const jobAds = await JobAd.find({'project': id});
+        const jobAds = await JobAd.find({ 'project': id });
 
-        for(let i = 0 ; i< jobAds.length ; i++){
+        for (let i = 0; i < jobAds.length; i++) {
             await JobAd.findByIdAndDelete(jobAds[i]._id)
         }
         const project = await Project.findByIdAndDelete(id);
@@ -440,23 +437,23 @@ module.exports = (app,client) => {
     });
 
     // Lock Job
-    app.put('/api/lockJob/:id?', auth, async (req,res) =>{
-        const job = await JobAd.updateOne({'_id': req.query.id}, {
+    app.put('/api/lockJob/:id?', auth, async (req, res) => {
+        const job = await JobAd.updateOne({ '_id': req.query.id }, {
             $set: {
                 isLock: true
             }
-        }).then(result =>{
+        }).then(result => {
             res.status(200).send("Done .");
         });
     })
 
-      // UnLock Job
-      app.put('/api/unlockJob/:id?', auth, async (req,res) =>{
-        const job = await JobAd.updateOne({'_id': req.query.id}, {
+    // UnLock Job
+    app.put('/api/unlockJob/:id?', auth, async (req, res) => {
+        const job = await JobAd.updateOne({ '_id': req.query.id }, {
             $set: {
                 isLock: false
             }
-        }).then(result =>{
+        }).then(result => {
             res.status(200).send("Done .");
         });
     })
@@ -469,7 +466,7 @@ module.exports = (app,client) => {
                 projectDescription: req.body.projectDescription,
             }
 
-        }).then(result =>{
+        }).then(result => {
             res.status(200).send("Done .");
         });
     });
@@ -494,17 +491,17 @@ module.exports = (app,client) => {
 
             }
 
-        }).then(result =>{
+        }).then(result => {
             res.status(200).send("Done .");
         });
     });
 
-    app.get('/api/getCompanyAds',auth, async (req, res) => {
+    app.get('/api/getCompanyAds', auth, async (req, res) => {
         var jobObjArray = [];
         try {
-            if(!req.user._id) return res.status(400).send('الشركة غير مسجلة');
-            const advs = await JobAd.find({ 'company': req.user._id}).sort({createDate: -1}).limit(3)
-            .populate('project')
+            if (!req.user._id) return res.status(400).send('الشركة غير مسجلة');
+            const advs = await JobAd.find({ 'company': req.user._id }).sort({ createDate: -1 }).limit(3)
+                .populate('project')
             // if (!advs || advs.length == 0) return res.status(400).send('لا تملك الشركة  إعلانات');
             // advs.forEach(async (adv , index) => {
             //     const advId = adv._id;
@@ -515,11 +512,11 @@ module.exports = (app,client) => {
             // });
             for (let index = 0; index < advs.length; index++) {
                 const advId = advs[index]._id;
-                const advName= advs[index].job_Name;
+                const advName = advs[index].job_Name;
                 const jobCreate = advs[index].createDate;
                 const projectName = advs[index].project.projectName;
                 const candidates = await Candidate.find({ 'jobAd': advId }).countDocuments();
-                const obj = { advId,advName, candidates,projectName,jobCreate };
+                const obj = { advId, advName, candidates, projectName, jobCreate };
                 jobObjArray.push(obj);
             }
             return res.status(200).send(jobObjArray);
@@ -530,23 +527,23 @@ module.exports = (app,client) => {
     });
 
     // get all sub accounts
-    app.get('/api/getSubUsers',auth, async (req,res) =>{
-        const users = await User.find({'isSubUser': true , 'company':req.user._id})
-        if(!users) return res.status(401).send('not found any users !')
+    app.get('/api/getSubUsers', auth, async (req, res) => {
+        const users = await User.find({ 'isSubUser': true, 'company': req.user._id })
+        if (!users) return res.status(401).send('not found any users !')
 
         res.status(200).json({
-            users : users
+            users: users
         })
     })
 
     // change Company name
-     // disable Account
-     app.put('/api/changeCompanyName', auth , async(req,res) =>{
-         const newCompanyName = req.body.name;
-         if(!newCompanyName) return res.status(401).send("Invalid Name ")
+    // disable Account
+    app.put('/api/changeCompanyName', auth, async (req, res) => {
+        const newCompanyName = req.body.name;
+        if (!newCompanyName) return res.status(401).send("Invalid Name ")
 
         const company = await Company.findByIdAndUpdate(req.user._id,
-        { $set: { companyName: newCompanyName } }
+            { $set: { companyName: newCompanyName } }
         );
         return res.status(200).send('updated . ');
 
@@ -554,7 +551,7 @@ module.exports = (app,client) => {
     });
 
     // enable and desable subAccount
-    app.put('/api/switchSubUser',auth, async (req,res) =>{
+    app.put('/api/switchSubUser', auth, async (req, res) => {
         const user = await User.findById(req.query.userId);
         if (!user) return res.status(401).status('user not found')
 
@@ -567,7 +564,7 @@ module.exports = (app,client) => {
     // Function to Calculate Lock Date
 
     function lockDate() {
-        Date.prototype.addDays = function (startDate,days) {
+        Date.prototype.addDays = function (startDate, days) {
 
             var date = new Date(startDate);
             date.setDate(date.getDate() + days);
@@ -578,68 +575,71 @@ module.exports = (app,client) => {
         var Ld = new Date();
         var today = Date.now();
 
-        Ld = Ld.addDays(today,14);
+        Ld = Ld.addDays(today, 14);
         Ld.setHours(0, 0, 0, 0);
         return Ld;
     }
 
 
+    // Send Job offer to users //
+    async function send_JobAds(jobAd) {
 
-   async function send_JobAds(jobAd) {
+        const country = jobAd.country;
+        const city = jobAd.city;
+        const gender = jobAd.gender;
+        const jobAdId = jobAd._id;
+        const jobCategory = jobAd.jobCategory;
+        let query = {};
+        // check gender if male or female or both
+        if (gender == "both") {
 
-             const country=jobAd.country;
-             const city= jobAd.city;
-             const gender= jobAd.gender;
-             const jobAdId = jobAd._id;
-             const jobCategory = jobAd.jobCategory;
-            let query = {};
-             // check gender if male or female or both
-             if(gender == "both"){
-
-                query = {
+            query = {
                 "country": country,
                 "city": city,
-                "jobCategory":jobCategory
-               }
-             }
-             else {
+                "jobCategory": jobCategory
+            }
+        }
+        else {
 
-                 query = {
-                    "country": country,
-                    "city": city,
-                    "gender": gender,
-                    "jobCategory":jobCategory
-                   }
-             }
-           // read users with query
-           const result = await UserInfo
-           .find(query)
-           .select("user");
-           // extract users email and send email
-           result.forEach(async function(r) {
-               const user  = await User.findById(r.user);
-               if(user)
-               {
-                   if(user.email_notification == true && user.isConfirmed == true)
-                   sendJobOffer(user.email , user.firstName, jobAdId);
-               }
+            query = {
+                "country": country,
+                "city": city,
+                "gender": gender,
+                "jobCategory": jobCategory
+            }
+        }
+        // read users with query
+        const result = await UserInfo
+            .find(query)
+            .select("user");
+        // extract users email and send email
+        result.forEach(async function (r) {
+            const user = await User.findById(r.user);
+            if (user) {
+                if (user.email_notification == true && user.isConfirmed == true)
+                    sendJobOffer(user.email, user.firstName, jobAdId);
+            }
 
-               new Notification({
-                content : jobAdId,
-                user : r.user,
+            new Notification({
+                content: jobAdId,
+                user: r.user,
                 isRead: false,
                 date: Date.now(),
                 apply: false
-               }).save();
-            })
+            }).save();
+        })
 
     }
 
 
+
+
     async function delete_Noti(id) {
-        const notifications= await Notification.deleteMany({'content': id})
+        const notifications = await Notification.deleteMany({ 'content': id })
 
 
     }
 
 }
+
+
