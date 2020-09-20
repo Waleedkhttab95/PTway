@@ -14,6 +14,7 @@ const { Candidate } = require('../models/Companies/Candidates');
 const { Accepted } = require('../models/Companies/Accepted');
 const { CompanySpecialist } = require('../models/Companies/CompanySpecialist');
 const { Sector } = require('../models/Companies/Sector');
+const admin = require('../middleware/admin');
 
 
 
@@ -21,7 +22,7 @@ module.exports = (app) => {
 
 
     // Active Pandding company
-    app.put('/api/companyApproval', async (req, res) => {
+    app.put('/api/companyApproval',admin, async (req, res) => {
 
         await Company.updateOne({ '_id': req.body.id }, {
             $set: { isActive: true, }
@@ -33,7 +34,7 @@ module.exports = (app) => {
 
 
     // return Pandding company
-    app.get('/api/get/companyApproval', async (req, res) => {
+    app.get('/api/get/companyApproval',admin,  async (req, res) => {
         const result = await Company.find({"isActive":false}).populate('CompanySpecialist')
         res.status(200).json({
             result: result
@@ -41,7 +42,7 @@ module.exports = (app) => {
 
     })
 
-    app.put('/api/activealluseraccount', async (req, res) => {
+    app.put('/api/activealluseraccount', admin, async (req, res) => {
         console.log('Here')
         await User.updateMany({}, {
 
@@ -52,7 +53,7 @@ module.exports = (app) => {
     })
 
     // make all emails lowercase
-    app.put('/api/makeToLowerCase', async (req, res) => {
+    app.put('/api/makeToLowerCase',admin,  async (req, res) => {
         const user = await User.find();
 
         for(var i=0 ; i <=user.length ; i++){
@@ -97,7 +98,7 @@ module.exports = (app) => {
     // });
 
     // get everyday update
-    app.get('/api/get/dailyUpdate', async (req,res) =>{
+    app.get('/api/get/dailyUpdate',admin,  async (req,res) =>{
         today = new Date();
         today.setHours(0, 0, 0, 0);
 
@@ -118,7 +119,7 @@ module.exports = (app) => {
 
     // get update By Date
 
-    app.get('/api/get/dailyUpdateByDateWeek/:date?', async (req,res) =>{
+    app.get('/api/get/dailyUpdateByDateWeek/:date?',admin,  async (req,res) =>{
         today = new Date(req.query.date);
         today.setHours(0, 0, 0, 0);
        Lastday = new Date();
@@ -144,7 +145,7 @@ module.exports = (app) => {
 
     // get update By Date before month
 
-    app.get('/api/get/dailyUpdateByDateBeforeMonth/:date?', async (req,res) =>{
+    app.get('/api/get/dailyUpdateByDateBeforeMonth/:date?',admin,  async (req,res) =>{
         today = new Date(req.query.date);
         today.setHours(0, 0, 0, 0);
        Lastday = new Date();
@@ -168,7 +169,7 @@ module.exports = (app) => {
 
        // get update between 2 dates
 
-       app.get('/api/get/dailyUpdateBybetweendates/:date?/:date2?', async (req,res) =>{
+       app.get('/api/get/dailyUpdateBybetweendates/:date?/:date2?',admin,  async (req,res) =>{
         today = new Date(req.query.date);
         today.setHours(0, 0, 0, 0);
        Lastday = new Date(req.query.date2);
@@ -193,7 +194,7 @@ module.exports = (app) => {
 
     // return count of comapny based country & city
 
-    app.get('/api/get/companyBcountry/:country?/:city?', async (req, res) => {
+    app.get('/api/get/companyBcountry/:country?/:city?', admin, async (req, res) => {
 
         const result = await CompanyInfo.find({ 'country': req.query.country, 'city': req.query.city }).countDocuments();
         return res.status(200).json({
@@ -202,7 +203,7 @@ module.exports = (app) => {
     });
 
     // return count of company based country & city & sector & sp
-    app.get('/api/get/company/country/sector/:country?/:city?/:sector?/:sp?', async (req, res) => {
+    app.get('/api/get/company/country/sector/:country?/:city?/:sector?/:sp?',admin, async (req, res) => {
         const sector = req.query.sector;
         const sp = req.query.sp;
 
@@ -249,7 +250,7 @@ module.exports = (app) => {
     });
 
     // Getting all useres , male useres , female useres , users with CV
-    app.get('/api/get/allUsers_Genders_CV', async (req, res) => {
+    app.get('/api/get/allUsers_Genders_CV',admin, async (req, res) => {
         try {
             const Users = await User.find().countDocuments();
             const Males = await UserInfo.find({ 'gender': 'ذكر' }).countDocuments();
@@ -269,7 +270,7 @@ module.exports = (app) => {
     });
 
     // Getting users depends on countries and cities
-    app.get('/api/get/UsersDepenedsOnArea/:country?/:city?', async (req, res) => {
+    app.get('/api/get/UsersDepenedsOnArea/:country?/:city?',admin, async (req, res) => {
         try {
             // recevie URL Paramaters
             const CountryId = req.query.country;
@@ -294,7 +295,7 @@ module.exports = (app) => {
 
 
     // Getting users depends on  cities and major
-    app.get('/api/get/UsersDepenedsOnAreaAndMajor/:country?/:city?/:major?/:spmajor?', async (req, res) => {
+    app.get('/api/get/UsersDepenedsOnAreaAndMajor/:country?/:city?/:major?/:spmajor?',admin, async (req, res) => {
         try {
             // recevie URL Paramaters
             const CountryId = req.query.country;
@@ -322,7 +323,7 @@ module.exports = (app) => {
 
 
        // Getting users depends on major and spMajor
-       app.get('/api/get/UsersDepenedsOnMajor/:major?/:spMajor?', async (req, res) => {
+       app.get('/api/get/UsersDepenedsOnMajor/:major?/:spMajor?',admin, async (req, res) => {
         try {
             // recevie URL Paramaters
             const major = req.query.major;
@@ -352,7 +353,7 @@ module.exports = (app) => {
     });
 
     // Getting users depends on age
-    app.get('/api/get/UsersDepenedsOnAge/:age?', async (req, res) => {
+    app.get('/api/get/UsersDepenedsOnAge/:age?',admin, async (req, res) => {
         var ages = [];
         try {
             const Users = await UserInfo.find();
@@ -377,7 +378,7 @@ module.exports = (app) => {
     });
 
     // Getting the growth rate
-    app.get('/api/get/growthRate/:date?', async (req, res) => {
+    app.get('/api/get/growthRate/:date?',admin, async (req, res) => {
         var today = new Date();
         var ourDate = new Date();
         ourDate = req.query.date;
@@ -400,7 +401,7 @@ module.exports = (app) => {
     });
 
     // Getting companies , companies who entered info , all job ad's , all projects
-    app.get('/api/get/companiesInfo', async (req, res) => {
+    app.get('/api/get/companiesInfo',admin, async (req, res) => {
         try {
             const companies = await Company.find().countDocuments();
             const companiesInfo = await CompanyInfo.find().countDocuments();
@@ -421,7 +422,7 @@ module.exports = (app) => {
     });
 
     // return Candidties and Accepted users for Job offer
-    app.get('/api/get/cand/acc/:jobId?', async (req, res) => {
+    app.get('/api/get/cand/acc/:jobId?',admin, async (req, res) => {
 
 
         const candidates = await Candidate.find({ 'jobAd': req.query.jobId }).countDocuments();
@@ -436,7 +437,7 @@ module.exports = (app) => {
 
     // return count of Projects and job offers for each company
 
-    app.get('/api/get/projects/jobs/:companyId?', async (req, res) => {
+    app.get('/api/get/projects/jobs/:companyId?',admin, async (req, res) => {
 
         const projects = await Project.find({ 'company': req.query.companyId }).countDocuments();
         const jobAds = await JobAd.find({ 'company': req.query.companyId }).countDocuments();
@@ -456,7 +457,7 @@ module.exports = (app) => {
     // **********************************
 
     // By Id
-    app.get('/api/get/searchUserById/:id?', async (req, res) => {
+    app.get('/api/get/searchUserById/:id?',admin, async (req, res) => {
         try {
             const id = req.query.id;
             const user = await User.findById(id);
@@ -472,7 +473,7 @@ module.exports = (app) => {
     });
 
     // By Email
-    app.get('/api/get/searchUserByEmail/:email?', async (req, res) => {
+    app.get('/api/get/searchUserByEmail/:email?',admin, async (req, res) => {
         try {
             const email = req.query.email;
             const user = await User.findOne({ 'email': email });
@@ -488,7 +489,7 @@ module.exports = (app) => {
     });
 
     // By first name
-    app.get('/api/get/searchUserByName/:firstName?', async (req, res) => {
+    app.get('/api/get/searchUserByName/:firstName?',admin, async (req, res) => {
         try {
             const firstName = req.query.firstName;
             const user = await User.find({ 'firstName': { '$regex': firstName, '$options': 'i' } }); // could be many users with same first name,,
@@ -511,7 +512,7 @@ module.exports = (app) => {
     // **********************************
 
     // By Id
-    app.get('/api/get/searchCompanyById/:id?', async (req, res) => {
+    app.get('/api/get/searchCompanyById/:id?',admin, async (req, res) => {
         try {
             const id = req.query.id;
             const company = await Company.findById(id).populate('CompanySpecialist');
@@ -527,7 +528,7 @@ module.exports = (app) => {
     });
 
     // By Email
-    app.get('/api/get/searchCompanyByEmail/:email?', async (req, res) => {
+    app.get('/api/get/searchCompanyByEmail/:email?',admin, async (req, res) => {
         try {
             const email = req.query.email;
             const company = await Company.findOne({ 'email': email }).populate('CompanySpecialist');
@@ -543,7 +544,7 @@ module.exports = (app) => {
     });
 
     // By companyName
-    app.get('/api/get/searchCompanyByName/:companyName?', async (req, res) => {
+    app.get('/api/get/searchCompanyByName/:companyName?',admin, async (req, res) => {
         try {
             const companyName = req.query.companyName;
             const company = await Company.find({ 'companyName': { '$regex': companyName, '$options': 'i' } })
@@ -560,7 +561,7 @@ module.exports = (app) => {
     });
 
     // By sector
-    app.get('/api/get/searchCompanyBySector/:sectorName?', async (req, res) => {
+    app.get('/api/get/searchCompanyBySector/:sectorName?',admin, async (req, res) => {
         try {
             const sectorName = req.query.sectorName;
             // const sector = await Sector.findOne({ 'sectorName': sectorName });
@@ -581,7 +582,7 @@ module.exports = (app) => {
     });
 
     // By CompanySpecialist
-    app.get('/api/get/searchCompanyByCompanySpecialist/:CompanySp?', async (req, res) => {
+    app.get('/api/get/searchCompanyByCompanySpecialist/:CompanySp?',admin, async (req, res) => {
         try {
             const companySpecialist = req.query.CompanySp;
             const Specialist = await CompanySpecialist.findOne({ 'specialistName': companySpecialist });
@@ -606,7 +607,7 @@ module.exports = (app) => {
     // *************************************
 
     // Create Sub Admin
-    app.post('/api/post/createNewSubUser', async (req, res) => {
+    app.post('/api/post/createNewSubUser',admin, async (req, res) => {
         try {
             const { error } = validate(req.body);
             if (error) return res.status(400).send(error.details[0].message);
@@ -641,7 +642,7 @@ module.exports = (app) => {
     // Read
     // the concept behind the read is: search API will look for id,email and first name
     // and will return the user object , so we will use the object to show the info.
-    app.get('/api/get/readUser', async (req, res) => {
+    app.get('/api/get/readUser',admin, async (req, res) => {
         try {
             const user = req.body.user; //it's array maybe single record or multiple be attention!!
             if (!user) return res.status(400).send('المستخدم غير موجود');
@@ -656,7 +657,7 @@ module.exports = (app) => {
     // Write
     // the concept behind the write is: search API will look for id,email and first name
     // and will return the user object , so we will use the object to write the info.
-    app.put('/api/put/writeOnUser/:updateType?/:value?', async (req, res) => {
+    app.put('/api/put/writeOnUser/:updateType?/:value?',admin, async (req, res) => {
         try {
             const user = req.body.user; //it's array maybe single record or multiple be attention!!
             if (!user) return res.status(400).send('المستخدم غير موجود');
@@ -716,7 +717,7 @@ module.exports = (app) => {
     // Delete
     // the concept behind the delete is: search API will look for id,email and first name
     // and will return the user object , so we will use the object to delete the info.
-    app.delete('/api/delete/deleteUser', async (req, res) => {
+    app.delete('/api/delete/deleteUser',admin, async (req, res) => {
         try {
             const user = req.body.user; //it's object be attention!!
             if (!user) return res.status(400).send('المستخدم غير موجود');
@@ -739,7 +740,7 @@ module.exports = (app) => {
     // *************************************
 
     // Create
-    app.post('/api/post/createNewComapny', async (req, res) => {
+    app.post('/api/post/createNewComapny',admin, async (req, res) => {
         try {
             let company = await Company.findOne({ email: req.body.email });
             if (company) return res.status(400).send('الشركة مسجلة مسبقًا');
@@ -787,7 +788,7 @@ module.exports = (app) => {
     // Read
     // the concept behind the read is: search API will look for id,email and companyName
     // and will return the company object , so we will use the object to show the info.
-    app.get('/api/get/readComapny', async (req, res) => {
+    app.get('/api/get/readComapny',admin, async (req, res) => {
         try {
             const company = req.body.company; //it's object be attention!!
             if (!company) return res.status(400).send('الشركة غير موجودة');
@@ -802,7 +803,7 @@ module.exports = (app) => {
     // Write
     // the concept behind the write is: search API will look for id,email and companyName
     // and will return the company object , so we will use the object to write the info.
-    app.put('/api/put/writeOnCompany/:updateType?/:value?', async (req, res) => {
+    app.put('/api/put/writeOnCompany/:updateType?/:value?',admin, async (req, res) => {
         try {
             const company = req.body.company; //it's object be attention!!
             if (!company) return res.status(400).send('الشركة غير موجودة');
@@ -886,7 +887,7 @@ module.exports = (app) => {
     // Delete
     // the concept behind the delete is: search API will look for id,email and companyName
     // and will return the Company object , so we will use the object to delete the info.
-    app.delete('/api/delete/deleteCompany', async (req, res) => {
+    app.delete('/api/delete/deleteCompany',admin, async (req, res) => {
         try {
             const company = req.body.company; //it's object be attention!!
             if (!company) return res.status(400).send('الشركة غير موجودة');
@@ -906,7 +907,7 @@ module.exports = (app) => {
 
     // the concept is when the admin search for a user either by id , email or First name
     // he will have the option to send a message so we will got an object from search API's
-    app.get('/api/get/messagesToUser', async (req, res) => {
+    app.get('/api/get/messagesToUser',admin, async (req, res) => {
         try {
             const user = req.body.user; //it's object be attention!!
             if (!user) return res.status(400).send('المستخدم غير موجود');
@@ -926,7 +927,7 @@ module.exports = (app) => {
 
     // the concept is when the admin search for a company either by id , email or company name
     // he will have the option to send a message so we will got an object from search API's
-    app.get('/api/get/messagesToCompany', async (req, res) => {
+    app.get('/api/get/messagesToCompany',admin, async (req, res) => {
         try {
             const company = req.body.company; //it's object be attention!!
             if (!company) return res.status(400).send('الشركة غير موجودة');
@@ -946,7 +947,7 @@ module.exports = (app) => {
 
 
     // return All users
-    app.get('/api/get/allUsers', async (req,res) =>{
+    app.get('/api/get/allUsers',admin, async (req,res) =>{
         const users = await User.find();
         if(!users  || users.length == 0) return res.status(401).send('not users exist .')
 
@@ -957,7 +958,7 @@ module.exports = (app) => {
 
 
        // return All users Info
-       app.get('/api/get/allUsersInfo', async (req,res) =>{
+       app.get('/api/get/allUsersInfo',admin, async (req,res) =>{
            console.log('Test')
         const users = await UserInfo.find();
         if(!users || users.length == 0) return res.status(401).send('not users exist .')
@@ -968,7 +969,7 @@ module.exports = (app) => {
     });
 
     // Confirm user
-    app.put('/api/confitm/user/:id?', async (req,res) =>{
+    app.put('/api/confitm/user/:id?',admin, async (req,res) =>{
         const user = await User.updateOne({'_id': req.query.id},
         {
             $set: {
@@ -984,7 +985,7 @@ module.exports = (app) => {
     });
 
      // Block user
-     app.put('/api/block/user/:id?', async (req,res) =>{
+     app.put('/api/block/user/:id?',admin, async (req,res) =>{
         const user = await User.updateOne({'_id': req.query.id},
         {
             $set: {
@@ -1001,7 +1002,7 @@ module.exports = (app) => {
 
 
        // Confirm Company
-       app.put('/api/confitm/company/:id?', async (req,res) =>{
+       app.put('/api/confitm/company/:id?',admin, async (req,res) =>{
         const company = await Company.updateOne({'_id': req.query.id},
         {
             $set: {
@@ -1017,7 +1018,7 @@ module.exports = (app) => {
     });
 
      // Block company
-     app.put('/api/block/company/:id?', async (req,res) =>{
+     app.put('/api/block/company/:id?',admin, async (req,res) =>{
         const company = await Company.updateOne({'_id': req.query.id},
         {
             $set: {
@@ -1071,7 +1072,7 @@ module.exports = (app) => {
 
     })
 
-   async function send_jobs(body, jobAdId) {
+  admin, async function send_jobs(body, jobAdId) {
 
          const country=body.country;
          const city= body.city;
