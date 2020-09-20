@@ -6,6 +6,7 @@ const error = require('./middleware/error');
 const path = require('path');
 const cookieSession = require('cookie-session');
 const keys = require('./config/keys');
+const rateLimit = require("express-rate-limit");
 const bodyParser = require('body-parser');
 const redis = require('redis');
 const rateLimit = require("express-rate-limit");
@@ -30,6 +31,10 @@ const apiLimiter = rateLimit({
 
 // only apply to requests that begin with /api/
 app.use("/api/", apiLimiter);
+<<<<<<< HEAD
+
+=======
+>>>>>>> c5b44cefc3f8642de3b8af53cb4f368d12c2e2e0
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json({limit: '50mb'}));
