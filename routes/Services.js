@@ -322,12 +322,8 @@ module.exports = (app) =>{
         })
 
     })
-app.get('/api/getUnconfrmCompany', async (req,res) =>{
-    const result = await Company.find({"isConfirmed": false}).select("email -_id")
-    res.status(200).json({
-        result: result
-    })
-})
+
+
 
     // retrive all phone numbers By Job AD
 

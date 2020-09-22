@@ -537,7 +537,7 @@ module.exports = (app, client) => {
     })
 
     // change Company name
-    // disable Account
+
     app.put('/api/changeCompanyName', auth, async (req, res) => {
         const newCompanyName = req.body.name;
         if (!newCompanyName) return res.status(401).send("Invalid Name ")
@@ -549,7 +549,23 @@ module.exports = (app, client) => {
 
 
     });
+    // get company superVisor
+    app.get('/api/getCompanySuperV',auth,async (req,res) =>{
+     try{
+        const SPdata = await Company.findById(req.user._id)
+        .populate('superVisor')
 
+        if(!SPdata.superVisor) return res.status(200).json({
+            superVisor:""
+        });
+
+        res.status(200).json({
+            superVisor:SPdata.superVisor
+        });
+     }catch(err){
+         console.log(err)
+     }
+    })
     // enable and desable subAccount
     app.put('/api/switchSubUser', auth, async (req, res) => {
         const user = await User.findById(req.query.userId);

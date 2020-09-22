@@ -142,6 +142,20 @@ module.exports = (app) => {
     });;
   });
 
+   // change supervisor info
+
+    app.put('/api/changeSuperVisor', auth, async (req, res) => {
+      const superVisorData = req.body;
+      if (!superVisorData) return res.status(401).send("Invalid Data ")
+     const superVisor= addSuperVisor(superVisorData);
+
+      const company = await Company.findByIdAndUpdate(req.user._id,
+          { $set: { superVisor: superVisor._id } }
+      );
+      return res.status(200).send('updated . ');
+
+
+  });
   // Add superVisor of company
   function addSuperVisor(req){
     if(!req) return status(401).send("faild request !");
