@@ -147,8 +147,7 @@ module.exports = (app) => {
     app.put('/api/changeSuperVisor', auth, async (req, res) => {
       const superVisorData = req.body;
       if (!superVisorData) return res.status(401).send("Invalid Data ")
-     const superVisor= addSuperVisor(superVisorData);
-
+     const superVisor= await addSuperVisor(superVisorData);
       const company = await Company.findByIdAndUpdate(req.user._id,
           { $set: { superVisor: superVisor._id } }
       );

@@ -554,7 +554,7 @@ module.exports = (app, client) => {
      try{
         const SPdata = await Company.findById(req.user._id)
         .populate('superVisor')
-
+      
         if(!SPdata.superVisor) return res.status(200).json({
             superVisor:""
         });
