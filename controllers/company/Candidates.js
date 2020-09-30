@@ -4,6 +4,7 @@ const { Notification } = require('../../models/Notification');
 const { UserInfo } = require('../../models/Users/User_Info');
 const { result } = require('lodash');
 const { JobAd } = require('../../models/Companies/Job_Ad');
+const { reminderEmail } = require('../../services/email/mail');
 
              // Candidates Controllers \\
 
@@ -25,11 +26,16 @@ exports.postCandidate = async (req, res) => {
             info.aplled_jobs += 1;
             info.save();
             // add 1 candidate to Job candidates value //
-            const candidateNumber = await JobAd.findById(req.body.jobAd);
-            if(candidateNumber.candidatesNumber == 50 || candidateNumber.candidatesNumber == 100 )
-            // send reminder email
-            candidateNumber.candidatesNumber =+1;
-            candidateNumber.save();
+            const jobAd = await JobAd.findById(req.body.jobAd).populate('company');
+
+            if(jobAd.candidatesNumber == 50 || jobAd.candidatesNumber == 100 ){
+                // send reminder email
+
+                reminderEmail(jobAd.company.email, jobAd.candidatesNumber , jobAd._id,jobAd.job_Name)
+            }
+
+            jobAd.candidatesNumber =+1;
+            jobAd.save();
             // change apply status of this job offer for user //
             const jobNotification = await Notification.findOne({ 'content': req.body.jobAd, 'user': req.user._id });
 

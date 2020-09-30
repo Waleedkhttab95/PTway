@@ -16,6 +16,7 @@ require('./services/passport');
 // create rides for caching data
 const REDIS_PORT = process.env.REDIS_URL;
 const client = redis.createClient(REDIS_PORT);
+exports.client = client;
 
 mongoose.connect(keys.mongoURI,{ useFindAndModify: false })
 const app = express();

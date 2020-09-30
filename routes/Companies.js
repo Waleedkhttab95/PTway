@@ -3,7 +3,7 @@ const { CompanySpecialist } = require('../models/Companies/CompanySpecialist');
 const { Project } = require('../models/Companies/Project');
 const { JobAd } = require('../models/Companies/Job_Ad');
 const auth = require('../middleware/auth');
-const { Contract } = require('../models/Companies/Contract');
+
 const { UserInfo } = require('../models/Users/User_Info');
 const { Accepted } = require('../models/Companies/Accepted');
 const { Notification } = require('../models/Notification');
@@ -18,87 +18,7 @@ const { sendJobOffer } = require('../services/email/mail');
 
 module.exports = (app, client) => {
 
-    // Add Company Sector
-    app.post('/api/postsector', (req, res) => {
 
-        new Sector({
-            sectorName: req.body.sectorName
-        }).save()
-            .then(result => {
-                res.send(result);
-            })
-
-    });
-
-    // add company specialization
-
-    app.post('/api/postspec', (req, res) => {
-
-        new CompanySpecialist({
-            specialistName: req.body.specialistName
-        }).save()
-            .then(result => {
-                res.send(result);
-            })
-
-    });
-
-    // Get all sectors
-
-    app.get('/api/getsectors', async (req, res) => {
-
-        const type = req.query.type;
-
-        client.get(type, async (err, data) => {
-            if (err) throw err;
-
-            if (data !== null) {
-                res.status(201).json({
-                    sectors: data
-                });
-            }
-            else {
-                const sectors = await Sector.find();
-                var sectorsToString = JSON.stringify(sectors);
-                client.setex(type, 3200, sectorsToString)
-                res.status(201).json({
-                    sectors: sectorsToString
-                });
-            }
-
-        })
-    });
-
-    // get all companies
-    // app.get('/api/get/allCompanies', async (req, res) => {
-    //     const companies = await Company.find();
-    //     res.status(200).send(companies);
-    // });
-    // Get all specializzation
-
-    app.get('/api/getspec', async (req, res) => {
-
-        const type = req.query.type;
-
-        client.get(type, async (err, data) => {
-            if (err) throw err;
-
-            if (data !== null) {
-                res.status(201).json({
-                    Cs: data
-                });
-            }
-            else {
-                const Cs = await CompanySpecialist.find();
-                var CsToString = JSON.stringify(Cs);
-                client.setex(type, 3200, CsToString)
-                res.status(201).json({
-                    Cs: CsToString
-                });
-            }
-
-        })
-    });
 
     // get company sector type
     app.get('/api/get/companytype', auth, async (req, res) => {
@@ -260,12 +180,7 @@ module.exports = (app, client) => {
         res.status(200).send(proj)
     });
 
-    // Get all projects
 
-    app.get('/api/getAllProjects', auth, async (req, res) => {
-        const projects = await Project.find();
-        res.send(projects);
-    })
 
     // Get all jobs Ad
 
@@ -390,26 +305,6 @@ module.exports = (app, client) => {
             job
         });
     });
-    //Post Contract
-
-    app.post('/api/postcontract', (req, res) => {
-
-        new Contract({
-            contractName: req.body.contractName,
-            days: req.body.days
-        }).save()
-            .then(result => {
-                res.send(result);
-            })
-
-    });
-
-    // Get all contracts
-
-    app.get('/api/getcontracts', async (req, res) => {
-        const contractt = await Contract.find()
-        res.send(contractt);
-    })
 
 
     //DELETE project by Id
@@ -554,7 +449,7 @@ module.exports = (app, client) => {
      try{
         const SPdata = await Company.findById(req.user._id)
         .populate('superVisor')
-      
+
         if(!SPdata.superVisor) return res.status(200).json({
             superVisor:""
         });

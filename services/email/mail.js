@@ -144,6 +144,18 @@ async function contactEmail(  message , email , name) {
     });
 };
 
+async function reminderEmail(  email , candidates, jobId, jobName) {
+    const url = keys.mail_url;
+    const ccemail = fs.readFileSync(__dirname + '/reminder-email.html', 'utf-8');
+    const comemail = hogan.compile(ccemail);
+    const pageLink = 'https://www.ptway.net/applicants/job/id='+jobId+"&name="+jobName
+    transporter.sendMail({
+        from: 'no-reply@ptway.net',
+        to: email,
+        subject: 'مرشحينك مستعدين !',
+        html: comemail.render({ candidates : candidates, jobLink:pageLink}),
+    });
+};
 
 
 exports.sendVerifMail = sendVerifMail;
@@ -151,5 +163,6 @@ exports.sendResetEmail = sendResetEmail;
 exports.sendJobOffer = sendJobOffer;
 exports.companySendVerifMail = companySendVerifMail;
 exports.contactEmail = contactEmail;
+exports.reminderEmail= reminderEmail;
 //exports.sendHelloEmail = sendHelloEmail;
 exports.adminEmail = adminEmail;

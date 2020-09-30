@@ -37,6 +37,11 @@
       height: 199px;
       object-fit: contain;
     }
+    .link {
+  color: white;
+  text-decoration:none;
+}
+
     button {
       max-width: 131px;
       width: 100%;
@@ -61,12 +66,12 @@
 <body>
   <div class="container">
     <h2>PTway</h2>
-    <img src='./email.png'/>
-    <h3>لديك 100<br/>
+    <img src='https://i.ibb.co/Wvyj4PK/email.png'/>
+    <h3>لديك {{candidates}}<br/>
        مرشح ينتظرون الرد</h3>
       <p>،يهمنا دوماً أن نسعى في تلبية احتياجك <br/>
         .تجاربكم تضاعف نجاحنا</p>
-        <button>اختارهم الآن</button>
+        <a class="link" href={{jobLink}} target="_blank"><button>اختارهم الآن</button></a>
   </div>
 </body>
 </html>
