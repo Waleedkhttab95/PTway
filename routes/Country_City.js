@@ -13,7 +13,6 @@ module.exports = (app,client) => {
 
     app.post('/api/post/spMajor',contentDataController.postSpMajor)
 
-
     app.post('/api/post/universty',contentDataController.postUniversty)
 
     // get all universty
