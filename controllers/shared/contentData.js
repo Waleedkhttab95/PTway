@@ -7,6 +7,9 @@ const { Sector } = require('../../models/Companies/Sector');
 const { CompanySpecialist } = require('../../models/Companies/CompanySpecialist');
 const { Contract } = require('../../models/Companies/Contract');
 const {client} = require('../../index');
+const {Skills} = require('../../models/Users/skills');
+const {PersonalSkills} = require('../../models/Users/Personal_Skills');
+const {jobCategory} = require('../../models/Shared/jobCategory');
 
 
     exports.postCountry =  (req,res) =>{
@@ -236,6 +239,103 @@ const {client} = require('../../index');
     exports.getContracts = async (req, res) => {
         const contractt = await Contract.find()
         res.send(contractt);
+    }
+
+    exports.postSkill = (req,res) =>{
+    new Skills({
+        skillName: req.body.skillName
+    }).save()
+    .then(result =>{
+        res.send(result)
+    })
+    }
+
+    exports.postJobCategory = (req,res) =>{
+        new jobCategory({
+            jobName: req.body.jobName
+        }).save()
+        .then(result =>{
+            res.send(result)
+        })
+    }
+
+    exports.getJobCategories = async(req,res) =>{
+        const type = req.query.type;
+
+        client.get(type,async (err,data) =>{
+            if(err) throw err;
+
+            if(data !== null) {
+                res.status(201).json({
+                    jobs:data
+                });
+            }
+            else{
+                const jobs = await jobCategory.find();
+                var jobsToString = JSON.stringify(jobs) ;
+        client.setex(type,3200,jobsToString)
+        res.status(201).json({
+            jobs:jobsToString
+        });
+    }
+
+        })
+    }
+
+    exports.postPskill = (req,res) =>{
+        new PersonalSkills({
+            skillName: req.body.skillName
+        }).save()
+        .then(result =>{
+            res.send(result)
+        })
+    }
+
+    exports.getSkill =  async (req,res) =>{
+        const type = req.query.type;
+
+        client.get(type,async (err,data) =>{
+            if(err) throw err;
+
+            if(data !== null) {
+                res.status(201).json({
+                    skills:data
+                });
+            }
+            else{
+                const skills = await Skills.find();
+                var skillsToString = JSON.stringify(skills) ;
+        client.setex(type,3200,skillsToString)
+        res.status(201).json({
+            skills:skillsToString
+        });
+    }
+
+        })
+    }
+
+    exports.getPskill = async (req,res) =>{
+
+        const type = req.query.type;
+
+        client.get(type,async (err,data) =>{
+            if(err) throw err;
+
+            if(data !== null) {
+                res.status(201).json({
+                    PersonalS:data
+                });
+            }
+            else{
+                const PersonalS = await PersonalSkills.find();
+                var PersonalSToString = JSON.stringify(PersonalS) ;
+        client.setex(type,3200,PersonalSToString)
+        res.status(201).json({
+            PersonalS:PersonalSToString
+        });
+    }
+
+        })
     }
 
 

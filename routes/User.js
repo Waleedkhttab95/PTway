@@ -1,169 +1,20 @@
-const {User} = require('../models/Users/User');
-const {Skills} = require('../models/Users/skills');
-const {PersonalSkills} = require('../models/Users/Personal_Skills');
-const {JobAd} = require('../models/Companies/Job_Ad');
-const {jobCategory} = require('../models/Shared/jobCategory');
 const auth = require('../middleware/auth');
+const userControllers = require('../controllers/user/userProccess');
+
 
 module.exports = (app,client) => {
 
-    app.get('/api/get/user', auth, async (req,res) =>{
-        const id = req.query.id;
-
-        const user = await User.findById(id);
-
-        const fullName = user.firstName +' '+ user.lastName;
-
-        res.status(200).json({
-            userName: fullName
-
-          });
-    })
-
-    app.post('/api/post/skill',  (req,res) =>{
-        new Skills({
-            skillName: req.body.skillName
-        }).save()
-        .then(result =>{
-            res.send(result)
-        })
-    })
-
-    app.post('/api/post/jobCategory', auth, (req,res) =>{
-        new jobCategory({
-            jobName: req.body.jobName
-        }).save()
-        .then(result =>{
-            res.send(result)
-        })
-    })
-
-    app.get('/api/get/allJobCategory', async(req,res) =>{
-        const type = req.query.type;
-
-        client.get(type,async (err,data) =>{
-            if(err) throw err;
-
-            if(data !== null) {
-                res.status(201).json({
-                    jobs:data
-                });
-            }
-            else{
-                const jobs = await jobCategory.find();
-                var jobsToString = JSON.stringify(jobs) ;
-        client.setex(type,3200,jobsToString)
-        res.status(201).json({
-            jobs:jobsToString
-        });
-    }
-
-        })
-    })
-
-    app.post('/api/post/p_skill',  (req,res) =>{
-        new PersonalSkills({
-            skillName: req.body.skillName
-        }).save()
-        .then(result =>{
-            res.send(result)
-        })
-    })
-
-    app.get('/api/get/skills', async (req,res) =>{
-        const type = req.query.type;
-
-        client.get(type,async (err,data) =>{
-            if(err) throw err;
-
-            if(data !== null) {
-                res.status(201).json({
-                    skills:data
-                });
-            }
-            else{
-                const skills = await Skills.find();
-                var skillsToString = JSON.stringify(skills) ;
-        client.setex(type,3200,skillsToString)
-        res.status(201).json({
-            skills:skillsToString
-        });
-    }
-
-        })
-    })
-
-    app.get('/api/get/p_skills', async (req,res) =>{
-
-        const type = req.query.type;
-
-        client.get(type,async (err,data) =>{
-            if(err) throw err;
-
-            if(data !== null) {
-                res.status(201).json({
-                    PersonalS:data
-                });
-            }
-            else{
-                const PersonalS = await PersonalSkills.find();
-                var PersonalSToString = JSON.stringify(PersonalS) ;
-        client.setex(type,3200,PersonalSToString)
-        res.status(201).json({
-            PersonalS:PersonalSToString
-        });
-    }
-
-        })
-    })
-
-    app.put('/api/subuser', auth, async (req,res) =>{
-
-        let user = await User.findOne({ email: req.body.email });
-
-        if (! user) return res.status(400).send('User not exist');
-
-        const update = await User.findOneAndUpdate({'_id': user._id},
-        {
-          $set: {
-              isSubUser : true,
-              company: req.user._id
-          }
-      })
-
-      res.status(200).send('Successful !');
+    app.get('/api/get/user', auth,userControllers.getUser)
 
 
-    })
+    app.put('/api/subuser', auth, userControllers.subUser)
 
     // Get Jobs by city
-    app.get('/api/getJobsByCity',auth, async(req,res) =>{
-        const userInfo = await userInfo.findOne({'user': req.user._id});
-        if(!userInfo) return res.status(401).send('user not found')
-        if(!userInfo.city) return res.status(401).send('user not found')
+    app.get('/api/getJobsByCity',auth, userControllers.getJobByCity)
 
-        const jobs = await JobAd.find({'city': userInfo.city});
-
-        res.status(200).send(jobs)
-    })
-
-    app.put('/api/changeEmailNotification', auth , async(req,res) =>{
-        const user = await User.findByIdAndUpdate(req.user._id,
-        { $set: { email_notification: req.body.status } }
-        );
-        return res.status(200).send('Done . ');
-
-
-    });
+    app.put('/api/changeEmailNotification', auth , userControllers.changeEmailNotification);
 
     // disable Account
-    app.put('/api/disableAccount', auth , async(req,res) =>{
-        const user = await User.findByIdAndUpdate(req.user._id,
-        { $set: { isConfirmed: false } }
-        );
-        return res.status(200).send('updated . ');
-
-
-    });
+    app.put('/api/disableAccount', auth ,userControllers.disableAccount);
 
 }
