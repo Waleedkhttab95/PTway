@@ -102,7 +102,7 @@ module.exports = (app) => {
         today = new Date();
         today.setHours(0, 0, 0, 0);
 
-        const companies = await Company.find({'sortDate': today}).populate('CompanySpecialist')
+        const companies = await Company.find({'sortDate': today}).populate('CompanySpecialist sector superVisor')
         const users = await User.find({'sortDate': today})
         const jobs = await JobAd.find({'sortDate': today}).populate('project').populate('city').populate('company').populate('contract')
 
@@ -129,7 +129,7 @@ module.exports = (app) => {
 
 
 
-        const companies = await Company.find({'sortDate':{ "$gte": Lastday, "$lt": today } }).populate('CompanySpecialist')
+        const companies = await Company.find({'sortDate':{ "$gte": Lastday, "$lt": today } }).populate('CompanySpecialist sector superVisor')
         const users = await User.find({'sortDate': { "$gte": Lastday, "$lt": today }})
         const jobs = await JobAd.find({'sortDate': { "$gte": Lastday, "$lt": today }}).populate('project').populate('city').populate('company').populate('contract')
 
@@ -152,7 +152,7 @@ module.exports = (app) => {
        Lastday.setDate( today.getDate() - 30 );
        Lastday.setHours(0, 0, 0, 0);
 
-        const companies = await Company.find({'sortDate':{ "$gte": Lastday, "$lt": today } }).populate('CompanySpecialist')
+        const companies = await Company.find({'sortDate':{ "$gte": Lastday, "$lt": today } }).populate('CompanySpecialist sector superVisor')
         const users = await User.find({'sortDate': { "$gte": Lastday, "$lt": today }})
         const jobs = await JobAd.find({'sortDate': { "$gte": Lastday, "$lt": today }}).populate('project').populate('city').populate('company').populate('contract')
 
@@ -178,7 +178,7 @@ module.exports = (app) => {
         console.log(today)
         console.log(Lastday)
 
-        const companies = await Company.find({'sortDate':{ "$gte": today, "$lt": Lastday } }).populate('CompanySpecialist')
+        const companies = await Company.find({'sortDate':{ "$gte": today, "$lt": Lastday } }).populate('CompanySpecialist sector superVisor')
         const users = await User.find({'sortDate': { "$gte": today, "$lt": Lastday }})
         const jobs = await JobAd.find({'sortDate': { "$gte": today, "$lt": Lastday }}).populate('project').populate('city').populate('company').populate('contract')
 
