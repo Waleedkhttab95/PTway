@@ -24,7 +24,7 @@ password: {
     required: true,
     unique: false
 },
-sector: {type: String},
+sector: {type: mongoose.Schema.Types.ObjectId, ref:'Sectors'},
 CompanySpecialist: {type: mongoose.Schema.Types.ObjectId, ref:'Specialists'},
 isActive : {
     type: Boolean ,
