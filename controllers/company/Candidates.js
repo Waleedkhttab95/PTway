@@ -34,7 +34,7 @@ exports.postCandidate = async (req, res) => {
                 reminderEmail(jobAd.company.email, jobAd.candidatesNumber , jobAd._id,jobAd.job_Name)
             }
 
-            jobAd.candidatesNumber =+1;
+            jobAd.candidatesNumber++;
             jobAd.save();
             // change apply status of this job offer for user //
             const jobNotification = await Notification.findOne({ 'content': req.body.jobAd, 'user': req.user._id });

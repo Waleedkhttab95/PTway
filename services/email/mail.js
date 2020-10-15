@@ -80,7 +80,6 @@ async function companySendVerifMail(name, email,_id) {
 
 
 
-
 async function sendResetEmail(id, email , name) {
     const ccemail = fs.readFileSync(__dirname + '/email-Reset.html', 'utf-8');
     const comemail = hogan.compile(ccemail);
