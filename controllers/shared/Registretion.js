@@ -1,5 +1,5 @@
 const { User, validate } = require('../../models/Users/User');
-const { sendVerifMail ,companySendVerifMail } = require('../../services/email/mail');
+const { sendVerifMail ,companySendVerifMail,notifyAdmin } = require('../../services/email/mail');
 const { Company } = require('../../models/Companies/Companies');
 const _ = require('lodash');
 const bcrypt = require('bcrypt-nodejs');
@@ -124,7 +124,7 @@ exports.companyRegister = async (req, res) => {
 
     company.isConfirmed = false; // initially will be false
     companySendVerifMail(company.companyName , company.email,company._id);
-
+    notifyAdmin(company.companyName , "تسجيل شركة جديدة")
 
     const token = company.generateAuthToken();
 

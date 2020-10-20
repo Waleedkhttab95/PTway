@@ -31,6 +31,16 @@ module.exports = (app) => {
 
     })
 
+      // deActive  company
+      app.put('/api/blockCompany',admin, async (req, res) => {
+
+        await Company.updateOne({ '_id': req.body.id }, {
+            $set: { isActive: false, }
+        })
+        res.status(200).send("Updated");
+
+    })
+
 
 
     // return Pandding company
@@ -52,6 +62,30 @@ module.exports = (app) => {
 
     })
 
+    //search of users
+    app.get('/api/SearchUsersFilter',admin,(req,res) =>{
+        let query = req.body;
+
+        const users = UserInfo.find(query)
+        .populate('jobCategory country city public_Major spMajor skills personal_Skills universty ')
+        .populate('user','email');
+
+        res.status(200).json({
+            usersCount: users.length,
+            users: users
+        })
+    })
+
+      //get Users without jobCategory
+      app.get('/api/SearchUsersJobCategory',admin,(req,res) =>{
+        const users = UserInfo.find({'jobCategory': []}).select('user -_id')
+        .populate('user','email');
+
+        res.status(200).json({
+            usersCount:users.length,
+            users: users
+        })
+    })
     // make all emails lowercase
     app.put('/api/makeToLowerCase',admin,  async (req, res) => {
         const user = await User.find();
@@ -531,11 +565,20 @@ module.exports = (app) => {
     app.get('/api/get/searchCompanyByEmail/:email?',admin, async (req, res) => {
         try {
             const email = req.query.email;
-            const company = await Company.findOne({ 'email': email }).populate('CompanySpecialist');
+            const company = await Company.findOne({ 'email': email }).populate('CompanySpecialist sector superVisor');
             if (!company) {
-                res.status(400).json('الشركة غير مسجلة');
+                return res.status(400).json('الشركة غير مسجلة');
             }
-            res.status(200).send(company);
+
+            const projects = await Project.find({'company': company._id}).countDocuments();
+            const Ads = await JobAd.find({'company': company._id}).countDocuments();
+
+
+            res.status(200).json({
+                company: company,
+                projects: projects,
+                Ads:Ads
+            });
         }
         catch (error) {
             console.log(error);

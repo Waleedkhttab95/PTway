@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const keys = require('../../config/keys');
 const hogan  = require('hogan.js');
 const fs = require('fs');
+const userControllers = require('../../controllers/user/userProccess');
 
 
 let transporter = nodemailer.createTransport({
@@ -12,6 +13,7 @@ let transporter = nodemailer.createTransport({
     secure: true, // use SSL
     auth: {
         user: 'apikey',//keys.user,
+
         pass:'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'//keys.pass
     }
 
@@ -156,6 +158,18 @@ async function reminderEmail(  email , candidates, jobId, jobName) {
     });
 };
 
+async function toAdmins(message , type) {
+    const url = keys.mail_url;
+    const ccemail = fs.readFileSync(__dirname + '/notifyAdmin.html', 'utf-8');
+    const comemail = hogan.compile(ccemail);
+    let admins = userControllers.getAdmins;
+    transporter.sendMail({
+        from: 'no-replay@ptway.net',
+        to: admins,
+        subject: type,
+        html: comemail.render({type : type , message : message}),
+    });
+};
 
 exports.sendVerifMail = sendVerifMail;
 exports.sendResetEmail = sendResetEmail;
@@ -163,5 +177,6 @@ exports.sendJobOffer = sendJobOffer;
 exports.companySendVerifMail = companySendVerifMail;
 exports.contactEmail = contactEmail;
 exports.reminderEmail= reminderEmail;
+exports.notifyAdmin= toAdmins;
 //exports.sendHelloEmail = sendHelloEmail;
 exports.adminEmail = adminEmail;

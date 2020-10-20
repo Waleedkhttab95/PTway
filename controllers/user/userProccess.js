@@ -60,3 +60,9 @@ exports.disableAccount =  async(req,res) =>{
 
 
 }
+
+exports.getAdmins = async(req,res) =>{
+    let Admins = User.find({'isAdmin': true}).select('email -_id');
+
+    return Admins;
+}

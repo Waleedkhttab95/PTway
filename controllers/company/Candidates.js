@@ -4,6 +4,7 @@ const { Notification } = require('../../models/Notification');
 const { UserInfo } = require('../../models/Users/User_Info');
 const { result } = require('lodash');
 const { JobAd } = require('../../models/Companies/Job_Ad');
+const {appointment} = require('../../models/Companies/appointment');
 const { reminderEmail } = require('../../services/email/mail');
 
              // Candidates Controllers \\
@@ -202,6 +203,35 @@ exports.postCandidate = async (req, res) => {
     });
   }
 
+  // send job appointment
+  exports.sendAppointment = async (req,res) =>{
+    try{
+      new appointment({
+        company: req.user._id,
+        jobAd : req.body.jobAd,
+        createDate: Date.now(),
+        days:  req.body.days,
+        startDate:  req.body.startDate,
+        endDate:  req.body.endDate,
+        startHour:  req.body.startHour,
+        endHour:  req.body.endHour,
+        appointmentLeadName:  req.body.leadName,
+        appointmentLeadNumber:  req.body.leadNumber,
+        country: req.body.country,
+        city:   req.body.city,
+        Address:  req.body.address,
+        GoogleMapAddress: req.body.googleMapAddress
+      }).save()
+      .then(result =>{
+        // send email
+        res.status(200).send("complete !")
+      })
+    } catch(err){
+      console.log(err)
+      return res.status(400).send(err)
+
+    }
+  }
   async function getCandidates(pageNo, jobAd, queryFind,sort) {
     var Bresult = [];
     var pageNo = parseInt(pageNo)

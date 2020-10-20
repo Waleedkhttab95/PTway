@@ -20,6 +20,7 @@ module.exports = (app) => {
 
   app.get('/api/getFilterCandidates',auth, candidatesControllers.getFavList);
 
-
+  // send appointment
+  app.post('/api/sendAppointment', auth , candidatesControllers.sendAppointment);
 
 }//endofapp

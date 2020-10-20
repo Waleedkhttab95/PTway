@@ -6,7 +6,7 @@ const { Project_Admin } = require('../../models/admin/Project_Admin');
 const { Company } = require('../../models/Companies/Companies');
 const { Candidate } = require('../../models/Companies/Candidates');
 const { User } = require('../../models/Users/User');
-const { sendJobOffer } = require('../../services/email/mail');
+const { sendJobOffer,notifyAdmin } = require('../../services/email/mail');
 const { Sector } = require('../../models/Companies/Sector');
 const { CompanySpecialist } = require('../../models/Companies/CompanySpecialist');
 const { Project } = require('../../models/Companies/Project');
@@ -94,6 +94,7 @@ exports.postJob = (req, res) => {
     }).save()
         .then(result => {
             send_JobAds(result)
+            notifyAdmin(result.job_Name, "اعلان جديد ")
             res.send(result)
         }).catch((e) => {
             res.status(500).send('error', e)
