@@ -63,10 +63,10 @@ module.exports = (app) => {
     })
 
     //search of users
-    app.get('/api/SearchUsersFilter',admin,(req,res) =>{
+    app.post('/api/SearchUsersFilter',admin,async (req,res) =>{
         let query = req.body;
 
-        const users = UserInfo.find(query)
+        const users = await UserInfo.find(query)
         .populate('jobCategory country city public_Major spMajor skills personal_Skills universty ')
         .populate('user','email');
 
