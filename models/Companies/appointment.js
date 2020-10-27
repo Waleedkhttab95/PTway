@@ -9,14 +9,14 @@ const appointmentSchema = new Schema({
     jobAd : {type: mongoose.Schema.Types.ObjectId, ref:'JobAds', required:true},
     createDate: {type: Date , required:true},
     days: {type:[String],  required:true},
-    startDate: {type: Date , required:true},
-    endDate: {type: Date, required:true },
+    startDate: {type: String , required:true},
+    endDate: {type: String, required:true },
     startHour: {type: Number, required:true },
     endHour: {type: Number , required:true},
     appointmentLeadName: {type: String},
     appointmentLeadNumber: {type:Number},
-    country:  {type: mongoose.Schema.Types.ObjectId, ref:'country', required:true},
-    city:  {type: mongoose.Schema.Types.ObjectId, ref:'city', required:true},
+    country:  {type:String, required:true},
+    city:  {type: String, required:true},
     Address: {type:String, required:true},
     GoogleMapAddress: {type:String}
 });

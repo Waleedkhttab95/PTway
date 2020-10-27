@@ -77,9 +77,9 @@ module.exports = (app) => {
     })
 
       //get Users without jobCategory
-      app.get('/api/SearchUsersJobCategory',admin,(req,res) =>{
-        const users = UserInfo.find({'jobCategory': []}).select('user -_id')
-        .populate('user','email');
+      app.get('/api/SearchUsersJobCategory',async (req,res) =>{
+        const users = await UserInfo.find({'jobCategory': []}).select('user -_id')
+        .populate('user','email -_id');
 
         res.status(200).json({
             usersCount:users.length,

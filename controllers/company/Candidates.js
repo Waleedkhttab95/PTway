@@ -223,6 +223,7 @@ exports.postCandidate = async (req, res) => {
         GoogleMapAddress: req.body.googleMapAddress
       }).save()
       .then(result =>{
+        console.log(result)
         // send email
         res.status(200).send("complete !")
       })
