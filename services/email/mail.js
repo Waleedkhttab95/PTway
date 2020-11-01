@@ -171,6 +171,27 @@ async function toAdmins(message , type) {
     });
 };
 
+
+
+async function sendInterview(details , recs) {
+    const url = keys.mail_url;
+    const ccemail = fs.readFileSync(__dirname + '/interviews.html', 'utf-8');
+    const comemail = hogan.compile(ccemail);
+
+    for(let i =0 ; i<recs.length ; i++){
+        transporter.sendMail({
+            from: 'no-replay@ptway.net',
+            to: recs[i].candidateName.email,
+            subject: "تجهز للمقابلة !",
+            html: comemail.render({details : details,jobName:recs[i].jobAd.job_Name,companyName: recs[i].jobAd.company.companyName }),
+        });
+    }
+
+};
+
+
+
+
 exports.sendVerifMail = sendVerifMail;
 exports.sendResetEmail = sendResetEmail;
 exports.sendJobOffer = sendJobOffer;
@@ -180,3 +201,4 @@ exports.reminderEmail= reminderEmail;
 exports.notifyAdmin= toAdmins;
 //exports.sendHelloEmail = sendHelloEmail;
 exports.adminEmail = adminEmail;
+exports.sendInterview = sendInterview;

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interview</title>
+
+    <style>
+      @font-face {
+    font-family: "DINNextLTArabic";
+    src: url("../fonts/ArbFONTS-DINNextLTArabic-Bold-2.ttf");
+    src: url("../fonts/ArbFONTS-DINNextLTArabic-Regular-2.ttf");
+}
+      body {
+        background-color: #f7f7f7;
+        font-family: 'DINNextLTArabic';
+
+      }
+      .container {
+        width: 490px;
+        box-shadow: 0 2px 11px 0 rgba(0, 0, 0, 0.07);
+        background-color: #ffffff;
+        margin: auto;
+        display: block;
+        padding: 30px 0;
+        text-align: center;
+        margin-top: 110px;
+      }
+      .title {
+        font-size: 24px;
+        font-weight: 500;
+        color: #18233d;
+      }
+      p {
+        opacity: 0.5;
+  font-size: 16px;
+  color: #18233d;
+      }
+      a {
+        color: #004cfe;
+        font-size: 16px;
+      }
+      .line {
+        width: 250px;
+  height: 1px;
+  background-color: #e4e4e4;
+  margin: 40px auto;
+      }
+      .date-time {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: row-reverse;
+      }
+      .date-time div {
+        font-size: 18px;
+        margin-bottom: 17px;
+        margin-right: 100px;
+      }
+      .date-time div span {
+         opacity: 0.5;
+  font-size: 16px;
+  color: #18233d;
+}
+.days {
+  text-align: right;
+    margin-right: 100px;
+    display: flex;
+    flex-direction: row-reverse;
+    margin-bottom: 20px;
+    font-size: 22px;
+}
+.days div {
+  width: 247px;
+  height: 22px;
+  border-radius: 3px;
+  background-color: #ebe8e8;
+  margin: 0 8px;
+  padding: 0 10px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: right;
+  color: #00263e;
+}
+.supervisor {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+.supervisor span {
+  color: #18233d;
+  opacity: 0.5;
+  font-size: 16px;
+}
+    </style>
+  </head>
+  <body>
+    <div style="background-color: #f7f7f7;">
+
+
+    <div class="container">
+      <h3 class="title">استعد للمقابلة الوظيفية</h3>
+      <p>
+        لقد تقدمت على وظيفة: {{jobName}}
+      </p>
+      <p>
+       في شركة : {{companyName}}
+      </p>
+      <p>. هنا موعد المقابلات </p>
+      <p>{{details.country}}، {{details.city}}</p>
+      <a href="{{details.GoogleMapAddress}}">{{details.GoogleMapAddress}}</a>
+      <p>{{details.Address}}</p>
+
+      <div class="line"></div>
+      <div >
+        <div>
+          <p style="color: #18233d;">  تبدأ بتاريخ :</p>
+
+          <span>{{details.startDate}}</span>
+        </div>
+        <div>
+          <p style="color: #18233d;">   إلى :</p>
+
+          <span>{{details.endDate}}</span>
+        </div>
+      </div>
+      <div>
+        <p style="color: #18233d;">في الأيام :</p>
+
+        <div>{{details.days}}</div>
+
+      </div>
+      <div>
+        <div>
+          <p style="color: #18233d;">من الساعة :</p>
+
+          <span>{{details.startHour}} </span>
+        </div>
+        <div>
+          <p style="color: #18233d;"> إلى :</p>
+
+          <span>{{details.endHour}}</span>
+        </div>
+      </div>
+      <div class="line"></div>
+      <div>
+        <div >
+
+          <span>{{details.appointmentLeadName}}</span>
+        </div>
+        <div>
+          <span>{{details.appointmentLeadNumber}}</span>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  </body>
+</html>

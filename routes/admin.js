@@ -65,11 +65,12 @@ module.exports = (app) => {
     //search of users
     app.post('/api/SearchUsersFilter',admin,async (req,res) =>{
         let query = req.body;
+        console.log(query)
 
         const users = await UserInfo.find(query)
         .populate('jobCategory country city public_Major spMajor skills personal_Skills universty ')
         .populate('user','email');
-
+        console.log(users.length)
         res.status(200).json({
             usersCount: users.length,
             users: users

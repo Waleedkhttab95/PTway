@@ -5,7 +5,7 @@ const { UserInfo } = require('../../models/Users/User_Info');
 const { result } = require('lodash');
 const { JobAd } = require('../../models/Companies/Job_Ad');
 const {appointment} = require('../../models/Companies/appointment');
-const { reminderEmail } = require('../../services/email/mail');
+const { reminderEmail,sendInterview } = require('../../services/email/mail');
 
              // Candidates Controllers \\
 
@@ -222,9 +222,10 @@ exports.postCandidate = async (req, res) => {
         Address:  req.body.address,
         GoogleMapAddress: req.body.googleMapAddress
       }).save()
-      .then(result =>{
-        console.log(result)
-        // send email
+      .then(async (result)  =>{
+
+        let recs = await AllgetCandidates(result.jobAd);
+        sendInterview(result, recs);
         res.status(200).send("complete !")
       })
     } catch(err){
@@ -276,5 +277,27 @@ exports.postCandidate = async (req, res) => {
     }
 
 
+
+  }
+
+  async function AllgetCandidates(jobId) {
+
+    if(jobId){
+
+      const users = await Candidate.find({"jobAd":jobId})
+      .select("candidateName jobAd -_id")
+      .populate('candidateName', 'email')
+      .populate({
+        path : 'jobAd',
+        populate : {
+          path : 'company'
+        }
+      })
+    if (!users) return res.status(401).send('notFound')
+
+    return users
+    }
+    else
+    return res.status(401).send('notFound jobId !')
 
   }
