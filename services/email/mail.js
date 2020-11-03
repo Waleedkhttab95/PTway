@@ -162,13 +162,17 @@ async function toAdmins(message , type) {
     const url = keys.mail_url;
     const ccemail = fs.readFileSync(__dirname + '/notifyAdmin.html', 'utf-8');
     const comemail = hogan.compile(ccemail);
-    let admins = userControllers.getAdmins;
-    transporter.sendMail({
-        from: 'no-replay@ptway.net',
-        to: admins,
-        subject: type,
-        html: comemail.render({type : type , message : message}),
-    });
+    let admins =  await userControllers.getAdmins();
+
+    for(let i =0 ; i<admins.length ; i++){
+        transporter.sendMail({
+            from: 'no-replay@ptway.net',
+            to: admins[i].email,
+            subject: type,
+            html: comemail.render({type : type , message : message}),
+        });
+    }
+
 };
 
 
