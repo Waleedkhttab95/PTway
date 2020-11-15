@@ -1,5 +1,6 @@
 const {User} = require('../../models/Users/User');
 const {JobAd} = require('../../models/Companies/Job_Ad');
+const { UserInfo } = require('../../models/Users/User_Info');
 
 exports.getUser =  async (req,res) =>{
     const id = req.query.id;
@@ -61,9 +62,45 @@ exports.disableAccount =  async(req,res) =>{
 
 }
 
-exports.getAdmins = async(req,res) =>{
-    console.log("Admins")
-    let Admins = await User.find({'isAdmin': true}).select('email -_id');
+// get all apointments for user
+exports.getAllAppointments = async (req,res) =>{
 
+   var result = [];
+    var temp ;
+    var pageNo = parseInt(req.query.pageNo)
+    var size = 10
+    var query = {}
+
+    if(pageNo < 0 || pageNo === 0) {
+        response = {"error" : true,"message" : "invalid page number, should start with 1"};
+        return res.json(response)
+  }
+
+  query.skip = size * (pageNo - 1)
+  query.limit = size;
+
+
+
+
+  const appointments = await UserInfo
+  .find({user: req.user._id},{},query)
+  .select('appointments -_id')
+  .populate('appointments')
+
+  if(!appointments) return res.status(200).json({appointments:[],totalPages:0})
+
+  const appointmentsCounts = appointments.appointments.length;
+  var totalPages = Math.ceil(appointmentsCounts / size)
+
+
+    res.status(200).json({
+        appointments: appointments,
+        totalPages
+    });
+}
+
+
+exports.getAdmins = async(req,res) =>{
+    let Admins = await User.find({'isAdmin': true}).select('email -_id');
     return Admins;
 }

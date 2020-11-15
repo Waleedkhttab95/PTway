@@ -19,18 +19,13 @@ const user_infoSchema = new Schema({
     gender: { type: String , required: true},
     mobile: {type: String},
     birthDate: {type: Date},
-
+    appointments:[{ type: mongoose.Schema.Types.ObjectId, ref: 'appointments' }],
     city: { type: mongoose.Schema.Types.ObjectId, ref: 'City', required: true },
-
-
     Education_level: {type: String},
-
     public_Major: { type: mongoose.Schema.Types.ObjectId, ref: 'Public_Major' },
-
     spMajor: { type: mongoose.Schema.Types.ObjectId, ref: 'SpMajor' },
     languagesWithLevel: [{ type: Object }],
     skills: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Skills' }],
-
     personal_Skills: [{ type: mongoose.Schema.Types.ObjectId, ref: 'PersonalSkills' }],
     courses: [{ type: String }],
     hoppies: [{ type: String }],
@@ -38,14 +33,10 @@ const user_infoSchema = new Schema({
     companies: [{ type: mongoose.Schema.Types.ObjectId, ref: 'companies' }],
     social_Status: {type: String},
     about: {type: String},
-
     personal_web: { type: String},
-
     facebook: {type: String},
     twitter: { type: String },
-
     instagram: {type: String},
-
     linkedin: {type: String}
 });
 

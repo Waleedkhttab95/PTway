@@ -30,7 +30,6 @@ module.exports = (app, client) => {
     app.get('/api/getprojectsById/:_id?', auth,companyProccessControllers.getProjectBuId );
 
 
-
     // Get all jobs Ad
 
     // app.get('/api/getjobs', auth, async (req, res) => {

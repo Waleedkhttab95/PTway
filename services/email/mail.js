@@ -159,8 +159,15 @@ async function reminderEmail(  email , candidates, jobId, jobName) {
 };
 
 async function toAdmins(message , type) {
+    let htmlPage = ''
+    if(type == "new Registretion") {
+        htmlPage = '/notifyAdminNewRegCompany.html'
+    }
+    else{
+        htmlPage = '/notifyAdmin.html'
+    }
     const url = keys.mail_url;
-    const ccemail = fs.readFileSync(__dirname + '/notifyAdmin.html', 'utf-8');
+    const ccemail = fs.readFileSync(__dirname + htmlPage, 'utf-8');
     const comemail = hogan.compile(ccemail);
     let admins =  await userControllers.getAdmins();
 

@@ -124,7 +124,7 @@ exports.companyRegister = async (req, res) => {
 
     company.isConfirmed = false; // initially will be false
     companySendVerifMail(company.companyName , company.email,company._id);
-    notifyAdmin(company.companyName , "تسجيل شركة جديدة")
+    notifyAdmin(company.companyName , "new Registretion")
 
     const token = company.generateAuthToken();
 

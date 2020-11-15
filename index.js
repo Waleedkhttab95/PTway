@@ -9,6 +9,7 @@ const keys = require('./config/keys');
 const rateLimit = require("express-rate-limit");
 const bodyParser = require('body-parser');
 const redis = require('redis');
+const swaggerDoc = require('./swagger');
 require('express-async-errors');
 require('./models/Users/User');
 require('./services/passport');
@@ -75,6 +76,7 @@ require('./routes/term')(app);
 require('./routes/User')(app,client);
 require('./routes/temp')(app);
 require('./services/updateResume')();
+swaggerDoc(app);
 require('./startup/prod')(app);
 
 

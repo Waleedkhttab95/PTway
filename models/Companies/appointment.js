@@ -15,8 +15,6 @@ const appointmentSchema = new Schema({
     endHour: {type: Number , required:true},
     appointmentLeadName: {type: String},
     appointmentLeadNumber: {type:Number},
-    country:  {type:String, required:true},
-    city:  {type: String, required:true},
     Address: {type:String, required:true},
     GoogleMapAddress: {type:String}
 });

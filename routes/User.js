@@ -17,4 +17,6 @@ module.exports = (app,client) => {
     // disable Account
     app.put('/api/disableAccount', auth ,userControllers.disableAccount);
 
+    // get appointments
+    app.get('/api/getUserAppointments', auth , userControllers.getAllAppointments)
 }

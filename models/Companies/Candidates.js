@@ -6,6 +6,8 @@ const candidatesSchema = new Schema({
 
  candidateName : {type: mongoose.Schema.Types.ObjectId, ref:'users'},
  jobAd : {type: mongoose.Schema.Types.ObjectId, ref:'JobAds'},
+ appointment :{type: mongoose.Schema.Types.ObjectId, ref:'appointments'},
+ appointmentStatus:{type: Boolean},
  createDate: {type: Date },
  isRead: {type: Boolean, default: false},
  isFavorite: {type: Boolean, default: false},

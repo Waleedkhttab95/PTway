@@ -23,4 +23,10 @@ module.exports = (app) => {
   // send appointment
   app.post('/api/sendAppointment', auth , candidatesControllers.sendAppointment);
 
+  //get Appointment details
+  app.get('/api/getAppointment',auth, candidatesControllers.getAppointmentDetails);
+
+  // change appointment status for each candidate
+  app.put('/api/changeappointmentstatus',auth,candidatesControllers.changeAppointmentStatus);
+
 }//endofapp
