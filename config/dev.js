@@ -6,7 +6,7 @@ module.exports = {
     jwtKey: 'ptwayyourway',
     user: 'pt.activetion@gmail.com',
     pass: 'rreomoacibrhmxaw'  ,
-    mail_url: 'https://ptway-test.herokuapp.com',
-    redirect_url: 'https://ptway-test.herokuapp.com',
+    mail_url: 'http://localhost',
+    redirect_url: 'http://localhost',
     send_grid_key:'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'
 };

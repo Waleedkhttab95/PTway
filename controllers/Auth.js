@@ -179,7 +179,7 @@ exports.companyLogin = async (req, res) => {
       const decoded = jwt.verify(req.params.token, keys.jwtKey);
        Company.findByIdAndUpdate(decoded._id, { isConfirmed: true })
        .then(result =>{
-        notifyAdmin(result.companyame , "confirm company")
+        notifyAdmin(result.companyName , "confirm company")
        });
 
     } catch (e) {

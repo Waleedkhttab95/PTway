@@ -164,6 +164,7 @@ async function toAdmins(message , type) {
         htmlPage = '/notifyAdminNewRegCompany.html'
     }
     else if(type == "confirm company"){
+
         htmlPage = '/notifyAdminConfirmCompany.html'
     }
     else{
