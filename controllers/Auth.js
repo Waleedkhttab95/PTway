@@ -4,7 +4,7 @@ const User = mongoose.model('users');
 const auth = require('../middleware/auth');
 const jwt = require('jsonwebtoken');
 const keys = require('../config/keys');
-const { sendResetEmail } = require('../services/email/mail');
+const { sendResetEmail,notifyAdmin } = require('../services/email/mail');
 const { Company, validateCompany } = require('../models/Companies/Companies');
 const Joi = require('joi');
 
@@ -177,7 +177,11 @@ exports.companyLogin = async (req, res) => {
   exports.companyConfirmation = async (req, res) => {
     try {
       const decoded = jwt.verify(req.params.token, keys.jwtKey);
-      await Company.findByIdAndUpdate(decoded._id, { isConfirmed: true });
+       Company.findByIdAndUpdate(decoded._id, { isConfirmed: true })
+       .then(result =>{
+        notifyAdmin(result.companyame , "confirm company")
+       });
+
     } catch (e) {
       res.send('error' + e);
     }
