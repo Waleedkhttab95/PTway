@@ -56,8 +56,6 @@ module.exports = () =>{
         today = new Date();
 
 
-
-
         Date.prototype.addDays = function (startDate) {
 
             var date = new Date(startDate);

@@ -89,10 +89,10 @@ exports.getAllAppointments = async (req,res) =>{
 
   if(!appointments) return res.status(200).json({appointments:[],totalPages:0})
 
-  const appointmentsCounts = appointments.appointments.length;
+  const appointmentsCounts = appointments.length;
   var totalPages = Math.ceil(appointmentsCounts / size)
 
-
+  console.log(appointments,totalPages)
     res.status(200).json({
         appointments: appointments,
         totalPages

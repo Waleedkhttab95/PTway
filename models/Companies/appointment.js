@@ -5,7 +5,7 @@ const {Schema} = mongoose;
 
 const appointmentSchema = new Schema({
 
-    company : {type: mongoose.Schema.Types.ObjectId, ref:'company', required:true},
+    company : {type: mongoose.Schema.Types.ObjectId, ref:'companies', required:true},
     jobAd : {type: mongoose.Schema.Types.ObjectId, ref:'JobAds', required:true},
     createDate: {type: Date , required:true},
     days: {type:[String],  required:true},

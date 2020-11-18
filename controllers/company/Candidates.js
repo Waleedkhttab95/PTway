@@ -259,13 +259,13 @@ exports.sendAppointment = async (req, res) => {
 exports.getAppointmentDetails = async (req, res) => {
   let Id = req.query.id;
   try {
-    const appointment = await appointment.findById(Id)
+    const result = await appointment.findById(Id)
       .populate("company", "companyName")
       .populate("jobAd", "job_Name")
-    if (!appointment) return res.status(401).status("not found !")
+    if (!result) return res.status(401).status("not found !")
 
     res.status(200).json({
-      appointment: appointment
+      appointment: result
     })
   } catch (error) {
     console.log(error)
@@ -276,15 +276,15 @@ exports.getAppointmentDetails = async (req, res) => {
 // change Appointment status for each candidate
 exports.changeAppointmentStatus = async (req, res) => {
   let userId = req.user._id;
+  let jobId = req.body.jobAd;
   let appointmentId = req.body.appointmentId;
   let status = req.body.status;
   let reason = req.body.reason;
-
   try {
-    const result = await Candidate.updateOne({ 'candidateName': userId, 'appointment': appointmentId }, {
+    const result = await Candidate.updateOne({ 'candidateName': userId, 'jobAd': jobId }, {
       $set: {
-        status: status,
-        appointmentStatus: reason
+        appointmentStatus: status,
+        appointmentReason: reason
       }
     })
     if (!result) return res.status(401).send("not found !")

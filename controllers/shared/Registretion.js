@@ -112,6 +112,7 @@ exports.companyRegister = async (req, res) => {
       today.setHours(0, 0, 0, 0);
       company.password = hash;
       company.createDate = Date.now();
+      company.dateOfResendActivation = resendDate();
       company.sortDate= today
       company.email = company.email.toLowerCase()
       superVisorResult.then(result =>{
@@ -226,3 +227,20 @@ exports.subCompanyRegister =  async (req, res) => {
    return result
   };
 
+// add date of resend Activtion for companies
+function resendDate() {
+  Date.prototype.addDays = function (startDate, days) {
+
+      var date = new Date(startDate);
+      date.setDate(date.getDate() + days);
+
+      return date;
+  }
+
+  var Ld = new Date();
+  var today = Date.now();
+
+  Ld = Ld.addDays(today, 7);
+  Ld.setHours(0, 0, 0, 0);
+  return Ld;
+}

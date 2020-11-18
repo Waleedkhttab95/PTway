@@ -32,6 +32,7 @@ isActive : {
 },
 createDate: {type: Date},
 sortDate: {type: Date},
+dateOfResendActivation: {type:Date},
 isConfirmed:{
     type:Boolean
 
