@@ -211,18 +211,18 @@ exports.getUserInfoById =  async (req, res) => {
 
    info.profile_views += 1;
    info.save();
-  study_degree = study_degreeCheck(info);
-   education_degree = education_degreeCheck(info);
+    study_degree = study_degreeCheck(info);
+    education_degree = education_degreeCheck(info);
     Education_level = Education_levelCheck(info);
-
-
+    let personal_Skills = info.personal_Skills ? info.personal_Skills.slice(0,5) : ''
+    let skills = info.skills ? info.skills.slice(0,5) : ''
         res.status(200).json({
             email:user.email,
             study_degree:study_degree,
             education_degree:education_degree,
             Education_level: Education_level,
-            personal_Skills: info.personal_Skills.slice(0,5),
-            skills: info.skills.slice(0,5),
+            personal_Skills: personal_Skills,
+            skills: skills,
            info: info
 
         });
